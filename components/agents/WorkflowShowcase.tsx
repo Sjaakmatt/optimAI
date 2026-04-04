@@ -391,7 +391,7 @@ export default function WorkflowShowcase() {
         </div>
 
         {/* Tab selector */}
-        <div style={{ display: "flex", gap: "0.75rem", marginBottom: "2rem", flexWrap: "wrap" }}>
+        <div className="workflow-tabs" style={{ display: "flex", gap: "0.75rem", marginBottom: "2rem", flexWrap: "wrap" }}>
           {workflows.map((w, i) => (
             <button key={w.id} onClick={() => handleWorkflowChange(i)} style={{
               padding: "0.6rem 1.25rem",

@@ -130,7 +130,7 @@ export default function ProcessScan() {
               </div>
             )}
 
-            <div style={{ padding: "2.5rem 3rem" }}>
+            <div className="scan-inner" style={{ padding: "2.5rem 3rem" }}>
 
               {/* FORM */}
               {stage === "form" && (

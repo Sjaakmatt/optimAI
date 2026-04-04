@@ -6,7 +6,7 @@ export default function Footer() {
       color: "var(--white)",
       padding: "3rem 0",
     }}>
-      <div className="container" style={{
+      <div className="container footer-inner" style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",

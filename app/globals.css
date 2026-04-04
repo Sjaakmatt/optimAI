@@ -54,3 +54,61 @@ a { color: inherit; text-decoration: none; }
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Mobile Responsive ─── */
+
+@media (max-width: 768px) {
+  .container { padding: 0 1.25rem; }
+  .section { padding: 3.5rem 0; }
+
+  /* Problem & AgentsExplainer split cards */
+  .split-card { grid-template-columns: 1fr !important; }
+  .split-card-right { border-left: none !important; border-top: 1px solid var(--border); }
+
+  /* Processes 4-col grid */
+  .offerings-grid { grid-template-columns: 1fr !important; }
+
+  /* About & Contact 2-col grids */
+  .two-col-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+
+  /* Contact form inner 2-col */
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* HowItWorks timeline */
+  .step-row { gap: 1.25rem !important; }
+  .step-circle { width: 3.5rem !important; height: 3.5rem !important; font-size: 0.9rem !important; }
+  .timeline-line { left: 1.75rem !important; }
+
+  /* Footer */
+  .footer-inner { flex-direction: column; text-align: center; gap: 1rem; }
+
+  /* Workflow tabs */
+  .workflow-tabs { overflow-x: auto; flex-wrap: nowrap !important; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
+  .workflow-tabs::-webkit-scrollbar { display: none; }
+
+  /* ProcessScan padding */
+  .scan-inner { padding: 1.5rem 1.25rem !important; }
+
+  /* About badges row */
+  .badges-row { gap: 1.25rem !important; }
+
+  /* Navbar mobile */
+  .nav-links { display: none !important; }
+  .nav-links.open { display: flex !important; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 200; align-items: center; justify-content: center; gap: 2rem; }
+  .nav-links.open a { font-size: 1.2rem; }
+  .hamburger { display: flex !important; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 15px; }
+  .container { padding: 0 1rem; }
+  .section { padding: 2.5rem 0; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .offerings-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 769px) {
+  .hamburger { display: none !important; }
+}

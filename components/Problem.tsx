@@ -63,7 +63,7 @@ export default function Problem() {
             <div
               key={i}
               ref={el => { refs.current[i] = el; }}
-              className="reveal"
+              className="reveal split-card"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -83,7 +83,7 @@ export default function Problem() {
                 <p style={{ color: "var(--ink-light)", fontSize: "0.93rem", lineHeight: 1.65 }}>{p.body}</p>
               </div>
               {/* Right: AI solution */}
-              <div style={{ padding: "2rem", backgroundColor: "var(--green-light)", borderLeft: "1px solid var(--border)" }}>
+              <div className="split-card-right" style={{ padding: "2rem", backgroundColor: "var(--green-light)", borderLeft: "1px solid var(--border)" }}>
                 <div style={{
                   fontSize: "0.72rem", fontWeight: 600, color: "var(--green)",
                   letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.75rem",

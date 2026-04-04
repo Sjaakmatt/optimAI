@@ -18,7 +18,7 @@ export default function About() {
       <div className="container">
         <div
           ref={ref}
-          className="reveal"
+          className="reveal two-col-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -103,7 +103,9 @@ export default function About() {
               gap: "2rem",
               paddingTop: "2rem",
               borderTop: "1px solid var(--border)",
-            }}>
+              flexWrap: "wrap",
+            }}
+            className="badges-row">
               {[
                 { label: "Bedrijfskunde", sub: "Specialisatie processen" },
                 { label: "MKB-focus", sub: "10–200 medewerkers" },

@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const answers = await req.json();
 
-    const prompt = `Je bent een no-nonsense AI implementatie adviseur voor MKB-bedrijven. Een ondernemer heeft een korte procescan ingevuld. Analyseer de antwoorden en geef een directe, eerlijke analyse.
+    const prompt = `Je bent een no-nonsense AI implementatie adviseur voor MKB-bedrijven, gespecialiseerd in AI agents, custom builds en het slim inzetten van bestaande tools. Een ondernemer heeft een korte procescan ingevuld. Analyseer de antwoorden en geef een directe, eerlijke analyse.
 
 ANTWOORDEN VAN DE ONDERNEMER:
 Sector: ${answers.sector || "niet opgegeven"}
@@ -19,16 +19,16 @@ Schrijf een analyse in deze structuur (gebruik geen markdown koppen met #, gebru
 WAT WE ZIEN
 [2-3 zinnen over de kern van het probleem, direct en concreet. Benoem specifiek wat ze beschreven hebben.]
 
-WAT AI HIER KAN DOEN
-[Beschrijf 2-3 concrete AI-toepassingen die direct aansluiten op hun situatie. Wees specifiek: geen "AI kan processen verbeteren" maar "Een AI-koppeling tussen [hun systeem] en [output] elimineert de handmatige stap die nu X tijd kost."]
+AI AGENT OPLOSSING
+[Beschrijf 1-2 concrete AI agents die dit proces kunnen overnemen. Wees specifiek: welke trigger start de agent, welke stappen voert hij uit, welke systemen koppelt hij aan elkaar. Denk aan agents die e-mails classificeren, facturen verwerken, data synchroniseren, rapporten genereren, etc. Benoem concrete tools uit hun stack waar de agent mee integreert.]
 
-AANPAK DIE PAST
-[Advies over of dit meer een configuratie/consulting traject is of dat custom bouwen zinvol is. Geef een realistische tijdsinschatting.]
+BESTAANDE TOOLS OF CUSTOM BUILD?
+[Geef een eerlijk advies: kan dit met bestaande tools (zoals n8n workflows, Make, Zapier, of native integraties) of is een custom AI agent de betere route? Leg uit waarom. Als bestaande tools voldoende zijn, benoem welke. Als custom nodig is, leg uit wat dat inhoudt (bijv. een op maat gebouwde AI agent die met hun specifieke systemen praat). Geef een realistische tijdsinschatting.]
 
 VOLGENDE STAP
-[1 concrete zin wat ze morgen al kunnen doen of wat een gesprek zou opleveren.]
+[1 concrete zin wat ze morgen al kunnen doen of wat een gesprek zou opleveren. Focus op de quickest win: welke agent of tool levert het snelst resultaat?]
 
-Schrijf in jij-vorm, direct en zakelijk. Geen buzzwords. Geen vage beloftes. Max 300 woorden totaal.`;
+Schrijf in jij-vorm, direct en zakelijk. Geen buzzwords. Geen vage beloftes. Max 350 woorden totaal.`;
 
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",

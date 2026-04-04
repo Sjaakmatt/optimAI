@@ -63,7 +63,7 @@ export default function HowItWorks() {
         </div>
 
         <div style={{ position: "relative" }}>
-          <div style={{
+          <div className="timeline-line" style={{
             position: "absolute", left: "2.5rem",
             top: "3rem", bottom: "3rem",
             width: "1px", backgroundColor: "var(--border)",
@@ -74,10 +74,10 @@ export default function HowItWorks() {
               <div
                 key={i}
                 ref={(el) => { refs.current[i] = el; }}
-                className="reveal"
+                className="reveal step-row"
                 style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start", transitionDelay: `${i * 0.1}s` }}
               >
-                <div style={{
+                <div className="step-circle" style={{
                   flexShrink: 0, width: "5rem", height: "5rem", borderRadius: "50%",
                   backgroundColor: i === 0 ? "var(--accent)" : "var(--green)",
                   display: "flex", alignItems: "center", justifyContent: "center",
