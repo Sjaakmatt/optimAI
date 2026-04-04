@@ -30,25 +30,27 @@ export default function Navbar() {
   return (
     <>
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        position: "fixed", top: 0, left: 0, right: 0,
+        zIndex: menuOpen ? 300 : 100,
         padding: "1.2rem 2rem",
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        backgroundColor: scrolled ? "rgba(245,240,232,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(8px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--border)" : "none",
-        transition: "all 0.3s ease",
+        backgroundColor: menuOpen ? "var(--cream)" : scrolled ? "rgba(245,240,232,0.95)" : "transparent",
+        backdropFilter: scrolled && !menuOpen ? "blur(8px)" : "none",
+        borderBottom: scrolled && !menuOpen ? "1px solid var(--border)" : "none",
+        transition: "background-color 0.3s ease, border-bottom 0.3s ease",
       }}>
-        <Link href="/" style={{
+        <Link href="/" onClick={() => setMenuOpen(false)} style={{
           fontFamily: "'Lora', serif", fontSize: "1.3rem", fontWeight: 600,
           color: "var(--green)", letterSpacing: "-0.02em", textDecoration: "none",
-          position: "relative", zIndex: 201,
+          position: "relative", zIndex: 301,
         }}>
           Factum<span style={{ color: "var(--accent)" }}>AI</span>
         </Link>
 
-        <div className={`nav-links${menuOpen ? " open" : ""}`}>
+        {/* Desktop nav links */}
+        <div className="nav-links">
           {navItems.map((item) => (
-            <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)} style={{
+            <Link key={item.label} href={item.href} style={{
               fontSize: "0.9rem", color: "var(--ink-light)", fontWeight: 400,
               textDecoration: "none", transition: "color 0.2s",
             }}
@@ -58,7 +60,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <a href="/#scan" onClick={() => setMenuOpen(false)} style={{
+          <a href="/#scan" style={{
             backgroundColor: "var(--green)", color: "var(--white)",
             padding: "0.55rem 1.2rem", borderRadius: "4px",
             fontSize: "0.9rem", fontWeight: 500, transition: "background-color 0.2s",
@@ -84,7 +86,7 @@ export default function Navbar() {
             cursor: "pointer",
             padding: "4px",
             position: "relative",
-            zIndex: 201,
+            zIndex: 301,
           }}
         >
           <span style={{
@@ -107,6 +109,42 @@ export default function Navbar() {
           }} />
         </button>
       </nav>
+
+      {/* Mobile fullscreen overlay - rendered outside of nav */}
+      {menuOpen && (
+        <div style={{
+          position: "fixed",
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: "var(--cream)",
+          zIndex: 299,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "2rem",
+        }}>
+          {navItems.map((item) => (
+            <Link key={item.label} href={item.href} onClick={() => setMenuOpen(false)} style={{
+              fontSize: "1.4rem",
+              fontFamily: "'Lora', serif",
+              color: "var(--ink)",
+              fontWeight: 500,
+              textDecoration: "none",
+              transition: "color 0.2s",
+            }}>
+              {item.label}
+            </Link>
+          ))}
+          <a href="/#scan" onClick={() => setMenuOpen(false)} style={{
+            backgroundColor: "var(--green)", color: "var(--white)",
+            padding: "0.85rem 2rem", borderRadius: "4px",
+            fontSize: "1.1rem", fontWeight: 500,
+            marginTop: "1rem",
+          }}>
+            Gratis procescan
+          </a>
+        </div>
+      )}
     </>
   );
 }
