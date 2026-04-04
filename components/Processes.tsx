@@ -88,7 +88,7 @@ export default function Processes() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: "1.25rem",
             marginBottom: "3rem",
           }}

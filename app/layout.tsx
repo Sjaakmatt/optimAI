@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OptimAI — Procesoptimalisatie voor MKB",
+  title: "FactumAI — Procesoptimalisatie voor MKB",
   description: "Wij spotten verspilling in je bedrijfsprocessen en lossen het op met AI. Geen buzzwords, gewoon resultaat.",
 };
 

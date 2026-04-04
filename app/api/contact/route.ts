@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "OptimAI <noreply@optimai.nl>",
+        from: "FactumAI <noreply@factumai.nl>",
         to: [toEmail],
         subject: `Nieuwe procescan aanvraag van ${name}${company ? ` — ${company}` : ""}`,
         html: `

@@ -25,7 +25,7 @@ export default function Navbar() {
         fontFamily: "'Lora', serif", fontSize: "1.3rem", fontWeight: 600,
         color: "var(--green)", letterSpacing: "-0.02em", textDecoration: "none",
       }}>
-        Optim<span style={{ color: "var(--accent)" }}>AI</span>
+        Factum<span style={{ color: "var(--accent)" }}>AI</span>
       </Link>
 
       <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>

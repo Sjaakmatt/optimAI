@@ -54,7 +54,7 @@ export default function Problem() {
             Ze weten dat AI kan helpen.<br />Ze weten niet waar te beginnen.
           </h2>
           <p style={{ color: "var(--ink-light)", fontSize: "1.05rem" }}>
-            Dat is precies waar wij instappen. Wij analyseren, adviseren, en implementeren — van bestaande tools configureren tot custom applicaties bouwen.
+            Dat is precies waar wij instappen. Wij analyseren, adviseren, en implementeren. Van bestaande tools configureren tot custom applicaties bouwen.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
-# OptimAI Website
+# FactimAI Website
 
-Next.js landingspagina voor OptimAI — AI procesoptimalisatie voor MKB.
+Next.js landingspagina voor FactumAI — AI procesoptimalisatie voor MKB.
 
 ## Setup
 

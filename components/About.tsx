@@ -63,7 +63,7 @@ export default function About() {
               borderRadius: "8px",
               boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
             }}>
-              <div style={{ fontFamily: "'Lora', serif", fontSize: "1.5rem", fontWeight: 600 }}>4 jaar</div>
+              <div style={{ fontFamily: "'Lora', serif", fontSize: "1.5rem", fontWeight: 600 }}>8+ jaar</div>
               <div style={{ fontSize: "0.8rem", opacity: 0.8, marginTop: "0.2rem" }}>Bedrijfskunde &<br />proceservaring</div>
             </div>
           </div>

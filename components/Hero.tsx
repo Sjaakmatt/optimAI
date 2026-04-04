@@ -51,7 +51,7 @@ export default function Hero() {
             marginBottom: "1rem",
             maxWidth: "580px",
           }}>
-            Wij analyseren je processen, adviseren de aanpak, en implementeren AI — van quick win tot custom applicatie. Geen rapporten die in een la verdwijnen.
+            Wij analyseren je processen, adviseren de aanpak, en implementeren AI. Van quick win tot custom applicatie. Geen rapporten die in een la verdwijnen.
           </p>
 
           <p className="fade-up fade-up-delay-3" style={{

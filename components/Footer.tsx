@@ -18,11 +18,11 @@ export default function Footer() {
           fontSize: "1.2rem",
           fontWeight: 600,
         }}>
-          Optim<span style={{ color: "var(--accent)" }}>AI</span>
+          Factum<span style={{ color: "var(--accent)" }}>AI</span>
         </span>
 
         <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>
-          © {new Date().getFullYear()} OptimAI — Procesoptimalisatie voor MKB
+          © {new Date().getFullYear()} FactumAI — Procesoptimalisatie voor MKB
         </p>
 
         <div style={{ display: "flex", gap: "1.5rem" }}>
