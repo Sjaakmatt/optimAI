@@ -24,7 +24,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Aanpak", href: "/#aanpak" },
     { label: "AI Agents", href: "/agents" },
-    { label: "Over mij", href: "/#over-mij" },
+    { label: "Over ons", href: "/over-ons" },
   ];
 
   return (
