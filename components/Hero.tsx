@@ -181,13 +181,14 @@ export default function Hero() {
               >
                 <img
                   src="/foto.jpg"
-                  alt="FactumAI team"
+                  alt="Sjaak"
                   style={{
                     position: "absolute",
                     inset: 0,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
+                    objectPosition: "center top",
                   }}
                 />
 
