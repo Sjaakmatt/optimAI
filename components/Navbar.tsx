@@ -48,7 +48,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav links */}
-        <div className="nav-links">
+        <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           {navItems.map((item) => (
             <Link key={item.label} href={item.href} style={{
               fontSize: "0.9rem", color: "var(--ink-light)", fontWeight: 400,
