@@ -4,7 +4,6 @@ import Problem from "@/components/Problem";
 import HowItWorks from "@/components/HowItWorks";
 import Processes from "@/components/Processes";
 import ProcessScan from "@/components/ProcessScan";
-import About from "@/components/About";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <HowItWorks />
       <Processes />
       <ProcessScan />
-      <About />
       <Footer />
     </main>
   );
