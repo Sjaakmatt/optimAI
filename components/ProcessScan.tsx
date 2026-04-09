@@ -215,7 +215,7 @@ export default function ProcessScan() {
                     ✓ Analyse compleet
                   </div>
 
-                  <div style={{ whiteSpace: "pre-wrap", fontSize: "0.97rem", lineHeight: 1.75, color: "var(--ink)", backgroundColor: "var(--cream)", border: "1px solid var(--border)", borderRadius: "8px", padding: "1.75rem 2rem", marginBottom: "2.5rem" }}>
+                  <div style={{ whiteSpace: "pre-wrap", fontSize: "0.97rem", lineHeight: 1.75, color: "var(--ink)", backgroundColor: "var(--cream)", border: "1px solid var(--border)", borderRadius: "8px", padding: "1.75rem 2rem", marginBottom: "2.5rem", maxHeight: "500px", overflowY: "auto" }}>
                     {result}
                   </div>
 
