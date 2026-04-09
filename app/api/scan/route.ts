@@ -28,7 +28,7 @@ BESTAANDE TOOLS OF CUSTOM BUILD?
 VOLGENDE STAP
 [1 concrete zin wat ze morgen al kunnen doen of wat een gesprek zou opleveren. Focus op de quickest win: welke agent of tool levert het snelst resultaat?]
 
-Schrijf in jij-vorm, direct en zakelijk. Geen buzzwords. Geen vage beloftes. Max 350 woorden totaal.`;
+Schrijf in jij-vorm, direct en zakelijk. Geen buzzwords. Geen vage beloftes. Strict max 350 woorden totaal. Houd elke sectie kort.`;
 
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
