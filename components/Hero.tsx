@@ -179,21 +179,17 @@ export default function Hero() {
                   overflow: "hidden",
                 }}
               >
-                <div
+                <img
+                  src="/foto.jpg"
+                  alt="FactumAI team"
                   style={{
                     position: "absolute",
                     inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    gap: "0.5rem",
-                    color: "var(--ink-muted)",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                   }}
-                >
-                  <div style={{ fontSize: "3rem" }}>👤</div>
-                  <span style={{ fontSize: "0.8rem" }}>Foto hier</span>
-                </div>
+                />
 
                 {/* Floating badge */}
                 <div
