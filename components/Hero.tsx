@@ -19,7 +19,7 @@ export default function Hero() {
           className="hero-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: "3fr 2fr",
             gap: "4rem",
             alignItems: "center",
           }}
@@ -169,11 +169,11 @@ export default function Hero() {
           {/* Right: about / intro */}
           <div className="fade-up fade-up-delay-3">
             {/* Photo block */}
-            <div style={{ position: "relative", marginBottom: "2rem" }}>
+            <div style={{ position: "relative" }}>
               <div
                 style={{
                   width: "100%",
-                  aspectRatio: "4/5",
+                  aspectRatio: "1/1",
                   backgroundColor: "var(--cream-dark)",
                   borderRadius: "8px",
                   position: "relative",
@@ -195,39 +195,39 @@ export default function Hero() {
                   <div style={{ fontSize: "3rem" }}>👤</div>
                   <span style={{ fontSize: "0.8rem" }}>Foto hier</span>
                 </div>
-              </div>
 
-              {/* Floating badge */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "-1.5rem",
-                  right: "-1.5rem",
-                  backgroundColor: "var(--green)",
-                  color: "var(--white)",
-                  padding: "1.25rem 1.5rem",
-                  borderRadius: "8px",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-                }}
-              >
+                {/* Floating badge */}
                 <div
                   style={{
-                    fontFamily: "'Lora', serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 600,
+                    position: "absolute",
+                    bottom: "1rem",
+                    right: "1rem",
+                    backgroundColor: "var(--green)",
+                    color: "var(--white)",
+                    padding: "1rem 1.25rem",
+                    borderRadius: "8px",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
                   }}
                 >
-                  8+ jaar
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.8rem",
-                    opacity: 0.8,
-                    marginTop: "0.2rem",
-                  }}
-                >
-                  Bedrijfskunde &<br />
-                  proceservaring
+                  <div
+                    style={{
+                      fontFamily: "'Lora', serif",
+                      fontSize: "1.3rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    8+ jaar
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      opacity: 0.8,
+                      marginTop: "0.2rem",
+                    }}
+                  >
+                    Bedrijfskunde &<br />
+                    proceservaring
+                  </div>
                 </div>
               </div>
             </div>
@@ -238,7 +238,7 @@ export default function Hero() {
                 fontSize: "0.95rem",
                 color: "var(--ink-light)",
                 lineHeight: 1.7,
-                marginTop: "2.5rem",
+                marginTop: "1.5rem",
               }}
             >
               Mijn achtergrond is bedrijfskunde, met een focus op processen,
@@ -251,16 +251,16 @@ export default function Hero() {
             <div
               className="badges-row"
               style={{
-                marginTop: "1.5rem",
+                marginTop: "1.25rem",
                 display: "flex",
-                gap: "2rem",
-                paddingTop: "1.5rem",
+                gap: "1.5rem",
+                paddingTop: "1.25rem",
                 borderTop: "1px solid var(--border)",
                 flexWrap: "wrap",
               }}
             >
               {[
-                { label: "Bedrijfskunde", sub: "Specialisatie processen" },
+                { label: "Bedrijfskunde", sub: "Processen" },
                 { label: "MKB-focus", sub: "10–200 medewerkers" },
                 { label: "No-nonsense", sub: "Resultaat voorop" },
               ].map((item, i) => (
@@ -269,7 +269,7 @@ export default function Hero() {
                     style={{
                       fontFamily: "'Lora', serif",
                       fontWeight: 600,
-                      fontSize: "1rem",
+                      fontSize: "0.95rem",
                       color: "var(--green)",
                     }}
                   >
@@ -277,7 +277,7 @@ export default function Hero() {
                   </div>
                   <div
                     style={{
-                      fontSize: "0.8rem",
+                      fontSize: "0.75rem",
                       color: "var(--ink-muted)",
                       marginTop: "0.15rem",
                     }}
