@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, company, email, employees, process } = body;
-
-    if (!name || !email || !process) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
-
     const apiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.CONTACT_EMAIL || "jouw@email.nl";
+
+    const body = await req.json();
+    const { name, company, email, employees, process: processDescription } = body;
+
+    if (!name || !email || !processDescription) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
 
     if (!apiKey) {
       console.error("RESEND_API_KEY not set");
