@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
               </tr>
               <tr>
                 <td style="padding: 0.75rem 0; color: #666; font-size: 14px; vertical-align: top;">Proces</td>
-                <td style="padding: 0.75rem 0; line-height: 1.6;">${process}</td>
+                <td style="padding: 0.75rem 0; line-height: 1.6;">${processDescription}</td>
               </tr>
             </table>
             <div style="margin-top: 2rem; padding: 1rem; background: #E8F0DF; border-radius: 6px; font-size: 13px; color: #2D5016;">
