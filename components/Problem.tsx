@@ -67,9 +67,9 @@ export default function Problem() {
             Ze weten dat AI kan helpen.<br />Ze weten niet waar te beginnen.
           </h2>
           <p className="section-desc">
-            Dat is precies waar wij instappen. Wij analyseren, adviseren, en
-            implementeren. Van bestaande tools configureren tot custom
-            applicaties bouwen.
+            Dat is precies waar wij instappen. Wij bouwen AI agents en
+            automatiseringen die het werk overnemen. Van slimme workflows
+            tot custom AI-applicaties.
           </p>
         </div>
 

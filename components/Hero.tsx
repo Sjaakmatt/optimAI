@@ -44,7 +44,7 @@ export default function Hero() {
               marginBottom: "2rem",
             }}>
               <span className="badge badge-accent">
-                AI Implementatie & Procesoptimalisatie
+                AI Automatisering & AI Agents voor MKB
               </span>
             </div>
 
@@ -52,9 +52,9 @@ export default function Hero() {
               fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
               fontWeight: 700, lineHeight: 1.08, marginBottom: "1.8rem",
             }}>
-              Jouw processen,{" "}
+              Wij bouwen AI agents{" "}
               <span className="gradient-text" style={{ fontStyle: "italic" }}>
-                versterkt met AI.
+                die jouw werk doen.
               </span>
             </h1>
 
@@ -62,17 +62,17 @@ export default function Hero() {
               fontSize: "1.1rem", color: "var(--text-secondary)",
               lineHeight: 1.75, marginBottom: "1rem", maxWidth: "540px",
             }}>
-              FactumAI analyseert je bedrijfsprocessen, vindt waar tijd en geld
-              weglekt, en implementeert AI-oplossingen die direct resultaat
-              leveren. Van quick win tot custom applicatie.
+              FactumAI bouwt AI agents en automatiseringen die jouw repetitieve
+              werk overnemen. Systemen die met elkaar praten, taken die zichzelf
+              uitvoeren, en workflows die 24/7 draaien.
             </p>
 
             <p className="fade-up fade-up-d3" style={{
               fontSize: "0.95rem", color: "var(--text-muted)",
               marginBottom: "2.5rem", fontStyle: "italic",
             }}>
-              &ldquo;Ik kijk naar je processen, zie waar uren weglekken, en plug
-              daar AI in.&rdquo;
+              &ldquo;Vertel me wat je elke dag handmatig doet, en ik bouw een
+              AI agent die het overneemt.&rdquo;
             </p>
 
             <div className="fade-up fade-up-d4" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -91,7 +91,7 @@ export default function Hero() {
             }}>
               {[
                 { num: "MKB", label: "10–200 medewerkers" },
-                { num: "Gratis", label: "procescan als start" },
+                { num: "Gratis", label: "AI scan als start" },
                 { num: "2–4 wk", label: "tot eerste resultaat" },
               ].map((item) => (
                 <div key={item.label}>
@@ -136,7 +136,7 @@ export default function Hero() {
                   8+ jaar
                 </div>
                 <div style={{ fontSize: "0.72rem", opacity: 0.85, marginTop: "0.15rem" }}>
-                  Bedrijfskunde &<br />proceservaring
+                  AI & automatiserings-<br />ervaring
                 </div>
               </div>
             </div>
@@ -145,9 +145,9 @@ export default function Hero() {
               fontSize: "0.9rem", color: "var(--text-secondary)",
               lineHeight: 1.7, marginTop: "2rem",
             }}>
-              Achtergrond in bedrijfskunde, focus op processen en strategie.
-              Ik werk met MKB-bedrijven van 10 tot 200 medewerkers — de schaal
-              waar procesoptimalisatie het meeste verschil maakt.
+              Wij bouwen AI agents en automatiseringen voor MKB-bedrijven
+              van 10 tot 200 medewerkers — de schaal waar AI het snelst
+              het verschil maakt.
             </p>
           </div>
         </div>

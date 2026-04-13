@@ -25,7 +25,7 @@ export default function Footer() {
               color: "var(--text-muted)", fontSize: "0.88rem",
               lineHeight: 1.7, marginTop: "0.75rem", maxWidth: "260px",
             }}>
-              AI implementatie & procesoptimalisatie voor MKB-bedrijven.
+              AI agents & automatisering voor MKB-bedrijven.
               Concreet resultaat, geen vage beloften.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} FactumAI. Alle rechten voorbehouden.
           </p>
           <p style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>
-            Procesoptimalisatie & AI implementatie voor MKB
+            AI Automatisering & AI Agents voor MKB
           </p>
         </div>
       </div>

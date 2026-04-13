@@ -5,7 +5,7 @@ import CasesContent from "@/components/CasesContent";
 export const metadata = {
   title: "Cases — FactumAI",
   description:
-    "Voorbeelden van AI-implementaties en procesoptimalisaties die FactumAI heeft uitgevoerd voor MKB-bedrijven.",
+    "Voorbeelden van AI agents en automatiseringsoplossingen die FactumAI heeft gebouwd voor MKB-bedrijven.",
 };
 
 export default function CasesPage() {

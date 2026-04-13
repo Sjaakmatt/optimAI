@@ -30,17 +30,8 @@ const diensten = [
 
 const specialiteiten = [
   {
-    title: "Procesoptimalisatie",
-    desc: "We identificeren inefficiënties en ontwerpen slimmere workflows — met of zonder AI.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-      </svg>
-    ),
-  },
-  {
-    title: "AI Implementatie",
-    desc: "Van off-the-shelf tools tot custom oplossingen: we bouwen wat bij je past en zorgen dat het werkt.",
+    title: "AI Agents",
+    desc: "We bouwen autonome AI agents die taken zelfstandig uitvoeren — van e-mailverwerking tot klantopvolging.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
@@ -48,8 +39,17 @@ const specialiteiten = [
     ),
   },
   {
-    title: "Automatisering",
-    desc: "Repetitieve taken elimineren zodat je team zich kan focussen op werk dat er echt toe doet.",
+    title: "Workflow Automatisering",
+    desc: "Van off-the-shelf tools tot custom oplossingen: we bouwen geautomatiseerde workflows die 24/7 draaien.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Custom AI-applicaties",
+    desc: "Op maat gemaakte AI-oplossingen die aansluiten op jouw specifieke bedrijfssituatie.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
@@ -115,9 +115,9 @@ export default function OverOnsContent() {
               fontSize: "1.1rem", color: "var(--text-secondary)",
               lineHeight: 1.7, maxWidth: "600px",
             }}>
-              FactumAI helpt MKB-bedrijven om hun processen te analyseren,
-              optimaliseren en automatiseren met AI. Geen vage adviezen — concrete
-              ingrepen met meetbaar resultaat.
+              FactumAI bouwt AI agents en automatiseringsoplossingen voor
+              MKB-bedrijven. Geen vage adviezen — werkende AI die direct
+              resultaat levert.
             </p>
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function OverOnsContent() {
                 fontFamily: "var(--font-heading)", fontSize: "1.25rem",
                 fontWeight: 600, marginBottom: "1rem",
               }}>
-                Een toekomst waarin processen voor je werken, niet andersom
+                Een toekomst waarin AI het werk doet, zodat jij kunt ondernemen
               </h3>
               <p style={{
                 color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: 1.7,
@@ -206,7 +206,7 @@ export default function OverOnsContent() {
                   8+ jaar
                 </div>
                 <div style={{ fontSize: "0.78rem", opacity: 0.85, marginTop: "0.15rem" }}>
-                  Bedrijfskunde &<br />proceservaring
+                  AI & automatiserings-<br />ervaring
                 </div>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function OverOnsContent() {
             <div>
               <p className="section-tag">Wie we zijn</p>
               <h2 className="section-title">
-                Wij houden van processen die w&eacute;l werken
+                Wij bouwen AI die &eacute;cht werkt
               </h2>
 
               <div style={{
@@ -223,20 +223,20 @@ export default function OverOnsContent() {
                 color: "var(--text-secondary)", fontSize: "0.97rem", lineHeight: 1.7,
               }}>
                 <p>
-                  Onze achtergrond ligt in bedrijfskunde, met een focus op
-                  processen, strategie en waardepropositie. We zien ineffici&euml;ntie
-                  snel — en worden oprecht enthousiast van het oplossen ervan.
+                  Onze achtergrond combineert bedrijfskunde met AI-technologie.
+                  We snappen hoe bedrijven werken — en we weten precies hoe AI
+                  agents dat werk kunnen overnemen.
                 </p>
                 <p>
                   We werken met MKB-bedrijven van 10 tot 200 medewerkers. Niet
                   omdat dat lukraak gekozen is, maar omdat dat de schaal is waar
-                  procesoptimalisatie het meeste verschil maakt en het minst
+                  AI-automatisering het snelst het verschil maakt en het minst
                   serieus wordt genomen.
                 </p>
                 <p>
                   Geen vage adviezen. Geen dure trajecten die jaren duren.
-                  Concrete ingrepen, meetbaar resultaat, en als het klaar is heb
-                  je er niks meer van nodig.
+                  Werkende AI agents, meetbaar resultaat, en als het draait heb
+                  je er niks meer voor nodig.
                 </p>
               </div>
 
@@ -245,7 +245,7 @@ export default function OverOnsContent() {
                 paddingTop: "2rem", borderTop: "1px solid var(--border)", flexWrap: "wrap",
               }}>
                 {[
-                  { label: "Bedrijfskunde", sub: "Specialisatie processen" },
+                  { label: "AI-first", sub: "Agents & automatisering" },
                   { label: "MKB-focus", sub: "10–200 medewerkers" },
                   { label: "No-nonsense", sub: "Resultaat voorop" },
                 ].map((item, i) => (
@@ -274,7 +274,7 @@ export default function OverOnsContent() {
             <p className="section-tag">Specialiteiten</p>
             <h2 className="section-title">Waar wij goed in zijn</h2>
             <p className="section-desc">
-              Onze expertise zit op het snijvlak van bedrijfsprocessen en technologie.
+              Onze expertise zit op het snijvlak van AI-technologie en bedrijfsautomatisering.
             </p>
           </div>
 

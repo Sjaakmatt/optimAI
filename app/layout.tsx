@@ -3,9 +3,9 @@ import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "FactumAI — AI Implementatie & Procesoptimalisatie voor MKB",
+  title: "FactumAI — AI Automatisering & AI Agents voor MKB",
   description:
-    "Wij analyseren je processen, adviseren de aanpak, en implementeren AI. Van quick win tot custom applicatie. Geen rapporten die in een la verdwijnen.",
+    "Wij bouwen AI agents en automatiseringsoplossingen voor MKB-bedrijven. Van slimme workflows tot custom AI-applicaties. Concreet resultaat, geen vage beloften.",
 };
 
 export default function RootLayout({
