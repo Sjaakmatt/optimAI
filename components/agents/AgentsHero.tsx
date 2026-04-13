@@ -4,86 +4,65 @@ export default function AgentsHero() {
   return (
     <section style={{
       minHeight: "70vh",
-      display: "flex",
-      alignItems: "center",
-      backgroundColor: "var(--cream)",
-      position: "relative",
-      overflow: "hidden",
-      paddingTop: "7rem",
-      paddingBottom: "5rem",
+      display: "flex", alignItems: "center",
+      background: "var(--hero-grad)",
+      position: "relative", overflow: "hidden",
+      paddingTop: "7rem", paddingBottom: "5rem",
     }}>
       <div style={{
-        position: "absolute",
-        top: 0, right: 0,
-        width: "45%",
-        height: "100%",
-        backgroundColor: "var(--green-light)",
-        clipPath: "polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        opacity: 0.5,
+        position: "absolute", top: "15%", right: "10%",
+        width: "500px", height: "500px", borderRadius: "50%",
+        background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)",
+        filter: "blur(80px)", pointerEvents: "none",
       }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ maxWidth: "700px" }}>
-          <p className="fade-up fade-up-delay-1" style={{
-            fontSize: "0.85rem", fontWeight: 500, color: "var(--accent)",
-            letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1.5rem",
-          }}>
-            AI Agents & Workflow Automatisering
-          </p>
-          <h1 className="fade-up fade-up-delay-2" style={{
+          <div className="fade-up fade-up-d1">
+            <span className="badge badge-accent" style={{ marginBottom: "1.5rem" }}>
+              AI Agents & Workflow Automatisering
+            </span>
+          </div>
+
+          <h1 className="fade-up fade-up-d2" style={{
             fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-            fontWeight: 700, lineHeight: 1.1,
-            marginBottom: "1.8rem",
-            letterSpacing: "-0.02em",
+            fontWeight: 700, lineHeight: 1.1, marginBottom: "1.8rem",
           }}>
-            Processen die zichzelf<br />
-            <em style={{ color: "var(--green)", fontStyle: "italic" }}>uitvoeren.</em>
+            Processen die zichzelf{" "}
+            <span className="gradient-text" style={{ fontStyle: "italic" }}>
+              uitvoeren.
+            </span>
           </h1>
-          <p className="fade-up fade-up-delay-3" style={{
-            fontSize: "1.15rem", color: "var(--ink-light)",
+
+          <p className="fade-up fade-up-d3" style={{
+            fontSize: "1.15rem", color: "var(--text-secondary)",
             lineHeight: 1.7, marginBottom: "1rem", maxWidth: "580px",
           }}>
-            Wij bouwen AI agents die taken overnemen, beslissingen nemen op basis van regels, en systemen met elkaar laten praten — zonder dat daar een mens tussen hoeft te zitten.
-          </p>
-          <p className="fade-up fade-up-delay-3" style={{
-            fontSize: "1rem", color: "var(--ink-muted)",
-            marginBottom: "2.5rem", fontStyle: "italic",
-          }}>
-            "Niet praten over automatisering. Gewoon doen."
+            Wij bouwen AI agents die taken overnemen, beslissingen nemen op basis
+            van regels, en systemen met elkaar laten praten — zonder dat daar een
+            mens tussen hoeft te zitten.
           </p>
 
-          <div className="fade-up fade-up-delay-4" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <a href="#workflows" style={{
-              display: "inline-block",
-              backgroundColor: "var(--green)",
-              color: "var(--white)",
-              padding: "0.9rem 2rem", borderRadius: "4px",
-              fontWeight: 500, fontSize: "1rem",
-              transition: "background-color 0.2s, transform 0.15s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "var(--green-mid)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "var(--green)"; e.currentTarget.style.transform = "translateY(0)"; }}
-            >
-              Bekijk voorbeelden →
+          <p className="fade-up fade-up-d3" style={{
+            fontSize: "0.95rem", color: "var(--text-muted)",
+            marginBottom: "2.5rem", fontStyle: "italic",
+          }}>
+            &ldquo;Niet praten over automatisering. Gewoon doen.&rdquo;
+          </p>
+
+          <div className="fade-up fade-up-d4" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <a href="#workflows" className="btn btn-primary btn-lg">
+              Bekijk voorbeelden
             </a>
-            <a href="/#scan" style={{
-              display: "inline-block",
-              color: "var(--ink-light)",
-              padding: "0.9rem 1.5rem", fontSize: "0.95rem",
-              borderBottom: "1px solid var(--border)",
-              transition: "color 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--green)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--ink-light)")}
-            >
+            <a href="/#scan" className="btn btn-secondary btn-lg">
               Gratis procescan
             </a>
           </div>
 
-          <div style={{
+          <div className="stats-row" style={{
             marginTop: "4rem", paddingTop: "2rem",
             borderTop: "1px solid var(--border)",
-            display: "flex", gap: "2.5rem", flexWrap: "wrap",
+            display: "flex", gap: "3rem", flexWrap: "wrap",
           }}>
             {[
               { num: "n8n", label: "als orkestratieplatform" },
@@ -91,10 +70,15 @@ export default function AgentsHero() {
               { num: "24/7", label: "draait zonder toezicht" },
             ].map((item) => (
               <div key={item.label}>
-                <div style={{ fontFamily: "'Lora', serif", fontSize: "1.4rem", fontWeight: 600, color: "var(--green)" }}>
+                <div style={{
+                  fontFamily: "var(--font-heading)", fontSize: "1.4rem",
+                  fontWeight: 700, color: "var(--accent)",
+                }}>
                   {item.num}
                 </div>
-                <div style={{ fontSize: "0.85rem", color: "var(--ink-muted)" }}>{item.label}</div>
+                <div style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
+                  {item.label}
+                </div>
               </div>
             ))}
           </div>

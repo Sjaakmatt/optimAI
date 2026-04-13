@@ -41,176 +41,98 @@ export default function Processes() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach(
-          (e) => e.isIntersecting && e.target.classList.add("visible")
-        ),
+      (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add("visible")),
       { threshold: 0.1 }
     );
-    refs.current.forEach((el) => el && observer.observe(el));
+    refs.current.forEach(el => el && observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section
-      id="aanbod"
-      className="section"
-      style={{ backgroundColor: "var(--white)" }}
-    >
+    <section id="aanbod" className="section" style={{ backgroundColor: "var(--bg-alt)" }}>
       <div className="container">
         <div style={{ maxWidth: "560px", marginBottom: "3.5rem" }}>
-          <p
-            style={{
-              fontSize: "0.8rem",
-              fontWeight: 500,
-              color: "var(--accent)",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              marginBottom: "1rem",
-            }}
-          >
-            Hoe we werken
-          </p>
-          <h2
-            style={{
-              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
-              marginBottom: "1rem",
-            }}
-          >
-            Van inzicht naar werkende oplossing
-          </h2>
-          <p style={{ color: "var(--ink-light)", fontSize: "1.05rem" }}>
+          <p className="section-tag">Hoe we werken</p>
+          <h2 className="section-title">Van inzicht naar werkende oplossing</h2>
+          <p className="section-desc">
             Elk traject begint met de scan. Wat daarna past, hangt af van jullie
             situatie — niet van een vast menu.
           </p>
         </div>
 
-        <div
-          className="offerings-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1.25rem",
-            marginBottom: "3rem",
-          }}
-        >
+        <div className="offerings-grid" style={{
+          display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "1.25rem", marginBottom: "3rem",
+        }}>
           {offerings.map((o, i) => (
             <div
               key={i}
-              ref={(el) => {
-                refs.current[i] = el;
-              }}
+              ref={el => { refs.current[i] = el; }}
               className="reveal"
               style={{
-                backgroundColor: o.accent ? "var(--green)" : "var(--cream)",
+                background: o.accent
+                  ? "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)"
+                  : "var(--bg-card)",
                 border: `1px solid ${o.accent ? "transparent" : "var(--border)"}`,
-                borderRadius: "10px",
+                borderRadius: "var(--radius-md)",
                 padding: "2rem",
                 transitionDelay: `${i * 0.08}s`,
                 position: "relative",
-                display: "flex",
-                flexDirection: "column",
+                display: "flex", flexDirection: "column",
+                boxShadow: o.accent ? "0 8px 32px var(--accent-glow)" : "var(--card-shadow)",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  marginBottom: "1.25rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: 500,
-                    color: o.accent
-                      ? "rgba(255,255,255,0.6)"
-                      : "var(--ink-muted)",
-                    backgroundColor: o.accent
-                      ? "rgba(255,255,255,0.1)"
-                      : "var(--white)",
-                    padding: "0.25rem 0.7rem",
-                    borderRadius: "20px",
-                  }}
-                >
+              <div style={{
+                display: "flex", justifyContent: "space-between",
+                alignItems: "flex-start", marginBottom: "1.25rem",
+              }}>
+                <span className="badge" style={{
+                  background: o.accent ? "rgba(255,255,255,0.15)" : "var(--accent-subtle)",
+                  color: o.accent ? "rgba(255,255,255,0.9)" : "var(--accent)",
+                }}>
                   {o.tag}
                 </span>
-                <span
-                  style={{
-                    fontFamily: "'Lora', serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 600,
-                    color: o.accent
-                      ? "rgba(255,255,255,0.2)"
-                      : "var(--border)",
-                    lineHeight: 1,
-                  }}
-                >
+                <span style={{
+                  fontFamily: "var(--font-heading)", fontSize: "1.5rem", fontWeight: 700,
+                  color: o.accent ? "rgba(255,255,255,0.2)" : "var(--border)",
+                  lineHeight: 1,
+                }}>
                   {o.step}
                 </span>
               </div>
 
-              <h3
-                style={{
-                  fontFamily: "'Lora', serif",
-                  fontSize: "1.2rem",
-                  fontWeight: 600,
-                  color: o.accent ? "var(--white)" : "var(--ink)",
-                  marginBottom: "0.75rem",
-                }}
-              >
+              <h3 style={{
+                fontFamily: "var(--font-heading)", fontSize: "1.15rem", fontWeight: 600,
+                color: o.accent ? "#fff" : "var(--text)",
+                marginBottom: "0.75rem",
+              }}>
                 {o.title}
               </h3>
 
-              <p
-                style={{
-                  fontSize: "0.92rem",
-                  color: o.accent
-                    ? "rgba(255,255,255,0.75)"
-                    : "var(--ink-light)",
-                  lineHeight: 1.65,
-                  marginBottom: "1.25rem",
-                }}
-              >
+              <p style={{
+                fontSize: "0.9rem",
+                color: o.accent ? "rgba(255,255,255,0.75)" : "var(--text-secondary)",
+                lineHeight: 1.65, marginBottom: "1.25rem",
+              }}>
                 {o.desc}
               </p>
 
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  marginTop: "auto",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.4rem",
-                }}
-              >
+              <ul style={{
+                listStyle: "none", padding: 0, margin: 0, marginTop: "auto",
+                display: "flex", flexDirection: "column", gap: "0.4rem",
+              }}>
                 {o.deliverables.map((d, j) => (
-                  <li
-                    key={j}
-                    style={{
-                      fontSize: "0.82rem",
-                      color: o.accent
-                        ? "rgba(255,255,255,0.6)"
-                        : "var(--ink-muted)",
-                      paddingLeft: "1rem",
-                      position: "relative",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        left: 0,
-                        top: "0.1em",
-                        color: o.accent
-                          ? "rgba(255,255,255,0.35)"
-                          : "var(--accent)",
-                        fontSize: "0.7rem",
-                      }}
-                    >
-                      ✓
+                  <li key={j} style={{
+                    fontSize: "0.8rem",
+                    color: o.accent ? "rgba(255,255,255,0.6)" : "var(--text-muted)",
+                    paddingLeft: "1.1rem", position: "relative",
+                  }}>
+                    <span style={{
+                      position: "absolute", left: 0, top: "0.1em",
+                      color: o.accent ? "rgba(255,255,255,0.5)" : "var(--accent)",
+                      fontSize: "0.75rem",
+                    }}>
+                      &#10003;
                     </span>
                     {d}
                   </li>
@@ -220,57 +142,24 @@ export default function Processes() {
           ))}
         </div>
 
-        {/* Scan CTA strip */}
-        <div
-          style={{
-            backgroundColor: "var(--cream)",
-            border: "1px solid var(--border)",
-            borderRadius: "10px",
-            padding: "2rem 2.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-          }}
-        >
+        {/* CTA strip */}
+        <div className="card" style={{
+          display: "flex", justifyContent: "space-between",
+          alignItems: "center", flexWrap: "wrap", gap: "1.5rem",
+        }}>
           <div>
-            <p
-              style={{
-                fontFamily: "'Lora', serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
-                marginBottom: "0.25rem",
-              }}
-            >
+            <p style={{
+              fontFamily: "var(--font-heading)", fontSize: "1.1rem",
+              fontWeight: 600, marginBottom: "0.25rem",
+            }}>
               Benieuwd wat AI voor jouw bedrijf kan doen?
             </p>
-            <p style={{ color: "var(--ink-light)", fontSize: "0.92rem" }}>
-              Begin met de processcan. Vrijblijvend, concreet, en direct
-              duidelijkheid.
+            <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem" }}>
+              Begin met de processcan. Vrijblijvend, concreet, en direct duidelijkheid.
             </p>
           </div>
-          <a
-            href="#scan"
-            style={{
-              display: "inline-block",
-              backgroundColor: "var(--green)",
-              color: "var(--white)",
-              padding: "0.85rem 1.75rem",
-              borderRadius: "6px",
-              fontWeight: 500,
-              fontSize: "0.97rem",
-              whiteSpace: "nowrap",
-              transition: "background-color 0.2s",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "var(--green-mid)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "var(--green)")
-            }
-          >
-            Plan een scan →
+          <a href="#scan" className="btn btn-primary">
+            Plan een scan
           </a>
         </div>
       </div>
