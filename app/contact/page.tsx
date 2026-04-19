@@ -4,9 +4,9 @@ import { SitePage } from '@/components/site/SitePage';
 import { ContactForm } from '@/components/site/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact · FactumAI',
+  title: 'Contact — plan een gesprek over uw AI-agent',
   description:
-    'Neem contact op met FactumAI voor een vrijblijvend kennismakingsgesprek. E-mail, telefoon, of laat een bericht achter.',
+    'Neem contact op met FactumAI voor een vrijblijvend kennismakingsgesprek over het laten bouwen van een AI-agent. Eén gesprek, geen verplichting. E-mail, telefoon, of formulier.',
   alternates: { canonical: '/contact' },
 };
 

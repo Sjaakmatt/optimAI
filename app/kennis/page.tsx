@@ -5,9 +5,9 @@ import { SitePage } from '@/components/site/SitePage';
 import { POSTS } from '@/lib/data/posts';
 
 export const metadata: Metadata = {
-  title: 'Kennis · artikelen over AI-agents in het MKB',
+  title: 'Kennisbank · artikelen over AI-agents in het MKB',
   description:
-    'Lees over hoe AI-agents werken in de praktijk, wat er kan, wat er nog niet kan, en hoe u de stap maakt.',
+    'Artikelen over AI-agents in de praktijk: hoe ze werken, wanneer het loont om er één te laten bouwen, en hoe u zelf de eerste stap zet. Geschreven voor MKB-ondernemers.',
   alternates: { canonical: '/kennis' },
 };
 

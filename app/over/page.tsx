@@ -4,9 +4,9 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 
 export const metadata: Metadata = {
-  title: 'Over ons · FactumAI',
+  title: 'Over FactumAI — wie bouwt uw AI-agent',
   description:
-    'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Nederlands, pragmatisch, vakmanschap boven hype.',
+    'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Sjaak ter Veld, oprichter, over vakmanschap boven hype en werken aan echte oplossingen.',
   alternates: { canonical: '/over' },
 };
 
