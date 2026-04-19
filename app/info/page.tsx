@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Wat is een AI-agent · FactumAI',
@@ -10,9 +11,50 @@ export const metadata: Metadata = {
   alternates: { canonical: '/info' },
 };
 
+const FAQ_ITEMS: Array<{ q: string; a: string }> = [
+  {
+    q: 'Heb ik daar dure IT voor nodig?',
+    a: 'Nee. Wij bouwen het en koppelen aan uw bestaande systemen (e-mail, boekhoudpakket, CRM). U hoeft geen ontwikkelaars in dienst te hebben. Een laptop en een mailadres is genoeg.',
+  },
+  {
+    q: 'Gaat een agent dingen doen die ik niet wil?',
+    a: 'Niet als u het goed inricht. Elke actie hangt aan een beleidsregel die u kunt aan- of uitzetten. Bedragen boven uw mandaat, uitzonderlijke situaties, juridische escalaties. Die komen standaard langs u. We stellen dat samen in.',
+  },
+  {
+    q: 'Wat als het een fout maakt?',
+    a: 'Alles wat een agent doet is terug te zien. Welke data hij raadpleegde, welk beleid hij toepaste, wat de uiteindelijke actie was. U kunt een beslissing ongedaan maken en het beleid bijstellen zodat het de volgende keer anders gaat.',
+  },
+  {
+    q: 'Vervangt dit mijn mensen?',
+    a: 'In onze ervaring niet. Het haalt het saaie werk weg, zodat uw mensen meer tijd hebben voor waar ze goed in zijn. Vakmanschap, klantcontact, acquisitie. Teams die wij hebben geholpen groeiden juist in omzet zonder extra FTE.',
+  },
+  {
+    q: 'Hoe snel werkt het?',
+    a: 'Een eerste agent staat vaak binnen één tot twee weken live. Daarna breiden we uit met meer scenario’s of meer afdelingen. Geen jaren-traject.',
+  },
+  {
+    q: 'Wat kost dat?',
+    a: 'Vaste prijs per agent, afhankelijk van complexiteit en aantal integraties. We geven altijd één concreet voorstel met duidelijke opleveringsdatum. Geen open einden.',
+  },
+];
+
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+
 export default function InfoPage() {
   return (
     <SitePage>
+      <JsonLd data={FAQ_SCHEMA} />
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[760px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
@@ -104,30 +146,9 @@ export default function InfoPage() {
 
       <Section eyebrow="Wat moet u weten" title="Vragen die wij vaak krijgen.">
         <div className="mt-8 space-y-6 max-w-[760px]">
-          <FAQ
-            q="Heb ik daar dure IT voor nodig?"
-            a="Nee. Wij bouwen het en koppelen aan uw bestaande systemen (e-mail, boekhoudpakket, CRM). U hoeft geen ontwikkelaars in dienst te hebben. Een laptop en een mailadres is genoeg."
-          />
-          <FAQ
-            q="Gaat een agent dingen doen die ik niet wil?"
-            a="Niet als u het goed inricht. Elke actie hangt aan een beleidsregel die u kunt aan- of uitzetten. Bedragen boven uw mandaat, uitzonderlijke situaties, juridische escalaties. Die komen standaard langs u. We stellen dat samen in."
-          />
-          <FAQ
-            q="Wat als het een fout maakt?"
-            a="Alles wat een agent doet is terug te zien. Welke data hij raadpleegde, welk beleid hij toepaste, wat de uiteindelijke actie was. U kunt een beslissing ongedaan maken en het beleid bijstellen zodat het de volgende keer anders gaat."
-          />
-          <FAQ
-            q="Vervangt dit mijn mensen?"
-            a="In onze ervaring niet. Het haalt het saaie werk weg, zodat uw mensen meer tijd hebben voor waar ze goed in zijn. Vakmanschap, klantcontact, acquisitie. Teams die wij hebben geholpen groeiden juist in omzet zonder extra FTE."
-          />
-          <FAQ
-            q="Hoe snel werkt het?"
-            a="Een eerste agent staat vaak binnen één tot twee weken live. Daarna breiden we uit met meer scenario&rsquo;s of meer afdelingen. Geen jaren-traject."
-          />
-          <FAQ
-            q="Wat kost dat?"
-            a="Vaste prijs per agent, afhankelijk van complexiteit en aantal integraties. We geven altijd één concreet voorstel met duidelijke opleveringsdatum. Geen open einden."
-          />
+          {FAQ_ITEMS.map((item) => (
+            <FAQ key={item.q} q={item.q} a={item.a} />
+          ))}
         </div>
       </Section>
 
