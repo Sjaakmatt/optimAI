@@ -325,4 +325,155 @@ export const SCRIPTS: Record<string, Script> = {
       },
     ],
   },
+
+  // =========================================================
+  // SCENARIO 5: Leverancier vertraging
+  // =========================================================
+  script_supplier_delay: {
+    id: 'script_supplier_delay',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: "Saint-Gobain meldt 3 dagen vertraging op INK-2026-0089. Dit raakt 2 lopende orders: ORD-2026-0421 en 0424. Moet snel gekeken wie er geraakt wordt en hoe we 't oplossen voordat de klanten het ontdekken.",
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'orders',
+        kind: 'delegate',
+        text: 'Impact-analyse: welke orders, welke artikelen, welke lever-afspraken staan er met klanten?',
+      },
+      {
+        delayBefore: 1100,
+        from: 'orders',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'ORD-2026-0421: Bouwcombinatie Hoogkarspel, 80 gipsplaten, levering beloofd woensdag. ORD-2026-0424: Timmerbedrijf Koopmans Wervershoof, 45 gipsplaten, levering beloofd donderdag. Beide kunnen zonder vertragingsimpact landen als we vrijdag leveren in plaats van wo/do.',
+        minutesSaved: 10,
+      },
+      {
+        delayBefore: 900,
+        from: 'orchestrator',
+        to: 'voorraad',
+        kind: 'delegate',
+        text: 'Check alternatief: kunnen we vanuit eigen voorraad deels dekken zonder andere orders in gevaar te brengen?',
+      },
+      {
+        delayBefore: 1000,
+        from: 'voorraad',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'Eigen voorraad 120 gipsplaten. Koopmans kan volledig uit voorraad (45 platen), Hoogkarspel deels (50 van 80). Totaal 95 platen uit voorraad lost 1 klant volledig op en andere 62%.',
+        minutesSaved: 14,
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Optimale route: Koopmans helemaal uit voorraad op originele datum, Hoogkarspel 50 platen op datum en 30 platen in tweede levering zodra Saint-Gobain aanlevert. Pro-actief communiceren — klanten horen liever vooraf dan achteraf.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: 'Twee mails: Koopmans (geen wijziging, rustige bevestiging), Hoogkarspel (uitleg + voorstel splitsing in 2 ritten, geen meerkosten).',
+      },
+      {
+        delayBefore: 1200,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Beide mails verstuurd. Hoogkarspel-mail stelt voor: 50 platen woensdag (voldoende om te starten met scheidingswanden begane grond), 30 platen vrijdag rechtstreeks op locatie. Geen extra kosten. Eerdere communicatie van deze klant suggereert dat splitsing werkbaar is.',
+        minutesSaved: 16,
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'inkoop',
+        kind: 'delegate',
+        text: 'Noteer vertragings-incident bij Saint-Gobain. Derde dit kwartaal. Escalatie naar accountmanager voorstellen.',
+      },
+      {
+        delayBefore: 800,
+        from: 'inkoop',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Incident genoteerd (patroon zichtbaar). Interne notitie voor kwartaal-review klaargezet. Handmatige follow-up met accountmanager Saint-Gobain aanbevolen — te strategisch voor automatisch.',
+        minutesSaved: 6,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Klanten pro-actief geïnformeerd voordat ze het zelf ontdekten. 4 agents, 46 minuten bespaard. Vertragings-incident gesignaleerd voor strategische opvolging.',
+      },
+    ],
+  },
+
+  // =========================================================
+  // SCENARIO 6: Technische vraag
+  // =========================================================
+  script_question: {
+    id: 'script_question',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Technische vraag van Visser over brandwerende gipsplaat EI 60 voor woningscheidende wand. Niet urgent qua klacht of order, maar wel omzetkans. Klantservice beantwoordt, Voorraad checkt direct beschikbaarheid.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: 'Vraag beantwoorden met onderbouwing uit productdatabase. Niet te technisch, wel accuraat. Afsluiten met aanbod voor offerte.',
+      },
+      {
+        delayBefore: 1300,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'reasoning',
+        text: 'Voor EI 60 woningscheidende wand: dubbele beplating vereist. Saint-Gobain PlatiMa 12,5 fire — 2x per zijde = EI 60 volgens attest. Alternatief Rigips Duripanel 12,5 — ook gecertificeerd. Visser is renovatiebedrijf, pragmatisch — ik geef beide opties met prijs.',
+      },
+      {
+        delayBefore: 900,
+        parallel: true,
+        from: 'orchestrator',
+        to: 'voorraad',
+        kind: 'delegate',
+        text: 'Voorraadstatus PlatiMa 12,5 fire en Rigips Duripanel 12,5.',
+      },
+      {
+        delayBefore: 800,
+        from: 'voorraad',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'PlatiMa fire: 240 platen op voorraad, locatie A-16. Rigips Duripanel: 85 platen, A-18. Beide direct leverbaar.',
+        minutesSaved: 4,
+      },
+      {
+        delayBefore: 900,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Antwoord verstuurd: technische uitleg in 3 zinnen, beide productopties met prijs per m², bevestiging direct leverbaar. Afgesloten met "als je de m² doorgeeft zet ik een offerte klaar". Stijl: collegiaal, zoals Visser-mails terugkomen.',
+        minutesSaved: 15,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Klein scenario, maar typisch. 2 agents, 19 minuten bespaard. Dit type vraag werd vroeger vaak door de commerciële binnendienst tussen andere zaken door beantwoord, met soms dagen doorlooptijd. Nu binnen enkele minuten.',
+      },
+    ],
+  },
 };
