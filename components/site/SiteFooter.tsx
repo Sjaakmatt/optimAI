@@ -5,7 +5,13 @@ export function SiteFooter() {
     <footer className="w-full border-t border-[var(--paper-edge)] bg-[var(--paper-deep)] mt-24">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
-          <div className="font-display text-[18px] text-[var(--ink)]">FactumAI</div>
+          <div className="font-display text-[20px] tracking-tight flex items-baseline leading-none">
+            <span aria-hidden className="text-[var(--oker)] mr-1.5 text-[16px] leading-none">
+              ❦
+            </span>
+            <span className="text-[var(--ink)]">Factum</span>
+            <span className="italic text-[var(--oker-deep)]">AI</span>
+          </div>
           <p className="mt-2 text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-[260px]">
             Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
             lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.

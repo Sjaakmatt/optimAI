@@ -135,7 +135,7 @@ function WatDoenWe() {
 }
 
 function VoorWie() {
-  const vormen = [
+  const werkgebieden = [
     'Terugkerende administratie',
     'Klant- en leverancierscommunicatie',
     'Offertes en orderverwerking',
@@ -155,13 +155,13 @@ function VoorWie() {
           moeten.
         </h2>
         <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
-          Wij werken met MKB-bedrijven die merken dat hun mensen te veel tijd kwijt zijn aan
-          terugkerend werk. Administratie, ja, maar ook planning, communicatie, coördinatie en
-          rapportage. Overal waar een mens dezelfde handeling te vaak doet, ontstaat ruimte.
+          Wij werken met ondernemers die merken dat hun mensen te veel tijd kwijt zijn aan
+          terugkerend werk. Overal waar een mens dezelfde handeling te vaak doet, ontstaat
+          ruimte. Denk aan:
         </p>
       </div>
-      <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-        {vormen.map((b) => (
+      <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+        {werkgebieden.map((b) => (
           <li
             key={b}
             className="px-4 py-3 rounded-[2px] border border-[var(--paper-edge)] text-[13.5px] sm:text-[14px] text-[var(--ink)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"

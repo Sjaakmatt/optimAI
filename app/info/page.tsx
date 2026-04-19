@@ -18,13 +18,17 @@ export default function InfoPage() {
             Wat is een AI-agent
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Een digitale medewerker.<br />
-            <span className="italic text-[var(--oker-deep)]">Geen dashboard.</span>
+            Een agent werkt zonder dat u klikt.
+            <br />
+            <span className="italic text-[var(--oker-deep)]">
+              Binnen uw grenzen, volgens uw regels.
+            </span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
-            Simpel gezegd: een AI-agent is software die zélf beslissingen neemt en taken uitvoert
-            binnen grenzen die u bepaalt. Niet een knop die u moet indrukken. Niet een formulier
-            dat u moet invullen. Iets dat <span className="ink-highlight">zelf aan de slag gaat</span>.
+            Een AI-agent is software die <span className="ink-highlight">zelf aan de slag gaat</span>.
+            Hij leest een binnenkomende mail, raadpleegt uw systemen, past uw beleid toe en neemt
+            een besluit. Niet een knop die u moet indrukken. Niet een formulier dat u moet
+            invullen. Een collega die werkt wanneer u slaapt.
           </p>
         </div>
       </section>

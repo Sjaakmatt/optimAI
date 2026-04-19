@@ -15,10 +15,14 @@ export function WorkbenchHeader() {
         <div className="flex items-baseline gap-3 sm:gap-4 min-w-0">
           <Link
             href="/"
-            className="flex items-center gap-2 font-display text-[20px] sm:text-[22px] tracking-tight text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
+            className="flex items-center gap-2 group font-display text-[20px] sm:text-[22px] tracking-tight leading-none"
           >
-            <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)]" />
-            FactumAI
+            <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)] group-hover:text-[var(--oker-deep)] transition-colors" />
+            <span aria-hidden className="text-[var(--oker)] text-[17px] sm:text-[19px] leading-none">
+              ❦
+            </span>
+            <span className="text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">Factum</span>
+            <span className="italic text-[var(--oker-deep)]">AI</span>
           </Link>
           <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em] truncate">
             De Werkbank · Nordveld
