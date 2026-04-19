@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import type { Artifact } from '@/lib/types';
+import { ArtifactByline } from './ArtifactByline';
+import { WaaromToggle } from './WaaromToggle';
 
 interface Props {
   artifact: Artifact;
@@ -62,11 +64,15 @@ export function WhatsAppThreadArtifact({ artifact }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 pt-3 border-t border-[var(--paper-edge)] font-mono text-[11px] text-[var(--mos)] tracking-wider"
+          className="mt-6 pt-3 border-t border-[var(--paper-edge)] flex items-center justify-between gap-3"
         >
-          ✓✓ {footer}
+          <span className="font-mono text-[11px] text-[var(--mos)] tracking-wider">
+            ✓✓ {footer}
+          </span>
+          <ArtifactByline agent={artifact.agent} startedAt={artifact.startedAt} />
         </motion.footer>
       )}
+      <WaaromToggle reasoning={meta.reasoning} />
     </motion.article>
   );
 }

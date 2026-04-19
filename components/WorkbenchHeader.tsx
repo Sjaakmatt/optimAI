@@ -1,11 +1,12 @@
 'use client';
 
-import { RotateCcw, Settings } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { useStore } from '@/lib/store';
+import { HeaderMenu } from './HeaderMenu';
 
 export function WorkbenchHeader() {
-  const reset = useStore((s) => s.reset);
   const openPolicies = useStore((s) => s.setPolicyPanelOpen);
+  const mode = useStore((s) => s.mode);
 
   return (
     <header className="w-full border-b border-[var(--paper-edge)]">
@@ -21,7 +22,7 @@ export function WorkbenchHeader() {
 
         <div className="flex items-center gap-3">
           <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
-            Vandaag · Handmatig
+            Vandaag · {mode === 'manual' ? 'Handmatig' : 'Autonoom'}
           </span>
           <button
             onClick={() => openPolicies(true)}
@@ -30,13 +31,7 @@ export function WorkbenchHeader() {
           >
             <Settings size={16} strokeWidth={1.5} />
           </button>
-          <button
-            onClick={reset}
-            aria-label="Werkbank resetten"
-            className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
-          >
-            <RotateCcw size={16} strokeWidth={1.5} />
-          </button>
+          <HeaderMenu />
         </div>
       </div>
     </header>

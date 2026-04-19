@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import type { Artifact } from '@/lib/types';
+import { ArtifactByline } from './ArtifactByline';
+import { WaaromToggle } from './WaaromToggle';
 
 interface Props {
   artifact: Artifact;
@@ -58,15 +60,21 @@ export function InternalMemoArtifact({ artifact }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-7 pt-3 border-t border-[var(--paper-edge)] flex justify-between text-[11px] font-mono"
+        className="mt-7 pt-3 border-t border-[var(--paper-edge)] space-y-2"
       >
-        <span className="text-[var(--ink-faint)]">
-          Opgesteld door systeem · {state === 'complete' ? 'klaar voor review' : 'in opbouw'}
-        </span>
-        {state === 'complete' && footer && (
-          <span className="text-[var(--mos)] tracking-wider">✓ {footer}</span>
+        <div className="flex justify-between text-[11px] font-mono">
+          <span className="text-[var(--ink-faint)]">
+            Opgesteld door systeem · {state === 'complete' ? 'klaar voor review' : 'in opbouw'}
+          </span>
+          {state === 'complete' && footer && (
+            <span className="text-[var(--mos)] tracking-wider">✓ {footer}</span>
+          )}
+        </div>
+        {state === 'complete' && (
+          <ArtifactByline agent={artifact.agent} startedAt={artifact.startedAt} />
         )}
       </motion.footer>
+      <WaaromToggle reasoning={meta.reasoning} />
     </motion.article>
   );
 }

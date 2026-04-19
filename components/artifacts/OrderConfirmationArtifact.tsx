@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import type { Artifact } from '@/lib/types';
+import { ArtifactByline } from './ArtifactByline';
+import { WaaromToggle } from './WaaromToggle';
 
 interface Props {
   artifact: Artifact;
@@ -71,12 +73,16 @@ export function OrderConfirmationArtifact({ artifact }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-7 pt-4 border-t border-[var(--paper-edge)] flex justify-between items-baseline text-[12px]"
+          className="mt-7 pt-4 border-t border-[var(--paper-edge)] space-y-2"
         >
-          <span className="font-mono text-[var(--mos)] tracking-wider">✓ {footer}</span>
-          <span className="font-mono text-[var(--ink-faint)]">Vragen? 0228-554100</span>
+          <div className="flex justify-between items-baseline text-[12px]">
+            <span className="font-mono text-[var(--mos)] tracking-wider">✓ {footer}</span>
+            <span className="font-mono text-[var(--ink-faint)]">Vragen? 0228-554100</span>
+          </div>
+          <ArtifactByline agent={artifact.agent} startedAt={artifact.startedAt} />
         </motion.footer>
       )}
+      <WaaromToggle reasoning={meta.reasoning} />
     </motion.article>
   );
 }

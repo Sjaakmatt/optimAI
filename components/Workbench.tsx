@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useStore } from '@/lib/store';
 import { WorkbenchHeader } from './WorkbenchHeader';
+import { CockpitHeader } from './CockpitHeader';
 import { StatusStrip } from './StatusStrip';
 import { TodayPanel } from './TodayPanel';
 import { ActiveTicket } from './ActiveTicket';
@@ -10,12 +11,14 @@ import { PickupLine } from './PickupLine';
 import { CompletedList } from './CompletedList';
 import { EventTrigger } from './EventTrigger';
 import { PolicyPanel } from './PolicyPanel';
-import { ArtifactStage } from './artifacts/ArtifactStage';
+import { DossierStrip } from './DossierStrip';
+import { Stage } from './Stage';
+import { AutonomousRunner } from './AutonomousRunner';
 
 export function Workbench() {
   const activeEventId = useStore((s) => s.activeEventId);
   const events = useStore((s) => s.events);
-  const artifacts = useStore((s) => s.artifacts);
+  const stageItems = useStore((s) => s.stageItems);
   const statusText = useStore((s) => s.statusText);
 
   const activeEvent = events.find((e) => e.id === activeEventId);
@@ -23,22 +26,24 @@ export function Workbench() {
   return (
     <div className="flex flex-col min-h-screen">
       <WorkbenchHeader />
+      <CockpitHeader />
 
       <main className="flex-1 relative">
-        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-16 space-y-10">
+        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-12 space-y-8">
           <AnimatePresence mode="wait">
             {activeEvent ? (
               <motion.div
                 key={activeEvent.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-10"
+                exit={{ opacity: 0, y: -40 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="space-y-6"
               >
                 <ActiveTicket event={activeEvent} />
+                <DossierStrip />
                 <PickupLine text={statusText} />
-                <ArtifactStage artifacts={artifacts} />
+                <Stage items={stageItems} />
               </motion.div>
             ) : (
               <EmptyState key="empty" />
@@ -55,6 +60,7 @@ export function Workbench() {
 
       <StatusStrip />
       <PolicyPanel />
+      <AutonomousRunner />
     </div>
   );
 }
@@ -75,8 +81,8 @@ function EmptyState() {
         Trigger een event om te zien hoe het werk zich ontvouwt
       </p>
       <p className="text-[14px] text-[var(--ink-dim)] leading-[1.6]">
-        Mails, facturen, belnotities en offertes verschijnen hier — regel voor regel, alsof
-        iemand aan de andere kant van de tafel ze voor u uitwerkt.
+        Mails, facturen, belnotities, pakbonnen, transportplannen — verschijnen hier, regel voor
+        regel, alsof iemand aan de andere kant van de tafel ze voor u uitwerkt.
       </p>
       <div className="pt-4 flex justify-center">
         <EventTrigger />

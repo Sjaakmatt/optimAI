@@ -6,6 +6,9 @@ import { useStore } from '@/lib/store';
 import { AGENT_ORDER } from '@/lib/agents/definitions';
 import type { AgentId } from '@/lib/types';
 
+// Let op: "De Dirigent" / orchestrator bewust uit de UI gehouden — zijn policies
+// sturen het gedrag wel, maar staan niet als afdeling in de beleidsregels-lijst.
+
 export function PolicyPanel() {
   const open = useStore((s) => s.policyPanelOpen);
   const setOpen = useStore((s) => s.setPolicyPanelOpen);
@@ -50,7 +53,7 @@ export function PolicyPanel() {
             </header>
 
             <div className="px-8 py-6 space-y-8">
-              {(['orchestrator', ...AGENT_ORDER] as AgentId[]).map((id) => {
+              {(AGENT_ORDER as AgentId[]).map((id) => {
                 const agent = agents[id];
                 return (
                   <section key={id}>

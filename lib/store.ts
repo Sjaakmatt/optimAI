@@ -6,11 +6,15 @@ import type {
   AgentId,
   AgentStatus,
   Artifact,
+  CheckItem,
+  CockpitState,
   CompletedEvent,
   DemoEvent,
   ROIState,
+  ReasoningItem,
   Script,
   ScriptStep,
+  StageItem,
 } from '@/lib/types';
 import { AGENT_DEFINITIONS, ALL_AGENTS } from '@/lib/agents/definitions';
 import { SCENARIO_BY_ID, SCENARIOS } from '@/lib/data/scenarios';
@@ -80,13 +84,23 @@ function emptyROI(): ROIState {
   };
 }
 
+function initialCockpit(): CockpitState {
+  return {
+    orders: 12,
+    stockMutations: 34,
+    routesPlanned: 5,
+    mails: 47,
+    revenue: 18420,
+  };
+}
+
 type Mode = 'autonomous' | 'manual';
 
 interface AppState {
   agents: Record<AgentId, Agent>;
   events: DemoEvent[];
   activeEventId: string | null;
-  artifacts: Artifact[];
+  stageItems: StageItem[];
   activeAgents: AgentId[];
   statusText: string | null;
   completed: CompletedEvent[];
@@ -94,6 +108,7 @@ interface AppState {
   isPlaying: boolean;
   policyPanelOpen: boolean;
   roi: ROIState;
+  cockpit: CockpitState;
   recentlyPlayedScenarioIds: string[];
 
   triggerEvent: (scenarioId: string) => Promise<void>;
@@ -108,7 +123,7 @@ export const useStore = create<AppState>((set, get) => ({
   agents: buildInitialAgents(),
   events: [],
   activeEventId: null,
-  artifacts: [],
+  stageItems: [],
   activeAgents: [],
   statusText: null,
   completed: [],
@@ -116,6 +131,7 @@ export const useStore = create<AppState>((set, get) => ({
   isPlaying: false,
   policyPanelOpen: false,
   roi: emptyROI(),
+  cockpit: initialCockpit(),
   recentlyPlayedScenarioIds: [],
 
   setMode: (mode) => set({ mode }),
@@ -149,7 +165,7 @@ export const useStore = create<AppState>((set, get) => ({
     set((state) => ({
       events: [event, ...state.events],
       activeEventId: eventId,
-      artifacts: [],
+      stageItems: [],
       activeAgents: [],
       statusText: null,
       recentlyPlayedScenarioIds: [
@@ -164,21 +180,9 @@ export const useStore = create<AppState>((set, get) => ({
   playScript: async (script, eventId) => {
     set({ isPlaying: true });
 
-    const setAgentStatus = (id: AgentId, status: AgentStatus) =>
-      set((state) => ({
-        agents: { ...state.agents, [id]: { ...state.agents[id], status } },
-      }));
-
-    const addActiveAgent = (id: AgentId) =>
-      set((state) => ({
-        activeAgents: state.activeAgents.includes(id)
-          ? state.activeAgents
-          : [...state.activeAgents, id],
-      }));
-
     for (const step of script.steps) {
       if (step.delay) await sleep(step.delay);
-      await runStep(step, eventId, setAgentStatus, addActiveAgent, set, get, script);
+      await runStep(step, eventId, set, get, script);
     }
 
     set({ isPlaying: false });
@@ -188,50 +192,74 @@ export const useStore = create<AppState>((set, get) => ({
     set(() => ({
       agents: buildInitialAgents(),
       events: [],
-      artifacts: [],
+      stageItems: [],
       activeAgents: [],
       statusText: null,
       completed: [],
       activeEventId: null,
       isPlaying: false,
       roi: emptyROI(),
+      cockpit: initialCockpit(),
       recentlyPlayedScenarioIds: [],
     })),
 }));
 
 type SetFn = (
-  partial:
-    | Partial<AppState>
-    | ((state: AppState) => Partial<AppState>),
+  partial: Partial<AppState> | ((state: AppState) => Partial<AppState>),
 ) => void;
 type GetFn = () => AppState;
 
 async function runStep(
   step: ScriptStep,
   eventId: string,
-  setAgentStatus: (id: AgentId, status: AgentStatus) => void,
-  addActiveAgent: (id: AgentId) => void,
   set: SetFn,
   get: GetFn,
   script: Script,
 ) {
   switch (step.kind) {
-    case 'ticket': {
+    case 'ticket':
       return;
-    }
 
     case 'status.update': {
-      if (step.statusText !== undefined) {
-        set({ statusText: step.statusText });
-      }
+      if (step.statusText !== undefined) set({ statusText: step.statusText });
       return;
     }
 
     case 'pickup': {
-      if (step.by) {
-        setAgentStatus(step.by, 'acting');
-        addActiveAgent(step.by);
-      }
+      if (!step.by) return;
+      setAgentStatus(set, get, step.by, 'acting');
+      addActiveAgent(set, get, step.by);
+      return;
+    }
+
+    case 'check': {
+      if (!step.check) return;
+      const item: CheckItem = {
+        ...step.check,
+        id: uid('chk'),
+        startedAt: Date.now(),
+      };
+      addActiveAgent(set, get, item.by);
+      pushStageItem(set, { kind: 'check', id: item.id, check: item });
+      return;
+    }
+
+    case 'reasoning': {
+      if (!step.reasoning) return;
+      const item: ReasoningItem = {
+        ...step.reasoning,
+        id: uid('rsn'),
+        startedAt: Date.now(),
+      };
+      pushStageItem(set, { kind: 'reasoning', id: item.id, reasoning: item });
+      return;
+    }
+
+    case 'cockpit.tick': {
+      if (!step.cockpit) return;
+      set((state) => ({
+        cockpit: applyCockpitDelta(state.cockpit, step.cockpit ?? {}),
+      }));
       return;
     }
 
@@ -248,35 +276,27 @@ async function runStep(
         agent: agentId,
         startedAt: Date.now(),
       };
-      set((state) => ({ artifacts: [...state.artifacts, artifact] }));
+      pushStageItem(set, { kind: 'artifact', id: artifact.id, artifact });
       return;
     }
 
     case 'artifact.fill': {
       if (!step.artifactId) return;
-      set((state) => ({
-        artifacts: state.artifacts.map((a) => {
-          if (a.id !== step.artifactId) return a;
-          return { ...a, content: applyFill(a.content, step) };
-        }),
+      patchArtifact(set, step.artifactId, (a) => ({
+        ...a,
+        content: applyFill(a.content, step),
       }));
       return;
     }
 
     case 'artifact.done': {
       if (!step.artifactId) return;
-      set((state) => ({
-        artifacts: state.artifacts.map((a) =>
-          a.id === step.artifactId
-            ? {
-                ...a,
-                state: 'complete',
-                footer: step.footer,
-                completedAt: Date.now(),
-                minutesSaved: step.minutesSaved,
-              }
-            : a,
-        ),
+      patchArtifact(set, step.artifactId, (a) => ({
+        ...a,
+        state: 'complete',
+        footer: step.footer,
+        completedAt: Date.now(),
+        minutesSaved: step.minutesSaved,
       }));
       if (step.minutesSaved) {
         const agentId = findLatestAgent(get);
@@ -287,30 +307,57 @@ async function runStep(
 
     case 'complete': {
       const state = get();
-      const artifacts = state.artifacts.filter((a) => a.eventId === eventId);
+      const artifactCount = state.stageItems.filter((i) => i.kind === 'artifact').length;
       const completedItem: CompletedEvent = {
         id: eventId,
         title: script.eventTitle,
         context: script.eventContext,
         completedAt: Date.now(),
         minutesSaved: step.totalMinutes ?? script.minutesSaved,
-        artifactCount: artifacts.length,
+        artifactCount,
+        agents: [...state.activeAgents],
       };
-      // Reset idle status on agents
-      for (const id of state.activeAgents) {
-        setAgentStatus(id, 'idle');
-      }
+      for (const id of state.activeAgents) setAgentStatus(set, get, id, 'idle');
       set((s) => ({
         completed: [completedItem, ...s.completed],
         roi: { ...s.roi, casesHandled: s.roi.casesHandled + 1 },
         activeEventId: null,
-        artifacts: [],
+        stageItems: [],
         activeAgents: [],
         statusText: null,
       }));
       return;
     }
   }
+}
+
+function setAgentStatus(set: SetFn, get: GetFn, id: AgentId, status: AgentStatus) {
+  set((state) => ({
+    agents: { ...state.agents, [id]: { ...state.agents[id], status } },
+  }));
+}
+
+function addActiveAgent(set: SetFn, get: GetFn, id: AgentId) {
+  if (get().activeAgents.includes(id)) return;
+  set((state) => ({ activeAgents: [...state.activeAgents, id] }));
+}
+
+function pushStageItem(set: SetFn, item: StageItem) {
+  set((state) => ({ stageItems: [...state.stageItems, item] }));
+}
+
+function patchArtifact(
+  set: SetFn,
+  artifactId: string,
+  patch: (a: Artifact) => Artifact,
+) {
+  set((state) => ({
+    stageItems: state.stageItems.map((it) =>
+      it.kind === 'artifact' && it.artifact.id === artifactId
+        ? { ...it, artifact: patch(it.artifact) }
+        : it,
+    ),
+  }));
 }
 
 function findLatestAgent(get: GetFn): AgentId | undefined {
@@ -334,6 +381,14 @@ function emptyContent(type: Artifact['type']): Artifact['content'] {
       return { bullets: [] };
     case 'whatsapp':
       return { messages: [] };
+    case 'picking-list':
+      return { pickingRows: [] };
+    case 'stock-mutation':
+      return {};
+    case 'transport-plan':
+      return { stops: [] };
+    case 'calendar-item':
+      return {};
   }
 }
 
@@ -354,9 +409,31 @@ function applyFill(content: Artifact['content'], step: ScriptStep): Artifact['co
     case 'message':
       if (!step.message) return content;
       return { ...content, messages: [...(content.messages ?? []), step.message] };
+    case 'picking-row':
+      if (!step.pickingRow) return content;
+      return { ...content, pickingRows: [...(content.pickingRows ?? []), step.pickingRow] };
+    case 'stop':
+      if (!step.stop) return content;
+      return { ...content, stops: [...(content.stops ?? []), step.stop] };
+    case 'stock-delta':
+      if (!step.stockDelta) return content;
+      return { ...content, stockDelta: step.stockDelta };
+    case 'slot':
+      if (!step.slot) return content;
+      return { ...content, slot: step.slot };
     default:
       return content;
   }
+}
+
+function applyCockpitDelta(state: CockpitState, delta: Partial<CockpitState>): CockpitState {
+  return {
+    orders: state.orders + (delta.orders ?? 0),
+    stockMutations: state.stockMutations + (delta.stockMutations ?? 0),
+    routesPlanned: state.routesPlanned + (delta.routesPlanned ?? 0),
+    mails: state.mails + (delta.mails ?? 0),
+    revenue: state.revenue + (delta.revenue ?? 0),
+  };
 }
 
 function incrementROI(set: SetFn, get: GetFn, agentId: AgentId, minutes: number) {

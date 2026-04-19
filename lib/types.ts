@@ -53,17 +53,13 @@ export type ArtifactType =
   | 'order-confirmation'
   | 'quote'
   | 'memo'
-  | 'whatsapp';
+  | 'whatsapp'
+  | 'picking-list'
+  | 'stock-mutation'
+  | 'transport-plan'
+  | 'calendar-item';
 
 export type ArtifactState = 'opening' | 'filling' | 'complete';
-
-export interface ArtifactContent {
-  paragraphs?: string[];
-  lines?: InvoiceLine[];
-  bullets?: BulletSection[];
-  items?: OrderItem[];
-  messages?: WhatsAppMessage[];
-}
 
 export interface InvoiceLine {
   omschrijving: string;
@@ -86,6 +82,48 @@ export interface WhatsAppMessage {
   from: 'customer' | 'us';
   text: string;
   time: string;
+}
+
+export interface PickingRow {
+  artikel: string;
+  aantal: number;
+  locatie: string;
+  status?: 'open' | 'gepakt';
+}
+
+export interface StockDelta {
+  artikel: string;
+  was: number;
+  wordt: number;
+  unit?: string;
+  reden?: string;
+}
+
+export interface TransportStop {
+  tijd: string;
+  plaats: string;
+  klant?: string;
+  artikelen?: string;
+}
+
+export interface CalendarSlot {
+  wanneer: string;
+  duur: string;
+  voor: string;
+  onderwerp: string;
+  details?: string[];
+}
+
+export interface ArtifactContent {
+  paragraphs?: string[];
+  lines?: InvoiceLine[];
+  bullets?: BulletSection[];
+  items?: OrderItem[];
+  messages?: WhatsAppMessage[];
+  pickingRows?: PickingRow[];
+  stockDelta?: StockDelta;
+  stops?: TransportStop[];
+  slot?: CalendarSlot;
 }
 
 export interface ArtifactMeta {
@@ -111,6 +149,13 @@ export interface ArtifactMeta {
   phone?: string;
   callContext?: string;
   memoSubject?: string;
+  routeName?: string;
+  vehicle?: string;
+  driver?: string;
+  totalKm?: string;
+  pickingNumber?: string;
+  warehouse?: string;
+  reasoning?: string[];
   [key: string]: unknown;
 }
 
@@ -128,6 +173,33 @@ export interface Artifact {
   minutesSaved?: number;
 }
 
+export type CheckTone = 'dossier' | 'policy' | 'inventory' | 'log' | 'credit' | 'pricing' | 'planning';
+
+export interface CheckItem {
+  id: string;
+  label: string;
+  value: string;
+  by: AgentId;
+  tone: CheckTone;
+  startedAt: number;
+}
+
+export interface ReasoningItem {
+  id: string;
+  text: string;
+  by: AgentId;
+  startedAt: number;
+}
+
+export type StageItem =
+  | { kind: 'artifact'; id: string; artifact: Artifact }
+  | { kind: 'check'; id: string; check: CheckItem }
+  | { kind: 'reasoning'; id: string; reasoning: ReasoningItem };
+
+export type CockpitMetric = 'orders' | 'stockMutations' | 'routesPlanned' | 'mails' | 'revenue';
+
+export type CockpitDelta = Partial<Record<CockpitMetric, number>>;
+
 export type StepKind =
   | 'ticket'
   | 'pickup'
@@ -135,6 +207,9 @@ export type StepKind =
   | 'artifact.fill'
   | 'artifact.done'
   | 'status.update'
+  | 'check'
+  | 'reasoning'
+  | 'cockpit.tick'
   | 'complete';
 
 export type ArtifactFillTarget =
@@ -142,7 +217,11 @@ export type ArtifactFillTarget =
   | 'line'
   | 'bullet-section'
   | 'item'
-  | 'message';
+  | 'message'
+  | 'picking-row'
+  | 'stop'
+  | 'stock-delta'
+  | 'slot';
 
 export interface ScriptStep {
   kind: StepKind;
@@ -158,9 +237,16 @@ export interface ScriptStep {
   bulletSection?: BulletSection;
   item?: OrderItem;
   message?: WhatsAppMessage;
+  pickingRow?: PickingRow;
+  stop?: TransportStop;
+  stockDelta?: StockDelta;
+  slot?: CalendarSlot;
   footer?: string;
   minutesSaved?: number;
   totalMinutes?: number;
+  check?: Omit<CheckItem, 'id' | 'startedAt'>;
+  reasoning?: Omit<ReasoningItem, 'id' | 'startedAt'>;
+  cockpit?: CockpitDelta;
 }
 
 export interface Script {
@@ -184,6 +270,14 @@ export interface ROIState {
   byAgent: Record<AgentId, ROIByAgent>;
 }
 
+export interface CockpitState {
+  orders: number;
+  stockMutations: number;
+  routesPlanned: number;
+  mails: number;
+  revenue: number;
+}
+
 export interface CompletedEvent {
   id: string;
   title: string;
@@ -191,4 +285,5 @@ export interface CompletedEvent {
   completedAt: number;
   minutesSaved: number;
   artifactCount: number;
+  agents: AgentId[];
 }

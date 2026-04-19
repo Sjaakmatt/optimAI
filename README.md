@@ -1,6 +1,8 @@
 # FactumAI · De Werkbank
 
-Een digitale werkbank voor MKB-operatie. Gebaseerd op een fictieve bouwmaterialengroothandel (**Nordveld**). Wanneer er een event binnenkomt — order, klacht, offerte-aanvraag — ontstaat het échte werk zichtbaar op het scherm: mails, facturen, belnotities, offertes. Papier-achtige documenten, regel voor regel opgebouwd.
+Een digitale werkbank voor MKB-operatie. Gebaseerd op een fictieve bouwmaterialengroothandel (**Nordveld**). Wanneer er een event binnenkomt — order, klacht, offerte-aanvraag — pakken meerdere afdelingen het op: data wordt opgezocht, beleid wordt toegepast, en alle documenten verschijnen zichtbaar op de werkbank: mails, facturen, belnotities, offertes, pakbonnen, voorraad-mutaties, transportplannen, agenda-items.
+
+Live cockpit-strip bovenaan telt mee terwijl het werk loopt: orders, voorraad-mutaties, ritten, mails, omzet.
 
 **Volledig gescript. Geen externe API calls. Werkt offline.**
 
@@ -17,23 +19,35 @@ Open [http://localhost:3000](http://localhost:3000).
 
 De demo draait op één pagina. Geen dashboard-route, geen policy-route, geen tabs.
 
-- **Werkbank** — centraal gebied waar werkbon en artefacten verschijnen.
+- **Cockpit-strip** — bovenaan, vijf realtime tellers (orders / voorraad-mutaties / ritten / mails / omzet) die mee-animeren met het werk.
+- **Werkbank** — centraal gebied: werkbon → dossier-strip → check-cards → reasoning-regels → artefacten.
 - **Vandaag-paneel** — rechtsonder; drie regels met afgehandeld / bespaard / €.
 - **Beleidsregels** — tandwiel rechtsboven opent een slide-over met policies per afdeling.
+- **↻-menu** — modus-toggle (Handmatig / Autonoom) + reset.
 - **Statusstrip** — onderaan, rustig; laat zien wie er nu bezig is.
+
+## Wat ziet de klant
+
+Per event:
+1. **Werkbon** verschijnt met klantvraag.
+2. **Dossier-strip** vult zich met afdelingen die meedoen.
+3. **Check-cards** verschijnen wanneer er data wordt opgezocht of beleid toegepast (klantdossier, voorraad, krediet, transport-log, beleid #xxx).
+4. **Reasoning-regels** tonen de korte besluiten ("we kiezen Rockwool ondanks € 144 prijsverschil — tijd weegt zwaarder").
+5. **Artefacten** vouwen open en vullen zich regel voor regel: mails, facturen, pakbonnen, voorraad-mutaties, transportplannen, agenda-items, belnotities.
+6. Elke artefact toont **wie het schreef** (byline) + heeft een **"waarom?"** uitklap voor reasoning.
 
 ## De 8 scenario's
 
-| # | Event | Artefacten |
+| # | Event | Wat er gebeurt |
 |---|---|---|
-| 1 | Order — Bouwbedrijf Jansma | Orderbevestiging → klant-email |
-| 2 | Offerte — Gemeente Hoorn | Offerte (aanbesteding) |
-| 3 | Klacht — Aannemer De Boer | Klant-email + creditnota |
-| 4 | Voorraadsignaal — Isolatiewol | Intern memo + inkoop-email |
-| 5 | Vertraging — Saint-Gobain | 2× klant-email + intern memo |
-| 6 | Vraag — Schilder Visser | Klant-email |
-| 7 | Factuur overdue — Molenaar | Belnotitie + hold-memo |
-| 8 | Verzending — A7 | Opdracht-memo + 3 klant-emails + WhatsApp |
+| 1 | Order — Bouwbedrijf Jansma | Kredietcheck → 3× voorraadcheck → orderbevestiging → voorraadmutatie → Rockwool-bestelling → pakbon → transportplan → klant-email → concept-factuur |
+| 2 | Offerte — Gemeente Hoorn | Klant- en project-historie → leveranciersprijzen → marge-beleid → 7-regel offerte → begeleidende mail → directie-akkoord-agenda |
+| 3 | Klacht — Aannemer De Boer | Klantdossier + beleid → transport-log → klant-email → creditnota → voorraad-reservering → transportplan-update → CRM-memo voor sales |
+| 4 | Voorraadsignaal — Isolatiewol | Verbruiksanalyse → leveranciersvergelijking → memo → inkoop-email → voorraad-mutatie (in transit) → ontvangst-agenda magazijn |
+| 5 | Vertraging — Saint-Gobain | Impact-analyse → eigen voorraad-check → 2× klant-email → voorraad-reservering → incident-memo → gesplitst transportplan |
+| 6 | Vraag — Schilder Visser | Productdatabase → 2× voorraadcheck → klant-email → follow-up-agenda → CRM-notitie |
+| 7 | Factuur overdue — Molenaar | Klantdossier + krediet → beleid persoonlijk contact → belnotitie voor finance → agenda-item → hold-memo → heads-up sales |
+| 8 | Verzending — A7 | Rit-analyse → mandaat-check Bakker → opdracht-memo → herplant transportplan → 3× klant-email → WhatsApp Bolsward |
 
 ## Stack
 
