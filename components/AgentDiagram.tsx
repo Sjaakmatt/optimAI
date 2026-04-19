@@ -136,8 +136,8 @@ export function AgentDiagram() {
           style={{
             left: `${(DIRIGENT_CX / W) * 100}%`,
             top: `${(DIRIGENT_CY / H) * 100}%`,
-            width: '380px',
-            maxWidth: '90%',
+            width: '480px',
+            maxWidth: '92%',
             transform: 'translate(-50%, -50%)',
           }}
         >
@@ -184,13 +184,13 @@ function DirigentCard({
   isPlaying: boolean;
 }) {
   return (
-    <div className="artifact-card artifact-card--lift px-7 py-5">
-      <div className="flex items-center justify-between gap-6">
-        <div className="text-left min-w-0">
+    <div className="artifact-card artifact-card--lift px-6 py-4">
+      <div className="flex items-center gap-5">
+        <div className="flex-1 min-w-0">
           <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             De Dirigent
           </div>
-          <div className="font-display italic text-[14px] text-[var(--ink-dim)] leading-snug mt-1 min-h-[20px] min-w-[180px] max-w-[260px]">
+          <div className="font-display italic text-[14px] text-[var(--ink-dim)] leading-snug mt-1 min-h-[20px]">
             <AnimatePresence mode="wait">
               <motion.span
                 key={statusText ?? 'idle'}
