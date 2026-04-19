@@ -174,4 +174,155 @@ export const SCRIPTS: Record<string, Script> = {
       },
     ],
   },
+
+  // =========================================================
+  // SCENARIO 3: Klacht Aannemersbedrijf De Boer
+  // =========================================================
+  script_complaint: {
+    id: 'script_complaint',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Klacht binnen van De Boer over ORD-2026-0418: 6 van 40 gipsplaten met hoekschade. Toon geïrriteerd maar redelijk. Dit moet snel en netjes. Klantservice opent lijn, Verzending checkt transport-log, Facturatie bereidt creditregeling voor.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: 'Ontvangstbevestiging binnen 15 min. Empathische toon. Nog géén toezeggingen — wacht op Verzending-analyse.',
+      },
+      {
+        delayBefore: 900,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Antwoord verstuurd: excuus, klacht genoteerd onder KL-2026-0087, terugkoppeling binnen 4u. Klant-dossier vermeldt 18 orders in 2 jaar, nul eerdere klachten. Goede relatie — niet laten escaleren.',
+        minutesSaved: 7,
+      },
+      {
+        delayBefore: 800,
+        parallel: true,
+        from: 'orchestrator',
+        to: 'verzending',
+        kind: 'delegate',
+        text: "Transport-log ORD-2026-0418 opzoeken. Was laadveiligheid in orde? Foto's bij laden/lossen?",
+      },
+      {
+        delayBefore: 1000,
+        from: 'verzending',
+        to: 'orchestrator',
+        kind: 'report',
+        text: "Laad-foto's tonen platen correct afgedekt en gezekerd. Chauffeur Bakker heeft bij aflevering twee platen met zichtbare hoekschade vastgelegd — dat matcht deels, maar klant meldt zes. Mogelijk ontstaan bij lossen door eigen bouwvakkers. Niet 100% onze schuld, maar lastig te bewijzen.",
+        minutesSaved: 14,
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'facturatie',
+        kind: 'delegate',
+        text: 'Creditnota klaarzetten voor 6 platen à €12,40 = €74,40. Nog niet versturen.',
+      },
+      {
+        delayBefore: 700,
+        from: 'facturatie',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'Creditnota CN-2026-0021 concept klaar. Bedrag €74,40 excl. BTW. Wacht op go.',
+        minutesSaved: 5,
+      },
+      {
+        delayBefore: 900,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Beleidsregel: bij klanten met >10 orders en 0 eerdere klachten coulance toepassen zonder discussie over schuldvraag. Kost €74 maar behoudt relatie.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: 'Antwoord naar De Boer: we nemen de 6 platen volledig voor eigen rekening. Creditnota onderweg. Nieuwe platen morgen mee met rit richting Medemblik — eerste ronde. Vraag: 1 vervangende levering of alleen credit?',
+      },
+      {
+        delayBefore: 1100,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Mail verstuurd — toon warm maar zakelijk, geen schuldvraag aangekaart, oplossing voorop. Keuzeoptie voorgelegd. Klant-reactie verwacht binnen 1u. Credit staat al klaar in systeem.',
+        minutesSaved: 11,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Afhandeling strak: 4 agents, 37 minuten bespaard, escalatie voorkomen. Zonder ons: gemiddelde klacht-doorlooptijd in branche is 2,5 dag.',
+      },
+    ],
+  },
+
+  // =========================================================
+  // SCENARIO 4: Voorraad laag
+  // =========================================================
+  script_stock_low: {
+    id: 'script_stock_low',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Voorraadsignaal: isolatiewol 100mm op 18 rollen, minimum 30. 25 rollen gereserveerd in lopende orders — dekking krap. Voorraad en Inkoop samen oplossen.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'voorraad',
+        kind: 'delegate',
+        text: 'Verbruiksanalyse laatste 30 dagen. Welke verwachting komende 2 weken?',
+      },
+      {
+        delayBefore: 1000,
+        from: 'voorraad',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'Afgelopen 30 dagen: gemiddeld 4,2 rollen per werkdag. Trend stijgend (voorjaarsseizoen). Verwachting 2 weken: ±50 rollen. Huidige dekking: 4 werkdagen. Aanbevolen bestelhoeveelheid: 80 rollen (6 weken voorraad).',
+        minutesSaved: 12,
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'inkoop',
+        kind: 'delegate',
+        text: 'Bestelling 80 rollen Isolatiewol 100mm bij Rockwool Benelux. Check eventueel 2e leverancier voor prijsvergelijk.',
+      },
+      {
+        delayBefore: 1200,
+        from: 'inkoop',
+        to: 'orchestrator',
+        kind: 'reasoning',
+        text: 'Rockwool standaard €58/rol, levertijd 2 werkdagen. Knauf Insulation alternatief: €56,20 maar 5 werkdagen. Verschil: €144 korting versus 3 dagen langer. Gezien krappe dekking: Rockwool kiezen ondanks hogere prijs.',
+      },
+      {
+        delayBefore: 900,
+        from: 'inkoop',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Inkooporder INK-2026-0133 verstuurd naar Rockwool. 80 rollen à €58, totaal €4.640 excl. BTW. Bevestiging binnen kantoortijd verwacht. Levering vrijdag voor 12u.',
+        minutesSaved: 18,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Voorraad veiliggesteld. Geen orders in gevaar gekomen. 2 agents, 30 minuten bespaard. Dit type signaal bleef vroeger soms 2 dagen liggen voordat iemand het oppakte.',
+      },
+    ],
+  },
 };
