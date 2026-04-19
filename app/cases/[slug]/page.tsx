@@ -1,9 +1,44 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { CASES, CASE_BY_SLUG } from '@/lib/data/cases';
+import { Breadcrumbs } from '@/components/site/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { CASES, CASE_BY_SLUG, type CaseStudy } from '@/lib/data/cases';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
+
+function caseSchema(c: CaseStudy) {
+  const url = `${SITE_URL}/cases/${c.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${c.klant} — ${c.tagline}`,
+    description: c.intro,
+    inLanguage: 'nl-NL',
+    author: { '@id': `${SITE_URL}/#organization` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    url,
+    image: `${SITE_URL}/opengraph-image`,
+    about: {
+      '@type': 'Organization',
+      name: c.klant,
+      industry: c.branche,
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: c.regio,
+        addressCountry: 'NL',
+      },
+    },
+    articleSection: 'Cases',
+    keywords: [c.branche, c.regio, 'AI-agent', 'case study'],
+  };
+}
 
 export async function generateStaticParams() {
   return CASES.map((c) => ({ slug: c.slug }));
@@ -38,15 +73,18 @@ export default async function CaseDetail({
 
   return (
     <SitePage>
+      <JsonLd data={caseSchema(c)} />
       <article>
         <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-10 sm:pb-12">
-          <Link
-            href="/cases"
-            className="inline-flex items-center gap-1.5 text-[13px] text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors mb-6 sm:mb-8"
-          >
-            <ArrowLeft size={13} strokeWidth={1.5} />
-            Alle cases
-          </Link>
+          <div className="mb-6 sm:mb-8">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Cases', href: '/cases' },
+                { label: c.klant, href: `/cases/${c.slug}` },
+              ]}
+            />
+          </div>
           <div className="max-w-[760px]">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
               {c.branche} · {c.regio} · {c.doorlooptijd}
