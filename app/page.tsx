@@ -43,7 +43,7 @@ function Hero() {
             <span className="ink-highlight">te duur</span> voor herhaalwerk.
             <br />
             <span className="italic text-[var(--oker-deep)]">
-              Daar zetten wij agents op.
+              Daar zetten wij AI-agents op.
             </span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
