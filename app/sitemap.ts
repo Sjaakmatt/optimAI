@@ -1,8 +1,10 @@
 import type { MetadataRoute } from 'next';
+import { CASES } from '@/lib/data/cases';
+import { POSTS } from '@/lib/data/posts';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
-const ROUTES: Array<{
+const STATIC_ROUTES: Array<{
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
   priority: number;
@@ -18,10 +20,27 @@ const ROUTES: Array<{
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return ROUTES.map((r) => ({
+
+  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => ({
     url: `${SITE_URL}${r.path === '/' ? '' : r.path}`,
     lastModified: now,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));
+
+  const caseEntries: MetadataRoute.Sitemap = CASES.map((c) => ({
+    url: `${SITE_URL}/cases/${c.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  const postEntries: MetadataRoute.Sitemap = POSTS.map((p) => ({
+    url: `${SITE_URL}/kennis/${p.slug}`,
+    lastModified: new Date(p.published),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...caseEntries, ...postEntries];
 }
