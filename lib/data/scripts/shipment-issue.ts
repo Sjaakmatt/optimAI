@@ -102,6 +102,21 @@ export const script_shipment_issue: Script = {
       footer: 'Opdracht gegeven · 12 min werk bespaard',
       minutesSaved: 12,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a1',
+        department: 'inkoop',
+        kind: 'approval',
+        title: 'Bevestigen Bakker Transport',
+        subtitle: 'Overname 2 leveringen · € 165 meerkosten',
+        reference: 'VD-4418 · herplanning',
+        amount: '€ 165',
+        actionLabel: 'Bevestigen met Bakker',
+        systemTarget: 'Transporteur-portal',
+      },
+    },
 
     {
       kind: 'artifact.start',

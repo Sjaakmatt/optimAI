@@ -260,6 +260,20 @@ export const script_supplier_delay: Script = {
       footer: 'Opgenomen voor Q-review · 23 min werk bespaard',
       minutesSaved: 23,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a4',
+        department: 'inkoop',
+        kind: 'review',
+        title: 'Q-review Saint-Gobain agenderen',
+        subtitle: '3e incident dit kwartaal · gesprek met accountmanager',
+        reference: 'Incident-log Q2',
+        actionLabel: 'Afspraak inplannen',
+        systemTarget: 'CRM + agenda',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Verzending plant gesplitste rit', delay: 700 },
     { kind: 'pickup', by: 'verzending', delay: 600 },

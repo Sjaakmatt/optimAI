@@ -15,6 +15,7 @@ import type {
   Script,
   ScriptStep,
   StageItem,
+  WorkItem,
 } from '@/lib/types';
 import { AGENT_DEFINITIONS, ALL_AGENTS } from '@/lib/agents/definitions';
 import { SCENARIO_BY_ID, SCENARIOS } from '@/lib/data/scenarios';
@@ -105,6 +106,8 @@ interface AppState {
   statusText: string | null;
   completed: CompletedEvent[];
   viewingCompletedId: string | null;
+  workItems: WorkItem[];
+  openInboxFor: AgentId | null;
   mode: Mode;
   isPlaying: boolean;
   policyPanelOpen: boolean;
@@ -118,6 +121,8 @@ interface AppState {
   updatePolicy: (agentId: AgentId, policyId: string, enabled: boolean) => void;
   setMode: (mode: Mode) => void;
   setViewingCompletedId: (id: string | null) => void;
+  setOpenInboxFor: (id: AgentId | null) => void;
+  completeWorkItem: (id: string) => void;
   reset: () => void;
 }
 
@@ -130,6 +135,8 @@ export const useStore = create<AppState>((set, get) => ({
   statusText: null,
   completed: [],
   viewingCompletedId: null,
+  workItems: [],
+  openInboxFor: null,
   mode: 'manual',
   isPlaying: false,
   policyPanelOpen: false,
@@ -140,6 +147,13 @@ export const useStore = create<AppState>((set, get) => ({
   setMode: (mode) => set({ mode }),
   setPolicyPanelOpen: (open) => set({ policyPanelOpen: open }),
   setViewingCompletedId: (id) => set({ viewingCompletedId: id }),
+  setOpenInboxFor: (id) => set({ openInboxFor: id }),
+  completeWorkItem: (id) =>
+    set((state) => ({
+      workItems: state.workItems.map((w) =>
+        w.id === id ? { ...w, status: 'completed', completedAt: Date.now() } : w,
+      ),
+    })),
 
   updatePolicy: (agentId, policyId, enabled) => {
     const overrides = loadPolicyOverrides();
@@ -202,6 +216,8 @@ export const useStore = create<AppState>((set, get) => ({
       statusText: null,
       completed: [],
       viewingCompletedId: null,
+      workItems: [],
+      openInboxFor: null,
       activeEventId: null,
       isPlaying: false,
       roi: emptyROI(),
@@ -266,6 +282,20 @@ async function runStep(
       set((state) => ({
         cockpit: applyCockpitDelta(state.cockpit, step.cockpit ?? {}),
       }));
+      return;
+    }
+
+    case 'workitem.create': {
+      if (!step.workitem) return;
+      const item: WorkItem = {
+        ...step.workitem,
+        id: uid('wi'),
+        eventId,
+        eventTitle: script.eventTitle,
+        createdAt: Date.now(),
+        status: 'pending',
+      };
+      set((state) => ({ workItems: [...state.workItems, item] }));
       return;
     }
 

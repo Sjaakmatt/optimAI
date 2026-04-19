@@ -163,6 +163,20 @@ export const script_question: Script = {
       footer: 'Geblokkeerd in agenda · 5 min werk bespaard',
       minutesSaved: 5,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a2',
+        department: 'sales',
+        kind: 'followup',
+        title: 'Follow-up Visser over 5 werkdagen',
+        subtitle: 'EI 60 advies verstuurd · m² opvragen voor offerte',
+        reference: 'Lead Visser · renovatie Hoorn',
+        actionLabel: 'Gebeld · status',
+        systemTarget: 'CRM-lead',
+      },
+    },
 
     { kind: 'status.update', statusText: 'CRM krijgt notitie voor accountmanager', delay: 700 },
     {

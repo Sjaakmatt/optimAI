@@ -265,6 +265,20 @@ export const script_stock_low: Script = {
       footer: 'Geblokkeerd · 8 min werk bespaard',
       minutesSaved: 8,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a4',
+        department: 'voorraad',
+        kind: 'followup',
+        title: 'Ontvangst Rockwool vrijdag',
+        subtitle: '80 rollen · loskade 2 · twee man + vorkheftruck',
+        reference: 'INK-2026-0133',
+        actionLabel: 'Loskade geblokkeerd',
+        systemTarget: 'Magazijn-planner',
+      },
+    },
 
     { kind: 'complete', delay: 700, totalMinutes: 48 },
   ],

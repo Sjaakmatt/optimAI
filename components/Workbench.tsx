@@ -15,6 +15,7 @@ import { DossierStrip } from './DossierStrip';
 import { Stage } from './Stage';
 import { AutonomousRunner } from './AutonomousRunner';
 import { AgentDiagram } from './AgentDiagram';
+import { InboxPanel } from './InboxPanel';
 
 export function Workbench() {
   const activeEventId = useStore((s) => s.activeEventId);
@@ -75,6 +76,7 @@ export function Workbench() {
 
       <StatusStrip />
       <PolicyPanel />
+      <InboxPanel />
       <AutonomousRunner />
     </div>
   );

@@ -188,6 +188,21 @@ export const script_inquiry: Script = {
       footer: 'Wacht op akkoord directie · 78 min werk bespaard',
       minutesSaved: 78,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a1',
+        department: 'sales',
+        kind: 'approval',
+        title: 'Directie-akkoord offerte Hoorn',
+        subtitle: 'Bedrag boven mandaat (€ 25.000) · verzenden na akkoord',
+        reference: 'OF-2026-0087',
+        amount: '€ 27.140 excl. BTW',
+        actionLabel: 'Akkoord geven',
+        systemTarget: 'Mail naar Gemeente Hoorn',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Begeleidende mail klaargezet', delay: 700 },
     { kind: 'pickup', by: 'klantservice', delay: 600 },

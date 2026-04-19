@@ -277,6 +277,20 @@ export const script_order_new: Script = {
       footer: 'Klaargezet voor magazijn · 7 min werk bespaard',
       minutesSaved: 7,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a4',
+        department: 'voorraad',
+        kind: 'picking',
+        title: 'Picken order Jansma',
+        subtitle: '48 platen + 120 profielen · A-12, B-04, B-09',
+        reference: 'PICK-2026-0431',
+        actionLabel: 'Picklijst openen',
+        systemTarget: 'Magazijn-app',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Verzending plant de rit', delay: 700 },
     { kind: 'pickup', by: 'verzending', delay: 600 },
@@ -362,6 +376,20 @@ export const script_order_new: Script = {
       minutesSaved: 9,
     },
     { kind: 'cockpit.tick', delay: 200, cockpit: { routesPlanned: 1 } },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a5',
+        department: 'verzending',
+        kind: 'route-execute',
+        title: 'Rit dinsdag West-Friesland',
+        subtitle: 'Chauffeur Van der Meer · 3 stops · vertrek 08:30',
+        reference: 'Rit #2026-17',
+        actionLabel: 'Rit bevestigen',
+        systemTarget: 'Planner-app + chauffeur',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Klantservice schrijft de bevestiging', delay: 700 },
     { kind: 'pickup', by: 'klantservice', delay: 600 },
@@ -501,6 +529,21 @@ export const script_order_new: Script = {
       artifactId: 'a7',
       footer: 'Concept klaar · 25 min werk bespaard',
       minutesSaved: 25,
+    },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a7',
+        department: 'facturatie',
+        kind: 'invoice-send',
+        title: 'Factuur versturen Jansma',
+        subtitle: 'Automatisch versturen na leveringsbevestiging dinsdag',
+        reference: 'F-2026-0517',
+        amount: '€ 4.280 + BTW',
+        actionLabel: 'Versturen',
+        systemTarget: 'Boekhoudsysteem',
+      },
     },
 
     { kind: 'complete', delay: 700, totalMinutes: 84 },

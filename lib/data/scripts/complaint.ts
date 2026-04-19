@@ -168,6 +168,21 @@ export const script_complaint: Script = {
       footer: 'Klaargezet · 11:44 · 5 min werk bespaard',
       minutesSaved: 5,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a2',
+        department: 'facturatie',
+        kind: 'payment-out',
+        title: 'Uitbetaling creditnota De Boer',
+        subtitle: 'Klant wacht op creditering van 6 beschadigde platen',
+        reference: 'CN-2026-0021',
+        amount: '€ 74,40 excl. BTW',
+        actionLabel: 'Uitbetalen',
+        systemTarget: 'Boekhoudsysteem + bank',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Voorraad reserveert vervangende platen', delay: 700 },
     { kind: 'pickup', by: 'voorraad', delay: 600 },

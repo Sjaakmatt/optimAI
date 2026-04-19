@@ -132,6 +132,20 @@ export const script_invoice_overdue: Script = {
       footer: 'In takenlijst Saskia · 13 min werk bespaard',
       minutesSaved: 13,
     },
+    {
+      kind: 'workitem.create',
+      delay: 300,
+      workitem: {
+        artifactId: 'a1',
+        department: 'facturatie',
+        kind: 'call',
+        title: 'Bellen Jan Molenaar',
+        subtitle: 'Factuur F-2026-0312 · 42 dagen open · zacht contact',
+        reference: 'Molenaar · 06-24 77 89 13',
+        actionLabel: 'Markeer als gebeld',
+        systemTarget: 'CRM-log · hold opheffen',
+      },
+    },
 
     { kind: 'status.update', statusText: 'Belafspraak alvast in agenda', delay: 700 },
     {

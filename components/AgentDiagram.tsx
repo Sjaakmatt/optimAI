@@ -34,6 +34,8 @@ export function AgentDiagram() {
   const activeAgents = useStore((s) => s.activeAgents);
   const statusText = useStore((s) => s.statusText);
   const isPlaying = useStore((s) => s.isPlaying);
+  const workItems = useStore((s) => s.workItems);
+  const setOpenInboxFor = useStore((s) => s.setOpenInboxFor);
 
   const [pulsingAgent, setPulsingAgent] = useState<AgentId | null>(null);
   const prevActiveRef = useRef<AgentId[]>([]);
@@ -147,6 +149,9 @@ export function AgentDiagram() {
           const active = activeAgents.includes(id);
           const agent = agents[id];
           const cx = chipCX(i);
+          const pending = workItems.filter(
+            (w) => w.department === id && w.status === 'pending',
+          ).length;
           return (
             <div
               key={id}
@@ -157,7 +162,12 @@ export function AgentDiagram() {
                 transform: 'translate(-50%, -50%)',
               }}
             >
-              <AgentChip name={agent.name} active={active} />
+              <AgentChip
+                name={agent.name}
+                active={active}
+                pending={pending}
+                onClick={() => setOpenInboxFor(id)}
+              />
             </div>
           );
         })}
@@ -202,12 +212,23 @@ function DirigentCard({
   );
 }
 
-function AgentChip({ name, active }: { name: string; active: boolean }) {
+function AgentChip({
+  name,
+  active,
+  pending,
+  onClick,
+}: {
+  name: string;
+  active: boolean;
+  pending: number;
+  onClick: () => void;
+}) {
   return (
-    <motion.div
+    <motion.button
+      onClick={onClick}
       animate={{ scale: active ? 1.04 : 1 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="px-3 py-1.5 rounded-[2px] border"
+      className="relative px-3 py-1.5 rounded-[2px] border cursor-pointer"
       style={{
         background: active ? 'var(--paper)' : 'var(--paper-deep)',
         borderColor: active ? 'var(--oker)' : 'var(--paper-edge)',
@@ -221,6 +242,22 @@ function AgentChip({ name, active }: { name: string; active: boolean }) {
       >
         {name}
       </div>
-    </motion.div>
+      {pending > 0 && (
+        <motion.span
+          key={pending}
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'backOut' }}
+          className="absolute -top-2 -right-2 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full font-mono text-[10px] tabular-nums"
+          style={{
+            background: 'var(--oker)',
+            color: 'var(--paper)',
+            boxShadow: 'var(--shadow-soft)',
+          }}
+        >
+          {pending}
+        </motion.span>
+      )}
+    </motion.button>
   );
 }

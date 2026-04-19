@@ -222,6 +222,7 @@ export type StepKind =
   | 'check'
   | 'reasoning'
   | 'cockpit.tick'
+  | 'workitem.create'
   | 'complete';
 
 export type ArtifactFillTarget =
@@ -259,6 +260,40 @@ export interface ScriptStep {
   check?: Omit<CheckItem, 'id' | 'startedAt'>;
   reasoning?: Omit<ReasoningItem, 'id' | 'startedAt'>;
   cockpit?: CockpitDelta;
+  workitem?: Omit<
+    WorkItem,
+    'id' | 'eventId' | 'eventTitle' | 'createdAt' | 'status' | 'completedAt'
+  >;
+}
+
+export type WorkItemKind =
+  | 'payment-out'
+  | 'invoice-send'
+  | 'picking'
+  | 'call'
+  | 'approval'
+  | 'route-execute'
+  | 'review'
+  | 'followup';
+
+export type WorkItemStatus = 'pending' | 'completed';
+
+export interface WorkItem {
+  id: string;
+  eventId: string;
+  eventTitle: string;
+  artifactId?: string;
+  department: AgentId;
+  kind: WorkItemKind;
+  title: string;
+  subtitle?: string;
+  amount?: string;
+  reference?: string;
+  actionLabel: string;
+  systemTarget: string;
+  createdAt: number;
+  status: WorkItemStatus;
+  completedAt?: number;
 }
 
 export interface Script {
