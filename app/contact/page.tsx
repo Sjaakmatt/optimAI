@@ -12,24 +12,24 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <SitePage>
-      <section className="mx-auto max-w-[1080px] px-6 sm:px-10 pt-16 pb-12">
+      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             Contact
           </div>
-          <h1 className="mt-4 font-display text-[40px] sm:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
+          <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Eén gesprek,<br />
-            <span className="italic text-[var(--ink-dim)]">geen verplichting.</span>
+            <span className="italic text-[var(--oker-deep)]">geen verplichting.</span>
           </h1>
-          <p className="mt-6 text-[16px] leading-[1.7] text-[var(--ink-dim)]">
+          <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Eerst kijken of er iets concreets te winnen is bij u? Mail, bel, of laat hier een
             bericht achter. We reageren binnen één werkdag.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1080px] px-6 sm:px-10 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-10 md:gap-14">
+      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-8 md:gap-12 lg:gap-14">
           <aside className="space-y-6">
             <ContactItem
               Icon={Mail}

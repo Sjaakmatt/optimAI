@@ -64,11 +64,11 @@ export function CockpitHeader() {
   const cockpit = useStore((s) => s.cockpit);
   return (
     <div className="border-b border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-      <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-2.5 flex items-center justify-between gap-6 overflow-x-auto">
-        <Metric label="Orders vandaag" value={cockpit.orders} />
-        <Metric label="Voorraad-mutaties" value={cockpit.stockMutations} />
-        <Metric label="Ritten gepland" value={cockpit.routesPlanned} />
-        <Metric label="Mails verstuurd" value={cockpit.mails} />
+      <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-2.5 flex items-center gap-5 sm:gap-6 lg:justify-between overflow-x-auto whitespace-nowrap">
+        <Metric label="Orders" value={cockpit.orders} />
+        <Metric label="Voorraad" value={cockpit.stockMutations} />
+        <Metric label="Ritten" value={cockpit.routesPlanned} />
+        <Metric label="Mails" value={cockpit.mails} />
         <Metric label="Omzet" value={cockpit.revenue} format={(n) => formatEuro(n)} />
       </div>
     </div>

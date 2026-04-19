@@ -58,7 +58,30 @@ export function AgentDiagram() {
 
   return (
     <section className="mx-auto w-full max-w-[820px]">
-      <div className="relative" style={{ aspectRatio: `${W} / ${H}` }}>
+      {/* Mobiele variant: Dirigent-kaart bovenaan + 7 chips in grid eronder */}
+      <div className="sm:hidden">
+        <DirigentCard statusText={statusText} isPlaying={isPlaying} />
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          {AGENTS.map((id) => {
+            const active = activeAgents.includes(id);
+            const pending = workItems.filter(
+              (w) => w.department === id && w.status === 'pending',
+            ).length;
+            return (
+              <AgentChip
+                key={id}
+                name={agents[id].name}
+                active={active}
+                pending={pending}
+                onClick={() => setOpenInboxFor(id)}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop/tablet variant: SVG organogram */}
+      <div className="hidden sm:block relative" style={{ aspectRatio: `${W} / ${H}` }}>
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="absolute inset-0 w-full h-full"
@@ -228,7 +251,7 @@ function AgentChip({
       onClick={onClick}
       animate={{ scale: active ? 1.04 : 1 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="relative px-3 py-1.5 rounded-[2px] border cursor-pointer"
+      className="relative px-3 py-2.5 sm:py-1.5 rounded-[2px] border cursor-pointer w-full sm:w-auto"
       style={{
         background: active ? 'var(--paper)' : 'var(--paper-deep)',
         borderColor: active ? 'var(--oker)' : 'var(--paper-edge)',

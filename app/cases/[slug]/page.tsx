@@ -38,7 +38,7 @@ export default async function CaseDetail({
   return (
     <SitePage>
       <article>
-        <section className="mx-auto max-w-[1080px] px-6 sm:px-10 pt-14 pb-12">
+        <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 pb-12">
           <Link
             href="/cases"
             className="inline-flex items-center gap-1.5 text-[13px] text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors mb-8"
@@ -50,25 +50,30 @@ export default async function CaseDetail({
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
               {c.branche} · {c.regio} · {c.doorlooptijd}
             </div>
-            <h1 className="mt-4 font-display text-[40px] sm:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
+            <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
               {c.klant}
             </h1>
-            <p className="mt-3 font-display italic text-[20px] text-[var(--ink-dim)]">
+            <p className="mt-3 font-display italic text-[18px] sm:text-[22px] text-[var(--oker-deep)]">
               {c.tagline}
             </p>
-            <p className="mt-6 text-[16px] leading-[1.7] text-[var(--ink)]">{c.intro}</p>
+            <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
+              {c.intro}
+            </p>
           </div>
         </section>
 
-        <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-          <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-14">
-            <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] mb-6">
+        <section
+          className="border-t border-[var(--paper-edge)]"
+          style={{ background: 'var(--paper-warm)' }}
+        >
+          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 sm:py-16">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em] mb-6">
               Resultaat
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
               {c.resultaat.map((r) => (
-                <div key={r.label} className="artifact-card px-5 py-5">
-                  <div className="font-display text-[28px] text-[var(--ink)] leading-none">
+                <div key={r.label} className="site-card px-5 py-5">
+                  <div className="font-display text-[24px] sm:text-[28px] text-[var(--oker-deep)] leading-none">
                     {r.metric}
                   </div>
                   <div className="mt-2 text-[12px] text-[var(--ink-dim)] leading-[1.5]">
@@ -80,7 +85,7 @@ export default async function CaseDetail({
           </div>
         </section>
 
-        <section className="mx-auto max-w-[1080px] px-6 sm:px-10 py-14 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
               Uitdaging
@@ -119,7 +124,7 @@ export default async function CaseDetail({
 
         {c.quote && (
           <section className="border-t border-[var(--paper-edge)]">
-            <div className="mx-auto max-w-[820px] px-6 sm:px-10 py-14 text-center">
+            <div className="mx-auto max-w-[820px] px-5 sm:px-8 lg:px-10 py-14 text-center">
               <p className="font-display italic text-[24px] sm:text-[28px] leading-[1.35] text-[var(--ink)]">
                 {c.quote.text}
               </p>
@@ -131,7 +136,7 @@ export default async function CaseDetail({
         )}
 
         <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-          <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
                 Volgende case

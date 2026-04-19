@@ -12,19 +12,19 @@ export const metadata: Metadata = {
 export default function InfoPage() {
   return (
     <SitePage>
-      <section className="mx-auto max-w-[1080px] px-6 sm:px-10 pt-16 pb-12">
+      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[760px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             Wat is een AI-agent
           </div>
-          <h1 className="mt-4 font-display text-[40px] sm:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
+          <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Een digitale medewerker,<br />
-            <span className="italic text-[var(--ink-dim)]">geen dashboard.</span>
+            <span className="italic text-[var(--oker-deep)]">geen dashboard.</span>
           </h1>
-          <p className="mt-6 text-[17px] leading-[1.7] text-[var(--ink-dim)]">
+          <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
             Simpel gezegd: een AI-agent is software die zélf beslissingen neemt en taken uitvoert
             binnen grenzen die u bepaalt. Niet een knop die u moet indrukken, niet een formulier
-            dat u moet invullen. Iets dat zelf aan de slag gaat.
+            dat u moet invullen. Iets dat <span className="ink-highlight">zelf aan de slag gaat</span>.
           </p>
         </div>
       </section>
@@ -170,13 +170,14 @@ function Section({
 }) {
   return (
     <section
-      className={`border-t border-[var(--paper-edge)] ${tint ? 'bg-[var(--paper-deep)]' : ''}`}
+      className="border-t border-[var(--paper-edge)]"
+      style={tint ? { background: 'var(--paper-warm)' } : undefined}
     >
-      <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-16">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
         <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
           {eyebrow}
         </div>
-        <h2 className="mt-2 font-display text-[32px] sm:text-[40px] leading-[1.1] text-[var(--ink)] max-w-[720px]">
+        <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--ink)] max-w-[720px]">
           {title}
         </h2>
         {children}
@@ -196,8 +197,16 @@ function CompareCard({
 }) {
   return (
     <article
-      className="artifact-card px-5 py-5"
-      style={highlight ? { borderColor: 'var(--oker)', boxShadow: 'var(--shadow-lift)' } : undefined}
+      className={highlight ? 'site-card px-5 py-6' : 'site-card px-5 py-6'}
+      style={
+        highlight
+          ? {
+              borderColor: 'var(--oker)',
+              boxShadow: 'var(--shadow-hover)',
+              background: 'var(--paper)',
+            }
+          : undefined
+      }
     >
       <div
         className="font-mono text-[10px] uppercase tracking-[0.18em]"
@@ -213,8 +222,10 @@ function CompareCard({
 function FAQ({ q, a }: { q: string; a: string }) {
   return (
     <div className="pb-5 border-b border-[var(--paper-edge)]">
-      <h3 className="font-display text-[17px] text-[var(--ink)] leading-snug">{q}</h3>
-      <p className="mt-2 text-[14px] leading-[1.7] text-[var(--ink-dim)]">{a}</p>
+      <h3 className="font-display text-[17px] sm:text-[18px] text-[var(--ink)] leading-snug">
+        {q}
+      </h3>
+      <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">{a}</p>
     </div>
   );
 }

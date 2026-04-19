@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function SiteFooter() {
   return (
     <footer className="w-full border-t border-[var(--paper-edge)] bg-[var(--paper-deep)] mt-24">
-      <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
           <div className="font-display text-[18px] text-[var(--ink)]">FactumAI</div>
           <p className="mt-2 text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-[260px]">
@@ -45,7 +45,7 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[11px] font-mono text-[var(--ink-faint)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[11px] font-mono text-[var(--ink-faint)]">
         <span>© {new Date().getFullYear()} FactumAI</span>
         <span className="uppercase tracking-[0.14em]">Gebouwd met ambacht</span>
       </div>

@@ -5,6 +5,7 @@
   --paper: #f4ede0;
   --paper-deep: #ebe2cf;
   --paper-edge: #ddd1b8;
+  --paper-warm: #f7ecd6;
 
   /* Inkt — warm donker */
   --ink: #2a2420;
@@ -14,6 +15,7 @@
   /* Accenten */
   --oker: #a8803a;
   --oker-deep: #7d5e24;
+  --oker-soft: rgba(168, 128, 58, 0.08);
   --terra: #a15842;
   --mos: #5e6e3f;
   --steen: #8b857a;
@@ -21,12 +23,14 @@
   --grain-opacity: 0.06;
   --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.06), 0 8px 24px rgba(42, 36, 32, 0.04);
   --shadow-lift: 0 2px 4px rgba(42, 36, 32, 0.08), 0 12px 32px rgba(42, 36, 32, 0.08);
+  --shadow-hover: 0 4px 8px rgba(125, 94, 36, 0.08), 0 20px 40px rgba(42, 36, 32, 0.1);
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-paper-deep: var(--paper-deep);
   --color-paper-edge: var(--paper-edge);
+  --color-paper-warm: var(--paper-warm);
   --color-ink: var(--ink);
   --color-ink-dim: var(--ink-dim);
   --color-ink-faint: var(--ink-faint);
@@ -59,17 +63,29 @@ body {
   position: relative;
 }
 
-/* Papier-vezel overlay */
+/* Papier-vezel overlay — iets prominenter */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: var(--grain-opacity);
+  opacity: 0.09;
   mix-blend-mode: multiply;
   background-image: url("/paper-grain.svg");
   background-size: 320px 320px;
+}
+
+/* Subtiele warme wash onderaan de pagina — alsof de zon er net op valt */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(247, 236, 214, 0.7) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 30% at 100% 100%, rgba(168, 128, 58, 0.05) 0%, transparent 50%);
 }
 
 /* Selection */
@@ -91,7 +107,7 @@ body::before {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-faint);
+  background: var(--oker);
 }
 
 *:focus { outline: none; }
@@ -110,9 +126,66 @@ body::before {
   border: 1px solid var(--paper-edge);
   border-radius: 2px;
   box-shadow: var(--shadow-soft);
+  transition: border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
 }
 .artifact-card--lift {
   box-shadow: var(--shadow-lift);
+}
+
+/* Site-kaarten — subtiel oker accent bij hover */
+.site-card {
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 3px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+}
+.site-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--oker);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.site-card:hover {
+  border-color: var(--oker);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+.site-card:hover::before {
+  opacity: 0.6;
+}
+
+/* Drop cap voor eerste alinea (voor article/over-pagina's) */
+.drop-cap > p:first-of-type::first-letter {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 400;
+  float: left;
+  font-size: 3.6em;
+  line-height: 0.88;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--oker-deep);
+  font-style: italic;
+}
+
+/* Decoratieve section-divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--paper-edge);
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: currentColor;
 }
 
 .font-display {
@@ -120,4 +193,19 @@ body::before {
 }
 .font-mono {
   font-family: var(--font-plex-mono), "Menlo", monospace;
+}
+
+/* Hover-lift utility voor links/knoppen */
+.lift-on-hover {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+.lift-on-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Handgeschilderde oker-highlight-achtergrond voor korte spans */
+.ink-highlight {
+  background-image: linear-gradient(transparent 60%, rgba(168, 128, 58, 0.25) 60%, rgba(168, 128, 58, 0.18) 95%, transparent 100%);
+  padding: 0 0.1em;
 }

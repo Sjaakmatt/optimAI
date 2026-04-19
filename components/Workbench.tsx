@@ -41,7 +41,7 @@ export function Workbench() {
       <CockpitHeader />
 
       <main className="flex-1 relative">
-        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 pt-6 pb-12 space-y-6">
+        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 pt-5 sm:pt-6 pb-20 space-y-6">
           <AgentDiagram />
 
           <AnimatePresence mode="wait">

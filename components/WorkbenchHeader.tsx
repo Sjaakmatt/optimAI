@@ -11,22 +11,22 @@ export function WorkbenchHeader() {
 
   return (
     <header className="w-full border-b border-[var(--paper-edge)]">
-      <div className="mx-auto max-w-[1080px] px-8 py-5 flex items-center justify-between">
-        <div className="flex items-baseline gap-4">
+      <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-3">
+        <div className="flex items-baseline gap-3 sm:gap-4 min-w-0">
           <Link
             href="/"
-            className="flex items-center gap-2 font-display text-[22px] tracking-tight text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
+            className="flex items-center gap-2 font-display text-[20px] sm:text-[22px] tracking-tight text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
           >
             <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)]" />
             FactumAI
           </Link>
-          <span className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
+          <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em] truncate">
             De Werkbank · Nordveld
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <span className="hidden md:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
             Vandaag · {mode === 'manual' ? 'Handmatig' : 'Autonoom'}
           </span>
           <button
