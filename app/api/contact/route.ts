@@ -6,7 +6,7 @@ interface ContactPayload {
   email?: unknown;
   telefoon?: unknown;
   bericht?: unknown;
-  // honeypot: als ingevuld, spam — stilzwijgend ok retourneren
+  // honeypot: als ingevuld, spam. Stilzwijgend ok retourneren.
   website?: unknown;
 }
 
@@ -60,12 +60,12 @@ async function sendViaResend(fields: {
         from: `FactumAI Contact <${from}>`,
         to: [to],
         reply_to: fields.email,
-        subject: `Contactformulier — ${fields.naam}${fields.bedrijf ? ` (${fields.bedrijf})` : ''}`,
+        subject: `Contactformulier · ${fields.naam}${fields.bedrijf ? ` (${fields.bedrijf})` : ''}`,
         text:
           `Naam: ${fields.naam}\n` +
-          `Bedrijf: ${fields.bedrijf || '—'}\n` +
+          `Bedrijf: ${fields.bedrijf || '·'}\n` +
           `E-mail: ${fields.email}\n` +
-          `Telefoon: ${fields.telefoon || '—'}\n` +
+          `Telefoon: ${fields.telefoon || '·'}\n` +
           `\nBericht:\n${fields.bericht}\n`,
       }),
     });

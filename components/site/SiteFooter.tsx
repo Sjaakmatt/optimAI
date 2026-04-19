@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div>
           <div className="font-display text-[18px] text-[var(--ink)]">FactumAI</div>
           <p className="mt-2 text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-[260px]">
-            Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
+            Ik bouw en implementeer AI-agents die het dagelijkse werk van MKB-bedrijven
             overnemen. Nederlands, pragmatisch, zonder dashboard-gedoe.
           </p>
         </div>
@@ -19,9 +19,8 @@ export function SiteFooter() {
           <ul className="space-y-1 text-[13px]">
             <li><Link href="/over" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Over ons</Link></li>
             <li><Link href="/info" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Wat is een AI-agent</Link></li>
-            <li><Link href="/cases" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Cases</Link></li>
             <li><Link href="/kennis" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Kennis</Link></li>
-            <li><Link href="/demo" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Demo — De Werkbank</Link></li>
+            <li><Link href="/demo" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Demo · De Werkbank</Link></li>
             <li><Link href="/contact" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Contact</Link></li>
           </ul>
         </div>

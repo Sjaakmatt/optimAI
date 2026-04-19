@@ -9,7 +9,6 @@ import { Menu, X } from 'lucide-react';
 const NAV = [
   { href: '/over', label: 'Over ons' },
   { href: '/info', label: 'Wat is AI-agent' },
-  { href: '/cases', label: 'Cases' },
   { href: '/kennis', label: 'Kennis' },
   { href: '/demo', label: 'Demo' },
   { href: '/contact', label: 'Contact' },

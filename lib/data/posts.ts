@@ -22,7 +22,7 @@ export const POSTS: Post[] = [
     slug: 'waarom-mkb-nu-klaar-is-voor-ai-agents',
     title: 'Waarom het MKB nu klaar is voor AI-agents',
     lede:
-      'Drie jaar geleden konden agents niet goed genoeg werk afleveren om ze los te laten op klantmails. Dat is dit jaar veranderd — en de gevolgen zijn groter voor kleine bedrijven dan voor grote.',
+      'Drie jaar geleden konden agents niet goed genoeg werk afleveren om ze los te laten op klantmails. Dat is dit jaar veranderd. De gevolgen zijn groter voor kleine bedrijven dan voor grote.',
     author: 'Sjaak ter Veld',
     published: '2026-03-12',
     readingMinutes: 6,
@@ -31,13 +31,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Iedereen heeft de afgelopen twee jaar wel eens iets gedemonstreerd gekregen met generatieve AI. Chatbots, tekstgeneratoren, plaatjes. Leuk, niet altijd bruikbaar. Dat is in 2025-2026 fundamenteel gekanteld — niet omdat de modellen slimmer zijn (dat ook), maar omdat het tooling-landschap er omheen volwassen is geworden.',
+          'Iedereen heeft de afgelopen twee jaar wel iets gedemonstreerd gekregen met generatieve AI. Chatbots, tekstgeneratoren, plaatjes. Leuk, niet altijd bruikbaar. Dat is in 2025 en 2026 fundamenteel gekanteld. Niet zozeer omdat de modellen slimmer zijn (dat ook), maar omdat het tooling-landschap er omheen volwassen is geworden.',
       },
       { kind: 'h2', text: 'Wat er praktisch veranderd is' },
       {
         kind: 'list',
         items: [
-          'Agents kunnen betrouwbaar koppelen met bestaande systemen — e-mail, boekhoudpakket, CRM, magazijn.',
+          'Agents kunnen betrouwbaar koppelen met bestaande systemen. E-mail, boekhoudpakket, CRM, magazijn.',
           'Beleidsregels zijn niet meer een stuk prompt, maar een configureerbare laag die mensen zelf kunnen aan/uitzetten.',
           'Hallucineren komt nog voor, maar is voorspelbaar en af te vangen met checks.',
           'Integraties zijn met een paar dagen werk te bouwen, niet met een paar maanden.',
@@ -47,7 +47,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Grote concerns hebben in hun backoffice al veel geautomatiseerd — SAP, Oracle, custom workflows. Voor hen is een AI-agent een extra schil bovenop bestaande automatisering. Interessant, maar niet levensveranderend.',
+          'Grote concerns hebben in hun backoffice al veel geautomatiseerd. SAP, Oracle, custom workflows. Voor hen is een AI-agent een extra schil bovenop bestaande automatisering. Interessant, maar niet levensveranderend.',
       },
       {
         kind: 'p',
@@ -57,7 +57,7 @@ export const POSTS: Post[] = [
       {
         kind: 'quote',
         text:
-          'De dingen die grote bedrijven in 2005 met ERP hebben gedaan — standaardiseren, koppelen, automatiseren — kan een MKB\u2019er nu in één kwartaal met een agent.',
+          'De dingen die grote bedrijven in 2005 met ERP deden (standaardiseren, koppelen, automatiseren) kan een MKB\u2019er nu in één kwartaal met een agent.',
       },
       { kind: 'h2', text: 'Wat dit betekent voor 2026' },
       {
@@ -68,13 +68,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag: één agent, vaste prijs, 4-8 weken live. Geen groot project-bord nodig.',
+          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs, vier tot acht weken live. Geen groot project-bord nodig.',
       },
     ],
   },
   {
     slug: 'guardrails-niet-een-rem-maar-een-kompas',
-    title: 'Guardrails — niet een rem, maar een kompas',
+    title: 'Guardrails: niet een rem, maar een kompas',
     lede:
       'De grootste angst bij agents: “straks doet hij iets stoms wat mij geld kost”. Terecht. Maar de oplossing is niet de agent kleiner maken. De oplossing is expliciete beleidsregels.',
     author: 'Sjaak ter Veld',
@@ -95,14 +95,14 @@ export const POSTS: Post[] = [
           'Overheidsklanten: betaaltermijn standaard 30 dagen, geen aanbetaling.',
           'Klanten met >10 orders en 0 klachten: coulance toepassen zonder discussie over schuldvraag.',
           'Bij vertraging: alternatief transporteur inschakelen tot € 200 meerkosten.',
-          'Drie herinneringen, dan juridisch — tenzij klantgeschiedenis anders zegt.',
+          'Drie herinneringen, dan juridisch. Tenzij de klantgeschiedenis iets anders zegt.',
         ],
       },
       { kind: 'h2', text: 'Waarom dit zo goed werkt' },
       {
         kind: 'p',
         text:
-          'Omdat beleid expliciet wordt. De impliciete kennis die tot nu toe alleen in het hoofd van Saskia op finance zat — “die klant bellen we eerst” — komt nu op een plek waar iedereen het kan zien en bijstellen.',
+          'Omdat beleid expliciet wordt. De impliciete kennis die tot nu toe alleen in het hoofd van Saskia op finance zat (\u201cdie klant bellen we eerst\u201d) komt nu op een plek waar iedereen het kan zien en bijstellen.',
       },
       {
         kind: 'p',
@@ -118,9 +118,9 @@ export const POSTS: Post[] = [
       {
         kind: 'list',
         items: [
-          'Te veel regels in één keer — begin met 5-10 per afdeling, breid uit als je merkt waar de vragen liggen.',
-          'Beleid niet bijhouden — als je regels niet elke maand even tegen het licht houdt, verouderen ze.',
-          'Beleid en techniek door elkaar halen — de beleidsregel “niet juridisch bij trouwe klant” is losstaand van hoe de agent het technisch implementeert.',
+          'Te veel regels in één keer. Begin met vijf tot tien per afdeling. Breid uit als je merkt waar de vragen liggen.',
+          'Beleid niet bijhouden. Als je regels niet elke maand even tegen het licht houdt, verouderen ze.',
+          'Beleid en techniek door elkaar halen. De regel \u201cniet juridisch bij trouwe klant\u201d staat los van hoe de agent het technisch implementeert.',
         ],
       },
     ],
@@ -149,7 +149,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Wij bouwen agents die zelf naar u toe komen met dingen die uw aandacht nodig hebben. Geen dashboard — een belnotitie die klaarstaat. Een klantmail die niet is verzonden omdat het bedrag boven uw mandaat valt. Een werkbak met drie zaken die u kort moet afvinken.',
+          'Wij bouwen agents die zelf naar u toe komen met dingen die uw aandacht nodig hebben. Geen dashboard. Een belnotitie die klaarstaat. Een klantmail die niet is verzonden omdat het bedrag boven uw mandaat valt. Een werkbak met drie zaken die u kort moet afvinken.',
       },
       {
         kind: 'quote',
@@ -174,7 +174,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'welk-proces-is-geschikt-voor-een-agent',
-    title: 'Welk proces is geschikt voor een agent — en welk niet?',
+    title: 'Welk proces is geschikt voor een agent? En welk niet?',
     lede:
       'Niet elk proces hoort in handen van een AI-agent. Een simpel filter om vooraf te bepalen wat wel en niet werkt, voordat u begint te bouwen.',
     author: 'Sjaak ter Veld',
@@ -196,7 +196,7 @@ export const POSTS: Post[] = [
       {
         kind: 'list',
         items: [
-          'Gebeurt dit vaker dan twee keer per week? Onder die drempel is de bouwtijd zelden terug te verdienen — zelfs niet bij lang proces.',
+          'Gebeurt dit vaker dan twee keer per week? Onder die drempel is de bouwtijd zelden terug te verdienen. Zelfs niet bij een lang proces.',
           'Zijn de regels te beschrijven? Als uw medewerker het zelf moeilijk kan uitleggen aan een nieuwe collega, wordt het voor een agent ook lastig.',
           'Heeft het een duidelijk begin én einde? Processen die eindigen in "en dan hangt het van Jan af" zijn nog niet klaar voor automatisering.',
         ],
@@ -205,13 +205,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Klantmails met een voorspelbaar patroon. Offertes op basis van actuele prijslijst. Orderverwerking waar kredietcheck en voorraadcheck in elkaar schuiven. Factureren na oplevering. Belnotities voor finance wanneer een factuur lang openstaat. Dit zijn routinematige, regel-gebaseerde stromen — ideaal terrein.',
+          'Klantmails met een voorspelbaar patroon. Offertes op basis van actuele prijslijst. Orderverwerking waar kredietcheck en voorraadcheck in elkaar schuiven. Factureren na oplevering. Belnotities voor finance wanneer een factuur lang openstaat. Dit zijn routinematige, regel-gebaseerde stromen. Ideaal terrein.',
       },
       { kind: 'h2', text: 'Waar het juist fout gaat' },
       {
         kind: 'p',
         text:
-          'Onderhandelingen over grote projecten. Conflicten tussen klanten of medewerkers. Beoordelen of een klacht terecht is in grensgevallen. Strategische leverancierskeuzes. Alles wat draait om intuïtie of relationele nuance — laat dat bij uw mensen.',
+          'Onderhandelingen over grote projecten. Conflicten tussen klanten of medewerkers. Beoordelen of een klacht terecht is in grensgevallen. Strategische leverancierskeuzes. Alles wat draait om intuïtie of relationele nuance. Laat dat bij uw mensen.',
       },
       {
         kind: 'quote',
@@ -222,7 +222,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Ondernemers willen vaak beginnen bij het proces dat hen persoonlijk het meest irriteert — vaak iets complex. Mijn advies is bijna altijd: begin bij het allersaaiste, allervoorspelbaarste proces. Dat staat live in zes weken, uw mensen merken meteen de winst, en daarna mag u de complexe dingen aanpakken.',
+          'Ondernemers willen vaak beginnen bij het proces dat hen persoonlijk het meest irriteert. Vaak iets complex. Mijn advies is bijna altijd: begin bij het allersaaiste, allervoorspelbaarste proces. Dat staat live in zes weken, uw mensen merken meteen de winst, en daarna mag u de complexe dingen aanpakken.',
       },
     ],
   },
@@ -230,7 +230,7 @@ export const POSTS: Post[] = [
     slug: 'eerste-agent-is-nooit-de-belangrijkste',
     title: 'Uw eerste agent is nooit de belangrijkste',
     lede:
-      'We zijn geneigd om meteen het grote probleem op te lossen. Bij AI-agents is dat een fout. De eerste agent moet iets anders doen — en pas daarna kijkt u naar de rest.',
+      'We zijn geneigd om meteen het grote probleem op te lossen. Bij AI-agents is dat een fout. De eerste agent moet iets anders doen. Pas daarna kijkt u naar de rest.',
     author: 'Sjaak ter Veld',
     published: '2026-01-29',
     readingMinutes: 4,
@@ -245,7 +245,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Ondernemers komen vaak met hun grootste pijn binnen. "Onze offertes duren dagen" of "Onze klantafhandeling loopt vast". Dat is begrijpelijk — dat is waar geld weglekt. Maar als de eerste agent meteen het grote proces moet tackelen, loopt u twee risico\u2019s.',
+          'Ondernemers komen vaak met hun grootste pijn binnen. "Onze offertes duren dagen." Of: "Onze klantafhandeling loopt vast." Dat is begrijpelijk. Daar lekt geld weg. Maar als de eerste agent meteen het grote proces moet tackelen, loopt u twee risico\u2019s.',
       },
       {
         kind: 'list',
@@ -270,18 +270,18 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Uw mensen ontdekken binnen twee weken hoe ze een beleidsregel aanpassen. U ziet in één maand hoe werkitems door uw bedrijf lopen. Twijfels over privacy, grip en fouten maken worden concreet — en daarmee oplosbaar. Dán kunt u aan de grote klus beginnen, met teamkennis waar u eerst niet over beschikte.',
+          'Uw mensen ontdekken binnen twee weken hoe ze een beleidsregel aanpassen. U ziet in één maand hoe werkitems door uw bedrijf lopen. Twijfels over privacy, grip en fouten maken worden concreet. En daarmee oplosbaar. Pas dan kunt u aan de grote klus beginnen, met teamkennis waar u eerst niet over beschikte.',
       },
       {
         kind: 'p',
         text:
-          'Bedrijven die dit pad kiezen hebben binnen een jaar drie tot vijf agents draaien. Bedrijven die meteen de grote klus aanpakken hebben er vaak nog nul — of één die moeizaam loopt. Dit is geen theorie; dit is wat we zien.',
+          'Bedrijven die dit pad kiezen hebben binnen een jaar drie tot vijf agents draaien. Bedrijven die meteen de grote klus aanpakken hebben er vaak nog nul. Of één die moeizaam loopt. Dit is geen theorie. Dit is wat we zien.',
       },
     ],
   },
   {
     slug: 'integraties-makkelijker-dan-u-denkt',
-    title: 'Integraties met bestaande systemen — makkelijker dan u denkt',
+    title: 'Integraties met bestaande systemen: makkelijker dan u denkt',
     lede:
       'De grootste aarzeling die ik hoor: "wij hebben een oud boekhoudpakket, dat werkt nooit". In 90% van de gevallen valt dat reuze mee. Hoe het technisch werkt, zonder jargon.',
     author: 'Sjaak ter Veld',
@@ -298,26 +298,26 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Elk pakket biedt er wel één van aan — vaak zelfs meer. Hier is het spectrum van mooi naar lelijk:',
+          'Elk pakket biedt er wel één van aan. Vaak zelfs meer. Hier is het spectrum van mooi naar lelijk:',
       },
       {
         kind: 'list',
         items: [
-          'API — directe koppeling, real-time, meest elegant. Exact, Moneybird, AFAS, Snelstart, Odoo: allemaal API. Koppelen kost een paar dagen.',
-          'Webhooks — het systeem roept ons als er iets gebeurt. Ideaal voor "factuur verstuurd" of "order gewijzigd" meldingen.',
-          'E-mail en bestand — het oude werkpaard. Veel boekhoudsystemen kunnen automatisch mails versturen met een factuur als PDF; wij lezen die uit en verwerken ze. Niet elegant, wel betrouwbaar.',
+          'API: directe koppeling, real-time, meest elegant. Exact, Moneybird, AFAS, Snelstart, Odoo. Allemaal via API. Koppelen kost een paar dagen.',
+          'Webhooks: het systeem roept ons als er iets gebeurt. Ideaal voor "factuur verstuurd" of "order gewijzigd" meldingen.',
+          'E-mail en bestand: het oude werkpaard. Veel boekhoudsystemen kunnen automatisch mails versturen met een factuur als PDF. Wij lezen die uit en verwerken ze. Niet elegant, wel betrouwbaar.',
         ],
       },
       { kind: 'h2', text: 'Wat vaak blokkeert en waarom dat oplosbaar is' },
       {
         kind: 'p',
         text:
-          'Oude systemen hebben soms geen mooie API. Dat hoeft geen probleem te zijn. Als u bijvoorbeeld handmatig CSV-exports downloadt, kunnen wij dat nabootsen — of we installeren een kleine "bridge" die dat voor u automatiseert. Niet sexy, wel effectief.',
+          'Oude systemen hebben soms geen mooie API. Dat hoeft geen probleem te zijn. Als u bijvoorbeeld handmatig CSV-exports downloadt, kunnen wij dat nabootsen. Of we installeren een kleine "bridge" die dat voor u automatiseert. Niet sexy, wel effectief.',
       },
       {
         kind: 'quote',
         text:
-          'Een agent die met uw systeem "praat via e-mail" is minder elegant dan één met API — maar de besparing aan werktijd is identiek.',
+          'Een agent die met uw systeem "praat via e-mail" is minder elegant dan één met API. Maar de besparing aan werktijd is identiek.',
       },
       { kind: 'h2', text: 'Wat u vooraf moet aanleveren' },
       {
@@ -332,7 +332,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'We zetten een testkoppeling op voordat we überhaupt aan de agent beginnen. Als die technisch werkt, kunnen we doorbouwen. Als hij rammelt, melden we dat meteen — u krijgt nooit de factuur van een agent die niet aan uw systeem gaat praten.',
+          'We zetten een testkoppeling op voordat we überhaupt aan de agent beginnen. Als die technisch werkt, kunnen we doorbouwen. Als hij rammelt, melden we dat meteen. U krijgt nooit de factuur van een agent die niet aan uw systeem gaat praten.',
       },
     ],
   },
@@ -355,13 +355,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Boekingen categoriseren. Facturen inkloppen. BTW-categorieën kiezen. Bonnetjes matchen met uitgaven. Dat was voor veel boekhouders de helft van hun maand. Hier moet ik eerlijk zijn: dat werk verdwijnt. Niet volgend jaar — nu al.',
+          'Boekingen categoriseren. Facturen inkloppen. BTW-categorieën kiezen. Bonnetjes matchen met uitgaven. Dat was voor veel boekhouders de helft van hun maand. Hier moet ik eerlijk zijn: dat werk verdwijnt. Niet volgend jaar. Nu al.',
       },
       { kind: 'h2', text: 'Wat ervoor in de plaats komt' },
       {
         kind: 'p',
         text:
-          'Analyse. Advies. Anticiperen. Een goede boekhouder kijkt niet meer naar wat er gebeurd is — hij kijkt naar wat er gaat gebeuren en adviseert u daarop. Cashflow-prognoses met scenario\u2019s. Fiscale optimalisatie die voorheen geen tijd toestond. Gesprekken over investeringsbeslissingen.',
+          'Analyse. Advies. Anticiperen. Een goede boekhouder kijkt niet meer naar wat er gebeurd is. Hij kijkt naar wat er gaat gebeuren en adviseert u daarop. Cashflow-prognoses met scenario\u2019s. Fiscale optimalisatie die voorheen geen tijd toestond. Gesprekken over investeringsbeslissingen.',
       },
       {
         kind: 'list',
@@ -380,7 +380,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Nodig uw boekhouder uit bij het eerste gesprek met ons. Serieus. Het gaat een stuk makkelijker als hij of zij vanaf het begin meedenkt over welke boekingen automatisch mogen, welke categorisaties standaard zijn, en hoe rare uitzonderingen opgevangen worden. De boekhouders die meedenken worden vaak uw grootste fan — omdat hun werkdag aangenamer wordt.',
+          'Nodig uw boekhouder uit bij het eerste gesprek met ons. Serieus. Het gaat een stuk makkelijker als hij of zij vanaf het begin meedenkt over welke boekingen automatisch mogen, welke categorisaties standaard zijn, en hoe rare uitzonderingen opgevangen worden. De boekhouders die meedenken worden vaak uw grootste fan. Hun werkdag wordt namelijk een stuk aangenamer.',
       },
     ],
   },
@@ -388,7 +388,7 @@ export const POSTS: Post[] = [
     slug: 'verborgen-kosten-van-handmatig-werk',
     title: 'De verborgen kosten van handmatig werk',
     lede:
-      'Uw jaarrekening laat ze niet zien. Uw planning rekent er niet mee. Maar ze zijn reëel, en bij veel MKB-bedrijven groter dan wat een agent kost. Een rekensom die u zelf kunt maken.',
+      'Uw jaarrekening laat ze niet zien. Uw planning rekent er niet mee. Toch zijn ze reëel. Bij veel MKB-bedrijven zelfs groter dan wat een agent kost. Een rekensom die u zelf kunt maken.',
     author: 'Sjaak ter Veld',
     published: '2026-03-22',
     readingMinutes: 5,
@@ -397,13 +397,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Wanneer ik in een eerste gesprek vraag wat een klantmail uw binnendienst kost, krijg ik zelden een getal. Begrijpelijk — niemand meet dat. Maar zodra we samen de rekensom maken, schrikt bijna iedereen.',
+          'Wanneer ik in een eerste gesprek vraag wat een klantmail uw binnendienst kost, krijg ik zelden een getal. Begrijpelijk. Niemand meet dat. Maar zodra we samen de rekensom maken, schrikt bijna iedereen.',
       },
       { kind: 'h2', text: 'De harde kosten die iedereen ziet' },
       {
         kind: 'p',
         text:
-          'Uurloon van uw medewerker. Sociale lasten. Werkplek, ICT, koffie, kerstpakket. Samen gemiddeld € 29-35 per uur bij een MKB-binnendienstfunctie. Die kent u wel.',
+          'Uurloon van uw medewerker. Sociale lasten. Werkplek, ICT, koffie, kerstpakket. Samen gemiddeld € 29 tot 35 per uur bij een MKB-binnendienstfunctie. Die kent u wel.',
       },
       { kind: 'h2', text: 'De zachte kosten die onzichtbaar zijn' },
       {
@@ -413,14 +413,14 @@ export const POSTS: Post[] = [
           'Stapelwerk: mails die blijven liggen omdat ze niet urgent zijn. Tegen 16:00 staat er een stapel die tegen sluitingstijd nog moet.',
           'Fouten onder tijdsdruk: een verkeerd afgewerkte klacht kost een klantrelatie. Niet altijd zichtbaar, wel structureel.',
           'Ziekteverzuim door overbelasting: MKB-binnendiensten zijn gemiddeld vaker ziek dan gemiddelde medewerkers. Het werk vreet.',
-          'Reputatie: trage reacties kosten opdrachten. U merkt het niet — de klant kiest gewoon iemand anders zonder u te vertellen waarom.',
+          'Reputatie: trage reacties kosten opdrachten. U merkt het niet. De klant kiest gewoon iemand anders zonder u te vertellen waarom.',
         ],
       },
       { kind: 'h2', text: 'De rekensom' },
       {
         kind: 'p',
         text:
-          'Reken het simpel door. Eén medewerker, 40 uur per week, doet naar schatting 30% administratief werk dat automatiseerbaar is. Dat is 12 uur per week, 520 uur per jaar. Tegen € 30 = € 15.600 directe kosten — voor één medewerker. Bij drie medewerkers die dat doen: bijna € 50.000.',
+          'Reken het simpel door. Eén medewerker, 40 uur per week, doet naar schatting 30% administratief werk dat automatiseerbaar is. Dat is 12 uur per week, 520 uur per jaar. Tegen € 30 komt u op € 15.600 directe kosten. Voor één medewerker. Bij drie medewerkers die dat doen: bijna € 50.000.',
       },
       {
         kind: 'quote',
@@ -431,7 +431,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'De échte winst zit in wat uw mensen met die uren gaan doen. Meer klantgesprekken, betere offertes, nieuwe producten uitzoeken, complexer werk oppakken. Dát is de groei die u op papier niet kunt plannen — omdat hij ontstaat zodra de ruimte er is.',
+          'De échte winst zit in wat uw mensen met die uren gaan doen. Meer klantgesprekken, betere offertes, nieuwe producten uitzoeken, complexer werk oppakken. Dát is de groei die u op papier niet kunt plannen. Hij ontstaat zodra de ruimte er is.',
       },
       {
         kind: 'p',
@@ -442,7 +442,7 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'uw-medewerkers-willen-dit',
-    title: 'Uw medewerkers willen dit — ze weten het alleen nog niet',
+    title: 'Uw medewerkers willen dit. Ze weten het alleen nog niet',
     lede:
       'De grootste angst van ondernemers: "mijn mensen denken dat ik ze vervang". In de praktijk gebeurt meestal het tegenovergestelde, mits je het op de juiste manier introduceert.',
     author: 'Sjaak ter Veld',
@@ -459,18 +459,18 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Uw team hoort het via via. Ze vullen zelf in wat het betekent. De meest bekwame mensen — degenen die weten hoe ze elders terechtkunnen — gaan oriënteren. De minder mobiele mensen worden bang en verbergen fouten. Beide kosten u meer dan de agent oplevert.',
+          'Uw team hoort het via via. Ze vullen zelf in wat het betekent. De meest bekwame mensen, degenen die weten hoe ze elders terechtkunnen, gaan oriënteren. De minder mobiele mensen worden bang en verbergen fouten. Beide kosten u meer dan de agent oplevert.',
       },
       { kind: 'h2', text: 'Wat er gebeurt als u het eerlijk brengt' },
       {
         kind: 'p',
         text:
-          'Op een goed moment in een teammeeting: "We gaan iets proberen dat een deel van onze administratie moet wegnemen. Niet om mensen weg te halen — om ruimte te maken voor het werk waar we goed in zijn. Jullie denken mee over wat wel en niet mag."',
+          'Op een goed moment in een teammeeting: "We gaan iets proberen dat een deel van onze administratie moet wegnemen. Niet om mensen weg te halen. Om ruimte te maken voor het werk waar we goed in zijn. Jullie denken mee over wat wel en niet mag."',
       },
       {
         kind: 'list',
         items: [
-          'Binnen een week komen de eerste goede ideeën binnen: "Kan hij ook bevestigingsmails sturen?" "Kan hij de offertes alvast opstellen?"',
+          'Binnen een week komen de eerste goede ideeën binnen. "Kan hij ook bevestigingsmails sturen?" "Kan hij de offertes alvast opstellen?"',
           'De mensen die uw bedrijf kennen worden mede-bouwers van de agent. Ze weten beter dan u wat er fout kan gaan.',
           'De angst verandert in nieuwsgierigheid. Mensen gaan zelf vragen waar hun werkdag beter kan.',
         ],
@@ -479,7 +479,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Weinig mensen geven toe dat ze graag mails zouden doen, factuurtjes inkloppen of dezelfde bestelling voor de vijfde keer deze week plaatsen. Het saaie werk is echt saai. Uw mensen hopen ergens dat het verdwijnt — maar verwachten dat niet van u, omdat het "nu eenmaal zo is". Als u laat zien dat u daar iets aan kunt doen, verandert de sfeer.',
+          'Weinig mensen geven toe dat ze graag mails zouden doen, factuurtjes inkloppen of dezelfde bestelling voor de vijfde keer deze week plaatsen. Het saaie werk is echt saai. Uw mensen hopen ergens dat het verdwijnt. Maar ze verwachten dat niet van u, omdat het "nu eenmaal zo is". Als u laat zien dat u daar iets aan kunt doen, verandert de sfeer.',
       },
       {
         kind: 'quote',
@@ -494,14 +494,14 @@ export const POSTS: Post[] = [
           'Noem het doel eerst: ruimte maken voor het werk waar jullie goed in zijn.',
           'Wees eerlijk over wat er mogelijk verdwijnt (vaak routine-administratie).',
           'Vraag hun hulp om de beleidsregels op te stellen. Zij kennen de uitzonderingen.',
-          'Beloof een maandelijks kort moment om bij te sturen — geen eenzijdig proces.',
+          'Beloof een maandelijks kort moment om bij te sturen. Geen eenzijdig proces.',
         ],
       },
     ],
   },
   {
     slug: 'vaste-prijs-geen-abonnement',
-    title: 'Vaste prijs, geen abonnement — waarom wij dat doen',
+    title: 'Vaste prijs, geen abonnement. Waarom wij dat doen',
     lede:
       'De software-industrie heeft u de afgelopen tien jaar getraind om alles per maand te betalen. Wij doen dat bewust niet. Hier is waarom.',
     author: 'Sjaak ter Veld',
@@ -512,13 +512,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'In elk eerste gesprek komt de vraag: "En wat kost dat per maand?" Dan moet ik even een stap terug doen. Wij rekenen namelijk niet zo. Dat roept vragen op — terecht, want het wijkt af van wat u gewend bent.',
+          'In elk eerste gesprek komt de vraag: "En wat kost dat per maand?" Dan moet ik even een stap terug doen. Wij rekenen namelijk niet zo. Dat roept vragen op. Terecht, want het wijkt af van wat u gewend bent.',
       },
       { kind: 'h2', text: 'Wat het SaaS-model met u doet' },
       {
         kind: 'p',
         text:
-          'U betaalt elke maand. Het stopt nooit. Na twee jaar heeft u drie keer de oorspronkelijke prijs betaald. Meestal weet u niet meer precies waarvoor. Als u iets wil aanpassen, vraagt men extra. Als u wil stoppen, verliest u data. Dit is niet slecht bedoeld — het is gewoon hoe abonnementen werken.',
+          'U betaalt elke maand. Het stopt nooit. Na twee jaar heeft u drie keer de oorspronkelijke prijs betaald. Meestal weet u niet meer precies waarvoor. Als u iets wil aanpassen, vraagt men extra. Als u wil stoppen, verliest u data. Dit is niet slecht bedoeld. Het is gewoon hoe abonnementen werken.',
       },
       { kind: 'h2', text: 'Wat wij doen in plaats daarvan' },
       {
@@ -526,7 +526,7 @@ export const POSTS: Post[] = [
         items: [
           'Eén vaste prijs voor de bouw en implementatie van uw agent. U weet vooraf wat het wordt.',
           'Een opleveringsdatum. Als wij uitlopen, is dat ons probleem, niet uw factuur.',
-          'Daarna een maandelijks onderhoudsbedrag — bewust laag, want het meeste werk zit in de bouw.',
+          'Daarna een maandelijks onderhoudsbedrag, bewust laag. Het meeste werk zit in de bouw.',
           'Uitbreiden? Vaste prijs voor de uitbreiding, niet "meer uit uw abonnement halen".',
         ],
       },
@@ -539,13 +539,13 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Onze prikkel is om de agent meteen goed te bouwen. Niet om "features achterhouden voor de premium tier", niet om u afhankelijk te maken. Wij werken voor klanten die ons aanbevelen bij collega-ondernemers — dat is ons marketingmodel. Een tevreden ondernemer die drie anderen stuurt is meer waard dan een abonnement dat knelt.',
+          'Onze prikkel is om de agent meteen goed te bouwen. Niet om "features achterhouden voor de premium tier". Niet om u afhankelijk te maken. Wij werken voor klanten die ons aanbevelen bij collega-ondernemers. Dat is ons marketingmodel. Een tevreden ondernemer die drie anderen stuurt is meer waard dan een abonnement dat knelt.',
       },
       { kind: 'h2', text: 'En als u het niet meer nodig heeft?' },
       {
         kind: 'p',
         text:
-          'Dan stopt u. De agent is van u. Uw data is van u. Wij leveren de code en documentatie mee. In de praktijk gebeurt dat zelden — omdat goede agents waarde blijven leveren — maar u hoeft het niet te vrezen. Vrijheid is niet iets wat u bij uw leverancier moet afkopen.',
+          'Dan stopt u. De agent is van u. Uw data is van u. Wij leveren de code en documentatie mee. In de praktijk gebeurt dat zelden, omdat goede agents waarde blijven leveren. Maar u hoeft het niet te vrezen. Vrijheid is niet iets wat u bij uw leverancier moet afkopen.',
       },
       {
         kind: 'p',

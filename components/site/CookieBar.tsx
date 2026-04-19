@@ -59,8 +59,9 @@ export function CookieBar() {
                   Korte vraag over cookies
                 </div>
                 <p className="mt-1 text-[12.5px] text-[var(--ink-dim)] leading-[1.55]">
-                  Wij gebruiken alleen functionele cookies — geen tracking, geen advertenties. Voor
-                  statistiek houden we met uw toestemming anoniem bij welke pagina’s populair zijn.
+                  We gebruiken alleen functionele cookies. Geen tracking, geen advertenties. Voor
+                  statistiek houden we met uw toestemming anoniem bij welke pagina&rsquo;s
+                  populair zijn.
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   <button

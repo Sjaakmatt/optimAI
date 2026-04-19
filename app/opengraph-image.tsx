@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'FactumAI — AI-agents voor MKB';
+export const alt = 'FactumAI · AI-agents voor MKB';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -44,13 +44,12 @@ export default async function OGImage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <div style={{ fontSize: 72, lineHeight: 1.05, fontWeight: 500, maxWidth: 900 }}>
-            Uw digitale collega,
+            Uw digitale collega.
             <br />
-            <span style={{ fontStyle: 'italic', color: '#5c5248' }}>niet uw dashboard.</span>
+            <span style={{ fontStyle: 'italic', color: '#5c5248' }}>Geen dashboard.</span>
           </div>
           <div style={{ fontSize: 26, color: '#5c5248', maxWidth: 820, lineHeight: 1.4 }}>
-            Wij bouwen AI-agents die het échte werk overnemen — mails, offertes, orders,
-            facturatie, planning.
+            AI-agents die het echte werk doen. Mails, offertes, orders, facturatie, planning.
           </div>
         </div>
 

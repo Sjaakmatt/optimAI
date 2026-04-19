@@ -77,7 +77,7 @@ export function ContactForm() {
       noValidate
       className="artifact-card artifact-card--lift px-8 py-8"
     >
-      {/* Honeypot — onzichtbaar veld voor bots */}
+      {/* Honeypot, onzichtbaar veld voor bots */}
       <div
         aria-hidden
         style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}
@@ -111,7 +111,7 @@ export function ContactForm() {
             name="bericht"
             rows={5}
             required
-            placeholder="Kort wat speelt bij u — waar zou u wel wat hulp bij willen?"
+            placeholder="Wat speelt er bij u? Waar zou u graag wat hulp bij willen?"
             className={`mt-1.5 w-full px-3 py-2.5 rounded-[2px] border bg-[var(--paper)] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none transition-colors resize-y ${
               errors.bericht
                 ? 'border-[var(--terra)] focus:border-[var(--terra)]'

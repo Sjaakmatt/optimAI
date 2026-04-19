@@ -4,7 +4,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { ContactForm } from '@/components/site/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact — FactumAI',
+  title: 'Contact · FactumAI',
   description:
     'Neem contact op met FactumAI voor een vrijblijvend kennismakingsgesprek. E-mail, telefoon, of laat een bericht achter.',
 };

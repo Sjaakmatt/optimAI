@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 
 export const metadata: Metadata = {
-  title: 'Over ons — FactumAI',
+  title: 'Over ons · FactumAI',
   description:
     'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Nederlands, pragmatisch, vakmanschap boven hype.',
 };
@@ -18,12 +18,12 @@ export default function OverPage() {
             Over ons
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Eén oprichter,<br />
-            <span className="italic text-[var(--oker-deep)]">twee voeten in de praktijk.</span>
+            Eén oprichter.<br />
+            <span className="italic text-[var(--oker-deep)]">Twee voeten in de praktijk.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             FactumAI is opgericht om AI-agents bereikbaar te maken voor bedrijven die geen
-            data-afdeling hebben. Geen hype, geen consultancy-verhaal. Gewoon goed gemaakt werk.
+            data-afdeling hebben. Geen hype. Geen consultancy-verhaal. Gewoon goed gemaakt werk.
           </p>
         </div>
       </section>
@@ -45,33 +45,33 @@ export default function OverPage() {
 
           <div className="drop-cap space-y-5 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
             <p>
-              Ik ben Sjaak ter Veld. Opgeleid in de bedrijfskunde, maar al meer dan acht jaar met
-              één been in de IT — en met het andere stevig in de dagelijkse werkelijkheid van
-              bedrijven. In die jaren heb ik me gespecialiseerd in waar organisaties vastlopen:
-              processen die ooit werkten maar niet meer passen, strategieën die op papier kloppen
-              maar in de praktijk schuren, projecten die keer op keer later opgeleverd worden dan
-              gepland.
+              Ik ben Sjaak. Opgeleid in de bedrijfskunde, en daarna meer dan acht jaar werkzaam
+              in de IT. In die jaren heb ik gewerkt aan optimalisatie, processen, strategie en
+              projectmanagement bij bedrijven van uiteenlopende grootte. Wat ik vooral heb
+              geleerd: de problemen waar bedrijven écht over inzitten, zijn meestal niet zo
+              ingewikkeld als ze lijken. Ze zijn alleen nooit goed opgepakt.
             </p>
             <p>
-              Wat me daarin altijd het meest interesseert, is het gesprek met de mensen aan tafel.
-              Niet de framework van de maand of de laatste management-theorie — maar wat iemand
-              zijn ochtend écht kost. Welke mail blijft al dagen liggen? Welke telefoon wordt
-              steeds vooruitgeschoven? Welke handeling doet uw binnendienst voor de derde keer
-              deze week? Daar kom ik vanzelf op oplossingen die werken, omdat ze uitgaan van het
-              echte werk.
+              Wat me het meest interesseert in dit werk, is het gesprek met de mensen aan tafel.
+              Niet de framework van de maand. Niet de laatste management-theorie. Wel de simpele
+              vraag: wat kost uw ochtend nou eigenlijk? Welke mail blijft al dagen liggen? Welke
+              telefoon wordt steeds doorgeschoven naar morgen? Welke handeling doet uw binnendienst
+              voor de derde keer deze week? Daar komen vanzelf de oplossingen uit. Oplossingen die
+              werken, omdat ze beginnen bij het echte werk.
             </p>
             <p>
-              Ik woon in Hoogkarspel — midden in West-Friesland, dichtbij veel aannemers,
-              groothandels en installatiebedrijven. De wereld die ik wil helpen. FactumAI is voor
-              mij de natuurlijke volgende stap: AI-agents zijn geen hype meer, ze doen echt werk.
-              En juist voor MKB-bedrijven, waar de administratie harder groeit dan het kantoor,
-              kan het het verschil maken.
+              Ik woon in Hoogkarspel, midden in West-Friesland. Hier zitten veel aannemers,
+              groothandels en installatiebedrijven. Het soort bedrijf waar ik graag mee aan tafel
+              zit. FactumAI is voor mij een logische volgende stap. AI-agents zijn geen hype meer,
+              ze doen inmiddels echt werk. En juist bij MKB-bedrijven, waar de administratie
+              harder groeit dan het kantoor, kan dat het verschil maken tussen krap zitten en
+              ruimte hebben.
             </p>
             <p>
-              Ik vind het oprecht leuk om met een ondernemer aan tafel te zitten, door zijn dag
-              te lopen, en te zien waar ik kan helpen. Een koffie, een paar vragen, en meestal
-              ligt er binnen een half uur een concreet punt op tafel. Daar gaat het voor mij om —
-              niet in visie-documenten, wel in sparren.
+              Wat ik leuk vind aan dit werk: het gesprek. Een ondernemer die uitlegt waar hij
+              tegenaan loopt, en dan samen kijken of er iets aan te doen is. Een koffie, een paar
+              vragen, en meestal ligt er binnen een half uur een concreet punt op tafel. Daar gaat
+              het mij om. Niet om visie-documenten. Wel om sparren.
             </p>
           </div>
         </div>
@@ -93,18 +93,18 @@ export default function OverPage() {
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
             <Principle
               number="I"
-              title="Werk als ster, niet de machine."
-              body="Uw mensen, uw klanten, uw processen staan centraal. De agent is ondersteunend — een goed stuk gereedschap, geen regiekamer."
+              title="Het werk staat centraal. Niet de techniek."
+              body="Uw mensen, uw klanten, uw processen zijn waar het om draait. De agent is gereedschap. Goed gereedschap, maar gereedschap."
             />
             <Principle
               number="II"
               title="Vakmanschap boven hype."
-              body="We bouwen zoals een meubelmaker: rustig, precies, met materiaal dat blijft. Geen wekelijkse pivot in framework."
+              body="We bouwen zoals een meubelmaker. Rustig, precies, met materiaal dat blijft staan. Geen wekelijkse pivot in framework."
             />
             <Principle
               number="III"
               title="U houdt de knoppen."
-              body="Elke automatische beslissing is toe te schrijven aan een regel die u zelf kunt aan- of uitzetten. Geen blackbox."
+              body="Elke automatische beslissing komt voort uit een regel die u zelf kunt aan- of uitzetten. Geen blackbox. Geen verrassingen."
             />
           </div>
         </div>
@@ -149,7 +149,6 @@ function PhotoPlaceholder() {
         boxShadow: 'var(--shadow-lift)',
       }}
     >
-      {/* Subtiele papiervezel */}
       <div
         className="absolute inset-0 opacity-40"
         style={{
@@ -164,9 +163,9 @@ function PhotoPlaceholder() {
           Foto · Placeholder
         </div>
         <div className="mt-2 font-display italic text-[14px] text-[var(--ink-dim)] max-w-[220px] leading-snug">
-          Foto komt hier — vervang{' '}
-          <span className="font-mono text-[11px] not-italic">/public/portret.jpg</span> en
-          pas deze component aan.
+          Foto komt hier. Vervang{' '}
+          <span className="font-mono text-[11px] not-italic">/public/portret.jpg</span> en pas
+          deze component aan.
         </div>
       </div>
     </div>

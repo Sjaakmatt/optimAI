@@ -5,7 +5,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { POSTS } from '@/lib/data/posts';
 
 export const metadata: Metadata = {
-  title: 'Kennis — artikelen over AI-agents in het MKB',
+  title: 'Kennis · artikelen over AI-agents in het MKB',
   description:
     'Lees over hoe AI-agents werken in de praktijk, wat er kan, wat er nog niet kan, en hoe u de stap maakt.',
 };
@@ -30,8 +30,8 @@ export default function KennisPage() {
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Over hoe AI-agents werken, wat ze kunnen en wat (nog) niet, en wat het betekent voor
-            uw bedrijf. Geen whitepapers van 40 pagina\u2019s — essays die u tijdens een kop
-            koffie uitleest.
+            uw bedrijf. Geen whitepapers van 40 pagina&rsquo;s. Korte essays die u tijdens een
+            kop koffie uitleest.
           </p>
         </div>
       </section>

@@ -24,13 +24,13 @@ const plexMono = IBM_Plex_Mono({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://factumai.nl";
 const SITE_NAME = "FactumAI";
 const DEFAULT_DESCRIPTION =
-  "AI-agents die het dagelijkse werk van MKB-bedrijven overnemen — mails, offertes, orders, facturatie, inkoop, planning. Nederlands, pragmatisch, zonder dashboard-gedoe.";
+  "AI-agents die het dagelijkse werk van MKB-bedrijven overnemen. Mails, offertes, orders, facturatie, inkoop, planning. Nederlands, pragmatisch, zonder dashboard-gedoe.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "FactumAI — AI-agents voor MKB",
-    template: "%s — FactumAI",
+    default: "FactumAI · AI-agents voor MKB",
+    template: "%s · FactumAI",
   },
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -51,12 +51,12 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "FactumAI — AI-agents voor MKB",
+    title: "FactumAI · AI-agents voor MKB",
     description: DEFAULT_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "FactumAI — AI-agents voor MKB",
+    title: "FactumAI · AI-agents voor MKB",
     description: DEFAULT_DESCRIPTION,
   },
   alternates: {

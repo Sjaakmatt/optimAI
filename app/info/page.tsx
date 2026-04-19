@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 
 export const metadata: Metadata = {
-  title: 'Wat is een AI-agent — FactumAI',
+  title: 'Wat is een AI-agent · FactumAI',
   description:
     'Een AI-agent is een digitale medewerker die zelf beslissingen neemt binnen door u bepaalde grenzen. Uitleg over wat het is, hoe het werkt, en wat het een MKB-bedrijf kan opleveren.',
 };
@@ -18,21 +18,18 @@ export default function InfoPage() {
             Wat is een AI-agent
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Een digitale medewerker,<br />
-            <span className="italic text-[var(--oker-deep)]">geen dashboard.</span>
+            Een digitale medewerker.<br />
+            <span className="italic text-[var(--oker-deep)]">Geen dashboard.</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
             Simpel gezegd: een AI-agent is software die zélf beslissingen neemt en taken uitvoert
-            binnen grenzen die u bepaalt. Niet een knop die u moet indrukken, niet een formulier
+            binnen grenzen die u bepaalt. Niet een knop die u moet indrukken. Niet een formulier
             dat u moet invullen. Iets dat <span className="ink-highlight">zelf aan de slag gaat</span>.
           </p>
         </div>
       </section>
 
-      <Section
-        eyebrow="Het verschil"
-        title="Niet een chatbot. Niet een workflow-tool."
-      >
+      <Section eyebrow="Het verschil" title="Niet een chatbot. Niet een workflow-tool.">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           <CompareCard
             kind="Chatbot"
@@ -45,20 +42,20 @@ export default function InfoPage() {
           <CompareCard
             kind="AI-agent"
             highlight
-            body="Leest een binnenkomende mail, kijkt in uw systemen, past beleid toe, neemt een besluit en voert het uit. Meldt als iets langs u moet."
+            body="Leest een binnenkomende mail, kijkt in uw systemen, past beleid toe, neemt een besluit en voert het uit. Meldt het als iets langs u moet."
           />
         </div>
       </Section>
 
       <Section
         eyebrow="In de praktijk"
-        title="Meerdere agents werken samen — zoals een team."
+        title="Meerdere agents werken samen, zoals een team."
       >
         <p className="text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px] mt-4">
-          Een typische opzet: een hoofdagent (de dirigent) verdeelt het werk over afdeling-agents.
-          Klantservice-agent pakt mails op, Facturatie-agent maakt credits klaar, Inkoop-agent
-          vergelijkt leveranciers, Verzending-agent plant ritten. Samen handelen ze een klantzaak
-          af van begin tot eind.
+          Een typische opzet werkt zo. Een hoofdagent (de dirigent) verdeelt het werk over
+          afdelings-agents. Klantservice pakt mails op. Facturatie maakt credits klaar. Inkoop
+          vergelijkt leveranciers. Verzending plant ritten. Samen handelen ze een klantzaak af van
+          begin tot eind.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-start gap-5">
           <Link
@@ -69,8 +66,9 @@ export default function InfoPage() {
             <ArrowRight size={16} strokeWidth={1.8} />
           </Link>
           <p className="text-[13px] text-[var(--ink-faint)] max-w-[420px] leading-[1.6]">
-            In onze demo doet een fictief groothandelsbedrijf acht scenario’s — klacht, order,
-            offerte, voorraadsignaal. U ziet de agents aan het werk en kunt elke actie openklappen.
+            In onze demo doet een fictief groothandelsbedrijf acht scenario&rsquo;s. Klacht, order,
+            offerte, voorraadsignaal. U ziet de agents aan het werk en kunt elke actie
+            openklappen.
           </p>
         </div>
       </Section>
@@ -82,11 +80,11 @@ export default function InfoPage() {
       >
         <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            ['Inkomende klantmails', 'Lezen, klassificeren, beantwoorden in uw toon — met uw beleid.'],
+            ['Inkomende klantmails', 'Lezen, klassificeren, beantwoorden in uw toon en met uw beleid.'],
             ['Offertes opstellen', 'Op basis van actuele inkoopprijzen en marge-regels, klaar voor uw akkoord.'],
             ['Orderverwerking', 'Kredietcheck, voorraadcheck, bevestigingsmail, koppeling met magazijn.'],
             ['Voorraadbeheer', 'Signalering bij lage niveaus, verbruiksanalyse, automatisch bestellen binnen mandaat.'],
-            ['Facturatie', 'Concept-facturen, creditnota’s, debiteurenopvolging — met persoonlijke toon bij trouwe klanten.'],
+            ['Facturatie', 'Concept-facturen, creditnota’s, debiteurenopvolging. Met persoonlijke toon bij trouwe klanten.'],
             ['Transport & planning', 'Ritten combineren, alternatieven regelen bij vertraging, klanten pro-actief informeren.'],
             ['Leveranciers', 'Bestellingen uitzetten, incidenten registreren, kwartaal-reviews voorbereiden.'],
             ['Interne communicatie', 'Belnotities, memo’s, CRM-notities, agenda-blokken voor wat langs u moet.'],
@@ -99,41 +97,38 @@ export default function InfoPage() {
         </ul>
       </Section>
 
-      <Section
-        eyebrow="Wat moet u weten"
-        title="Vragen die wij vaak krijgen."
-      >
+      <Section eyebrow="Wat moet u weten" title="Vragen die wij vaak krijgen.">
         <div className="mt-8 space-y-6 max-w-[760px]">
           <FAQ
             q="Heb ik daar dure IT voor nodig?"
-            a="Nee. Wij bouwen het en koppelen aan uw bestaande systemen (e-mail, boekhoudpakket, CRM). U heeft geen eigen ontwikkelaars nodig. Een laptop en een mailadres is voldoende."
+            a="Nee. Wij bouwen het en koppelen aan uw bestaande systemen (e-mail, boekhoudpakket, CRM). U hoeft geen ontwikkelaars in dienst te hebben. Een laptop en een mailadres is genoeg."
           />
           <FAQ
             q="Gaat een agent dingen doen die ik niet wil?"
-            a="Niet als u het goed inricht. Elke actie is gekoppeld aan een beleidsregel die u kunt aan- of uitzetten. Bedragen boven uw mandaat, uitzonderlijke situaties, juridische escalaties — die komen standaard langs u. We stellen dit samen in."
+            a="Niet als u het goed inricht. Elke actie hangt aan een beleidsregel die u kunt aan- of uitzetten. Bedragen boven uw mandaat, uitzonderlijke situaties, juridische escalaties. Die komen standaard langs u. We stellen dat samen in."
           />
           <FAQ
             q="Wat als het een fout maakt?"
-            a="Alles wat een agent doet is terug te zien: wat keek hij in, welk beleid paste hij toe, wat was de uiteindelijke actie. U kunt een beslissing ongedaan maken en het beleid aanpassen zodat het volgende keer anders gaat."
+            a="Alles wat een agent doet is terug te zien. Welke data hij raadpleegde, welk beleid hij toepaste, wat de uiteindelijke actie was. U kunt een beslissing ongedaan maken en het beleid bijstellen zodat het de volgende keer anders gaat."
           />
           <FAQ
             q="Vervangt dit mijn mensen?"
-            a="In onze ervaring niet. Het haalt het saaie werk weg zodat uw mensen meer tijd hebben voor waar ze goed in zijn — vakmanschap, klantcontact, acquisitie. Teams die wij hebben geholpen groeiden juist in omzet zonder extra FTE."
+            a="In onze ervaring niet. Het haalt het saaie werk weg, zodat uw mensen meer tijd hebben voor waar ze goed in zijn. Vakmanschap, klantcontact, acquisitie. Teams die wij hebben geholpen groeiden juist in omzet zonder extra FTE."
           />
           <FAQ
             q="Hoe snel werkt het?"
-            a="Een eerste agent staat meestal in 4 tot 8 weken live. Daarna breiden we uit met meer scenario's of meer afdelingen. Geen jaren-traject."
+            a="Een eerste agent staat meestal in 4 tot 8 weken live. Daarna breiden we uit met meer scenario&rsquo;s of meer afdelingen. Geen jaren-traject."
           />
           <FAQ
             q="Wat kost dat?"
-            a="Vaste prijs per agent, afhankelijk van complexiteit en aantal integraties. We geven altijd één concreet voorstel met duidelijke opleveringsdatum. Géén open einden."
+            a="Vaste prijs per agent, afhankelijk van complexiteit en aantal integraties. We geven altijd één concreet voorstel met duidelijke opleveringsdatum. Geen open einden."
           />
         </div>
       </Section>
 
       <section className="border-t border-[var(--paper-edge)]">
-        <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <h2 className="font-display text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
             Nog vragen? Of eerst even zelf kijken wat mogelijk is?
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -197,7 +192,7 @@ function CompareCard({
 }) {
   return (
     <article
-      className={highlight ? 'site-card px-5 py-6' : 'site-card px-5 py-6'}
+      className="site-card px-5 py-6"
       style={
         highlight
           ? {
