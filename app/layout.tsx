@@ -1,38 +1,37 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Lora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+  variable: "--font-fraunces",
   display: "swap",
 });
 
-const interTight = Inter_Tight({
+const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-inter-tight",
+  variable: "--font-lora",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "FactumAI · Control Room",
-  description: "Multi-agent demonstratie — Nordveld Groothandel",
+  title: "FactumAI · De Werkbank",
+  description: "Digitale werkbank — Nordveld Groothandel",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-[var(--bg)] text-[var(--text)] min-h-screen">
+    <html lang="nl" className={`${fraunces.variable} ${lora.variable} ${plexMono.variable}`}>
+      <body className="min-h-screen">
         {children}
       </body>
     </html>

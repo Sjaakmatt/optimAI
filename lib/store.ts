@@ -2,11 +2,11 @@
 
 import { create } from 'zustand';
 import type {
-  ActiveLink,
   Agent,
   AgentId,
-  AgentMessage,
   AgentStatus,
+  Artifact,
+  CompletedEvent,
   DemoEvent,
   ROIState,
   Script,
@@ -24,7 +24,7 @@ import { HOURLY_RATE_EUR, sleep, uid } from '@/lib/utils';
 
 const POLICY_STORAGE_KEY = 'factumai.policies.v1';
 
-type PolicyOverrideMap = Record<string, boolean>; // key = `${agentId}:${policyId}`
+type PolicyOverrideMap = Record<string, boolean>;
 
 function loadPolicyOverrides(): PolicyOverrideMap {
   if (typeof window === 'undefined') return {};
@@ -68,7 +68,6 @@ function emptyROI(): ROIState {
   for (const id of ALL_AGENTS) {
     byAgent[id] = { minutes: 0, tasks: 0 };
   }
-  // Baseline vullen zodat dashboard gelijk levende getallen heeft.
   for (const p of SAVED_MINUTES_BY_AGENT) {
     byAgent[p.agent] = { minutes: p.minuten, tasks: Math.round(p.minuten / 12) };
   }
@@ -76,6 +75,7 @@ function emptyROI(): ROIState {
     totalMinutesSaved: BASELINE_TOTAL_MINUTES,
     tasksCompleted: BASELINE_TASKS,
     eurosEquivalent: (BASELINE_TOTAL_MINUTES / 60) * HOURLY_RATE_EUR,
+    casesHandled: 0,
     byAgent,
   };
 }
@@ -85,88 +85,41 @@ type Mode = 'autonomous' | 'manual';
 interface AppState {
   agents: Record<AgentId, Agent>;
   events: DemoEvent[];
-  messages: AgentMessage[];
   activeEventId: string | null;
-  activeLinks: ActiveLink[];
+  artifacts: Artifact[];
+  activeAgents: AgentId[];
+  statusText: string | null;
+  completed: CompletedEvent[];
   mode: Mode;
   isPlaying: boolean;
+  policyPanelOpen: boolean;
   roi: ROIState;
   recentlyPlayedScenarioIds: string[];
 
   triggerEvent: (scenarioId: string) => Promise<void>;
   playScript: (script: Script, eventId: string) => Promise<void>;
-  updateAgentStatus: (id: AgentId, status: AgentStatus) => void;
-  appendMessage: (msg: Omit<AgentMessage, 'id'>) => string;
-  updateMessage: (id: string, partial: Partial<AgentMessage>) => void;
-  addActiveLink: (link: Omit<ActiveLink, 'id' | 'createdAt'>) => string;
-  removeActiveLink: (id: string) => void;
-  incrementROI: (agentId: AgentId, minutes: number) => void;
+  setPolicyPanelOpen: (open: boolean) => void;
   updatePolicy: (agentId: AgentId, policyId: string, enabled: boolean) => void;
   setMode: (mode: Mode) => void;
   reset: () => void;
-  setActiveEvent: (id: string | null) => void;
 }
 
 export const useStore = create<AppState>((set, get) => ({
   agents: buildInitialAgents(),
   events: [],
-  messages: [],
   activeEventId: null,
-  activeLinks: [],
+  artifacts: [],
+  activeAgents: [],
+  statusText: null,
+  completed: [],
   mode: 'manual',
   isPlaying: false,
+  policyPanelOpen: false,
   roi: emptyROI(),
   recentlyPlayedScenarioIds: [],
 
-  setActiveEvent: (id) => set({ activeEventId: id }),
-
   setMode: (mode) => set({ mode }),
-
-  updateAgentStatus: (id, status) =>
-    set((state) => ({
-      agents: { ...state.agents, [id]: { ...state.agents[id], status } },
-    })),
-
-  appendMessage: (msg) => {
-    const id = uid('msg');
-    const full: AgentMessage = { id, ...msg };
-    set((state) => ({ messages: [...state.messages, full] }));
-    return id;
-  },
-
-  updateMessage: (id, partial) =>
-    set((state) => ({
-      messages: state.messages.map((m) => (m.id === id ? { ...m, ...partial } : m)),
-    })),
-
-  addActiveLink: (link) => {
-    const id = uid('link');
-    const full: ActiveLink = { id, createdAt: Date.now(), ...link };
-    set((state) => ({ activeLinks: [...state.activeLinks, full] }));
-    return id;
-  },
-
-  removeActiveLink: (id) =>
-    set((state) => ({ activeLinks: state.activeLinks.filter((l) => l.id !== id) })),
-
-  incrementROI: (agentId, minutes) =>
-    set((state) => {
-      const prev = state.roi.byAgent[agentId] ?? { minutes: 0, tasks: 0 };
-      const byAgent = {
-        ...state.roi.byAgent,
-        [agentId]: { minutes: prev.minutes + minutes, tasks: prev.tasks + 1 },
-      };
-      const totalMinutesSaved = state.roi.totalMinutesSaved + minutes;
-      return {
-        roi: {
-          ...state.roi,
-          byAgent,
-          totalMinutesSaved,
-          tasksCompleted: state.roi.tasksCompleted + 1,
-          eurosEquivalent: (totalMinutesSaved / 60) * HOURLY_RATE_EUR,
-        },
-      };
-    }),
+  setPolicyPanelOpen: (open) => set({ policyPanelOpen: open }),
 
   updatePolicy: (agentId, policyId, enabled) => {
     const overrides = loadPolicyOverrides();
@@ -188,6 +141,7 @@ export const useStore = create<AppState>((set, get) => ({
     if (!scenario) return;
     const script = SCRIPTS[scenario.scriptId];
     if (!script) return;
+    if (get().isPlaying) return;
 
     const eventId = uid('evt');
     const event: DemoEvent = { ...scenario, id: eventId, timestamp: Date.now() };
@@ -195,6 +149,9 @@ export const useStore = create<AppState>((set, get) => ({
     set((state) => ({
       events: [event, ...state.events],
       activeEventId: eventId,
+      artifacts: [],
+      activeAgents: [],
+      statusText: null,
       recentlyPlayedScenarioIds: [
         scenarioId,
         ...state.recentlyPlayedScenarioIds.filter((id) => id !== scenarioId),
@@ -207,62 +164,21 @@ export const useStore = create<AppState>((set, get) => ({
   playScript: async (script, eventId) => {
     set({ isPlaying: true });
 
-    const runStep = async (step: ScriptStep) => {
-      get().updateAgentStatus(step.from, 'thinking');
-      await sleep(200 + Math.random() * 250);
-      get().updateAgentStatus(step.from, 'acting');
-      if (step.to !== 'broadcast') {
-        get().updateAgentStatus(step.to, 'thinking');
-      }
+    const setAgentStatus = (id: AgentId, status: AgentStatus) =>
+      set((state) => ({
+        agents: { ...state.agents, [id]: { ...state.agents[id], status } },
+      }));
 
-      const linkId = get().addActiveLink({ from: step.from, to: step.to });
+    const addActiveAgent = (id: AgentId) =>
+      set((state) => ({
+        activeAgents: state.activeAgents.includes(id)
+          ? state.activeAgents
+          : [...state.activeAgents, id],
+      }));
 
-      const msgId = get().appendMessage({
-        eventId,
-        from: step.from,
-        to: step.to,
-        kind: step.kind,
-        content: '',
-        fullContent: step.text,
-        status: 'streaming',
-        minutesSaved: step.minutesSaved,
-        timestamp: Date.now(),
-      });
-
-      const speed = step.typingSpeed ?? 20;
-      const text = step.text;
-      for (let c = 0; c < text.length; c++) {
-        const char = text[c];
-        const baseDelay = speed + (Math.random() * 10 - 5);
-        const extra = char === ',' || char === '.' || char === ':' ? 70 : 0;
-        await sleep(baseDelay + extra);
-        get().updateMessage(msgId, { content: text.substring(0, c + 1) });
-      }
-
-      get().updateMessage(msgId, { status: 'complete' });
-
-      if (step.minutesSaved) {
-        get().incrementROI(step.from, step.minutesSaved);
-      }
-
-      await sleep(280);
-      get().removeActiveLink(linkId);
-      get().updateAgentStatus(step.from, 'idle');
-      if (step.to !== 'broadcast') {
-        get().updateAgentStatus(step.to, 'idle');
-      }
-    };
-
-    for (let i = 0; i < script.steps.length; i++) {
-      const step = script.steps[i];
-      if (step.parallel && i > 0) {
-        // Fire parallel zonder op de pre-delay te wachten.
-        void runStep(step);
-        await sleep(step.delayBefore);
-        continue;
-      }
-      await sleep(step.delayBefore);
-      await runStep(step);
+    for (const step of script.steps) {
+      if (step.delay) await sleep(step.delay);
+      await runStep(step, eventId, setAgentStatus, addActiveAgent, set, get, script);
     }
 
     set({ isPlaying: false });
@@ -272,13 +188,194 @@ export const useStore = create<AppState>((set, get) => ({
     set(() => ({
       agents: buildInitialAgents(),
       events: [],
-      messages: [],
+      artifacts: [],
+      activeAgents: [],
+      statusText: null,
+      completed: [],
       activeEventId: null,
-      activeLinks: [],
       isPlaying: false,
       roi: emptyROI(),
       recentlyPlayedScenarioIds: [],
     })),
 }));
+
+type SetFn = (
+  partial:
+    | Partial<AppState>
+    | ((state: AppState) => Partial<AppState>),
+) => void;
+type GetFn = () => AppState;
+
+async function runStep(
+  step: ScriptStep,
+  eventId: string,
+  setAgentStatus: (id: AgentId, status: AgentStatus) => void,
+  addActiveAgent: (id: AgentId) => void,
+  set: SetFn,
+  get: GetFn,
+  script: Script,
+) {
+  switch (step.kind) {
+    case 'ticket': {
+      return;
+    }
+
+    case 'status.update': {
+      if (step.statusText !== undefined) {
+        set({ statusText: step.statusText });
+      }
+      return;
+    }
+
+    case 'pickup': {
+      if (step.by) {
+        setAgentStatus(step.by, 'acting');
+        addActiveAgent(step.by);
+      }
+      return;
+    }
+
+    case 'artifact.start': {
+      if (!step.artifactId || !step.artifactType) return;
+      const agentId = findLatestAgent(get);
+      const artifact: Artifact = {
+        id: step.artifactId,
+        eventId,
+        type: step.artifactType,
+        meta: step.meta ?? {},
+        content: emptyContent(step.artifactType),
+        state: 'filling',
+        agent: agentId,
+        startedAt: Date.now(),
+      };
+      set((state) => ({ artifacts: [...state.artifacts, artifact] }));
+      return;
+    }
+
+    case 'artifact.fill': {
+      if (!step.artifactId) return;
+      set((state) => ({
+        artifacts: state.artifacts.map((a) => {
+          if (a.id !== step.artifactId) return a;
+          return { ...a, content: applyFill(a.content, step) };
+        }),
+      }));
+      return;
+    }
+
+    case 'artifact.done': {
+      if (!step.artifactId) return;
+      set((state) => ({
+        artifacts: state.artifacts.map((a) =>
+          a.id === step.artifactId
+            ? {
+                ...a,
+                state: 'complete',
+                footer: step.footer,
+                completedAt: Date.now(),
+                minutesSaved: step.minutesSaved,
+              }
+            : a,
+        ),
+      }));
+      if (step.minutesSaved) {
+        const agentId = findLatestAgent(get);
+        if (agentId) incrementROI(set, get, agentId, step.minutesSaved);
+      }
+      return;
+    }
+
+    case 'complete': {
+      const state = get();
+      const artifacts = state.artifacts.filter((a) => a.eventId === eventId);
+      const completedItem: CompletedEvent = {
+        id: eventId,
+        title: script.eventTitle,
+        context: script.eventContext,
+        completedAt: Date.now(),
+        minutesSaved: step.totalMinutes ?? script.minutesSaved,
+        artifactCount: artifacts.length,
+      };
+      // Reset idle status on agents
+      for (const id of state.activeAgents) {
+        setAgentStatus(id, 'idle');
+      }
+      set((s) => ({
+        completed: [completedItem, ...s.completed],
+        roi: { ...s.roi, casesHandled: s.roi.casesHandled + 1 },
+        activeEventId: null,
+        artifacts: [],
+        activeAgents: [],
+        statusText: null,
+      }));
+      return;
+    }
+  }
+}
+
+function findLatestAgent(get: GetFn): AgentId | undefined {
+  const arr = get().activeAgents;
+  return arr.length ? arr[arr.length - 1] : undefined;
+}
+
+function emptyContent(type: Artifact['type']): Artifact['content'] {
+  switch (type) {
+    case 'email':
+      return { paragraphs: [] };
+    case 'invoice':
+      return { lines: [] };
+    case 'callnote':
+      return { bullets: [] };
+    case 'order-confirmation':
+      return { items: [] };
+    case 'quote':
+      return { lines: [] };
+    case 'memo':
+      return { bullets: [] };
+    case 'whatsapp':
+      return { messages: [] };
+  }
+}
+
+function applyFill(content: Artifact['content'], step: ScriptStep): Artifact['content'] {
+  switch (step.target) {
+    case 'paragraph':
+      if (!step.paragraph) return content;
+      return { ...content, paragraphs: [...(content.paragraphs ?? []), step.paragraph] };
+    case 'line':
+      if (!step.line) return content;
+      return { ...content, lines: [...(content.lines ?? []), step.line] };
+    case 'bullet-section':
+      if (!step.bulletSection) return content;
+      return { ...content, bullets: [...(content.bullets ?? []), step.bulletSection] };
+    case 'item':
+      if (!step.item) return content;
+      return { ...content, items: [...(content.items ?? []), step.item] };
+    case 'message':
+      if (!step.message) return content;
+      return { ...content, messages: [...(content.messages ?? []), step.message] };
+    default:
+      return content;
+  }
+}
+
+function incrementROI(set: SetFn, get: GetFn, agentId: AgentId, minutes: number) {
+  const state = get();
+  const prev = state.roi.byAgent[agentId] ?? { minutes: 0, tasks: 0 };
+  const byAgent = {
+    ...state.roi.byAgent,
+    [agentId]: { minutes: prev.minutes + minutes, tasks: prev.tasks + 1 },
+  };
+  const totalMinutesSaved = state.roi.totalMinutesSaved + minutes;
+  set({
+    roi: {
+      ...state.roi,
+      byAgent,
+      totalMinutesSaved,
+      tasksCompleted: state.roi.tasksCompleted + 1,
+      eurosEquivalent: (totalMinutesSaved / 60) * HOURLY_RATE_EUR,
+    },
+  });
+}
 
 export const ALL_SCENARIOS = SCENARIOS;

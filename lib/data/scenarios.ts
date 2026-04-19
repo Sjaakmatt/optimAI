@@ -5,7 +5,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's1',
     scriptId: 'script_order_new',
     type: 'order.new',
-    label: 'Nieuwe order — Bouwbedrijf Jansma (€4.280)',
+    label: 'Order — Bouwbedrijf Jansma',
+    context: 'Nieuwe order van €4.280, drie regels, levering in 3 werkdagen',
     payload: {
       klant: 'Bouwbedrijf Jansma BV',
       regio: 'Enkhuizen',
@@ -22,7 +23,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's2',
     scriptId: 'script_inquiry',
     type: 'order.inquiry',
-    label: 'Offerteaanvraag — Renovatie Westfries Lyceum',
+    label: 'Offerteaanvraag — Gemeente Hoorn',
+    context: 'Aanbesteding renovatie Westfries Lyceum fase 2, indicatie €28.000',
     payload: {
       klant: 'Gemeente Hoorn — Onderhoud',
       project: 'Renovatie Westfries Lyceum, fase 2',
@@ -35,7 +37,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's3',
     scriptId: 'script_complaint',
     type: 'mail.complaint',
-    label: 'Klacht — Aannemer De Boer (beschadigde levering)',
+    label: 'Klacht — Aannemersbedrijf De Boer',
+    context: '6 van 40 gipsplaten met hoekschade in order 2026-0418',
     payload: {
       klant: 'Aannemersbedrijf De Boer',
       order: 'ORD-2026-0418',
@@ -48,7 +51,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's4',
     scriptId: 'script_stock_low',
     type: 'stock.low',
-    label: 'Voorraad laag — Isolatiewol 100mm (min. niveau)',
+    label: 'Voorraadsignaal — Isolatiewol 100mm',
+    context: 'Huidig 18 rollen, minimum 30, seizoen stijgend',
     payload: {
       artikel: 'Isolatiewol 100mm rol',
       huidig: 18,
@@ -62,7 +66,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's5',
     scriptId: 'script_supplier_delay',
     type: 'supplier.delay',
-    label: 'Leverancier — Vertraging Saint-Gobain (3 dagen)',
+    label: 'Vertraging — Saint-Gobain (3 dagen)',
+    context: 'Raakt twee lopende orders richting Hoogkarspel en Wervershoof',
     payload: {
       leverancier: 'Saint-Gobain NL',
       betreft: 'Gipsplaten INK-2026-0089',
@@ -75,7 +80,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's6',
     scriptId: 'script_question',
     type: 'mail.question',
-    label: 'Vraag — Technische specs brandwerende platen',
+    label: 'Vraag — Schildersbedrijf Visser',
+    context: 'Technische specs brandwerende gipsplaat EI 60',
     payload: {
       klant: 'Schilder- & Bouwbedrijf Visser',
       vraag: 'Welke brandwerende gipsplaat voldoet aan EI 60 voor woningscheidende wand?',
@@ -86,7 +92,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's7',
     scriptId: 'script_invoice_overdue',
     type: 'invoice.overdue',
-    label: 'Factuur overdue — Klusbedrijf Molenaar (42 dagen)',
+    label: 'Factuur overdue — Klusbedrijf Molenaar',
+    context: 'F-2026-0312 · € 1.840 · 42 dagen te laat · 2 herinneringen geweest',
     payload: {
       klant: 'Klusbedrijf Molenaar',
       factuur: 'F-2026-0312',
@@ -100,7 +107,8 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's8',
     scriptId: 'script_shipment_issue',
     type: 'shipment.issue',
-    label: 'Verzending — Vertraging transporteur A7',
+    label: 'Verzending — Vertraging A7',
+    context: 'Rit VD-4418 ±90 min vertraagd door ongeluk A7, 4 leveringen geraakt',
     payload: {
       transporteur: 'Van Dijk Transport',
       ritnummer: 'VD-4418',

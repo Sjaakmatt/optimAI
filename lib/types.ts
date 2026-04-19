@@ -40,39 +40,134 @@ export interface DemoEvent {
   id: string;
   type: EventType;
   label: string;
+  context: string;
   payload: Record<string, unknown>;
   timestamp: number;
   scriptId: string;
 }
 
-export type MessageKind = 'delegate' | 'report' | 'handoff' | 'reasoning' | 'action';
+export type ArtifactType =
+  | 'email'
+  | 'invoice'
+  | 'callnote'
+  | 'order-confirmation'
+  | 'quote'
+  | 'memo'
+  | 'whatsapp';
 
-export interface AgentMessage {
+export type ArtifactState = 'opening' | 'filling' | 'complete';
+
+export interface ArtifactContent {
+  paragraphs?: string[];
+  lines?: InvoiceLine[];
+  bullets?: BulletSection[];
+  items?: OrderItem[];
+  messages?: WhatsAppMessage[];
+}
+
+export interface InvoiceLine {
+  omschrijving: string;
+  aantal: number;
+  prijs: number;
+  totaal: number;
+}
+
+export interface BulletSection {
+  heading: string;
+  items: string[];
+}
+
+export interface OrderItem {
+  artikel: string;
+  aantal: number;
+}
+
+export interface WhatsAppMessage {
+  from: 'customer' | 'us';
+  text: string;
+  time: string;
+}
+
+export interface ArtifactMeta {
+  from?: string;
+  to?: string;
+  subject?: string;
+  date?: string;
+  customer?: string;
+  invoiceNumber?: string;
+  invoiceKind?: 'invoice' | 'credit';
+  orderNumber?: string;
+  quoteNumber?: string;
+  projectName?: string;
+  deliveryDate?: string;
+  deliveryAddress?: string;
+  deliveryWindow?: string;
+  subtotal?: number;
+  btw?: number;
+  total?: number;
+  terms?: string;
+  validity?: string;
+  approvalStatus?: string;
+  phone?: string;
+  callContext?: string;
+  memoSubject?: string;
+  [key: string]: unknown;
+}
+
+export interface Artifact {
   id: string;
   eventId: string;
-  from: AgentId;
-  to: AgentId | 'broadcast';
-  kind: MessageKind;
-  content: string;
-  fullContent: string;
-  timestamp: number;
-  status: 'pending' | 'streaming' | 'complete';
+  type: ArtifactType;
+  meta: ArtifactMeta;
+  content: ArtifactContent;
+  state: ArtifactState;
+  agent?: AgentId;
+  footer?: string;
+  startedAt: number;
+  completedAt?: number;
   minutesSaved?: number;
 }
 
+export type StepKind =
+  | 'ticket'
+  | 'pickup'
+  | 'artifact.start'
+  | 'artifact.fill'
+  | 'artifact.done'
+  | 'status.update'
+  | 'complete';
+
+export type ArtifactFillTarget =
+  | 'paragraph'
+  | 'line'
+  | 'bullet-section'
+  | 'item'
+  | 'message';
+
 export interface ScriptStep {
-  delayBefore: number;
-  from: AgentId;
-  to: AgentId | 'broadcast';
-  kind: MessageKind;
-  text: string;
-  typingSpeed?: number;
+  kind: StepKind;
+  delay?: number;
+  by?: AgentId;
+  statusText?: string;
+  artifactId?: string;
+  artifactType?: ArtifactType;
+  meta?: ArtifactMeta;
+  target?: ArtifactFillTarget;
+  paragraph?: string;
+  line?: InvoiceLine;
+  bulletSection?: BulletSection;
+  item?: OrderItem;
+  message?: WhatsAppMessage;
+  footer?: string;
   minutesSaved?: number;
-  parallel?: boolean;
+  totalMinutes?: number;
 }
 
 export interface Script {
   id: string;
+  eventTitle: string;
+  eventContext: string;
+  minutesSaved: number;
   steps: ScriptStep[];
 }
 
@@ -85,12 +180,15 @@ export interface ROIState {
   totalMinutesSaved: number;
   tasksCompleted: number;
   eurosEquivalent: number;
+  casesHandled: number;
   byAgent: Record<AgentId, ROIByAgent>;
 }
 
-export interface ActiveLink {
+export interface CompletedEvent {
   id: string;
-  from: AgentId;
-  to: AgentId | 'broadcast';
-  createdAt: number;
+  title: string;
+  context: string;
+  completedAt: number;
+  minutesSaved: number;
+  artifactCount: number;
 }

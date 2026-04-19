@@ -1,6 +1,6 @@
-# FactumAI · Control Room
+# FactumAI · De Werkbank
 
-Een multi-agent demo voor sales-gesprekken. Simuleert de operatie van een fictieve MKB-groothandel (**Nordveld Groothandel**) met één orchestrator en zeven gespecialiseerde sub-agents.
+Een digitale werkbank voor MKB-operatie. Gebaseerd op een fictieve bouwmaterialengroothandel (**Nordveld**). Wanneer er een event binnenkomt — order, klacht, offerte-aanvraag — ontstaat het échte werk zichtbaar op het scherm: mails, facturen, belnotities, offertes. Papier-achtige documenten, regel voor regel opgebouwd.
 
 **Volledig gescript. Geen externe API calls. Werkt offline.**
 
@@ -13,79 +13,103 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Schermen
+## Één scherm
 
-- **`/` — Control Room.** Events-feed, netwerkvisualisatie, live reasoning stream, ROI-teller.
-- **`/dashboard` — KPI’s.** Uren bespaard, taken, € equivalent, charts per agent.
-- **`/policy` — Policy editor.** Guardrails per agent aan/uit zetten (blijft bewaard in localStorage).
+De demo draait op één pagina. Geen dashboard-route, geen policy-route, geen tabs.
 
-## Modes
+- **Werkbank** — centraal gebied waar werkbon en artefacten verschijnen.
+- **Vandaag-paneel** — rechtsonder; drie regels met afgehandeld / bespaard / €.
+- **Beleidsregels** — tandwiel rechtsboven opent een slide-over met policies per afdeling.
+- **Statusstrip** — onderaan, rustig; laat zien wie er nu bezig is.
 
-- **Handmatig** — jij kiest via “Trigger” welk scenario speelt.
-- **Autonoom** — elke 15–25 seconden komt er automatisch een nieuw event binnen.
+## De 8 scenario's
 
-## De 8 scenario’s
-
-1. Nieuwe order Bouwbedrijf Jansma
-2. Offerteaanvraag Gemeente Hoorn (aanbesteding)
-3. Klacht Aannemer De Boer (beschadigde levering)
-4. Voorraad laag — Isolatiewol 100mm
-5. Leverancier vertraging — Saint-Gobain
-6. Technische vraag brandwerende platen
-7. Factuur overdue — Klusbedrijf Molenaar
-8. Verzending probleem — ongeluk A7
+| # | Event | Artefacten |
+|---|---|---|
+| 1 | Order — Bouwbedrijf Jansma | Orderbevestiging → klant-email |
+| 2 | Offerte — Gemeente Hoorn | Offerte (aanbesteding) |
+| 3 | Klacht — Aannemer De Boer | Klant-email + creditnota |
+| 4 | Voorraadsignaal — Isolatiewol | Intern memo + inkoop-email |
+| 5 | Vertraging — Saint-Gobain | 2× klant-email + intern memo |
+| 6 | Vraag — Schilder Visser | Klant-email |
+| 7 | Factuur overdue — Molenaar | Belnotitie + hold-memo |
+| 8 | Verzending — A7 | Opdracht-memo + 3 klant-emails + WhatsApp |
 
 ## Stack
 
-Next.js 15 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · motion · recharts · lucide-react.
+Next.js 15 · React 19 · TypeScript · Tailwind CSS v4 · Zustand · motion · lucide-react.
 
 Geen backend, geen database, geen auth. Alles draait client-side.
 
 ---
 
-## Demo-script voor een klantgesprek
+## Demo-script voor een sales-gesprek
 
-**Setup (30 sec):** open laptop, `/` pagina. Mode op **Handmatig**. Reset een keer voor een schone start.
+**Setup (20 sec):** laptop open, `/` pagina. Alles rustig en wit. *"Dit is de werkbank. Hier komt al het werk langs dat normaal bij uw mensen op het bureau komt."*
 
-**Act 1 — “Zo ziet uw organisatie er straks uit” (1 min).**
-Wijs op het netwerk. *“Dit zijn uw afdelingen. In het midden de orchestrator — dat is geen agent die werk doet, die verdeelt werk. Eromheen: sales, inkoop, voorraad, orders, facturatie, klantservice, verzending.”*
+**Scene 1 — Klacht (90 sec).**
+Trigger scenario 3. *"Stel, er komt een klacht binnen."* — werkbon verschijnt. *"Klantservice pakt 'm op."* — mail-artefact vouwt open. Laat de mail zin-voor-zin verschijnen. *"Dit is de daadwerkelijke mail die de klant krijgt. Toon, inhoud, excuses, oplossing — alles erin."*
+Als de creditnota eronder verschijnt: *"En hier, de creditnota staat ook al klaar. Normaal: twee afdelingen, minstens een halve dag. Nu: drie minuten."*
 
-**Act 2 — “Nieuwe order” (90 sec).**
-Trigger scenario 1. Laat het lopen en lees mee. Wijs daarna op de ROI-teller: *“Hier: 54 minuten menselijk werk bespaard in één order. Dit kostte normaal een halve ochtend bij drie mensen.”*
+**Scene 2 — Offerte (60 sec).**
+Trigger scenario 2. Offerte-artefact verschijnt. *"Een aanbesteding van de Gemeente. Kijk mee hoe de offerte wordt opgebouwd, regel voor regel, met de juiste marge op basis van actuele inkoopprijzen."* Wijs onderaan: *"En als het boven uw mandaat zit — hier: 'wacht op akkoord directie'. U houdt de knoppen."*
 
-**Act 3 — “Wat als er iets fout gaat?” (90 sec).**
-Trigger scenario 3 (klacht De Boer). *“Let op hoe de agent de toon oppikt, de transport-log checkt, maar toch kiest voor coulance omdat dit een trouwe klant is.”* Wijs op de laatste regel: *“Dát is waar het verschil zit met domme automatisering.”*
+**Scene 3 — Molenaar (belnotitie, 60 sec).**
+Trigger scenario 7. Belnotitie-artefact verschijnt. *"Dit is anders. Factuur van 42 dagen oud. Daar stuurt geen automaat een boze herinnering op — die bereidt een belnotitie voor Saskia op finance. Klantgeschiedenis erbij, toon-advies, openingsvraag. Saskia hoeft alleen nog maar te bellen."*
 
-**Act 4 — “Maar u houdt de knoppen” (60 sec).**
-Ga naar `/policy`. Open Orders. Zet een regel uit. *“U bepaalt wat automatisch gaat en wat langs u komt. De agent past zich aan.”*
-
-**Act 5 — “Dit gaat de hele dag door” (60 sec).**
-Terug naar `/`, schakel naar **Autonoom**. Laat 1–2 events binnenkomen. *“Dit loopt ook als u thuis bent, ook om 23:00, ook in het weekend.”*
+**Scene 4 — Policies (40 sec).**
+Klik tandwiel rechtsboven. Slide-over opent. *"Per afdeling stelt u in: wat mag ze zelf, wat komt langs u."* Toggle één iets. *"Klaar. Vanaf het volgende moment past ze zich aan."*
 
 **Close (30 sec).**
-Naar `/dashboard`. *“Dit is fictieve data, maar de formule is reëel: €29,57 per uur MKB-loon. Bij ú worden dit straks echte cijfers.”*
+Wijs op Vandaag-panel rechtsonder. *"X minuten bespaard vandaag. € Y aan werktijd. Die getallen worden bij u straks geen demo meer, maar uw maandrapport."*
 
-**Totaal: 6–7 minuten.** Dan is het tijd voor hún verhaal.
+**Totaal: ~5 minuten.** Rustig, zonder overbluffen.
 
 ---
 
 ## Projectstructuur
 
 ```
-app/                Next.js pages (Control Room, Dashboard, Policy)
-components/         UI componenten
-  ui/               primitives (Button, Toggle, ModeSwitch)
+app/
+  page.tsx             enige route — de Werkbank
+  layout.tsx           fonts (Fraunces, Lora, IBM Plex Mono)
+  globals.css          papier-palet + design tokens
+components/
+  Workbench.tsx        shell: header, stage, completed list, status strip
+  WorkbenchHeader.tsx  kop met merknaam + tandwiel + reset
+  ActiveTicket.tsx     werkbon-kaart bovenaan
+  PickupLine.tsx       "wordt opgepakt door X" tussenregel
+  StatusStrip.tsx      onderste regel met wie er werkt
+  TodayPanel.tsx       klein paneel met afgehandeld/bespaard/€
+  CompletedList.tsx    inklapbare lijst van vandaag afgehandeld
+  EventTrigger.tsx     dropdown met 8 scenarios
+  FloatingTrigger.tsx  zwevende trigger als er al iets liep
+  PolicyPanel.tsx      slide-over met beleidsregels per agent
+  artifacts/
+    ArtifactStage.tsx      dispatcher per artefact-type
+    EmailArtifact.tsx      mail-artefact
+    InvoiceArtifact.tsx    factuur/creditnota
+    CallNoteArtifact.tsx   belnotitie (gele notitie)
+    OrderConfirmationArtifact.tsx
+    InternalMemoArtifact.tsx
+    QuoteArtifact.tsx
+    WhatsAppThreadArtifact.tsx
 lib/
-  agents/           agent definities + default policies
-  data/             scenarios, scripts, mock history
-  store.ts          Zustand + playScript engine
-  types.ts          type definities
-  utils.ts          sleep, formatters
-public/grain.svg    subtiele noise overlay
+  agents/definitions.ts  agent-definities + default policies
+  data/
+    scenarios.ts         8 triggers (label + context + payload)
+    scripts.ts           index van 8 scripts
+    scripts/             één file per scenario
+    mockHistory.ts       baseline ROI
+  store.ts               Zustand + step-based playback
+  types.ts               StepKind, ArtifactType, Artifact, etc.
+  utils.ts               formatters, sleep, uid
+public/paper-grain.svg   zachte papier-vezel overlay
 ```
 
 ## Tips
 
-- **Reset-knop** in de TopBar gooit alle messages, events en ROI schoon (policies blijven via localStorage bewaard).
-- **Scripts aanpassen?** Alle tekst staat in `lib/data/scripts.ts`. Een regel aanpassen = één file wijzigen.
-- Timing (denk-pauzes, typesnelheid, leesteken-pauzes) staat in `lib/store.ts` → `playScript`.
+- **Scripts aanpassen?** Elk scenario heeft z'n eigen file in `lib/data/scripts/`. Open één, pas een paragraaf aan, klaar.
+- **Toon / stijl van een mail?** Alle tekst staat in die scenario-files — geen template-engine, gewoon Nederlands.
+- **Policies** blijven via `localStorage` bewaard tussen refreshes.
+- **Reset-knop** rechtsboven gooit werkbon, artefacten en Vandaag-teller schoon.

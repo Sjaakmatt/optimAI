@@ -1,0 +1,44 @@
+'use client';
+
+import { RotateCcw, Settings } from 'lucide-react';
+import { useStore } from '@/lib/store';
+
+export function WorkbenchHeader() {
+  const reset = useStore((s) => s.reset);
+  const openPolicies = useStore((s) => s.setPolicyPanelOpen);
+
+  return (
+    <header className="w-full border-b border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-8 py-5 flex items-center justify-between">
+        <div className="flex items-baseline gap-4">
+          <span className="font-display text-[22px] tracking-tight text-[var(--ink)]">
+            FactumAI
+          </span>
+          <span className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
+            De Werkbank · Nordveld
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+            Vandaag · Handmatig
+          </span>
+          <button
+            onClick={() => openPolicies(true)}
+            aria-label="Beleidsregels"
+            className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+          >
+            <Settings size={16} strokeWidth={1.5} />
+          </button>
+          <button
+            onClick={reset}
+            aria-label="Werkbank resetten"
+            className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+          >
+            <RotateCcw size={16} strokeWidth={1.5} />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+}

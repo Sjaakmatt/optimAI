@@ -1,38 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0b0d;
-  --bg-elev: #111215;
-  --bg-elev-2: #16181c;
-  --border: #1f2227;
-  --border-hot: #2a2e35;
-  --text: #e8e6e1;
-  --text-dim: #8a8680;
-  --text-faint: #4a4843;
-  --accent: #d4a857;
-  --accent-dim: #7a6333;
-  --signal-green: #7fb685;
-  --signal-amber: #e0a24f;
-  --signal-red: #c4634a;
+  /* Paper — warm crème, linnen */
+  --paper: #f4ede0;
+  --paper-deep: #ebe2cf;
+  --paper-edge: #ddd1b8;
+
+  /* Inkt — warm donker */
+  --ink: #2a2420;
+  --ink-dim: #5c5248;
+  --ink-faint: #8a8070;
+
+  /* Accenten */
+  --oker: #a8803a;
+  --oker-deep: #7d5e24;
+  --terra: #a15842;
+  --mos: #5e6e3f;
+  --steen: #8b857a;
+
+  --grain-opacity: 0.06;
+  --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.06), 0 8px 24px rgba(42, 36, 32, 0.04);
+  --shadow-lift: 0 2px 4px rgba(42, 36, 32, 0.08), 0 12px 32px rgba(42, 36, 32, 0.08);
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-elev: var(--bg-elev);
-  --color-bg-elev-2: var(--bg-elev-2);
-  --color-border-soft: var(--border);
-  --color-border-hot: var(--border-hot);
-  --color-text: var(--text);
-  --color-text-dim: var(--text-dim);
-  --color-text-faint: var(--text-faint);
-  --color-accent: var(--accent);
-  --color-accent-dim: var(--accent-dim);
-  --color-signal-green: var(--signal-green);
-  --color-signal-amber: var(--signal-amber);
-  --color-signal-red: var(--signal-red);
-  --font-display: var(--font-instrument-serif), "Times New Roman", serif;
-  --font-body: var(--font-inter-tight), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), "Menlo", monospace;
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-paper-edge: var(--paper-edge);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-faint: var(--ink-faint);
+  --color-oker: var(--oker);
+  --color-oker-deep: var(--oker-deep);
+  --color-terra: var(--terra);
+  --color-mos: var(--mos);
+  --color-steen: var(--steen);
+  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-body: var(--font-lora), Georgia, serif;
+  --font-mono: var(--font-plex-mono), "Menlo", monospace;
 }
 
 * {
@@ -40,10 +45,9 @@
 }
 
 html, body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-inter-tight), system-ui, sans-serif;
-  font-feature-settings: "ss01", "cv11";
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-lora), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -55,35 +59,23 @@ body {
   position: relative;
 }
 
-/* Grain overlay */
+/* Papier-vezel overlay */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
-  background-image: url("/grain.svg");
-  background-size: 200px 200px;
-}
-
-/* Scanlines, very subtle */
-.scanline {
-  background-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 2px,
-    rgba(255, 255, 255, 0.012) 3px,
-    transparent 4px
-  );
-  background-size: 100% 4px;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("/paper-grain.svg");
+  background-size: 320px 320px;
 }
 
 /* Selection */
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--oker);
+  color: var(--paper);
 }
 
 /* Scrollbars */
@@ -95,66 +87,37 @@ body::before {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-hot);
+  background: var(--paper-edge);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-faint);
+  background: var(--ink-faint);
 }
 
-/* Caret */
-@keyframes caret-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-.caret {
-  display: inline-block;
-  width: 7px;
-  height: 14px;
-  background: var(--accent);
-  vertical-align: text-bottom;
-  margin-left: 1px;
-  animation: caret-blink 1.05s step-start infinite;
-}
-
-/* Pulse animation for active agents */
-@keyframes pulse-amber {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(224, 162, 79, 0.45); }
-  50% { box-shadow: 0 0 0 6px rgba(224, 162, 79, 0); }
-}
-.pulse-amber {
-  animation: pulse-amber 1.4s ease-in-out infinite;
-}
-
-/* Pulse for active node */
-@keyframes node-pulse {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 1; }
-}
-.node-pulse {
-  animation: node-pulse 1.6s ease-in-out infinite;
-}
-
-/* SVG line dash flow */
-@keyframes dash-flow {
-  to { stroke-dashoffset: -32; }
-}
-.dash-flow {
-  stroke-dasharray: 4 4;
-  animation: dash-flow 1.4s linear infinite;
-}
-
-/* Hide focus outline by default but restore for keyboard users */
 *:focus { outline: none; }
 *:focus-visible {
-  outline: 1px solid var(--accent);
+  outline: 1px solid var(--oker);
   outline-offset: 2px;
 }
 
-/* Fine border helper */
 .hairline {
-  border-color: var(--border);
+  border-color: var(--paper-edge);
 }
-.hairline-hot {
-  border-color: var(--border-hot);
+
+/* Artefact-kaart basis */
+.artifact-card {
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 2px;
+  box-shadow: var(--shadow-soft);
+}
+.artifact-card--lift {
+  box-shadow: var(--shadow-lift);
+}
+
+.font-display {
+  font-family: var(--font-fraunces), "Times New Roman", serif;
+}
+.font-mono {
+  font-family: var(--font-plex-mono), "Menlo", monospace;
 }
