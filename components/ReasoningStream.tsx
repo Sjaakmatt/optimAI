@@ -39,7 +39,7 @@ export function ReasoningStream() {
   };
 
   return (
-    <div className="flex flex-col h-full border-l border-[var(--border)] bg-[var(--bg-elev)]">
+    <div className="flex flex-col h-full min-h-[420px] border-t lg:border-t-0 lg:border-l border-[var(--border)] bg-[var(--bg-elev)]">
       <div className="p-4 border-b border-[var(--border)]">
         <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
           Live stream

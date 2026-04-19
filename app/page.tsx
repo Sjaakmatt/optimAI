@@ -7,11 +7,11 @@ import { AutonomousRunner } from '@/components/AutonomousRunner';
 
 export default function ControlRoomPage() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen lg:h-screen">
       <TopBar />
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-[320px_1fr_420px] min-h-0">
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-[320px_1fr_420px] lg:min-h-0">
         <EventsPanel />
-        <section className="relative min-h-0 bg-[var(--bg)]">
+        <section className="relative min-h-[360px] lg:min-h-0 bg-[var(--bg)]">
           <AgentNetwork />
         </section>
         <ReasoningStream />

@@ -39,7 +39,7 @@ export function EventsPanel() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-full border-r border-[var(--border)] bg-[var(--bg-elev)]">
+    <div className="flex flex-col h-full border-b lg:border-b-0 lg:border-r border-[var(--border)] bg-[var(--bg-elev)]">
       <div className="p-4 border-b border-[var(--border)] flex items-center justify-between">
         <div>
           <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-faint)]">
