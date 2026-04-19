@@ -18,9 +18,6 @@ export function WorkbenchHeader() {
             className="flex items-center gap-2 group font-display text-[20px] sm:text-[22px] tracking-tight leading-none"
           >
             <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)] group-hover:text-[var(--oker-deep)] transition-colors" />
-            <span aria-hidden className="text-[var(--oker)] text-[17px] sm:text-[19px] leading-none">
-              ❦
-            </span>
             <span className="text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">Factum</span>
             <span className="italic text-[var(--oker-deep)]">AI</span>
           </Link>

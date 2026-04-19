@@ -39,13 +39,7 @@ export function SiteHeader() {
       <header className="w-full border-b border-[var(--paper-edge)] relative z-30 bg-[var(--paper)]">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 sm:py-5 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-baseline gap-3 group min-w-0">
-            <span className="font-display text-[22px] sm:text-[24px] tracking-tight leading-none flex items-baseline">
-              <span
-                aria-hidden
-                className="text-[var(--oker)] mr-1.5 text-[18px] sm:text-[20px] leading-none transition-transform group-hover:-rotate-6"
-              >
-                ❦
-              </span>
+            <span className="font-display text-[22px] sm:text-[24px] tracking-tight leading-none">
               <span className="text-[var(--ink)]">Factum</span>
               <span className="italic text-[var(--oker-deep)]">AI</span>
             </span>
@@ -98,10 +92,7 @@ export function SiteHeader() {
             className="fixed inset-0 z-50 lg:hidden flex flex-col bg-[var(--paper)]"
           >
             <div className="border-b border-[var(--paper-edge)] px-5 py-4 flex items-center justify-between">
-              <span className="font-display text-[22px] tracking-tight flex items-baseline leading-none">
-                <span aria-hidden className="text-[var(--oker)] mr-1.5 text-[18px] leading-none">
-                  ❦
-                </span>
+              <span className="font-display text-[22px] tracking-tight leading-none">
                 <span className="text-[var(--ink)]">Factum</span>
                 <span className="italic text-[var(--oker-deep)]">AI</span>
               </span>

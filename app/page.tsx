@@ -39,11 +39,11 @@ function Hero() {
             AI-agents voor MKB · Nederland
           </div>
           <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            De tijd van uw mensen is{' '}
+            Uw mensen zijn{' '}
             <span className="ink-highlight">te duur</span> voor herhaalwerk.
             <br />
             <span className="italic text-[var(--oker-deep)]">
-              Daarvoor zetten wij agents in.
+              Daar zetten wij agents op.
             </span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">

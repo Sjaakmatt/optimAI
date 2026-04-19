@@ -5,10 +5,7 @@ export function SiteFooter() {
     <footer className="w-full border-t border-[var(--paper-edge)] bg-[var(--paper-deep)] mt-24">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
-          <div className="font-display text-[20px] tracking-tight flex items-baseline leading-none">
-            <span aria-hidden className="text-[var(--oker)] mr-1.5 text-[16px] leading-none">
-              ❦
-            </span>
+          <div className="font-display text-[20px] tracking-tight leading-none">
             <span className="text-[var(--ink)]">Factum</span>
             <span className="italic text-[var(--oker-deep)]">AI</span>
           </div>
