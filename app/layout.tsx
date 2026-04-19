@@ -35,17 +35,6 @@ export const metadata: Metadata = {
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "FactumAI" }],
-  keywords: [
-    "AI agents",
-    "MKB",
-    "automatisering",
-    "digitale medewerker",
-    "multi-agent",
-    "Nederland",
-    "groothandel",
-    "offertes",
-    "orderverwerking",
-  ],
   openGraph: {
     type: "website",
     locale: "nl_NL",

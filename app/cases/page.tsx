@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Cases · klanten en resultaten',
   description:
     'Drie voorbeelden van hoe we AI-agents bouwden voor MKB-klanten in groothandel, installatietechniek en transport.',
+  alternates: { canonical: '/cases' },
 };
 
 export default function CasesPage() {

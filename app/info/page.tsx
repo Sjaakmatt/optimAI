@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Wat is een AI-agent · FactumAI',
   description:
     'Een AI-agent is een digitale medewerker die zelf beslissingen neemt binnen door u bepaalde grenzen. Uitleg over wat het is, hoe het werkt, en wat het een MKB-bedrijf kan opleveren.',
+  alternates: { canonical: '/info' },
 };
 
 export default function InfoPage() {

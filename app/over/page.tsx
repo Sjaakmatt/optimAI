@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Over ons · FactumAI',
   description:
     'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Nederlands, pragmatisch, vakmanschap boven hype.',
+  alternates: { canonical: '/over' },
 };
 
 export default function OverPage() {

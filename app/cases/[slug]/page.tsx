@@ -20,6 +20,7 @@ export async function generateMetadata({
   return {
     title: `${c.klant} · case`,
     description: c.tagline,
+    alternates: { canonical: `/cases/${slug}` },
   };
 }
 

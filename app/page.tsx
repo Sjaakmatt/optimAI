@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
     'Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven lichter maken. Mails, offertes, planning, inkoop, rapportage, communicatie.',
+  alternates: { canonical: '/' },
 };
 
 export default function HomePage() {

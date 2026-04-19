@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Contact · FactumAI',
   description:
     'Neem contact op met FactumAI voor een vrijblijvend kennismakingsgesprek. E-mail, telefoon, of laat een bericht achter.',
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

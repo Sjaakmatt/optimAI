@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Kennis · artikelen over AI-agents in het MKB',
   description:
     'Lees over hoe AI-agents werken in de praktijk, wat er kan, wat er nog niet kan, en hoe u de stap maakt.',
+  alternates: { canonical: '/kennis' },
 };
 
 const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
