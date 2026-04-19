@@ -31,9 +31,17 @@ export function SiteFooter() {
             Contact
           </div>
           <ul className="space-y-1 text-[13px] text-[var(--ink-dim)]">
-            <li>hallo@factumai.nl</li>
-            <li>06-12 34 56 78</li>
-            <li>Regio Noord-Holland</li>
+            <li>
+              <a href="mailto:info@factumai.nl" className="hover:text-[var(--ink)]">
+                info@factumai.nl
+              </a>
+            </li>
+            <li>
+              <a href="tel:+31610555658" className="hover:text-[var(--ink)]">
+                06-10 55 56 58
+              </a>
+            </li>
+            <li>Hoogkarspel · West-Friesland</li>
           </ul>
         </div>
       </div>

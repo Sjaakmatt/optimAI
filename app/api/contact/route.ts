@@ -45,7 +45,7 @@ async function sendViaResend(fields: {
   bericht: string;
 }): Promise<'sent' | 'skipped' | 'error'> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL ?? 'hallo@factumai.nl';
+  const to = process.env.CONTACT_TO_EMAIL ?? 'info@factumai.nl';
   const from = process.env.CONTACT_FROM_EMAIL ?? 'website@factumai.nl';
   if (!apiKey) return 'skipped';
 
@@ -101,7 +101,7 @@ export async function POST(request: Request) {
   const result = await sendViaResend(clean);
   if (result === 'error') {
     return NextResponse.json(
-      { ok: false, error: 'Mail-verzending mislukte; probeer direct hallo@factumai.nl.' },
+      { ok: false, error: 'Mail-verzending mislukte; probeer direct info@factumai.nl.' },
       { status: 502 },
     );
   }

@@ -34,19 +34,19 @@ export default function ContactPage() {
             <ContactItem
               Icon={Mail}
               label="E-mail"
-              value="hallo@factumai.nl"
-              href="mailto:hallo@factumai.nl"
+              value="info@factumai.nl"
+              href="mailto:info@factumai.nl"
             />
             <ContactItem
               Icon={Phone}
               label="Telefoon"
-              value="06-12 34 56 78"
-              href="tel:+31612345678"
+              value="06-10 55 56 58"
+              href="tel:+31610555658"
             />
             <ContactItem
               Icon={MapPin}
-              label="Regio"
-              value={'Noord-Holland en omliggend\nOok bij u op locatie'}
+              label="Thuisbasis"
+              value={'Hoogkarspel · West-Friesland\nOok bij u op locatie'}
             />
 
             <div className="pt-6 border-t border-[var(--paper-edge)]">

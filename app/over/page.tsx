@@ -18,7 +18,8 @@ export default function OverPage() {
             Over ons
           </div>
           <h1 className="mt-4 font-display text-[40px] sm:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Gebouwd door mensen die het MKB kennen.
+            Eén oprichter,<br />
+            <span className="italic text-[var(--ink-dim)]">twee voeten in de praktijk.</span>
           </h1>
           <p className="mt-6 text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             FactumAI is opgericht om AI-agents bereikbaar te maken voor bedrijven die geen
@@ -32,30 +33,45 @@ export default function OverPage() {
           <div>
             <PhotoPlaceholder />
             <div className="mt-4">
-              <div className="font-display text-[18px] text-[var(--ink)]">Sjaak Mattheij</div>
+              <div className="font-display text-[18px] text-[var(--ink)]">Sjaak ter Veld</div>
               <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider mt-0.5">
-                Oprichter · Bouwer
+                Oprichter · Sparringpartner
+              </div>
+              <div className="mt-2 text-[12.5px] text-[var(--ink-dim)] leading-snug">
+                Hoogkarspel · West-Friesland
               </div>
             </div>
           </div>
 
           <div className="space-y-5 text-[15px] leading-[1.7] text-[var(--ink)]">
             <p>
-              Ik ben opgegroeid in een familie waar iedereen ondernemer was. Groothandel,
-              aannemersbedrijf, transportbedrijf. Ik heb van dichtbij gezien hoeveel mensen bezig
-              zijn met administratief werk dat niemand leuk vindt — mails, offertes, factuurtjes,
-              planningen.
+              Ik ben Sjaak ter Veld. Opgeleid in de bedrijfskunde, maar al meer dan acht jaar met
+              één been in de IT — en met het andere stevig in de dagelijkse werkelijkheid van
+              bedrijven. In die jaren heb ik me gespecialiseerd in waar organisaties vastlopen:
+              processen die ooit werkten maar niet meer passen, strategieën die op papier kloppen
+              maar in de praktijk schuren, projecten die keer op keer later opgeleverd worden dan
+              gepland.
             </p>
             <p>
-              Toen AI-agents écht bruikbaar werden, wist ik meteen waar ik wilde beginnen. Niet bij
-              grote concerns met eigen IT-teams. Bij de bedrijven waar mijn familie altijd heeft
-              gewerkt — waar de baas nog zelf mee-offreert, en waar elke bespaarde ochtend direct
-              voelbaar is.
+              Wat me daarin altijd het meest interesseert, is het gesprek met de mensen aan tafel.
+              Niet de framework van de maand of de laatste management-theorie — maar wat iemand
+              zijn ochtend écht kost. Welke mail blijft al dagen liggen? Welke telefoon wordt
+              steeds vooruitgeschoven? Welke handeling doet uw binnendienst voor de derde keer
+              deze week? Daar kom ik vanzelf op oplossingen die werken, omdat ze uitgaan van het
+              echte werk.
             </p>
             <p>
-              Mijn aanpak is daar op afgestemd: geen lange pilot-trajecten, geen SaaS-abonnement
-              dat u over een jaar niet meer begrijpt. Eén concrete agent, vaste prijs, duidelijke
-              opleveringsdatum. En daarna: een vast gesprek per maand om aan te passen.
+              Ik woon in Hoogkarspel — midden in West-Friesland, dichtbij veel aannemers,
+              groothandels en installatiebedrijven. De wereld die ik wil helpen. FactumAI is voor
+              mij de natuurlijke volgende stap: AI-agents zijn geen hype meer, ze doen echt werk.
+              En juist voor MKB-bedrijven, waar de administratie harder groeit dan het kantoor,
+              kan het het verschil maken.
+            </p>
+            <p>
+              Ik vind het oprecht leuk om met een ondernemer aan tafel te zitten, door zijn dag
+              te lopen, en te zien waar ik kan helpen. Een koffie, een paar vragen, en meestal
+              ligt er binnen een half uur een concreet punt op tafel. Daar gaat het voor mij om —
+              niet in visie-documenten, wel in sparren.
             </p>
           </div>
         </div>
