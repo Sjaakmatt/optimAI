@@ -476,4 +476,147 @@ export const SCRIPTS: Record<string, Script> = {
       },
     ],
   },
+
+  // =========================================================
+  // SCENARIO 7: Factuur overdue
+  // =========================================================
+  script_invoice_overdue: {
+    id: 'script_invoice_overdue',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Factuur F-2026-0312 Klusbedrijf Molenaar 42 dagen overdue, €1.840. Al 2 herinneringen geweest. Dit moet nu door iets anders opgevolgd worden — telefonisch of stopzetting leverantie.',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'facturatie',
+        kind: 'delegate',
+        text: 'Klantprofiel Molenaar. Eerdere betalingen, openstaande facturen, kredietlimiet.',
+      },
+      {
+        delayBefore: 1100,
+        from: 'facturatie',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'Molenaar: klant sinds 2019, normaal betaalgedrag 25 dagen. Dit is afwijkend. Geen andere openstaande facturen. Kredietlimiet €5.000, huidig gebruikt €1.840. Geen lopende orders. Patroon duidt op tijdelijk probleem, niet op wanbetalen.',
+        minutesSaved: 10,
+      },
+      {
+        delayBefore: 900,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Policy: bij trouwe klanten met afwijkend gedrag eerst persoonlijk contact voordat derde herinnering (toon wordt juridisch). Escalatie naar mens — dit is geen agent-taak.',
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: 'Bereid belnotitie voor voor finance-medewerker. Inclusief klantgeschiedenis, toon-advies, mogelijke opening-vraag.',
+      },
+      {
+        delayBefore: 1000,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Belnotitie klaar in takenlijst voor Saskia (finance). Kernpunten: vriendelijk vragen of er iets aan de hand is, geen verwijtende toon, betalingsregeling aanbieden als nodig. Relatiewaarde klant is hoog — niet stuk maken.',
+        minutesSaved: 8,
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'facturatie',
+        kind: 'delegate',
+        text: 'Nieuwe leveringen aan Molenaar on hold zetten tot gesprek gevoerd. Zachte hold — geen mail hierover.',
+      },
+      {
+        delayBefore: 700,
+        from: 'facturatie',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'On hold gezet in systeem. Reden: "betaaltermijn in gesprek". Zodra Saskia groen licht geeft wordt hold automatisch opgeheven.',
+        minutesSaved: 5,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Escalatie naar mens — zoals het hoort. Agent heeft de voorbereiding gedaan, Saskia hoeft alleen maar te bellen. 3 agents, 23 minuten bespaard op voorbereiding alleen.',
+      },
+    ],
+  },
+
+  // =========================================================
+  // SCENARIO 8: Verzending probleem
+  // =========================================================
+  script_shipment_issue: {
+    id: 'script_shipment_issue',
+    steps: [
+      {
+        delayBefore: 500,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Van Dijk meldt vertraging rit VD-4418 door ongeluk A7 richting Sneek. 4 leveringen geraakt. Eerste prioriteit: welke klanten zijn dit, hoe laat werden ze verwacht, wie moet ik bellen?',
+      },
+      {
+        delayBefore: 700,
+        from: 'orchestrator',
+        to: 'verzending',
+        kind: 'delegate',
+        text: 'Rit VD-4418 uitsplitsen. Welke 4 klanten, welke tijden, welke alternatieven?',
+      },
+      {
+        delayBefore: 1200,
+        from: 'verzending',
+        to: 'orchestrator',
+        kind: 'report',
+        text: 'Rit 4418: Bouw Friesland (Drachten 10:30), Timmerwerk NO (Joure 11:30), Van der Zwaag (Sneek 12:30), Bouwbedrijf Postma (Bolsward 13:30). Huidige vertraging ±90 minuten. Alternatief bestaat: tweede wagen van Bakker Transport kan Bolsward en Sneek overnemen, dan is vertraging beperkt tot Drachten en Joure.',
+        minutesSaved: 18,
+      },
+      {
+        delayBefore: 900,
+        from: 'orchestrator',
+        to: 'inkoop',
+        kind: 'delegate',
+        text: 'Stuur opdracht naar Bakker Transport voor overname 2 leveringen. Acceptabel meerkosten-scenario tot €200.',
+      },
+      {
+        delayBefore: 1100,
+        from: 'inkoop',
+        to: 'orchestrator',
+        kind: 'action',
+        text: 'Bakker bevestigt: €165 meerkosten, ophalen over 20 minuten bij distributiecentrum, leveringen binnen originele slot. Opdracht OK-gegeven onder mandaat-limiet.',
+        minutesSaved: 12,
+      },
+      {
+        delayBefore: 800,
+        from: 'orchestrator',
+        to: 'klantservice',
+        kind: 'delegate',
+        text: '4 klanten pro-actief informeren. Tweetal krijgen vertragingsbericht, andere twee krijgen bericht dat alternatieve wagen komt (op tijd). Toon duidelijk en zakelijk.',
+      },
+      {
+        delayBefore: 1400,
+        from: 'klantservice',
+        to: 'orchestrator',
+        kind: 'action',
+        text: '4 mails + 2 belafspraken. Drachten en Joure: vertraging circa 90 min, excuus, ongeluk buiten onze controle. Sneek en Bolsward: geen wijziging in planning, afleverwagen veranderd. Bolsward belde terug ter bevestiging — tevreden met snelle actie.',
+        minutesSaved: 22,
+      },
+      {
+        delayBefore: 600,
+        from: 'orchestrator',
+        to: 'broadcast',
+        kind: 'reasoning',
+        text: 'Impact beperkt: 2 van 4 leveringen op tijd, andere 2 met 90 min vertraging maar pro-actief gecommuniceerd. €165 extra transportkosten voor behoud van klanttevredenheid bij 2 klanten. 3 agents, 52 minuten bespaard, en belangrijker: geen klachten te verwachten.',
+      },
+    ],
+  },
 };
