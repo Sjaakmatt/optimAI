@@ -10,11 +10,11 @@ import { ActiveTicket } from './ActiveTicket';
 import { PickupLine } from './PickupLine';
 import { CompletedList } from './CompletedList';
 import { CompletedViewer } from './CompletedViewer';
-import { EventTrigger } from './EventTrigger';
 import { PolicyPanel } from './PolicyPanel';
 import { DossierStrip } from './DossierStrip';
 import { Stage } from './Stage';
 import { AutonomousRunner } from './AutonomousRunner';
+import { AgentDiagram } from './AgentDiagram';
 
 export function Workbench() {
   const activeEventId = useStore((s) => s.activeEventId);
@@ -40,7 +40,9 @@ export function Workbench() {
       <CockpitHeader />
 
       <main className="flex-1 relative">
-        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-12 space-y-8">
+        <div className="mx-auto max-w-[1080px] px-4 sm:px-8 pt-8 pb-12 space-y-8">
+          <AgentDiagram />
+
           <AnimatePresence mode="wait">
             {showViewer && viewingEvent ? (
               <CompletedViewer key={`viewer-${viewingEvent.id}`} event={viewingEvent} />
@@ -85,21 +87,15 @@ function EmptyState() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="mx-auto max-w-[560px] text-center py-16 space-y-6"
+      className="mx-auto max-w-[560px] text-center py-8 space-y-3"
     >
       <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
         Rustig op de werkbank
       </div>
-      <p className="font-display text-[22px] leading-[1.35] text-[var(--ink)]">
-        Trigger een event om te zien hoe het werk zich ontvouwt
+      <p className="text-[14px] text-[var(--ink-dim)] leading-[1.6] max-w-[440px] mx-auto">
+        Trigger via De Dirigent een event — mails, facturen, belnotities, pakbonnen en
+        transportplannen ontstaan hieronder, regel voor regel.
       </p>
-      <p className="text-[14px] text-[var(--ink-dim)] leading-[1.6]">
-        Mails, facturen, belnotities, pakbonnen, transportplannen — verschijnen hier, regel voor
-        regel, alsof iemand aan de andere kant van de tafel ze voor u uitwerkt.
-      </p>
-      <div className="pt-4 flex justify-center">
-        <EventTrigger />
-      </div>
     </motion.div>
   );
 }
