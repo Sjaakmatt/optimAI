@@ -8,18 +8,18 @@ import type { AgentId } from '@/lib/types';
 import { EventTrigger } from './EventTrigger';
 
 // Eén coördinaten-systeem voor SVG én HTML overlays
-const W = 820;
-const H = 180;
+const W = 720;
+const H = 210;
 
 const DIRIGENT_CX = W / 2;
-const DIRIGENT_CY = 44;
-const DIRIGENT_BOTTOM = 84;
+const DIRIGENT_CY = 52;
+const DIRIGENT_BOTTOM = 104;
 
-const BUS_Y = 118;
-const CHIP_TOP = 138;
-const CHIP_CY = 155;
+const BUS_Y = 140;
+const CHIP_TOP = 162;
+const CHIP_CY = 180;
 
-const CHIPS_MARGIN = 50;
+const CHIPS_MARGIN = 36;
 
 const AGENTS = AGENT_ORDER;
 
@@ -134,7 +134,7 @@ export function AgentDiagram() {
           style={{
             left: `${(DIRIGENT_CX / W) * 100}%`,
             top: `${(DIRIGENT_CY / H) * 100}%`,
-            width: '300px',
+            width: '380px',
             maxWidth: '90%',
             transform: 'translate(-50%, -50%)',
           }}
@@ -174,13 +174,13 @@ function DirigentCard({
   isPlaying: boolean;
 }) {
   return (
-    <div className="artifact-card artifact-card--lift px-5 py-3 text-center">
-      <div className="flex items-center justify-center gap-3">
-        <div className="text-left">
+    <div className="artifact-card artifact-card--lift px-7 py-5">
+      <div className="flex items-center justify-between gap-6">
+        <div className="text-left min-w-0">
           <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             De Dirigent
           </div>
-          <div className="font-display italic text-[13px] text-[var(--ink-dim)] leading-tight min-h-[18px] min-w-[150px]">
+          <div className="font-display italic text-[14px] text-[var(--ink-dim)] leading-snug mt-1 min-h-[20px] min-w-[180px] max-w-[260px]">
             <AnimatePresence mode="wait">
               <motion.span
                 key={statusText ?? 'idle'}

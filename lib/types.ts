@@ -36,11 +36,23 @@ export type EventType =
   | 'invoice.overdue'
   | 'shipment.issue';
 
+export type EventChannel = 'email' | 'system' | 'phone' | 'whatsapp' | 'form';
+
+export interface EventExtra {
+  label: string;
+  value: string;
+}
+
 export interface DemoEvent {
   id: string;
   type: EventType;
   label: string;
   context: string;
+  channel?: EventChannel;
+  from?: string;
+  subject?: string;
+  body?: string[];
+  extra?: EventExtra[];
   payload: Record<string, unknown>;
   timestamp: number;
   scriptId: string;
@@ -282,6 +294,11 @@ export interface CompletedEvent {
   id: string;
   title: string;
   context: string;
+  channel?: EventChannel;
+  from?: string;
+  subject?: string;
+  body?: string[];
+  extra?: EventExtra[];
   startedAt: number;
   completedAt: number;
   minutesSaved: number;

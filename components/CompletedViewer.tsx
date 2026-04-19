@@ -45,19 +45,64 @@ export function CompletedViewer({ event }: Props) {
 
 function ArchivedTicket({ event }: { event: CompletedEvent }) {
   return (
-    <article className="mx-auto w-full max-w-[560px] artifact-card px-8 py-6">
-      <div className="flex items-baseline justify-between mb-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--mos)]">
-          Werkbon · afgehandeld
-        </span>
-        <span className="font-mono text-[11px] text-[var(--ink-faint)]">
-          {formatTime(event.startedAt)} → {formatTime(event.completedAt)}
-        </span>
-      </div>
-      <h1 className="font-display text-[22px] leading-[1.25] text-[var(--ink)]">
-        {event.title}
-      </h1>
-      <p className="mt-2 text-[14px] leading-[1.55] text-[var(--ink-dim)]">{event.context}</p>
+    <article className="mx-auto w-full max-w-[640px] artifact-card px-9 py-7">
+      <header className="pb-4 border-b border-[var(--paper-edge)]">
+        <div className="flex items-baseline justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--mos)]">
+            Werkbon · afgehandeld
+          </span>
+          <span className="font-mono text-[11px] text-[var(--ink-faint)] tabular-nums">
+            {formatTime(event.startedAt)} → {formatTime(event.completedAt)}
+          </span>
+        </div>
+        <h1 className="font-display text-[22px] leading-[1.25] text-[var(--ink)] mt-2">
+          {event.title}
+        </h1>
+      </header>
+
+      {event.from && (
+        <div className="pt-4 pb-1">
+          <div className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[12.5px]">
+            <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider self-center">
+              Van
+            </span>
+            <span className="text-[var(--ink)]">{event.from}</span>
+            {event.subject && (
+              <>
+                <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider self-center">
+                  Betreft
+                </span>
+                <span className="text-[var(--ink)] font-display">{event.subject}</span>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {event.body && event.body.length > 0 && (
+        <div className="mt-4 pl-4 border-l-2 border-[var(--paper-edge)] space-y-3 text-[14px] leading-[1.6] text-[var(--ink)]">
+          {event.body.map((p, i) => (
+            <p key={i} className="whitespace-pre-wrap">{p}</p>
+          ))}
+        </div>
+      )}
+
+      {event.extra && event.extra.length > 0 && (
+        <dl className="mt-5 pt-4 border-t border-[var(--paper-edge)] grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[12px]">
+          {event.extra.map((e, i) => (
+            <div key={i} className="contents">
+              <dt className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider self-baseline whitespace-nowrap">
+                {e.label}
+              </dt>
+              <dd className="text-[var(--ink-dim)]">{e.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {!event.body && (
+        <p className="mt-3 text-[14px] leading-[1.55] text-[var(--ink-dim)]">{event.context}</p>
+      )}
     </article>
   );
 }
