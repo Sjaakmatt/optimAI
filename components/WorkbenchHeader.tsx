@@ -1,6 +1,7 @@
 'use client';
 
-import { Settings } from 'lucide-react';
+import Link from 'next/link';
+import { Settings, ArrowLeft } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { HeaderMenu } from './HeaderMenu';
 
@@ -12,9 +13,13 @@ export function WorkbenchHeader() {
     <header className="w-full border-b border-[var(--paper-edge)]">
       <div className="mx-auto max-w-[1080px] px-8 py-5 flex items-center justify-between">
         <div className="flex items-baseline gap-4">
-          <span className="font-display text-[22px] tracking-tight text-[var(--ink)]">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-display text-[22px] tracking-tight text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
+          >
+            <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)]" />
             FactumAI
-          </span>
+          </Link>
           <span className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
             De Werkbank · Nordveld
           </span>
