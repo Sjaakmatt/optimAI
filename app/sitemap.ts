@@ -10,11 +10,11 @@ const STATIC_ROUTES: Array<{
   priority: number;
 }> = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
+  { path: '/diensten/ai-agent-laten-bouwen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/over', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/info', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/cases', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/kennis', changeFrequency: 'weekly', priority: 0.7 },
-  { path: '/demo', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/contact', changeFrequency: 'yearly', priority: 0.6 },
 ];
 
