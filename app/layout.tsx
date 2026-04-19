@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Lora, IBM_Plex_Mono } from "next/font/google";
+import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${fraunces.variable} ${lora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen">
+        <OrganizationSchema />
         {children}
       </body>
     </html>
