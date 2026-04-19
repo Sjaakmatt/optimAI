@@ -16,7 +16,13 @@ export function EventTrigger() {
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    // Scroll lock body
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = prev;
+    };
   }, [open]);
 
   const handlePick = (id: string) => {
@@ -37,60 +43,60 @@ export function EventTrigger() {
 
       <AnimatePresence>
         {open && (
-          <>
+          <motion.div
+            key="modal-layer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={() => setOpen(false)}
+            style={{ background: 'rgba(42, 36, 32, 0.45)' }}
+          >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 bg-[var(--ink)]/25"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 16, scale: 0.97 }}
+              initial={{ opacity: 0, y: 12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.97 }}
-              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+              exit={{ opacity: 0, y: 12, scale: 0.97 }}
+              transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-[580px] max-h-[80vh] flex flex-col artifact-card artifact-card--lift overflow-hidden"
             >
-              <div className="artifact-card artifact-card--lift w-full max-w-[580px] pointer-events-auto overflow-hidden">
-                <div className="flex items-baseline justify-between px-6 py-4 border-b border-[var(--paper-edge)]">
-                  <div>
-                    <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-                      Nieuw event
-                    </div>
-                    <h2 className="font-display text-[18px] text-[var(--ink)] mt-0.5">
-                      Kies een scenario
-                    </h2>
+              <header className="flex items-baseline justify-between px-6 py-4 border-b border-[var(--paper-edge)] shrink-0">
+                <div>
+                  <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
+                    Nieuw event
                   </div>
-                  <button
-                    onClick={() => setOpen(false)}
-                    aria-label="Sluiten"
-                    className="p-1.5 rounded-[2px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)] transition-colors"
-                  >
-                    <X size={16} strokeWidth={1.5} />
-                  </button>
+                  <h2 className="font-display text-[18px] text-[var(--ink)] mt-0.5">
+                    Kies een scenario
+                  </h2>
                 </div>
-                <ul className="max-h-[60vh] overflow-y-auto divide-y divide-[var(--paper-edge)]">
-                  {ALL_SCENARIOS.map((s) => (
-                    <li key={s.id}>
-                      <button
-                        onClick={() => handlePick(s.id)}
-                        className="w-full text-left px-6 py-3 hover:bg-[var(--paper-deep)] transition-colors group"
-                      >
-                        <div className="text-[14px] text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                          {s.label}
-                        </div>
-                        <div className="text-[12px] text-[var(--ink-dim)] mt-0.5 leading-[1.4]">
-                          {s.context}
-                        </div>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Sluiten"
+                  className="p-1.5 rounded-[2px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)] transition-colors"
+                >
+                  <X size={16} strokeWidth={1.5} />
+                </button>
+              </header>
+              <ul className="flex-1 min-h-0 overflow-y-auto divide-y divide-[var(--paper-edge)]">
+                {ALL_SCENARIOS.map((s) => (
+                  <li key={s.id}>
+                    <button
+                      onClick={() => handlePick(s.id)}
+                      className="w-full text-left px-6 py-3 hover:bg-[var(--paper-deep)] transition-colors group"
+                    >
+                      <div className="text-[14px] text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                        {s.label}
+                      </div>
+                      <div className="text-[12px] text-[var(--ink-dim)] mt-0.5 leading-[1.4]">
+                        {s.context}
+                      </div>
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
