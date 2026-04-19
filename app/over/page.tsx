@@ -31,7 +31,7 @@ export default function OverPage() {
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-16 sm:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-8 md:gap-12 lg:gap-14">
           <div>
-            <PhotoPlaceholder />
+            <Portret />
             <div className="mt-4">
               <div className="font-display text-[18px] text-[var(--ink)]">Sjaak ter Veld</div>
               <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider mt-0.5">
@@ -60,7 +60,7 @@ export default function OverPage() {
               beginnen bij het echte werk.
             </p>
             <p>
-              Ik woon in Hoogkarspel, midden in West-Friesland. Dichtbij, maar ik werk door heel
+              Ik woon in Hoogkarspel, midden in West-Friesland, maar ik ben actief in heel
               Nederland. Bij productiebedrijven, dienstverleners, handelshuizen, techniek,
               zorg, onderwijs, kleine ondernemers en organisaties met een paar honderd mensen.
               Overal waar een proces onnodig tijd kost, is er iets te winnen. FactumAI is voor
@@ -71,8 +71,8 @@ export default function OverPage() {
             <p>
               Wat ik leuk vind aan dit werk: het gesprek. Een ondernemer die uitlegt waar hij
               tegenaan loopt, en dan samen kijken of er iets aan te doen is. Een koffie, een paar
-              vragen, en meestal ligt er binnen een half uur een concreet punt op tafel. Daar gaat
-              het mij om. Niet om visie-documenten. Wel om sparren.
+              vragen, en meestal ligt er binnen een half uur een concreet punt op tafel. Een tevreden klant, daar gaat
+              het mij om.
             </p>
           </div>
         </div>
@@ -140,18 +140,24 @@ export default function OverPage() {
   );
 }
 
-function PhotoPlaceholder() {
+import Image from 'next/image';
+
+function Portret() {
   return (
     <div
       className="relative aspect-[4/5] w-full max-w-[320px] rounded-[2px] border border-[var(--paper-edge)] overflow-hidden"
-      style={{
-        background:
-          'linear-gradient(135deg, var(--paper-deep) 0%, var(--paper) 60%, var(--paper-deep) 100%)',
-        boxShadow: 'var(--shadow-lift)',
-      }}
+      style={{ boxShadow: 'var(--shadow-lift)' }}
     >
+      <Image
+        src="/portret.jpg"
+        alt="Sjaak ter Veld — oprichter FactumAI"
+        fill
+        sizes="(max-width: 640px) 100vw, 320px"
+        className="object-cover"
+        priority
+      />
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 pointer-events-none opacity-25"
         style={{
           backgroundImage: 'url(/paper-grain.svg)',
           backgroundSize: '240px',
@@ -159,16 +165,6 @@ function PhotoPlaceholder() {
         }}
         aria-hidden
       />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
-          Foto · Placeholder
-        </div>
-        <div className="mt-2 font-display italic text-[14px] text-[var(--ink-dim)] max-w-[220px] leading-snug">
-          Foto komt hier. Vervang{' '}
-          <span className="font-mono text-[11px] not-italic">/public/portret.jpg</span> en pas
-          deze component aan.
-        </div>
-      </div>
     </div>
   );
 }
