@@ -501,3 +501,20 @@ function incrementROI(set: SetFn, get: GetFn, agentId: AgentId, minutes: number)
 }
 
 export const ALL_SCENARIOS = SCENARIOS;
+
+export function useArtifactById(artifactId: string | undefined): Artifact | null {
+  return useStore((state) => {
+    if (!artifactId) return null;
+    const inStage = state.stageItems.find(
+      (it) => it.kind === 'artifact' && it.id === artifactId,
+    );
+    if (inStage && inStage.kind === 'artifact') return inStage.artifact;
+    for (const ev of state.completed) {
+      const found = ev.stageItems.find(
+        (it) => it.kind === 'artifact' && it.id === artifactId,
+      );
+      if (found && found.kind === 'artifact') return found.artifact;
+    }
+    return null;
+  });
+}
