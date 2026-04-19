@@ -39,7 +39,7 @@
   --color-terra: var(--terra);
   --color-mos: var(--mos);
   --color-steen: var(--steen);
-  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-display: var(--font-playfair), "Times New Roman", serif;
   --font-body: var(--font-lora), Georgia, serif;
   --font-mono: var(--font-plex-mono), "Menlo", monospace;
 }
@@ -52,7 +52,6 @@ html, body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-lora), Georgia, serif;
-  font-variation-settings: "WONK" 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -162,7 +161,7 @@ body::after {
 
 /* Drop cap voor eerste alinea (voor article/over-pagina's) */
 .drop-cap > p:first-of-type::first-letter {
-  font-family: var(--font-fraunces), serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 400;
   float: left;
   font-size: 3.6em;
@@ -170,7 +169,6 @@ body::after {
   padding: 0.05em 0.12em 0 0;
   color: var(--oker-deep);
   font-style: italic;
-  font-variation-settings: "WONK" 0;
 }
 
 /* Decoratieve section-divider */
@@ -190,10 +188,8 @@ body::after {
   background: currentColor;
 }
 
-.font-display,
-.font-display * {
-  font-family: var(--font-fraunces), "Times New Roman", serif;
-  font-variation-settings: "WONK" 0;
+.font-display {
+  font-family: var(--font-playfair), "Times New Roman", serif;
 }
 .font-mono {
   font-family: var(--font-plex-mono), "Menlo", monospace;

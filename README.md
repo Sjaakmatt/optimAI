@@ -86,7 +86,7 @@ Wijs op Vandaag-panel rechtsonder. *"X minuten bespaard vandaag. € Y aan werkt
 ```
 app/
   page.tsx             enige route — de Werkbank
-  layout.tsx           fonts (Fraunces, Lora, IBM Plex Mono)
+  layout.tsx           fonts (Playfair Display, Lora, IBM Plex Mono)
   globals.css          papier-palet + design tokens
 components/
   Workbench.tsx        shell: header, stage, completed list, status strip

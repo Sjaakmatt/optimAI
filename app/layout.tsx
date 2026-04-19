@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Fraunces, Lora, IBM_Plex_Mono } from "next/font/google";
+import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-  variable: "--font-fraunces",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -73,7 +72,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" className={`${fraunces.variable} ${lora.variable} ${plexMono.variable}`}>
+    <html lang="nl" className={`${playfair.variable} ${lora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen">
         {children}
       </body>
