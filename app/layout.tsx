@@ -21,9 +21,51 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://factumai.nl";
+const SITE_NAME = "FactumAI";
+const DEFAULT_DESCRIPTION =
+  "AI-agents die het dagelijkse werk van MKB-bedrijven overnemen — mails, offertes, orders, facturatie, inkoop, planning. Nederlands, pragmatisch, zonder dashboard-gedoe.";
+
 export const metadata: Metadata = {
-  title: "FactumAI · De Werkbank",
-  description: "Digitale werkbank — Nordveld Groothandel",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "FactumAI — AI-agents voor MKB",
+    template: "%s — FactumAI",
+  },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: "FactumAI" }],
+  keywords: [
+    "AI agents",
+    "MKB",
+    "automatisering",
+    "digitale medewerker",
+    "multi-agent",
+    "Nederland",
+    "groothandel",
+    "offertes",
+    "orderverwerking",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "FactumAI — AI-agents voor MKB",
+    description: DEFAULT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FactumAI — AI-agents voor MKB",
+    description: DEFAULT_DESCRIPTION,
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

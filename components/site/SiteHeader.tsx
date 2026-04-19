@@ -5,7 +5,9 @@ import { usePathname } from 'next/navigation';
 
 const NAV = [
   { href: '/over', label: 'Over ons' },
-  { href: '/info', label: 'Wat is een AI-agent' },
+  { href: '/info', label: 'Wat is AI-agent' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/kennis', label: 'Kennis' },
   { href: '/demo', label: 'Demo' },
   { href: '/contact', label: 'Contact' },
 ];

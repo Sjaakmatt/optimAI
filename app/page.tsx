@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { CASES } from '@/lib/data/cases';
 
 export const metadata: Metadata = {
   title: 'FactumAI — AI-agents voor MKB',
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Hero />
       <WatDoenWe />
       <VoorWie />
+      <Klanten />
       <DemoTeaser />
       <Aanpak />
     </SitePage>
@@ -142,6 +144,60 @@ function VoorWie() {
           </li>
         ))}
       </ul>
+    </section>
+  );
+}
+
+function Klanten() {
+  return (
+    <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+      <div className="mx-auto max-w-[1080px] px-6 sm:px-10 py-16">
+        <div className="flex items-end justify-between gap-6 flex-wrap">
+          <div className="max-w-[620px]">
+            <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
+              Klanten
+            </div>
+            <h2 className="mt-2 font-display text-[32px] sm:text-[40px] leading-[1.1] text-[var(--ink)]">
+              MKB-bedrijven die ons zijn voorgegaan.
+            </h2>
+          </div>
+          <Link
+            href="/cases"
+            className="inline-flex items-center gap-1.5 text-[13px] text-[var(--oker-deep)] hover:text-[var(--ink)] transition-colors"
+          >
+            Alle cases bekijken
+            <ArrowRight size={14} strokeWidth={1.8} />
+          </Link>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+          {CASES.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/cases/${c.slug}`}
+              className="artifact-card px-6 py-6 hover:bg-[var(--paper)] hover:shadow-[var(--shadow-lift)] transition-all group"
+            >
+              <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+                {c.branche}
+              </div>
+              <h3 className="mt-1.5 font-display text-[20px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                {c.klant}
+              </h3>
+              <p className="mt-2 text-[13.5px] italic text-[var(--ink-dim)] leading-[1.5]">
+                {c.tagline}
+              </p>
+              <div className="mt-4 pt-3 border-t border-[var(--paper-edge)] flex items-baseline justify-between">
+                <span className="font-display text-[18px] text-[var(--ink)]">
+                  {c.resultaat[0].metric}
+                </span>
+                <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider text-right max-w-[160px]">
+                  {c.resultaat[0].label}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

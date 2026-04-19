@@ -19,6 +19,8 @@ export function SiteFooter() {
           <ul className="space-y-1 text-[13px]">
             <li><Link href="/over" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Over ons</Link></li>
             <li><Link href="/info" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Wat is een AI-agent</Link></li>
+            <li><Link href="/cases" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Cases</Link></li>
+            <li><Link href="/kennis" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Kennis</Link></li>
             <li><Link href="/demo" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Demo — De Werkbank</Link></li>
             <li><Link href="/contact" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">Contact</Link></li>
           </ul>

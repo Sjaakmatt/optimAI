@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
+import { CookieBar } from './CookieBar';
 
 export function SitePage({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export function SitePage({ children }: { children: ReactNode }) {
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
+      <CookieBar />
     </div>
   );
 }
