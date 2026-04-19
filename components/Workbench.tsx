@@ -9,6 +9,7 @@ import { TodayPanel } from './TodayPanel';
 import { ActiveTicket } from './ActiveTicket';
 import { PickupLine } from './PickupLine';
 import { CompletedList } from './CompletedList';
+import { CompletedViewer } from './CompletedViewer';
 import { EventTrigger } from './EventTrigger';
 import { PolicyPanel } from './PolicyPanel';
 import { DossierStrip } from './DossierStrip';
@@ -20,8 +21,18 @@ export function Workbench() {
   const events = useStore((s) => s.events);
   const stageItems = useStore((s) => s.stageItems);
   const statusText = useStore((s) => s.statusText);
+  const viewingCompletedId = useStore((s) => s.viewingCompletedId);
+  const completed = useStore((s) => s.completed);
 
   const activeEvent = events.find((e) => e.id === activeEventId);
+  const viewingEvent = viewingCompletedId
+    ? completed.find((c) => c.id === viewingCompletedId)
+    : null;
+
+  // Viewer takes precedence over active/empty.
+  // (Triggering a new event automatically clears viewing — see store.triggerEvent.)
+  const showViewer = !!viewingEvent;
+  const showActive = !showViewer && !!activeEvent;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -31,7 +42,9 @@ export function Workbench() {
       <main className="flex-1 relative">
         <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-12 space-y-8">
           <AnimatePresence mode="wait">
-            {activeEvent ? (
+            {showViewer && viewingEvent ? (
+              <CompletedViewer key={`viewer-${viewingEvent.id}`} event={viewingEvent} />
+            ) : showActive && activeEvent ? (
               <motion.div
                 key={activeEvent.id}
                 initial={{ opacity: 0 }}

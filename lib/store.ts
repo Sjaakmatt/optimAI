@@ -104,6 +104,7 @@ interface AppState {
   activeAgents: AgentId[];
   statusText: string | null;
   completed: CompletedEvent[];
+  viewingCompletedId: string | null;
   mode: Mode;
   isPlaying: boolean;
   policyPanelOpen: boolean;
@@ -116,6 +117,7 @@ interface AppState {
   setPolicyPanelOpen: (open: boolean) => void;
   updatePolicy: (agentId: AgentId, policyId: string, enabled: boolean) => void;
   setMode: (mode: Mode) => void;
+  setViewingCompletedId: (id: string | null) => void;
   reset: () => void;
 }
 
@@ -127,6 +129,7 @@ export const useStore = create<AppState>((set, get) => ({
   activeAgents: [],
   statusText: null,
   completed: [],
+  viewingCompletedId: null,
   mode: 'manual',
   isPlaying: false,
   policyPanelOpen: false,
@@ -136,6 +139,7 @@ export const useStore = create<AppState>((set, get) => ({
 
   setMode: (mode) => set({ mode }),
   setPolicyPanelOpen: (open) => set({ policyPanelOpen: open }),
+  setViewingCompletedId: (id) => set({ viewingCompletedId: id }),
 
   updatePolicy: (agentId, policyId, enabled) => {
     const overrides = loadPolicyOverrides();
@@ -165,6 +169,7 @@ export const useStore = create<AppState>((set, get) => ({
     set((state) => ({
       events: [event, ...state.events],
       activeEventId: eventId,
+      viewingCompletedId: null,
       stageItems: [],
       activeAgents: [],
       statusText: null,
@@ -196,6 +201,7 @@ export const useStore = create<AppState>((set, get) => ({
       activeAgents: [],
       statusText: null,
       completed: [],
+      viewingCompletedId: null,
       activeEventId: null,
       isPlaying: false,
       roi: emptyROI(),
@@ -307,15 +313,19 @@ async function runStep(
 
     case 'complete': {
       const state = get();
-      const artifactCount = state.stageItems.filter((i) => i.kind === 'artifact').length;
+      const stageSnapshot = state.stageItems;
+      const artifactCount = stageSnapshot.filter((i) => i.kind === 'artifact').length;
+      const eventRecord = state.events.find((e) => e.id === eventId);
       const completedItem: CompletedEvent = {
         id: eventId,
         title: script.eventTitle,
         context: script.eventContext,
+        startedAt: eventRecord?.timestamp ?? Date.now(),
         completedAt: Date.now(),
         minutesSaved: step.totalMinutes ?? script.minutesSaved,
         artifactCount,
         agents: [...state.activeAgents],
+        stageItems: stageSnapshot,
       };
       for (const id of state.activeAgents) setAgentStatus(set, get, id, 'idle');
       set((s) => ({

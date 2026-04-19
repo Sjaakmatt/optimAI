@@ -282,8 +282,10 @@ export interface CompletedEvent {
   id: string;
   title: string;
   context: string;
+  startedAt: number;
   completedAt: number;
   minutesSaved: number;
   artifactCount: number;
   agents: AgentId[];
+  stageItems: StageItem[];
 }
