@@ -7,8 +7,8 @@ export function SiteFooter() {
         <div>
           <div className="font-display text-[18px] text-[var(--ink)]">FactumAI</div>
           <p className="mt-2 text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-[260px]">
-            Ik bouw en implementeer AI-agents die het dagelijkse werk van MKB-bedrijven
-            overnemen. Nederlands, pragmatisch, zonder dashboard-gedoe.
+            Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
+            lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.
           </p>
         </div>
 

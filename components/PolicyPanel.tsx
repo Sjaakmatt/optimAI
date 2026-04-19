@@ -34,12 +34,12 @@ export function PolicyPanel() {
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="fixed top-0 right-0 h-screen w-full sm:w-[480px] bg-[var(--paper)] border-l border-[var(--paper-edge)] z-50 overflow-y-auto"
           >
-            <header className="sticky top-0 bg-[var(--paper)] border-b border-[var(--paper-edge)] px-8 py-5 flex items-center justify-between">
+            <header className="sticky top-0 z-10 bg-[var(--paper)] border-b border-[var(--paper-edge)] px-5 sm:px-8 py-4 sm:py-5 flex items-center justify-between shadow-[0_4px_6px_-4px_rgba(42,36,32,0.08)]">
               <div>
                 <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                   Beleidsregels
                 </div>
-                <h2 className="font-display text-[20px] text-[var(--ink)] mt-1">
+                <h2 className="font-display text-[18px] sm:text-[20px] text-[var(--ink)] mt-1">
                   U houdt de knoppen
                 </h2>
               </div>
@@ -52,7 +52,7 @@ export function PolicyPanel() {
               </button>
             </header>
 
-            <div className="px-8 py-6 space-y-8">
+            <div className="px-5 sm:px-8 py-6 space-y-8">
               {(AGENT_ORDER as AgentId[]).map((id) => {
                 const agent = agents[id];
                 return (

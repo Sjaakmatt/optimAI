@@ -8,7 +8,6 @@ interface MetricProps {
   label: string;
   value: number;
   format?: (n: number) => string;
-  unit?: string;
 }
 
 function useEasedNumber(target: number, durationMs = 600): number {
@@ -41,21 +40,16 @@ function useEasedNumber(target: number, durationMs = 600): number {
   return value;
 }
 
-function Metric({ label, value, format = formatNumber, unit }: MetricProps) {
+function Metric({ label, value, format = formatNumber }: MetricProps) {
   const eased = useEasedNumber(value);
   return (
-    <div className="flex items-baseline gap-2 min-w-0">
-      <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.14em] whitespace-nowrap">
+    <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 min-w-0 shrink-0">
+      <span className="font-mono text-[9px] sm:text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.14em] whitespace-nowrap">
         {label}
       </span>
-      <span className="font-display text-[16px] text-[var(--ink)] tabular-nums">
+      <span className="font-display text-[15px] sm:text-[16px] text-[var(--ink)] tabular-nums whitespace-nowrap">
         {format(Math.round(eased))}
       </span>
-      {unit && (
-        <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider">
-          {unit}
-        </span>
-      )}
     </div>
   );
 }
@@ -64,7 +58,7 @@ export function CockpitHeader() {
   const cockpit = useStore((s) => s.cockpit);
   return (
     <div className="border-b border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-      <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-2.5 flex items-center gap-5 sm:gap-6 lg:justify-between overflow-x-auto whitespace-nowrap">
+      <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-2 sm:py-2.5 flex items-start sm:items-center gap-5 sm:gap-6 lg:justify-between overflow-x-auto whitespace-nowrap">
         <Metric label="Orders" value={cockpit.orders} />
         <Metric label="Voorraad" value={cockpit.stockMutations} />
         <Metric label="Ritten" value={cockpit.routesPlanned} />

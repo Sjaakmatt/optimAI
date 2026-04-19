@@ -95,7 +95,7 @@ function EmptyState() {
         Rustig op de werkbank
       </div>
       <p className="text-[14px] text-[var(--ink-dim)] leading-[1.6] max-w-[440px] mx-auto">
-        Trigger via De Dirigent een event — mails, facturen, belnotities, pakbonnen en
+        Trigger via De Dirigent een event. Mails, facturen, belnotities, pakbonnen en
         transportplannen ontstaan hieronder, regel voor regel.
       </p>
     </motion.div>

@@ -49,41 +49,45 @@ export function CompletedList() {
                         : 'hover:bg-[var(--paper-deep)]'
                     }`}
                   >
-                    <div className="flex items-baseline justify-between gap-4">
-                      <div className="flex items-baseline gap-3 min-w-0">
-                        <ChevronRight
-                          size={12}
-                          strokeWidth={1.5}
-                          className={`text-[var(--ink-faint)] mt-1 shrink-0 transition-transform ${
-                            isActive ? 'rotate-90 text-[var(--ink-dim)]' : ''
-                          }`}
-                        />
-                        <span className="font-mono text-[11px] text-[var(--ink-faint)] tabular-nums">
-                          {formatTime(c.completedAt)}
-                        </span>
-                        <div className="min-w-0">
-                          <div className="text-[var(--ink)]">{c.title}</div>
-                          <div className="text-[12px] text-[var(--ink-dim)]">{c.context}</div>
-                        </div>
-                      </div>
-                      <span className="font-mono text-[11px] text-[var(--mos)] whitespace-nowrap">
-                        {minutesToHoursLabel(c.minutesSaved)} bespaard · {c.artifactCount} stuks
-                      </span>
-                    </div>
-                    {c.agents.length > 0 && (
-                      <div className="mt-2 ml-[88px] flex flex-wrap items-center gap-1 text-[11px]">
-                        {c.agents.map((id: AgentId, i: number) => (
-                          <span key={id} className="flex items-center gap-1">
-                            {i > 0 && (
-                              <span className="text-[var(--ink-faint)] select-none mx-0.5">→</span>
-                            )}
-                            <span className="px-1.5 py-0.5 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-wider">
-                              {agents[id].name}
-                            </span>
+                    <div className="flex items-start gap-3">
+                      <ChevronRight
+                        size={12}
+                        strokeWidth={1.5}
+                        className={`text-[var(--ink-faint)] mt-1.5 shrink-0 transition-transform ${
+                          isActive ? 'rotate-90 text-[var(--ink-dim)]' : ''
+                        }`}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span className="font-mono text-[11px] text-[var(--ink-faint)] tabular-nums">
+                            {formatTime(c.completedAt)}
                           </span>
-                        ))}
+                          <span className="text-[var(--ink)] leading-snug">{c.title}</span>
+                        </div>
+                        <div className="text-[12px] text-[var(--ink-dim)] mt-0.5 leading-snug">
+                          {c.context}
+                        </div>
+                        <div className="mt-1.5 font-mono text-[11px] text-[var(--mos)]">
+                          {minutesToHoursLabel(c.minutesSaved)} bespaard · {c.artifactCount} stuks
+                        </div>
+                        {c.agents.length > 0 && (
+                          <div className="mt-2 flex flex-wrap items-center gap-1 text-[11px]">
+                            {c.agents.map((id: AgentId, i: number) => (
+                              <span key={id} className="flex items-center gap-1">
+                                {i > 0 && (
+                                  <span className="text-[var(--ink-faint)] select-none mx-0.5">
+                                    →
+                                  </span>
+                                )}
+                                <span className="px-1.5 py-0.5 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-wider">
+                                  {agents[id].name}
+                                </span>
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </button>
                 </li>
               );

@@ -6,7 +6,7 @@ import { SitePage } from '@/components/site/SitePage';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'Ik bouw en implementeer AI-agents die het dagelijkse werk van MKB-bedrijven overnemen. Mails, offertes, orderverwerking, facturatie, inkoop, planning.',
+    'Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven lichter maken. Mails, offertes, planning, inkoop, rapportage, communicatie.',
 };
 
 export default function HomePage() {
@@ -25,7 +25,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-16 sm:pb-24">
-        <div className="max-w-[760px] relative">
+        <div className="max-w-[820px] relative">
           <div
             aria-hidden
             className="hidden sm:block absolute -left-4 top-2 bottom-6 w-[2px]"
@@ -38,15 +38,18 @@ function Hero() {
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             AI-agents voor MKB · Nederland
           </div>
-          <h1 className="mt-4 font-display text-[38px] sm:text-[52px] lg:text-[62px] leading-[1.02] tracking-tight text-[var(--ink)]">
-            Uw digitale <span className="ink-highlight">collega</span>.
+          <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
+            De tijd van uw mensen is{' '}
+            <span className="ink-highlight">te duur</span> voor herhaalwerk.
             <br />
-            <span className="italic text-[var(--ink-dim)]">Geen dashboard.</span>
+            <span className="italic text-[var(--oker-deep)]">
+              Daarvoor zetten wij agents in.
+            </span>
           </h1>
-          <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[580px]">
-            Ik bouw AI-agents die het echte werk doen. Mails beantwoorden, offertes
-            opstellen, orders verwerken, planningen maken, facturen klaarzetten. Geen extra tool
-            om te leren. Gewoon meer gedaan aan het eind van de dag.
+          <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
+            Wij bouwen AI-agents die terugkerend werk overnemen. Administratie, planning,
+            inkoop, klantcommunicatie, rapportage. Op maat voor uw bedrijf, binnen uw regels, met
+            duidelijke grip. Zodat uw mensen bezig zijn met waar ze goed in zijn.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -72,7 +75,7 @@ function Hero() {
               aria-hidden
             />
             <span className="font-mono uppercase tracking-[0.18em]">
-              Vaste prijs · 4 tot 8 weken live · geen abonnementspest
+              Vaste prijs · eerste agent in 1 tot 2 weken · geen abonnementspest
             </span>
           </div>
         </div>
@@ -87,26 +90,26 @@ function WatDoenWe() {
       eyebrow: '01 · Bouwen',
       title: 'Op maat voor uw werk',
       body:
-        'We beginnen bij wat uw mensen elke dag doen. Welke mails kosten tijd? Welke offertes blijven liggen? Welke planning wordt steeds opnieuw gemaakt? Daar bouwen we de agent omheen. Geen generieke chatbot. Iets dat past bij uw bedrijf.',
+        'Wij beginnen bij wat uw mensen elke dag doen. Welke taken kosten tijd? Welk werk blijft liggen? Waar loopt u vast? Daar bouwen wij de agent omheen. Geen generieke oplossing. Iets dat past bij uw bedrijf.',
     },
     {
       eyebrow: '02 · Implementeren',
       title: 'Koppelen aan uw systemen',
       body:
-        'De agent praat met uw e-mail, boekhoudpakket, magazijn-app, CRM. Wij regelen die integraties. U bepaalt zelf wat automatisch mag en wat altijd langs u komt.',
+        'De agent praat met uw e-mail, boekhoudpakket, magazijn-app, CRM, planner. Wij regelen die integraties. U bepaalt zelf wat automatisch mag en wat altijd langs u komt.',
     },
     {
       eyebrow: '03 · Bijhouden',
       title: 'Meegroeien met de praktijk',
       body:
-        'Nieuwe leverancier erbij? Andere toon op uw mails? Scherpere marge? We passen de agent aan. Eens per maand een kort gesprek. Geen helpdesk waar u eerst een ticket moet schrijven.',
+        'Nieuwe leverancier erbij? Andere toon op uw mails? Scherpere marge? Wij passen de agent aan. Eens per maand een kort gesprek. Geen helpdesk waar u eerst een ticket moet schrijven.',
     },
   ];
   return (
     <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
         <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
-          Wat doen we
+          Wat doen wij
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)] max-w-[720px]">
           Bouwen, implementeren, bijhouden.
@@ -132,32 +135,33 @@ function WatDoenWe() {
 }
 
 function VoorWie() {
-  const branches = [
-    'Aannemers & bouwbedrijven',
-    'Groothandels',
-    'Installatietechniek',
-    'Productie & assemblage',
-    'Adviesbureaus',
-    'Transport & logistiek',
+  const vormen = [
+    'Terugkerende administratie',
+    'Klant- en leverancierscommunicatie',
+    'Offertes en orderverwerking',
+    'Inkoop en voorraadbeheer',
+    'Planning en logistiek',
+    'Rapportage en opvolging',
   ];
   return (
     <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-      <div className="max-w-[760px]">
+      <div className="max-w-[780px]">
         <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
           Voor wie
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)]">
-          Bedrijven met 10 tot 100 mensen waar de{' '}
-          <span className="italic text-[var(--oker-deep)]">administratie</span> sneller groeit dan
-          het kantoor.
+          Bedrijven waar mensen{' '}
+          <span className="italic text-[var(--oker-deep)]">harder werken</span> dan ze zouden
+          moeten.
         </h2>
-        <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
-          MKB&rsquo;ers die merken dat hun mensen veel tijd kwijt zijn aan herhalende taken. En
-          daardoor te weinig toekomen aan het vakmanschap waar klanten voor komen.
+        <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
+          Wij werken met MKB-bedrijven die merken dat hun mensen te veel tijd kwijt zijn aan
+          terugkerend werk. Administratie, ja, maar ook planning, communicatie, coördinatie en
+          rapportage. Overal waar een mens dezelfde handeling te vaak doet, ontstaat ruimte.
         </p>
       </div>
-      <ul className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-        {branches.map((b) => (
+      <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+        {vormen.map((b) => (
           <li
             key={b}
             className="px-4 py-3 rounded-[2px] border border-[var(--paper-edge)] text-[13.5px] sm:text-[14px] text-[var(--ink)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
@@ -224,16 +228,23 @@ function Aanpak() {
             <span className="italic text-[var(--oker-deep)]">implementeren.</span>
           </h2>
           <p className="mt-4 text-[14px] sm:text-[15px] leading-[1.65] text-[var(--ink-dim)]">
-            Het eerste gesprek is altijd vrijblijvend. We kijken samen of er iets concreets te
-            winnen valt bij u. Zo ja, dan komt er een voorstel: één agent, vaste prijs, duidelijke
+            Het eerste gesprek is altijd vrijblijvend. Wij kijken samen of er iets concreets te
+            winnen valt. Zo ja, dan komt er een voorstel: één agent, vaste prijs, duidelijke
             opleveringsdatum. Geen pilot van zes maanden zonder resultaat.
           </p>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-4 text-[13px]">
             <Link
               href="/over"
-              className="inline-flex items-center gap-2 text-[13px] text-[var(--oker-deep)] hover:text-[var(--ink)] transition-colors"
+              className="inline-flex items-center gap-1.5 text-[var(--oker-deep)] hover:text-[var(--ink)] transition-colors"
             >
               Meer over ons
+              <ArrowRight size={14} strokeWidth={1.8} />
+            </Link>
+            <Link
+              href="/cases"
+              className="inline-flex items-center gap-1.5 text-[var(--oker-deep)] hover:text-[var(--ink)] transition-colors"
+            >
+              Voorbeelden bekijken
               <ArrowRight size={14} strokeWidth={1.8} />
             </Link>
           </div>
@@ -241,9 +252,9 @@ function Aanpak() {
 
         <ol className="space-y-5 text-[14px]">
           {[
-            ['Kennismaken', 'Eén gesprek bij u of bij ons. We kijken wat uw mensen vooral kost.'],
+            ['Kennismaken', 'Eén gesprek bij u of bij ons. Wij kijken wat uw mensen vooral kost.'],
             ['Ontwerpen', 'Samen kiezen we één proces waar de grootste winst zit.'],
-            ['Bouwen', 'Wij bouwen de agent, u test mee. Meestal vier tot acht weken.'],
+            ['Bouwen', 'Wij bouwen de agent, u test mee. Een eerste agent staat vaak al binnen één tot twee weken live.'],
             ['Implementeren', 'Koppelen aan uw systemen. Uw mensen krijgen uitleg over het beheer.'],
             ['Bijhouden', 'Maandelijks een kort gesprek om aan te passen.'],
           ].map(([title, body], i) => (

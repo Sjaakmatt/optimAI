@@ -68,7 +68,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs, vier tot acht weken live. Geen groot project-bord nodig.',
+          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs, één tot twee weken live voor de eerste versie. Geen groot project-bord nodig.',
       },
     ],
   },
@@ -259,7 +259,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Iets kleins, iets snels, iets met duidelijk resultaat binnen vier tot zes weken. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. Voorraadsignalen die een inkooporder klaarzetten. Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
+          'Iets kleins, iets snels, iets met duidelijk resultaat binnen één tot twee weken. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. Voorraadsignalen die een inkooporder klaarzetten. Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
       },
       {
         kind: 'quote',

@@ -117,7 +117,7 @@ export default function InfoPage() {
           />
           <FAQ
             q="Hoe snel werkt het?"
-            a="Een eerste agent staat meestal in 4 tot 8 weken live. Daarna breiden we uit met meer scenario&rsquo;s of meer afdelingen. Geen jaren-traject."
+            a="Een eerste agent staat vaak binnen één tot twee weken live. Daarna breiden we uit met meer scenario&rsquo;s of meer afdelingen. Geen jaren-traject."
           />
           <FAQ
             q="Wat kost dat?"
