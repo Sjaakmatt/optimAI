@@ -54,18 +54,19 @@ export default function OverPage() {
             <p>
               Wat me het meest interesseert in dit werk, is het gesprek met de mensen aan tafel.
               Niet de framework van de maand. Niet de laatste management-theorie. Wel de simpele
-              vraag: wat kost uw ochtend nou eigenlijk? Welke mail blijft al dagen liggen? Welke
-              telefoon wordt steeds doorgeschoven naar morgen? Welke handeling doet uw binnendienst
-              voor de derde keer deze week? Daar komen vanzelf de oplossingen uit. Oplossingen die
-              werken, omdat ze beginnen bij het echte werk.
+              vraag: wat kost uw werkdag nou eigenlijk? Welke taak blijft liggen? Welk overleg
+              wordt steeds doorgeschoven? Welke handeling doet iemand voor de derde keer deze
+              week? Daar komen vanzelf de oplossingen uit. Oplossingen die werken, omdat ze
+              beginnen bij het echte werk.
             </p>
             <p>
-              Ik woon in Hoogkarspel, midden in West-Friesland. Hier zitten veel aannemers,
-              groothandels en installatiebedrijven. Het soort bedrijf waar ik graag mee aan tafel
-              zit. FactumAI is voor mij een logische volgende stap. AI-agents zijn geen hype meer,
-              ze doen inmiddels echt werk. En juist bij MKB-bedrijven, waar de administratie
-              harder groeit dan het kantoor, kan dat het verschil maken tussen krap zitten en
-              ruimte hebben.
+              Ik woon in Hoogkarspel, midden in West-Friesland. Dichtbij, maar ik werk door heel
+              Nederland. Bij productiebedrijven, dienstverleners, handelshuizen, techniek,
+              zorg, onderwijs, kleine ondernemers en organisaties met een paar honderd mensen.
+              Overal waar een proces onnodig tijd kost, is er iets te winnen. FactumAI is voor
+              mij een logische volgende stap: AI-agents zijn geen hype meer, ze doen inmiddels
+              echt werk. En dat kan bij vrijwel elke organisatie het verschil maken tussen krap
+              zitten en ruimte hebben.
             </p>
             <p>
               Wat ik leuk vind aan dit werk: het gesprek. Een ondernemer die uitlegt waar hij
