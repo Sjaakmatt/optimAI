@@ -169,6 +169,7 @@ body::after {
   padding: 0.05em 0.12em 0 0;
   color: var(--oker-deep);
   font-style: italic;
+  font-variation-settings: "WONK" 0, "SOFT" 50;
 }
 
 /* Decoratieve section-divider */
@@ -190,6 +191,7 @@ body::after {
 
 .font-display {
   font-family: var(--font-fraunces), "Times New Roman", serif;
+  font-variation-settings: "WONK" 0, "SOFT" 50;
 }
 .font-mono {
   font-family: var(--font-plex-mono), "Menlo", monospace;
