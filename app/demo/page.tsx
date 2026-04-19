@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   description:
     'Interactieve demo van een AI-agent-workbench. Bekijk hoe agents samenwerken aan mails, offertes en orders.',
   alternates: { canonical: '/demo' },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function WorkbenchPage() {
