@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
+import { BRANCHES } from '@/lib/data/branches';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -42,5 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...caseEntries, ...postEntries];
+  const brancheEntries: MetadataRoute.Sitemap = BRANCHES.map((b) => ({
+    url: `${SITE_URL}/branches/${b.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...brancheEntries, ...caseEntries, ...postEntries];
 }
