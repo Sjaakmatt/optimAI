@@ -538,75 +538,96 @@ export const POSTS: Post[] = [
     ],
   },
   {
-    slug: 'vaste-prijs-geen-abonnement',
-    title: 'Vaste prijs, geen abonnement. Waarom wij dat doen',
+    slug: 'vaste-bouwprijs-en-retainer',
+    title: 'Vaste bouwprijs én een retainer die meegroeit',
     lede:
-      'De software-industrie heeft u de afgelopen tien jaar getraind om alles per maand te betalen. Wij doen dat bewust niet. Hier is waarom.',
+      'Een AI-agent is geen statisch product. Daarom werken wij met een vaste bouwprijs plus een optionele maandelijkse retainer. U kiest zelf welke variant bij uw bedrijf past.',
     author: 'Sjaak ter Veld',
     published: '2026-04-14',
-    readingMinutes: 4,
-    tags: ['pricing', 'business model', 'transparantie'],
+    readingMinutes: 5,
+    tags: ['pricing', 'retainer', 'onderhoud', 'transparantie'],
     blocks: [
       {
         kind: 'p',
         text:
-          'In elk eerste gesprek komt de vraag: "En wat kost dat per maand?" Dan moet ik even een stap terug doen. Wij rekenen namelijk niet zo. Dat roept vragen op. Terecht, want het wijkt af van wat u gewend bent.',
+          'In elk eerste gesprek komt de vraag: "En wat kost dat?" Dat antwoord begint bij ons met een onderscheid dat voor veel ondernemers wennen is. Wij werken met een vaste prijs voor de bouw, én een maandelijkse retainer voor daarna. Die retainer is niet verplicht — u kiest zelf of u hem afneemt. Maar hij is wel belangrijk voor veel klanten. Hieronder leg ik uit waarom.',
       },
-      { kind: 'h2', text: 'Wat het SaaS-model met u doet' },
+      { kind: 'h2', text: 'De bouw: één vaste prijs' },
       {
         kind: 'p',
         text:
-          'U betaalt elke maand. Het stopt nooit. Na twee jaar heeft u drie keer de oorspronkelijke prijs betaald. Meestal weet u niet meer precies waarvoor. Als u iets wil aanpassen, vraagt men extra. Als u wil stoppen, verliest u data. Dit is niet slecht bedoeld. Het is gewoon hoe abonnementen werken.',
+          'Voor het ontwerp, de bouw en de implementatie van uw agent leveren wij een vaste prijs. Vooraf, op één A4, met opleveringsdatum. Geen uurtje-factuurtje, geen meerwerk-discussies tijdens de rit. Loopt het uit, dan is dat ons probleem, niet uw factuur. Zo weet u precies wat u koopt en wat u terugkrijgt.',
       },
-      { kind: 'h2', text: 'Wat wij doen in plaats daarvan' },
+      { kind: 'h2', text: 'De retainer: waarom die er is' },
+      {
+        kind: 'p',
+        text:
+          'Een AI-agent is iets anders dan een Excel-sheet of een installatie uit 2008 die decennia blijft werken zoals hij was. Rondom uw agent beweegt voortdurend van alles:',
+      },
       {
         kind: 'list',
         items: [
-          'Eén vaste prijs voor de bouw en implementatie van uw agent. U weet vooraf wat het wordt.',
-          'Een opleveringsdatum. Als wij uitlopen, is dat ons probleem, niet uw factuur.',
-          'Daarna een maandelijks onderhoudsbedrag, bewust laag. Het meeste werk zit in de bouw.',
-          'Uitbreiden? Vaste prijs voor de uitbreiding, niet "meer uit uw abonnement halen".',
+          'Taalmodellen worden elk kwartaal beter én goedkoper. Als we niet meekijken, betaalt u volgend jaar te veel voor minder kwaliteit.',
+          'Uw processen veranderen. Klantgroepen komen erbij, beleidsregels schuiven, seizoensdrukte verandert. De agent moet meebewegen.',
+          'Uw externe systemen krijgen updates. Boekhoudpakket een API-wijziging, e-mailserver nieuwe authenticatie, CRM een interfaceverandering.',
+          'Guardrails vragen aandacht. Nieuwe uitzonderingen leren de agent wat er automatisch mag en wat langs een mens moet.',
+          'Monitoring is geen luxe. Je wilt weten dat de agent doet wat hij hoort te doen, en dat zijn logboek klopt.',
         ],
+      },
+      {
+        kind: 'p',
+        text:
+          'Dat alles valt in de retainer. Concreet: monitoring van agent-prestaties, periodieke review van beleidsregels, model-updates zodra er betere of goedkopere uitkomen, beveiligings- en integratie-updates, kleine wijzigingen zonder extra factuur, en een maandelijks onderhoudsgesprek van een half uur.',
       },
       {
         kind: 'quote',
         text:
-          'Wij verdienen geld aan goed werk leveren, niet aan u vastgeplakt houden aan een contract.',
+          'Een agent die stilstaat, raakt vanzelf achterop. Een agent die meegroeit, blijft waarde leveren zolang uw bedrijf dat doet.',
       },
-      { kind: 'h2', text: 'Waarom dit ook voor ons beter werkt' },
+      { kind: 'h2', text: 'Of alleen implementatie — ook prima' },
       {
         kind: 'p',
         text:
-          'Onze prikkel is om de agent meteen goed te bouwen. Niet om "features achterhouden voor de premium tier". Niet om u afhankelijk te maken. Wij werken voor klanten die ons aanbevelen bij collega-ondernemers. Dat is ons marketingmodel. Een tevreden ondernemer die drie anderen stuurt is meer waard dan een abonnement dat knelt.',
-      },
-      { kind: 'h2', text: 'En als u het niet meer nodig heeft?' },
-      {
-        kind: 'p',
-        text:
-          'Dan stopt u. De agent is van u. Uw data is van u. Wij leveren de code en documentatie mee. In de praktijk gebeurt dat zelden, omdat goede agents waarde blijven leveren. Maar u hoeft het niet te vrezen. Vrijheid is niet iets wat u bij uw leverancier moet afkopen.',
+          'U bent niet verplicht een retainer af te nemen. Sommige ondernemers willen eerst zien wat de agent doet, en pas later beslissen of ze onderhoud inkopen. Ook goed. Dan koopt u alleen de bouw, de agent draait op uw infrastructuur of op die van ons, en bijstellen gaat ad hoc tegen een vaste prijs per wijziging. U heeft dan alle vrijheid, maar ook alle verantwoordelijkheid voor het meegroeien.',
       },
       {
         kind: 'p',
         text:
-          'Nederlandse MKB-ondernemers zijn op dit punt gewoon pragmatisch. Ze willen weten wat iets kost. Ze willen niet elke maand een factuur zonder dat duidelijk is waarvoor. Wij proberen in die traditie te bouwen.',
+          'In de praktijk kiest het merendeel van onze klanten voor een retainer, omdat de investering zich vertienvoudigt zodra de agent blijft meebewegen met uw bedrijf. Maar het is altijd úw keuze.',
+      },
+      { kind: 'h2', text: 'Wat níét in de retainer zit' },
+      {
+        kind: 'p',
+        text:
+          'Grote uitbreidingen. Nieuwe scenario\u2019s, extra integraties, een agent erbij voor een andere afdeling. Dat krijgt een eigen vaste-prijs-offerte. Zo blijft de retainer helder en voorspelbaar, en betaalt u alleen voor waar u om vraagt.',
+      },
+      { kind: 'h2', text: 'Hoe dit voor u uitpakt' },
+      {
+        kind: 'p',
+        text:
+          'Nederlandse MKB-ondernemers zijn op dit punt pragmatisch. U wil weten wat iets kost en wat u ervoor terugkrijgt. Niet een maandbedrag zonder duidelijke tegenprestatie. Daarom is de retainer inhoudelijk concreet gemaakt: u weet wat erin zit, u weet wat erbuiten valt, en u kiest zelf of u hem wil.',
       },
     ],
     faq: [
       {
         q: 'Wat kost een AI-agent laten bouwen bij FactumAI?',
-        a: 'Eén vaste prijs voor bouw en implementatie, afhankelijk van complexiteit en aantal integraties. U weet vooraf exact wat het wordt, inclusief opleveringsdatum. Daarna een bewust laag maandelijks onderhoudsbedrag; het meeste werk zit in de bouw.',
+        a: 'Eén vaste bouwprijs voor implementatie, afhankelijk van complexiteit en aantal integraties. U weet vooraf exact wat het wordt, inclusief opleveringsdatum. Daarna kiest u zelf: een maandelijkse retainer voor onderhoud en monitoring, of alleen de bouw en ad-hoc aanpassingen later.',
       },
       {
-        q: 'Waarom geen maandabonnement zoals SaaS-bedrijven?',
-        a: 'Omdat abonnementen u betalen zolang u er bent, niet zolang wij waarde leveren. Na twee jaar heeft u vaak drie keer de oorspronkelijke prijs betaald en bij stoppen verliest u data. Onze prikkel is om de agent meteen goed te bouwen, niet om u vast te plakken aan een contract.',
+        q: 'Wat zit er precies in de maandelijkse retainer?',
+        a: 'Monitoring van agent-prestaties en logboek, periodieke review van beleidsregels, model-updates zodra er betere of goedkopere beschikbaar zijn, beveiligings- en integratie-updates, kleine wijzigingen zonder extra factuur, en een maandelijks onderhoudsgesprek van een half uur.',
       },
       {
-        q: 'Wat gebeurt er als ik wil stoppen?',
-        a: 'Dan stopt u. De agent is van u, de data is van u, code en documentatie leveren we mee. In de praktijk gebeurt dat zelden, omdat goede agents waarde blijven leveren. Maar vrijheid is niet iets wat u bij uw leverancier moet afkopen.',
+        q: 'Kan ik alleen de implementatie afnemen, zonder retainer?',
+        a: 'Ja. U betaalt dan alleen de vaste bouwprijs. Aanpassingen later gaan ad hoc tegen een vaste prijs per wijziging. U heeft alle vrijheid, maar ook alle verantwoordelijkheid voor het meegroeien van de agent met nieuwe modellen en veranderende processen.',
       },
       {
-        q: 'Wat kost een uitbreiding van de agent later?',
-        a: 'Ook vaste prijs, niet "meer uit uw abonnement halen". U krijgt een voorstel met duidelijke scope en opleveringsdatum voor elke uitbreiding.',
+        q: 'Wat valt er buiten de retainer?',
+        a: 'Grote uitbreidingen: nieuwe scenario\u2019s, extra integraties of een aanvullende agent voor een andere afdeling. Die krijgen een eigen vaste-prijs-offerte. Zo blijft de retainer voorspelbaar en betaalt u alleen voor wat u bewust uitbreidt.',
+      },
+      {
+        q: 'Wat gebeurt er als ik wil stoppen met de retainer?',
+        a: 'Dan stopt u. De agent blijft van u, de data is van u, code en documentatie krijgt u mee. U kunt later weer instappen, of kiezen voor ad-hoc ondersteuning. Vrijheid is bij ons geen upsell.',
       },
     ],
   },
