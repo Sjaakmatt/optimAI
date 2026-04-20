@@ -66,6 +66,17 @@ function buildLlmsTxt(): string {
   lines.push('- Werkgebied: heel Nederland');
   lines.push('');
 
+  lines.push('## Juridisch');
+  lines.push('');
+  lines.push(
+    `- [Privacyverklaring](${SITE_URL}/privacy): Welke persoonsgegevens FactumAI verwerkt, waarom, met wie wij ze delen, jouw rechten en onze beveiligingsmaatregelen.`,
+  );
+  lines.push(
+    `- [Sub-verwerkers](${SITE_URL}/subverwerkers): Overzicht van sub-verwerkers (SnelStart, Microsoft 365, Apple iCloud, Vercel Analytics) met locatie en juridisch kader.`,
+  );
+  lines.push('- Privacy-vragen: privacy@factumai.nl');
+  lines.push('');
+
   return lines.join('\n');
 }
 

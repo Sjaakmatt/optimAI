@@ -136,8 +136,26 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[11px] font-mono text-[var(--ink-faint)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 border-t border-[var(--paper-edge)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-[var(--ink-faint)]">
         <span>© {new Date().getFullYear()} FactumAI</span>
+        <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
+          <li>
+            <Link
+              href="/privacy"
+              className="uppercase tracking-[0.14em] hover:text-[var(--ink)]"
+            >
+              Privacy
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/subverwerkers"
+              className="uppercase tracking-[0.14em] hover:text-[var(--ink)]"
+            >
+              Sub-verwerkers
+            </Link>
+          </li>
+        </ul>
         <span className="uppercase tracking-[0.14em]">Gebouwd met ambacht</span>
       </div>
     </footer>
