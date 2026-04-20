@@ -1,15 +1,10 @@
 import { POSTS } from '@/lib/data/posts';
 import { CASES } from '@/lib/data/cases';
+import { BRANCHES } from '@/lib/data/branches';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const dynamic = 'force-static';
-
-const BRANCHES = [
-  { slug: 'groothandel', label: 'Groothandel' },
-  { slug: 'installatietechniek', label: 'Installatietechniek' },
-  { slug: 'transport-logistiek', label: 'Transport & logistiek' },
-];
 
 function buildLlmsTxt(): string {
   const lines: string[] = [];
@@ -17,7 +12,7 @@ function buildLlmsTxt(): string {
   lines.push('# FactumAI');
   lines.push('');
   lines.push(
-    '> FactumAI bouwt AI-agents op maat voor Nederlandse MKB-bedrijven. Een AI-agent is een digitale medewerker die zelf beslissingen neemt binnen door u bepaalde grenzen: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen. Vaste prijs, eerste agent live in 1 tot 2 weken, geen abonnement.',
+    '> FactumAI bouwt AI-agents op maat voor Nederlandse MKB-bedrijven. Een AI-agent is een digitale medewerker die zelf beslissingen neemt binnen door u bepaalde grenzen: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele maandelijkse retainer voor onderhoud, monitoring en model-updates — of alleen implementatie, u kiest zelf.',
   );
   lines.push('');
   lines.push(

@@ -12,12 +12,12 @@ const PAGE_PATH = '/diensten/ai-agent-laten-bouwen';
 export const metadata: Metadata = {
   title: 'AI-agent laten bouwen voor uw MKB-bedrijf',
   description:
-    'AI-agent laten bouwen die het werk van uw binnendienst overneemt: mails, offertes, orders, facturatie. Vaste prijs, eerste agent in 1 tot 2 weken live, geen abonnement.',
+    'AI-agent laten bouwen die het werk van uw binnendienst overneemt: mails, offertes, orders, facturatie. Vaste bouwprijs, eerste agent in 1 tot 2 weken live. Optionele retainer voor onderhoud en monitoring, of alleen implementatie.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-agent laten bouwen · FactumAI',
     description:
-      'Vaste prijs, eerste agent live in 1 tot 2 weken, geen abonnement. Wij bouwen AI-agents op maat voor MKB-bedrijven in Nederland.',
+      'Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring - u kiest zelf. Wij bouwen AI-agents op maat voor MKB-bedrijven in Nederland.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -52,8 +52,12 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
     a: 'In onze praktijk niet. De agent neemt het saaie, repetitieve werk weg; uw mensen krijgen ruimte voor klantcontact, vakwerk en acquisitie. Teams die wij hebben geholpen groeiden in omzet zonder extra FTE aan te nemen.',
   },
   {
-    q: 'Betaal ik een maandabonnement?',
-    a: 'Nee. Wij werken met een vaste prijs voor bouw en implementatie. Onderhoud en uitbreidingen gaan in overleg, ook tegen vaste prijzen. Geen abonnementspest, geen verrassingen achteraf.',
+    q: 'Moet ik een maandelijkse retainer afnemen?',
+    a: 'Nee, u kiest zelf. Wij leveren een vaste bouwprijs voor implementatie. Daarna kunt u een maandelijkse retainer afnemen voor onderhoud, monitoring, model-updates en beleidsaanpassingen, óf u neemt alleen de implementatie en bijstellen gaat ad hoc tegen een vaste prijs per wijziging. Beide opties zijn beschikbaar. In de praktijk kiest het merendeel voor een retainer, omdat een agent die blijft meegroeien met uw processen en systemen meer waarde levert dan één die stilstaat.',
+  },
+  {
+    q: 'Wat zit er in de maandelijkse retainer?',
+    a: 'Monitoring van agent-prestaties, periodieke review van beleidsregels, model-updates wanneer er betere of goedkopere modellen uitkomen, beveiligingsupdates, kleine bijstellingen zonder extra factuur, en een maandelijks onderhoudsgesprek van een half uur. Grotere uitbreidingen (nieuwe scenario\'s of extra integraties) vallen buiten de retainer en krijgen een eigen vaste-prijs-offerte.',
   },
 ];
 
@@ -76,7 +80,7 @@ const SERVICE_SCHEMA = {
   serviceType: 'AI-agent ontwikkeling',
   name: 'AI-agent laten bouwen',
   description:
-    'Wij ontwerpen, bouwen en implementeren AI-agents op maat voor MKB-bedrijven in Nederland. Vaste prijs, eerste agent live in 1 tot 2 weken, geen abonnement.',
+    'Wij ontwerpen, bouwen en implementeren AI-agents op maat voor MKB-bedrijven in Nederland. Vaste bouwprijs, eerste agent live in 1 tot 2 weken, optionele maandelijkse retainer voor onderhoud en monitoring.',
   provider: { '@id': `${SITE_URL}/#organization` },
   areaServed: { '@type': 'Country', name: 'Netherlands' },
   url: `${SITE_URL}${PAGE_PATH}`,
@@ -180,7 +184,7 @@ export default function AIAgentLatenBouwenPage() {
                 aria-hidden
               />
               <span className="font-mono uppercase tracking-[0.18em]">
-                Vaste prijs · 1 tot 2 weken live · geen abonnement
+                Vaste bouwprijs · 1 tot 2 weken live · retainer optioneel
               </span>
             </div>
           </div>
@@ -243,29 +247,21 @@ export default function AIAgentLatenBouwenPage() {
         </ol>
       </Section>
 
-      <Section eyebrow="Wat het kost" title="Vaste prijs. Geen abonnementspest.">
+      <Section eyebrow="Wat het kost" title="Vaste bouwprijs. Retainer op uw voorwaarden.">
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="site-card px-6 py-7">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-              Hoe wij rekenen
+              De bouw
             </div>
             <h3 className="mt-2 font-display text-[22px] leading-tight text-[var(--ink)]">
-              Per agent, niet per maand.
+              Eén vaste prijs, heldere scope.
             </h3>
             <p className="mt-4 text-[14.5px] leading-[1.65] text-[var(--ink-dim)]">
-              Wij leveren een concreet voorstel met één vaste prijs voor bouw en implementatie.
-              Afhankelijk van complexiteit van het proces en het aantal systemen waarmee we
-              koppelen. Geen uurtje-factuurtje, geen eindeloze meerwerkdiscussies.
+              Wij leveren een concreet voorstel met één vaste prijs voor bouw en implementatie,
+              afhankelijk van complexiteit en het aantal systemen waarmee we koppelen. Geen
+              uurtje-factuurtje, geen eindeloze meerwerkdiscussies.
             </p>
-          </div>
-          <div className="site-card px-6 py-7">
-            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-              Wat erin zit
-            </div>
-            <h3 className="mt-2 font-display text-[22px] leading-tight text-[var(--ink)]">
-              Alles om live te gaan.
-            </h3>
-            <ul className="mt-4 space-y-2 text-[14px] leading-[1.6] text-[var(--ink)]">
+            <ul className="mt-5 space-y-2 text-[14px] leading-[1.6] text-[var(--ink)]">
               {[
                 'Procesanalyse en agent-ontwerp',
                 'Bouw, integraties en beleidsconfiguratie',
@@ -280,11 +276,40 @@ export default function AIAgentLatenBouwenPage() {
               ))}
             </ul>
           </div>
+          <div className="site-card px-6 py-7" style={{ borderColor: 'var(--oker)' }}>
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+              Daarna · optioneel
+            </div>
+            <h3 className="mt-2 font-display text-[22px] leading-tight text-[var(--ink)]">
+              Retainer die de agent laat meegroeien.
+            </h3>
+            <p className="mt-4 text-[14.5px] leading-[1.65] text-[var(--ink-dim)]">
+              Een AI-agent is geen statisch product. Modellen worden beter, uw processen veranderen,
+              externe systemen krijgen updates, beleid schuift. Voor klanten die die doorontwikkeling
+              willen borgen is er een maandelijkse retainer. Wilt u alleen de implementatie? Ook
+              prima — aanpassingen gaan dan ad hoc tegen vaste prijs.
+            </p>
+            <ul className="mt-5 space-y-2 text-[14px] leading-[1.6] text-[var(--ink)]">
+              {[
+                'Monitoring van agent-prestaties en logboek',
+                'Model-updates zodra er betere of goedkopere uitkomen',
+                'Periodieke review en bijstelling van beleidsregels',
+                'Kleine wijzigingen zonder extra factuur',
+                'Maandelijks onderhoudsgesprek van een half uur',
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <Check size={14} strokeWidth={2} className="mt-0.5 text-[var(--oker-deep)] shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <p className="mt-8 text-[14px] text-[var(--ink-faint)] leading-[1.7] max-w-[720px]">
-          Onderhoud en uitbreidingen gaan in overleg, ook tegen vaste prijzen. Wij vragen een
-          terugkerend consult-tarief als u maandelijkse doorontwikkeling wilt, maar een losse
-          wijziging kan ook ad hoc. U houdt de regie.
+          U kiest zelf: met retainer voor rust en doorontwikkeling, of puur implementatie en
+          aanpassen wanneer het nodig is. Grote uitbreidingen (nieuwe scenario&rsquo;s, extra
+          integraties) vallen in beide gevallen buiten de retainer en krijgen een eigen
+          vaste-prijs-offerte.
         </p>
       </Section>
 
@@ -349,7 +374,7 @@ export default function AIAgentLatenBouwenPage() {
         <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             ['waarom-mkb-nu-klaar-is-voor-ai-agents', 'Waarom het MKB nu klaar is voor AI-agents'],
-            ['vaste-prijs-geen-abonnement', 'Vaste prijs, geen abonnement. Waarom wij dat doen'],
+            ['vaste-bouwprijs-en-retainer', 'Vaste bouwprijs én een retainer die meegroeit'],
             ['eerste-agent-is-nooit-de-belangrijkste', 'Uw eerste agent is nooit de belangrijkste'],
             ['guardrails-niet-een-rem-maar-een-kompas', 'Guardrails: niet een rem, maar een kompas'],
           ].map(([slug, title]) => (

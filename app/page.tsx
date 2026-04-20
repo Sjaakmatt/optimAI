@@ -6,7 +6,7 @@ import { SitePage } from '@/components/site/SitePage';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste prijs, eerste agent live in 1 tot 2 weken, geen abonnement. Mails, offertes, planning, inkoop, rapportage.',
+    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring, u kiest zelf. Mails, offertes, planning, inkoop, rapportage.',
   alternates: { canonical: '/' },
 };
 
@@ -73,7 +73,7 @@ function Hero() {
               aria-hidden
             />
             <span className="font-mono uppercase tracking-[0.18em]">
-              Vaste prijs · eerste agent in 1 tot 2 weken · geen abonnementspest
+              Vaste bouwprijs · live in 1 tot 2 weken · retainer optioneel
             </span>
           </div>
         </div>
