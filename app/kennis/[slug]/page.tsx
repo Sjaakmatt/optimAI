@@ -48,6 +48,22 @@ function articleSchema(post: Post) {
   };
 }
 
+function faqSchema(post: Post) {
+  if (!post.faq || post.faq.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+}
+
 export async function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
 }
@@ -91,10 +107,12 @@ export default async function PostPage({
 
   const currentIndex = POSTS.findIndex((x) => x.slug === slug);
   const nextPost = POSTS[(currentIndex + 1) % POSTS.length];
+  const faq = faqSchema(p);
+  const schemas = faq ? [articleSchema(p), faq] : articleSchema(p);
 
   return (
     <SitePage>
-      <JsonLd data={articleSchema(p)} />
+      <JsonLd data={schemas} />
       <article>
         <section className="mx-auto max-w-[740px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-6 sm:pb-8">
           <div className="mb-6 sm:mb-8">
@@ -135,6 +153,34 @@ export default async function PostPage({
             ))}
           </div>
         </section>
+
+        {p.faq && p.faq.length > 0 && (
+          <section
+            className="border-t border-[var(--paper-edge)]"
+            style={{ background: 'var(--paper-warm)' }}
+          >
+            <div className="mx-auto max-w-[760px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+                Veelgestelde vragen
+              </div>
+              <h2 className="mt-2 font-display text-[26px] sm:text-[32px] leading-tight text-[var(--ink)]">
+                Over dit onderwerp
+              </h2>
+              <div className="mt-8 space-y-6">
+                {p.faq.map((item) => (
+                  <div key={item.q} className="pb-5 border-b border-[var(--paper-edge)]">
+                    <h3 className="font-display text-[17px] sm:text-[18px] text-[var(--ink)] leading-snug">
+                      {item.q}
+                    </h3>
+                    <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
           <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
+import { BRANCHES } from '@/lib/data/branches';
 
 export function SiteFooter() {
   const topPosts = [...POSTS]
@@ -34,6 +35,16 @@ export function SiteFooter() {
                 AI-agent laten bouwen
               </Link>
             </li>
+            {BRANCHES.map((b) => (
+              <li key={b.slug}>
+                <Link
+                  href={`/branches/${b.slug}`}
+                  className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+                >
+                  Voor {b.label.toLowerCase()}
+                </Link>
+              </li>
+            ))}
             <li>
               <Link href="/info" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
                 Wat is een AI-agent
@@ -42,16 +53,6 @@ export function SiteFooter() {
             <li>
               <Link href="/demo" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
                 Demo · De Werkbank
-              </Link>
-            </li>
-            <li>
-              <Link href="/over" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
-                Over ons
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
-                Contact
               </Link>
             </li>
           </ul>
@@ -122,6 +123,16 @@ export function SiteFooter() {
               </a>
             </li>
             <li>Hoogkarspel · West-Friesland</li>
+            <li className="pt-2">
+              <Link href="/over" className="hover:text-[var(--ink)]">
+                Over FactumAI
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-[var(--ink)]">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
