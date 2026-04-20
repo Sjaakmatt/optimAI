@@ -6,6 +6,11 @@ export type PostBlock =
   | { kind: 'list'; items: string[] }
   | { kind: 'divider' };
 
+export interface PostFAQ {
+  q: string;
+  a: string;
+}
+
 export interface Post {
   slug: string;
   title: string;
@@ -15,6 +20,7 @@ export interface Post {
   readingMinutes: number;
   tags: string[];
   blocks: PostBlock[];
+  faq?: PostFAQ[];
 }
 
 export const POSTS: Post[] = [
@@ -69,6 +75,20 @@ export const POSTS: Post[] = [
         kind: 'p',
         text:
           'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs, één tot twee weken live voor de eerste versie. Geen groot project-bord nodig.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Waarom is nu het juiste moment voor een MKB-bedrijf om met AI-agents te starten?',
+        a: 'Omdat het tooling-landschap rond generatieve AI in 2025 en 2026 volwassen is geworden. Agents kunnen betrouwbaar koppelen met bestaande systemen, beleidsregels zijn configureerbaar geworden, en integraties kosten dagen in plaats van maanden. MKB-bedrijven hebben vaak nog veel via mail en Excel — daar neemt één goed gebouwde agent direct 30 tot 60 procent van de administratieve tijd weg.',
+      },
+      {
+        q: 'Hebben grote bedrijven geen voorsprong met AI?',
+        a: 'Niet in deze golf. Grote concerns hebben in hun backoffice al veel geautomatiseerd met SAP, Oracle of custom workflows. Voor hen is een AI-agent een extra schil. Bij MKB-bedrijven is de impact groter omdat de uitgangspositie minder geautomatiseerd is. De bouwtijd is korter, de ROI meetbaar binnen één maand.',
+      },
+      {
+        q: 'Wat als ik nu niet instap?',
+        a: 'Bedrijven die nu beginnen hebben over twee jaar een meetbare voorsprong in hun branche. Niet omdat ze "meer met AI doen", maar omdat ze met dezelfde bezetting 30 procent meer omzet draaien. Dat vertaalt zich naar investeringsruimte, inkoopkracht en werksnelheid richting klanten.',
       },
     ],
   },
@@ -335,6 +355,24 @@ export const POSTS: Post[] = [
           'We zetten een testkoppeling op voordat we überhaupt aan de agent beginnen. Als die technisch werkt, kunnen we doorbouwen. Als hij rammelt, melden we dat meteen. U krijgt nooit de factuur van een agent die niet aan uw systeem gaat praten.',
       },
     ],
+    faq: [
+      {
+        q: 'Kan een AI-agent koppelen met Exact, Moneybird, AFAS of Snelstart?',
+        a: 'Ja. Alle gangbare Nederlandse boekhoudpakketten (Exact, Moneybird, AFAS, Snelstart, Odoo) hebben een API die wij gebruiken voor directe, real-time koppeling. Aansluiten kost doorgaans een paar dagen.',
+      },
+      {
+        q: 'Wat als mijn systeem geen API heeft?',
+        a: 'Dat is zelden een blokkade. Wij kunnen ook werken via webhooks, e-mail-doorstromingen met PDF-bijlagen, of een kleine bridge die handmatige CSV-exports nabootst. Niet elegant, wel effectief en betrouwbaar.',
+      },
+      {
+        q: 'Wat moet ik vooraf aanleveren voor een integratie?',
+        a: 'Naam en versie van uw boekhoudpakket, CRM of magazijn-app; inloggegevens voor een testomgeving of een account met beperkte rechten; en één concreet voorbeeld van wat de agent met dat systeem moet doen (bijvoorbeeld "factuur klaarzetten na oplevering").',
+      },
+      {
+        q: 'Hoe weet ik zeker dat de koppeling werkt voordat ik betaal?',
+        a: 'Wij zetten in de eerste week een testkoppeling op, voordat we aan de eigenlijke agent beginnen. Werkt die technisch, dan bouwen we door. Rammelt hij, dan melden we dat direct. U krijgt nooit een factuur voor een agent die niet aan uw systeem praat.',
+      },
+    ],
   },
   {
     slug: 'wat-een-agent-betekent-voor-uw-boekhouder',
@@ -551,6 +589,24 @@ export const POSTS: Post[] = [
         kind: 'p',
         text:
           'Nederlandse MKB-ondernemers zijn op dit punt gewoon pragmatisch. Ze willen weten wat iets kost. Ze willen niet elke maand een factuur zonder dat duidelijk is waarvoor. Wij proberen in die traditie te bouwen.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Wat kost een AI-agent laten bouwen bij FactumAI?',
+        a: 'Eén vaste prijs voor bouw en implementatie, afhankelijk van complexiteit en aantal integraties. U weet vooraf exact wat het wordt, inclusief opleveringsdatum. Daarna een bewust laag maandelijks onderhoudsbedrag; het meeste werk zit in de bouw.',
+      },
+      {
+        q: 'Waarom geen maandabonnement zoals SaaS-bedrijven?',
+        a: 'Omdat abonnementen u betalen zolang u er bent, niet zolang wij waarde leveren. Na twee jaar heeft u vaak drie keer de oorspronkelijke prijs betaald en bij stoppen verliest u data. Onze prikkel is om de agent meteen goed te bouwen, niet om u vast te plakken aan een contract.',
+      },
+      {
+        q: 'Wat gebeurt er als ik wil stoppen?',
+        a: 'Dan stopt u. De agent is van u, de data is van u, code en documentatie leveren we mee. In de praktijk gebeurt dat zelden, omdat goede agents waarde blijven leveren. Maar vrijheid is niet iets wat u bij uw leverancier moet afkopen.',
+      },
+      {
+        q: 'Wat kost een uitbreiding van de agent later?',
+        a: 'Ook vaste prijs, niet "meer uit uw abonnement halen". U krijgt een voorstel met duidelijke scope en opleveringsdatum voor elke uitbreiding.',
       },
     ],
   },
