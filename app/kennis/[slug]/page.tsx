@@ -1,9 +1,52 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { POSTS, POST_BY_SLUG, type PostBlock } from '@/lib/data/posts';
+import { Breadcrumbs } from '@/components/site/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { POSTS, POST_BY_SLUG, type PostBlock, type Post } from '@/lib/data/posts';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
+
+function wordCount(post: Post): number {
+  return post.blocks.reduce((sum, b) => {
+    if (b.kind === 'p' || b.kind === 'h2' || b.kind === 'h3' || b.kind === 'quote') {
+      return sum + b.text.split(/\s+/).filter(Boolean).length;
+    }
+    if (b.kind === 'list') {
+      return sum + b.items.reduce((s, it) => s + it.split(/\s+/).filter(Boolean).length, 0);
+    }
+    return sum;
+  }, 0);
+}
+
+function articleSchema(post: Post) {
+  const url = `${SITE_URL}/kennis/${post.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.lede,
+    datePublished: post.published,
+    dateModified: post.published,
+    inLanguage: 'nl-NL',
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    url,
+    image: `${SITE_URL}/opengraph-image`,
+    keywords: post.tags,
+    wordCount: wordCount(post),
+    articleSection: 'Kennis',
+  };
+}
 
 export async function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -26,6 +69,7 @@ export async function generateMetadata({
   return {
     title: p.title,
     description: p.lede,
+    alternates: { canonical: `/kennis/${slug}` },
     openGraph: {
       title: p.title,
       description: p.lede,
@@ -50,15 +94,18 @@ export default async function PostPage({
 
   return (
     <SitePage>
+      <JsonLd data={articleSchema(p)} />
       <article>
         <section className="mx-auto max-w-[740px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-6 sm:pb-8">
-          <Link
-            href="/kennis"
-            className="inline-flex items-center gap-1.5 text-[13px] text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors mb-6 sm:mb-8"
-          >
-            <ArrowLeft size={13} strokeWidth={1.5} />
-            Alle artikelen
-          </Link>
+          <div className="mb-6 sm:mb-8">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Kennis', href: '/kennis' },
+                { label: p.title, href: `/kennis/${p.slug}` },
+              ]}
+            />
+          </div>
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen ·{' '}
             {p.author}

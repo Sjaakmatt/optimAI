@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
+import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -35,17 +36,6 @@ export const metadata: Metadata = {
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "FactumAI" }],
-  keywords: [
-    "AI agents",
-    "MKB",
-    "automatisering",
-    "digitale medewerker",
-    "multi-agent",
-    "Nederland",
-    "groothandel",
-    "offertes",
-    "orderverwerking",
-  ],
   openGraph: {
     type: "website",
     locale: "nl_NL",
@@ -74,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${playfair.variable} ${lora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen">
+        <OrganizationSchema />
         {children}
       </body>
     </html>

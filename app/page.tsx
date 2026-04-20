@@ -6,7 +6,8 @@ import { SitePage } from '@/components/site/SitePage';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven lichter maken. Mails, offertes, planning, inkoop, rapportage, communicatie.',
+    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste prijs, eerste agent live in 1 tot 2 weken, geen abonnement. Mails, offertes, planning, inkoop, rapportage.',
+  alternates: { canonical: '/' },
 };
 
 export default function HomePage() {
