@@ -86,7 +86,7 @@ export default async function BranchePage({
   const { branche } = await params;
   const b = BRANCHE_BY_SLUG[branche];
   if (!b) notFound();
-  const caseStudy = CASE_BY_SLUG[b.caseSlug];
+  const caseStudy = b.caseSlug ? CASE_BY_SLUG[b.caseSlug] : undefined;
 
   return (
     <SitePage>
@@ -179,7 +179,7 @@ export default async function BranchePage({
         </div>
       </Section>
 
-      {caseStudy && (
+      {caseStudy && b.stats && (
         <Section
           eyebrow="Resultaten uit de praktijk"
           title={`Zo werkt het bij ${caseStudy.klant}.`}
@@ -223,6 +223,39 @@ export default async function BranchePage({
               className="inline-flex items-center gap-2 text-[14px] text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
             >
               Lees de volledige case
+              <ArrowRight size={16} strokeWidth={1.8} />
+            </Link>
+          </div>
+        </Section>
+      )}
+
+      {!caseStudy && b.expectations && (
+        <Section
+          eyebrow="Wat u mag verwachten"
+          title={`Concreet resultaat in uw ${b.label.toLowerCase()}-organisatie.`}
+          tint
+        >
+          <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
+            Dit zijn de uitkomsten die wij bij vergelijkbare opdrachten halen. Uw situatie bepaalt
+            welke het eerst opvalt — dat stemmen we af in het intake-gesprek.
+          </p>
+          <ul className="mt-8 space-y-3 max-w-[820px]">
+            {b.expectations.map((e) => (
+              <li
+                key={e}
+                className="flex gap-3 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
+              >
+                <span className="text-[var(--oker)] pt-1 shrink-0">✓</span>
+                <span>{e}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10">
+            <Link
+              href="/cases"
+              className="inline-flex items-center gap-2 text-[14px] text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors"
+            >
+              Bekijk cases uit andere branches
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
           </div>
