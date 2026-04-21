@@ -14,7 +14,9 @@ export default function HomePage() {
     <SitePage>
       <Hero />
       <WatDoenWe />
+      <Stats />
       <VoorWie />
+      <DemoDivider />
       <DemoTeaser />
       <Aanpak />
     </SitePage>
@@ -160,9 +162,15 @@ function VoorWie() {
         {werkgebieden.map((b) => (
           <li
             key={b}
-            className="px-4 py-3 rounded-[2px] border border-[var(--paper-edge)] text-[13.5px] sm:text-[14px] text-[var(--ink)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+            className="px-4 py-3 rounded-[2px] border border-[var(--paper-edge)] text-[13.5px] sm:text-[14px] text-[var(--ink)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors flex items-baseline gap-2.5"
           >
-            {b}
+            <span
+              aria-hidden
+              className="font-mono text-[11px] text-[var(--steen)] tracking-[0.1em]"
+            >
+              —
+            </span>
+            <span>{b}</span>
           </li>
         ))}
       </ul>
@@ -172,26 +180,26 @@ function VoorWie() {
 
 function DemoTeaser() {
   return (
-    <section className="border-t border-[var(--paper-edge)] relative overflow-hidden">
+    <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 50% 50% at 80% 30%, rgba(168, 128, 58, 0.08) 0%, transparent 70%)',
+            'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
         }}
       />
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-end">
           <div className="max-w-[620px]">
-            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+            <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
               Zie het werken
             </div>
-            <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)]">
+            <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--paper)]">
               De Werkbank.{' '}
-              <span className="italic text-[var(--oker-deep)]">Een live demo.</span>
+              <span className="italic text-[var(--oker)]">Een live demo.</span>
             </h2>
-            <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)]">
+            <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--paper-deep)]">
               Kies een klantvraag (klacht, order, offerte) en kijk hoe acht afdelingen samen aan
               de slag gaan. Ze zoeken het klantdossier op, passen uw beleidsregels toe, schrijven
               de mail, zetten een creditnota klaar, regelen het transport. Alles als
@@ -200,7 +208,7 @@ function DemoTeaser() {
           </div>
           <Link
             href="/demo"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors shrink-0 lift-on-hover"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors shrink-0 lift-on-hover"
           >
             Open de demo
             <ArrowRight size={16} strokeWidth={1.8} />
@@ -216,7 +224,7 @@ function Aanpak() {
     <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
         <div>
-          <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
+          <div className="font-mono text-[11px] text-[var(--mos)] uppercase tracking-[0.2em]">
             Onze aanpak
           </div>
           <h2 className="mt-2 font-display text-[24px] sm:text-[28px] leading-[1.15] text-[var(--ink)]">
@@ -269,5 +277,72 @@ function Aanpak() {
         </ol>
       </div>
     </section>
+  );
+}
+
+function Stats() {
+  const cells = [
+    {
+      value: '1–2 wk',
+      label: 'Eerste agent live',
+      body: 'Van kennismaking tot een werkende agent in uw praktijk.',
+      italic: false,
+    },
+    {
+      value: '~40%',
+      label: 'Tijdwinst',
+      body: 'Op terugkerend werk — mails, orders, offertes, planning.',
+      italic: true,
+    },
+    {
+      value: '8',
+      label: 'Afdelingen',
+      body: 'Samenwerkende agents in de Werkbank, elk met eigen rol.',
+      italic: false,
+    },
+  ];
+  return (
+    <section className="border-t border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {cells.map((c, i) => (
+            <div
+              key={c.label}
+              className={
+                'px-0 md:px-8 py-6 md:py-2' +
+                (i > 0 ? ' md:border-l border-[var(--paper-edge)]' : '')
+              }
+            >
+              <div
+                className={
+                  'font-display tabular-nums text-[72px] sm:text-[88px] lg:text-[96px] leading-[0.95] tracking-tight ' +
+                  (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
+                }
+              >
+                {c.value}
+              </div>
+              <div className="mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
+                {c.label}
+              </div>
+              <p className="mt-2 text-[14px] leading-[1.6] text-[var(--ink-dim)] max-w-[280px]">
+                {c.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DemoDivider() {
+  return (
+    <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-6 sm:pb-8">
+      <div className="ornament-divider">
+        <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.24em]">
+          Demo
+        </span>
+      </div>
+    </div>
   );
 }
