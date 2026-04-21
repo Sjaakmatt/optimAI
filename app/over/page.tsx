@@ -82,30 +82,37 @@ export default function OverPage() {
       </section>
 
       <section
-        className="border-t border-[var(--paper-edge)]"
-        style={{ background: 'var(--paper-warm)' }}
+        className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden"
       >
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 60% 50% at 20% 30%, rgba(168, 128, 58, 0.14) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+          <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
             Waar wij in geloven
           </div>
-          <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--ink)] max-w-[720px]">
+          <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[720px]">
             Drie uitgangspunten die{' '}
-            <span className="italic text-[var(--oker-deep)]">alles bepalen.</span>
+            <span className="italic text-[var(--oker)]">alles bepalen.</span>
           </h2>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
-            <Principle
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+            <DarkPrinciple
               number="I"
               title="Het werk staat centraal. Niet de techniek."
               body="Uw mensen, uw klanten, uw processen zijn waar het om draait. De agent is gereedschap. Goed gereedschap, maar gereedschap."
             />
-            <Principle
+            <DarkPrinciple
               number="II"
               title="Vakmanschap boven hype."
               body="We bouwen zoals een meubelmaker. Rustig, precies, met materiaal dat blijft staan. Geen wekelijkse pivot in framework."
             />
-            <Principle
+            <DarkPrinciple
               number="III"
               title="U houdt de knoppen."
               body="Elke automatische beslissing komt voort uit een regel die u zelf kunt aan- of uitzetten. Geen blackbox. Geen verrassingen."
@@ -114,32 +121,24 @@ export default function OverPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
-          }}
-        />
-        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-            <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--paper)] max-w-[540px] leading-snug">
+            <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
               Zin in een gesprek? Of eerst{' '}
-              <span className="italic text-[var(--oker)]">de demo</span> zien?
+              <span className="italic text-[var(--oker-deep)]">de demo</span> zien?
             </h2>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/demo"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
               >
                 Demo openen
                 <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--paper)] border border-[var(--paper-deep)] hover:bg-[var(--paper)] hover:text-[var(--ink)] hover:border-[var(--paper)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
               >
                 Contact
               </Link>
@@ -180,7 +179,7 @@ function Portret() {
   );
 }
 
-function Principle({
+function DarkPrinciple({
   number,
   title,
   body,
@@ -190,12 +189,16 @@ function Principle({
   body: string;
 }) {
   return (
-    <article className="site-card px-6 py-6">
-      <div className="font-display italic text-[28px] text-[var(--oker)] leading-none">
+    <article className="relative pl-6">
+      <div
+        aria-hidden
+        className="absolute left-0 top-1 bottom-1 w-px bg-[var(--paper-deep)] opacity-30"
+      />
+      <div className="font-display italic text-[72px] sm:text-[88px] text-[var(--oker)] leading-none tracking-tight">
         {number}
       </div>
-      <h3 className="mt-3 font-display text-[18px] leading-tight text-[var(--ink)]">{title}</h3>
-      <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">{body}</p>
+      <h3 className="mt-4 font-display text-[19px] leading-tight text-[var(--paper)]">{title}</h3>
+      <p className="mt-3 text-[14px] leading-[1.7] text-[var(--paper-deep)] opacity-90">{body}</p>
     </article>
   );
 }

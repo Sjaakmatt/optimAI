@@ -218,40 +218,62 @@ export default function AIAgentLatenBouwenPage() {
         </p>
       </Section>
 
-      <Section
-        eyebrow="Hoe het werkt"
-        title="Van eerste gesprek naar werkende agent in 1 tot 2 weken."
-        tint
-      >
-        <ol className="mt-8 space-y-5">
-          <Step
-            number="01"
-            title="Kennismakingsgesprek"
-            body="Een uur. U vertelt waar uw mensen tijd aan kwijt zijn. Wij luisteren en stellen vragen over uw werkwijze, systemen en beleid. Aan het eind weten we samen welk proces als eerste automatisch kan."
-          />
-          <Step
-            number="02"
-            title="Concreet voorstel met vaste prijs"
-            body="Binnen een week krijgt u een voorstel: welke agent we bouwen, welke systemen we koppelen, welke beleidsregels, welke doorlooptijd, welke prijs. Geen open einden, geen meerwerk-verrassingen."
-          />
-          <Step
-            number="03"
-            title="Bouw en koppeling"
-            body="Wij bouwen de agent, koppelen aan uw e-mail, boekhoudpakket, CRM, voorraadsysteem of magazijn-app. U test mee. Wij passen aan tot het klopt met hoe uw bedrijf werkt."
-          />
-          <Step
-            number="04"
-            title="Live en bijhouden"
-            body="De agent gaat live. Eerst in stille modus zodat u meekijkt, daarna volledig autonoom binnen de regels die u heeft bepaald. Eens per maand een kort onderhoudsgesprek. Nieuwe scenario’s bouwen we op afroep bij."
-          />
-        </ol>
-      </Section>
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 45% 60% at 15% 40%, rgba(168, 128, 58, 0.14) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+          <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
+            Hoe het werkt
+          </div>
+          <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[780px]">
+            Van eerste gesprek naar werkende agent{' '}
+            <span className="italic text-[var(--oker)]">in 1 tot 2 weken.</span>
+          </h2>
+          <ol className="mt-12 relative">
+            <div
+              aria-hidden
+              className="absolute left-[14px] sm:left-[18px] top-2 bottom-2 w-px bg-[var(--paper-deep)] opacity-25"
+            />
+            <DarkStep
+              number="01"
+              title="Kennismakingsgesprek"
+              body="Een uur. U vertelt waar uw mensen tijd aan kwijt zijn. Wij luisteren en stellen vragen over uw werkwijze, systemen en beleid. Aan het eind weten we samen welk proces als eerste automatisch kan."
+            />
+            <DarkStep
+              number="02"
+              title="Concreet voorstel met vaste prijs"
+              body="Binnen een week krijgt u een voorstel: welke agent we bouwen, welke systemen we koppelen, welke beleidsregels, welke doorlooptijd, welke prijs. Geen open einden, geen meerwerk-verrassingen."
+            />
+            <DarkStep
+              number="03"
+              title="Bouw en koppeling"
+              body="Wij bouwen de agent, koppelen aan uw e-mail, boekhoudpakket, CRM, voorraadsysteem of magazijn-app. U test mee. Wij passen aan tot het klopt met hoe uw bedrijf werkt."
+            />
+            <DarkStep
+              number="04"
+              title="Live en bijhouden"
+              last
+              body="De agent gaat live. Eerst in stille modus zodat u meekijkt, daarna volledig autonoom binnen de regels die u heeft bepaald. Eens per maand een kort onderhoudsgesprek. Nieuwe scenario's bouwen we op afroep bij."
+            />
+          </ol>
+        </div>
+      </section>
 
       <Section eyebrow="Wat het kost" title="Vaste bouwprijs. Retainer op uw voorwaarden.">
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="site-card px-6 py-7">
+          <div className="site-card px-6 py-7 relative overflow-hidden">
+            <div
+              aria-hidden
+              className="absolute top-0 left-0 right-0 h-[3px] bg-[var(--oker-deep)]"
+            />
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-              De bouw
+              De bouw · vast
             </div>
             <h3 className="mt-2 font-display text-[22px] leading-tight text-[var(--ink)]">
               Eén vaste prijs, heldere scope.
@@ -276,8 +298,16 @@ export default function AIAgentLatenBouwenPage() {
               ))}
             </ul>
           </div>
-          <div className="site-card px-6 py-7" style={{ borderColor: 'var(--oker)' }}>
-            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+          <div
+            className="site-card px-6 py-7 relative overflow-hidden"
+            style={{ borderStyle: 'dashed', borderColor: 'var(--mos)' }}
+          >
+            <div
+              aria-hidden
+              className="absolute top-0 left-0 right-0 h-[3px]"
+              style={{ background: 'var(--mos)' }}
+            />
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em]" style={{ color: 'var(--mos)' }}>
               Daarna · optioneel
             </div>
             <h3 className="mt-2 font-display text-[22px] leading-tight text-[var(--ink)]">
@@ -298,7 +328,7 @@ export default function AIAgentLatenBouwenPage() {
                 'Maandelijks onderhoudsgesprek van een half uur',
               ].map((item) => (
                 <li key={item} className="flex gap-2">
-                  <Check size={14} strokeWidth={2} className="mt-0.5 text-[var(--oker-deep)] shrink-0" />
+                  <Check size={14} strokeWidth={2} className="mt-0.5 shrink-0" style={{ color: 'var(--mos)' }} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -397,31 +427,23 @@ export default function AIAgentLatenBouwenPage() {
         </ul>
       </Section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
-          }}
-        />
-        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--paper)] max-w-[560px] leading-snug">
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Klaar om een AI-agent voor uw bedrijf{' '}
-            <span className="italic text-[var(--oker)]">te laten bouwen?</span>
+            <span className="italic text-[var(--oker-deep)]">te laten bouwen?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--paper)] border border-[var(--paper-deep)] hover:bg-[var(--paper)] hover:text-[var(--ink)] hover:border-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Bekijk de demo
             </Link>
@@ -470,23 +492,27 @@ function Benefit({ title, body }: { title: string; body: string }) {
   );
 }
 
-function Step({
+function DarkStep({
   number,
   title,
   body,
+  last,
 }: {
   number: string;
   title: string;
   body: string;
+  last?: boolean;
 }) {
   return (
-    <li className="flex gap-5 sm:gap-6 pb-5 border-b border-[var(--paper-edge)] last:border-b-0">
-      <div className="font-mono text-[14px] text-[var(--oker-deep)] tracking-[0.18em] shrink-0 w-10">
+    <li className={`relative flex gap-5 sm:gap-7 ${last ? '' : 'pb-8'}`}>
+      <div
+        className="relative shrink-0 z-10 flex items-center justify-center w-[30px] sm:w-[38px] h-[30px] sm:h-[38px] rounded-full bg-[var(--ink)] border border-[var(--oker)] font-mono tabular-nums text-[11px] sm:text-[12px] text-[var(--oker)] tracking-wider"
+      >
         {number}
       </div>
-      <div>
-        <h3 className="font-display text-[20px] leading-tight text-[var(--ink)]">{title}</h3>
-        <p className="mt-2 text-[14.5px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
+      <div className="pt-1">
+        <h3 className="font-display text-[20px] leading-tight text-[var(--paper)]">{title}</h3>
+        <p className="mt-2 text-[14.5px] leading-[1.7] text-[var(--paper-deep)] opacity-90 max-w-[720px]">
           {body}
         </p>
       </div>

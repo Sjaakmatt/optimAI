@@ -80,14 +80,17 @@ export default function InfoPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           <CompareCard
             kind="Chatbot"
+            accent="steen"
             body="Antwoordt op vragen als u begint te typen. Doet verder niks. Wacht op u."
           />
           <CompareCard
             kind="Workflow-tool"
+            accent="mos"
             body="Volgt exact het pad dat u tevoren tekent. Bij iets onverwachts valt hij stil."
           />
           <CompareCard
             kind="AI-agent"
+            accent="oker"
             highlight
             body="Leest een binnenkomende mail, kijkt in uw systemen, past beleid toe, neemt een besluit en voert het uit. Meldt het als iets langs u moet."
           />
@@ -152,31 +155,23 @@ export default function InfoPage() {
         </div>
       </Section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
-          }}
-        />
-        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--paper)] max-w-[540px] leading-snug">
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
             Nog vragen? Of eerst{' '}
-            <span className="italic text-[var(--oker)]">even zelf kijken</span> wat mogelijk is?
+            <span className="italic text-[var(--oker-deep)]">even zelf kijken</span> wat mogelijk is?
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Open de demo
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--paper)] border border-[var(--paper-deep)] hover:bg-[var(--paper)] hover:text-[var(--ink)] hover:border-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Plan een gesprek
             </Link>
@@ -220,18 +215,22 @@ function CompareCard({
   kind,
   body,
   highlight,
+  accent,
 }: {
   kind: string;
   body: string;
   highlight?: boolean;
+  accent: 'steen' | 'mos' | 'oker';
 }) {
+  const accentColor = `var(--${accent})`;
+  const accentDeep = accent === 'oker' ? 'var(--oker-deep)' : accentColor;
   return (
     <article
-      className="site-card px-5 py-6"
+      className="site-card px-5 py-6 relative overflow-hidden"
       style={
         highlight
           ? {
-              borderColor: 'var(--oker)',
+              borderColor: accentColor,
               boxShadow: 'var(--shadow-hover)',
               background: 'var(--paper)',
             }
@@ -239,8 +238,13 @@ function CompareCard({
       }
     >
       <div
+        aria-hidden
+        className="absolute left-0 top-0 bottom-0 w-[3px]"
+        style={{ background: accentColor, opacity: highlight ? 1 : 0.55 }}
+      />
+      <div
         className="font-mono text-[10px] uppercase tracking-[0.18em]"
-        style={{ color: highlight ? 'var(--oker-deep)' : 'var(--ink-faint)' }}
+        style={{ color: accentDeep }}
       >
         {kind}
       </div>
