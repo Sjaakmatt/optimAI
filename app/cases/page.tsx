@@ -31,46 +31,49 @@ export default function CasesPage() {
       </section>
 
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-20 space-y-5">
-        {CASES.map((c) => (
-          <Link
-            key={c.slug}
-            href={`/cases/${c.slug}`}
-            className="block site-card px-6 sm:px-8 py-6 sm:py-7 group"
-          >
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-              <div className="min-w-0">
-                <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
-                  {c.branche} · {c.regio}
-                </div>
-                <h2 className="mt-1 font-display text-[22px] sm:text-[26px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                  {c.klant}
-                </h2>
-                <p className="mt-1 text-[15px] text-[var(--ink-dim)] italic">{c.tagline}</p>
-              </div>
-              <div className="flex items-baseline gap-5 shrink-0">
-                {c.resultaat.slice(0, 2).map((r) => (
-                  <div key={r.label} className="text-right">
-                    <div className="font-display text-[20px] sm:text-[22px] text-[var(--oker-deep)]">
-                      {r.metric}
-                    </div>
-                    <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider">
-                      {r.label}
-                    </div>
+        {CASES.map((c, i) => {
+          const accent = ['var(--oker-deep)', 'var(--terra)', 'var(--mos)'][i % 3];
+          return (
+            <Link
+              key={c.slug}
+              href={`/cases/${c.slug}`}
+              className="block site-card px-6 sm:px-8 py-6 sm:py-7 group"
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: accent }}>
+                    {c.branche} · {c.regio}
                   </div>
-                ))}
+                  <h2 className="mt-1 font-display text-[22px] sm:text-[26px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                    {c.klant}
+                  </h2>
+                  <p className="mt-1 text-[15px] text-[var(--ink-dim)] italic">{c.tagline}</p>
+                </div>
+                <div className="flex items-baseline gap-5 shrink-0">
+                  {c.resultaat.slice(0, 2).map((r) => (
+                    <div key={r.label} className="text-right">
+                      <div className="font-display text-[20px] sm:text-[22px]" style={{ color: accent }}>
+                        {r.metric}
+                      </div>
+                      <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider">
+                        {r.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="mt-4 pt-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[12px]">
-              <span className="font-mono text-[var(--ink-faint)] uppercase tracking-wider">
-                {c.doorlooptijd}
-              </span>
-              <span className="font-mono text-[var(--oker-deep)] group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
-                Lees de case
-                <ArrowRight size={13} strokeWidth={1.8} />
-              </span>
-            </div>
-          </Link>
-        ))}
+              <div className="mt-4 pt-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[12px]">
+                <span className="font-mono text-[var(--ink-faint)] uppercase tracking-wider">
+                  {c.doorlooptijd}
+                </span>
+                <span className="font-mono text-[var(--oker-deep)] group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
+                  Lees de case
+                  <ArrowRight size={13} strokeWidth={1.8} />
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </section>
     </SitePage>
   );

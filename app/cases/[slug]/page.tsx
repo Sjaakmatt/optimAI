@@ -110,16 +110,19 @@ export default async function CaseDetail({
               Resultaat
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
-              {c.resultaat.map((r) => (
-                <div key={r.label} className="site-card px-5 py-5">
-                  <div className="font-display text-[24px] sm:text-[28px] text-[var(--oker-deep)] leading-none">
-                    {r.metric}
+              {c.resultaat.map((r, i) => {
+                const accent = ['var(--oker-deep)', 'var(--terra)', 'var(--mos)', 'var(--oker)'][i % 4];
+                return (
+                  <div key={r.label} className="site-card px-5 py-5">
+                    <div className="font-display text-[24px] sm:text-[28px] leading-none" style={{ color: accent }}>
+                      {r.metric}
+                    </div>
+                    <div className="mt-2 text-[12px] text-[var(--ink-dim)] leading-[1.5]">
+                      {r.label}
+                    </div>
                   </div>
-                  <div className="mt-2 text-[12px] text-[var(--ink-dim)] leading-[1.5]">
-                    {r.label}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -162,12 +165,26 @@ export default async function CaseDetail({
         </section>
 
         {c.quote && (
-          <section className="border-t border-[var(--paper-edge)]">
-            <div className="mx-auto max-w-[820px] px-5 sm:px-8 lg:px-10 py-14 text-center">
-              <p className="font-display italic text-[22px] sm:text-[26px] leading-[1.4] text-[var(--ink)]">
-                &ldquo;{c.quote.text}&rdquo;
+          <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse 60% 70% at 50% 50%, rgba(161, 88, 66, 0.14) 0%, transparent 70%)',
+              }}
+            />
+            <div className="relative mx-auto max-w-[820px] px-5 sm:px-8 lg:px-10 py-16 sm:py-20 text-center">
+              <div
+                aria-hidden
+                className="font-display italic text-[64px] leading-none text-[var(--oker)] opacity-50 mb-2"
+              >
+                &ldquo;
+              </div>
+              <p className="font-display italic text-[22px] sm:text-[28px] leading-[1.4] text-[var(--paper)]">
+                {c.quote.text}
               </p>
-              <div className="mt-6 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
+              <div className="mt-8 font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.18em]">
                 {c.quote.by} · {c.quote.role}
               </div>
             </div>

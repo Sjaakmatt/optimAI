@@ -51,13 +51,22 @@ export default function ContactPage() {
             />
 
             <div className="pt-6 border-t border-[var(--paper-edge)]">
-              <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+              <div className="font-mono text-[10px] text-[var(--mos)] uppercase tracking-[0.16em]">
                 Wat we graag weten
               </div>
               <ul className="mt-3 space-y-1.5 text-[13px] text-[var(--ink-dim)] leading-[1.55]">
-                <li>• Wat voor bedrijf (branche, aantal mensen)</li>
-                <li>• Welk proces kost u de meeste tijd</li>
-                <li>• Wanneer zou u iets live willen hebben</li>
+                <li className="flex gap-2">
+                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span>Wat voor bedrijf (branche, aantal mensen)</span>
+                </li>
+                <li className="flex gap-2">
+                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span>Welk proces kost u de meeste tijd</span>
+                </li>
+                <li className="flex gap-2">
+                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span>Wanneer zou u iets live willen hebben</span>
+                </li>
               </ul>
             </div>
           </aside>

@@ -114,24 +114,32 @@ export default function OverPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-            <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
+            <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--paper)] max-w-[540px] leading-snug">
               Zin in een gesprek? Of eerst{' '}
-              <span className="italic text-[var(--oker-deep)]">de demo</span> zien?
+              <span className="italic text-[var(--oker)]">de demo</span> zien?
             </h2>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/demo"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
               >
                 Demo openen
                 <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--paper)] border border-[var(--paper-deep)] hover:bg-[var(--paper)] hover:text-[var(--ink)] hover:border-[var(--paper)] transition-colors"
               >
                 Contact
               </Link>

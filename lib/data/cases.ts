@@ -48,8 +48,8 @@ export const CASES: CaseStudy[] = [
     doorlooptijd: '6 weken tot live',
   },
   {
-    slug: 'van-der-berg-installatie',
-    klant: 'Van der Berg Installatietechniek',
+    slug: 'hendriks-installatie',
+    klant: 'Hendriks Installatietechniek',
     branche: 'Installatietechniek',
     regio: 'Utrecht',
     tagline: 'Van offerte tot eindfactuur in één vloeiende keten.',
@@ -76,7 +76,7 @@ export const CASES: CaseStudy[] = [
     quote: {
       text:
         'We hebben geen extra mensen aangenomen terwijl we 30% in omzet zijn gegroeid. Dat zegt genoeg.',
-      by: 'Peter van der Berg',
+      by: 'Martijn Hendriks',
       role: 'Eigenaar',
     },
     doorlooptijd: '8 weken tot live',

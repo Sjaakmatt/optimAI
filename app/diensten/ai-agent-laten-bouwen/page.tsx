@@ -208,7 +208,7 @@ export default function AIAgentLatenBouwenPage() {
         </div>
         <p className="mt-10 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
           Bij Nordveld Groothandel bespaarde één agent-platform 182 minuten per dag, met een
-          gemiddelde reactietijd op offertes die zakte van 24 uur naar 9 minuten. Bij Van der Berg
+          gemiddelde reactietijd op offertes die zakte van 24 uur naar 9 minuten. Bij Hendriks
           Installatietechniek ging de administratietijd met 65% omlaag en werden facturen vier
           dagen sneller verstuurd. Bekijk de{' '}
           <Link href="/cases" className="underline text-[var(--ink)] hover:text-[var(--oker-deep)]">
@@ -397,22 +397,31 @@ export default function AIAgentLatenBouwenPage() {
         </ul>
       </Section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
-            Klaar om een AI-agent voor uw bedrijf te laten bouwen?
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 55% 55% at 82% 25%, rgba(161, 88, 66, 0.18) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--paper)] max-w-[560px] leading-snug">
+            Klaar om een AI-agent voor uw bedrijf{' '}
+            <span className="italic text-[var(--oker)]">te laten bouwen?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--paper)] border border-[var(--paper-deep)] hover:bg-[var(--paper)] hover:text-[var(--ink)] hover:border-[var(--paper)] transition-colors"
             >
               Bekijk de demo
             </Link>

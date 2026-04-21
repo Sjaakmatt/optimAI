@@ -143,9 +143,9 @@ export const BRANCHES: Branche[] = [
       { metric: '€ 2.100', label: 'per maand minder dubbel bestelde voorraad' },
       { metric: '−80%', label: 'status-telefoontjes van klanten' },
     ],
-    caseSlug: 'van-der-berg-installatie',
+    caseSlug: 'hendriks-installatie',
     context:
-      'Van der Berg Installatietechniek heeft 22 monteurs en een klein kantoor. Sinds acht weken live. Omzetgroei van 30% werd opgevangen zonder extra kantoorbezetting. De werkvoorbereiders doen nu plannings-werk in plaats van getik.',
+      'Hendriks Installatietechniek heeft 22 monteurs en een klein kantoor. Sinds acht weken live. Omzetgroei van 30% werd opgevangen zonder extra kantoorbezetting. De werkvoorbereiders doen nu plannings-werk in plaats van getik.',
     waaromNu:
       'Installatiebedrijven die een keten van werkbon-tot-factuur draaiend hebben, werken structureel profitabeler. De marge zit niet in uurtarief maar in doorstroom. Elke dag dat een factuur later de deur uit gaat, is liquiditeit die klant niet nodig heeft en u wel.',
     aanpak:

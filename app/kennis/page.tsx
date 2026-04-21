@@ -64,7 +64,7 @@ export default function KennisPage() {
                     {p.tags.map((t) => (
                       <span
                         key={t}
-                        className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.14em]"
+                        className="font-mono text-[10px] text-[var(--steen)] uppercase tracking-[0.14em]"
                       >
                         #{t}
                       </span>
