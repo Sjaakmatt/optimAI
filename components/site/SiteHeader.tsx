@@ -7,10 +7,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 
 const NAV = [
-  { href: '/over', label: 'Over ons' },
+  { href: '/diensten/ai-agent-laten-bouwen', label: 'Laten bouwen' },
   { href: '/info', label: 'Wat is AI-agent' },
   { href: '/cases', label: 'Cases' },
   { href: '/kennis', label: 'Kennis' },
+  { href: '/over', label: 'Over ons' },
   { href: '/demo', label: 'Demo' },
   { href: '/contact', label: 'Contact' },
 ];

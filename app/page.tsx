@@ -6,7 +6,8 @@ import { SitePage } from '@/components/site/SitePage';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven lichter maken. Mails, offertes, planning, inkoop, rapportage, communicatie.',
+    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring, u kiest zelf. Mails, offertes, planning, inkoop, rapportage.',
+  alternates: { canonical: '/' },
 };
 
 export default function HomePage() {
@@ -45,9 +46,10 @@ function Hero() {
             <span className="italic text-[var(--oker-deep)]">AI waar het kan.</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
-            Wij bouwen AI-agents die terugkerend werk overnemen. Administratie, planning,
-            inkoop, klantcommunicatie, rapportage. Op maat voor uw bedrijf, binnen uw regels, met
-            duidelijke grip. Zodat uw mensen bezig zijn met waar ze goed in zijn.
+            FactumAI bouwt AI-agents voor Nederlandse MKB-bedrijven. Een AI-agent is een digitale
+            medewerker die terugkerend werk overneemt: administratie, planning, inkoop,
+            klantcommunicatie, rapportage. Op maat voor uw bedrijf, binnen uw regels, met duidelijke
+            grip. Zodat uw mensen bezig zijn met waar ze goed in zijn.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -73,7 +75,7 @@ function Hero() {
               aria-hidden
             />
             <span className="font-mono uppercase tracking-[0.18em]">
-              Vaste prijs · eerste agent in 1 tot 2 weken · geen abonnementspest
+              Vaste bouwprijs · live in 1 tot 2 weken · retainer optioneel
             </span>
           </div>
         </div>

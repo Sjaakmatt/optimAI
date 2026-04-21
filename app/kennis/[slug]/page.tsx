@@ -1,9 +1,68 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { POSTS, POST_BY_SLUG, type PostBlock } from '@/lib/data/posts';
+import { Breadcrumbs } from '@/components/site/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { POSTS, POST_BY_SLUG, type PostBlock, type Post } from '@/lib/data/posts';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
+
+function wordCount(post: Post): number {
+  return post.blocks.reduce((sum, b) => {
+    if (b.kind === 'p' || b.kind === 'h2' || b.kind === 'h3' || b.kind === 'quote') {
+      return sum + b.text.split(/\s+/).filter(Boolean).length;
+    }
+    if (b.kind === 'list') {
+      return sum + b.items.reduce((s, it) => s + it.split(/\s+/).filter(Boolean).length, 0);
+    }
+    return sum;
+  }, 0);
+}
+
+function articleSchema(post: Post) {
+  const url = `${SITE_URL}/kennis/${post.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.lede,
+    datePublished: post.published,
+    dateModified: post.published,
+    inLanguage: 'nl-NL',
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    url,
+    image: `${SITE_URL}/opengraph-image`,
+    keywords: post.tags,
+    wordCount: wordCount(post),
+    articleSection: 'Kennis',
+  };
+}
+
+function faqSchema(post: Post) {
+  if (!post.faq || post.faq.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+}
 
 export async function generateStaticParams() {
   return POSTS.map((p) => ({ slug: p.slug }));
@@ -26,6 +85,7 @@ export async function generateMetadata({
   return {
     title: p.title,
     description: p.lede,
+    alternates: { canonical: `/kennis/${slug}` },
     openGraph: {
       title: p.title,
       description: p.lede,
@@ -47,18 +107,23 @@ export default async function PostPage({
 
   const currentIndex = POSTS.findIndex((x) => x.slug === slug);
   const nextPost = POSTS[(currentIndex + 1) % POSTS.length];
+  const faq = faqSchema(p);
+  const schemas = faq ? [articleSchema(p), faq] : articleSchema(p);
 
   return (
     <SitePage>
+      <JsonLd data={schemas} />
       <article>
         <section className="mx-auto max-w-[740px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-6 sm:pb-8">
-          <Link
-            href="/kennis"
-            className="inline-flex items-center gap-1.5 text-[13px] text-[var(--ink-dim)] hover:text-[var(--ink)] transition-colors mb-6 sm:mb-8"
-          >
-            <ArrowLeft size={13} strokeWidth={1.5} />
-            Alle artikelen
-          </Link>
+          <div className="mb-6 sm:mb-8">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Kennis', href: '/kennis' },
+                { label: p.title, href: `/kennis/${p.slug}` },
+              ]}
+            />
+          </div>
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen ·{' '}
             {p.author}
@@ -88,6 +153,34 @@ export default async function PostPage({
             ))}
           </div>
         </section>
+
+        {p.faq && p.faq.length > 0 && (
+          <section
+            className="border-t border-[var(--paper-edge)]"
+            style={{ background: 'var(--paper-warm)' }}
+          >
+            <div className="mx-auto max-w-[760px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+                Veelgestelde vragen
+              </div>
+              <h2 className="mt-2 font-display text-[26px] sm:text-[32px] leading-tight text-[var(--ink)]">
+                Over dit onderwerp
+              </h2>
+              <div className="mt-8 space-y-6">
+                {p.faq.map((item) => (
+                  <div key={item.q} className="pb-5 border-b border-[var(--paper-edge)]">
+                    <h3 className="font-display text-[17px] sm:text-[18px] text-[var(--ink)] leading-snug">
+                      {item.q}
+                    </h3>
+                    <p className="mt-2 text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">
+                      {item.a}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
           <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">

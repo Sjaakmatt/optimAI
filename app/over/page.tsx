@@ -2,16 +2,19 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { FounderSchema } from '@/components/seo/PersonSchema';
 
 export const metadata: Metadata = {
-  title: 'Over ons · FactumAI',
+  title: 'Over FactumAI — wie bouwt uw AI-agent',
   description:
-    'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Nederlands, pragmatisch, vakmanschap boven hype.',
+    'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Sjaak ter Veld, oprichter, over vakmanschap boven hype en werken aan echte oplossingen.',
+  alternates: { canonical: '/over' },
 };
 
 export default function OverPage() {
   return (
     <SitePage>
+      <FounderSchema />
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">

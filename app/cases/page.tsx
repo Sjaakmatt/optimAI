@@ -5,9 +5,10 @@ import { SitePage } from '@/components/site/SitePage';
 import { CASES } from '@/lib/data/cases';
 
 export const metadata: Metadata = {
-  title: 'Cases · klanten en resultaten',
+  title: 'AI-agent cases — resultaten bij MKB-klanten',
   description:
-    'Drie voorbeelden van hoe we AI-agents bouwden voor MKB-klanten in groothandel, installatietechniek en transport.',
+    'Drie voorbeelden van AI-agents die wij voor MKB-klanten bouwden in groothandel, installatietechniek en transport. Met concrete tijdwinst, kostenbesparing en doorlooptijd.',
+  alternates: { canonical: '/cases' },
 };
 
 export default function CasesPage() {
