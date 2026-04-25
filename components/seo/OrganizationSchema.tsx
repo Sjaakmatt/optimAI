@@ -14,6 +14,12 @@ export function OrganizationSchema() {
     description:
       'FactumAI bouwt en implementeert AI-agents voor MKB-bedrijven. Nederlands, pragmatisch, vaste prijs.',
     image: `${SITE_URL}/opengraph-image`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/logo.png`,
+      width: 512,
+      height: 512,
+    },
     founder: {
       '@type': 'Person',
       name: 'Sjaak ter Veld',
