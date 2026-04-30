@@ -3,7 +3,7 @@ import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
-import "./globals.css";
+import "/globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -38,6 +38,18 @@ export const metadata: Metadata = {
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "FactumAI" }],
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+  },
+
   openGraph: {
     type: "website",
     locale: "nl_NL",
@@ -45,15 +57,27 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: "FactumAI · AI-agents voor MKB",
     description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "FactumAI",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "FactumAI · AI-agents voor MKB",
     description: DEFAULT_DESCRIPTION,
+    images: ["/opengraph-image"],
   },
+
   alternates: {
     canonical: SITE_URL,
   },
+
   robots: {
     index: true,
     follow: true,
