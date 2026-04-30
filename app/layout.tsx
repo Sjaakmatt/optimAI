@@ -3,7 +3,7 @@ import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
-import "/globals.css";
+import "./globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
