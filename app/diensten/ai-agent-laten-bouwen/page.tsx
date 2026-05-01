@@ -164,7 +164,7 @@ export default function AIAgentLatenBouwenPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                href="/contact"
+                href="/plan"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Plan een kennismaking
@@ -435,7 +435,7 @@ export default function AIAgentLatenBouwenPage() {
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href="/plan"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek

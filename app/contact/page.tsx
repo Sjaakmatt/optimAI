@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { ContactForm } from '@/components/site/ContactForm';
@@ -25,6 +26,15 @@ export default function ContactPage() {
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Eerst kijken of er iets concreets te winnen is bij u? Mail, bel, of laat hier een
             bericht achter. We reageren binnen één werkdag.
+          </p>
+          <p className="mt-4 text-[14px] text-[var(--ink-dim)]">
+            Liever direct een tijdstip vastzetten?{' '}
+            <Link
+              href="/plan"
+              className="text-[var(--oker-deep)] hover:text-[var(--ink)] underline underline-offset-4 decoration-[var(--paper-edge)] hover:decoration-[var(--oker)] transition-colors"
+            >
+              Plan een gesprek in de agenda →
+            </Link>
           </p>
         </div>
       </section>

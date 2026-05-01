@@ -17,6 +17,7 @@ const STATIC_ROUTES: Array<{
   { path: '/cases', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/kennis', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/contact', changeFrequency: 'yearly', priority: 0.6 },
+  { path: '/plan', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/privacy', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/subverwerkers', changeFrequency: 'yearly', priority: 0.3 },
 ];
