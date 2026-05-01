@@ -39,17 +39,6 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   authors: [{ name: "FactumAI" }],
 
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-icon.png", type: "image/png" },
-    ],
-    shortcut: ["/favicon.ico"],
-  },
-
   openGraph: {
     type: "website",
     locale: "nl_NL",
