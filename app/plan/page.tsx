@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { Mail, Phone, Clock, Calendar, ShieldCheck } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { CalEmbed } from '@/components/booking/CalEmbed';
-
-const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'factumai/kennismaking';
+import { CAL_LINK } from '@/components/booking/config';
 
 export const metadata: Metadata = {
   title: 'Plan een kennismakingsgesprek',

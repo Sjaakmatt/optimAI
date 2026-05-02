@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { calPopupAttrs } from '@/components/booking/config';
 
 export const metadata: Metadata = {
   title: 'Wat is een AI-agent · FactumAI',
@@ -171,6 +172,7 @@ export default function InfoPage() {
             </Link>
             <Link
               href="/plan"
+              {...calPopupAttrs}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Plan een gesprek

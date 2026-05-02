@@ -3,6 +3,7 @@ import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
+import { CalProvider } from "@/components/booking/CalProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -80,6 +81,7 @@ export default function RootLayout({
     <html lang="nl" className={`${playfair.variable} ${lora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen">
         <OrganizationSchema />
+        <CalProvider />
         {children}
         <Analytics />
         <SpeedInsights />

@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BRANCHES, BRANCHE_BY_SLUG, type Branche } from '@/lib/data/branches';
 import { CASE_BY_SLUG } from '@/lib/data/cases';
+import { calPopupAttrs } from '@/components/booking/config';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -120,6 +121,7 @@ export default async function BranchePage({
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="/plan"
+              {...calPopupAttrs}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
@@ -309,6 +311,7 @@ export default async function BranchePage({
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
+              {...calPopupAttrs}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
