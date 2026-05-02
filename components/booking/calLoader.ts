@@ -20,10 +20,12 @@ declare global {
   }
 }
 
-let initialized = false;
+let snippetInstalled = false;
+let apiPromise: Promise<CalNamespaceFn> | null = null;
 
-export function bootstrapCal(): CalApi | null {
-  if (typeof window === 'undefined') return null;
+function installSnippet(): void {
+  if (snippetInstalled) return;
+  snippetInstalled = true;
 
   (function (C: Window, A: string, L: string) {
     const cw = C as Window & { Cal?: CalApi };
@@ -63,19 +65,50 @@ export function bootstrapCal(): CalApi | null {
         p(cal as unknown as { q: CalQueueItem[] }, args);
       } as CalApi);
   })(window, 'https://app.cal.com/embed/embed.js', 'Cal');
+}
 
-  const Cal = window.Cal!;
-
-  if (!initialized) {
-    Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
-    Cal.ns[CAL_NAMESPACE]('ui', {
-      hideEventTypeDetails: false,
-      layout: 'month_view',
-      theme: 'light',
-      cssVarsPerTheme: { light: { ...CAL_PALETTE_LIGHT } },
+/**
+ * Resolves with the namespaced Cal API once embed.js is loaded and has
+ * created `Cal.ns[NAMESPACE]`. Calling this multiple times returns the
+ * same promise — UI config is applied exactly once.
+ */
+export function getCalApi(): Promise<CalNamespaceFn> {
+  if (typeof window === 'undefined') {
+    return new Promise(() => {
+      /* never resolves during SSR */
     });
-    initialized = true;
   }
 
-  return Cal;
+  if (apiPromise) return apiPromise;
+
+  apiPromise = new Promise((resolve) => {
+    installSnippet();
+
+    const Cal = window.Cal!;
+    Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
+
+    const start = Date.now();
+    function check() {
+      const ns = window.Cal?.ns?.[CAL_NAMESPACE];
+      if (ns) {
+        ns('ui', {
+          hideEventTypeDetails: false,
+          layout: 'month_view',
+          theme: 'light',
+          cssVarsPerTheme: { light: { ...CAL_PALETTE_LIGHT } },
+        });
+        resolve(ns);
+        return;
+      }
+      if (Date.now() - start > 15_000) {
+        // Geef het op na 15s — embed.js gaf niet thuis. Niet crashen.
+        console.warn('[cal] namespace did not initialize within 15s');
+        return;
+      }
+      setTimeout(check, 50);
+    }
+    check();
+  });
+
+  return apiPromise;
 }

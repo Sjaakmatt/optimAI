@@ -2,28 +2,37 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { bootstrapCal } from './calLoader';
-import { CAL_LINK, CAL_NAMESPACE } from './config';
+import { getCalApi } from './calLoader';
+import { CAL_LINK } from './config';
 
 export function CalProvider() {
   const pathname = usePathname();
   const hideFloating = pathname === '/plan' || pathname === '/demo';
 
   useEffect(() => {
-    const Cal = bootstrapCal();
-    if (!Cal) return;
+    if (hideFloating) return;
 
-    if (!hideFloating) {
-      Cal.ns[CAL_NAMESPACE]('floatingButton', {
-        calLink: CAL_LINK,
-        config: { layout: 'month_view', theme: 'light' },
-        buttonText: 'Plan een gesprek',
-        buttonColor: '#a15842',
-        buttonTextColor: '#f4ede0',
-        buttonPosition: 'bottom-right',
-        hideButtonIcon: false,
+    let cancelled = false;
+    getCalApi()
+      .then((ns) => {
+        if (cancelled) return;
+        ns('floatingButton', {
+          calLink: CAL_LINK,
+          config: { layout: 'month_view', theme: 'light' },
+          buttonText: 'Plan een gesprek',
+          buttonColor: '#a15842',
+          buttonTextColor: '#f4ede0',
+          buttonPosition: 'bottom-right',
+          hideButtonIcon: false,
+        });
+      })
+      .catch((err) => {
+        console.warn('[cal] floatingButton init failed:', err);
       });
-    }
+
+    return () => {
+      cancelled = true;
+    };
   }, [hideFloating]);
 
   return null;

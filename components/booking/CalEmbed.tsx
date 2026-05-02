@@ -1,21 +1,29 @@
 'use client';
 
 import { useEffect } from 'react';
-import { bootstrapCal } from './calLoader';
-import { CAL_NAMESPACE } from './config';
+import { getCalApi } from './calLoader';
 
 const ELEMENT_ID = 'cal-inline-embed';
 
 export function CalEmbed({ calLink }: { calLink: string }) {
   useEffect(() => {
-    const Cal = bootstrapCal();
-    if (!Cal) return;
+    let cancelled = false;
+    getCalApi()
+      .then((ns) => {
+        if (cancelled) return;
+        ns('inline', {
+          elementOrSelector: `#${ELEMENT_ID}`,
+          calLink,
+          config: { layout: 'month_view', theme: 'light' },
+        });
+      })
+      .catch((err) => {
+        console.warn('[cal] inline init failed:', err);
+      });
 
-    Cal.ns[CAL_NAMESPACE]('inline', {
-      elementOrSelector: `#${ELEMENT_ID}`,
-      calLink,
-      config: { layout: 'month_view', theme: 'light' },
-    });
+    return () => {
+      cancelled = true;
+    };
   }, [calLink]);
 
   return (
