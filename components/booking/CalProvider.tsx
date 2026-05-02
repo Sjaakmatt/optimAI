@@ -6,7 +6,6 @@ import { getCalApi } from './calLoader';
 import { CAL_LINK } from './config';
 
 const HIDE_ON: ReadonlySet<string> = new Set([
-  '/',
   '/contact',
   '/plan',
   '/demo',
