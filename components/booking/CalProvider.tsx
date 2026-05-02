@@ -5,9 +5,18 @@ import { usePathname } from 'next/navigation';
 import { getCalApi } from './calLoader';
 import { CAL_LINK } from './config';
 
+const HIDE_ON: ReadonlySet<string> = new Set([
+  '/',
+  '/contact',
+  '/plan',
+  '/demo',
+  '/privacy',
+  '/subverwerkers',
+]);
+
 export function CalProvider() {
   const pathname = usePathname();
-  const hideFloating = pathname === '/plan' || pathname === '/demo';
+  const hideFloating = HIDE_ON.has(pathname);
 
   useEffect(() => {
     if (hideFloating) return;
@@ -19,11 +28,11 @@ export function CalProvider() {
         ns('floatingButton', {
           calLink: CAL_LINK,
           config: { layout: 'month_view', theme: 'light' },
-          buttonText: 'Plan een gesprek',
-          buttonColor: '#a15842',
+          buttonText: 'Plan gesprek',
+          buttonColor: '#2a2420',
           buttonTextColor: '#f4ede0',
           buttonPosition: 'bottom-right',
-          hideButtonIcon: false,
+          hideButtonIcon: true,
         });
       })
       .catch((err) => {
