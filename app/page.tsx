@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { calPopupAttrs } from '@/components/booking/config';
 
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
@@ -61,10 +62,11 @@ function Hero() {
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
-              href="/contact"
+              href="/plan"
+              {...calPopupAttrs}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
             >
-              Maak kennis
+              Plan een gesprek
             </Link>
           </div>
 
