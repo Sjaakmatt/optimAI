@@ -21,12 +21,13 @@ declare global {
 }
 
 let snippetInstalled = false;
-let apiPromise: Promise<CalNamespaceFn> | null = null;
 
 function installSnippet(): void {
   if (snippetInstalled) return;
   snippetInstalled = true;
 
+  // Cal's officiële IIFE — installeert window.Cal als een queueing-stub
+  // en triggert async load van embed.js.
   (function (C: Window, A: string, L: string) {
     const cw = C as Window & { Cal?: CalApi };
     const p = function (a: { q?: CalQueueItem[] }, ar: CalQueueItem) {
@@ -65,12 +66,28 @@ function installSnippet(): void {
         p(cal as unknown as { q: CalQueueItem[] }, args);
       } as CalApi);
   })(window, 'https://app.cal.com/embed/embed.js', 'Cal');
+
+  const Cal = window.Cal!;
+
+  // Trigger de namespace-branch in de IIFE zodat Cal.ns[NAMESPACE]
+  // direct als queueing-stub bestaat. Zonder dit blijft Cal.ns[NAMESPACE]
+  // undefined tot embed.js geladen is — race condition op consumers.
+  Cal('Cal', CAL_NAMESPACE);
+
+  Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
+
+  Cal.ns[CAL_NAMESPACE]('ui', {
+    hideEventTypeDetails: false,
+    layout: 'month_view',
+    theme: 'light',
+    cssVarsPerTheme: { light: { ...CAL_PALETTE_LIGHT } },
+  });
 }
 
 /**
- * Resolves with the namespaced Cal API once embed.js is loaded and has
- * created `Cal.ns[NAMESPACE]`. Calling this multiple times returns the
- * same promise — UI config is applied exactly once.
+ * Geeft de namespace-functie waarop je 'inline', 'floatingButton',
+ * 'modal' etc. kan aanroepen. Synchroon klaar — calls queueën in
+ * de namespace-stub tot embed.js de queue verwerkt.
  */
 export function getCalApi(): Promise<CalNamespaceFn> {
   if (typeof window === 'undefined') {
@@ -78,37 +95,6 @@ export function getCalApi(): Promise<CalNamespaceFn> {
       /* never resolves during SSR */
     });
   }
-
-  if (apiPromise) return apiPromise;
-
-  apiPromise = new Promise((resolve) => {
-    installSnippet();
-
-    const Cal = window.Cal!;
-    Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
-
-    const start = Date.now();
-    function check() {
-      const ns = window.Cal?.ns?.[CAL_NAMESPACE];
-      if (ns) {
-        ns('ui', {
-          hideEventTypeDetails: false,
-          layout: 'month_view',
-          theme: 'light',
-          cssVarsPerTheme: { light: { ...CAL_PALETTE_LIGHT } },
-        });
-        resolve(ns);
-        return;
-      }
-      if (Date.now() - start > 15_000) {
-        // Geef het op na 15s — embed.js gaf niet thuis. Niet crashen.
-        console.warn('[cal] namespace did not initialize within 15s');
-        return;
-      }
-      setTimeout(check, 50);
-    }
-    check();
-  });
-
-  return apiPromise;
+  installSnippet();
+  return Promise.resolve(window.Cal!.ns[CAL_NAMESPACE]);
 }

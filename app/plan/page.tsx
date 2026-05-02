@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail, Phone, Clock, Calendar, ShieldCheck } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { CalEmbed } from '@/components/booking/CalEmbed';
-import { CAL_LINK } from '@/components/booking/config';
+import { PlanModalTrigger } from './PlanModalTrigger';
 
 export const metadata: Metadata = {
   title: 'Plan een kennismakingsgesprek',
@@ -87,12 +86,7 @@ export default function PlanPage() {
             </div>
           </aside>
 
-          <div
-            className="site-card overflow-hidden bg-[var(--paper)]"
-            style={{ minHeight: 720 }}
-          >
-            <CalEmbed calLink={CAL_LINK} />
-          </div>
+          <PlanModalTrigger />
         </div>
       </section>
     </SitePage>
