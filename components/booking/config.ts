@@ -1,7 +1,7 @@
 export const CAL_NAMESPACE = 'kennismaking';
 
 export const CAL_LINK =
-  process.env.NEXT_PUBLIC_CAL_LINK ?? 'factumai/kennismaking';
+  process.env.NEXT_PUBLIC_CAL_LINK ?? 'sjaak-factumai/kennismaking';
 
 export const CAL_PALETTE_LIGHT = {
   'cal-brand': '#a8803a',
