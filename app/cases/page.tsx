@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { CASES } from '@/lib/data/cases';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const metadata: Metadata = {
   title: 'AI-agent cases — resultaten bij MKB-klanten',
@@ -11,9 +14,23 @@ export const metadata: Metadata = {
   alternates: { canonical: '/cases' },
 };
 
+const ITEMLIST_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'AI-agent cases bij Nederlandse MKB-bedrijven',
+  numberOfItems: CASES.length,
+  itemListElement: CASES.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITE_URL}/cases/${c.slug}`,
+    name: `${c.klant} — ${c.tagline}`,
+  })),
+};
+
 export default function CasesPage() {
   return (
     <SitePage>
+      <JsonLd data={ITEMLIST_SCHEMA} />
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10">
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">

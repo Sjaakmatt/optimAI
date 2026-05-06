@@ -9,6 +9,22 @@ import { POSTS, POST_BY_SLUG, type PostBlock, type Post } from '@/lib/data/posts
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
+function relatedPosts(current: Post, all: Post[], limit: number): Post[] {
+  const tagSet = new Set(current.tags);
+  return all
+    .filter((p) => p.slug !== current.slug)
+    .map((p) => ({
+      post: p,
+      score: p.tags.filter((t) => tagSet.has(t)).length,
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.post.published < b.post.published ? 1 : -1;
+    })
+    .slice(0, limit)
+    .map((x) => x.post);
+}
+
 function wordCount(post: Post): number {
   return post.blocks.reduce((sum, b) => {
     if (b.kind === 'p' || b.kind === 'h2' || b.kind === 'h3' || b.kind === 'quote') {
@@ -33,7 +49,9 @@ function articleSchema(post: Post) {
     inLanguage: 'nl-NL',
     author: {
       '@type': 'Person',
+      '@id': `${SITE_URL}/over/sjaak-ter-veld#person`,
       name: post.author,
+      url: `${SITE_URL}/over/sjaak-ter-veld`,
     },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: {
@@ -45,6 +63,12 @@ function articleSchema(post: Post) {
     keywords: post.tags,
     wordCount: wordCount(post),
     articleSection: 'Kennis',
+    about: post.tags.map((t) => ({ '@type': 'Thing', name: t })),
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/kennis#blog`,
+      name: 'FactumAI Kennisbank',
+    },
   };
 }
 
@@ -106,8 +130,8 @@ export default async function PostPage({
   const p = POST_BY_SLUG[slug];
   if (!p) notFound();
 
-  const currentIndex = POSTS.findIndex((x) => x.slug === slug);
-  const nextPost = POSTS[(currentIndex + 1) % POSTS.length];
+  const related = relatedPosts(p, POSTS, 3);
+  const nextPost = related[0] ?? POSTS[(POSTS.findIndex((x) => x.slug === slug) + 1) % POSTS.length];
   const faq = faqSchema(p);
   const schemas = faq ? [articleSchema(p), faq] : articleSchema(p);
 
@@ -127,7 +151,12 @@ export default async function PostPage({
           </div>
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen ·{' '}
-            {p.author}
+            <Link
+              href="/over/sjaak-ter-veld"
+              className="underline decoration-dotted underline-offset-[3px] hover:text-[var(--oker)]"
+            >
+              {p.author}
+            </Link>
             {p.updated && p.updated !== p.published && (
               <>
                 {' '}
@@ -185,6 +214,36 @@ export default async function PostPage({
                   </div>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+
+        {related.length > 0 && (
+          <section className="border-t border-[var(--paper-edge)]">
+            <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 sm:py-14">
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+                Verder lezen
+              </div>
+              <h2 className="mt-2 font-display text-[24px] sm:text-[30px] leading-tight text-[var(--ink)]">
+                Andere artikelen over dit onderwerp.
+              </h2>
+              <ul className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/kennis/${r.slug}`}
+                      className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    >
+                      <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+                        {DATE_FORMATTER.format(new Date(r.published))} · {r.readingMinutes} min
+                      </div>
+                      <div className="mt-2 font-display text-[16px] leading-snug text-[var(--ink)]">
+                        {r.title}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
         )}

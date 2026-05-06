@@ -1,6 +1,8 @@
 import { POSTS } from '@/lib/data/posts';
 import { CASES } from '@/lib/data/cases';
 import { BRANCHES } from '@/lib/data/branches';
+import { COMPARISONS } from '@/lib/data/comparisons';
+import { RESOURCES } from '@/lib/data/resources';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -55,6 +57,7 @@ function buildLlmsTxt(): string {
     `- [Wat is een AI-agent](${SITE_URL}/info): Uitleg van het begrip, vergelijking met chatbot en workflow-tool, FAQ.`,
   );
   lines.push(`- [Over FactumAI](${SITE_URL}/over): Oprichter Sjaak ter Veld en onze uitgangspunten.`);
+  lines.push(`- [Auteursprofiel Sjaak ter Veld](${SITE_URL}/over/sjaak-ter-veld): biografie, expertise, publicaties.`);
   lines.push(`- [Cases](${SITE_URL}/cases): Voorbeelden van AI-agents bij MKB-bedrijven.`);
   lines.push(`- [Kennis](${SITE_URL}/kennis): Artikelen over AI-agents, guardrails, integraties, ROI.`);
   lines.push(`- [Demo](${SITE_URL}/demo): Interactieve demo van een multi-agent-platform.`);
@@ -78,8 +81,25 @@ function buildLlmsTxt(): string {
   }
   lines.push('');
 
+  lines.push('## Tools en resources');
+  lines.push('');
+  lines.push(`- [AI ROI calculator](${SITE_URL}/tools/ai-roi-calculator): bereken in een minuut wat een AI-agent uw MKB-bedrijf bespaart.`);
+  lines.push(`- [AI-agent readiness check](${SITE_URL}/tools/agent-readiness-check): tien-vraag quiz die uw AI-readiness scoort met direct advies.`);
+  for (const r of RESOURCES) {
+    lines.push(`- [${r.shortTitle}](${SITE_URL}/resources/${r.slug}): ${r.description}`);
+  }
+  lines.push('');
+
+  lines.push('## Vergelijkingen');
+  lines.push('');
+  for (const c of COMPARISONS) {
+    lines.push(`- [AI-agent vs ${c.alternative}](${SITE_URL}/diensten/vergelijken/${c.slug})`);
+  }
+  lines.push('');
+
   lines.push('## Branches');
   lines.push('');
+  lines.push(`- [Overzicht alle branches](${SITE_URL}/branches): alle branche-pagina's bij elkaar.`);
   for (const b of BRANCHES) {
     lines.push(`- [AI-agent voor ${b.label}](${SITE_URL}/branches/${b.slug})`);
   }

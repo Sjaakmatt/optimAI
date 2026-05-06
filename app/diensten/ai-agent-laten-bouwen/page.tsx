@@ -75,6 +75,47 @@ const FAQ_SCHEMA = {
   })),
 };
 
+const HOWTO_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Een AI-agent laten bouwen voor uw MKB-bedrijf',
+  description:
+    'Stappenplan om een AI-agent op maat te laten bouwen — van eerste gesprek tot werkende implementatie binnen één tot twee weken.',
+  totalTime: 'P14D',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Kennismakingsgesprek',
+      text: 'Een uur waarin u vertelt waar uw mensen tijd aan kwijt zijn. Wij stellen vragen over werkwijze, systemen en beleid en bepalen samen welk proces zich het best leent voor automatisering.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Concreet voorstel met vaste prijs',
+      text: 'Binnen een week ontvangt u een voorstel op één A4: welke agent we bouwen, welke systemen we koppelen, welke beleidsregels, welke doorlooptijd, welke vaste prijs. Geen open einden.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Bouw en koppeling',
+      text: 'Wij bouwen de agent en koppelen aan uw e-mail, boekhoudpakket, CRM, voorraadsysteem of magazijn-app. U test mee. Wij passen aan tot het klopt met hoe uw bedrijf werkt.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Live in stille modus',
+      text: 'De agent gaat eerst in stille modus — hij neemt beslissingen mee maar verstuurt nog niets. U controleert de output en stelt het beleid bij waar nodig.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Live met logboek en escalatie',
+      text: 'De agent draait autonoom binnen het beleid dat u heeft gezet. Acties zichtbaar in een logboek, bedragen of beslissingen boven mandaat komen langs een mens, bijstellen kan elke dag.',
+    },
+  ],
+};
+
 const SERVICE_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -126,7 +167,7 @@ const SERVICE_SCHEMA = {
 export default function AIAgentLatenBouwenPage() {
   return (
     <SitePage>
-      <JsonLd data={[SERVICE_SCHEMA, FAQ_SCHEMA]} />
+      <JsonLd data={[SERVICE_SCHEMA, FAQ_SCHEMA, HOWTO_SCHEMA]} />
 
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-16 sm:pb-24">
@@ -362,6 +403,100 @@ export default function AIAgentLatenBouwenPage() {
             <article key={title} className="site-card px-5 py-5">
               <h3 className="font-display text-[17px] leading-snug text-[var(--ink)]">{title}</h3>
               <p className="mt-2 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">{body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Verschil met andere oplossingen"
+        title="Wat is een AI-agent — en wat is hij niet?"
+        tint
+      >
+        <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[760px]">
+          Een AI-agent is iets anders dan een chatbot, een Zapier-flow of een RPA-bot. Hieronder
+          de praktische verschillen op een rij. Voor diepe duik per vergelijking: zie de losse
+          vergelijkingspagina&rsquo;s onderaan.
+        </p>
+        <div className="mt-8 overflow-x-auto">
+          <table className="w-full min-w-[640px] text-[14px] border-collapse">
+            <thead>
+              <tr className="text-left">
+                <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 pr-4 border-b border-[var(--paper-edge)]"></th>
+                <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 px-4 border-b border-[var(--paper-edge)]">
+                  AI-agent
+                </th>
+                <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 px-4 border-b border-[var(--paper-edge)]">
+                  Chatbot
+                </th>
+                <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 px-4 border-b border-[var(--paper-edge)]">
+                  Zapier / Make
+                </th>
+                <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 pl-4 border-b border-[var(--paper-edge)]">
+                  RPA
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[var(--ink)]">
+              {[
+                ['Werk overnemen', 'Ja, autonoom binnen beleid', 'Nee, alleen vraag → antwoord', 'Ja, vaste workflow', 'Ja, scripted UI-acties'],
+                ['Variatie aankunnen', 'Ja, op context', 'Beperkt', 'Nee, breekt op variatie', 'Nee, breekt op variatie'],
+                ['Beleidsregels in/uit', 'Ja, expliciet', 'Niet echt', 'Per stap fix', 'Per script'],
+                ['Logboek per actie', 'Standaard', 'Beperkt', 'Per run', 'Per run'],
+                ['Goed voor', 'Werk dat oordeel vraagt', 'FAQ-achtige Q&A', 'Vaste integratie-stappen', 'Verouderde UI zonder API'],
+              ].map(([label, ...cells]) => (
+                <tr key={label as string} className="border-b border-[var(--paper-edge)]">
+                  <td className="py-3 pr-4 font-display text-[14px] text-[var(--ink)]">{label}</td>
+                  {cells.map((cell, i) => (
+                    <td key={i} className="py-3 px-4 text-[13.5px] text-[var(--ink-dim)]">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {[
+            ['ai-agent-vs-chatbot', 'Diepere vergelijking: agent vs chatbot'],
+            ['ai-agent-vs-rpa', 'Diepere vergelijking: agent vs RPA'],
+            ['ai-agent-vs-zapier', 'Diepere vergelijking: agent vs Zapier/Make'],
+          ].map(([slug, label]) => (
+            <Link
+              key={slug}
+              href={`/diensten/vergelijken/${slug}`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[2px] text-[12px] text-[var(--ink)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+            >
+              {label}
+              <ArrowRight size={11} strokeWidth={1.8} />
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Integraties" title="We koppelen met de systemen die u al gebruikt.">
+        <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[760px]">
+          Een AI-agent zonder koppeling is een speeltje. Wij regelen de integraties met uw
+          bestaande systemen via API, webhook of e-mail-bridge. Onderstaand een greep uit wat we
+          al draaiend hebben gehad — staat uw pakket er niet bij, vraag ernaar.
+        </p>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            ['Boekhouding', 'Exact, AFAS, Twinfield, Snelstart, Moneybird, Visma'],
+            ['CRM', 'Pipedrive, Teamleader, HubSpot, eigen MS Dynamics'],
+            ['E-mail & agenda', 'Microsoft 365, Google Workspace, Outlook, Gmail'],
+            ['ERP / WMS', 'Odoo, eigen ERP via API, Picqer, MyParcel'],
+            ['Webshop', 'Shopify, WooCommerce, Magento, Lightspeed'],
+            ['Marketplace', 'Bol Seller, Amazon Seller, Marktplaats Pro'],
+            ['Branche-specifiek', 'Resengo, Mews, Funda, RVO, NVWA-portals'],
+            ['Maatwerk', 'CSV-export, e-mail-bridge, custom scraping'],
+          ].map(([titel, body]) => (
+            <article key={titel} className="border border-[var(--paper-edge)] rounded-[2px] px-4 py-4 bg-[var(--paper)]">
+              <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+                {titel}
+              </div>
+              <p className="mt-2 text-[13px] leading-[1.55] text-[var(--ink)]">{body}</p>
             </article>
           ))}
         </div>

@@ -2,13 +2,42 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { POSTS } from '@/lib/data/posts';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const metadata: Metadata = {
   title: 'Kennisbank · artikelen over AI-agents in het MKB',
   description:
     'Artikelen over AI-agents in de praktijk: hoe ze werken, wanneer het loont om er één te laten bouwen, en hoe u zelf de eerste stap zet. Geschreven voor MKB-ondernemers.',
   alternates: { canonical: '/kennis' },
+};
+
+const ITEMLIST_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'FactumAI Kennisbank — artikelen over AI-agents',
+  numberOfItems: POSTS.length,
+  itemListElement: POSTS.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITE_URL}/kennis/${p.slug}`,
+    name: p.title,
+  })),
+};
+
+const BLOG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${SITE_URL}/kennis#blog`,
+  name: 'FactumAI Kennisbank',
+  description:
+    'Artikelen over AI-agents in het Nederlandse MKB — strategie, techniek, governance, branche-toepassingen.',
+  url: `${SITE_URL}/kennis`,
+  inLanguage: 'nl-NL',
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  author: { '@id': `${SITE_URL}/over/sjaak-ter-veld#person` },
 };
 
 const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
@@ -20,6 +49,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
 export default function KennisPage() {
   return (
     <SitePage>
+      <JsonLd data={[BLOG_SCHEMA, ITEMLIST_SCHEMA]} />
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
