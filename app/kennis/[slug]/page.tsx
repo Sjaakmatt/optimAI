@@ -29,7 +29,7 @@ function articleSchema(post: Post) {
     headline: post.title,
     description: post.lede,
     datePublished: post.published,
-    dateModified: post.published,
+    dateModified: post.updated ?? post.published,
     inLanguage: 'nl-NL',
     author: {
       '@type': 'Person',
@@ -91,6 +91,7 @@ export async function generateMetadata({
       description: p.lede,
       type: 'article',
       publishedTime: p.published,
+      modifiedTime: p.updated ?? p.published,
       authors: [p.author],
     },
   };
@@ -127,6 +128,12 @@ export default async function PostPage({
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
             {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen ·{' '}
             {p.author}
+            {p.updated && p.updated !== p.published && (
+              <>
+                {' '}
+                · bijgewerkt {DATE_FORMATTER.format(new Date(p.updated))}
+              </>
+            )}
           </div>
           <h1 className="mt-4 font-display text-[30px] sm:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight text-[var(--ink)]">
             {p.title}

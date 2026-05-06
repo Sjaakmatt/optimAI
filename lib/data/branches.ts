@@ -501,6 +501,354 @@ export const BRANCHES: Branche[] = [
     aanpak:
       'Eerste agent: kanaal-inbox, omdat de winst direct voelbaar is op werkvloer en in klanttevredenheid. Live binnen één tot twee weken. Koppelingen met uw kassasysteem, webshop en voorraadsysteem stap voor stap. Retour- en order-flows volgen zodra de basis draait.',
   },
+  {
+    slug: 'accountancy',
+    label: 'Accountancy',
+    keyword: 'AI-agent voor accountantskantoor',
+    heroEyebrow: 'Branche · Accountancy',
+    heroTitle: 'AI-agent voor het accountantskantoor.',
+    heroItalic: 'Saaie uren weg, advies-uren terug.',
+    intro:
+      'Accountantskantoren verliezen marge aan boekingen, BTW-checks en standaardrapportages. Een AI-agent neemt dat routinewerk over en koppelt direct met uw boekhoudpakket — zodat uw mensen aan adviesuren toekomen in plaats van inkloppen.',
+    lede:
+      'Voor accountants- en administratiekantoren, MKB-accountants en samenstelpraktijken. Waar elk kwartaal dezelfde handelingen herhaald worden en advies-uren onder druk staan.',
+    pijnpunten: [
+      'Boekingen categoriseren en BTW-codes kiezen kost een groot deel van de maand.',
+      'Vragen van klanten over saldo, BTW-aangifte of openstaande posten komen via mail en telefoon.',
+      'Standaard-rapportages (kwartaal, jaarrekening, samenstelverklaring) vragen handmatig samenstellen.',
+      'Adviesgesprekken worden uitgesteld omdat de basis-administratie voorgaat.',
+      'Junioren leren werk dat over twee jaar geautomatiseerd is — terwijl seniors te weinig tijd hebben voor advies.',
+    ],
+    oplossing: [
+      'Boekings-agent verwerkt facturen en bonnen automatisch met de juiste BTW-code en grootboekrekening.',
+      'Klant-agent beantwoordt routine-vragen over saldo en aangifte op basis van actuele cijfers.',
+      'Rapportage-agent stelt periodieke rapporten samen — accountant doet review en publiceert.',
+      'Signaal-agent waarschuwt bij afwijkingen (omzetdaling, marge-erosie, debiteurenstand) zodat advies pro-actief kan.',
+      'Aangifte-agent bereidt BTW- en IB-aangiftes voor controle door de accountant.',
+    ],
+    agents: [
+      {
+        naam: 'Boekings-agent',
+        doet: 'Facturen en bonnen verwerken, BTW-codes toekennen, grootboekrekening kiezen, dubbel-boekingen signaleren.',
+      },
+      {
+        naam: 'Klant-agent',
+        doet: 'Routinevragen van klanten over saldo, openstaande posten, BTW-aangifte beantwoorden met actuele cijfers.',
+      },
+      {
+        naam: 'Rapportage-agent',
+        doet: 'Kwartaalrapport, jaarrekening-concept, samenstelverklaring opstellen klaar voor review.',
+      },
+      {
+        naam: 'Signaal-agent',
+        doet: 'Marge-erosie, debiteurenstand, afwijkende kostenposten signaleren met advies-aanbeveling.',
+      },
+      {
+        naam: 'Aangifte-agent',
+        doet: 'BTW- en IB-aangiftes voorbereiden, controles uitvoeren, klaarzetten voor accountant-akkoord.',
+      },
+    ],
+    expectations: [
+      'Boekingstijd per klant daalt met 50 tot 70 procent.',
+      'Adviesuren per klant per jaar verdubbelen zonder extra bezetting.',
+      'Klanttevredenheid stijgt door pro-actieve signalen in plaats van reactieve gesprekken.',
+      'Junioren krijgen interessanter werk: review en advies in plaats van inkloppen.',
+    ],
+    waaromNu:
+      'Boekhoudsoftware en AI-modellen koppelen in 2026 als nooit tevoren. Kantoren die dit nu inrichten, verkopen meer adviesuren tegen hetzelfde tarief en houden hun mensen vast omdat het werk leuker wordt. Wie wacht, ziet klanten overstappen naar collega-kantoren die wel sneller en goedkoper de basis leveren.',
+    aanpak:
+      'Eerste agent: boekingen of klantvraag-afhandeling, afhankelijk van waar uw kantoor het meest tijd verliest. Live binnen één tot twee weken. Koppelingen met Exact, AFAS, Twinfield, Snelstart of Visma stap voor stap. AVG- en WWFT-randvoorwaarden vanaf dag één.',
+  },
+  {
+    slug: 'advocatuur',
+    label: 'Advocatuur',
+    keyword: 'AI-agent voor advocatenkantoor',
+    heroEyebrow: 'Branche · Advocatuur',
+    heroTitle: 'AI-agent voor het advocatenkantoor.',
+    heroItalic: 'Dossierwerk geautomatiseerd. Uren over voor pleidooi.',
+    intro:
+      'Advocatenkantoren werken uur-voor-uur, met intake, conflictcheck, dossiervoorbereiding en standaard-stukken die elke keer terugkeren. Een AI-agent — binnen geheimhouding en gedragsregels — neemt die voorbereiding over zodat advocaten meer declarabele tijd aan de zaak besteden.',
+    lede:
+      'Voor algemene praktijken, niche-kantoren in arbeidsrecht, ondernemingsrecht, familierecht of huurrecht. Waar de combinatie van vertrouwelijkheid, kwaliteit en uurtarief onhoudbaar wordt zonder hulp.',
+    pijnpunten: [
+      'Intake-gesprekken kosten een uur — uitwerken tot dossier nog eens een halve dag.',
+      'Conflictcheck gebeurt handmatig of niet op tijd, met vrijblijvendheids-risico.',
+      'Standaard-stukken (sommatie, NDA, dagvaarding-concept) worden steeds opnieuw opgesteld.',
+      'Uren bijhouden raakt achterop, declarabele uren lekken weg.',
+      'Cliënten vragen status zonder dat er iets te melden is.',
+    ],
+    oplossing: [
+      'Intake-agent vat gesprek samen, stelt dossier op, draait conflictcheck tegen bestaande zaken.',
+      'Document-agent maakt sommatie, NDA, opdrachtbevestiging op basis van dossiergegevens en uw kantoorsjabloon.',
+      'Uren-agent registreert werk automatisch op basis van agenda, mail en dossier-gebruik.',
+      'Communicatie-agent stuurt cliënt-updates bij dossier-mijlpalen volgens uw protocol.',
+      'Onderzoek-agent doorzoekt uw eigen archief en jurisprudentie binnen vooraf gezette grenzen.',
+    ],
+    agents: [
+      {
+        naam: 'Intake-agent',
+        doet: 'Gesprek samenvatten, dossier-aanmaak, conflictcheck tegen actief en gesloten archief.',
+      },
+      {
+        naam: 'Document-agent',
+        doet: 'Sommaties, opdrachtbevestigingen, NDA, vaststellingsovereenkomsten op basis van dossier en kantoorsjabloon.',
+      },
+      {
+        naam: 'Uren-agent',
+        doet: 'Automatische urenregistratie via agenda en dossier-activiteit, klaar voor advocaat-akkoord.',
+      },
+      {
+        naam: 'Communicatie-agent',
+        doet: 'Cliënt-updates bij mijlpalen, herinneringen aan termijnen, pro-actieve status-mails.',
+      },
+      {
+        naam: 'Onderzoek-agent',
+        doet: 'Jurisprudentie en eigen archief doorzoeken, gefundeerde notitie met bronvermelding.',
+      },
+    ],
+    expectations: [
+      '15 tot 25 procent meer declarabele uren per advocaat per maand.',
+      'Intake tot dossier binnen het uur in plaats van een halve dag.',
+      'Conflictcheck gebeurt automatisch en op tijd, zonder vergeten.',
+      'Cliënttevredenheid stijgt door pro-actieve status-updates.',
+    ],
+    waaromNu:
+      'De AI-tooling in 2026 maakt het mogelijk om vertrouwelijk én juridisch zorgvuldig te werken — data blijft in NL, geen training op uw dossiers, expliciete logging. Kantoren die dit nu inrichten, draaien hogere marges en behouden ambitieuze advocaten die geen administratie willen doen.',
+    aanpak:
+      'Eerste agent: intake of urenregistratie. Geheimhouding, conflictcheck en bevoegdheden zijn vanaf dag één geconfigureerd. Live binnen één tot twee weken, daarna document-templates en cliënt-communicatie uitrollen.',
+  },
+  {
+    slug: 'makelaardij',
+    label: 'Makelaardij',
+    keyword: 'AI-agent voor makelaarskantoor',
+    heroEyebrow: 'Branche · Makelaardij',
+    heroTitle: 'AI-agent voor het makelaarskantoor.',
+    heroItalic: 'Bezichtigen op locatie. De rest gaat vanzelf.',
+    intro:
+      'Makelaarskantoren werken in pieken: aanmelding, bezichtiging, bod, transactie, oplevering. Een AI-agent neemt de mail-, planning- en documentstroom over zodat NVM-makelaars of zelfstandigen zich op de mensen kunnen richten — kopers, verkopers, taxaties.',
+    lede:
+      'Voor verkoop- en aankoopmakelaars, taxateurs, beheerders en bedrijfsmakelaars. Waar reactietijd het verschil maakt tussen opdracht binnen of opdracht naar de concurrent.',
+    pijnpunten: [
+      'Aanvragen voor bezichtigingen komen via Funda, mail, WhatsApp, telefoon — nooit in één bak.',
+      'Standaard-stukken (koopovereenkomst, opdracht tot dienstverlening, taxatieopdracht) elke keer opnieuw invullen.',
+      'Bezichtigings-planning kost dagelijks puzzelen, bijhouden van wie wanneer geweest is.',
+      'Status-updates aan opdrachtgevers worden vergeten in de drukte.',
+      'Open Huizen Dag of marktwerving vraagt extra capaciteit die er niet is.',
+    ],
+    oplossing: [
+      'Aanvraag-agent vangt bezichtigingsverzoeken uit alle kanalen op en plant in op basis van uw agenda.',
+      'Document-agent stelt koopovereenkomst, opdracht-formulieren en kopersbrieven op met klantgegevens.',
+      'Communicatie-agent informeert opdrachtgevers wekelijks over voortgang, bezichtigingen en biedingen.',
+      'Marketing-agent zet objecten op Funda, social en eigen site met huisstijl-teksten en passende foto-volgorde.',
+      'Taxatie-agent verwerkt kadaster, energielabel en marktdata tot taxatie-onderbouwing.',
+    ],
+    agents: [
+      {
+        naam: 'Aanvraag-agent',
+        doet: 'Bezichtigingsverzoeken centraliseren, planning voorstellen, bevestigingsmail sturen, herinnering vooraf.',
+      },
+      {
+        naam: 'Document-agent',
+        doet: 'Koopovereenkomsten, opdracht-formulieren, kopersbrieven opstellen op basis van dossier.',
+      },
+      {
+        naam: 'Communicatie-agent',
+        doet: 'Wekelijks update naar opdrachtgever met aantal bezichtigingen, bod-status, marktbeweging.',
+      },
+      {
+        naam: 'Marketing-agent',
+        doet: 'Object op Funda en eigen site plaatsen met huisstijl-tekst, geoptimaliseerde foto-volgorde.',
+      },
+      {
+        naam: 'Taxatie-agent',
+        doet: 'Kadaster, energielabel, vergelijkbare verkopen samenbrengen tot taxatie-onderbouwing.',
+      },
+    ],
+    expectations: [
+      'Reactietijd op bezichtigingsverzoek van uren naar minuten — meer doorlopen tot opdracht.',
+      'Document-doorlooptijd halveert.',
+      'Opdrachtgevers krijgen wekelijks update zonder dat u eraan denkt.',
+      'Capaciteit voor marktwerving en taxatie verdubbelt.',
+    ],
+    waaromNu:
+      'Een huizenmarkt waar consumenten in minuten beslissen welke makelaar ze bellen, beloont kantoren die direct kunnen reageren. AI-agents maken die snelheid bereikbaar zonder extra bezetting.',
+    aanpak:
+      'Eerste agent: aanvraag-afhandeling, omdat snelheid daar direct opdracht-conversie verbetert. Live binnen één tot twee weken. Koppeling met Funda, agenda en NVM-software stap voor stap.',
+  },
+  {
+    slug: 'agrarisch',
+    label: 'Agrarisch',
+    keyword: 'AI-agent voor agrarische bedrijven',
+    heroEyebrow: 'Branche · Agrarisch',
+    heroTitle: 'AI-agent voor de agrarische sector.',
+    heroItalic: 'Buiten boer. Binnen administratie geautomatiseerd.',
+    intro:
+      'Agrarische bedrijven werken met krappe marges, veel registratieverplichtingen en weinig kantoorbezetting. Een AI-agent neemt mestadministratie, GLB-aanvragen, leveranciers-mails en factuurverwerking over — zodat de boer kan boeren en het kantoor maandagochtend op orde is.',
+    lede:
+      'Voor melkveehouderij, akkerbouw, varkens- en pluimveehouderij, glastuinbouw, fruitteelt en loonwerkers. Waar registratie en regelgeving net zo zwaar zijn als de operatie zelf.',
+    pijnpunten: [
+      'Mestadministratie, GLB, derogatie en NVWA-meldingen vragen wekelijks bewerkelijke registratie.',
+      'Inkoopfacturen voor voer, kunstmest en gewasbescherming komen via mail in tientallen formaten.',
+      'Leveranciers en afnemers mailen over levering, prijs, kwaliteit, planning.',
+      'Subsidies en regelingen veranderen per jaar — bijhouden lukt niet zonder externe adviseur.',
+      'Avonden en weekenden gaan op aan administratie omdat overdag geen tijd is.',
+    ],
+    oplossing: [
+      'Registratie-agent koppelt mest- en gewasregistratie aan RVO, NVWA, BRP en derogatie-systemen.',
+      'Factuur-agent verwerkt inkoopfacturen, koppelt aan voorraad en bedrijfsregister.',
+      'Leverancier-agent handelt mail van voer-, mest- en gewasleveranciers af binnen uw inkoopkaders.',
+      'Subsidie-agent volgt regelingen, signaleert kansen en bereidt aanvragen voor.',
+      'Klant-agent beantwoordt afnemers (zuivel, veiling, supermarkt) over levering en kwaliteit.',
+    ],
+    agents: [
+      {
+        naam: 'Registratie-agent',
+        doet: 'Mest-, gewas- en dierregistratie verwerken naar RVO, NVWA en sector-systemen volgens regels.',
+      },
+      {
+        naam: 'Factuur-agent',
+        doet: 'Inkoopfacturen lezen, koppelen aan voorraad, voorbereiden voor boekhouder.',
+      },
+      {
+        naam: 'Leverancier-agent',
+        doet: 'Mails van voer-, mest- en gewasleveranciers afhandelen binnen inkoopkaders, prijsafwijking signaleren.',
+      },
+      {
+        naam: 'Subsidie-agent',
+        doet: 'GLB, derogatie, ANLb en sectorale subsidies volgen, kansen signaleren, aanvragen klaarzetten.',
+      },
+      {
+        naam: 'Klant-agent',
+        doet: 'Mails en bestellingen van afnemers (zuivel, veiling, supermarkt, boerderijwinkel) afhandelen.',
+      },
+    ],
+    expectations: [
+      'Registratielast halveert; geen avond-administratie meer.',
+      'Factuur-doorlooptijd van weken naar dagen.',
+      'Subsidie-kansen worden niet meer gemist.',
+      'Boer doet boer-werk, agent doet kantoorwerk.',
+    ],
+    waaromNu:
+      'Regelgeving wordt strenger, marges blijven dun, opvolging is onzeker. Bedrijven die nu de administratie automatiseren, blijven over de generaties heen werkbaar. Wie blijft hangen in pen-en-papier of Excel, raakt achter op kantoorwerk waarvan de eisen alleen maar groeien.',
+    aanpak:
+      'Eerste agent: factuurverwerking of registratie. Live binnen één tot twee weken. Koppelingen met sector-systemen (RVO, NVWA, KringloopWijzer, FarmInfo) en eigen bedrijfsadministratie stap voor stap.',
+  },
+  {
+    slug: 'e-commerce',
+    label: 'E-commerce',
+    keyword: 'AI-agent voor webshops',
+    heroEyebrow: 'Branche · E-commerce',
+    heroTitle: 'AI-agent voor de webshop.',
+    heroItalic: 'Service op niveau zonder service-team van twintig.',
+    intro:
+      'Webshops verdienen of verliezen op klantenservice, retouren en operationele snelheid. Een AI-agent neemt klantvragen, retour-afhandeling en orderverwerking over — zodat een team van vijf voelt als een team van twintig zonder extra loonkosten.',
+    lede:
+      'Voor B2C en B2B-webshops, marketplaces-sellers en omnichannel-retailers met een eigen e-commerce-tak. Waar klantverwachtingen op Bol/Coolblue-niveau liggen terwijl uw team kleiner is.',
+    pijnpunten: [
+      'Klantvragen via mail, chat, WhatsApp en marketplace-berichten zijn niet centraal.',
+      'Retouren vragen handmatige controle, terugbetaling en voorraadcorrectie.',
+      'Productvragen ("welke maat", "is dit waterdicht") krijgen trage of inconsistente antwoorden.',
+      'Marketplace-meldingen (klacht, A-Z claim, performance) blijven liggen tot het te laat is.',
+      'Orderverwerking schaalt niet mee met seizoenspieken — Black Friday is panic-modus.',
+    ],
+    oplossing: [
+      'Service-agent beantwoordt routinevragen 24/7 in uw merk-toon, escaleert complexe zaken.',
+      'Retour-agent behandelt retouren, controleert beleid, zet refund of ruiling klaar.',
+      'Product-agent beantwoordt maat-, materiaal- en compatibiliteitsvragen op basis van productdata.',
+      'Marketplace-agent monitort Bol-, Amazon-, MM-prestaties, beantwoordt klachten binnen SLA.',
+      'Order-agent verwerkt bestellingen, bevestigingen, verzendmeldingen en geeft pro-actief uitstel-melding.',
+    ],
+    agents: [
+      {
+        naam: 'Service-agent',
+        doet: 'Klantvragen via alle kanalen beantwoorden in uw merk-toon, escaleren bij complexe zaak.',
+      },
+      {
+        naam: 'Retour-agent',
+        doet: 'Retour controleren tegen beleid, terugbetaling of ruiling initiëren, voorraad-correctie.',
+      },
+      {
+        naam: 'Product-agent',
+        doet: 'Maat-, materiaal-, compatibiliteits- en advies-vragen beantwoorden op basis van productdata.',
+      },
+      {
+        naam: 'Marketplace-agent',
+        doet: 'Bol, Amazon, Marktplaats-prestaties monitoren, klachten en A-Z claims binnen SLA afhandelen.',
+      },
+      {
+        naam: 'Order-agent',
+        doet: 'Orderbevestigingen, verzendmeldingen, uitstelmeldingen, koppeling met WMS en boekhouding.',
+      },
+    ],
+    expectations: [
+      'Klantservice 24/7 zonder extra bezetting.',
+      'Retour-doorlooptijd van dagen naar uren — terugbetaling sneller, klant blijft fan.',
+      'Marketplace-rating stijgt door snelle respons.',
+      'Black Friday wordt voorspelbaar in plaats van paniek.',
+    ],
+    waaromNu:
+      'E-commerce is een snelheids- en service-markt geworden. Kopers kiezen niet meer alleen op prijs maar op snelheid van antwoord, retour en levering. AI-agents brengen dat niveau bereikbaar voor MKB-webshops zonder een service-organisatie van twintig.',
+    aanpak:
+      'Eerste agent: klantservice-kanaal of retour-afhandeling. Koppeling met Shopify, WooCommerce, Magento, Bol Seller, Amazon Seller, Magento, eigen WMS stap voor stap. Live binnen één tot twee weken.',
+  },
+  {
+    slug: 'horeca',
+    label: 'Horeca',
+    keyword: 'AI-agent voor horeca',
+    heroEyebrow: 'Branche · Horeca',
+    heroTitle: 'AI-agent voor de horecaondernemer.',
+    heroItalic: 'Reserveren, inkoop, planning automatisch. U doet de gasten.',
+    intro:
+      'Horecazaken werken met onvoorspelbare drukte, smalle marges en een team dat vooral op de vloer staat. Een AI-agent regelt reserveringen, inkoopbestellingen, personeelsplanning en social-media-respons — zodat de eigenaar niet meer ’s nachts factureert en bestelt.',
+    lede:
+      'Voor restaurants, lunchrooms, hotels, cafés en cateringbedrijven. Waar elk uur dat de eigenaar achter de laptop zit een uur is dat niet in de zaak gewerkt wordt.',
+    pijnpunten: [
+      'Reserveringen komen via telefoon, mail, Resengo, eigen site, Google, Instagram-DM.',
+      'Inkoopbestellingen worden ’s avonds gedaan met handmatige controle op voorraad.',
+      'Personeelsplanning verandert dagelijks door ziekte, no-shows en piekdrukte.',
+      'Reviews en DM\'s op social blijven liggen, met reputatie-effect.',
+      'Catering-aanvragen vragen offerte op maat — vaak te laat de deur uit.',
+    ],
+    oplossing: [
+      'Reservering-agent vangt aanvragen uit alle kanalen, plaatst in reserveringssysteem, bevestigt en herinnert.',
+      'Inkoop-agent stelt bestellijst op uit voorraad, kaart en weeksjabloon, plaatst bij voorkeursleveranciers.',
+      'Planning-agent maakt rooster op basis van prognose, beschikbaarheid en cao-regels.',
+      'Communicatie-agent beantwoordt reviews en DMs in uw toon, escaleert klachten naar manager.',
+      'Catering-agent stelt offerte op uit aanvraag-formulier en standaardprijslijst.',
+    ],
+    agents: [
+      {
+        naam: 'Reservering-agent',
+        doet: 'Reserveringen uit alle kanalen centraliseren, bevestigen, herinneren, no-show vroeg signaleren.',
+      },
+      {
+        naam: 'Inkoop-agent',
+        doet: 'Bestellijst opstellen uit voorraad, weeksjabloon en kaart, plaatsen bij voorkeursleveranciers.',
+      },
+      {
+        naam: 'Planning-agent',
+        doet: 'Rooster maken op basis van prognose en beschikbaarheid, ziekte en no-show opvangen.',
+      },
+      {
+        naam: 'Communicatie-agent',
+        doet: 'Google-, TripAdvisor- en social-reacties afhandelen in uw toon, klacht escaleren.',
+      },
+      {
+        naam: 'Catering-agent',
+        doet: 'Catering-aanvragen omzetten in offerte met standaardprijzen en uw voorwaarden.',
+      },
+    ],
+    expectations: [
+      'No-shows dalen met 30 tot 50 procent door betere bevestigingen en herinneringen.',
+      'Inkoop in minuten in plaats van een uur per avond.',
+      'Personeelsplanning gaat van paniek naar voorspelbaar.',
+      'Reputatie-onderhoud op social gebeurt vanzelf.',
+    ],
+    waaromNu:
+      'Horeca-marges zijn dun en personeel schaars. Wie de operationele backoffice automatiseert, houdt mensen vast en houdt de zaak werkbaar voor de eigenaar. Wie blijft hangen, brandt op of sluit.',
+    aanpak:
+      'Eerste agent: reservering of inkoop. Live binnen één tot twee weken. Koppelingen met Resengo, Untill, Lightspeed, Mews, Mr.Winston, leveranciersportals en eigen kassasysteem stap voor stap.',
+  },
 ];
 
 export const BRANCHE_BY_SLUG = BRANCHES.reduce<Record<string, Branche>>((acc, b) => {

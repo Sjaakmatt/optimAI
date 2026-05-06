@@ -12,6 +12,9 @@ const STATIC_ROUTES: Array<{
 }> = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
   { path: '/diensten/ai-agent-laten-bouwen', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/diensten/ai-automatisering', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/diensten/ai-implementatie', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/diensten/ai-agents-voor-bedrijven', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/over', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/info', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/cases', changeFrequency: 'monthly', priority: 0.7 },
@@ -22,36 +25,58 @@ const STATIC_ROUTES: Array<{
   { path: '/subverwerkers', changeFrequency: 'yearly', priority: 0.3 },
 ];
 
+function withAlternates(url: string) {
+  return {
+    languages: { 'nl-NL': url },
+  } satisfies NonNullable<MetadataRoute.Sitemap[number]['alternates']>;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => ({
-    url: `${SITE_URL}${r.path === '/' ? '' : r.path}`,
-    lastModified: now,
-    changeFrequency: r.changeFrequency,
-    priority: r.priority,
-  }));
+  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => {
+    const url = `${SITE_URL}${r.path === '/' ? '' : r.path}`;
+    return {
+      url,
+      lastModified: now,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+      alternates: withAlternates(url),
+    };
+  });
 
-  const caseEntries: MetadataRoute.Sitemap = CASES.map((c) => ({
-    url: `${SITE_URL}/cases/${c.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
+  const caseEntries: MetadataRoute.Sitemap = CASES.map((c) => {
+    const url = `${SITE_URL}/cases/${c.slug}`;
+    return {
+      url,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+      alternates: withAlternates(url),
+    };
+  });
 
-  const postEntries: MetadataRoute.Sitemap = POSTS.map((p) => ({
-    url: `${SITE_URL}/kennis/${p.slug}`,
-    lastModified: new Date(p.published),
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }));
+  const postEntries: MetadataRoute.Sitemap = POSTS.map((p) => {
+    const url = `${SITE_URL}/kennis/${p.slug}`;
+    return {
+      url,
+      lastModified: new Date(p.updated ?? p.published),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: withAlternates(url),
+    };
+  });
 
-  const brancheEntries: MetadataRoute.Sitemap = BRANCHES.map((b) => ({
-    url: `${SITE_URL}/branches/${b.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  const brancheEntries: MetadataRoute.Sitemap = BRANCHES.map((b) => {
+    const url = `${SITE_URL}/branches/${b.slug}`;
+    return {
+      url,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      alternates: withAlternates(url),
+    };
+  });
 
   return [...staticEntries, ...brancheEntries, ...caseEntries, ...postEntries];
 }

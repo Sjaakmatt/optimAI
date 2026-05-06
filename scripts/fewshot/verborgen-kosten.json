@@ -1,0 +1,28 @@
+{
+  "slug": "verborgen-kosten-van-handmatig-werk",
+  "title": "De verborgen kosten van handmatig werk",
+  "lede": "Uw jaarrekening laat ze niet zien. Uw planning rekent er niet mee. Toch zijn ze reëel. Bij veel MKB-bedrijven zelfs groter dan wat een agent kost. Een rekensom die u zelf kunt maken.",
+  "author": "Sjaak ter Veld",
+  "published": "2026-03-22",
+  "readingMinutes": 5,
+  "tags": ["ROI", "financieel", "efficiency"],
+  "blocks": [
+    { "kind": "p", "text": "Wanneer ik in een eerste gesprek vraag wat een klantmail uw binnendienst kost, krijg ik zelden een getal. Begrijpelijk. Niemand meet dat. Maar zodra we samen de rekensom maken, schrikt bijna iedereen." },
+    { "kind": "h2", "text": "De harde kosten die iedereen ziet" },
+    { "kind": "p", "text": "Uurloon van uw medewerker. Sociale lasten. Werkplek, ICT, koffie, kerstpakket. Samen gemiddeld € 29 tot 35 per uur bij een MKB-binnendienstfunctie. Die kent u wel." },
+    { "kind": "h2", "text": "De zachte kosten die onzichtbaar zijn" },
+    { "kind": "list", "items": [
+      "Context-switching: elke onderbreking voor een mail kost 15 minuten voordat uw medewerker weer in flow zit. Een dag met 8 onderbrekingen = 2 uur verloren concentratie.",
+      "Stapelwerk: mails die blijven liggen omdat ze niet urgent zijn. Tegen 16:00 staat er een stapel die tegen sluitingstijd nog moet.",
+      "Fouten onder tijdsdruk: een verkeerd afgewerkte klacht kost een klantrelatie. Niet altijd zichtbaar, wel structureel.",
+      "Ziekteverzuim door overbelasting: MKB-binnendiensten zijn gemiddeld vaker ziek dan gemiddelde medewerkers. Het werk vreet.",
+      "Reputatie: trage reacties kosten opdrachten. U merkt het niet. De klant kiest gewoon iemand anders zonder u te vertellen waarom."
+    ]},
+    { "kind": "h2", "text": "De rekensom" },
+    { "kind": "p", "text": "Reken het simpel door. Eén medewerker, 40 uur per week, doet naar schatting 30% administratief werk dat automatiseerbaar is. Dat is 12 uur per week, 520 uur per jaar. Tegen € 30 komt u op € 15.600 directe kosten. Voor één medewerker. Bij drie medewerkers die dat doen: bijna € 50.000." },
+    { "kind": "quote", "text": "Een agent hoeft niet 90% van het werk over te nemen om zich terug te verdienen. 30% is al genoeg." },
+    { "kind": "h2", "text": "Wat rekeningen niet laten zien" },
+    { "kind": "p", "text": "De échte winst zit in wat uw mensen met die uren gaan doen. Meer klantgesprekken, betere offertes, nieuwe producten uitzoeken, complexer werk oppakken. Dát is de groei die u op papier niet kunt plannen. Hij ontstaat zodra de ruimte er is." },
+    { "kind": "p", "text": "Ik heb bedrijven gezien die 20% in omzet groeiden zonder extra mensen aan te nemen, puur door die ruimte. Niet omdat de agent iets magisch deed, maar omdat de mensen eindelijk iets magisch konden doen." }
+  ]
+}

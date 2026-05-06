@@ -1,0 +1,26 @@
+{
+  "slug": "welk-proces-is-geschikt-voor-een-agent",
+  "title": "Welk proces is geschikt voor een agent? En welk niet?",
+  "lede": "Niet elk proces hoort in handen van een AI-agent. Een simpel filter om vooraf te bepalen wat wel en niet werkt, voordat u begint te bouwen.",
+  "author": "Sjaak ter Veld",
+  "published": "2026-01-15",
+  "readingMinutes": 5,
+  "tags": ["strategie", "proces", "selectie"],
+  "blocks": [
+    { "kind": "p", "text": "De meest gestelde vraag in een eerste kennismakingsgesprek: \"Zou dit voor ons werken?\" Eerlijk antwoord: meestal wel, maar niet per se op het proces dat u zelf voor ogen heeft. In acht jaar IT heb ik gezien dat de keuze waar je begint minstens zo belangrijk is als wat je bouwt." },
+    { "kind": "h2", "text": "Drie vragen die het meeste werk schelen" },
+    { "kind": "p", "text": "Ik loop altijd drie filters af voordat we aan iets beginnen. Simpel genoeg om ze zelf op uw proces toe te passen." },
+    { "kind": "list", "items": [
+      "Gebeurt dit vaker dan twee keer per week? Onder die drempel is de bouwtijd zelden terug te verdienen. Zelfs niet bij een lang proces.",
+      "Zijn de regels te beschrijven? Als uw medewerker het zelf moeilijk kan uitleggen aan een nieuwe collega, wordt het voor een agent ook lastig.",
+      "Heeft het een duidelijk begin én einde? Processen die eindigen in \"en dan hangt het van Jan af\" zijn nog niet klaar voor automatisering."
+    ]},
+    { "kind": "h2", "text": "Waar het vaak goed werkt" },
+    { "kind": "p", "text": "Klantmails met een voorspelbaar patroon. Offertes op basis van actuele prijslijst. Orderverwerking waar kredietcheck en voorraadcheck in elkaar schuiven. Factureren na oplevering. Belnotities voor finance wanneer een factuur lang openstaat. Dit zijn routinematige, regel-gebaseerde stromen. Ideaal terrein." },
+    { "kind": "h2", "text": "Waar het juist fout gaat" },
+    { "kind": "p", "text": "Onderhandelingen over grote projecten. Conflicten tussen klanten of medewerkers. Beoordelen of een klacht terecht is in grensgevallen. Strategische leverancierskeuzes. Alles wat draait om intuïtie of relationele nuance. Laat dat bij uw mensen." },
+    { "kind": "quote", "text": "De vuistregel: de agent doet wat u kunt uitleggen in tien regels; de mens doet de rest." },
+    { "kind": "h2", "text": "Een tegen-intuïtieve observatie" },
+    { "kind": "p", "text": "Ondernemers willen vaak beginnen bij het proces dat hen persoonlijk het meest irriteert. Vaak iets complex. Mijn advies is bijna altijd: begin bij het allersaaiste, allervoorspelbaarste proces. Dat staat live in zes weken, uw mensen merken meteen de winst, en daarna mag u de complexe dingen aanpakken." }
+  ]
+}

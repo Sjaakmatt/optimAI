@@ -20,12 +20,37 @@ function buildLlmsTxt(): string {
   );
   lines.push('');
 
-  lines.push('## Kern-pagina\'s');
+  lines.push('## Kerngegevens');
+  lines.push('');
+  lines.push('- Bedrijfsnaam: FactumAI');
+  lines.push('- Hoofdactiviteit: AI-agents op maat bouwen, implementeren en onderhouden voor Nederlandse MKB-bedrijven');
+  lines.push('- Werkgebied: Nederland');
+  lines.push('- Vestiging: Hoogkarspel, Noord-Holland');
+  lines.push('- Oprichter: Sjaak ter Veld');
+  lines.push('- Prijsmodel: vaste bouwprijs per agent, optionele maandelijkse retainer voor onderhoud en monitoring');
+  lines.push('- Doorlooptijd eerste agent: 1 tot 2 weken live');
+  lines.push('- Talen: Nederlands');
+  lines.push('');
+
+  lines.push('## Diensten');
+  lines.push('');
+  lines.push(
+    `- [AI-agent laten bouwen](${SITE_URL}/diensten/ai-agent-laten-bouwen): hoofd-dienst — ontwerp, bouw en implementatie van AI-agents op maat. Vaste prijs, eerste agent in 1 tot 2 weken live.`,
+  );
+  lines.push(
+    `- [AI-automatisering voor MKB](${SITE_URL}/diensten/ai-automatisering): bredere dienst rond AI-automatisering en het automatiseren van administratie, klantcommunicatie, planning en inkoop met AI-agents.`,
+  );
+  lines.push(
+    `- [AI implementeren in uw bedrijf](${SITE_URL}/diensten/ai-implementatie): begeleiding bij AI-implementatie van strategie tot productie, inclusief stappenplan, integraties, governance en adoptie.`,
+  );
+  lines.push(
+    `- [AI-agents voor bedrijven](${SITE_URL}/diensten/ai-agents-voor-bedrijven): wat AI-agents voor B2B-bedrijven concreet betekenen — type-agents, ROI, integraties, randvoorwaarden.`,
+  );
+  lines.push('');
+
+  lines.push("## Kern-pagina's");
   lines.push('');
   lines.push(`- [Homepage](${SITE_URL}/): AI-agents voor MKB — wat wij bouwen en voor wie.`);
-  lines.push(
-    `- [AI-agent laten bouwen](${SITE_URL}/diensten/ai-agent-laten-bouwen): Transactionele landing — proces, vaste prijs, voorbeelden, FAQ.`,
-  );
   lines.push(
     `- [Wat is een AI-agent](${SITE_URL}/info): Uitleg van het begrip, vergelijking met chatbot en workflow-tool, FAQ.`,
   );
@@ -34,6 +59,16 @@ function buildLlmsTxt(): string {
   lines.push(`- [Kennis](${SITE_URL}/kennis): Artikelen over AI-agents, guardrails, integraties, ROI.`);
   lines.push(`- [Demo](${SITE_URL}/demo): Interactieve demo van een multi-agent-platform.`);
   lines.push(`- [Contact](${SITE_URL}/contact): Contactgegevens en contactformulier.`);
+  lines.push('');
+
+  lines.push('## Veelgestelde vragen (kort)');
+  lines.push('');
+  lines.push('- Wat is een AI-agent? Een digitale collega die binnen door u bepaalde regels zelfstandig werk uitvoert: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen.');
+  lines.push('- Wat kost een AI-agent? Vaste bouwprijs per agent, afhankelijk van complexiteit en aantal integraties. Optioneel een maandelijkse retainer voor onderhoud en monitoring.');
+  lines.push('- Hoe lang duurt implementatie? De eerste agent is doorgaans binnen 1 tot 2 weken live; een volledig multi-agent platform binnen 5 tot 8 weken.');
+  lines.push('- Welke systemen koppelen jullie? Onder andere Exact, Moneybird, AFAS, Snelstart, Twinfield, Microsoft 365, Google Workspace, Outlook, Gmail, Pipedrive, Teamleader en eigen ERP/CRM via API, webhooks of e-mail-bridge.');
+  lines.push('- Voor welke bedrijven? MKB-bedrijven in Nederland in groothandel, installatietechniek, transport, zakelijke dienstverlening, bouw, zorg, productie, detailhandel en aanverwante branches.');
+  lines.push('- AVG en privacy? Data blijft in NL/EU, verwerkersovereenkomst standaard, sub-verwerkers transparant gepubliceerd.');
   lines.push('');
 
   lines.push('## Cases');

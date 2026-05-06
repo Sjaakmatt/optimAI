@@ -1,0 +1,81 @@
+name: Generate kennis-artikel
+
+on:
+  schedule:
+    # Dinsdag en donderdag, 08:00 UTC = 09:00 NL-tijd (10:00 in zomertijd)
+    - cron: '0 8 * * 2,4'
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Optioneel ad-hoc onderwerp (overschrijft backlog)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate post
+        id: gen
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            npm run new-post -- "${{ github.event.inputs.topic }}"
+          else
+            npm run new-post
+          fi
+
+      - name: Verify build
+        run: npm run build
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: claude/post-${{ steps.gen.outputs.slug }}
+          base: claude/seo-audit-ai-agents-5zBAu
+          title: 'kennis: ${{ steps.gen.outputs.title }}'
+          body: |
+            **Auto-gegenereerd kennisartikel**
+
+            - Slug: `${{ steps.gen.outputs.slug }}`
+            - Cluster: ${{ steps.gen.outputs.cluster }}
+            - Model: claude-sonnet-4-6
+            - Triggered: ${{ github.event_name }}
+
+            ## Reviewchecklist
+
+            - [ ] Stijl klopt met bestaande artikelen (toon, ritme, lengte)
+            - [ ] Geen verzonnen klantnamen of statistieken
+            - [ ] Productnamen alleen uit whitelist
+            - [ ] Lede zet de spanning goed neer
+            - [ ] FAQ-antwoorden geven eerst antwoord, dan onderbouwing
+            - [ ] Internal links toevoegen waar passend (handmatig)
+
+            Bekijk de Vercel preview-deployment om de post in context te lezen.
+            Squash & merge als goed; bewerk inline op GitHub voor kleine tweaks.
+          commit-message: |
+            kennis: ${{ steps.gen.outputs.title }}
+
+            Auto-gegenereerd via scripts/generate-post.ts.
+          labels: |
+            content
+            ai-generated
+          delete-branch: true

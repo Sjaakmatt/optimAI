@@ -1,0 +1,30 @@
+{
+  "slug": "guardrails-niet-een-rem-maar-een-kompas",
+  "title": "Guardrails: niet een rem, maar een kompas",
+  "lede": "De grootste angst bij agents: \"straks doet hij iets stoms wat mij geld kost\". Terecht. Maar de oplossing is niet de agent kleiner maken. De oplossing is expliciete beleidsregels.",
+  "author": "Sjaak ter Veld",
+  "published": "2026-02-22",
+  "readingMinutes": 5,
+  "tags": ["guardrails", "beleid", "governance"],
+  "blocks": [
+    { "kind": "p", "text": "Elke agent die wij bouwen heeft een laag met beleidsregels erboven. Die laag bepaalt wat automatisch mag, en wat langs een mens moet. De MKB'er stelt deze regels zelf in, en kan ze elke dag aanpassen als hij voortschrijdend inzicht heeft." },
+    { "kind": "h2", "text": "Voorbeelden uit de praktijk" },
+    { "kind": "list", "items": [
+      "Bedragen boven € 5.000 altijd langs directie.",
+      "Overheidsklanten: betaaltermijn standaard 30 dagen, geen aanbetaling.",
+      "Klanten met >10 orders en 0 klachten: coulance toepassen zonder discussie over schuldvraag.",
+      "Bij vertraging: alternatief transporteur inschakelen tot € 200 meerkosten.",
+      "Drie herinneringen, dan juridisch. Tenzij de klantgeschiedenis iets anders zegt."
+    ]},
+    { "kind": "h2", "text": "Waarom dit zo goed werkt" },
+    { "kind": "p", "text": "Omdat beleid expliciet wordt. De impliciete kennis die tot nu toe alleen in het hoofd van Saskia op finance zat (\"die klant bellen we eerst\") komt nu op een plek waar iedereen het kan zien en bijstellen." },
+    { "kind": "p", "text": "Bij uitval van Saskia valt de kennis niet weg. Bij een nieuwe medewerker hoef je niet maandenlang te coachen op intuïtie. De regels staan, de agent volgt ze, en als je het beleid wil veranderen, verander je één schakelaar." },
+    { "kind": "quote", "text": "Een goed gebouwde agent is een organisatie met expliciet beleid. Zo simpel is het." },
+    { "kind": "h2", "text": "Wat mensen fout doen" },
+    { "kind": "list", "items": [
+      "Te veel regels in één keer. Begin met vijf tot tien per afdeling. Breid uit als je merkt waar de vragen liggen.",
+      "Beleid niet bijhouden. Als je regels niet elke maand even tegen het licht houdt, verouderen ze.",
+      "Beleid en techniek door elkaar halen. De regel \"niet juridisch bij trouwe klant\" staat los van hoe de agent het technisch implementeert."
+    ]}
+  ]
+}

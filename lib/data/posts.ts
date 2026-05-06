@@ -17,10 +17,13 @@ export interface Post {
   lede: string;
   author: string;
   published: string; // ISO date
+  updated?: string; // ISO date — last meaningful edit
   readingMinutes: number;
   tags: string[];
   blocks: PostBlock[];
   faq?: PostFAQ[];
+  cluster?: 'A' | 'B' | 'C' | 'D' | 'E';
+  generatedBy?: 'human' | 'ai-draft';
 }
 
 export const POSTS: Post[] = [
