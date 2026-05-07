@@ -1,36 +1,286 @@
 {
   "$schema": "Backlog van te schrijven kennisartikelen. Het generate-post-script pakt de eerstvolgende item met status=pending, schrijft een draft, opent een PR en zet status=drafted.",
   "items": [
-    { "topic": "AI implementeren in vijf stappen voor het Nederlandse MKB", "cluster": "A", "status": "pending", "tags": ["strategie", "MKB", "implementatie"] },
-    { "topic": "AI-readiness check: is uw bedrijf klaar voor een eerste agent?", "cluster": "A", "status": "pending", "tags": ["strategie", "MKB"] },
-    { "topic": "Build vs buy: wanneer kiest u voor custom AI, wanneer voor SaaS?", "cluster": "A", "status": "pending", "tags": ["strategie", "selectie"] },
-    { "topic": "Hoeveel kost een AI-agent in 2026? Realistische tarieven voor MKB Nederland", "cluster": "A", "status": "pending", "tags": ["pricing", "ROI", "MKB"] },
-    { "topic": "ROI van AI-automatisering berekenen met een eenvoudig voorbeeld", "cluster": "A", "status": "pending", "tags": ["ROI", "financieel"] },
-    { "topic": "AI-pilot zonder mislukken: do's en don'ts voor het MKB", "cluster": "A", "status": "pending", "tags": ["methodiek", "adoptie"] },
-    { "topic": "Change management bij AI-implementatie: hoe houdt u uw team mee?", "cluster": "A", "status": "pending", "tags": ["adoptie", "cultuur"] },
-    { "topic": "Wie heb je intern nodig voor een AI-agent? Rollen en verantwoordelijkheden", "cluster": "A", "status": "pending", "tags": ["organisatie", "MKB"] },
-    { "topic": "Een AI-roadmap voor de komende 12 maanden bij een MKB-bedrijf", "cluster": "A", "status": "pending", "tags": ["strategie", "MKB"] },
-    { "topic": "Make-or-break: data-kwaliteit als voorwaarde voor werkende AI-agents", "cluster": "A", "status": "pending", "tags": ["techniek", "data"] },
-    { "topic": "AVG en AI-agents: wat mag wel en wat niet bij persoonsgegevens", "cluster": "B", "status": "pending", "tags": ["governance", "AVG"] },
-    { "topic": "De AI-act in 2026: wat verandert er voor Nederlandse MKB-bedrijven", "cluster": "B", "status": "pending", "tags": ["governance", "regelgeving"] },
-    { "topic": "Hallucinaties beperken in productie-agents: praktische technieken", "cluster": "B", "status": "pending", "tags": ["techniek", "guardrails"] },
-    { "topic": "Human-in-the-loop bij AI-agents: wanneer wel en wanneer niet", "cluster": "B", "status": "pending", "tags": ["governance", "guardrails"] },
-    { "topic": "AI-agents koppelen aan uw boekhoudpakket: Exact, Twinfield, AFAS", "cluster": "B", "status": "pending", "tags": ["integraties", "boekhouder"] },
-    { "topic": "Multi-agent systemen: wanneer heeft u meer dan één agent nodig?", "cluster": "B", "status": "pending", "tags": ["techniek", "agents"] },
-    { "topic": "Veilig RAG bouwen op uw bedrijfsdata: praktische randvoorwaarden", "cluster": "B", "status": "pending", "tags": ["techniek", "data"] },
-    { "topic": "Logging en monitoring van AI-agents: wat moet u zien?", "cluster": "B", "status": "pending", "tags": ["techniek", "guardrails"] },
-    { "topic": "AI in de accountancy: wat verandert er in 2026 voor accountantskantoren", "cluster": "C", "status": "pending", "tags": ["accountancy", "branche"] },
-    { "topic": "Offerte-automatisering in de installatietechniek: drie patronen", "cluster": "C", "status": "pending", "tags": ["installatietechniek", "branche"] },
-    { "topic": "AI in de groothandel: van mailstroom naar order in minuten", "cluster": "C", "status": "pending", "tags": ["groothandel", "branche"] },
-    { "topic": "AI in de bouw: meerwerk vastleggen voor het ter sprake komt", "cluster": "C", "status": "pending", "tags": ["bouw", "branche"] },
-    { "topic": "AI in transport en logistiek: incident-afhandeling die meedenkt", "cluster": "C", "status": "pending", "tags": ["transport", "branche"] },
-    { "topic": "AI in de zorg: rapportage-tijd van zestig naar tien minuten", "cluster": "C", "status": "pending", "tags": ["zorg", "branche"] },
-    { "topic": "ChatGPT Enterprise vs een eigen AI-agent: wat past bij uw MKB?", "cluster": "D", "status": "pending", "tags": ["selectie", "tooling"] },
-    { "topic": "Microsoft Copilot vs een eigen agent: waar liggen de grenzen?", "cluster": "D", "status": "pending", "tags": ["selectie", "tooling"] },
-    { "topic": "Zapier en Make vs AI-agent: wanneer welke tool", "cluster": "D", "status": "pending", "tags": ["selectie", "tooling"] },
-    { "topic": "Is RPA dood? De rol van klassieke automatisering naast AI-agents", "cluster": "D", "status": "pending", "tags": ["techniek", "selectie"] },
-    { "topic": "No-code AI tools voor MKB: een eerlijke ranglijst", "cluster": "D", "status": "pending", "tags": ["selectie", "tooling"] },
-    { "topic": "Open-source vs proprietary LLMs voor business agents in 2026", "cluster": "D", "status": "pending", "tags": ["techniek", "selectie"] },
-    { "topic": "Lessen na 30 AI-implementaties bij Nederlandse MKB-bedrijven", "cluster": "E", "status": "pending", "tags": ["lessons-learned", "MKB"] }
+    {
+      "topic": "AI implementeren in vijf stappen voor het Nederlandse MKB",
+      "cluster": "A",
+      "status": "drafted",
+      "tags": [
+        "strategie",
+        "MKB",
+        "implementatie"
+      ]
+    },
+    {
+      "topic": "AI-readiness check: is uw bedrijf klaar voor een eerste agent?",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "strategie",
+        "MKB"
+      ]
+    },
+    {
+      "topic": "Build vs buy: wanneer kiest u voor custom AI, wanneer voor SaaS?",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "strategie",
+        "selectie"
+      ]
+    },
+    {
+      "topic": "Hoeveel kost een AI-agent in 2026? Realistische tarieven voor MKB Nederland",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "pricing",
+        "ROI",
+        "MKB"
+      ]
+    },
+    {
+      "topic": "ROI van AI-automatisering berekenen met een eenvoudig voorbeeld",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "ROI",
+        "financieel"
+      ]
+    },
+    {
+      "topic": "AI-pilot zonder mislukken: do's en don'ts voor het MKB",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "methodiek",
+        "adoptie"
+      ]
+    },
+    {
+      "topic": "Change management bij AI-implementatie: hoe houdt u uw team mee?",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "adoptie",
+        "cultuur"
+      ]
+    },
+    {
+      "topic": "Wie heb je intern nodig voor een AI-agent? Rollen en verantwoordelijkheden",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "organisatie",
+        "MKB"
+      ]
+    },
+    {
+      "topic": "Een AI-roadmap voor de komende 12 maanden bij een MKB-bedrijf",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "strategie",
+        "MKB"
+      ]
+    },
+    {
+      "topic": "Make-or-break: data-kwaliteit als voorwaarde voor werkende AI-agents",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "data"
+      ]
+    },
+    {
+      "topic": "AVG en AI-agents: wat mag wel en wat niet bij persoonsgegevens",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "governance",
+        "AVG"
+      ]
+    },
+    {
+      "topic": "De AI-act in 2026: wat verandert er voor Nederlandse MKB-bedrijven",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "governance",
+        "regelgeving"
+      ]
+    },
+    {
+      "topic": "Hallucinaties beperken in productie-agents: praktische technieken",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "guardrails"
+      ]
+    },
+    {
+      "topic": "Human-in-the-loop bij AI-agents: wanneer wel en wanneer niet",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "governance",
+        "guardrails"
+      ]
+    },
+    {
+      "topic": "AI-agents koppelen aan uw boekhoudpakket: Exact, Twinfield, AFAS",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "integraties",
+        "boekhouder"
+      ]
+    },
+    {
+      "topic": "Multi-agent systemen: wanneer heeft u meer dan één agent nodig?",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "agents"
+      ]
+    },
+    {
+      "topic": "Veilig RAG bouwen op uw bedrijfsdata: praktische randvoorwaarden",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "data"
+      ]
+    },
+    {
+      "topic": "Logging en monitoring van AI-agents: wat moet u zien?",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "guardrails"
+      ]
+    },
+    {
+      "topic": "AI in de accountancy: wat verandert er in 2026 voor accountantskantoren",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "accountancy",
+        "branche"
+      ]
+    },
+    {
+      "topic": "Offerte-automatisering in de installatietechniek: drie patronen",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "installatietechniek",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI in de groothandel: van mailstroom naar order in minuten",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "groothandel",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI in de bouw: meerwerk vastleggen voor het ter sprake komt",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "bouw",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI in transport en logistiek: incident-afhandeling die meedenkt",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "transport",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI in de zorg: rapportage-tijd van zestig naar tien minuten",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "zorg",
+        "branche"
+      ]
+    },
+    {
+      "topic": "ChatGPT Enterprise vs een eigen AI-agent: wat past bij uw MKB?",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "tooling"
+      ]
+    },
+    {
+      "topic": "Microsoft Copilot vs een eigen agent: waar liggen de grenzen?",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "tooling"
+      ]
+    },
+    {
+      "topic": "Zapier en Make vs AI-agent: wanneer welke tool",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "tooling"
+      ]
+    },
+    {
+      "topic": "Is RPA dood? De rol van klassieke automatisering naast AI-agents",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "selectie"
+      ]
+    },
+    {
+      "topic": "No-code AI tools voor MKB: een eerlijke ranglijst",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "tooling"
+      ]
+    },
+    {
+      "topic": "Open-source vs proprietary LLMs voor business agents in 2026",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "techniek",
+        "selectie"
+      ]
+    },
+    {
+      "topic": "Lessen na 30 AI-implementaties bij Nederlandse MKB-bedrijven",
+      "cluster": "E",
+      "status": "pending",
+      "tags": [
+        "lessons-learned",
+        "MKB"
+      ]
+    }
   ]
 }
