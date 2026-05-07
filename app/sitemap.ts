@@ -4,6 +4,7 @@ import { POSTS } from '@/lib/data/posts';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
 import { RESOURCES } from '@/lib/data/resources';
+import { TEAM } from '@/lib/data/team';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -95,6 +96,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const teamEntries: MetadataRoute.Sitemap = TEAM.map((m) => {
+    const url = `${SITE_URL}/over/${m.slug}`;
+    return {
+      url,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: withAlternates(url),
+    };
+  });
+
   const resourceEntries: MetadataRoute.Sitemap = RESOURCES.map((r) => {
     const url = `${SITE_URL}/resources/${r.slug}`;
     return {
@@ -108,6 +120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticEntries,
+    ...teamEntries,
     ...brancheEntries,
     ...comparisonEntries,
     ...resourceEntries,

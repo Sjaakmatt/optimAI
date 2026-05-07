@@ -1,89 +1,94 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { FounderSchema } from '@/components/seo/PersonSchema';
+import { TEAM } from '@/lib/data/team';
 
 export const metadata: Metadata = {
-  title: 'Over FactumAI — wie bouwt uw AI-agent',
+  title: 'Over FactumAI · het bedrijf achter AI-agents voor MKB',
   description:
-    'FactumAI is opgericht om AI-agents toegankelijk te maken voor MKB-bedrijven. Sjaak ter Veld, oprichter, over vakmanschap boven hype en werken aan echte oplossingen.',
+    'FactumAI is gevestigd in Hoogkarspel en bouwt AI-agents voor Nederlandse MKB-bedrijven. Pragmatisch, op vaste prijs, met grip via expliciete beleidsregels. Wie wij zijn en waar wij in geloven.',
   alternates: { canonical: '/over' },
+};
+
+const FOUNDED = 2024;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
+
+const ABOUT_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  url: `${SITE_URL}/over`,
+  inLanguage: 'nl-NL',
+  mainEntity: { '@id': `${SITE_URL}/#organization` },
 };
 
 export default function OverPage() {
   return (
     <SitePage>
-      <FounderSchema />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_SCHEMA) }}
+      />
+
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
-        <div className="max-w-[720px]">
+        <div className="max-w-[760px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
-            Over ons
+            Over FactumAI
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Eén oprichter.<br />
-            <span className="italic text-[var(--oker-deep)]">Twee voeten in de praktijk.</span>
+            Het bedrijf{' '}
+            <span className="italic text-[var(--oker-deep)]">achter de agents.</span>
           </h1>
-          <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            FactumAI is opgericht om AI-agents bereikbaar te maken voor bedrijven die geen
-            data-afdeling hebben. Geen hype. Geen consultancy-verhaal. Gewoon goed gemaakt werk.
+          <p className="mt-6 text-[15px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
+            FactumAI is in {FOUNDED} opgericht in Hoogkarspel om AI-agents bereikbaar te maken voor
+            Nederlandse MKB-bedrijven. Geen consultancy-rapport, geen jarenlang traject, geen
+            dashboard-wirwar. Eén vaste bouwprijs, eerste agent live binnen één tot twee weken,
+            optionele retainer voor doorontwikkeling.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-16 sm:pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] gap-8 md:gap-12 lg:gap-14">
-          <div>
-            <Portret />
-            <div className="mt-4">
-              <div className="font-display text-[18px] text-[var(--ink)]">Sjaak ter Veld</div>
-              <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider mt-0.5">
-                Oprichter · Sparringpartner
-              </div>
-              <div className="mt-2 text-[12.5px] text-[var(--ink-dim)] leading-snug">
-                Hoogkarspel · West-Friesland
-              </div>
-            </div>
-          </div>
+      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+          <Fact label="Opgericht" value={String(FOUNDED)} />
+          <Fact label="Vestiging" value="Hoogkarspel" sub="West-Friesland" />
+          <Fact label="Werkgebied" value="Nederland" sub="alle provincies" />
+          <Fact label="Branches" value="14" sub="actief in" />
+        </div>
+      </section>
 
-          <div className="drop-cap space-y-5 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
+      <section
+        className="border-t border-[var(--paper-edge)]"
+        style={{ background: 'var(--paper-warm)' }}
+      >
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-14">
+          <div>
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+              Wat wij doen
+            </div>
+            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] leading-[1.1] text-[var(--ink)]">
+              AI-agents bouwen,{' '}
+              <span className="italic text-[var(--oker-deep)]">implementeren, bijhouden.</span>
+            </h2>
+          </div>
+          <div className="space-y-5 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
             <p>
-              Ik ben Sjaak. Opgeleid in de bedrijfskunde, en daarna meer dan acht jaar werkzaam
-              in de IT. In die jaren heb ik gewerkt aan optimalisatie, processen, strategie en
-              projectmanagement bij bedrijven van uiteenlopende grootte. Wat ik vooral heb
-              geleerd: de problemen waar bedrijven écht over inzitten, zijn meestal niet zo
-              ingewikkeld als ze lijken. Ze zijn alleen nooit goed opgepakt.
+              Wij ontwerpen en bouwen AI-agents op maat: digitale collega&rsquo;s die mails lezen,
+              offertes opstellen, orders verwerken, facturen klaarzetten en planning regelen — binnen
+              úw beleidsregels en gekoppeld aan úw systemen. Geen black box, geen pilot zonder
+              vervolg. De eerste agent draait binnen één tot twee weken in productie.
             </p>
             <p>
-              Wat me het meest interesseert in dit werk, is het gesprek met de mensen aan tafel.
-              Niet de framework van de maand. Niet de laatste management-theorie. Wel de simpele
-              vraag: wat kost uw werkdag nou eigenlijk? Welke taak blijft liggen? Welk overleg
-              wordt steeds doorgeschoven? Welke handeling doet iemand voor de derde keer deze
-              week? Daar komen vanzelf de oplossingen uit. Oplossingen die werken, omdat ze
-              beginnen bij het echte werk.
-            </p>
-            <p>
-              Ik woon in Hoogkarspel, midden in West-Friesland, maar ik ben actief in heel
-              Nederland. Bij productiebedrijven, dienstverleners, handelshuizen, techniek,
-              zorg, onderwijs, kleine ondernemers en organisaties met een paar honderd mensen.
-              Overal waar een proces onnodig tijd kost, is er iets te winnen. FactumAI is voor
-              mij een logische volgende stap: AI-agents zijn geen hype meer, ze doen inmiddels
-              echt werk. En dat kan bij vrijwel elke organisatie het verschil maken tussen krap
-              zitten en ruimte hebben.
-            </p>
-            <p>
-              Wat ik leuk vind aan dit werk: het gesprek. Een ondernemer die uitlegt waar hij
-              tegenaan loopt, en dan samen kijken of er iets aan te doen is. Een koffie, een paar
-              vragen, en meestal ligt er binnen een half uur een concreet punt op tafel. Een tevreden klant, daar gaat
-              het mij om.
+              Daarna, optioneel, een maandelijkse retainer voor monitoring, model-updates en kleine
+              bijsturing. U houdt zelf de knoppen — elke beslissing is terug te zien in een logboek
+              en bij te stellen via expliciete beleidsregels.
             </p>
           </div>
         </div>
       </section>
 
-      <section
-        className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden"
-      >
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
@@ -100,7 +105,6 @@ export default function OverPage() {
             Drie uitgangspunten die{' '}
             <span className="italic text-[var(--oker)]">alles bepalen.</span>
           </h2>
-
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
             <DarkPrinciple
               number="I"
@@ -121,28 +125,143 @@ export default function OverPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-            <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
-              Zin in een gesprek? Of eerst{' '}
-              <span className="italic text-[var(--oker-deep)]">de demo</span> zien?
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/demo"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
-              >
-                Demo openen
-                <ArrowRight size={16} strokeWidth={1.8} />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
-              >
-                Contact
-              </Link>
+      <section className="border-t border-[var(--paper-edge)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+                Het team
+              </div>
+              <h2 className="mt-2 font-display text-[28px] sm:text-[34px] leading-tight text-[var(--ink)]">
+                Wie u te zien krijgt aan tafel.
+              </h2>
             </div>
+            <p className="text-[14px] text-[var(--ink-dim)] max-w-[360px] sm:text-right">
+              Klein team, korte lijnen. De persoon die u spreekt, bouwt ook mee aan uw agent.
+            </p>
+          </div>
+
+          <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TEAM.map((m) => (
+              <li key={m.slug}>
+                <Link
+                  href={`/over/${m.slug}`}
+                  className="block h-full site-card px-6 py-6 group"
+                >
+                  <Avatar member={m} />
+                  <div className="mt-4 font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                    {m.voornaam} {m.achternaam}
+                  </div>
+                  <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+                    {m.rol}
+                  </div>
+                  <p className="mt-3 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
+                    {m.korteBio}
+                  </p>
+                  <div className="mt-4 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+                    Bekijk profiel
+                    <ArrowRight size={12} strokeWidth={1.8} />
+                  </div>
+                </Link>
+              </li>
+            ))}
+            <li>
+              <div className="h-full px-6 py-6 rounded-[2px] border border-dashed border-[var(--paper-edge)] flex flex-col justify-center text-[var(--ink-faint)]">
+                <div className="font-display text-[17px] text-[var(--ink-dim)] leading-tight">
+                  Ruimte voor uitbreiding
+                </div>
+                <p className="mt-2 text-[13px] leading-[1.6]">
+                  Wij groeien voorzichtig. Een nieuwe collega komt erbij wanneer wij het werk niet
+                  meer alleen aankunnen — niet eerder.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        className="border-t border-[var(--paper-edge)]"
+        style={{ background: 'var(--paper-deep)' }}
+      >
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div>
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+                Bedrijfsgegevens
+              </div>
+              <h2 className="mt-2 font-display text-[24px] sm:text-[28px] leading-tight text-[var(--ink)]">
+                Praktisch.
+              </h2>
+              <dl className="mt-6 space-y-3 text-[14px]">
+                <Row label="Bedrijfsnaam" value="FactumAI" />
+                <Row label="Vestiging" value="Hoogkarspel, West-Friesland" />
+                <Row label="Werkgebied" value="Heel Nederland" />
+                <Row label="E-mail" value="info@factumai.nl" href="mailto:info@factumai.nl" />
+                <Row label="Telefoon" value="06-10 55 56 58" href="tel:+31610555658" />
+                <Row label="Privacy" value="privacy@factumai.nl" href="mailto:privacy@factumai.nl" />
+              </dl>
+            </div>
+            <div>
+              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+                Documenten
+              </div>
+              <h2 className="mt-2 font-display text-[24px] sm:text-[28px] leading-tight text-[var(--ink)]">
+                Voor de zorgvuldige lezer.
+              </h2>
+              <ul className="mt-6 space-y-3 text-[14px]">
+                <li>
+                  <Link
+                    href="/privacy"
+                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  >
+                    <span className="font-display text-[15px] text-[var(--ink)]">
+                      Privacyverklaring
+                    </span>
+                    <span className="block mt-1 text-[12.5px] text-[var(--ink-dim)]">
+                      Welke persoonsgegevens wij verwerken en waarom.
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/subverwerkers"
+                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  >
+                    <span className="font-display text-[15px] text-[var(--ink)]">
+                      Sub-verwerkers
+                    </span>
+                    <span className="block mt-1 text-[12.5px] text-[var(--ink-dim)]">
+                      Overzicht van sub-verwerkers met locatie en juridisch kader.
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
+            Zin in een gesprek?{' '}
+            <span className="italic text-[var(--oker-deep)]">Of eerst de demo zien?</span>
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/demo"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+            >
+              Demo openen
+              <ArrowRight size={16} strokeWidth={1.8} />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
+            >
+              Contact
+            </Link>
           </div>
         </div>
       </section>
@@ -150,31 +269,44 @@ export default function OverPage() {
   );
 }
 
-import Image from 'next/image';
-
-function Portret() {
+function Fact({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div
-      className="relative aspect-[4/5] w-full max-w-[320px] rounded-[2px] border border-[var(--paper-edge)] overflow-hidden"
-      style={{ boxShadow: 'var(--shadow-lift)' }}
-    >
-      <Image
-        src="/portret.jpg"
-        alt="Sjaak ter Veld — oprichter FactumAI"
-        fill
-        sizes="(max-width: 640px) 100vw, 320px"
-        className="object-cover"
-        priority
-      />
+    <div className="border-l-[3px] border-[var(--oker)] pl-4">
+      <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+        {label}
+      </div>
+      <div className="mt-1 font-display text-[24px] sm:text-[28px] tabular-nums text-[var(--ink)] leading-tight">
+        {value}
+      </div>
+      {sub && (
+        <div className="mt-0.5 font-mono text-[11px] text-[var(--ink-dim)] uppercase tracking-wider">
+          {sub}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Avatar({ member }: { member: { initialen: string; portretSrc?: string; voornaam: string; achternaam: string } }) {
+  if (member.portretSrc) {
+    return (
       <div
-        className="absolute inset-0 pointer-events-none opacity-25"
-        style={{
-          backgroundImage: 'url(/paper-grain.svg)',
-          backgroundSize: '240px',
-          mixBlendMode: 'multiply',
-        }}
-        aria-hidden
-      />
+        className="relative aspect-square w-[88px] rounded-[2px] border border-[var(--paper-edge)] overflow-hidden"
+        style={{ boxShadow: 'var(--shadow-lift)' }}
+      >
+        <Image
+          src={member.portretSrc}
+          alt={`${member.voornaam} ${member.achternaam}`}
+          fill
+          sizes="88px"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="relative w-[88px] aspect-square rounded-[2px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] flex items-center justify-center">
+      <span className="font-display text-[28px] text-[var(--oker-deep)]">{member.initialen}</span>
     </div>
   );
 }
@@ -200,5 +332,23 @@ function DarkPrinciple({
       <h3 className="mt-4 font-display text-[19px] leading-tight text-[var(--paper)]">{title}</h3>
       <p className="mt-3 text-[14px] leading-[1.7] text-[var(--paper-deep)] opacity-90">{body}</p>
     </article>
+  );
+}
+
+function Row({ label, value, href }: { label: string; value: string; href?: string }) {
+  const inner = href ? (
+    <a href={href} className="text-[var(--ink)] hover:text-[var(--oker-deep)] transition-colors">
+      {value}
+    </a>
+  ) : (
+    <span className="text-[var(--ink)]">{value}</span>
+  );
+  return (
+    <div className="flex items-baseline justify-between gap-4 border-b border-[var(--paper-edge)] pb-2">
+      <dt className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+        {label}
+      </dt>
+      <dd className="text-right">{inner}</dd>
+    </div>
   );
 }
