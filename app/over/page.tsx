@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/over' },
 };
 
-const FOUNDED = 2024;
+const FOUNDED = 2026;
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 const ABOUT_SCHEMA = {
@@ -63,41 +63,61 @@ export default function OverPage() {
         style={{ background: 'var(--paper-warm)' }}
       >
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-14">
-          <div>
+          <div className="md:sticky md:top-8 md:self-start">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
               Wat wij doen
             </div>
             <h2 className="mt-2 font-display text-[28px] sm:text-[34px] leading-[1.1] text-[var(--ink)]">
-              AI-agents bouwen,{' '}
-              <span className="italic text-[var(--oker-deep)]">implementeren, bijhouden.</span>
+              AI-agents op maat,{' '}
+              <span className="italic text-[var(--oker-deep)]">van losse agent tot platform.</span>
             </h2>
+            <p className="mt-5 text-[14px] leading-[1.7] text-[var(--ink-dim)] max-w-[360px]">
+              Niet alleen routine-administratie. Ook complexe orchestraties, kennis-systemen,
+              guardrails op maat en doorontwikkeling die meegroeit met uw bedrijf.
+            </p>
           </div>
-          <div className="space-y-5 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
-            <p>
-              Wij ontwerpen en bouwen AI-agents op maat: digitale collega&rsquo;s die mails lezen,
-              offertes opstellen, orders verwerken, facturen klaarzetten en planning regelen — binnen
-              úw beleidsregels en gekoppeld aan úw systemen. Geen black box, geen pilot zonder
-              vervolg. De eerste agent draait binnen één tot twee weken in productie.
-            </p>
-            <p>
-              Daarna, optioneel, een maandelijkse retainer voor monitoring, model-updates en kleine
-              bijsturing. U houdt zelf de knoppen — elke beslissing is terug te zien in een logboek
-              en bij te stellen via expliciete beleidsregels.
-            </p>
+          <div className="space-y-7 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
+            <Doen
+              eyebrow="Solo-agents"
+              titel="Eén agent voor één proces."
+              body="Voor MKB-bedrijven met een concrete pijn beginnen wij vrijwel altijd met één losse agent: offerte-, order-, facturatie-, mail- of planning-agent. Live in één tot twee weken, gekoppeld aan uw systemen, binnen úw beleidsregels. Bewuste keus voor klein beginnen — uw mensen leren hoe ze het bijsturen voor we uitbreiden."
+            />
+            <Doen
+              eyebrow="Multi-agent platforms"
+              titel="Een team van digitale collega's met onderlinge samenwerking."
+              body="Voor grotere organisaties bouwen wij multi-agent architecturen: een orchestrator-agent verdeelt werk over gespecialiseerde collega's (offerte, order, inkoop, facturatie, klacht). Elke agent heeft een eigen rol, eigen mandaat, eigen escalatie-pad. Bij Nordveld draaien zo zeven afdelings-agents naast elkaar onder één regie."
+            />
+            <Doen
+              eyebrow="Beslissingen onder guardrails"
+              titel="Werk dat oordeel vraagt — niet alleen werk dat regels volgt."
+              body="Onze agents nemen beslissingen binnen door u expliciet vastgelegd beleid: bedragen-mandaten, klantgroep-uitzonderingen, coulance-regels, escalatie-paden, communicatie-toon per kanaal. Daar waar klassieke automatisering breekt op variatie, kan een goed gebouwde agent met context omgaan en zijn afwegingen logben en motiveren."
+            />
+            <Doen
+              eyebrow="Integraties"
+              titel="Praat met de systemen die u al gebruikt."
+              body="Boekhouding (Exact, AFAS, Twinfield, Snelstart, Moneybird), CRM (Pipedrive, Teamleader, HubSpot), e-mail (Microsoft 365, Google Workspace), ERP en WMS, branche-specifieke portals (Resengo, Mews, Funda, RVO, NVWA). Via API als die er is, anders via webhooks, e-mail-bridge of een kleine bridge die handmatige CSV-exports nabootst. Verouderd systeem zonder API is zelden een blokkade."
+            />
+            <Doen
+              eyebrow="Eigen kennis & context"
+              titel="RAG en kennisbanken op uw bedrijfsdata."
+              body="Sommige agents hebben toegang tot uw eigen kennis nodig: jurisprudentie-archieven, productdatabases, prijsafspraken, voorgaande dossiers. Wij bouwen veilige RAG-systemen op uw bedrijfsdata met expliciete logging en bron-vermelding. Data blijft in NL/EU, modellen worden niet getraind op uw inhoud."
+            />
+            <Doen
+              eyebrow="Doorontwikkeling"
+              titel="De agent die meegroeit met uw bedrijf."
+              body="Een AI-agent is geen statisch product. Modellen worden elk kwartaal beter en goedkoper, uw processen verschuiven, integraties krijgen updates, beleid evolueert. Optionele maandelijkse retainer voor monitoring, model-updates, beleidsreviews en kleine bijstellingen — of alleen de bouw, en aanpassen ad hoc. U kiest zelf."
+            />
+            <Doen
+              eyebrow="Wat wij niet doen"
+              titel="Eerlijke afbakening."
+              body="Wij verkopen geen kant-en-klaar SaaS-platform en geen consultancy-rapporten. Wij trainen geen foundation-modellen. Wij bouwen geen agent voor een proces dat zich nog niet leent voor automatisering — eerlijk teruggeven wanneer het nog niet rijp is, hoort bij het werk."
+            />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)] relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 50% at 20% 30%, rgba(168, 128, 58, 0.14) 0%, transparent 70%)',
-          }}
-        />
-        <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+      <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
           <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
             Waar wij in geloven
           </div>
@@ -146,27 +166,30 @@ export default function OverPage() {
               <li key={m.slug}>
                 <Link
                   href={`/over/${m.slug}`}
-                  className="block h-full site-card px-6 py-6 group"
+                  className="block h-full bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] overflow-hidden hover:border-[var(--oker)] transition-colors group"
+                  style={{ boxShadow: 'var(--shadow-lift)' }}
                 >
-                  <Avatar member={m} />
-                  <div className="mt-4 font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                    {m.voornaam} {m.achternaam}
-                  </div>
-                  <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
-                    {m.rol}
-                  </div>
-                  <p className="mt-3 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
-                    {m.korteBio}
-                  </p>
-                  <div className="mt-4 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                    Bekijk profiel
-                    <ArrowRight size={12} strokeWidth={1.8} />
+                  <CardPortret member={m} />
+                  <div className="px-5 py-5">
+                    <div className="font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                      {m.voornaam} {m.achternaam}
+                    </div>
+                    <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+                      {m.rol}
+                    </div>
+                    <p className="mt-3 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
+                      {m.korteBio}
+                    </p>
+                    <div className="mt-4 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+                      Bekijk profiel
+                      <ArrowRight size={12} strokeWidth={1.8} />
+                    </div>
                   </div>
                 </Link>
               </li>
             ))}
             <li>
-              <div className="h-full px-6 py-6 rounded-[2px] border border-dashed border-[var(--paper-edge)] flex flex-col justify-center text-[var(--ink-faint)]">
+              <div className="h-full min-h-[280px] px-6 py-6 rounded-[2px] border border-dashed border-[var(--paper-edge)] flex flex-col justify-center text-[var(--ink-faint)]">
                 <div className="font-display text-[17px] text-[var(--ink-dim)] leading-tight">
                   Ruimte voor uitbreiding
                 </div>
@@ -287,26 +310,50 @@ function Fact({ label, value, sub }: { label: string; value: string; sub?: strin
   );
 }
 
-function Avatar({ member }: { member: { initialen: string; portretSrc?: string; voornaam: string; achternaam: string } }) {
+function CardPortret({
+  member,
+}: {
+  member: { initialen: string; portretSrc?: string; voornaam: string; achternaam: string; rolKort: string };
+}) {
   if (member.portretSrc) {
     return (
-      <div
-        className="relative aspect-square w-[88px] rounded-[2px] border border-[var(--paper-edge)] overflow-hidden"
-        style={{ boxShadow: 'var(--shadow-lift)' }}
-      >
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--paper-warm)] border-b border-[var(--paper-edge)]">
         <Image
           src={member.portretSrc}
-          alt={`${member.voornaam} ${member.achternaam}`}
+          alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
           fill
-          sizes="88px"
-          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+          className="object-cover object-[center_25%]"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: 'url(/paper-grain.svg)',
+            backgroundSize: '240px',
+            mixBlendMode: 'multiply',
+          }}
+          aria-hidden
         />
       </div>
     );
   }
   return (
-    <div className="relative w-[88px] aspect-square rounded-[2px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] flex items-center justify-center">
-      <span className="font-display text-[28px] text-[var(--oker-deep)]">{member.initialen}</span>
+    <div className="relative aspect-[4/3] w-full bg-[var(--paper-warm)] border-b border-[var(--paper-edge)] flex items-center justify-center">
+      <span className="font-display text-[64px] text-[var(--oker-deep)]">{member.initialen}</span>
+    </div>
+  );
+}
+
+function Doen({ eyebrow, titel, body }: { eyebrow: string; titel: string; body: string }) {
+  return (
+    <div className="border-l-[3px] border-[var(--oker)] pl-5">
+      <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+        {eyebrow}
+      </div>
+      <h3 className="mt-1 font-display text-[19px] sm:text-[21px] leading-tight text-[var(--ink)]">
+        {titel}
+      </h3>
+      <p className="mt-3 text-[14.5px] leading-[1.75] text-[var(--ink-dim)]">{body}</p>
     </div>
   );
 }

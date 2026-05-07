@@ -1,16 +1,15 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { CASES } from '@/lib/data/cases';
+import { CasesList } from './CasesList';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const metadata: Metadata = {
   title: 'AI-agent cases — resultaten bij MKB-klanten',
   description:
-    'Drie voorbeelden van AI-agents die wij voor MKB-klanten bouwden in groothandel, installatietechniek en transport. Met concrete tijdwinst, kostenbesparing en doorlooptijd.',
+    'Voorbeelden van AI-agents die wij voor MKB-klanten bouwden in groothandel, installatietechniek, transport en meer. Met concrete tijdwinst, kostenbesparing en doorlooptijd. Filter op branche of regio.',
   alternates: { canonical: '/cases' },
 };
 
@@ -41,57 +40,13 @@ export default function CasesPage() {
             <span className="italic text-[var(--oker-deep)]">En wat het opleverde.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Drie MKB-bedrijven, drie andere processen, één aanpak. Namen aangepast waar klanten
-            daarom vroegen.
+            MKB-bedrijven, verschillende processen, één aanpak. Filter op branche of regio om
+            cases te vinden die op uw situatie lijken. Namen aangepast waar klanten daarom vroegen.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-20 space-y-5">
-        {CASES.map((c, i) => {
-          const accent = ['var(--oker-deep)', 'var(--terra)', 'var(--mos)'][i % 3];
-          return (
-            <Link
-              key={c.slug}
-              href={`/cases/${c.slug}`}
-              className="block site-card px-6 sm:px-8 py-6 sm:py-7 group"
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div className="min-w-0">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: accent }}>
-                    {c.branche} · {c.regio}
-                  </div>
-                  <h2 className="mt-1 font-display text-[22px] sm:text-[26px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                    {c.klant}
-                  </h2>
-                  <p className="mt-1 text-[15px] text-[var(--ink-dim)] italic">{c.tagline}</p>
-                </div>
-                <div className="flex items-baseline gap-5 shrink-0">
-                  {c.resultaat.slice(0, 2).map((r) => (
-                    <div key={r.label} className="text-right">
-                      <div className="font-display text-[20px] sm:text-[22px]" style={{ color: accent }}>
-                        {r.metric}
-                      </div>
-                      <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider">
-                        {r.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-[var(--paper-edge)] flex items-center justify-between text-[12px]">
-                <span className="font-mono text-[var(--ink-faint)] uppercase tracking-wider">
-                  {c.doorlooptijd}
-                </span>
-                <span className="font-mono text-[var(--oker-deep)] group-hover:translate-x-1 transition-transform flex items-center gap-1.5">
-                  Lees de case
-                  <ArrowRight size={13} strokeWidth={1.8} />
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </section>
+      <CasesList cases={CASES} />
     </SitePage>
   );
 }
