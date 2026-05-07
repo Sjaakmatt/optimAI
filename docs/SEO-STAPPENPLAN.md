@@ -3,116 +3,107 @@
 Doel: FactumAI #1 in Nederland voor "AI agents implementeren", "AI automatisering",
 "AI agents voor bedrijven", "AI implementatie", en de bijbehorende long-tail-cluster.
 
-De code is af. Wat hieronder staat zijn de niet-code-stappen die jij zelf moet
-nemen — omdat ze een account, beslissing, of authenticatie van jouw kant vragen.
+De code-fundering is af. Wat hieronder staat zijn de niet-code-stappen die jij
+zelf moet nemen — omdat ze een account, beslissing of authenticatie van jouw
+kant vragen.
 
 Volg dit document van boven naar beneden. Vink de checkboxes af. Geschatte tijd
-voor de eerste 90 dagen: **8–12 uur eigen werk per maand**.
+voor de eerste 90 dagen: **6–10 uur eigen werk per maand**.
+
+---
+
+## Status snapshot
+
+### ✅ Wat al draait (geen actie nodig)
+
+- [x] Site live op `factumai.nl` met 63 statische pagina's
+- [x] Volledige metadata, schema (Organization, Service, Article, FAQ, HowTo, Person, Breadcrumb, ItemList, Blog, WebApplication)
+- [x] Sitemap met `nl-NL` hreflang-self, alle routes inbegrepen
+- [x] Robots.txt met AI-crawler allowlist (GPTBot, Claude, Perplexity, etc.)
+- [x] `llms.txt` route voor AI-search engines
+- [x] PWA-manifest, security headers, redirects
+- [x] **Content automation pipeline** — Anthropic API key gezet, workflow permissions OK, cron draait di+do 09:00 NL
+- [x] **IndexNow auto-ping** — bij elke merge naar main worden nieuwe URLs binnen seconden gepingd naar Bing/Yandex/Seznam/Naver/Yep/Mojeek
+- [x] **3 nieuwe servicepagina's**: ai-automatisering, ai-implementatie, ai-agents-voor-bedrijven
+- [x] **/diensten overview** als hub-pagina
+- [x] **14 branches** + `/branches` lijst
+- [x] **3 vergelijkingspagina's** onder `/diensten/vergelijken/`
+- [x] **Auteurspagina** `/over/sjaak-ter-veld` met uitgebreid Person-schema
+- [x] **/over** als bedrijfsinfo + team-data-driven (klaar voor uitbreiding)
+- [x] **Tools live**: ROI calculator + agent readiness check
+- [x] **Resources** (PDF-stubs): ai-implementatie-stappenplan + guardrails-werkboek
+- [x] **Tag-gebaseerde related posts** op kennis-detailpagina's
+- [x] **Tools-dropdown** in header (Demo + ROI + readiness)
+- [x] **Cases-pagina** met branche- en regio-filters
+
+### ☐ Wat jij nog moet doen
+
+Hieronder per fase. Begin bij sectie 1 als je nog niets gedaan hebt.
 
 ---
 
 ## Inhoud
 
-1. [Direct na merge — Week 0](#1-direct-na-merge--week-0)
-2. [Indexering & vindbaarheid — Week 1](#2-indexering--vindbaarheid--week-1)
-3. [E-E-A-T & vertrouwen — Week 1–2](#3-e-e-a-t--vertrouwen--week-12)
-4. [Off-page autoriteit — Week 2–8](#4-off-page-autoriteit--week-28)
-5. [Content automation operationeel — doorlopend](#5-content-automation-operationeel--doorlopend)
-6. [Performance & afbeeldingen — Week 1](#6-performance--afbeeldingen--week-1)
-7. [Meten & rapporteren — wekelijks](#7-meten--rapporteren--wekelijks)
-8. [PR campagnes — kwartaal](#8-pr-campagnes--kwartaal)
-9. [Slaagcriteria 6 maanden](#9-slaagcriteria-6-maanden)
+1. [Indexering & vindbaarheid — Week 1](#1-indexering--vindbaarheid--week-1)
+2. [E-E-A-T & vertrouwen — Week 1–2](#2-e-e-a-t--vertrouwen--week-12)
+3. [Off-page autoriteit — Week 2–8](#3-off-page-autoriteit--week-28)
+4. [Content automation in de praktijk — doorlopend](#4-content-automation-in-de-praktijk--doorlopend)
+5. [Performance & afbeeldingen — Week 1](#5-performance--afbeeldingen--week-1)
+6. [Meten & rapporteren — wekelijks](#6-meten--rapporteren--wekelijks)
+7. [PR-campagnes — kwartaal](#7-pr-campagnes--kwartaal)
+8. [Slaagcriteria 6 maanden](#8-slaagcriteria-6-maanden)
+9. [Common gotchas (bewaren voor later)](#9-common-gotchas-bewaren-voor-later)
 
 ---
 
-## 1. Direct na merge — Week 0
+## 1. Indexering & vindbaarheid — Week 1
 
-### 1.1 GitHub Secret toevoegen (CRUCIAAL — anders draait de cron niet)
+### 1.1 Google Search Console
 
-- [ ] Ga naar `https://github.com/Sjaakmatt/optimAI/settings/secrets/actions`
-- [ ] Klik **New repository secret**
-- [ ] Name: `ANTHROPIC_API_KEY`
-- [ ] Value: jouw Anthropic API key (vraag aan via console.anthropic.com → API keys → Create key, geef hem de naam "factumai-content-bot")
-- [ ] Save
+- [x] GSC verifieerd voor `factumai.nl` (gezien aan de "niet geïndexeerd"-screenshots)
+- [ ] In Search Console → **Sitemaps** → submit `https://factumai.nl/sitemap.xml` als nog niet gebeurd
+- [ ] Bij **URL-inspectie**: dien handmatig in voor de 12 belangrijkste pagina's. Per dag mag je er ~10 doen, dus spreid over 2 dagen:
 
-> **Waarom:** zonder deze key faalt elke geplande cron in `.github/workflows/generate-post.yml` met "ERROR: ANTHROPIC_API_KEY ontbreekt".
+**Dag 1:**
+- `/`
+- `/diensten`
+- `/diensten/ai-agent-laten-bouwen`
+- `/diensten/ai-automatisering`
+- `/diensten/ai-implementatie`
+- `/diensten/ai-agents-voor-bedrijven`
+- `/over`
+- `/over/sjaak-ter-veld`
+- `/cases`
+- `/kennis`
 
-### 1.2 PR mergen
+**Dag 2:**
+- `/branches`
+- `/tools/ai-roi-calculator`
+- `/tools/agent-readiness-check`
+- `/diensten/vergelijken/ai-agent-vs-chatbot`
+- `/branches/groothandel`
+- `/branches/installatietechniek`
+- `/branches/transport-logistiek`
+- `/branches/zorg`
+- `/branches/bouw`
+- `/info`
 
-- [ ] Branch `claude/seo-audit-ai-agents-5zBAu` reviewen op GitHub
-- [ ] Vercel preview-deployment openen, klik door alle nieuwe pagina's:
-  - `/diensten/ai-automatisering`
-  - `/diensten/ai-implementatie`
-  - `/diensten/ai-agents-voor-bedrijven`
-  - `/diensten/vergelijken/ai-agent-vs-chatbot` (en de andere twee)
-  - `/branches/accountancy` (+ advocatuur, makelaardij, agrarisch, e-commerce, horeca)
-  - `/branches` (lijstpagina)
-  - `/over/sjaak-ter-veld`
-  - `/tools/ai-roi-calculator` — speel met de schuivers, controleer de uitkomst
-  - `/tools/agent-readiness-check` — doorloop de quiz van begin tot eind
-  - `/resources/ai-implementatie-stappenplan`
-- [ ] LinkedIn-URL op `/over/sjaak-ter-veld` verifiëren — staat er nu `linkedin.com/in/sjaakterveld/`. Klopt dat? Pas anders aan in `app/over/sjaak-ter-veld/page.tsx` (regel met `sameAs:`).
-- [ ] Squash & merge naar `main`
-- [ ] Vercel rolt automatisch live op `factumai.nl`
+Voor elke: **Test live URL** → groen vinkje → **Indexering aanvragen**.
 
-### 1.3 Cron-base branch aanpassen
+### 1.2 Bing Webmaster Tools
 
-De content-cron pusht standaard naar `claude/seo-audit-ai-agents-5zBAu`. Na merge
-naar main moet dat aangepast:
-
-- [ ] Open `.github/workflows/generate-post.yml`
-- [ ] Wijzig `base: claude/seo-audit-ai-agents-5zBAu` → `base: main`
-- [ ] Commit deze wijziging op `main` (één-regel-PR is OK)
-
-### 1.4 Eerste auto-post lokaal testen (optioneel maar slim)
-
-Voordat de cron draait, test lokaal of de pipeline werkt zoals verwacht:
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-…   # zelfde key als in GitHub Secret
-npm install
-npm run new-post -- "Hoeveel kost een AI-agent in 2026? Realistische tarieven voor MKB Nederland"
-npm run build   # check dat de toegevoegde post valide is
-git diff lib/data/posts.ts   # bekijk de gegenereerde entry
-```
-
-Als dit lukt, zet de wijzigingen terug (`git checkout lib/data/posts.ts scripts/content-backlog.json`) zodat de cron deze post zelf kan aanmaken op het juiste moment.
-
----
-
-## 2. Indexering & vindbaarheid — Week 1
-
-### 2.1 Google Search Console (verplicht)
-
-- [ ] Ga naar `https://search.google.com/search-console`
-- [ ] Klik **Add property** → **Domain** → vul `factumai.nl` in
-- [ ] Kopieer het verifiërende DNS TXT-record
-- [ ] Voeg het toe bij je domain-registrar (Vercel-DNS, TransIP, Versio, etc.)
-- [ ] Wacht 5–30 minuten, klik **Verify**
-- [ ] In Search Console → **Sitemaps** → submit `https://factumai.nl/sitemap.xml`
-- [ ] Bij **URL-inspectie**: dien handmatig in voor de 8 belangrijkste pagina's:
-  - `/`
-  - `/diensten/ai-agent-laten-bouwen`
-  - `/diensten/ai-automatisering`
-  - `/diensten/ai-implementatie`
-  - `/diensten/ai-agents-voor-bedrijven`
-  - `/over/sjaak-ter-veld`
-  - `/tools/ai-roi-calculator`
-  - `/tools/agent-readiness-check`
-
-  Voor elke: **Test live URL** → **Request indexing**.
-
-### 2.2 Bing Webmaster Tools
-
-ChatGPT search indexeert via Bing — dus dit is niet optioneel.
+ChatGPT-search indexeert via Bing — dus dit is niet optioneel. Plus: IndexNow
+pingt al automatisch naar Bing, maar je hebt een Webmaster-account nodig om
+te zien wat er gebeurt.
 
 - [ ] Ga naar `https://www.bing.com/webmasters`
 - [ ] Sign in met Microsoft-account
 - [ ] **Add site** → `https://factumai.nl`
-- [ ] Verifieer via DNS of importeer vanuit Google Search Console (snelste optie)
+- [ ] Verifieer via DNS, of importeer vanuit Google Search Console (snelste)
 - [ ] Submit sitemap: `https://factumai.nl/sitemap.xml`
+- [ ] Open het **IndexNow**-tabblad in de linker navigatie — daar zie je de URLs die ons workflow heeft gepingd. Bij eerste run met `mode: all` zou je daar ~63 URLs moeten zien.
 
-### 2.3 Google Business Profile
+### 1.3 Google Business Profile
 
 Voor lokaal-signaal en knowledge-panel.
 
@@ -129,7 +120,7 @@ Voor lokaal-signaal en knowledge-panel.
 - [ ] Beschrijving (max 750 tekens) — gebruik tekst uit `OrganizationSchema.tsx` als basis
 - [ ] Zet "Diensten" aan met de drie hoofd-diensten
 
-### 2.4 NAP-consistentie controleren
+### 1.4 NAP-consistentie controleren
 
 Naam-Adres-Telefoon **moeten** overal identiek zijn. Check:
 
@@ -141,7 +132,7 @@ Naam-Adres-Telefoon **moeten** overal identiek zijn. Check:
 
 Eén verschil (bv. "06-1055 5658" vs "+31610555658") verzwakt het lokale signaal.
 
-### 2.5 Domain-registrar checks
+### 1.5 Domain-registrar checks
 
 - [ ] Vercel: `factumai.nl` als primary, `www.factumai.nl` redirect naar apex (of andersom — kies één canonical en blijf daarbij)
 - [ ] HTTPS-only (Vercel doet dit automatisch, controleer via `https://www.ssllabs.com/ssltest/`)
@@ -149,45 +140,45 @@ Eén verschil (bv. "06-1055 5658" vs "+31610555658") verzwakt het lokale signaal
 
 ---
 
-## 3. E-E-A-T & vertrouwen — Week 1–2
+## 2. E-E-A-T & vertrouwen — Week 1–2
 
-### 3.1 Persoonlijke profielen
+Google + AI-search wegen experience/expertise/authority/trust steeds zwaarder.
 
-- [ ] **LinkedIn-profiel Sjaak**: voeg toe aan headline/about: "Oprichter FactumAI — AI-agents voor MKB". Zorg dat headline overeenkomt met `/over/sjaak-ter-veld`.
+### 2.1 Persoonlijke profielen
+
+- [x] LinkedIn-URL op `/over/sjaak-ter-veld` correct gezet
+- [ ] **LinkedIn-profiel Sjaak**: voeg toe aan headline/about: "Oprichter FactumAI — AI-agents voor MKB"
 - [ ] **LinkedIn company page** voor FactumAI aanmaken (als nog niet bestaat). Beschrijving uit `OrganizationSchema.tsx`. Voeg websitelink toe. Plaats 1 update per week (link naar nieuwe kennis-post).
-- [ ] (Optioneel) **X/Twitter @factumai** registreren — even claimen, posten kan later.
-- [ ] Op `app/over/sjaak-ter-veld/page.tsx` regel `sameAs:` — vul aan met je échte profiellinks.
+- [ ] (Optioneel) **X/Twitter @factumai** registreren — even claimen, posten kan later
+- [ ] Als je nog meer profielen hebt (GitHub, Mastodon): voeg ze toe aan `lib/data/team.ts` onder Sjaak — `linkedin`, `github`, `twitter`. Worden automatisch in Person-schema (`sameAs`) opgenomen.
 
-### 3.2 Reviews verzamelen
+### 2.2 Reviews verzamelen
 
 Google AggregateRating-schema werkt alléén met échte, verifieerbare reviews. Niet
 zelf verzinnen — Google straft dat af.
 
-- [ ] Vraag aan de drie bestaande klanten (Nordveld, Hendriks, Bakker — namen
-  wellicht aangepast) een Google-review op je Business Profile. 5 reviews is
-  een goede startbasis.
-- [ ] Vraag toestemming voor een sterren-rating + quote die je op de site mag plaatsen.
-- [ ] Stuur me door: "ik heb 5 echte reviews van X.X gemiddeld" — dan voeg ik
-  `Review`/`AggregateRating` schema toe aan `OrganizationSchema.tsx`.
+- [ ] Vraag aan de drie bestaande klanten (Nordveld, Hendriks, Bakker) een Google-review op je Business Profile. 5 reviews is een goede startbasis.
+- [ ] Vraag toestemming voor een sterren-rating + quote die je op de site mag plaatsen
+- [ ] Stuur me door: "ik heb 5 echte reviews van X.X gemiddeld" — dan voeg ik `Review`/`AggregateRating` schema toe aan `OrganizationSchema.tsx`
 
-### 3.3 Klantlogo's of branche-iconen
+### 2.3 Klantlogo's
 
 - [ ] Vraag aan klanten of hun logo op de site mag (3 voldoende voor de start)
-- [ ] Geen toestemming? Dan een visuele "MKB-klant in [branche]" placeholder — beter dan niets, maar logo's converteren beter
+- [ ] Geen toestemming? Dan een visuele "MKB-klant in [branche]" placeholder
 - [ ] Logo-strip plaatsen op `/`, `/diensten/ai-agent-laten-bouwen`, `/cases` — vraag mij om dit te coderen zodra je de logo's hebt
 
-### 3.4 KvK & BTW in footer
+### 2.4 KvK & BTW in footer
 
-- [ ] Verifieer dat in `components/site/SiteFooter.tsx` (of waar de footer renderet) staan: KvK-nummer, BTW-nummer, AVG-statement-link, link naar `/privacy` en `/subverwerkers`
-- [ ] Zo niet — laat het me weten, ik voeg het toe
+- [ ] Check `components/site/SiteFooter.tsx` of er KvK-nummer en BTW-nummer staan. Zo niet, geef ze me door dan voeg ik ze toe in de footer en in `OrganizationSchema.tsx`
 
 ---
 
-## 4. Off-page autoriteit — Week 2–8
+## 3. Off-page autoriteit — Week 2–8
 
-Zonder backlinks geen #1. Onderstaand een prioritair-volgorde plan.
+On-page is af. Vanaf hier wint wie de meeste relevante backlinks heeft. Dit is
+ook de hefboom voor de "Discovered, niet gecrawld"-berg in GSC.
 
-### 4.1 Directories (eerste 2 weken — quick wins)
+### 3.1 Directories (eerste 2 weken — quick wins)
 
 **Gratis, direct doen:**
 - [ ] [KvK Bedrijfsprofiel](https://www.kvk.nl/) — koppeling website
@@ -196,18 +187,14 @@ Zonder backlinks geen #1. Onderstaand een prioritair-volgorde plan.
 - [ ] [Apple Maps Connect](https://mapsconnect.apple.com/)
 - [ ] [Trustpilot](https://nl.trustpilot.com/) — claim je bedrijfspagina
 - [ ] [Yelp Nederland](https://biz.yelp.nl/)
-- [ ] [Bing Maps for Business](https://www.bingplaces.com/)
 
 **Sector-directories (kies de 3 meest relevant):**
 - [ ] [MKB-Nederland — als lid](https://www.mkb.nl/) — vermelding op ledenpagina
 - [ ] [Emerce100](https://www.emerce.nl/awards/emerce100/aanmelden) — submission voor de jaarlijkse lijst
 - [ ] [Computable Top 100](https://www.computable.nl/) — submission
 - [ ] [Frankwatching agencies](https://www.frankwatching.com/agencies/) — submit FactumAI
-- [ ] [Springwise](https://www.springwise.com/innovation-snapshot/) — submission als innovatieve case
-- [ ] [GoeieZaak](https://goeiezaak.nl/) — als Noord-Holland MKB
-- [ ] [Bird](https://bird.nl/) — branchespecifiek per klant-vertical
 
-### 4.2 Gastartikelen (vanaf week 3)
+### 3.2 Gastartikelen (vanaf week 3)
 
 Pitch onderwerpen uit `scripts/content-backlog.json` aan branchemedia. Eén
 gastartikel per maand minimum.
@@ -220,16 +207,15 @@ Doel-publicaties (Nederland, prioriteit hoog):
 - [ ] **Computable** — pitch: "Multi-agent systemen voor middelgrote bedrijven" — via redactie
 - [ ] **MT/Sprout** — pitch: "Verborgen kosten van handmatig MKB-werk" — via redactie
 - [ ] **De Ondernemer** — pitch: "AI-readiness check voor MKB" — vrij lage drempel, pak deze als eerste
-- [ ] **Cobouw** (per case in bouw) — bouw-vakblad
+- [ ] **Cobouw** (per case in bouw)
 - [ ] **Logistiek.nl** (per case in transport)
-- [ ] **AccountancyAge.nl** (per case accountancy)
 - [ ] **Installatie.nl** (per case installatietechniek)
 
-**Pitch-tip**: stuur niet "wil ik een gastartikel schrijven". Stuur: "ik heb een
+**Pitch-tip:** stuur niet "wil ik een gastartikel schrijven". Stuur: "ik heb een
 specifiek artikel in deze stijl klaarliggen, mag ik dat aanbieden?" — concreter
-= hogere conversie.
+= hogere conversie. Je hebt nu een sterke kennisbank om mee te onderbouwen.
 
-### 4.3 Partner-vermeldingen (vanaf week 4)
+### 3.3 Partner-vermeldingen (vanaf week 4)
 
 Sterk-context backlinks van software-partners. Vraag aan account manager:
 
@@ -238,47 +224,38 @@ Sterk-context backlinks van software-partners. Vraag aan account manager:
 - [ ] **Twinfield** — integratiepartners
 - [ ] **Pipedrive** — Marketplace + partners
 - [ ] **Teamleader** — partner-overzicht
-- [ ] **HubSpot Solutions Directory** (Solutions Partner Program) — gratis tier
-- [ ] **Microsoft Partner** (Cloud Partner Program) — sluit één relevante competentie aan, gratis listing
-- [ ] **Google Partners** — als je Google Workspace integreert
+- [ ] **HubSpot Solutions Directory** — gratis tier
 
-### 4.4 Podcasts (vanaf week 6, één per maand)
+### 3.4 Podcasts (vanaf week 6, één per maand)
 
 - [ ] **De Ondernemer** podcast
 - [ ] **Cloud Podcast NL**
 - [ ] **Dutch IT Channel**
 - [ ] **MT podcast**
-- [ ] **De Innovator** (RTL Z)
 - [ ] **Werk in uitvoering** (BNR)
 
 Pitch-mail: "Sjaak ter Veld, oprichter FactumAI. Wij bouwen AI-agents voor MKB.
 In één gesprek licht ik toe waar het MKB nu kan winnen op AI én waar het
 structureel mis gaat. 25 minuten."
 
-### 4.5 HARO / journalisten-queries
+### 3.5 HARO / journalisten-queries
 
-- [ ] Aanmelden bij **Help A B2B Writer**, **HARO**, **SourceBottle EU**
-- [ ] Twee keer per week beantwoord je relevante vragen over AI-implementatie,
-  MKB-tech, automatisering. Levert per kwartaal 1–3 gepubliceerde quotes met
-  backlink op.
+- [ ] Aanmelden bij **Help A B2B Writer** + **HARO** + **SourceBottle EU**
+- [ ] 2× per week relevante vragen beantwoorden over AI-implementatie, MKB-tech, automatisering. Levert per kwartaal 1–3 gepubliceerde quotes met backlink op.
 
 ---
 
-## 5. Content automation operationeel — doorlopend
+## 4. Content automation in de praktijk — doorlopend
 
-### 5.1 Cron monitoren
+### 4.1 Wat er automatisch gebeurt
 
-De workflow draait elke dinsdag en donderdag om 09:00 NL-tijd. Per run wordt:
-1. een onderwerp uit `scripts/content-backlog.json` gepakt (eerste met `status: pending`),
-2. een artikel gegenereerd via Claude Sonnet 4.6,
-3. de PR geopend.
+- **Cron** elke di + do 09:00 NL: pakt eerstvolgende `pending` uit `scripts/content-backlog.json`, genereert artikel via Claude Sonnet 4.6, opent PR
+- **Build verify** in CI: PR wordt alleen geopend als de gegenereerde post compileert
+- **IndexNow ping** zodra je PR mergt: nieuwe URL automatisch binnen Bing-index
 
-- [ ] Schakel **email-notificaties voor pull requests** in op je GitHub-account
-- [ ] Reserveer 2× 10 minuten per week (di + do, 12:00) om de PR te reviewen
+### 4.2 Reviewchecklist per auto-PR
 
-### 5.2 Reviewchecklist per auto-PR
-
-In de PR-body staat al een checklist. Loop hem af:
+In de PR-body staat al een checklist. Per PR ~10 min werk:
 
 - [ ] **Stijl** klopt met bestaande artikelen (toon, ritme, lengte)
 - [ ] **Geen verzonnen klantnamen** of statistieken — controleer op cijfers en namen
@@ -288,24 +265,23 @@ In de PR-body staat al een checklist. Loop hem af:
 - [ ] Open de **Vercel preview-deployment** en lees de post in context
 - [ ] Klein aanpassen: bewerk inline op GitHub (klik "Files changed" → 🖉)
 - [ ] Goed: **Squash & merge**
-- [ ] Slecht: voeg label `needs-rewrite` toe en sluit zonder mergen — de cron pakt
-  hetzelfde onderwerp dan opnieuw bij de volgende run
+- [ ] Slecht: voeg label `needs-rewrite` toe en sluit zonder mergen — backlog-item handmatig terug op `pending` zetten in volgende run
 
-### 5.3 Backlog uitbreiden
+### 4.3 Backlog uitbreiden
 
-`scripts/content-backlog.json` heeft nu **31 onderwerpen**, genoeg voor 4 maanden
-op 2 posts/week. Voeg nieuwe toe als ze binnenvallen:
+`scripts/content-backlog.json` heeft nu **30 onderwerpen pending** + 1 drafted. Genoeg voor ~15 weken op 2 posts/week. Voeg nieuwe toe als ze binnenvallen:
 
-- [ ] Onderwerp uit een klantgesprek? Voeg een item toe aan `items[]` met `status: pending`.
-- [ ] Cluster-spreiding bewaken: niet alleen cluster A, ook B/C/D/E afwisselen.
+- [ ] Onderwerp uit een klantgesprek? Voeg een item toe aan `items[]` met `status: pending`
+- [ ] Cluster-spreiding bewaken: niet alleen cluster A, ook B/C/D/E afwisselen
+- [ ] Onder 5 pending items: nieuwe batch toevoegen
 
-### 5.4 Ad-hoc post genereren
+### 4.4 Ad-hoc post genereren
 
 Iets in het nieuws (AI-Act update, nieuw model, branche-event)? Genereer
 direct een post:
 
 ```bash
-# Vanuit GitHub — Actions tab → "Generate kennis-artikel" → Run workflow → vul topic in
+# GitHub: Actions tab → "Generate kennis-artikel" → Run workflow → vul topic in
 ```
 
 Of lokaal:
@@ -313,20 +289,25 @@ Of lokaal:
 ANTHROPIC_API_KEY=sk-ant-… npm run new-post -- "Wat de AI-Act van mei 2026 betekent voor MKB"
 ```
 
-### 5.5 Stijl bijschaven
+### 4.5 Stijl bijschaven
 
 Na 5–10 gegenereerde posts merk je patronen. Iets dat steeds terugkomt en niet
-lekker leest? Voeg het toe aan `scripts/style-guide.md`. De volgende run pakt
-het mee.
+lekker leest? Voeg het toe aan `scripts/style-guide.md` of voeg een nieuw
+fewshot-bestand toe in `scripts/fewshot/`. De volgende run pakt het mee.
 
-- [ ] Maandelijkse mini-review van `scripts/style-guide.md` op basis van wat
-  je bij review hebt aangepast
+- [ ] Maandelijkse mini-review van `scripts/style-guide.md` op basis van wat je bij review hebt aangepast
+
+### 4.6 Anthropic budget-cap
+
+- [ ] Ga naar [console.anthropic.com → Settings → Limits](https://console.anthropic.com/settings/limits)
+- [ ] Zet een **Monthly spend limit** van $5 (>10× het verwachte verbruik, maar voorkomt verrassingen bij retry-loops)
+- [ ] Optioneel: usage notifications op 50% en 80%
 
 ---
 
-## 6. Performance & afbeeldingen — Week 1
+## 5. Performance & afbeeldingen — Week 1
 
-### 6.1 Portret-foto comprimeren (urgent)
+### 5.1 Portret-foto comprimeren (urgent)
 
 `/public/portret.jpg` is **10.2 MB** — dat is een LCP-killer.
 
@@ -335,42 +316,35 @@ het mee.
   - 320px breed → < 30 KB als WebP
   - 640px breed → < 80 KB als WebP
   - 1024px breed → < 200 KB als WebP
-- [ ] Vervang `public/portret.jpg` door de 1024px-versie (`next/image` regelt
-  resize voor de andere breedtes via de in `next.config.ts` gedefinieerde
-  `deviceSizes`)
-- [ ] Test: open `/over` op mobiel via PageSpeed Insights → LCP moet < 2.0s
-  worden (was vermoedelijk 4–7s)
+- [ ] Vervang `public/portret.jpg` door de 1024px-versie (`next/image` regelt resize voor de andere breedtes via de in `next.config.ts` gedefinieerde `deviceSizes`)
+- [ ] Test: open `/over` op mobiel via PageSpeed Insights → LCP moet < 2.0s worden
 
-### 6.2 Cover-afbeeldingen voor kennis-posts
+### 5.2 Cover-afbeeldingen voor kennis-posts (later)
 
-Op termijn — kost wat tijd:
-
-- [ ] Per kennis-post een 1200×630 cover image (DALL·E, Midjourney, Recraft)
+- [ ] Per kennis-post een 1200×630 cover image (DALL·E, Midjourney, Recraft, Flux)
 - [ ] Stijl-prompt: "abstract editorial illustration, oker en papier kleuren, minimal, FactumAI brand"
 - [ ] Plaats in `public/kennis/<slug>.webp`
-- [ ] Vraag mij om `coverImage`-veld te activeren in `lib/data/posts.ts` zodra
-  je 5+ covers klaar hebt
+- [ ] Vraag mij om `coverImage`-veld te activeren in `lib/data/posts.ts` zodra je 5+ covers klaar hebt
 
-### 6.3 Core Web Vitals tracking
+### 5.3 Core Web Vitals tracking
 
 Vercel Speed Insights staat al aan. Bekijk wekelijks:
 
 - [ ] Vercel dashboard → Speed Insights → Real Experience Score
 - [ ] Doel: LCP < 2.0s, INP < 150ms, CLS < 0.05 op alle templates
-- [ ] Lichtbaak: PageSpeed Insights van `https://factumai.nl` op mobiel — score
-  Performance ≥ 90, SEO 100
+- [ ] PageSpeed Insights van `https://factumai.nl` op mobiel — score Performance ≥ 90, SEO 100
 
 ---
 
-## 7. Meten & rapporteren — wekelijks
+## 6. Meten & rapporteren — wekelijks
 
-### 7.1 Rank-tracker opzetten
+### 6.1 Rank-tracker opzetten
 
 Kies één — niet meer:
 
 - [ ] **Ahrefs** (€89/mnd) — beste backlink-data + rank tracking
 - [ ] **SEranking** (€55/mnd) — goede prijs/kwaliteit voor MKB
-- [ ] **Nightwatch** (€39/mnd) — goedkoopste, lokaal Nederlands tracking
+- [ ] **Nightwatch** (€39/mnd) — goedkoopste, lokaal NL-tracking
 
 Volg deze **40 keywords**, ingedeeld in 4 buckets:
 
@@ -403,39 +377,39 @@ Volg deze **40 keywords**, ingedeeld in 4 buckets:
 - AI agent productie / AI productiebedrijf
 - AI agent detailhandel / AI retail
 
-**Nieuwe branches (9):**
+**Nieuwe branches (5):**
 - AI agent accountancy / AI accountant
 - AI agent advocatuur / AI advocaat
 - AI agent makelaar
 - AI agent agrarisch
 - AI agent webshop / AI ecommerce
 
-**Tools (3):**
+**Tools (4):**
 - AI ROI calculator
 - AI readiness check
 - AI implementatie stappenplan
+- AI agent vs chatbot
 
-### 7.2 Conversie-events instellen
+### 6.2 Conversie-events instellen
 
 Vercel Analytics heeft custom events. Voeg toe in:
 
 - [ ] Login Vercel → Project → Analytics → Custom events
-- [ ] Vraag mij om in `components/booking/CalProvider.tsx` (of waar relevant) de
-  events te emitten: `cta_plan_gesprek`, `cta_demo`, `contact_form_submit`,
-  `cal_booking_done`, `roi_calculated`, `readiness_completed`
+- [ ] Vraag mij om in `components/booking/CalProvider.tsx` (of waar relevant) de events te emitten: `cta_plan_gesprek`, `cta_demo`, `contact_form_submit`, `cal_booking_done`, `roi_calculated`, `readiness_completed`
 
-### 7.3 Wekelijkse review (vrijdag 30 minuten)
+### 6.3 Wekelijkse review (vrijdag 30 minuten)
 
 - [ ] Rank-tracker dashboard — welke 40 keywords stijgen / dalen
 - [ ] GSC → Performance → klikken / impressies / CTR / positie per pagina
 - [ ] GSC → Coverage → eventuele fouten oplossen
+- [ ] Bing Webmaster → IndexNow log → URLs succesvol gepingd?
 - [ ] Vercel Analytics → events deze week → conversion rate per landing
 - [ ] Vercel Speed Insights → CWV-regressies?
 - [ ] Eén actie noteren voor volgende week
 
-### 7.4 Maandelijkse review (eerste maandag, 1 uur)
+### 6.4 Maandelijkse review (eerste maandag, 1 uur)
 
-- [ ] Stappenplan-doc opnieuw doorlopen, vinkjes resetten / nieuwe items
+- [ ] Stappenplan-doc opnieuw doorlopen, vinkjes bijwerken
 - [ ] Rank-tracker rapport over 30 dagen → 5 grootste stijgers, 3 grootste dalers
 - [ ] Backlog-items in `content-backlog.json` aanvullen (mik op 4 weken vooruit)
 - [ ] Off-page outreach: aantal pitches verstuurd, aantal geplaatst
@@ -443,7 +417,7 @@ Vercel Analytics heeft custom events. Voeg toe in:
 
 ---
 
-## 8. PR-campagnes — kwartaal
+## 7. PR-campagnes — kwartaal
 
 Eén per kwartaal een grote PR-stunt voor link-magnet-effect.
 
@@ -453,26 +427,22 @@ Eén per kwartaal een grote PR-stunt voor link-magnet-effect.
 - [ ] 100+ MKB-ondernemers werven via LinkedIn, klanten, partners
 - [ ] Resultaten samenvatten in een rapport van 16–24 pagina's met grafieken
 - [ ] Persbericht versturen naar FD, NRC, Computable, Emerce, Sprout
-- [ ] PDF gated via `/resources/mkb-ai-adoptie-2026` (ik bouw de pagina zodra
-  het rapport er is)
+- [ ] PDF gated via `/resources/mkb-ai-adoptie-2026` (structuur staat al klaar in `lib/data/resources.ts`)
 
 ### Q3 2026 — "Verborgen kosten van handmatig werk — branche-benchmark"
 
-- [ ] Per branche (de 14 die op de site staan) één representatieve case in
-  cijfers
+- [ ] Per branche (de 14 die op de site staan) één representatieve case in cijfers
 - [ ] Visueel: branche-vergelijking-poster
 - [ ] Branchemedia per branche pitchen
 
 ### Q4 2026 — "Lessen na 50 AI-implementaties"
 
 - [ ] Anoniem cijferrapport over 50 klantimplementaties
-- [ ] Tegen Q4 zou je daar moeten kunnen zijn als de pipeline gaat draaien
-- [ ] Eén grote keynote-sessie organiseren in Amsterdam — uitnodigen 30 MKB-
-  ondernemers, opname en transcript hergebruiken voor content
+- [ ] Eén grote keynote-sessie organiseren in Amsterdam — uitnodigen 30 MKB-ondernemers, opname en transcript hergebruiken voor content
 
 ---
 
-## 9. Slaagcriteria 6 maanden
+## 8. Slaagcriteria 6 maanden
 
 Na 180 dagen volgende posities op de doelkeywords:
 
@@ -491,30 +461,53 @@ zichzelf te versterken.
 
 ---
 
-## Snelle FAQ
+## 9. Common gotchas (bewaren voor later)
 
-**Q: Wat als de cron faalt?**
-GitHub stuurt je een mail. Vaakste oorzaken: API-key verlopen of zonder credit, build-fout in de gegenereerde post (Zod-validatie pakt dit voor de PR open). Open de Actions-log voor diagnose.
+Lessen uit de eerste week van de pipeline:
 
-**Q: Wat als een gegenereerd artikel echt niet goed is?**
-Sluit de PR met label `rejected`. Het backlog-item staat nu als `drafted` — handmatig terugzetten naar `pending` in `content-backlog.json` voor herhaalkans, of laten staan en het volgende onderwerp pakt vanzelf de beurt.
+### Cron faalt op exit code 2
 
-**Q: Hoeveel kost dit per maand?**
-- Anthropic API: ~€2/mnd (52 posts × ~€0.04 met prompt-caching)
-- Vercel: blijft op huidige plan
-- Rank-tracker: €40–90/mnd
-- Ahrefs (optioneel, maar nuttig na maand 3): €89/mnd
-- **Totaal: ~€50–180/mnd** voor de hele SEO-stack
+**Symptoom:** "Generate post" stap rood, log toont `Process completed with exit code 2`.
 
-**Q: Mag ik de auto-posts meteen mergen zonder review?**
-Niet aan te raden. Google kan AI-content op zich prima ranken — onder twee voorwaarden: het moet **nuttig** zijn en het moet **niet verzonnen** zijn. De review-stap voorkomt het tweede. Eén ramp-PR die door slipt kan een hele cluster terugzetten.
+**Oorzaak:** generatie faalde 3× achter elkaar op Zod-validatie. Mogelijke redenen:
+- Model gebruikt afwijkende veldnamen (we hebben `normalize()` geadded, dus dit zou niet meer moeten)
+- Slug bestaat al
+- Word count out of bounds (450–1500)
+- API rate limit / overload
 
-**Q: Wanneer schakel ik over op AggregateRating-schema?**
-Zodra je 5+ échte reviews hebt op Google, Trustpilot of intern gevraagd. Geef dan in de PR aan en ik bouw het in `OrganizationSchema.tsx`.
+**Fix:** open de Generate-post log, kijk naar de Zod-issues. Pas of de stijlgids of het Zod-schema aan, of laat de cron het de volgende dag opnieuw proberen.
 
-**Q: Wat doe ik met de conversie-events die nog niet bestaan?**
-Vraag mij om ze toe te voegen aan de relevante CTA-componenten. Ik doe het in een vervolg-PR. Niet jij in de UI klooien.
+### Workflow kan geen PR aanmaken
+
+**Symptoom:** "Create Pull Request" stap rood, push slaagt wel.
+
+**Oorzaak:** repo-permissies te beperkt.
+
+**Fix:** Repo Settings → Actions → General → Workflow permissions:
+- ✓ Read and write permissions
+- ✓ Allow GitHub Actions to create and approve pull requests
+- Save
+
+### Pagina staat in "Discovered, not crawled"
+
+**Symptoom:** GSC toont URL maar "Laatst gecrawld: N.v.t."
+
+**Oorzaak:** normaal voor nieuwe sites. Crawl-budget is laag voor jonge domeinen.
+
+**Fix:**
+1. Manueel **Indexering aanvragen** in GSC (per dag ~10 mogelijk)
+2. Backlinks bouwen — sectie 3 van dit document
+3. IndexNow doet zijn werk voor Bing/ChatGPT-search; Google volgt later
+4. Geduld: typisch 4–12 weken voor volledige indexatie van een nieuwe site
+
+### Anthropic-rekening loopt op
+
+**Symptoom:** factuur hoger dan verwacht.
+
+**Oorzaak:** rate-limited retries of misschien een loop.
+
+**Fix:** budget-cap in console.anthropic.com (sectie 4.6).
 
 ---
 
-*Laatst bijgewerkt: bij merge van PR `claude/seo-audit-ai-agents-5zBAu`.*
+*Laatst bijgewerkt na merge `79ad4e5` (IndexNow live, content-cron operationeel, eerste AI-post gemerged).*
