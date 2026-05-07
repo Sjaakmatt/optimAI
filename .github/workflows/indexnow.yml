@@ -1,0 +1,45 @@
+name: IndexNow ping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lib/data/posts.ts'
+      - 'lib/data/cases.ts'
+      - 'lib/data/branches.ts'
+      - 'lib/data/comparisons.ts'
+      - 'lib/data/resources.ts'
+      - 'lib/data/team.ts'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'auto = git diff, all = bulk-resubmit alle URLs'
+        type: choice
+        options: [auto, all]
+        default: auto
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # nodig voor HEAD~1 diff
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ping IndexNow
+        run: |
+          MODE="${{ github.event.inputs.mode || 'auto' }}"
+          npm run indexnow-ping -- --$MODE

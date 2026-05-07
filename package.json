@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "new-post": "tsx scripts/generate-post.ts"
+    "new-post": "tsx scripts/generate-post.ts",
+    "indexnow-ping": "tsx scripts/indexnow-ping.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
