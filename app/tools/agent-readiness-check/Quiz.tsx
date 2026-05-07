@@ -163,11 +163,18 @@ function bandFor(score: number): ResultBand {
 }
 
 export function Quiz() {
+  // value is option-index (0-3), not score — twee opties kunnen dezelfde score
+  // delen waardoor ze allebei als geselecteerd zouden tonen
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [submitted, setSubmitted] = useState(false);
 
   const totalScore = useMemo(
-    () => Object.values(answers).reduce((s, v) => s + v, 0),
+    () =>
+      QUESTIONS.reduce((sum, q) => {
+        const idx = answers[q.id];
+        if (idx === undefined) return sum;
+        return sum + (q.options[idx]?.score ?? 0);
+      }, 0),
     [answers],
   );
   const allAnswered = Object.keys(answers).length === QUESTIONS.length;
@@ -265,7 +272,7 @@ export function Quiz() {
               </legend>
               <div className="mt-4 space-y-2">
                 {q.options.map((opt, oi) => {
-                  const checked = answers[q.id] === opt.score && answers[q.id] !== undefined;
+                  const checked = answers[q.id] === oi;
                   return (
                     <label
                       key={oi}
@@ -280,7 +287,7 @@ export function Quiz() {
                         name={q.id}
                         checked={checked}
                         onChange={() =>
-                          setAnswers((prev) => ({ ...prev, [q.id]: opt.score }))
+                          setAnswers((prev) => ({ ...prev, [q.id]: oi }))
                         }
                         className="mt-1 accent-[var(--oker-deep)]"
                       />
