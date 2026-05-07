@@ -1,0 +1,29 @@
+{
+  "slug": "integraties-makkelijker-dan-u-denkt",
+  "title": "Integraties met bestaande systemen: makkelijker dan u denkt",
+  "lede": "De grootste aarzeling die ik hoor: \"wij hebben een oud boekhoudpakket, dat werkt nooit\". In 90% van de gevallen valt dat reuze mee. Hoe het technisch werkt, zonder jargon.",
+  "author": "Sjaak ter Veld",
+  "published": "2026-02-12",
+  "readingMinutes": 5,
+  "tags": ["integraties", "techniek", "systemen"],
+  "blocks": [
+    { "kind": "p", "text": "Als iemand me vertelt dat hun systeem \"niet koppelbaar\" is, ga ik daar altijd even voor zitten. In acht jaar ben ik er één echt niet-koppelbaar systeem tegengekomen. Meestal is de vraag niet óf het kan, maar hoe netjes het kan." },
+    { "kind": "h2", "text": "Drie manieren om te koppelen" },
+    { "kind": "p", "text": "Elk pakket biedt er wel één van aan. Vaak zelfs meer. Hier is het spectrum van mooi naar lelijk:" },
+    { "kind": "list", "items": [
+      "API: directe koppeling, real-time, meest elegant. Exact, Moneybird, AFAS, Snelstart, Odoo. Allemaal via API. Koppelen kost een paar dagen.",
+      "Webhooks: het systeem roept ons als er iets gebeurt. Ideaal voor \"factuur verstuurd\" of \"order gewijzigd\" meldingen.",
+      "E-mail en bestand: het oude werkpaard. Veel boekhoudsystemen kunnen automatisch mails versturen met een factuur als PDF. Wij lezen die uit en verwerken ze. Niet elegant, wel betrouwbaar."
+    ]},
+    { "kind": "h2", "text": "Wat vaak blokkeert en waarom dat oplosbaar is" },
+    { "kind": "p", "text": "Oude systemen hebben soms geen mooie API. Dat hoeft geen probleem te zijn. Als u bijvoorbeeld handmatig CSV-exports downloadt, kunnen wij dat nabootsen. Of we installeren een kleine \"bridge\" die dat voor u automatiseert. Niet sexy, wel effectief." },
+    { "kind": "quote", "text": "Een agent die met uw systeem 'praat via e-mail' is minder elegant dan één met API. Maar de besparing aan werktijd is identiek." }
+  ],
+  "faq": [
+    { "q": "Kan een AI-agent koppelen met Exact, Moneybird, AFAS of Snelstart?", "a": "Ja. Alle gangbare Nederlandse boekhoudpakketten hebben een API die wij gebruiken voor directe, real-time koppeling. Aansluiten kost doorgaans een paar dagen." },
+    { "q": "Wat als mijn systeem geen API heeft?", "a": "Dat is zelden een blokkade. Wij kunnen ook werken via webhooks, e-mail-doorstromingen met PDF-bijlagen, of een kleine bridge die handmatige CSV-exports nabootst. Niet elegant, wel effectief en betrouwbaar." },
+    { "q": "Wat moet ik vooraf aanleveren voor een integratie?", "a": "Naam en versie van uw boekhoudpakket, CRM of magazijn-app; inloggegevens voor een testomgeving of een account met beperkte rechten; en één concreet voorbeeld van wat de agent met dat systeem moet doen." }
+  ],
+  "cluster": "B",
+  "generatedBy": "ai-draft"
+}

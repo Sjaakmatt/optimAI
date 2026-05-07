@@ -25,7 +25,12 @@ const ROOT = join(import.meta.dirname ?? __dirname, '..');
 const POSTS_PATH = join(ROOT, 'lib', 'data', 'posts.ts');
 const BACKLOG_PATH = join(ROOT, 'scripts', 'content-backlog.json');
 const STYLE_GUIDE_PATH = join(ROOT, 'scripts', 'style-guide.md');
-const FEWSHOT_FILES = ['guardrails.json', 'welk-proces.json', 'verborgen-kosten.json'];
+const FEWSHOT_FILES = [
+  'guardrails.json',
+  'welk-proces.json',
+  'verborgen-kosten.json',
+  'integraties.json',
+];
 
 const MODEL = 'claude-sonnet-4-6';
 const MAX_RETRIES = 2;
@@ -61,6 +66,53 @@ const postSchema = z.object({
 });
 
 type GeneratedPost = z.infer<typeof postSchema>;
+
+// ---------- Pre-validation normalization ----------
+
+/**
+ * Het model kiest soms andere veldnamen dan het schema verwacht
+ * (bv. `question`/`answer` ipv `q`/`a`). Hier normaliseren we naar
+ * het canonieke schema voordat Zod valideert. Voorkomt onnodige retries.
+ */
+function normalize(raw: unknown): unknown {
+  if (!raw || typeof raw !== 'object') return raw;
+  const obj = raw as Record<string, unknown>;
+
+  if (Array.isArray(obj.faq)) {
+    obj.faq = obj.faq.map((item) => {
+      if (!item || typeof item !== 'object') return item;
+      const f = item as Record<string, unknown>;
+      const q = f.q ?? f.question ?? f.vraag ?? f.title;
+      const a = f.a ?? f.answer ?? f.antwoord ?? f.text ?? f.body;
+      return { q, a };
+    });
+  }
+
+  if (Array.isArray(obj.blocks)) {
+    obj.blocks = obj.blocks.map((b) => {
+      if (!b || typeof b !== 'object') return b;
+      const block = b as Record<string, unknown>;
+      // model gebruikt soms `type` ipv `kind`
+      if (!block.kind && typeof block.type === 'string') {
+        block.kind = block.type;
+        delete block.type;
+      }
+      // list-items kunnen onder `content` of `items` zitten
+      if (block.kind === 'list' && !block.items && Array.isArray(block.content)) {
+        block.items = block.content;
+        delete block.content;
+      }
+      return block;
+    });
+  }
+
+  // generatedBy kan in andere casing terugkomen
+  if (typeof obj.generatedBy !== 'string') {
+    obj.generatedBy = 'ai-draft';
+  }
+
+  return obj;
+}
 
 // ---------- Backlog ----------
 
@@ -133,10 +185,35 @@ Lees ze door en imiteer de stijl, structuur, ritme en woordkeuze:
 ${fewshotText}
 
 # Output-contract
-Geef ALLEEN geldig JSON terug dat exact past op het Post-schema.
-- Geen markdown, geen toelichting, geen \`\`\`json fence.
-- Velden: slug, title, lede, author ("Sjaak ter Veld"), published (vandaag, ISO yyyy-mm-dd), readingMinutes, tags, blocks, faq (optioneel, 2-4 items), cluster, generatedBy ("ai-draft").
-- 'blocks' moet 6-20 items zijn met 'kind' p/h2/h3/quote/list/divider.
+Geef ALLEEN geldig JSON terug dat exact past op het Post-schema hieronder.
+Geen markdown, geen toelichting, geen \`\`\`json fence.
+
+\`\`\`ts
+{
+  slug: string,                   // kebab-case, geen leestekens
+  title: string,                  // 15-120 tekens, max 9 woorden
+  lede: string,                   // 80-360 tekens, 25-55 woorden
+  author: "Sjaak ter Veld",       // exact deze string
+  published: "yyyy-mm-dd",        // vandaag
+  readingMinutes: number,         // 4-8
+  tags: string[],                 // 3-5 items
+  blocks: Block[],                // 6-20 items, zie hieronder
+  faq?: { q: string, a: string }[],  // optioneel, 2-4 items. VELDNAMEN ZIJN q EN a, NIET question/answer
+  cluster: "A" | "B" | "C" | "D" | "E",
+  generatedBy: "ai-draft"
+}
+
+type Block =
+  | { kind: "p", text: string }              // paragraaf
+  | { kind: "h2", text: string }             // sectiekop
+  | { kind: "h3", text: string }             // sub-sectiekop
+  | { kind: "quote", text: string, by?: string }
+  | { kind: "list", items: string[] }        // 2-7 items, KIND IS list, ITEMS ZIJN items
+  | { kind: "divider" }
+\`\`\`
+
+Belangrijk:
+- Velden HEETEN exact zoals hierboven. faq-items hebben \`q\` en \`a\`, niet \`question\`/\`answer\`. blocks hebben \`kind\`, niet \`type\`.
 - Geen H1 (de title is de H1).
 - Geef geen verzonnen klantnamen of cijfers. Whitelist productnamen volgens de stijlgids.`,
       cache_control: { type: 'ephemeral' as const },
@@ -313,6 +390,7 @@ async function main() {
       continue;
     }
 
+    parsed = normalize(parsed);
     const result = postSchema.safeParse(parsed);
     if (!result.success) {
       lastError = `Zod-validatie faalde:\n${result.error.issues
