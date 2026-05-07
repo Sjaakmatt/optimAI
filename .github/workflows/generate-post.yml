@@ -50,7 +50,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: claude/post-${{ steps.gen.outputs.slug }}
-          base: claude/seo-audit-ai-agents-5zBAu
+          base: main
           title: 'kennis: ${{ steps.gen.outputs.title }}'
           body: |
             **Auto-gegenereerd kennisartikel**
