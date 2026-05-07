@@ -26,13 +26,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/diensten",
-        destination: "/diensten/ai-agent-laten-bouwen",
-        permanent: true,
-      },
-      {
         source: "/services",
-        destination: "/diensten/ai-agent-laten-bouwen",
+        destination: "/diensten",
         permanent: true,
       },
       {

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
-import { BRANCHES } from '@/lib/data/branches';
 
 export function SiteFooter() {
   const topPosts = [...POSTS]
@@ -35,24 +34,44 @@ export function SiteFooter() {
                 AI-agent laten bouwen
               </Link>
             </li>
-            {BRANCHES.map((b) => (
-              <li key={b.slug}>
-                <Link
-                  href={`/branches/${b.slug}`}
-                  className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-                >
-                  Voor {b.label.toLowerCase()}
-                </Link>
-              </li>
-            ))}
             <li>
-              <Link href="/info" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
-                Wat is een AI-agent
+              <Link
+                href="/diensten/ai-automatisering"
+                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+              >
+                AI-automatisering
               </Link>
             </li>
             <li>
-              <Link href="/demo" className="text-[var(--ink-dim)] hover:text-[var(--ink)]">
-                Demo · De Werkbank
+              <Link
+                href="/diensten/ai-implementatie"
+                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+              >
+                AI implementeren
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/diensten/ai-agents-voor-bedrijven"
+                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+              >
+                AI-agents voor bedrijven
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/branches"
+                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+              >
+                Per branche
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/diensten"
+                className="text-[var(--ink-faint)] hover:text-[var(--ink)] italic"
+              >
+                Alle diensten
               </Link>
             </li>
           </ul>
@@ -131,6 +150,16 @@ export function SiteFooter() {
             <li>
               <Link href="/contact" className="hover:text-[var(--ink)]">
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/info" className="hover:text-[var(--ink)]">
+                Wat is een AI-agent
+              </Link>
+            </li>
+            <li>
+              <Link href="/demo" className="hover:text-[var(--ink)]">
+                Demo · De Werkbank
               </Link>
             </li>
           </ul>

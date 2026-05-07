@@ -13,6 +13,7 @@ const STATIC_ROUTES: Array<{
   priority: number;
 }> = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
+  { path: '/diensten', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-agent-laten-bouwen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-automatisering', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-implementatie', changeFrequency: 'monthly', priority: 0.9 },

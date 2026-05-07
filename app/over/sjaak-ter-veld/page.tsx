@@ -58,7 +58,7 @@ const PERSON_SCHEMA = {
   alumniOf: { '@type': 'EducationalOrganization', name: 'Bedrijfskunde (hoger onderwijs)' },
   nationality: { '@type': 'Country', name: 'Netherlands' },
   sameAs: [
-    'https://www.linkedin.com/in/sjaakterveld/',
+    'https://www.linkedin.com/in/sjaak-ter-veld/',
   ],
   hasOccupation: {
     '@type': 'Occupation',
@@ -160,7 +160,7 @@ export default function SjaakTerVeldPage() {
               <ul className="mt-4 space-y-1.5 text-[13px] text-[var(--ink-dim)]">
                 <li>
                   <a
-                    href="https://www.linkedin.com/in/sjaakterveld/"
+                    href="https://www.linkedin.com/in/sjaak-ter-veld/"
                     rel="me noopener"
                     target="_blank"
                     className="underline hover:text-[var(--oker-deep)]"
