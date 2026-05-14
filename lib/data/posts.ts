@@ -684,6 +684,50 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'ai-readiness-check-klaar-voor-eerste-agent',
+    title: 'AI-readiness check: is uw bedrijf klaar voor een agent?',
+    lede: 'Veel ondernemers willen ergens beginnen met AI, maar weten niet of hun bedrijf er eigenlijk klaar voor is. Dat is een eerlijke vraag. En gelukkig een die u in een uur kunt beantwoorden.',
+    author: 'Sjaak ter Veld',
+    published: '2026-05-14',
+    readingMinutes: 6,
+    tags: ['strategie', 'MKB', 'selectie', 'methodiek', 'proces'],
+    blocks: [
+      { kind: 'p', text: 'De meeste ondernemers die mij bellen hebben al nagedacht over wat ze willen automatiseren. Soms is het heel concreet: offertes versturen, klantmails beantwoorden, facturen verwerken. Soms is het vaguer: \'minder rompslomp\'. Wat ik zelden hoor, is of het bedrijf er op dit moment eigenlijk klaar voor is. Dat is de vraag die bepaalt of een project soepel loopt of strandt na vier weken.' },
+      { kind: 'h2', text: 'Waarom readiness er echt toe doet' },
+      { kind: 'p', text: 'Een agent bouwt op wat er al is. Op uw processen, uw data, uw systemen, en de bereidheid van uw mensen. Als één van die vier wankel staat, betaalt u dat later terug in herstelwerk, vertraging, of een agent die niemand gebruikt. Dat wil ik voorkomen. Daarom gebruik ik bij elk eerste gesprek een vast setje vragen. Dat setje deel ik hier.' },
+      { kind: 'h2', text: 'Stap 1: Heeft u een proces dat herhaalbaar is?' },
+      { kind: 'p', text: 'Dit is de belangrijkste vraag. Een agent werkt op patronen. Als elk geval een uniek geval is, is er geen patroon om op te bouwen. Het criterium: kunt u aan een nieuwe medewerker uitleggen hoe het proces verloopt in tien stappen of minder? Dan is het waarschijnlijk geschikt. Lukt dat niet zonder drie uitzonderingsgevallen te noemen in elke stap, dan is het proces zelf nog niet rijp.' },
+      { kind: 'list', items: [
+        'Het proces gebeurt minimaal twee keer per week — anders is de bouwtijd zelden terug te verdienen.',
+        'De regels zijn beschrijfbaar, ook voor randgevallen.',
+        'Er is een duidelijk beginpunt en een duidelijk eindpunt.',
+        'Het resultaat is controleerbaar — u kunt zien of het goed gedaan is.',
+        'Het proces verandert niet elke maand fundamenteel.',
+      ] },
+      { kind: 'h2', text: 'Stap 2: Zijn uw gegevens op orde?' },
+      { kind: 'p', text: 'Een agent is zo goed als de data waarop hij werkt. Als uw klantenlijst in drie verschillende Excel-bestanden staat, uw orders in een oud systeem dat niemand meer begrijpt, en uw productprijzen \'ergens in een map\', dan begint u niet met een agent-project. Dan begint u met een opruimproject. Dat is geen straf, het is noodzakelijk onderhoud dat u toch een keer moest doen.' },
+      { kind: 'p', text: 'De basiseisen zijn laag. U hoeft geen datawarehouse te hebben. Wat u wel nodig heeft: één plek waar klantgegevens staan die actueel zijn, een systeem voor orders of offertes dat u zelf vertrouwt, en een boekhouding die aansluit op de werkelijkheid. Exact, Moneybird, AFAS, Snelstart — ze werken allemaal. Als u er één gebruikt en er in gelooft, is de basis goed genoeg.' },
+      { kind: 'h2', text: 'Stap 3: Staat uw team er open voor?' },
+      { kind: 'p', text: 'Dit is de meest onderschatte factor. Een agent die technisch perfect werkt maar door uw binnendienst wordt genegeerd, levert niets op. Ik heb dat meegemaakt. Niet omdat het systeem slecht was, maar omdat niemand was meegenomen in de keuze. Het resultaat: mensen bleven het handmatig doen, naast de agent.' },
+      { kind: 'p', text: 'U hoeft geen enthousiasme te forceren. Wat u wel nodig heeft: één persoon in uw team die het begrijpt, er verantwoordelijkheid voor wil nemen, en anderen kan uitleggen waarom het er is. Zonder dat ankerpunt wordt elke agent vroeg of laat een duur experiment.' },
+      { kind: 'quote', text: 'Techniek is zelden de blokkade. Mensen en processen zijn dat bijna altijd.' },
+      { kind: 'h2', text: 'Stap 4: Heeft u capaciteit om het te begeleiden?' },
+      { kind: 'p', text: 'Een eerste agent bouwen kost uw tijd. Niet veel, maar wel structureel. Reken op twee tot vier uur per week in de eerste zes weken: voor afstemming, testen, en bijsturen. Daarna daalt dat naar één uur per week voor onderhoud. Als u of uw aangewezen contactpersoon die uren er niet bij heeft, is het beter om het project drie maanden uit te stellen dan te beginnen en halverwege te stranden.' },
+      { kind: 'h2', text: 'Wat als u nog niet klaar bent?' },
+      { kind: 'p', text: 'Dan is dat geen probleem, maar een startpunt. In de meeste gevallen liggen de knelpunten op één of twee van de vier gebieden. Wij helpen ook bij het opruimen van die knelpunten — niet omdat wij een consultancybureau zijn, maar omdat een agent op een wankele basis ons beide werk en u geld kost. Het is eerlijker om dat eerst recht te zetten.' },
+      { kind: 'p', text: 'Scoort u op alle vier de gebieden redelijk? Dan kunt u morgen beginnen. Kies het saaiste, meest herhaalbare proces dat u heeft. Zorg dat de data op orde is voor dat specifieke proces. Wijs één intern aanspreekpunt aan. En reserveer zes weken voor de eerste versie. Zo simpel is het begin.' },
+    ],
+    faq: [
+      { q: 'Hoe weet ik welk proces ik als eerste moet automatiseren?', a: 'Begin bij het proces dat het vaakst voorkomt en de duidelijkste regels heeft — niet bij het proces dat u het meest ergert. Een voorspelbaar, saai proces staat live in zes weken en levert meteen zichtbaar resultaat. Daarna kunt u stap voor stap complexere situaties aanpakken.' },
+      { q: 'Wat zijn de minimale IT-vereisten om te starten met een AI-agent?', a: 'U heeft geen geavanceerde infrastructuur nodig. Een gangbaar boekhoudpakket zoals Exact, Moneybird of Snelstart, gecombineerd met Microsoft 365 of Google Workspace voor e-mail en documenten, is een goede basis. De meeste MKB-bedrijven hebben dat al in huis.' },
+      { q: 'Wat als mijn medewerkers weerstand hebben tegen automatisering?', a: 'Dat is normaal en hoeft geen blokkade te zijn. Zorg dat één persoon in uw team het project begrijpt en er verantwoordelijkheid voor draagt. Weerstand verdwijnt meestal zodra mensen merken dat de agent het saaie werk wegneemt en hen tijd geeft voor taken die meer voldoening geven.' },
+      { q: 'Hoeveel tijd kost het begeleiden van een eerste agent-implementatie?', a: 'Reken op twee tot vier uur per week in de eerste zes weken, voor afstemming, testen en bijsturen. Daarna is één uur per week voor onderhoud een realistisch gemiddelde. Als die uren er niet zijn, is het beter het project even uit te stellen.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
