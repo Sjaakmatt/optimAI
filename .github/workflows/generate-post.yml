@@ -13,7 +13,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   draft:
@@ -21,6 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # we pushen direct naar main, dus we hebben de volledige branch nodig
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -45,37 +47,42 @@ jobs:
       - name: Verify build
         run: npm run build
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: claude/post-${{ steps.gen.outputs.slug }}
-          base: main
-          title: 'kennis: ${{ steps.gen.outputs.title }}'
-          body: |
-            **Auto-gegenereerd kennisartikel**
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-            - Slug: `${{ steps.gen.outputs.slug }}`
-            - Cluster: ${{ steps.gen.outputs.cluster }}
-            - Model: claude-sonnet-4-6
-            - Triggered: ${{ github.event_name }}
+      - name: Commit and push directly to main
+        run: |
+          # Stage alleen de bestanden die het script kan wijzigen
+          git add lib/data/posts.ts scripts/content-backlog.json
 
-            ## Reviewchecklist
+          if git diff --staged --quiet; then
+            echo "Geen wijzigingen om te committen — script heeft niets toegevoegd."
+            exit 0
+          fi
 
-            - [ ] Stijl klopt met bestaande artikelen (toon, ritme, lengte)
-            - [ ] Geen verzonnen klantnamen of statistieken
-            - [ ] Productnamen alleen uit whitelist
-            - [ ] Lede zet de spanning goed neer
-            - [ ] FAQ-antwoorden geven eerst antwoord, dan onderbouwing
-            - [ ] Internal links toevoegen waar passend (handmatig)
+          TITLE='${{ steps.gen.outputs.title }}'
+          SLUG='${{ steps.gen.outputs.slug }}'
+          CLUSTER='${{ steps.gen.outputs.cluster }}'
 
-            Bekijk de Vercel preview-deployment om de post in context te lezen.
-            Squash & merge als goed; bewerk inline op GitHub voor kleine tweaks.
-          commit-message: |
-            kennis: ${{ steps.gen.outputs.title }}
+          git commit -m "kennis: $TITLE" -m "Auto-gegenereerd via scripts/generate-post.ts.
 
-            Auto-gegenereerd via scripts/generate-post.ts.
-          labels: |
-            content
-            ai-generated
-          delete-branch: true
+          Slug: $SLUG
+          Cluster: $CLUSTER
+          Model: claude-sonnet-4-6
+          Triggered: ${{ github.event_name }}"
+
+          # Retry-loop voor race conditions (andere pushes tijdens generatie)
+          for attempt in 1 2 3; do
+            if git push origin main; then
+              echo "✓ Gepusht naar main (poging $attempt)"
+              exit 0
+            fi
+            echo "Push faalde op poging $attempt, rebase en opnieuw…"
+            git pull --rebase --autostash origin main || exit 1
+            sleep $((attempt * 2))
+          done
+
+          echo "✗ Push faalde na 3 pogingen — handmatig ingrijpen nodig"
+          exit 1

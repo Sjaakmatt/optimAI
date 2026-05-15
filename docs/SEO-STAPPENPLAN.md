@@ -22,7 +22,7 @@ voor de eerste 90 dagen: **6–10 uur eigen werk per maand**.
 - [x] Robots.txt met AI-crawler allowlist (GPTBot, Claude, Perplexity, etc.)
 - [x] `llms.txt` route voor AI-search engines
 - [x] PWA-manifest, security headers, redirects
-- [x] **Content automation pipeline** — Anthropic API key gezet, workflow permissions OK, cron draait di+do 09:00 NL
+- [x] **Content automation pipeline** — Anthropic API key gezet, cron draait di+do 09:00 NL en commit direct naar main (geen review-stap)
 - [x] **IndexNow auto-ping** — bij elke merge naar main worden nieuwe URLs binnen seconden gepingd naar Bing/Yandex/Seznam/Naver/Yep/Mojeek
 - [x] **3 nieuwe servicepagina's**: ai-automatisering, ai-implementatie, ai-agents-voor-bedrijven
 - [x] **/diensten overview** als hub-pagina
@@ -249,33 +249,26 @@ structureel mis gaat. 25 minuten."
 
 ### 4.1 Wat er automatisch gebeurt
 
-- **Cron** elke di + do 09:00 NL: pakt eerstvolgende `pending` uit `scripts/content-backlog.json`, genereert artikel via Claude Sonnet 4.6, opent PR
-- **Build verify** in CI: PR wordt alleen geopend als de gegenereerde post compileert
-- **IndexNow ping** zodra je PR mergt: nieuwe URL automatisch binnen Bing-index
+- **Cron** elke di + do 09:00 NL: pakt eerstvolgende `pending` uit `scripts/content-backlog.json`, genereert artikel via Claude Sonnet 4.6, valideert (Zod-schema + `npm run build`), commit direct naar `main`
+- **Vercel** rolt automatisch live binnen ~2 min na push
+- **IndexNow ping** vuurt zodra de push op main landt: nieuwe URL binnen seconden bij Bing/Yandex/Seznam/Naver/Yep/Mojeek
 
-### 4.2 Reviewchecklist per auto-PR
+Geen reviewstap meer. De validatie (Zod-schema, stijlgids met whitelist, build verify, word-count gate, slug-uniqueness) is je vangnet. Als een artikel desondanks niet goed leest:
 
-In de PR-body staat al een checklist. Per PR ~10 min werk:
+```bash
+git revert <sha>     # de auto-commit ongedaan maken
+git push origin main # IndexNow pingt niets, Google haalt het later weer uit de index
+```
 
-- [ ] **Stijl** klopt met bestaande artikelen (toon, ritme, lengte)
-- [ ] **Geen verzonnen klantnamen** of statistieken — controleer op cijfers en namen
-- [ ] **Productnamen** alleen uit de whitelist in `scripts/style-guide.md`
-- [ ] **Lede** zet de spanning goed neer (geen marketing-clichés)
-- [ ] **FAQ-antwoorden** geven eerst antwoord, dan onderbouwing
-- [ ] Open de **Vercel preview-deployment** en lees de post in context
-- [ ] Klein aanpassen: bewerk inline op GitHub (klik "Files changed" → 🖉)
-- [ ] Goed: **Squash & merge**
-- [ ] Slecht: voeg label `needs-rewrite` toe en sluit zonder mergen — backlog-item handmatig terug op `pending` zetten in volgende run
+### 4.2 Backlog uitbreiden
 
-### 4.3 Backlog uitbreiden
-
-`scripts/content-backlog.json` heeft nu **30 onderwerpen pending** + 1 drafted. Genoeg voor ~15 weken op 2 posts/week. Voeg nieuwe toe als ze binnenvallen:
+`scripts/content-backlog.json` bevat ~30 onderwerpen pending. Genoeg voor ~15 weken op 2 posts/week. Voeg nieuwe toe wanneer ze binnenvallen:
 
 - [ ] Onderwerp uit een klantgesprek? Voeg een item toe aan `items[]` met `status: pending`
 - [ ] Cluster-spreiding bewaken: niet alleen cluster A, ook B/C/D/E afwisselen
 - [ ] Onder 5 pending items: nieuwe batch toevoegen
 
-### 4.4 Ad-hoc post genereren
+### 4.3 Ad-hoc post genereren
 
 Iets in het nieuws (AI-Act update, nieuw model, branche-event)? Genereer
 direct een post:
@@ -284,23 +277,24 @@ direct een post:
 # GitHub: Actions tab → "Generate kennis-artikel" → Run workflow → vul topic in
 ```
 
-Of lokaal:
+Direct gecommit naar main, live binnen 2 minuten. Of lokaal:
 ```bash
 ANTHROPIC_API_KEY=sk-ant-… npm run new-post -- "Wat de AI-Act van mei 2026 betekent voor MKB"
 ```
 
-### 4.5 Stijl bijschaven
+### 4.4 Kwaliteit bewaken (steekproef)
 
-Na 5–10 gegenereerde posts merk je patronen. Iets dat steeds terugkomt en niet
-lekker leest? Voeg het toe aan `scripts/style-guide.md` of voeg een nieuw
-fewshot-bestand toe in `scripts/fewshot/`. De volgende run pakt het mee.
+Geen reviewstap betekent niet "vergeten". Per maand 5 minuten:
 
-- [ ] Maandelijkse mini-review van `scripts/style-guide.md` op basis van wat je bij review hebt aangepast
+- [ ] Open de meest recente 4 auto-posts op de site
+- [ ] Lees de eerste paragraaf van elk — voelt het als FactumAI-stijl?
+- [ ] Spot-check één FAQ-antwoord: klopt de inhoud, geen verzonnen feiten?
+- [ ] Als drift: pas `scripts/style-guide.md` aan of voeg een fewshot toe in `scripts/fewshot/`
 
-### 4.6 Anthropic budget-cap
+### 4.5 Anthropic budget-cap
 
 - [ ] Ga naar [console.anthropic.com → Settings → Limits](https://console.anthropic.com/settings/limits)
-- [ ] Zet een **Monthly spend limit** van $5 (>10× het verwachte verbruik, maar voorkomt verrassingen bij retry-loops)
+- [ ] Zet een **Monthly spend limit** van $5 (>10× het verwachte verbruik, voorkomt verrassingen bij retry-loops)
 - [ ] Optioneel: usage notifications op 50% en 80%
 
 ---
