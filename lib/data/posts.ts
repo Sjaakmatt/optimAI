@@ -728,6 +728,59 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'build-vs-buy-custom-ai-of-saas',
+    title: 'Build of buy: wanneer kiest u voor custom AI?',
+    lede: 'SaaS-tools beloven snelle winst. Custom agents beloven maatwerk. Beide beloften kloppen, maar niet voor dezelfde situatie. Dit is het filter dat bepaalt welke keuze voor uw bedrijf de juiste is.',
+    author: 'Sjaak ter Veld',
+    published: '2026-05-19',
+    readingMinutes: 6,
+    tags: ['strategie', 'selectie', 'tooling', 'MKB', 'ROI'],
+    blocks: [
+      { kind: 'p', text: 'Elke week spreek ik ondernemers die al een SaaS-tool voor AI hebben aangeschaft. Soms werkt het prima. Soms staat het na drie maanden te stofzuigen omdat het net niet aansluit op de manier waarop het bedrijf werkt. De vraag is niet welke optie beter is in het algemeen. De vraag is welke optie past bij uw specifieke situatie.' },
+      { kind: 'h2', text: 'Wat u koopt met een SaaS-oplossing' },
+      { kind: 'p', text: 'Een SaaS-tool voor AI is een kant-en-klaar product. U betaalt een maandbedrag, u logt in, u stelt een paar dingen in, en het werkt. De leverancier zorgt voor updates, beveiliging en schaalbaarheid. Dat is een reëel voordeel, zeker als u geen IT-afdeling heeft.' },
+      { kind: 'p', text: 'De keerzijde: u past uw proces aan het product aan, niet andersom. Als uw werkwijze afwijkt van wat de tool verwacht, gaat u compromissen sluiten. Soms zijn die compromissen klein en acceptabel. Soms raken ze precies het punt waarop uw bedrijf zich onderscheidt van de concurrent.' },
+      { kind: 'list', items: [
+        'Lage instapdrempel: in een dag of week operationeel.',
+        'Vaste maandelijkse kosten, geen voorinvestering.',
+        'Updates en nieuwe functies komen automatisch.',
+        'Beperkte aanpasbaarheid aan uw eigen processen en systemen.',
+        'Uw data staat bij een derde partij, wat AVG-aandacht vraagt.',
+      ] },
+      { kind: 'h2', text: 'Wat u koopt met een custom agent' },
+      { kind: 'p', text: 'Een custom agent wordt gebouwd op uw proces, uw systemen en uw beleidsregels. De agent sluit aan op Exact of Moneybird, kent uw klantcategorieën, volgt uw escalatiepad. Hij doet precies wat u hem leert, niet meer en niet minder. Dat vraagt een hogere investering vooraf en een goede briefing, maar het resultaat sluit naadloos aan.' },
+      { kind: 'p', text: 'Custom bouwen is zinvol als uw proces afwijkend genoeg is dat geen standaardtool het dekt, of als u de agent wilt koppelen aan meerdere interne systemen tegelijk. Ook als u concurrentievoordeel haalt uit de manier waarop u werkt, is dat geen logisch moment om uw proces plat te slaan naar wat een SaaS-vendor bedacht heeft.' },
+      { kind: 'list', items: [
+        'Volledig afgestemd op uw eigen werkwijze en terminologie.',
+        'Koppelingen met bestaande systemen zoals AFAS, Pipedrive of Teamleader.',
+        'Hogere eenmalige bouwkosten, lager maandelijks beheer daarna.',
+        'Bouwtijd van doorgaans vier tot acht weken voor een eerste werkende versie.',
+        'Uw data blijft op uw eigen infrastructuur of in een omgeving die u beheert.',
+      ] },
+      { kind: 'h2', text: 'Het filter: vier vragen vooraf' },
+      { kind: 'p', text: 'In de praktijk lopen de gesprekken altijd langs dezelfde vier vragen. Ze zijn in vijf minuten te beantwoorden en geven al een richting.' },
+      { kind: 'list', items: [
+        'Is uw proces min of meer standaard? Dan is SaaS waarschijnlijk voldoende. Afwijkt het structureel van een gemiddeld bedrijf in uw branche? Dan is custom de betere keuze.',
+        'Moet de agent koppelen met twee of meer van uw interne systemen? SaaS-tools ondersteunen zelden precies uw combinatie van pakketten.',
+        'Wat is de tijdshorizon? Voor een kortlopend project of een pilot is SaaS logischer. Voor iets wat uw bedrijf vijf jaar lang dagelijks draait, loont een custom investering.',
+        'Hoe gevoelig zijn de gegevens? Bij medische dossiers, juridische stukken of commercieel vertrouwelijke klantdata wil u exacte controle over waar de data staat.',
+      ] },
+      { kind: 'quote', text: 'SaaS is snel goed. Custom is langzaam perfect. De kunst is weten wanneer goed genoeg ook echt goed genoeg is.' },
+      { kind: 'h2', text: 'Een hybride aanpak werkt ook' },
+      { kind: 'p', text: 'Het is geen binaire keuze. Wij zien regelmatig bedrijven die een SaaS-tool gebruiken voor generieke taken, zoals het samenvatten van vergaderingen in Microsoft 365, en een custom agent inzetten voor het proces dat écht onderscheidend is: hun offertelogica, hun klantcommunicatie, hun interne routing. De systemen staan naast elkaar en hoeven niet te concurreren.' },
+      { kind: 'p', text: 'Begin dan wel aan de custom kant met het proces dat de meeste herhalingsfrequentie heeft en de duidelijkste regels. Dat staat snel live, en daarna heeft u een solide basis om verder op te bouwen.' },
+    ],
+    faq: [
+      { q: 'Wanneer is een SaaS AI-tool goedkoper dan custom bouwen?', a: 'Bij processen die vrijwel standaard zijn en weinig koppeling vragen met interne systemen, is SaaS bijna altijd goedkoper op korte termijn. Pas wanneer u het product aanpast aan uw werkwijze, of wanneer u meerdere systemen wilt koppelen, kantelt de rekensom richting custom. Als vuistregel: bij meer dan vijf aanpassingswensen loont het om een offerte voor maatwerk te vergelijken.' },
+      { q: 'Hoe lang duurt het om een custom AI-agent te bouwen?', a: 'Een eerste werkende versie voor één afgebakend proces is doorgaans klaar in vier tot acht weken. Dat omvat de analyse van uw proces, de bouw van de agent, koppelingen met uw systemen en een testperiode met uw eigen medewerkers. Complexere trajecten met meerdere processen of systemen duren navenant langer.' },
+      { q: 'Kan ik beginnen met SaaS en later overstappen naar custom?', a: 'Ja, dat is een gangbaar pad. SaaS geeft u de kans om te leren wat u eigenlijk nodig heeft, zonder grote investering vooraf. Het risico is dat uw mensen gewend raken aan de beperkingen van de tool en die beperkingen als normaal gaan beschouwen. Plan daarom een expliciete evaluatie na zes maanden om te beoordelen of de tool nog voldoet.' },
+      { q: 'Wat gebeurt er met mijn data bij een SaaS AI-tool?', a: 'Dat verschilt per leverancier. Controleer altijd waar de data wordt opgeslagen, of de leverancier uw data gebruikt voor het trainen van modellen, en of het contract AVG-conform is. Bij gevoelige bedrijfs- of klantgegevens is een verwerkersovereenkomst verplicht. Bij custom agents heeft u volledige controle over de dataplek en de toegangsrechten.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
