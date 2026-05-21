@@ -781,6 +781,53 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'hoeveel-kost-een-ai-agent-2026',
+    title: 'Hoeveel kost een AI-agent in 2026?',
+    lede: 'De tarieven voor AI-agents lopen enorm uiteen, van een paar honderd euro per maand tot tientallen duizenden voor een maatwerksysteem. Wat u precies betaalt, hangt af van vier factoren die de meeste offertes niet uitleggen.',
+    author: 'Sjaak ter Veld',
+    published: '2026-05-21',
+    readingMinutes: 6,
+    tags: ['pricing', 'ROI', 'MKB', 'financieel', 'strategie'],
+    blocks: [
+      { kind: 'p', text: 'Ik krijg die vraag minstens twee keer per week. Soms via een offerte-aanvraag, soms aan het einde van een gesprek waar iemand al een halfuur geknikt heeft maar nog niet wil tekenen. Het eerlijke antwoord is: het hangt ervan af. Maar dat is geen excuus om vaag te blijven. Hieronder zet ik de componenten uiteen zodat u zelf kunt inschatten wat reëel is voor uw situatie.' },
+      { kind: 'h2', text: 'De vier kostencomponenten' },
+      { kind: 'p', text: 'Een AI-agent heeft niet één prijskaartje. Er zijn vier lagen, en elke leverancier stopt ze anders in zijn voorstel. Als u ze kent, kunt u offertes vergelijken op inhoud in plaats van op het eindgetal.' },
+      { kind: 'list', items: [
+        'Bouw: de eenmalige investering om de agent te ontwerpen, te koppelen met uw systemen en live te zetten. Dit is waar de meeste uren in gaan.',
+        'Modelkosten: wat u betaalt aan de onderliggende AI-dienst per verwerkt bericht of document. Dit is variabel en loopt mee met gebruik.',
+        'Integraties: koppelingen met uw boekhoudpakket, CRM of mailbox. Eenmalig, maar soms meerdere weken werk bij complexe systemen.',
+        'Onderhoud en beheer: maandelijkse kosten voor monitoring, aanpassingen in beleidsregels, updates na wijzigingen in uw werkproces.',
+      ] },
+      { kind: 'h2', text: 'Wat u in de praktijk betaalt' },
+      { kind: 'p', text: 'Voor een enkelvoudige agent die één proces afhandelt — zeg: het beantwoorden van inkomende klantmails op basis van uw FAQ en bestelhistorie — ligt de bouw tussen € 3.000 en € 8.000 eenmalig. Dat is inclusief één integratie, bijvoorbeeld met Moneybird of Exact voor ordergegevens. De maandelijkse modelkosten bij een typisch MKB-volume van 200 tot 600 berichten per maand liggen tussen € 30 en € 90. Beheer en kleine aanpassingen kosten doorgaans € 150 tot € 350 per maand als u dat uitbesteedt.' },
+      { kind: 'p', text: 'Bij een complexere agent die meerdere processen combineert — offertes uitsturen, facturen aanmaken, herinneringen versturen — stijgen de bouwkosten naar € 12.000 tot € 25.000. Dat klinkt als veel. Maar tel dan ook mee wat u nu per jaar betaalt aan de mensen die datzelfde doen.' },
+      { kind: 'quote', text: 'De bouwkosten zijn eenmalig. De besparing op uurloon is structureel. Dat maakt de rekensom gunstiger dan hij op het eerste gezicht lijkt.' },
+      { kind: 'h2', text: 'Terugverdientijd: een reëel voorbeeld' },
+      { kind: 'p', text: 'Neem een binnendienst van twee medewerkers die samen acht uur per week kwijt zijn aan orderverwerking en facturatie. Tegen € 32 per uur bruto zijn dat € 13.300 per jaar aan directe loonkosten voor dat ene proces. Een agent die dat voor 80 procent overneemt, bespaart ruim € 10.000 per jaar. Een bouwproject van € 15.000 verdient zichzelf dan terug in achttien maanden. Daarna houdt u elke maand geld over.' },
+      { kind: 'p', text: 'Dat is een vrij conservatieve berekening. Zij houdt geen rekening met fouten die u nu maakt door tijdsdruk, of met klanten die afhaken omdat de reactietijd te lang is. Als u die meerekent, tikt de terugverdientijd eerder door naar twaalf maanden.' },
+      { kind: 'h2', text: 'Waar u op moet letten in een offerte' },
+      { kind: 'list', items: [
+        'Zijn modelkosten inbegrepen of komen die bovenop het maandtarief? Veel aanbieders geven een vast bedrag per maand, maar rekenen modelkosten apart door bij hoog gebruik.',
+        'Wat valt onder \'onderhoud\'? Een agent die u niet kunt bijstellen als uw beleid verandert, is geen investering maar een kostenpost.',
+        'Hoeveel koppelingen zijn inbegrepen? Elke extra integratie met een systeem als AFAS, Teamleader of Lightspeed kost tijd en staat meestal niet in het basisbedrag.',
+        'Is er een testfase voor u betaalt? Een serieuze bouwpartner laat u de agent testen op echte data voordat het systeem live gaat.',
+        'Wat gebeurt er als u wilt stoppen? Zorg dat u eigenaar bent van de configuratie en de beleidsregels, niet de leverancier.',
+      ] },
+      { kind: 'h2', text: 'Beginnen zonder groot bouwproject' },
+      { kind: 'p', text: 'Er zijn aanbieders die kant-en-klare agents leveren voor standaardprocessen, tegen een maandabonnement van € 200 tot € 600 zonder bouwkosten. Dat is aantrekkelijk, maar brengt beperkingen mee in maatwerk en integraties. Voor een bedrijf dat wil uitproberen kan dat een goede eerste stap zijn. Voor een bedrijf dat écht wil integreren met zijn bestaande werkproces is de maatwerkroute vrijwel altijd goedkoper op de lange termijn.' },
+      { kind: 'p', text: 'Mijn advies: begin niet met de vraag wat het kost, maar met de vraag welk proces u wilt automatiseren en hoe vaak het voorkomt. Zodra u dat weet, kunt u een reëele business case maken en een offerte op inhoud beoordelen in plaats van op de eerste regel.' },
+    ],
+    faq: [
+      { q: 'Wat kost een AI-agent gemiddeld per maand voor een MKB-bedrijf?', a: 'Voor een enkelvoudige agent rekent u op € 180 tot € 440 per maand aan beheer en modelkosten, bovenop de eenmalige bouwkosten. Bij een complexer systeem met meerdere koppelingen loopt dat op naar € 400 tot € 800 per maand. Hoe hoog het model-aandeel uitvalt hangt sterk af van het volume: het aantal berichten, documenten of acties dat de agent per maand verwerkt.' },
+      { q: 'Hoe lang duurt het voordat een AI-agent zich terugverdient?', a: 'Bij een enkelvoudig proces met duidelijke tijdsbesparing ligt de terugverdientijd tussen twaalf en vierentwintig maanden. Dat hangt af van de bouwkosten, het uurtarief van de medewerker die het werk nu doet, en hoeveel van het proces de agent daadwerkelijk overneemt. Hoe voorspelbaarder het proces, hoe sneller de terugverdientijd.' },
+      { q: 'Zijn er goedkopere alternatieven zonder maatwerk?', a: 'Ja. Er zijn kant-en-klare agent-producten voor standaardprocessen vanaf € 200 per maand zonder bouwkosten. Die zijn geschikt als startpunt of voor eenvoudige taken. Ze missen doorgaans de mogelijkheid tot diepe integratie met uw specifieke systemen en werkprocessen, waardoor de daadwerkelijke tijdsbesparing beperkter is dan bij maatwerk.' },
+      { q: 'Wat zijn de valkuilen bij goedkope AI-agent aanbieders?', a: 'De meest voorkomende valkuil is dat modelkosten apart worden doorgerekend bij hoog gebruik, waardoor het maandtarief onvoorspelbaar wordt. Daarnaast: beperkte aanpasbaarheid van beleidsregels, geen of gedeeltelijke eigendom van uw eigen configuratie, en koppelingen met uw systemen die als apart project worden gefactureerd zodra u ze écht nodig heeft.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
