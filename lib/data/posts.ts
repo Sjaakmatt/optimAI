@@ -828,6 +828,45 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'roi-ai-automatisering-berekenen-praktisch-voorbeeld',
+    title: 'ROI van AI-automatisering: een concrete rekensom',
+    lede: 'Veel ondernemers willen weten of AI-agents zich terugverdienen voordat ze eraan beginnen. Dat is een goede vraag. En gelukkig een beantwoordbare. Hier is de rekensom die wij in elk eerste gesprek doorlopen.',
+    author: 'Sjaak ter Veld',
+    published: '2026-05-28',
+    readingMinutes: 6,
+    tags: ['ROI', 'financieel', 'efficiency', 'strategie', 'MKB'],
+    blocks: [
+      { kind: 'p', text: 'Een AI-agent bouwen kost geld. Dat weet u. Wat u wilt weten, is hoeveel u er tegenover staat. Niet in vage beloftes, maar in euro\'s per jaar. Die berekening is minder ingewikkeld dan ze lijkt, als u het in de juiste volgorde aanpakt.' },
+      { kind: 'h2', text: 'Stap één: stel vast wat het nu kost' },
+      { kind: 'p', text: 'Kies één proces. Niet uw hele administratie, maar één ding. Zeg: het verwerken van binnenkomende orders. Beantwoord dan drie vragen: hoe vaak gebeurt dit per week, hoeveel minuten kost het per keer, en wie doet het?' },
+      { kind: 'p', text: 'Stel: uw binnendienst verwerkt 60 orders per week. Elke order kost gemiddeld 12 minuten: controleren, inboeken in Exact, bevestigingsmail sturen. Dat is 720 minuten per week, ofwel 12 uur. Bij een all-in uurtarief van € 32 voor die medewerker kost dit u € 384 per week, of ruim € 20.000 per jaar. Voor één proces.' },
+      { kind: 'h2', text: 'Stap twee: schat wat de agent overneemt' },
+      { kind: 'p', text: 'Een agent neemt zelden 100% over. Dat hoeft ook niet. Bij orderverwerking is een realistisch getal 70 tot 85 procent: standaardorders volledig automatisch, uitzonderingen gaan naar de medewerker. Reken conservatief: 70 procent. Dan bespaart u 8,4 uur per week, oftewel € 269 per week of circa € 14.000 per jaar.' },
+      { kind: 'quote', text: 'Een agent hoeft niet alles over te nemen. 70 procent automatisering van één proces geeft u al een terugverdientijd onder de twaalf maanden.' },
+      { kind: 'h2', text: 'Stap drie: zet de investering ertegenover' },
+      { kind: 'p', text: 'Een goed gebouwde agent voor dit soort orderverwerking kost bij ons eenmalig tussen de € 4.000 en € 8.000 in bouw, afhankelijk van de complexiteit van de integratie met uw boekhoudpakket. Daarna betaalt u een maandelijks onderhoudsbedrag van gemiddeld € 250 tot € 400 voor hosting, monitoring en kleine aanpassingen.' },
+      { kind: 'p', text: 'Reken het door. Bouwkosten € 6.000, onderhoud € 300 per maand. Jaar één: totaalkosten € 9.600. Besparing: € 14.000. Netto voordeel in jaar één: ruim € 4.000. Jaar twee en verder: besparing € 14.000, kosten € 3.600, netto voordeel circa € 10.000 per jaar. Dat is een terugverdientijd van minder dan negen maanden.' },
+      { kind: 'h2', text: 'Wat u niet in de rekensom ziet' },
+      { kind: 'p', text: 'De besparing in euro\'s is het makkelijke deel. Wat de berekening niet vat, is wat uw medewerker met die 8,4 uur per week gaat doen. Als die tijd gaat naar klantgesprekken, offertes of complexere taken, is de werkelijke opbrengst hoger dan € 14.000. Soms aanzienlijk hoger. Maar dat is moeilijker te voorspellen, en ik vind het onverstandig om daar in een businesscase op te rekenen.' },
+      { kind: 'list', items: [
+        'Minder fouten: handmatige orderverwerking heeft een foutpercentage van 2 tot 5 procent. Een agent maakt die fout niet als de invoer klopt.',
+        'Minder verzuim: repetitief administratief werk is één van de bekende oorzaken van uitval. Minder routinelast vermindert die druk.',
+        'Schaalbaarheid: als het ordervolume verdubbelt, schaalt de agent mee. Een tweede medewerker inhuren hoeft niet.',
+      ] },
+      { kind: 'h2', text: 'De rekensom zelf maken' },
+      { kind: 'p', text: 'U kunt dit zelf uitrekenen voor elk proces in uw bedrijf. Neem een blad papier: frequentie per week, minuten per keer, all-in uurloon, automatiseringspercentage. Dat zijn de vier getallen die u nodig heeft. Wie daarna nog twijfelt over de businesscase, twijfelt doorgaans niet over het geld, maar over de uitvoering. Dát is het gesprek dat de moeite waard is.' },
+    ],
+    faq: [
+      { q: 'Hoe snel verdient een AI-agent zich terug in het MKB?', a: 'Bij een goed gekozen startproces ligt de terugverdientijd doorgaans tussen de zes en twaalf maanden. Dat hangt af van de frequentie van het proces, het uurtarief van de medewerker die het nu doet, en het percentage dat de agent daadwerkelijk overneemt. Reken altijd conservatief: ga uit van 60 tot 75 procent automatisering, niet 100.' },
+      { q: 'Wat kost het bouwen van een AI-agent voor een MKB-bedrijf?', a: 'De bouwkosten liggen doorgaans tussen de € 3.500 en € 10.000 eenmalig, afhankelijk van de complexiteit van het proces en het aantal koppelingen met bestaande systemen zoals Exact, AFAS of Moneybird. Daarna rekent u op een maandelijks bedrag van € 200 tot € 500 voor onderhoud en hosting.' },
+      { q: 'Welk proces kies ik als startpunt voor AI-automatisering?', a: 'Kies het proces dat het vaakst voorkomt en de duidelijkste regels heeft. Orderverwerking, facturering na oplevering of het beantwoorden van terugkerende klantvragen zijn goede kandidaten. Vermijd als startpunt processen waarbij menselijk oordeel essentieel is, zoals klachtenafhandeling in grensgevallen of onderhandelingen.' },
+      { q: 'Moet ik mijn systemen vervangen om te beginnen met een AI-agent?', a: 'Nee. Gangbare pakketten als Exact, Moneybird, AFAS en Snelstart zijn via een API te koppelen zonder migratie of vervanging. Zelfs oudere systemen die geen moderne API hebben, zijn vaak via e-mailstromen of bestandsuitwisseling te integreren. De bestaande software hoeft niet weg.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
