@@ -37,9 +37,11 @@ jobs:
         id: gen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Via env zodat speciale tekens in het onderwerp de shell niet breken.
+          TOPIC: ${{ github.event.inputs.topic }}
         run: |
-          if [ -n "${{ github.event.inputs.topic }}" ]; then
-            npm run new-post -- "${{ github.event.inputs.topic }}"
+          if [ -n "$TOPIC" ]; then
+            npm run new-post -- "$TOPIC"
           else
             npm run new-post
           fi
@@ -53,6 +55,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Commit and push directly to main
+        env:
+          # Via env doorgegeven zodat apostroffen/aanhalingstekens in de titel
+          # de shell niet breken (anders: `en: command not found`, exit 127).
+          TITLE: ${{ steps.gen.outputs.title }}
+          SLUG: ${{ steps.gen.outputs.slug }}
+          CLUSTER: ${{ steps.gen.outputs.cluster }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           # Stage alleen de bestanden die het script kan wijzigen
           git add lib/data/posts.ts scripts/content-backlog.json
@@ -62,16 +71,12 @@ jobs:
             exit 0
           fi
 
-          TITLE='${{ steps.gen.outputs.title }}'
-          SLUG='${{ steps.gen.outputs.slug }}'
-          CLUSTER='${{ steps.gen.outputs.cluster }}'
-
           git commit -m "kennis: $TITLE" -m "Auto-gegenereerd via scripts/generate-post.ts.
 
           Slug: $SLUG
           Cluster: $CLUSTER
           Model: claude-sonnet-4-6
-          Triggered: ${{ github.event_name }}"
+          Triggered: $EVENT_NAME"
 
           # Retry-loop voor race conditions (andere pushes tijdens generatie)
           for attempt in 1 2 3; do
