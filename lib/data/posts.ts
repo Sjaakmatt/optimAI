@@ -867,6 +867,52 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'ai-pilot-zonder-mislukken-mkb',
+    title: 'AI-pilot zonder mislukken: do\'s en don\'ts',
+    lede: 'De meeste AI-pilots mislukken niet door slechte technologie. Ze mislukken door verkeerde verwachtingen, het verkeerde startproces en een gebrek aan eigenaarschap. Dit is wat wij in de praktijk zien werken.',
+    author: 'Sjaak ter Veld',
+    published: '2026-06-18',
+    readingMinutes: 6,
+    tags: ['methodiek', 'adoptie', 'strategie', 'MKB', 'proces'],
+    blocks: [
+      { kind: 'p', text: 'Een pilot is geen proef waarbij u achteroverleunt en afwacht of iets werkt. Het is een gestructureerde periode van vier tot acht weken waarin u leert hoe het proces écht loopt, wie er verantwoordelijkheid voor neemt en wat de agent nodig heeft om goed te functioneren. Wie dat niet vooraf weet, heeft geen pilot. Die heeft een experiment zonder conclusie.' },
+      { kind: 'h2', text: 'Begin klein, maar niet te klein' },
+      { kind: 'p', text: 'De meest gemaakte fout: een proces kiezen dat zo marginaal is dat niemand de uitkomst merkt. Dat levert geen draagvlak op. Kies een proces dat uw mensen wekelijks raakt en waarvan u de huidige tijdsbesteding kunt meten. Geen schatting, maar een meting. Drie weken bijhouden hoeveel tijd het kost is al genoeg.' },
+      { kind: 'p', text: 'Tegelijk: begin niet met het zwaarste proces. Een agent die klantklachten moet afhandelen inclusief uitzonderingen, coulance en terugkoppelingen is geen startpunt. Dat is maand zes. Maand één is de orderbevestiging, de betaalherinnering of de standaardofferte. Iets met een vast patroon en weinig uitzonderingen.' },
+      { kind: 'h2', text: 'De do\'s' },
+      { kind: 'list', items: [
+        'Benoem één proceseigenaar. Iemand die elke week tien minuten neemt om te kijken wat de agent doet en welke uitzonderingen hij tegenkomt.',
+        'Stel vooraf succes vast. Niet vaag (\'het moet beter gaan\'), maar concreet: \'De gemiddelde verwerkingstijd daalt van 25 naar 8 minuten\'.',
+        'Bouw guardrails in vóór u live gaat. Bepaal welke handelingen de agent autonoom mag uitvoeren en welke altijd langs een mens gaan.',
+        'Plan een evaluatiemoment op week twee én week zes. Week twee om bij te sturen, week zes om te besluiten.',
+        'Vertel uw medewerkers eerlijk wat u doet en waarom. Angst over baanverlies blokkeert adoptie meer dan elke technische tekortkoming.',
+      ] },
+      { kind: 'h2', text: 'De don\'ts' },
+      { kind: 'list', items: [
+        'Geen eigenaarschap aanwijzen en hopen dat het vanzelf gaat. Dat gaat niet vanzelf.',
+        'De pilot starten terwijl de data niet op orde is. Een agent die werkt met verouderde klantgegevens of ontbrekende prijslijsten produceert onzin.',
+        'Verwachten dat medewerkers de agent spontaan gaan gebruiken zonder uitleg en gewenning. Implementatie is voor 60% gedragsverandering.',
+        'Technologie kiezen voordat het proces beschreven is. De toolkeuze volgt op de proceskeuze, nooit andersom.',
+        'De pilot \'even uitproberen\' zonder budget voor de vervolgstap. Als u van tevoren niet weet wat u doet als het werkt, bent u niet klaar voor een pilot.',
+      ] },
+      { kind: 'h2', text: 'Wat een goede pilot oplevert' },
+      { kind: 'p', text: 'Niet alleen een werkende agent. Vooral: inzicht in hoe uw processen echt lopen. Bijna altijd komen er tijdens een pilot aannames boven die niemand ooit had opgeschreven. Welke uitzonderingen er eigenlijk zijn. Welke klanten altijd bijzondere behandeling krijgen. Welke stap altijd mis gaat zonder dat iemand het doorhad.' },
+      { kind: 'quote', text: 'Een pilot is geen test van de technologie. Het is een röntgenfoto van uw proces.' },
+      { kind: 'p', text: 'Die kennis heeft waarde, ongeacht of de agent daarna in productie gaat. Maar in de meeste gevallen gaat hij wél in productie, omdat de combinatie van een helder proces en een goed geconfigureerde agent levert wat u van tevoren had afgesproken. Dat is geen toeval. Dat is voorbereiding.' },
+      { kind: 'h2', text: 'Na de pilot: uitrollen of stoppen' },
+      { kind: 'p', text: 'Op week zes neemt u een besluit op basis van drie dingen: haalt u de vooraf vastgestelde succesmaatstaf, is de proceseigenaar bereid het te blijven beheren, en zijn de medewerkers gewend aan de nieuwe werkwijze. Als twee van de drie positief zijn, rolt u uit. Als alle drie negatief zijn, stopt u en analyseert u waarom. Een eerlijk einde is ook een uitkomst. Maar in de praktijk zien wij dat het bij een goed gekozen startproces zelden tot stoppen komt.' },
+    ],
+    faq: [
+      { q: 'Hoe lang duurt een AI-pilot voor een MKB-bedrijf?', a: 'Een goed ingerichte pilot duurt vier tot acht weken. De eerste twee weken zijn voor inrichting en een eerste live-run in een afgeschermde omgeving. Daarna volgt een periode van actief gebruik met wekelijkse evaluatie. Korter dan vier weken levert te weinig data op om betrouwbare conclusies te trekken.' },
+      { q: 'Wat zijn de meest voorkomende redenen dat een AI-pilot mislukt?', a: 'Geen duidelijke proceseigenaar, te weinig concrete succescriteria vooraf, of een slecht gekozen startproces met te veel uitzonderingen. Technische problemen zijn zelden de oorzaak. De organisatorische voorbereiding bepaalt in de meeste gevallen het verschil tussen een pilot die iets oplevert en één die stil sterft.' },
+      { q: 'Moeten mijn medewerkers iets leren of installeren voor een pilot?', a: 'Dat hangt af van het gekozen proces, maar bij goed ontworpen agents is de aanpassing voor medewerkers beperkt. Zij hoeven de agent niet te bedienen; zij moeten begrijpen wat hij doet en wanneer hij hen om input vraagt. Een introductie van een uur en een korte referentiekaart zijn in de meeste gevallen voldoende.' },
+      { q: 'Wat kost een AI-pilot?', a: 'Dat verschilt per complexiteit van het proces en de benodigde integraties. Een eenvoudige pilot op een voorspelbaar administratief proces kost minder dan één op een proces met meerdere systemen en uitzonderingen. Wij werken altijd met een vaste pilotprijs zodat u vooraf weet waar u aan toe bent, zonder open einde.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
