@@ -913,6 +913,50 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'change-management-ai-implementatie-team-meekrijgen',
+    title: 'AI-implementatie: hoe krijgt u uw team mee?',
+    lede: 'De techniek is zelden het struikelblok. Wat wij vaker zien: medewerkers die afhaken, passief wachten of de agent stilletjes omzeilen. Dat is geen koppigheid. Dat is een signaal dat de invoering niet goed is aangepakt.',
+    author: 'Sjaak ter Veld',
+    published: '2026-06-23',
+    readingMinutes: 6,
+    tags: ['adoptie', 'cultuur', 'mensen', 'strategie', 'methodiek'],
+    blocks: [
+      { kind: 'p', text: 'Wij bouwen een agent, trainen uw team er twee keer op, en drie maanden later gebruikt nog maar één iemand hem. De rest werkt gewoon door zoals altijd. Herkenbaar? Bij bijna elk MKB-bedrijf dat zelf zonder begeleiding een AI-tool invoert, ziet het proces er zo uit. Niet omdat de medewerkers dom zijn of dwarsliggen. Maar omdat verandering tijd, uitleg en vertrouwen vraagt. En die drie dingen worden structureel onderschat.' },
+      { kind: 'h2', text: 'Waarom weerstand geen probleem is, maar informatie' },
+      { kind: 'p', text: 'Als iemand in uw team zegt "ik vertrouw dat ding niet", is dat een vraag in vermomming. Meestal gaat het om één van drie dingen: ze begrijpen niet wat de agent precies doet, ze zijn bang dat ze het straks fout doen als de agent iets geks uitvoert, of ze denken dat hun baan op het spel staat. Al die drie zijn oplosbaar. Maar niet door ze te negeren.' },
+      { kind: 'p', text: 'Het gesprek dat bijna nooit gevoerd wordt: "Wat moet de agent voor jou betekenen?" Niet wat de agent technisch kan. Niet wat de ondernemer ervan verwacht. Maar wat uw medewerker zelf kwijt wil — het werk dat energie kost, de fouten die keer op keer terugkomen, de klantvraag die elke dag hetzelfde is. Zodra die vraag op tafel ligt, verandert het gesprek. Van "ze moeten dit accepteren" naar "wij lossen dit samen op".' },
+      { kind: 'h2', text: 'De drie fasen die werken' },
+      { kind: 'p', text: 'Ik zie een vaste volgorde die succesvol is, ongeacht de branche of de grootte van het team. Kort samengevat:' },
+      { kind: 'list', items: [
+        'Fase 1 — betrek vroeg: bespreek nog vóór de bouw welk proces automatisch mag. Laat uw medewerkers meedenken over de regels, niet alleen de uitkomst.',
+        'Fase 2 — werk samen: laat minstens één medewerker de eerste weken naast de agent werken, niet ernaast. Laat hen fouten ontdekken en rapporteren. Dat eigenaarschap is goud waard.',
+        'Fase 3 — vier kleine winsten: als de agent voor het eerst een taak foutloos afhandelt die normaal een kwartier kostte, benoem dat. Niet groot, gewoon concreet.',
+      ] },
+      { kind: 'h2', text: 'Wat u beter kunt vermijden' },
+      { kind: 'list', items: [
+        'De agent "live zetten" zonder aankondiging. Medewerkers die voor het eerst een automatische mail zien die van hun naam verstuurd lijkt, schrikken.',
+        'Trainen in één sessie van twee uur en daarna verwachten dat iedereen het weet. Mensen leren door doen, niet door kijken.',
+        'Resultaten meten in week twee. Adoptie kost vier tot tien weken. Wie eerder concludeert dat het mislukt, trekt de stekker eruit op het slechtste moment.',
+        'De agent presenteren als oplossing voor een bezettingsprobleem. Als medewerkers denken dat automatisering betekent dat er iemand weg moet, werken ze er niet aan mee.',
+      ] },
+      { kind: 'quote', text: 'Een agent die niemand gebruikt, lost niets op. Adoptie is geen bijzaak. Het is het werk.' },
+      { kind: 'h2', text: 'Één persoon maakt het verschil' },
+      { kind: 'p', text: 'Bijna elk succesvol traject dat ik heb begeleid, had één interne trekker. Niet per se de leidinggevende. Soms de administratief medewerker die het eerst zag hoe de agent haar werk makkelijker maakte, en dat doorvertelde aan collega\'s. Die interne ambassadeur is meer waard dan tien trainingen. Zoek die persoon. Geef hem of haar ruimte om te experimenteren en vragen te stellen.' },
+      { kind: 'p', text: 'Het is ook de reden dat wij bij nieuwe trajecten altijd vragen: wie in uw bedrijf staat het meest open voor dit soort tools? Dat is het startpunt. Van daaruit werkt adoptie als een olievlek, traag maar zeker.' },
+      { kind: 'h2', text: 'Wanneer het echt niet lukt' },
+      { kind: 'p', text: 'Soms lukt het niet, ook met goed change management. Dat heeft dan zelden met de agent te maken. Vaker gaat het om een bredere situatie: een team dat al onder druk staat, een reorganisatie op de achtergrond, of een leidinggevende die zelf twijfelt maar dat niet uitspreekt. In die gevallen is het eerlijker om het project een paar maanden te pauzeren dan door te drukken. Een agent die wordt ingevoerd in een team dat geen vertrouwen heeft in zijn omgeving, zal nooit werken. Niet omdat de techniek slecht is, maar omdat vertrouwen de voorwaarde is voor alles wat erop volgt.' },
+    ],
+    faq: [
+      { q: 'Hoe lang duurt het voordat een team een AI-agent normaal gebruikt?', a: 'Reken op vier tot tien weken voor echte adoptie. De eerste twee weken gaan op aan wennen en kleine aanpassingen. Daarna neemt het gebruik geleidelijk toe als er een interne trekker is en de agent duidelijk iets oplost. Wie eerder meet en concludeert dat het mislukt, stopt te vroeg.' },
+      { q: 'Hoe ga ik om met medewerkers die bang zijn voor hun baan?', a: 'Bespreek het direct, niet indirect. Leg uit welke taken de agent overneemt en wat de medewerker daarmee vrijspeelt. Koppel dat aan iets wat ze al langer willen doen maar niet aan toekomen. Abstracte geruststelling werkt niet. Concrete voorbeelden wel.' },
+      { q: 'Moet ik het hele team trainen of alleen een deel?', a: 'Begin met één of twee mensen die open staan voor de verandering. Laat hen echte ervaring opdoen en laat ze daarna als vraagbaak fungeren voor collega\'s. Groepstrainingen van twee uur werken zelden. Leren door doen, in kleine stappen, is structureel effectiever.' },
+      { q: 'Wat doe ik als een medewerker de agent blijft omzeilen?', a: 'Ga het gesprek aan. Vraag wat er precies niet klopt: de output, het vertrouwen, de extra stap in het proces. Vaak zit er een concrete aanpassing achter die te maken heeft met een ontbrekende beleidsregel of een onduidelijke handeling. Los dat op, en de weerstand verdwijnt doorgaans vanzelf.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
