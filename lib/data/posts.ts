@@ -957,6 +957,53 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'interne-rollen-voor-ai-agent-implementatie',
+    title: 'Wie heb je intern nodig voor een AI-agent?',
+    lede: 'Een AI-agent bouwen zonder interne betrokkenheid werkt niet. Maar u heeft geen IT-afdeling nodig. U heeft drie rollen nodig. En die heeft u waarschijnlijk al in huis.',
+    author: 'Sjaak ter Veld',
+    published: '2026-06-25',
+    readingMinutes: 5,
+    tags: ['MKB', 'adoptie', 'mensen', 'samenwerking', 'rolverandering'],
+    blocks: [
+      { kind: 'p', text: 'De meeste MKB-ondernemers denken bij AI-implementatie aan techniek. Aan servers, aan code, aan mensen met een IT-achtergrond. Dat is begrijpelijk, maar het is niet waar de meeste projecten op stranden. Ze mislukken op het organisatorische vlak: niemand die eigenaarschap voelt, niemand die de regels bijhoudt, niemand die de agent terugstuurt als hij de fout in gaat. Techniek is het makkelijkste deel.' },
+      { kind: 'h2', text: 'Rol 1: de proceseigenaar' },
+      { kind: 'p', text: 'Dit is de persoon die het proces dat u wilt automatiseren het beste kent. Niet de directeur, maar de medewerker die het dagelijks doet. De binnendienst die elke klantmail afhandelt. De planner die de orders inschiet. De boekhouder die facturen controleert.' },
+      { kind: 'p', text: 'De proceseigenaar vertelt ons wat de regels zijn, wat de uitzonderingen zijn en waar de agent het mis mag hebben. Zonder die persoon kunnen wij geen goede agent bouwen. Wij kunnen het proces technisch namaken, maar de nuances zitten in het hoofd van de proceseigenaar. Die kennis moet er expliciet uit.' },
+      { kind: 'list', items: [
+        'Beschikbaarheid: twee tot vier uur per week tijdens de bouwfase, daarna één uur per maand voor beheer.',
+        'Taak: regels en uitzonderingen beschrijven, testcases beoordelen, terugkoppelen wat er misgaat.',
+        'Profiel: geen technische kennis nodig. Wel kennis van het proces en bereidheid om dat op te schrijven.',
+      ] },
+      { kind: 'h2', text: 'Rol 2: de beslisser' },
+      { kind: 'p', text: 'Elke agent heeft beleidsregels nodig: wat mag automatisch, wat gaat langs een mens, wat nooit zonder goedkeuring. Die regels zijn geen technische beslissingen. Het zijn bedrijfsbeslissingen. Wie mag coulance toepassen? Tot welk bedrag? Welke klanten krijgen een afwijkende aanpak?' },
+      { kind: 'p', text: 'De beslisser is meestal de directeur, de operations manager of de financieel verantwoordelijke. Het hoeft maar één iemand te zijn. Wat telt is dat die persoon de bevoegdheid heeft om het beleid vast te stellen én bereid is dat te doen voordat we live gaan. Niet achteraf.' },
+      { kind: 'quote', text: 'Een agent zonder vastgesteld beleid is als een nieuwe medewerker zonder inwerkgids. Hij gaat improviseren, en dat wilt u niet.' },
+      { kind: 'h2', text: 'Rol 3: de aanspreekpersoon voor techniek' },
+      { kind: 'p', text: 'Dit hoeft echt geen technicus te zijn. Het is de persoon die inloggegevens kan aanleveren, die toegang heeft tot uw systemen en die intern de vragen kan beantwoorden die wij stellen. Denk aan toegang tot uw boekhoudpakket, uw CRM, uw mailbox. Iemand die weet hoe uw IT in elkaar zit, maar dat hoeft geen specialist te zijn.' },
+      { kind: 'p', text: 'In de praktijk is dit bij kleinere bedrijven vaak de directeur zelf, of de medewerker die de ICT-rekening betaalt en de wachtwoorden beheert. Prima. Als ze maar beschikbaar zijn als wij iets nodig hebben.' },
+      { kind: 'list', items: [
+        'Toegang tot systemen en inloggegevens voor een testomgeving regelen.',
+        'Intern doorschakelen als wij vragen hebben over infrastructuur of licenties.',
+        'Nieuwe koppelingen goedkeuren bij de leverancier als dat nodig is.',
+      ] },
+      { kind: 'h2', text: 'Wat als dezelfde persoon meerdere rollen heeft?' },
+      { kind: 'p', text: 'Dat is bij MKB heel gebruikelijk. Een operationeel directeur die het proces het beste kent én de bevoegdheid heeft om beleid te bepalen. Een office manager die ook de IT-toegang beheert. Dat werkt prima, zolang diegene er ook daadwerkelijk tijd voor heeft. De bottleneck bij kleinere bedrijven is zelden het gebrek aan de juiste mensen. Het is het gebrek aan tijd.' },
+      { kind: 'p', text: 'Maak vooraf heldere afspraken over beschikbaarheid. Een agent bouwen lukt in zes tot tien weken, maar alleen als de interne aanspreekpunten ook beschikbaar zijn. Als dat halfslachtig is, duurt het twee keer zo lang en wordt het resultaat minder.' },
+      { kind: 'h2', text: 'Na de bouw: wie beheert het?' },
+      { kind: 'p', text: 'Een agent die live staat is geen afgerond project. Regels veranderen, processen verschuiven, een klacht die steeds terugkomt vraagt om een nieuwe uitzondering. De proceseigenaar is daarvoor de aangewezen persoon. Niet wij, niet uw IT-leverancier. Die persoon zit het dichtst op het werk en merkt als eerste wanneer de agent iets mist.' },
+      { kind: 'p', text: 'Plan elke maand een moment van een half uur om de agent te evalueren. Welke uitzonderingen zijn er de afgelopen weken geweest? Welke regels kloppen niet meer? Dat is geen grote tijdsinvestering, maar zonder dat moment veroudert de agent langzaam zonder dat u het merkt.' },
+    ],
+    faq: [
+      { q: 'Heb ik een IT-afdeling nodig om een AI-agent in te voeren?', a: 'Nee. U heeft drie rollen nodig: iemand die het proces kent, iemand die beslissingen mag nemen over beleid en iemand die toegang heeft tot uw systemen. Dat zijn geen technische profielen. Bij veel MKB-bedrijven zijn dat dezelfde één of twee personen die al in dienst zijn.' },
+      { q: 'Hoeveel tijd kost het mijn medewerkers?', a: 'Tijdens de bouwfase rekent u op twee tot vier uur per week voor de proceseigenaar. De beslisser is een paar keer nodig voor beleidsgesprekken, samen misschien twee tot drie uur totaal. Na livegang volstaat een half uur per maand voor evaluatie en bijsturing.' },
+      { q: 'Wat als niemand intern de tijd heeft?', a: 'Dan is het moment niet goed. Een agent die zonder voldoende interne betrokkenheid wordt gebouwd, past niet op uw werkelijkheid. Uitstel is in dat geval verstandiger dan doorgaan en later opnieuw moeten beginnen. Wij plannen het project pas als de interne rollen duidelijk zijn en beschikbaar.' },
+      { q: 'Wie beheert de agent nadat die live staat?', a: 'De proceseigenaar is de eerste verantwoordelijke. Die persoon merkt het eerst als de agent iets mist of een uitzondering niet goed verwerkt. Wij ondersteunen op afstand bij technische aanpassingen, maar het dagelijks toezicht en de beleidsupdates liggen intern.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
