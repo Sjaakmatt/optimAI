@@ -1004,6 +1004,51 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'ai-roadmap-twaalf-maanden-mkb',
+    title: 'Een AI-roadmap voor uw MKB: de komende 12 maanden',
+    lede: 'De meeste ondernemers weten dat ze iets met AI moeten doen. Maar wat, wanneer, en in welke volgorde? Een roadmap in vier kwartalen die haalbaar is zonder intern IT-team.',
+    author: 'Sjaak ter Veld',
+    published: '2026-06-30',
+    readingMinutes: 6,
+    tags: ['strategie', 'MKB', 'methodiek', 'adoptie', 'proces'],
+    blocks: [
+      { kind: 'p', text: 'Een roadmap klinkt groter dan het is. Voor een MKB-bedrijf met tien tot vijftig medewerkers is het gewoon een lijst van wat u wanneer aanpakt, zodat u niet ineens vier dingen tegelijk probeert en met vier halverwege-projecten eindigt. Dat heb ik te vaak gezien. De bedoeling van dit artikel is dat u na het lezen weet hoe een realistisch jaar eruitziet.' },
+      { kind: 'h2', text: 'Kwartaal 1: ophalen wat u al weet' },
+      { kind: 'p', text: 'U begint niet met bouwen. U begint met inventariseren. Welke processen herhaalt uw team elke week? Waar zitten de meeste fouten? Waar gaat tijd naartoe die u liever anders zou besteden? Dit kost twee tot vier weken en hoeft geen groot project te zijn. Een gesprek van een uur per afdeling is genoeg.' },
+      { kind: 'p', text: 'Uit die inventarisatie kiest u één proces. Niet het meest indrukwekkende, maar het meest voorspelbare. Iets dat meer dan twee keer per week voorkomt, duidelijke regels heeft en een herkenbaar begin en einde. Denk aan orderbevestigingen verwerken, inkomende facturen doorzetten naar uw boekhouder, of standaardvragen van klanten beantwoorden.' },
+      { kind: 'list', items: [
+        'Kies één proces, geen drie. Scope-uitbreiding is de meest voorkomende reden dat een eerste pilot mislukt.',
+        'Beschrijf het proces op papier voordat u iemand inschakelt. Wie doet wat, in welke volgorde, bij welke uitzonderingen wijkt het af.',
+        'Stel een realistisch criterium voor succes: niet \'alles automatiseren\', maar \'de medewerker heeft hier twee uur per week minder aan\'.',
+      ] },
+      { kind: 'h2', text: 'Kwartaal 2: uw eerste agent live' },
+      { kind: 'p', text: 'In het tweede kwartaal bouwt en test u. Voor een goed gekozen eerste proces duurt dat zes tot tien weken. De eerste twee weken gaan naar koppeling met uw bestaande systemen — uw boekhoudpakket, uw CRM, uw mailomgeving. De volgende weken naar testen met echte data, maar met een mens die alles nog even nakijkt voordat het de deur uitgaat.' },
+      { kind: 'p', text: 'Die nakijkfase is niet optioneel. Het is waar u leert hoe de agent zich gedraagt bij afwijkende situaties. U past de beleidsregels aan. U voegt uitzonderingen toe die u in het inventarisatiegesprek niet had bedacht. Na vier weken naast-de-agent werken weet u of u hem kunt vertrouwen. Dan pas gaat hij zelfstandig.' },
+      { kind: 'quote', text: 'Een agent die vier weken lang alles goed doet terwijl iemand meekijkt, mag daarna zelfstandig. Niet eerder.' },
+      { kind: 'h2', text: 'Kwartaal 3: uitbreiden op basis van wat u hebt geleerd' },
+      { kind: 'p', text: 'Uw eerste agent draait. Uw medewerkers hebben er inmiddels een mening over. Sommige dingen werken beter dan u dacht, andere dingen missen ze. Dat is normaal. Nu gaat u twee dingen tegelijk doen: de eerste agent verder verbeteren op basis van die feedback, en een tweede proces voorbereiden.' },
+      { kind: 'p', text: 'Het tweede proces mag iets complexer zijn dan het eerste. U hebt nu ervaring met hoe de beleidsregels werken, hoe de koppelingen liggen, en hoe uw mensen reageren op verandering. Die ervaring verkort het tweede project met twintig tot dertig procent. Niet door magie, maar doordat u minder hoeft uit te zoeken.' },
+      { kind: 'list', items: [
+        'Evalueer de eerste agent formeel: wat werd geautomatiseerd, wat bleef handmatig, wat kostte onverwacht tijd.',
+        'Betrek de medewerkers die ermee werken bij de keuze van het tweede proces. Zij zien wat u niet ziet.',
+        'Houd de beleidsregels van de eerste agent bij. Verouderde regels zijn een vaker voorkomend probleem dan slechte techniek.',
+      ] },
+      { kind: 'h2', text: 'Kwartaal 4: structuur voor de lange termijn' },
+      { kind: 'p', text: 'Aan het einde van het jaar hebt u twee agents draaien, inzicht in wat werkt in uw organisatie, en een team dat weet hoe het met de tools omgaat. Dat is meer waard dan tien halve pilots. Nu is het moment om de structuur te leggen voor de volgende fase.' },
+      { kind: 'p', text: 'Dat betekent: wie is er verantwoordelijk voor het onderhoud van de agents? Wie past de beleidsregels aan als het beleid verandert? Hoe rapporteert u over wat de agents doen? Niet als bureaucratische oefening, maar omdat u anders na twee jaar met agents werkt die niemand meer begrijpt en niemand durft aan te passen.' },
+      { kind: 'p', text: 'Aan het einde van kwartaal 4 maakt u een nieuwe inventarisatie. Dezelfde gesprekken per afdeling als in kwartaal 1, maar nu met de ervaring van een jaar. U zult merken dat de lijst met kansrijke processen veel langer is geworden. Niet omdat er meer is, maar omdat uw mensen nu weten wat mogelijk is.' },
+    ],
+    faq: [
+      { q: 'Hoe lang duurt het voordat een eerste AI-agent live gaat bij een MKB-bedrijf?', a: 'Voor een goed gekozen, voorspelbaar proces rekent u op zes tot tien weken van start tot live. Daar zitten de inventarisatie, bouw, koppeling met bestaande systemen en een testfase bij in. Complexere processen of meer koppelingen verlengen dat. Begin met iets eenvoudigs om sneller resultaat te zien.' },
+      { q: 'Moet ik een intern IT-team hebben om AI-agents te implementeren?', a: 'Nee. De meeste MKB-bedrijven waarmee wij werken hebben geen intern IT-team. Wat u wel nodig hebt: iemand die het proces goed kent, beslissingsbevoegdheid heeft over de regels, en bereid is vier weken lang mee te kijken tijdens de testfase. De techniek regelen wij.' },
+      { q: 'Hoeveel processen kan ik in het eerste jaar automatiseren?', a: 'Reken op twee, maximaal drie. Dat klinkt weinig, maar twee goed draaiende agents met duidelijke beleidsregels en tevreden medewerkers leveren meer op dan vijf halfafgemaakte projecten. De snelheid neemt toe in het tweede jaar, als de infrastructuur en de werkwijze er al liggen.' },
+      { q: 'Wat kost een AI-roadmap voor een jaar?', a: 'Dat hangt af van de processen die u kiest en de systemen waaraan gekoppeld moet worden. Een indicatief bandbreedte voor twee agents inclusief bouw, koppelingen, beleidsregels en begeleiding ligt tussen de € 15.000 en € 40.000 voor het eerste jaar. De terugverdientijd is voor de meeste MKB-bedrijven twaalf tot achttien maanden.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
