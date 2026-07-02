@@ -1049,6 +1049,59 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'data-kwaliteit-voorwaarde-werkende-ai-agents',
+    title: 'Data-kwaliteit: de stille voorwaarde voor werkende agents',
+    lede: 'Bedrijven die moeite hebben met hun eerste AI-agent hebben zelden een technisch probleem. Bijna altijd zit de oorzaak eerder: in de data waarop die agent moet werken. Wat dat betekent en wat u eraan doet.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-02',
+    readingMinutes: 6,
+    tags: ['techniek', 'strategie', 'proces', 'systemen', 'adoptie'],
+    blocks: [
+      { kind: 'p', text: 'Ik voer elk jaar tientallen gesprekken met ondernemers die enthousiast beginnen aan een automatiseringsproject en na zes weken vastlopen. Niet omdat het idee niet deugt, niet omdat de technologie tekortschiet. Maar omdat de gegevens waarop de agent moest werken, nooit op orde waren. De agent pakt een klantrecord, ziet drie verschillende adressen, geen BTW-nummer en een leverancierscontact in een vrije tekstnotitie. Dan stopt hij. Terecht.' },
+      { kind: 'h2', text: 'Wat data-kwaliteit eigenlijk betekent' },
+      { kind: 'p', text: 'Data-kwaliteit is geen abstract IT-begrip. Het is de vraag of uw systemen de werkelijkheid juist en volledig weergeven. Vier dimensies zijn voor AI-agents het meest bepalend:' },
+      { kind: 'list', items: [
+        'Volledigheid: zijn de velden die de agent nodig heeft structureel ingevuld, of ontbreken ze bij een kwart van de records?',
+        'Eenduidigheid: staat een klant op één plek, of verspreid over drie records omdat iemand een tikfout maakte bij invoer?',
+        'Actualiteit: kloppen de prijzen, contactpersonen en voorraadcijfers nog, of werkt u met gegevens van zes maanden geleden?',
+        'Structuur: staan de gegevens in vaste velden, of in vrije notitievelden die niemand op dezelfde manier invult?',
+      ] },
+      { kind: 'p', text: 'Een mens kan om deze gebreken heen werken. Hij belt even, kijkt in zijn hoofd, vraagt een collega. Een agent kan dat niet. Die heeft structurele, betrouwbare invoer nodig om betrouwbare output te geven.' },
+      { kind: 'h2', text: 'Hoe u uw eigen situatie beoordeelt' },
+      { kind: 'p', text: 'U hoeft geen data-audit van zes weken in te huren. Stel uzelf de volgende vragen over het proces dat u wilt automatiseren:' },
+      { kind: 'list', items: [
+        'Kan een nieuwe medewerker alle benodigde informatie vinden zonder navraag te doen? Als het antwoord nee is, kan de agent dat ook niet.',
+        'Zou u de relevante velden in uw CRM of boekhoudpakket durven exporteren en aan een ander laten zien? Ontbreekt er te veel, dan weet u het antwoord.',
+        'Zijn er velden die iedereen anders invult, omdat er nooit afspraken over gemaakt zijn? Die velden moet u aanpakken vóór u bouwt.',
+        'Hoe oud zijn de gegevens in de records die de agent dagelijks nodig heeft? Data ouder dan drie maanden die niet automatisch ververst wordt, is een risico.',
+      ] },
+      { kind: 'h2', text: 'De meest voorkomende problemen per systeemtype' },
+      { kind: 'p', text: 'In de praktijk zien wij per type systeem terugkerende patronen. In boekhoudpakketten als Exact, Moneybird en Snelstart is de relatiestamkaart vaak het struikelblok: meerdere records voor dezelfde klant, ontbrekende BTW-nummers, adressen die nooit zijn bijgewerkt na een verhuizing. In CRM-systemen als Pipedrive of Teamleader zijn het de notitievelden. Iedereen schrijft er iets anders in, en niemand gebruikt de vaste velden consequent. In ordersystemen is het de productstamkaart: artikelcodes die niet overeenkomen met wat de leverancier stuurt, ontbrekende eenheden, dubbele SKU\'s.' },
+      { kind: 'p', text: 'Dit zijn structurele gewoontes, geen eenmalige fouten. Ze herstellen niet vanzelf.' },
+      { kind: 'h2', text: 'Wat u kunt doen zonder een groot project te starten' },
+      { kind: 'p', text: 'U hoeft niet alles tegelijk op te lossen. Dat is de goede nieuws. Het gaat erom dat de data die de agent dagelijks gebruikt, klopt. De rest mag later.' },
+      { kind: 'list', items: [
+        'Bepaal welke vijf tot tien velden de agent echt nodig heeft voor het eerste proces. Maak die velden verplicht in uw systeem.',
+        'Reinig alleen de records die de agent de komende drie maanden zal raken. Alles ouder of inactiever laat u staan.',
+        'Spreek afspraken af over hoe die velden worden ingevuld. Niet als memo, maar als hard vereiste bij invoer.',
+        'Controleer na twee weken of de nieuwe records consistent zijn. Stuur bij voordat de slechte gewoontes terugkeren.',
+      ] },
+      { kind: 'quote', text: 'Een agent is zo goed als de gegevens die hij te zien krijgt. Dat is geen beperking van de technologie, dat is een wet van de logica.' },
+      { kind: 'h2', text: 'Data-kwaliteit is een mensenprobleem, geen IT-probleem' },
+      { kind: 'p', text: 'De diepere oorzaak van slechte data is zelden een slecht systeem. Het is een gebrek aan afspraken over hoe gegevens worden bijgehouden, gecombineerd met tijdsdruk die mensen ertoe brengt snelle notities te maken in plaats van gestructureerde invoer. Een agent die live gaat, maakt dat probleem zichtbaar. Dat is pijnlijk, maar ook nuttig: het geeft u een concrete reden om de afspraken die er altijd hadden moeten zijn, nu eindelijk te maken.' },
+      { kind: 'p', text: 'Wacht niet op perfecte data. Perfecte data bestaat niet. Maar bepaal een minimumdrempel, haal die drempel, en bouw dan. In die volgorde.' },
+    ],
+    faq: [
+      { q: 'Hoe schoon moeten mijn gegevens zijn voordat ik begin met een AI-agent?', a: 'Niet perfect, maar gericht. De velden die de agent dagelijks nodig heeft, moeten volledig en eenduidig zijn. Begin met het proces dat u als eerste wilt automatiseren en maak alleen de data schoon die daarvoor nodig is. Dat is te overzien en levert snel resultaat zonder een groot reinigingsproject te moeten opstarten.' },
+      { q: 'Wat als mijn CRM of boekhoudpakket veel ontbrekende gegevens heeft?', a: 'Dan brengt u eerst in kaart welke velden de agent echt nodig heeft en herstelt u alleen die velden voor actieve relaties en lopende processen. Maak die velden verplicht bij nieuwe invoer. Historische records met fouten kunt u gefaseerd aanpakken of buiten scope laten voor het eerste project.' },
+      { q: 'Kan een AI-agent zelf slechte data herkennen en melden?', a: 'Ja, deels. Een goed gebouwde agent kan detecteren dat een verplicht veld ontbreekt of dat een waarde buiten verwachte grenzen valt, en dan een mens inschakelen in plaats van zelf te gokken. Maar dat is een vangnet, geen vervanging voor nette brondata. De agent betrouwbaarder maken begint bij de data, niet bij de agent.' },
+      { q: 'Hoeveel tijd kost het opschonen van data voor een eerste agent-project?', a: 'Als u zich beperkt tot de velden die het eerste proces nodig heeft en alleen actieve records aanpakt, is een tot drie weken realistisch. Dat hangt sterk af van het aantal records en de huidige staat van uw systemen. Een gerichte aanpak is altijd sneller dan een algehele data-audit.' },
+    ],
+    cluster: 'A',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
