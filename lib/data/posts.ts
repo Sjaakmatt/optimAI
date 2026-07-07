@@ -1102,6 +1102,48 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'avg-en-ai-agents-persoonsgegevens',
+    title: 'AVG en AI-agents: wat mag wel en wat niet?',
+    lede: 'Veel ondernemers remmen zichzelf af met de gedachte dat AI-agents niet mogen omgaan met persoonsgegevens. Dat klopt niet helemaal. Wat de AVG werkelijk van u vraagt, en waar de echte risico\'s zitten.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-07',
+    readingMinutes: 6,
+    tags: ['governance', 'beleid', 'guardrails', 'MKB', 'strategie'],
+    blocks: [
+      { kind: 'p', text: 'Een agent die klantvragen beantwoordt, facturen verwerkt of offertes verstuurt, raakt vrijwel altijd persoonsgegevens. Namen, e-mailadressen, bestelinformatie, soms zelfs betalingsgeschiedenis. De AVG verbiedt dat niet. Wat de wet vraagt, is dat u bewust en gedocumenteerd omgaat met die gegevens. Dat is een ander gesprek dan de meeste ondernemers verwachten.' },
+      { kind: 'h2', text: 'De basis: verwerkersgrondslag en doelbinding' },
+      { kind: 'p', text: 'Elke verwerking van persoonsgegevens heeft een grondslag nodig. Voor de meeste bedrijfsprocessen is dat ofwel uitvoering van een overeenkomst, ofwel een gerechtvaardigd belang. Een agent die een orderbevestiging verstuurt valt onder de eerste grondslag. Een agent die een klant automatisch een herinnering stuurt voor een openstaande factuur valt onder de tweede. U hoeft daarvoor geen expliciete toestemming te vragen. Wat u wel nodig heeft, is een verwerkersregister.' },
+      { kind: 'p', text: 'Doelbinding betekent dat de gegevens die u voor het ene doel verzamelt, niet zomaar voor iets anders gebruikt mogen worden. Klantgegevens die u heeft omdat iemand iets bestelde, mag u niet gebruiken voor een marketingcampagne zonder extra grondslag. Dat geldt ook als een agent die gegevens verwerkt. De agent doet wat u hem opdraagt — dus als de opdracht buiten de grondslag valt, is de agent het probleem niet, maar u als verwerkingsverantwoordelijke.' },
+      { kind: 'h2', text: 'Verwerkersovereenkomst: vergeet dit niet' },
+      { kind: 'p', text: 'Zodra een externe partij persoonsgegevens verwerkt namens uw organisatie, is een verwerkersovereenkomst verplicht. Dat geldt ook voor het platform waarop uw agent draait. Wij sluiten bij elk project een verwerkersovereenkomst af en zorgen dat de onderliggende infrastructuurpartijen dat ook doen. Maar dit is iets u zelf moet opvragen en bewaren. De Autoriteit Persoonsgegevens beschouwt de afwezigheid van zo\'n overeenkomst als een directe overtreding, ook als er feitelijk niets misging.' },
+      { kind: 'list', items: [
+        'Vraag bij elke nieuwe tooling of leverancier of er een verwerkersovereenkomst beschikbaar is.',
+        'Bewaar de overeenkomst in uw eigen administratie, niet alleen bij de leverancier.',
+        'Controleer of de verwerking plaatsvindt binnen de Europese Economische Ruimte, of dat er adequate waarborgen zijn voor overdracht buiten de EER.',
+        'Leg vast welke categorieën persoonsgegevens de agent verwerkt en met welk doel.',
+        'Update uw verwerkersregister zodra u een nieuwe agent in gebruik neemt.',
+      ] },
+      { kind: 'h2', text: 'Wat een agent absoluut niet zelfstandig mag doen' },
+      { kind: 'p', text: 'Er zijn situaties waarin een mens de beslissing moet nemen. De AVG heeft hiervoor een specifieke bepaling: volledig geautomatiseerde besluitvorming met rechtsgevolgen voor een persoon is in beginsel verboden. Concreet: een agent mag geen creditbeoordeling doen die automatisch leidt tot weigering van een order, geen sollicitant afwijzen zonder menselijke tussenkomst, en geen klant blokkeren op basis van een score zonder dat iemand dat heeft beoordeeld. De agent mag die informatie verzamelen en een voorstel doen. De beslissing moet bij een mens liggen.' },
+      { kind: 'quote', text: 'De agent verzamelt, weegt en adviseert. De mens beslist. Dat is niet alleen AVG-conform, het is ook gewoon verstandig.' },
+      { kind: 'h2', text: 'Bijzondere categorieën: hier stopt de agent' },
+      { kind: 'p', text: 'Gezondheidsgegevens, politieke opvattingen, etnische achtergrond, biometrische gegevens — dit zijn bijzondere categorieën onder de AVG. Verwerking is in principe verboden, tenzij u valt onder een van de uitzonderingen. Voor de meeste MKB-bedrijven is geen van die uitzonderingen van toepassing. Bouw uw agent zo dat hij deze gegevens niet opslaat, niet uitleest en er geen actie op onderneemt. Als een klant in een bericht iets over zijn gezondheid schrijft en de agent antwoordt op basis van die informatie, zit u al snel in een grijs gebied.' },
+      { kind: 'h2', text: 'Dataretentie: hoe lang bewaart de agent gegevens?' },
+      { kind: 'p', text: 'Een agent die gesprekshistorie bijhoudt om context te hebben, slaat gegevens op. Die opslag heeft een bewaartermijn nodig. Bepaal vooraf hoe lang conversatielogs bewaard worden, wie er toegang toe heeft en wanneer ze worden gewist. In de praktijk werkt een termijn van 90 dagen voor conversatielogs goed voor de meeste servicegerichte toepassingen. Transactiegegevens vallen onder fiscale bewaarplichten en houden andere termijnen aan. Leg beide vast.' },
+      { kind: 'h2', text: 'Wat u vandaag kunt doen' },
+      { kind: 'p', text: 'AVG-compliance voor AI-agents is geen eenmalige exercitie. Het begint met de juiste vragen stellen voordat u bouwt: welke gegevens verwerkt de agent, op welke grondslag, met welke bewaartermijn, en wie is waarvoor verantwoordelijk. Als u die vier vragen kunt beantwoorden voordat u live gaat, heeft u al meer in orde dan de meeste organisaties die ik spreek.' },
+    ],
+    faq: [
+      { q: 'Mag een AI-agent persoonsgegevens verwerken?', a: 'Ja, dat mag, mits er een geldige verwerkingsgrondslag is, zoals uitvoering van een overeenkomst of gerechtvaardigd belang. U bent als verwerkingsverantwoordelijke verplicht dit te documenteren in een verwerkersregister en een verwerkersovereenkomst af te sluiten met de partij die de agent host.' },
+      { q: 'Is toestemming van klanten vereist voordat een agent hun gegevens verwerkt?', a: 'Niet altijd. Voor de uitvoering van een bestelling of het versturen van een factuur is toestemming niet nodig; de grondslag is dan de overeenkomst. Toestemming is wel vereist als u gegevens wilt gebruiken voor doelen waarvoor geen andere grondslag bestaat, zoals direct marketing buiten de bestaande klantrelatie.' },
+      { q: 'Wat is geautomatiseerde besluitvorming en wanneer is dat verboden?', a: 'Geautomatiseerde besluitvorming houdt in dat een systeem zonder menselijke tussenkomst een beslissing neemt die rechtsgevolgen heeft voor een persoon. Dat is in beginsel verboden onder de AVG. Een agent mag wel informatie verzamelen en een advies geven, maar de uiteindelijke beslissing — zoals het weigeren van een order of het blokkeren van een klant — moet altijd door een mens worden genomen.' },
+      { q: 'Hoe lang mag een AI-agent gesprekshistorie bewaren?', a: 'De AVG schrijft geen vaste termijn voor, maar vereist dat u een termijn vastlegt die niet langer is dan noodzakelijk voor het doel. Voor klantenservice-logs werkt 90 dagen in de praktijk goed. Transactiegegevens vallen onder de fiscale bewaarplicht van zeven jaar. Leg uw keuzes schriftelijk vast en controleer ze jaarlijks.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
