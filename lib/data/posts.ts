@@ -1144,6 +1144,58 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'ai-act-2026-wat-verandert-voor-mkb',
+    title: 'De AI-act in 2026: wat verandert er voor u?',
+    lede: 'De Europese AI-act is geen vage toekomstmuziek meer. Vanaf 2026 gelden de eerste verplichtingen ook voor Nederlandse MKB-bedrijven. Wat u concreet moet weten voordat u een agent in productie neemt.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-09',
+    readingMinutes: 6,
+    tags: ['governance', 'beleid', 'MKB', 'strategie', 'guardrails'],
+    blocks: [
+      { kind: 'p', text: 'De AI-act is op 1 augustus 2024 in werking getreden en rolt in fasen uit. Veel ondernemers dachten dat het iets was voor grote techbedrijven. Dat klopt voor de zwaarste categorieën. Maar wie AI-agents inzet in zijn bedrijfsvoering — voor klantenservice, hrm, kredietbeoordeling of personeelsplanning — heeft te maken met verplichtingen die al dit jaar ingaan. Niet over drie jaar.' },
+      { kind: 'h2', text: 'Wat de AI-act onderscheidt: risicocategorieën' },
+      { kind: 'p', text: 'De wet werkt met vier risiconiveaus. Voor MKB-bedrijven zijn er twee die er toe doen in de praktijk.' },
+      { kind: 'list', items: [
+        'Onaanvaardbaar risico: verboden toepassingen. Denk aan social scoring of manipulatieve systemen. U komt hier als MKB\'er niet in de buurt.',
+        'Hoog risico: strenge verplichtingen. Hieronder vallen onder meer systemen voor personeelsselectie, kredietbeoordeling en toegang tot diensten. Wie hier een agent voor inzet, moet documentatie, audits en menselijk toezicht aantonen.',
+        'Beperkt risico: transparantieplicht. Als een klant een chatbot te woord staat, moet duidelijk zijn dat het een AI is. Dit geldt voor vrijwel elke klantenservice-agent.',
+        'Minimaal risico: geen extra verplichtingen. De meeste interne procesautomatisering valt hier. Denk aan orderverwerking of factuurverwerking.',
+      ] },
+      { kind: 'h2', text: 'Wat in 2026 concreet geldt' },
+      { kind: 'p', text: 'Vanaf februari 2025 zijn de verboden toepassingen van kracht. Vanaf augustus 2026 gelden de volledige verplichtingen voor hoog-risico-systemen, inclusief documentatieplicht, conformiteitsbeoordeling en registratie in een EU-database. Dat klinkt zwaar. Voor de meeste MKB-toepassingen valt het mee, mits u goed documenteert wat uw agent doet.' },
+      { kind: 'p', text: 'Wat direct actie vraagt: de transparantieplicht bij klantencontact. Elke agent die communiceert met klanten — via e-mail, chat of telefoon — moet zichzelf als AI identificeren. Dat is eenvoudig in te bouwen, maar het moet expliciet geregeld zijn. Dit is niet iets om later te doen.' },
+      { kind: 'h2', text: 'De hoog-risico-grens: wanneer geldt die voor u?' },
+      { kind: 'p', text: 'De vraag die ik het meest krijg: "valt mijn agent onder hoog risico?" Het antwoord hangt af van waarvoor u de agent inzet, niet van hoe de technologie werkt. Bijlage III van de AI-act somt de categorieën op. De relevante voor MKB:' },
+      { kind: 'list', items: [
+        'Werving en selectie van personeel: automatisch sorteren van cv\'s of beoordelen van sollicitanten valt hieronder.',
+        'Krediet- en verzekeringsbeoordeling: een agent die beslist of u een klant op rekening levert, kan hieronder vallen.',
+        'Personeelsbeheer: automatische beoordeling van prestaties of planning op basis van profilering.',
+        'Toegang tot publieke diensten: minder relevant voor MKB, maar relevant voor zorgaanbieders en onderwijsinstellingen.',
+      ] },
+      { kind: 'p', text: 'Bent u in geen van deze categorieën actief? Dan valt uw agent waarschijnlijk onder minimaal of beperkt risico. Dat betekent niet dat er helemaal niets geldt, maar de administratieve last is beheersbaar.' },
+      { kind: 'h2', text: 'Wat u praktisch kunt regelen' },
+      { kind: 'p', text: 'Wij adviseren elk MKB-bedrijf dat AI-agents gebruikt drie dingen vast te leggen, ongeacht de risicocategorie. Dit beschermt u juridisch en maakt audits een stuk eenvoudiger als ze ooit komen.' },
+      { kind: 'list', items: [
+        'Gebruik-logging: bewaar wat de agent beslist heeft en op basis van welke input. Geen uitputtende technische logs, maar een leesbaar spoor van beslissingen.',
+        'Menselijk toezicht: beschrijf schriftelijk welke beslissingen de agent autonoom neemt en welke langs een medewerker gaan. Dit is ook waarom guardrails zo belangrijk zijn.',
+        'Transparantie naar klanten: zorg dat uw privacyverklaring en klantcommunicatie vermelden dat AI wordt ingezet. Eén zin is genoeg, mits die er staat.',
+      ] },
+      { kind: 'quote', text: 'De AI-act vraagt niet dat u stopt met automatiseren. Hij vraagt dat u kunt uitleggen wat uw systeem doet en waarom.' },
+      { kind: 'h2', text: 'Wat nog onduidelijk is' },
+      { kind: 'p', text: 'De AI-act laat ruimte voor nationale interpretatie op een aantal punten. De Nederlandse toezichthouder — de Autoriteit Persoonsgegevens heeft een rol, maar er komt ook een aparte AI-autoriteit — heeft nog niet alle handhavingsprioriteiten gepubliceerd. Dat betekent dat de precieze invulling van begrippen als "wezenlijke invloed op een persoon" in 2026 nog niet volledig uitgekristalliseerd is.' },
+      { kind: 'p', text: 'Mijn advies: wacht niet op die duidelijkheid. De richting staat vast. Wie nu goed documenteert en menselijk toezicht inbouwt, zit bij elke uitwerking goed. Wie nu niets doet en later terugkijkt, heeft een inhaalslag te maken die duurder is dan de oorspronkelijke inrichting.' },
+    ],
+    faq: [
+      { q: 'Geldt de AI-act ook voor kleine MKB-bedrijven?', a: 'Ja. De AI-act maakt geen uitzondering op basis van bedrijfsomvang voor de meeste verplichtingen. Wel zijn er lichtere eisen voor aanbieders van minimaal-risico-toepassingen. Als u een agent inzet voor klantencontact, orderverwerking of personeelsselectie, gelden de relevante regels ongeacht uw grootte.' },
+      { q: 'Wat is het verschil tussen aanbieder en gebruiker in de AI-act?', a: 'Een aanbieder brengt een AI-systeem op de markt of in gebruik bij anderen. Een gebruiker (in de AI-act \'deployer\' genoemd) zet een bestaand systeem in voor eigen bedrijfsvoering. MKB-bedrijven die een agent laten bouwen of inkopen en zelf gebruiken, zijn deployers. De zwaarste verplichtingen rusten op aanbieders, maar deployers hebben eigen transparantie- en toezichtsverplichtingen.' },
+      { q: 'Wat moet ik doen als mijn agent klanten te woord staat?', a: 'U bent verplicht klanten te informeren dat ze met een AI-systeem communiceren. Dit geldt zodra de interactie niet overduidelijk een geautomatiseerd systeem is. Een standaardzin aan het begin van het gesprek of in uw privacyverklaring volstaat voor de meeste gevallen. Zorg dat dit vastligt voordat de agent live gaat.' },
+      { q: 'Wat zijn de boetes bij overtreding van de AI-act?', a: 'Voor verboden toepassingen loopt de boete op tot 35 miljoen euro of 7 procent van de wereldwijde jaaromzet. Voor schendingen van andere verplichtingen is dat 15 miljoen of 3 procent. Handhaving richt zich in eerste instantie op grote partijen en structurele overtredingen, maar dat is geen reden om naleving uit te stellen.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
