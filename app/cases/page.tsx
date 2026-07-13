@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -62,13 +61,12 @@ export default function CasesPage() {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="min-w-0 flex items-start gap-5">
                   {c.logo && (
-                    <div className="relative shrink-0 w-[56px] h-[56px] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] overflow-hidden">
-                      <Image
+                    <div className="relative shrink-0 w-[56px] h-[56px] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] overflow-hidden flex items-center justify-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={c.logo}
                         alt={`Logo ${c.klant}`}
-                        fill
-                        sizes="56px"
-                        className="object-contain p-1.5"
+                        className="max-w-[80%] max-h-[80%] object-contain"
                       />
                     </div>
                   )}

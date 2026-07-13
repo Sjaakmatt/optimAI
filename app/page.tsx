@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { calPopupAttrs } from '@/components/booking/config';
+import { CASES } from '@/lib/data/cases';
 
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <SitePage>
       <Hero />
+      <Klanten />
       <WatDoenWe />
       <Stats />
       <VoorWie />
@@ -22,6 +24,52 @@ export default function HomePage() {
       <DemoTeaser />
       <Aanpak />
     </SitePage>
+  );
+}
+
+function Klanten() {
+  const clients = CASES.filter((c) => c.klant);
+  if (clients.length === 0) return null;
+  return (
+    <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-warm)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 sm:py-12">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10">
+          <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] shrink-0">
+            In productie bij
+          </div>
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-5 sm:gap-x-12">
+            {clients.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/cases/${c.slug}`}
+                  title={`${c.klant} — ${c.tagline}`}
+                  className="group flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity"
+                >
+                  {c.logo && (
+                    <span className="inline-flex items-center justify-center h-9 sm:h-10 w-[80px] sm:w-[96px] shrink-0">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={c.logo}
+                        alt={`Logo ${c.klant}`}
+                        className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all"
+                      />
+                    </span>
+                  )}
+                  <span className="font-display text-[15px] sm:text-[16px] text-[var(--ink-dim)] group-hover:text-[var(--oker-deep)] transition-colors">
+                    {c.klant}
+                  </span>
+                  <ArrowRight
+                    size={13}
+                    strokeWidth={1.8}
+                    className="text-[var(--ink-faint)] group-hover:text-[var(--oker-deep)] group-hover:translate-x-0.5 transition-all"
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 
