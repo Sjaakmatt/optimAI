@@ -157,7 +157,7 @@ Google + AI-search wegen experience/expertise/authority/trust steeds zwaarder.
 Google AggregateRating-schema werkt alléén met échte, verifieerbare reviews. Niet
 zelf verzinnen — Google straft dat af.
 
-- [ ] Vraag aan de drie bestaande klanten (Nordveld, Hendriks, Bakker) een Google-review op je Business Profile. 5 reviews is een goede startbasis.
+- [ ] Vraag aan Pavo, TEKA Kranen en volgende referentie-klanten een Google-review op je Business Profile. 5 reviews is een goede startbasis.
 - [ ] Vraag toestemming voor een sterren-rating + quote die je op de site mag plaatsen
 - [ ] Stuur me door: "ik heb 5 echte reviews van X.X gemiddeld" — dan voeg ik `Review`/`AggregateRating` schema toe aan `OrganizationSchema.tsx`
 

@@ -76,15 +76,12 @@ export const BRANCHES: Branche[] = [
         doet: 'Klachten categoriseren, coulance-beleid toepassen, escalatie naar directie bij uitzonderingen.',
       },
     ],
-    stats: [
-      { metric: '182 min', label: 'per dag bespaard op binnendienst' },
-      { metric: '24u → 9 min', label: 'reactietijd op offertes' },
-      { metric: '€ 1.650', label: 'per maand aan loonuren' },
-      { metric: '0', label: 'verloren klachten door pro-actieve opvolging' },
+    expectations: [
+      'Reactietijd op offertes gaat van uren of dagen naar minuten.',
+      'Binnendienst wint per medewerker een groot deel van de dag terug op mail- en offerte-verwerking.',
+      'Voorraad-signalen leiden automatisch tot inkoop-voorstellen binnen uw mandaat.',
+      'Debiteurenopvolging gebeurt structureel in plaats van "als er tijd is".',
     ],
-    caseSlug: 'nordveld-groothandel',
-    context:
-      'Nordveld Groothandel in bouwmaterialen draait sinds zes weken een platform met zeven afdelings-agents die samen één klantzaak afhandelen van binnenkomende mail tot verzonden factuur. De binnendienst doet nu het werk waar mensen goed in zijn: moeilijke klanten, complexe projecten, vertegenwoordiging.',
     waaromNu:
       'Groothandels die nu starten bouwen binnen een jaar een reactietijd op die concurrenten niet kunnen volgen. Niet omdat hun mensen harder werken, maar omdat routinewerk automatisch doorstroomt. Dat verschil zien klanten direct aan de hoeveelheid offertes die dezelfde dag binnenkomen.',
     aanpak:
@@ -137,15 +134,12 @@ export const BRANCHES: Branche[] = [
         doet: 'Factuur klaar op de dag van oplevering, met meerwerk en materiaal gekoppeld aan werkbon-registratie.',
       },
     ],
-    stats: [
-      { metric: '−65%', label: 'administratietijd werkvoorbereiding' },
-      { metric: '+4 dagen', label: 'snellere factuur, betere cashflow' },
-      { metric: '€ 2.100', label: 'per maand minder dubbel bestelde voorraad' },
-      { metric: '−80%', label: 'status-telefoontjes van klanten' },
+    expectations: [
+      'Administratietijd van werkvoorbereiding gaat fors omlaag.',
+      'Facturen gaan de deur uit op de dag van oplevering, niet dagen later — cashflow-winst.',
+      'Dubbele bestellingen dalen door centrale voorraad-check.',
+      'Status-telefoontjes van klanten verdwijnen door pro-actieve updates.',
     ],
-    caseSlug: 'hendriks-installatie',
-    context:
-      'Hendriks Installatietechniek heeft 22 monteurs en een klein kantoor. Sinds acht weken live. Omzetgroei van 30% werd opgevangen zonder extra kantoorbezetting. De werkvoorbereiders doen nu plannings-werk in plaats van getik.',
     waaromNu:
       'Installatiebedrijven die een keten van werkbon-tot-factuur draaiend hebben, werken structureel profitabeler. De marge zit niet in uurtarief maar in doorstroom. Elke dag dat een factuur later de deur uit gaat, is liquiditeit die klant niet nodig heeft en u wel.',
     aanpak:
@@ -198,14 +192,12 @@ export const BRANCHES: Branche[] = [
         doet: 'Rittenstaat omzetten naar factuur of rittenfactuur per maand, inkoopfacturen van charters matchen aan uitgaande facturen.',
       },
     ],
-    stats: [
-      { metric: '+22%', label: 'ritten gecombineerd' },
-      { metric: '−90%', label: 'escalaties over late leveringen' },
-      { metric: '47 min', label: 'gemiddeld bespaard per incident-afhandeling' },
+    expectations: [
+      'Ritten worden vaker gecombineerd zonder handmatig puzzelen.',
+      'Klanten krijgen automatisch update bij vertraging — geen escalaties meer.',
+      'Bij overmacht ligt er binnen minuten een charter-vergelijking klaar.',
+      'Planner kan plannen in plaats van branden blussen.',
     ],
-    caseSlug: 'bakker-transport',
-    context:
-      'Bakker Transport heeft 18 wagens en één planner. Sinds vijf weken draait het incident-scenario automatisch. De planner kan nu plannen in plaats van branden blussen. Chauffeurs krijgen rit-combinaties die niemand eerder had bedacht.',
     waaromNu:
       'Transportbedrijven werken met marges die niet veel ruimte bieden voor operationele inefficiëntie. Elk uur zoekwerk, elk gemist telefoontje, elke niet-gecombineerde rit is geld dat u niet terugziet. Een agent die dat systematisch aanpakt, betaalt zichzelf binnen weken terug.',
     aanpak:

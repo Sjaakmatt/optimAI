@@ -11,6 +11,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 function caseSchema(c: CaseStudy) {
   const url = `${SITE_URL}/cases/${c.slug}`;
+  const address: Record<string, string> = { '@type': 'PostalAddress', addressCountry: 'NL' };
+  if (c.regio) address.addressRegion = c.regio;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -29,14 +31,10 @@ function caseSchema(c: CaseStudy) {
       '@type': 'Organization',
       name: c.klant,
       industry: c.branche,
-      address: {
-        '@type': 'PostalAddress',
-        addressRegion: c.regio,
-        addressCountry: 'NL',
-      },
+      address,
     },
     articleSection: 'Cases',
-    keywords: [c.branche, c.regio, 'AI-agent', 'case study'],
+    keywords: [c.branche, c.regio, 'AI-agent', 'case study'].filter(Boolean) as string[],
   };
 }
 
@@ -87,7 +85,7 @@ export default async function CaseDetail({
           </div>
           <div className="max-w-[760px]">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
-              {c.branche} · {c.regio} · {c.doorlooptijd}
+              {[c.branche, c.regio, c.doorlooptijd].filter(Boolean).join(' · ')}
             </div>
             <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
               {c.klant}

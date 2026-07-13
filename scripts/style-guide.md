@@ -35,7 +35,7 @@ De gegenereerde inhoud moet niet te onderscheiden zijn van de bestaande artikele
 - "Revolutionair", "disruptief", "next-level", "game-changer", "AI-gedreven", "synergie", "leverage", "best-in-class", "future-proof", "ecosysteem", "stakeholders".
 - Anglicismen als "value proposition", "deep dive", "actionable insights".
 - Vage cijfers ("veel bedrijven", "vaak"). Liever bandbreedte met onderbouwing ("30 tot 60 procent" — gebaseerd op X).
-- Verzonnen klantnamen of statistieken. Gebruik alleen entiteiten uit de bestaande dataset (cases: Nordveld, Hendriks, Bakker; branches: zoals in `branches.ts`).
+- Verzonnen klantnamen of statistieken. Gebruik alleen entiteiten uit de bestaande dataset (cases: **Pavo, TEKA Kranen** — géén andere klantnamen; branches: zoals in `branches.ts`). Verwijs bij voorkeur naar cases in generieke termen ("bij een HR-dienstverlener", "bij een kraan-inspectiebedrijf") tenzij het artikel expliciet een specifieke klant behandelt.
 - Productnamen die niet daadwerkelijk geïntegreerd worden. Whitelist: Exact, Moneybird, AFAS, Snelstart, Twinfield, Visma, Microsoft 365, Google Workspace, Outlook, Gmail, Pipedrive, Teamleader, HubSpot, Resengo, Lightspeed, Mews, Funda, RVO, NVWA, NEN 7510, AVG, GLB, Bol, Amazon, Marktplaats, Shopify, WooCommerce, Magento.
 - Direct vergelijkende uitspraken ("beter dan concurrent X"). Liever functionele beschrijving.
 - Beloftes over exact percentage tijdwinst zonder context.

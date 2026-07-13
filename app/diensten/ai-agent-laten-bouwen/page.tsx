@@ -46,7 +46,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Wat als mijn systemen oud zijn of geen API hebben?',
-    a: 'Dat is zelden een blokkade. Wij kunnen ook met CSV-exports, e-mail-doorstromingen of kleine bridge-scripts werken. Niet elegant, wel effectief. In onze case bij Bakker Transport koppelden we op deze manier aan een planningssysteem uit 2011.',
+    a: 'Dat is zelden een blokkade. Wij kunnen ook met CSV-exports, e-mail-doorstromingen of kleine bridge-scripts werken. Niet elegant, wel effectief. Wij hebben op deze manier gekoppeld aan legacy systemen waar een moderne API niet meer voor beschikbaar was.',
   },
   {
     q: 'Vervangt een AI-agent mijn mensen?',
@@ -250,14 +250,13 @@ export default function AIAgentLatenBouwenPage() {
           />
         </div>
         <p className="mt-10 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
-          Bij Nordveld Groothandel bespaarde één agent-platform 182 minuten per dag, met een
-          gemiddelde reactietijd op offertes die zakte van 24 uur naar 9 minuten. Bij Hendriks
-          Installatietechniek ging de administratietijd met 65% omlaag en werden facturen vier
-          dagen sneller verstuurd. Bekijk de{' '}
+          In onze cases ziet u waar dat concreet toe leidt: van kaart-gedreven lead-generatie voor
+          een HR-dienstverlener tot digitale inspectie-rapportage op locatie voor een
+          kraan-inspectiebedrijf. Bekijk de{' '}
           <Link href="/cases" className="underline text-[var(--ink)] hover:text-[var(--oker-deep)]">
             volledige cases
           </Link>{' '}
-          voor de cijfers.
+          voor de aanpak per klant.
         </p>
       </Section>
 
@@ -502,7 +501,7 @@ export default function AIAgentLatenBouwenPage() {
         </div>
       </Section>
 
-      <Section eyebrow="Praktijkvoorbeelden" title="Drie bedrijven, drie oplossingen.">
+      <Section eyebrow="Praktijkvoorbeelden" title="Wat we voor anderen bouwden.">
         <div className="mt-8 space-y-4">
           {CASES.map((c) => (
             <Link

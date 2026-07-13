@@ -85,7 +85,7 @@ export default function OverPage() {
             <Doen
               eyebrow="Multi-agent platforms"
               titel="Een team van digitale collega's met onderlinge samenwerking."
-              body="Voor grotere organisaties bouwen wij multi-agent architecturen: een orchestrator-agent verdeelt werk over gespecialiseerde collega's (offerte, order, inkoop, facturatie, klacht). Elke agent heeft een eigen rol, eigen mandaat, eigen escalatie-pad. Bij Nordveld draaien zo zeven afdelings-agents naast elkaar onder één regie."
+              body="Voor grotere organisaties bouwen wij multi-agent architecturen: een orchestrator-agent verdeelt werk over gespecialiseerde collega's (offerte, order, inkoop, facturatie, klacht). Elke agent heeft een eigen rol, eigen mandaat, eigen escalatie-pad. Bij één klant draaien zo meerdere afdelings-agents naast elkaar onder één regie."
             />
             <Doen
               eyebrow="Beslissingen onder guardrails"

@@ -2,109 +2,71 @@ export interface CaseStudy {
   slug: string;
   klant: string;
   branche: string;
-  regio: string;
+  regio?: string;
   tagline: string;
   intro: string;
   uitdaging: string[];
   oplossing: string[];
   resultaat: Array<{ metric: string; label: string }>;
   quote?: { text: string; by: string; role: string };
-  doorlooptijd: string;
+  doorlooptijd?: string;
+  logo?: string; // path relative to /public — bv. '/logos/pavo.svg'
 }
 
 export const CASES: CaseStudy[] = [
   {
-    slug: 'nordveld-groothandel',
-    klant: 'Nordveld Groothandel',
-    branche: 'Bouwmaterialen',
-    regio: 'West-Friesland',
-    tagline: 'Zeven afdelingen. Eén digitale collega.',
+    slug: 'pavo-lead-agent',
+    klant: 'Pavo',
+    branche: 'HR-dienstverlening',
+    tagline: 'Sales-leads uit een kaartgebied. Niet meer handmatig zoeken.',
     intro:
-      'Nordveld is een groothandel in bouwmaterialen met 34 medewerkers. De binnendienst was elke dag uren bezig met mails, offertes, ordercoördinatie en transportplanning. We hebben één AI-platform gebouwd dat acht afdelingsagents aanstuurt.',
+      'Pavo levert HR-diensten aan Nederlandse bedrijven. Sales besteedde tot voor kort een groot deel van hun week aan het handmatig doorlopen van bedrijven per regio: welke past bij ons profiel, welke heeft mogelijk HR-behoefte, wie is de juiste contactpersoon? Wij hebben een lead-agent gebouwd die dat werk overneemt op basis van een geselecteerd gebied op de kaart.',
     uitdaging: [
-      'Gemiddeld 70 mails per dag, vaak hetzelfde in toon maar telkens anders in inhoud',
-      'Offertes werden vaak pas na een dag verstuurd. Aanbestedingen gingen zo verloren',
-      'Vertragingen bij leveranciers kwamen laat op tafel. Klanten hoorden het te laat',
-      'Klachten werden ad hoc afgehandeld. Coulance-beleid zat alleen in de hoofden van mensen',
+      'Sales moest per regio bedrijf voor bedrijf handmatig onderzoeken — uren per lead',
+      'Signalen over mogelijke HR-behoefte (groei, personeelsverloop, vacatures) zaten verspreid over meerdere bronnen',
+      'Contactpersonen achterhalen kostte extra tijd per lead',
+      'Het proces was niet schaalbaar: meer sales-inzet was de enige manier om meer leads te krijgen',
     ],
     oplossing: [
-      'Eén orchestrator (De Dirigent) verdeelt inkomend werk over 7 afdelingsagents',
-      'Elke agent past beleidsregels toe die Nordveld zelf inricht en aanpast',
-      'Klantservice, Inkoop, Voorraad, Orders, Facturatie en Verzending werken samen per zaak',
-      'Werkitems per afdeling. Mensen alleen aan de knoppen bij uitzonderingen',
+      'Sales selecteert een gebied op een interactieve kaart',
+      'De agent doorzoekt dat gebied op bedrijven die matchen met het Pavo-klantprofiel',
+      'Per bedrijf verzamelt de agent signalen die op HR-behoefte wijzen',
+      'De juiste contactpersoon per bedrijf wordt opgezocht en toegevoegd aan de dataset',
+      'Sales ontvangt een curated dataset met leads klaar voor benadering — ze doen het gesprek, niet het zoekwerk',
     ],
     resultaat: [
-      { metric: '182 min', label: 'per dag bespaard op binnendienst' },
-      { metric: '€ 1.650', label: 'per maand aan loonuren' },
-      { metric: '24u → 9 min', label: 'gemiddelde reactietijd offertes' },
-      { metric: '0', label: 'verloren klachten door pro-actieve communicatie' },
+      { metric: 'Uren → minuten', label: 'per regio-scan' },
+      { metric: 'Curated dataset', label: 'in plaats van los speurwerk' },
+      { metric: 'Schaalbaar', label: 'meer leads zonder meer sales-inzet' },
     ],
-    quote: {
-      text:
-        'Onze mensen doen eindelijk weer het werk waar ze voor zijn aangenomen. De saaie mails doet de agent.',
-      by: 'Sietse Noordveld',
-      role: 'Directeur Nordveld Groothandel',
-    },
-    doorlooptijd: '6 weken tot live',
+    doorlooptijd: 'In productie',
   },
   {
-    slug: 'hendriks-installatie',
-    klant: 'Hendriks Installatietechniek',
-    branche: 'Installatietechniek',
-    regio: 'Utrecht',
-    tagline: 'Van offerte tot eindfactuur in één vloeiende keten.',
+    slug: 'teka-kranen-inspectie',
+    klant: 'TEKA Kranen',
+    branche: 'Kraanverhuur & inspectie',
+    tagline: 'Inspectie op locatie: foto, annotatie, template naar werkvoorbereider.',
     intro:
-      'Een installatiebedrijf met 22 monteurs en een klein kantoor. De werkvoorbereiding zat tot aan de oren in handmatig werk. Offertes uittikken, materialen bestellen, ritten plannen, facturen maken. Eén agent neemt die hele keten nu over.',
+      'TEKA Kranen inspecteert kranen op locatie. Het rapportageproces was tot voor kort een keten van dubbel werk: naar de locatie, foto maken, terug op kantoor uitprinten, met de hand notaties op de print, dan alles nogmaals digitaal uittekenen in het systeem, en tot slot in een Word-template plakken. Voor elke inspectie opnieuw. Wij hebben dat proces samen met TEKA in één digitale flow gebracht.',
     uitdaging: [
-      'Werkvoorbereiders waren 60% van hun tijd kwijt aan administratie',
-      'Facturatie liep dagen achter op oplevering. Dat raakte de cashflow',
-      'Materiaal werd soms dubbel besteld omdat het voorraad-overzicht ontbrak',
-      'Klanten belden vaak voor status. Dat kostte ook weer tijd',
+      'Inspectie op locatie → foto → terug naar kantoor voor verwerking',
+      'Tekening met de hand op geprinte foto — verloren bij zoekraken, moeilijk te archiveren',
+      'Dezelfde notaties nogmaals digitaal uittekenen in het interne systeem',
+      'Rapportage handmatig samenstellen in Word: veel copy-paste, foutgevoelig',
+      'Werkvoorbereider wachtte dagen op een compleet rapport',
     ],
     oplossing: [
-      'Agent koppelt offerte, materiaallijst, bestelling, rit en factuur als één flow',
-      'Automatische klant-updates per WhatsApp: "monteur vertrokken", "onderweg"',
-      'Dubbele bestellingen voorkomen door centrale voorraad-check',
-      'Factuur klaar op de dag van oplevering',
+      'Inspecteur maakt foto op locatie via tablet',
+      'Annotaties (metingen, opmerkingen, aandachtspunten) direct op de foto op de tablet',
+      'Agent vult het TEKA-inspectierapport pre-filled aan met foto, annotaties en meta-data',
+      'Rapport gaat direct richting werkvoorbereider — geen tussenstap meer op kantoor',
     ],
     resultaat: [
-      { metric: '−65%', label: 'administratietijd werkvoorbereiding' },
-      { metric: '+4 dagen', label: 'snellere factuur, betere cashflow' },
-      { metric: '€ 2.100', label: 'per maand minder dubbel bestelde voorraad' },
-      { metric: '−80%', label: 'status-telefoontjes van klanten' },
+      { metric: 'Van dagen naar uren', label: 'doorlooptijd inspectie tot rapport' },
+      { metric: 'Eén keer noteren', label: 'in plaats van printen + hertekenen' },
+      { metric: 'Op locatie klaar', label: 'geen terugkeer naar kantoor voor verwerking' },
     ],
-    quote: {
-      text:
-        'We hebben geen extra mensen aangenomen terwijl we 30% in omzet zijn gegroeid. Dat zegt genoeg.',
-      by: 'Martijn Hendriks',
-      role: 'Eigenaar',
-    },
-    doorlooptijd: '8 weken tot live',
-  },
-  {
-    slug: 'bakker-transport',
-    klant: 'Bakker Transport',
-    branche: 'Transport & logistiek',
-    regio: 'Friesland',
-    tagline: 'Planning die meedenkt. Niet die we moeten bijhouden.',
-    intro:
-      'Een transportbedrijf met 18 wagens. De planner hield ritten handmatig bij. Paste op het laatste moment aan bij file of pech. En belde klanten zelf wanneer het ergens fout ging. De agent doet nu de communicatie en het zoekwerk.',
-    uitdaging: [
-      'Bij vertragingen moest de planner zelf klanten bellen of mailen. Niet altijd gebeurde dat',
-      'Alternatief transporteur inhuren bij overmacht kostte minuten zoeken',
-      'Ritten combineren gebeurde uit hoofd. Niet altijd optimaal',
-    ],
-    oplossing: [
-      'Bij file of incident signaleert de agent de geraakte klanten en stuurt zelf een mail',
-      'Bij overmacht vergelijkt de agent drie alternatieve transporteurs en legt het voor',
-      'Bij elke nieuwe order krijgt de planner een rit-combinatie-voorstel',
-    ],
-    resultaat: [
-      { metric: '+22%', label: 'ritten gecombineerd' },
-      { metric: '−90%', label: 'escalaties over late leveringen' },
-      { metric: '47 min', label: 'gemiddeld bespaard per incident-afhandeling' },
-    ],
-    doorlooptijd: '5 weken tot live',
+    doorlooptijd: 'In productie',
   },
 ];
 
