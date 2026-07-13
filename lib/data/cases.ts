@@ -18,7 +18,7 @@ export const CASES: CaseStudy[] = [
     slug: 'pavo-lead-agent',
     klant: 'Pavo',
     branche: 'HR-dienstverlening',
-    logo: '/logos/pavo.svg',
+    logo: '/pavo-hr.svg',
     tagline: 'Sales-leads uit een kaartgebied. Niet meer handmatig zoeken.',
     intro:
       'Pavo levert HR-diensten aan Nederlandse bedrijven. Sales besteedde tot voor kort een groot deel van hun week aan het handmatig doorlopen van bedrijven per regio: welke past bij ons profiel, welke heeft mogelijk HR-behoefte, wie is de juiste contactpersoon? Wij hebben een lead-agent gebouwd die dat werk overneemt op basis van een geselecteerd gebied op de kaart.',
@@ -46,7 +46,7 @@ export const CASES: CaseStudy[] = [
     slug: 'teka-kranen-inspectie',
     klant: 'TEKA Kranen',
     branche: 'Kraanverhuur & inspectie',
-    logo: '/logos/teka.svg',
+    logo: '/teka.svg',
     tagline: 'Inspectie op locatie: foto, annotatie, template naar werkvoorbereider.',
     intro:
       'TEKA Kranen inspecteert kranen op locatie. Het rapportageproces was tot voor kort een keten van dubbel werk: naar de locatie, foto maken, terug op kantoor uitprinten, met de hand notaties op de print, dan alles nogmaals digitaal uittekenen in het systeem, en tot slot in een Word-template plakken. Voor elke inspectie opnieuw. Wij hebben dat proces samen met TEKA in één digitale flow gebracht.',
