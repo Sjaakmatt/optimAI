@@ -32,8 +32,8 @@ function Klanten() {
   if (clients.length === 0) return null;
   return (
     <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-warm)]">
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 sm:py-14">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-5 sm:py-7">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
           <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] shrink-0">
             In productie bij
           </div>
