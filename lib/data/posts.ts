@@ -1196,6 +1196,54 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'hallucinaties-beperken-productie-agents',
+    title: 'Hallucinaties in productie-agents: zo beperkt u ze',
+    lede: 'Een agent die zelfverzekerd een verkeerd rekeningnummer doorstuurt of een niet-bestaande levertijd bevestigt, kost u klanten. Hallucinaties zijn te beperken, maar niet met één instelling. Dit zijn de technieken die in de praktijk werken.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-16',
+    readingMinutes: 6,
+    tags: ['techniek', 'guardrails', 'beleid', 'governance', 'MKB'],
+    blocks: [
+      { kind: 'p', text: 'Hallucinaties zijn het meest genoemde bezwaar als ik met ondernemers over AI-agents praat. Terecht, want de schade is niet abstract. Een agent die een klant verkeerde informatie geeft over een product, prijs of status kost vertrouwen dat u moeizaam hebt opgebouwd. Maar de oplossing is niet \'de agent uitzetten\'. De oplossing is een combinatie van ontwerp, databeheer en beleidsregels die samenwerken.' },
+      { kind: 'h2', text: 'Wat een hallucinatie eigenlijk is' },
+      { kind: 'p', text: 'Een taalmodel verzint niets met opzet. Het genereert de meest waarschijnlijke volgende tekst op basis van wat het heeft geleerd en wat u het als context meegeeft. Klopt die context niet, of ontbreekt ze, dan vult het model de leegte in. Dat invullen voelt voor de lezer als een feit, ook als het nergens op slaat.' },
+      { kind: 'p', text: 'In productie betekent dat: geef de agent altijd de juiste context mee. Dat klinkt simpel, maar vereist bewuste architectuurkeuzes. Een agent die een klant helpt met een bestelstatus moet die status ophalen uit uw systeem, niet raden op basis van eerdere gesprekken.' },
+      { kind: 'h2', text: 'Techniek 1: grond elke uitspraak in een databron' },
+      { kind: 'p', text: 'De meest effectieve maatregel is het principe dat een agent niets mag beweren wat hij niet heeft opgehaald uit een betrouwbare bron. In de praktijk richt je dit zo in:' },
+      { kind: 'list', items: [
+        'Koppel de agent aan uw actuele systemen, zoals uw boekhoudpakket, CRM of voorraadadministratie, en laat hem feiten altijd live opvragen voor hij antwoord geeft.',
+        'Geef de agent een instructie mee dat hij bij ontbrekende informatie expliciet meldt dat hij het niet weet, in plaats van een gok te doen.',
+        'Houd de bronnen gescheiden van de conversatie: context uit uw systemen gaat via een aparte stap, niet door de agent te vragen het zelf te herinneren.',
+      ] },
+      { kind: 'h2', text: 'Techniek 2: beperk het speelveld' },
+      { kind: 'p', text: 'Hoe smaller het domein van de agent, hoe kleiner de kans op een hallucinatie. Een agent die uitsluitend vragen beantwoordt over uw eigen productcatalogus heeft veel minder ruimte om iets te verzinnen dan een agent die in principe over alles kan praten.' },
+      { kind: 'p', text: 'Definieer in het systeemprompt van de agent exact wat zijn taakveld is. Mails buiten dat taakveld stuurt hij door naar een mens, zonder antwoord te geven. Dat voelt beknellend, maar het is juist de discipline die de agent betrouwbaar maakt.' },
+      { kind: 'quote', text: 'Een agent die weet wat hij niet weet, is waardevoller dan een agent die altijd een antwoord heeft.' },
+      { kind: 'h2', text: 'Techniek 3: validatie vóór verzending' },
+      { kind: 'p', text: 'Voeg een validatiestap in tussen het antwoord dat de agent opstelt en het moment dat het naar de klant gaat. Dat kan een tweede controle door het model zelf zijn op basis van een checklist, maar ook een automatische verificatie tegen uw databron. Wij bouwen dit standaard in als de agent klantgerichte berichten verstuurt.' },
+      { kind: 'list', items: [
+        'Bevat het antwoord een prijs? Controleer of die prijs overeenkomt met de actuele prijs in het systeem.',
+        'Bevat het antwoord een levertijd of datum? Toets die aan de planning of voorraadstatus.',
+        'Bevat het antwoord een naam of referentienummer? Verifieer of die daadwerkelijk bestaat in uw administratie.',
+        'Klopt er iets niet? Stuur het bericht niet, maar zet het in een wachtrij voor menselijke review.',
+      ] },
+      { kind: 'h2', text: 'Techniek 4: logging en terugkoppeling' },
+      { kind: 'p', text: 'Een agent in productie zonder logging is een systeem dat u niet kunt verbeteren. Sla elk gesprek op, markeer gevallen waarbij een mens moest ingrijpen, en bekijk die wekelijks. Na vier tot acht weken ziet u patronen: welke vragen leiden steeds tot twijfelachtige antwoorden, welke databron ontbreekt, welke beleidsregel onduidelijk is.' },
+      { kind: 'p', text: 'Die terugkoppeling is niet optioneel. Een agent die in januari goed functioneert, kan in april de mist ingaan als uw productaanbod of werkwijze is veranderd maar de instructies niet zijn bijgewerkt. Behandel de agent als een medewerker die regelmatig feedback nodig heeft, niet als software die u eenmalig installeert.' },
+      { kind: 'h2', text: 'Wat dit betekent voor uw implementatie' },
+      { kind: 'p', text: 'Begin bij de bron: uw data. Als uw CRM vervuilde klantgegevens bevat, vergroot u het risico op fouten, ongeacht hoe goed de agent is geconfigureerd. Schone data is de basis. Daarna komen de technische maatregelen: databronkoppeling, domeinbeperking, validatie, logging. Geen van die stappen is ingewikkeld op zichzelf. De moeite zit in het samenspel en het volhouden.' },
+    ],
+    faq: [
+      { q: 'Zijn hallucinaties bij AI-agents volledig te voorkomen?', a: 'Volledig voorkomen is niet realistisch, maar het risico is sterk te beperken. Door de agent te koppelen aan uw actuele systemen, het taakveld te beperken en elke uitspraak te valideren tegen een databron, komt u in de praktijk tot een foutmarge die vergelijkbaar is met die van een medewerker die handmatig werkt. Het gaat om beheersing, niet om perfectie.' },
+      { q: 'Hoe merk ik dat mijn agent hallucinaties produceert?', a: 'Logging is de enige betrouwbare manier. Sla elk gesprek op en bekijk wekelijks de gevallen waarbij een mens moest ingrijpen of waarbij een klant een fout meldde. Patronen worden zichtbaar na vier tot acht weken. Zonder logging heeft u geen zicht op wat er feitelijk gebeurt en kunt u niets structureel verbeteren.' },
+      { q: 'Moet ik mijn data opschonen voordat ik een agent implementeer?', a: 'Ja. Een agent herhaalt en versterkt wat er in uw systemen staat. Vervuilde klantgegevens, verouderde productinformatie of inconsistente statussen leiden direct tot foute antwoorden. Een basiscontrole van uw databronnen vooraf bespaart aanzienlijk veel correctiewerk achteraf.' },
+      { q: 'Wat is een validatiestap en hoe werkt dat technisch?', a: 'Een validatiestap is een automatische controle tussen het antwoord van de agent en het moment van verzending. Het systeem vergelijkt de inhoud van het antwoord, zoals een prijs of levertijd, met de actuele waarde in uw databron. Klopt het niet, dan gaat het bericht naar een menselijke wachtrij in plaats van naar de klant.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
