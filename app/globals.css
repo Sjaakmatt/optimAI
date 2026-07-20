@@ -53,6 +53,27 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Zachte entree voor de /aanvraag-hero */
+  .rise-in {
+    animation: rise-in 550ms ease-out both;
+  }
+  .rise-in-delay-1 {
+    animation-delay: 90ms;
+  }
+  .rise-in-delay-2 {
+    animation-delay: 180ms;
+  }
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 html, body {
