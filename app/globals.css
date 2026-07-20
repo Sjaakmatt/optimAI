@@ -48,6 +48,13 @@
   box-sizing: border-box;
 }
 
+/* Ankernavigatie glijdt alleen als de gebruiker daar geen bezwaar tegen heeft */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 html, body {
   background: var(--paper);
   color: var(--ink);
