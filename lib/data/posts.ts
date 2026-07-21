@@ -1244,6 +1244,54 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'human-in-the-loop-wanneer-wel-niet',
+    title: 'Human-in-the-loop: wanneer wel en wanneer niet?',
+    lede: 'Een agent die altijd om goedkeuring vraagt, wint u niets. Een agent die nooit om goedkeuring vraagt, is een risico. Hoe bepaalt u precies waar de grens ligt?',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-21',
+    readingMinutes: 6,
+    tags: ['governance', 'guardrails', 'beleid', 'strategie', 'agents'],
+    blocks: [
+      { kind: 'p', text: 'De vraag stelt zich bij vrijwel elk project: op welke momenten mag de agent zelfstandig handelen, en wanneer moet er een mens aan te pas komen? Het is verleidelijk om dat achteraf te regelen, als de agent al live is. Mijn ervaring is dat u dat omgekeerd moet aanpakken. Bepaal de grens vóórdat u bouwt, en codeer hem in beleid.' },
+      { kind: 'h2', text: 'Waarom altijd goedkeuring vragen averechts werkt' },
+      { kind: 'p', text: 'Sommige ondernemers starten voorzichtig: de agent stelt voor, de medewerker klikt akkoord. Klinkt veilig. Maar na twee weken klikt de medewerker zonder te lezen. De goedkeuring is theater geworden. U heeft dan het slechtste van twee werelden: de snelheid van een mens, de foutgevoeligheid van een agent die nooit gecorrigeerd wordt.' },
+      { kind: 'p', text: 'Human-in-the-loop werkt alleen als de mens daadwerkelijk iets bijdraagt op het moment dat hij tussenkomt. Dat vraagt om een scherpe keuze: voor welke beslissingen is menselijk oordeel echt noodzakelijk, en voor welke is het alleen maar geruststelling?' },
+      { kind: 'h2', text: 'Het raamwerk: vier vragen per handeling' },
+      { kind: 'p', text: 'Ik loop bij elk project vier vragen af voor elke handeling die een agent kan uitvoeren. Samen geven ze een helder antwoord over waar een mens nodig is.' },
+      { kind: 'list', items: [
+        'Wat is de maximale schade als de agent hier een fout maakt? Zet een bedrag of een concrete consequentie. Geen bedrag kunnen noemen betekent dat u het risico nog niet begrijpt.',
+        'Is de fout omkeerbaar? Een verstuurde factuur is lastiger terug te draaien dan een conceptmail in de map Concepten.',
+        'Heeft de agent genoeg context om deze beslissing consistent goed te nemen? Als het antwoord afhangt van klantgeschiedenis of gevoeligheid die niet in de data zit, is menselijk oordeel nodig.',
+        'Hoe vaak gebeurt dit? Een handeling die driemaal per jaar voorkomt, mag altijd langs een mens. Driehonderd keer per maand niet.',
+      ] },
+      { kind: 'h2', text: 'Wanneer u de mens er altijd tussengooit' },
+      { kind: 'p', text: 'Er zijn situaties waarbij tussenkomst van een mens geen optie is maar een vereiste. Niet vanwege onzekerheid over de agent, maar vanwege de aard van de beslissing.' },
+      { kind: 'list', items: [
+        'Financiële verplichtingen boven een drempelbedrag dat u zelf vaststelt. Bij een maakbedrijf kan dat € 2.000 zijn, bij een groothandel € 10.000.',
+        'Communicatie bij een klacht waarbij de klantrelatie op het spel staat, zeker bij klanten boven een bepaalde omzetdrempel.',
+        'Juridisch bindende berichten: opzeggingen, aanmaningen in de laatste fase, offertes met afwijkende voorwaarden.',
+        'Situaties waarbij de agent aangeeft dat hij er niet uitkomt. Als het vertrouwensniveau van de agent laag is, moet dat altijd escaleren.',
+        'Nieuwe klanten of leveranciers waar nog geen historische data over bestaat.',
+      ] },
+      { kind: 'h2', text: 'Wanneer de agent zelfstandig mag handelen' },
+      { kind: 'p', text: 'Automatisch verwerken zonder tussenkomst is gerechtvaardigd als de handeling routinematig is, de regels volledig beschreven zijn, en de consequentie bij een fout beperkt en herstelbaar is. In de praktijk gaat het dan om zaken als orderbevestigingen versturen na een succesvolle kredietcheck, herinneringen plannen op vaste termijnen, of een ticketstatus bijwerken op basis van een klantreactie.' },
+      { kind: 'quote', text: 'De agent handelt zelfstandig als de regel volledig beschreven is en de fout herstelbaar is. Anders niet.' },
+      { kind: 'h2', text: 'Het tussengebied: asynchroon reviewen' },
+      { kind: 'p', text: 'Er is een derde vorm die veel ondernemers over het hoofd zien: de agent handelt, maar legt een log aan die een medewerker dagelijks of wekelijks doorloopt. Niet om goed te keuren vooraf, maar om patronen op te vangen achteraf. Dit werkt goed voor handelingen die te frequent zijn voor realtime goedkeuring, maar waarbij u vinger aan de pols wilt houden. Bij een HR-dienstverlener pasten we dit toe op automatisch verstuurde contractwijzigingen: de agent stuurde ze, een medewerker bekeek elke ochtend in vijf minuten de samenvatting van de vorige dag.' },
+      { kind: 'h2', text: 'Eén praktische vuistregel' },
+      { kind: 'p', text: 'Begin met een strenge instelling en verruim daarna op basis van ervaring. Het is veel makkelijker om een grens te verleggen nadat u drie maanden gezien heeft dat de agent het goed doet, dan om achteraf een fout terug te draaien die in honderd dossiers doorgewerkt is. Vertrouwen bouwt u op door te meten, niet door aan te nemen.' },
+    ],
+    faq: [
+      { q: 'Moet een AI-agent altijd goedkeuring vragen aan een medewerker?', a: 'Nee. Altijd goedkeuring vragen leidt ertoe dat medewerkers zonder nadenken klikken, wat de controle illusoir maakt. Bepaal per type handeling of menselijk oordeel daadwerkelijk iets toevoegt. Routinematige, omkeerbare acties mag de agent zelfstandig uitvoeren. Voor financiële verplichtingen, juridische berichten of gevoelige klantcommunicatie is tussenkomst van een mens een vereiste.' },
+      { q: 'Hoe stel ik een drempelbedrag in voor automatische goedkeuring?', a: 'Ga uit van de maximale schade die u accepteert zonder tussenkomst. Kijk naar uw gemiddelde orderwaarde, uw meest voorkomende factuurgrootte en wat herstelbaar is zonder reputatieschade. Een praktisch startpunt: automatisch onder de € 500, altijd langs een mens boven de € 2.000, en een wekelijkse review voor het tussengebied. Pas dat aan op basis van wat u de eerste maanden observeert.' },
+      { q: 'Wat is asynchroon reviewen bij een AI-agent?', a: 'De agent handelt zelfstandig, maar legt elke actie vast in een log. Een medewerker doorloopt dat log dagelijks of wekelijks. Dit is geen goedkeuring vooraf, maar een vangnet achteraf. Het werkt goed voor frequente, laagrisico-acties waarbij u toch grip wilt houden op patronen en afwijkingen.' },
+      { q: 'Wat doe ik als de agent aangeeft er zelf niet uit te komen?', a: 'Zorg dat elke agent een escalatiepad heeft. Als het vertrouwensniveau van de agent onder een ingestelde drempel valt, gooit hij de taak automatisch over de schutting naar een medewerker, met context erbij. Dat is geen tekortkoming van de agent, maar een bewuste ontwerpkeuze. Bouw dit in vóór u live gaat.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
