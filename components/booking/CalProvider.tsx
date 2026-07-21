@@ -36,7 +36,7 @@ export function CalProvider() {
     <button
       type="button"
       {...calPopupAttrs}
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center px-4 py-2 rounded-full bg-[var(--ink)] text-[var(--paper)] text-[13px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
+      className="fixed bottom-6 right-6 z-40 inline-flex items-center justify-center px-5 py-3 rounded-full bg-[var(--ink)] text-[var(--paper)] text-[14px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
       style={{ boxShadow: 'var(--shadow-lift)' }}
     >
       Plan gesprek
