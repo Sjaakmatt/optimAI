@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getCalApi } from './calLoader';
-import { CAL_LINK } from './config';
+import { calPopupAttrs } from './config';
 
 const HIDE_ON: ReadonlySet<string> = new Set([
   '/contact',
@@ -13,35 +13,33 @@ const HIDE_ON: ReadonlySet<string> = new Set([
   '/subverwerkers',
 ]);
 
+/**
+ * Zwevende "Plan gesprek"-knop rechtsonder. Eigen knop in de huisstijl
+ * i.p.v. Cal's ingebouwde floatingButton — die was fors en slecht
+ * gecentreerd. De klik opent dezelfde Cal-popup via de data-cal-attrs;
+ * de embed wordt in de effect alvast geladen zodat de popup direct opent.
+ */
 export function CalProvider() {
   const pathname = usePathname();
   const hideFloating = HIDE_ON.has(pathname) || pathname.startsWith('/aanvraag');
 
   useEffect(() => {
     if (hideFloating) return;
-
-    let cancelled = false;
-    getCalApi()
-      .then((ns) => {
-        if (cancelled) return;
-        ns('floatingButton', {
-          calLink: CAL_LINK,
-          config: { layout: 'month_view', theme: 'light' },
-          buttonText: 'Plan gesprek',
-          buttonColor: '#2a2420',
-          buttonTextColor: '#f4ede0',
-          buttonPosition: 'bottom-right',
-          hideButtonIcon: true,
-        });
-      })
-      .catch((err) => {
-        console.warn('[cal] floatingButton init failed:', err);
-      });
-
-    return () => {
-      cancelled = true;
-    };
+    getCalApi().catch((err) => {
+      console.warn('[cal] embed init failed:', err);
+    });
   }, [hideFloating]);
 
-  return null;
+  if (hideFloating) return null;
+
+  return (
+    <button
+      type="button"
+      {...calPopupAttrs}
+      className="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center px-4 py-2 rounded-full bg-[var(--ink)] text-[var(--paper)] text-[13px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
+      style={{ boxShadow: 'var(--shadow-lift)' }}
+    >
+      Plan gesprek
+    </button>
+  );
 }

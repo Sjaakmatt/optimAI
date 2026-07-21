@@ -104,16 +104,14 @@ body::before {
   background-size: 320px 320px;
 }
 
-/* Subtiele warme wash onderaan de pagina — alsof de zon er net op valt */
+/* Subtiele warme tint rechtsonder — alsof de zon er net op valt */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(247, 236, 214, 0.7) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 30% at 100% 100%, rgba(168, 128, 58, 0.05) 0%, transparent 50%);
+  background: radial-gradient(ellipse 60% 30% at 100% 100%, rgba(168, 128, 58, 0.05) 0%, transparent 50%);
 }
 
 /* Selection */
