@@ -24,6 +24,7 @@ const STATIC_ROUTES: Array<{
   { path: '/cases', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/kennis', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/branches', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/scan', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/tools/ai-roi-calculator', changeFrequency: 'yearly', priority: 0.7 },
   { path: '/tools/agent-readiness-check', changeFrequency: 'yearly', priority: 0.7 },
   { path: '/contact', changeFrequency: 'yearly', priority: 0.6 },
