@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -60,10 +61,28 @@ export function ScanTool() {
 
   const displayNaam = resultNaam || bedrijfsnaam || url.replace(/^https?:\/\//, '');
 
-  async function startScan(e: React.FormEvent) {
+  // Vanaf de homepage-widget (/scan?url=…) start de scan direct.
+  const searchParams = useSearchParams();
+  const autoStarted = useRef(false);
+  useEffect(() => {
+    if (autoStarted.current) return;
+    const paramUrl = searchParams.get('url')?.trim();
+    if (!paramUrl) return;
+    autoStarted.current = true;
+    const paramNaam = searchParams.get('bedrijf')?.trim() ?? '';
+    setUrl(paramUrl);
+    setBedrijfsnaam(paramNaam);
+    void runScan(paramNaam, paramUrl);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  function startScan(e: React.FormEvent) {
     e.preventDefault();
     if (!url.trim()) return;
+    void runScan(bedrijfsnaam, url);
+  }
 
+  async function runScan(naam: string, scanUrl: string) {
     setPhase('scanning');
     setError(null);
     setResult(null);
@@ -77,7 +96,7 @@ export function ScanTool() {
       const res = await fetch('/api/scan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bedrijfsnaam, url }),
+        body: JSON.stringify({ bedrijfsnaam: naam, url: scanUrl }),
         signal: controller.signal,
       });
 

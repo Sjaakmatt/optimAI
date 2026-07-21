@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { ScanWidget } from '@/components/site/ScanWidget';
 import { calPopupAttrs } from '@/components/booking/config';
 import { CASES } from '@/lib/data/cases';
 
@@ -16,6 +17,7 @@ export default function HomePage() {
   return (
     <SitePage>
       <Hero />
+      <ScanSectie />
       <Klanten />
       <WatDoenWe />
       <Stats />
@@ -24,6 +26,14 @@ export default function HomePage() {
       <DemoTeaser />
       <Aanpak />
     </SitePage>
+  );
+}
+
+function ScanSectie() {
+  return (
+    <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-14 sm:pb-20 -mt-4 sm:-mt-8">
+      <ScanWidget />
+    </section>
   );
 }
 

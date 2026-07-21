@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
@@ -67,7 +68,9 @@ export default function ScanPage() {
         </div>
       </section>
 
-      <ScanTool />
+      <Suspense fallback={null}>
+        <ScanTool />
+      </Suspense>
     </SitePage>
   );
 }
