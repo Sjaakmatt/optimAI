@@ -2,7 +2,6 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { ScanWidget } from '@/components/site/ScanWidget';
 import { calPopupAttrs } from '@/components/booking/config';
 import { CASES } from '@/lib/data/cases';
 
@@ -17,7 +16,6 @@ export default function HomePage() {
   return (
     <SitePage>
       <Hero />
-      <ScanSectie />
       <Klanten />
       <WatDoenWe />
       <Stats />
@@ -26,14 +24,6 @@ export default function HomePage() {
       <DemoTeaser />
       <Aanpak />
     </SitePage>
-  );
-}
-
-function ScanSectie() {
-  return (
-    <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-14 sm:pb-20 -mt-4 sm:-mt-8">
-      <ScanWidget />
-    </section>
   );
 }
 
@@ -102,10 +92,10 @@ function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
-              href="/demo"
+              href="/scan"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
             >
-              Bekijk de demo
+              Doe de AI-scan
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
