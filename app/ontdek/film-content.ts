@@ -26,8 +26,8 @@ export const HOOFDSTUKKEN: Hoofdstuk[] = [
     titel: 'Veertig mailtjes.',
     titelAccent: 'Waar begint u?',
     body:
-      'Offerteaanvragen, factuurvragen, bestellingen. Het meeste is routine, maar het moet wel vandaag. En het loopt dwars door uw eigen werk heen.',
-    beats: 3,
+      'Een webshop, een beheerder, een groothandel, een praktijk: ander werk, dezelfde ochtend. Het meeste is routine, maar het moet wel vandaag.',
+    beats: 4,
   },
   {
     id: 'collega',
@@ -36,8 +36,8 @@ export const HOOFDSTUKKEN: Hoofdstuk[] = [
     titel: 'Geen robot.',
     titelAccent: 'Een collega.',
     body:
-      'Software doet taken. Een collega denkt de stappen ertussen: lezen, opzoeken, afwegen, klaarzetten. Dat is wat een agent is. Niet meer, niet minder.',
-    beats: 1,
+      'Software doet taken. Een collega denkt de stappen ertussen: lezen, opzoeken, afwegen, klaarzetten. En dezelfde agent kan meerdere rollen spelen.',
+    beats: 2,
   },
   {
     id: 'denkt',
@@ -56,8 +56,8 @@ export const HOOFDSTUKKEN: Hoofdstuk[] = [
     titel: 'Klaar voor',
     titelAccent: 'verzending.',
     body:
-      'Geen samenvatting van wat u zou kunnen doen, maar het werk zelf: de offerte, het antwoord, de orderbevestiging. Opgesteld zoals uw mensen dat doen.',
-    beats: 3,
+      'Van een los antwoord tot een hele keten: order aannemen, voorraad checken, monteur inplannen, factuur klaarzetten. Meerdere stappen, meerdere systemen, één agent.',
+    beats: 4,
   },
   {
     id: 'stuur',
@@ -96,27 +96,57 @@ export const HOOFDSTUKKEN: Hoofdstuk[] = [
 /* ------------------------------------------------------------------ */
 
 export const MAANDAG_BERICHTEN = [
-  { van: 'inkoop@bouwbedrijfhendriks.nl', regel: 'Offerte 40 m2 eiken vloerdelen?' },
-  { van: 'administratie@dekort.nl', regel: 'Toeslag op factuur 2026-0341?' },
-  { van: 'j.smit@smitafbouw.nl', regel: 'Bestelling: 12 zakken egaline' },
+  { van: 'klant · webshop', regel: 'Waar blijft bestelling #8412?' },
+  { van: 'huurder · vastgoedbeheer', regel: 'De cv-ketel doet het niet.' },
+  { van: 'inkoop · groothandel', regel: 'Offerte voor 40 m2 eiken?' },
+  { van: 'patiënt · praktijk', regel: 'Kan mijn afspraak naar donderdag?' },
 ];
+
+/** De rollen die één en dezelfde agent kan spelen: de breedte van het vak. */
+export const COLLEGA_ROLLEN = [
+  'Klantenservice',
+  'Administratie',
+  'Planning',
+  'Inkoop',
+  'Facturatie',
+  'Offertes',
+];
+
+export const DENKT_KNOPEN = ['dossier', 'agenda', 'beleid', 'toon'];
 
 export const DENKT_LOG = [
-  'Klant herkend: Bouwbedrijf Hendriks, betaalafspraak 30 dagen.',
-  'Voorraad gecheckt: 62 m2 eiken op locatie C-2.',
-  'Staffelprijs van toepassing. Concept klaargezet.',
+  'Vraag herkend: afspraak verzetten, praktijk De Linde.',
+  'Agenda gecheckt: donderdag 10.15 uur is vrij.',
+  'Herinnering ingepland, bevestiging klaargezet.',
 ];
 
-export const LEVERT_DOCUMENT = {
-  soort: 'Offerte',
-  nummer: 'OFF-2026-118',
-  klant: 'Bouwbedrijf Hendriks',
-  regels: [
-    { omschrijving: '40 m2 eiken vloerdelen, geschaafd', bedrag: '€ 2.480,00' },
-    { omschrijving: 'Levering week 12, af magazijn', bedrag: '€ 200,00' },
-  ],
-  totaal: '€ 2.680,00 excl. btw',
-};
+/** Drie soorten werk uit drie totaal verschillende bedrijven. */
+export const LEVERT_DOCUMENTEN = [
+  {
+    soort: 'Antwoord',
+    kop: 'Track & trace bestelling #8412',
+    detail: 'Webshop · verzonden, levering morgen',
+    slot: 'klaar om te versturen',
+  },
+  {
+    soort: 'Werkbon',
+    kop: 'Monteur ingepland: cv-storing',
+    detail: 'Vastgoedbeheer · woensdag 8.00 uur',
+    slot: 'huurder krijgt bevestiging',
+  },
+  {
+    soort: 'Offerte',
+    kop: 'OFF-2026-118 · € 2.680,00',
+    detail: 'Groothandel · staffelprijs toegepast',
+    slot: 'concept, wacht op akkoord',
+  },
+  {
+    soort: 'Volledige keten',
+    kop: 'Order 8412: van bestelling tot factuur',
+    detail: 'Voorraad · planning · verzending · facturatie, 8 stappen in 3 systemen',
+    slot: 'afgerond, logboek compleet',
+  },
+];
 
 export const NIET_DOEN = [
   'Verstuurt nooit iets zonder uw akkoord.',

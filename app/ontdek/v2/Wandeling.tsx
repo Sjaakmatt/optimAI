@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, type ComponentType } from 'react';
+import { motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -64,6 +65,7 @@ function VerhaalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const padRef = useRef<SVGPathElement>(null);
   const wrapRef = useRef<SVGGElement>(null);
+  const ademRef = useRef<SVGGElement>(null);
   const zegelRef = useRef<SVGCircleElement>(null);
 
   const [stop, setStop] = useState(0);
@@ -73,6 +75,18 @@ function VerhaalScroll() {
 
   useGSAP(
     () => {
+      // de druppel ademt: nauwelijks zichtbaar, maar hij leeft
+      gsap.to(ademRef.current, {
+        scaleX: 1.012,
+        scaleY: 0.988,
+        rotation: 0.6,
+        transformOrigin: '200px 220px',
+        duration: 3.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      });
+
       // de morph-tijdlijn van de druppel, gescrubd aan de container
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -159,23 +173,37 @@ function VerhaalScroll() {
             aria-hidden
             focusable="false"
           >
+            {/* rimpel bij aankomst op een nieuw hoofdstuk */}
+            <motion.circle
+              key={stop}
+              cx={200}
+              cy={220}
+              fill="none"
+              stroke="var(--ink-faint)"
+              strokeWidth={1}
+              initial={{ r: 70, opacity: 0.5 }}
+              animate={{ r: 150, opacity: 0 }}
+              transition={{ duration: 1.3, ease: 'easeOut' }}
+            />
             <g ref={wrapRef} style={{ transformOrigin: '200px 220px' }}>
-              {/* het zegelrandje (alleen zichtbaar bij het slot) */}
-              <circle
-                ref={zegelRef}
-                cx={200}
-                cy={206}
-                r={86}
-                fill="none"
-                stroke="var(--oker-deep)"
-                strokeWidth={1.6}
-                strokeDasharray="10 6"
-                strokeLinecap="round"
-                opacity={0}
-              />
-              <path ref={padRef} d={DRUPPEL_STATEN[0].d} fill={DRUPPEL_STATEN[0].fill} />
-              {/* glansaccent: de druppel is nat */}
-              <ellipse cx={172} cy={190} rx={16} ry={9} fill="var(--paper)" opacity={0.14} transform="rotate(-24 172 190)" />
+              <g ref={ademRef}>
+                {/* het zegelrandje (alleen zichtbaar bij het slot) */}
+                <circle
+                  ref={zegelRef}
+                  cx={200}
+                  cy={206}
+                  r={86}
+                  fill="none"
+                  stroke="var(--oker-deep)"
+                  strokeWidth={1.6}
+                  strokeDasharray="10 6"
+                  strokeLinecap="round"
+                  opacity={0}
+                />
+                <path ref={padRef} d={DRUPPEL_STATEN[0].d} fill={DRUPPEL_STATEN[0].fill} />
+                {/* glansaccent: de druppel is nat */}
+                <ellipse cx={172} cy={190} rx={16} ry={9} fill="var(--paper)" opacity={0.14} transform="rotate(-24 172 190)" />
+              </g>
             </g>
           </svg>
           {/* de laag van het actieve hoofdstuk */}

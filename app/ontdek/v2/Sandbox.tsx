@@ -30,23 +30,38 @@ interface Bericht {
 
 const BERICHTEN: Bericht[] = [
   {
-    id: 'offerte',
-    van: 'inkoop@bouwbedrijfhendriks.nl',
-    onderwerp: 'Offerte 40 m2 eiken vloerdelen',
+    id: 'webshop',
+    van: 'klant · webshop',
+    onderwerp: 'Waar blijft mijn bestelling #8412?',
     tekst:
-      'Goedemiddag, kunnen jullie een offerte maken voor 40 m2 eiken vloerdelen, geschaafd, voor project Zuiderkade? Levering in week 12 als het kan.',
+      'Ik heb vorige week dinsdag besteld en zou binnen drie werkdagen leveren. Het is nu maandag en ik heb nog niets gehoord. Wat is er aan de hand?',
     redenatie: [
-      'Klant bekend: Bouwbedrijf Hendriks, betaalafspraak 30 dagen.',
-      'Voorraad eiken geschaafd: 62 m2 op locatie C-2, week 12 haalbaar.',
-      'Projectprijs van toepassing volgens uw staffelafspraak.',
+      'Order #8412 gevonden: vertraagd bij de vervoerder, nieuwe leverdatum morgen.',
+      'Klant bestelt vaak; toon extra zorgvuldig, kortingscode aanbieden mag tot € 5.',
+      'Track & trace opgehaald en in het antwoord gezet.',
     ],
     concept:
-      'Beste heer Hendriks,\n\nDank voor uw aanvraag. Voor project Zuiderkade offreren wij 40 m2 eiken vloerdelen, geschaafd, voor € 2.680 excl. btw, levering in week 12.\n\nDe volledige offerte staat als bijlage klaar. Zal ik hem definitief maken?',
-    conceptSoort: 'Concept-offerte',
+      'Beste mevrouw Peters,\n\nU heeft gelijk, dat duurde te lang. Uw pakket lag vertraagd bij de vervoerder en wordt morgen voor 17.00 uur bezorgd; de track & trace staat hieronder.\n\nAls kleine pleister: code SORRY5 voor € 5 korting op uw volgende bestelling.',
+    conceptSoort: 'Concept-antwoord',
+  },
+  {
+    id: 'storing',
+    van: 'huurder · vastgoedbeheer',
+    onderwerp: 'CV-ketel kapot, Vondelstraat 12',
+    tekst:
+      'Sinds vanochtend doet de verwarming het niet meer en het is koud in huis. Kan er snel iemand komen kijken?',
+    redenatie: [
+      'Storing herkend als urgent (verwarming, winterperiode): monteur nodig binnen 24 uur.',
+      'Agenda installateur Bakker gecheckt: morgen 8.00 uur is vrij; werkbon aangemaakt.',
+      'Keten klaargezet: huurder bevestigen, monteur inplannen, werkbon naar de administratie.',
+    ],
+    concept:
+      'Beste heer Yilmaz,\n\nVervelend, zeker met deze kou. Er is direct een monteur ingepland: morgen tussen 8.00 en 9.00 uur staat installateur Bakker bij u voor de deur.\n\nDe werkbon en de melding in het onderhoudssysteem staan klaar. Drie acties, één akkoord: zal ik alles doorzetten?',
+    conceptSoort: 'Keten: 3 acties klaargezet',
   },
   {
     id: 'factuur',
-    van: 'administratie@dekortinstallaties.nl',
+    van: 'klant · administratie',
     onderwerp: 'Vraag over factuur 2026-0341',
     tekst:
       'Beste, op factuur 2026-0341 staat een toeslag van € 85 die ik niet kan plaatsen. Kunnen jullie dit toelichten?',
@@ -58,20 +73,6 @@ const BERICHTEN: Bericht[] = [
     concept:
       'Beste mevrouw Jansen,\n\nDe toeslag van € 85 op factuur 2026-0341 is de spoedtoeslag voor de levering van 14 maart, die op 12 maart per mail door uw collega is bevestigd. Ik heb die bevestiging bijgevoegd.\n\nZo klopt het weer helemaal. Fijne dag!',
     conceptSoort: 'Concept-antwoord',
-  },
-  {
-    id: 'order',
-    van: 'j.smit@smitafbouw.nl',
-    onderwerp: 'Bestelling: 12 zakken egaline + kimband',
-    tekst: 'Graag 12 zakken egaline 25 kg en 2 rollen kimband bestellen, afhalen vrijdagochtend.',
-    redenatie: [
-      'Beide artikelen op voorraad; vrijdagochtend afhalen kan.',
-      'Klant heeft een lopende rekening, limiet ruim voldoende.',
-      'Orderbevestiging met afhaaltijd wordt klaargezet.',
-    ],
-    concept:
-      'Beste meneer Smit,\n\nUw bestelling staat genoteerd: 12 zakken egaline 25 kg en 2 rollen kimband, klaar om af te halen op vrijdag vanaf 7.30 uur aan de balie.\n\nDe orderbevestiging is bijgevoegd. Tot vrijdag!',
-    conceptSoort: 'Orderbevestiging',
   },
 ];
 
