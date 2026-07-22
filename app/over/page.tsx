@@ -54,7 +54,7 @@ export default function OverPage() {
           <Fact label="Opgericht" value={String(FOUNDED)} />
           <Fact label="Vestiging" value="Hoogkarspel" sub="West-Friesland" />
           <Fact label="Werkgebied" value="Nederland" sub="alle provincies" />
-          <Fact label="Branches" value="14" sub="actief in" />
+          <Fact label="Eerste agent live" value="1–2" sub="weken tot productie" />
         </div>
       </section>
 
@@ -62,56 +62,37 @@ export default function OverPage() {
         className="border-t border-[var(--paper-edge)]"
         style={{ background: 'var(--paper-warm)' }}
       >
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-14">
-          <div className="md:sticky md:top-8 md:self-start">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+          <div className="max-w-[640px]">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
               Wat wij doen
             </div>
-            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] leading-[1.1] text-[var(--ink)]">
+            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.1] text-[var(--ink)]">
               AI-agents op maat,{' '}
               <span className="italic text-[var(--oker-deep)]">van losse agent tot platform.</span>
             </h2>
-            <p className="mt-5 text-[14px] leading-[1.7] text-[var(--ink-dim)] max-w-[360px]">
+            <p className="mt-5 text-[15px] leading-[1.7] text-[var(--ink-dim)]">
               Niet alleen routine-administratie. Ook complexe orchestraties, kennis-systemen,
               guardrails op maat en doorontwikkeling die meegroeit met uw bedrijf.
             </p>
           </div>
-          <div className="space-y-7 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
-            <Doen
-              eyebrow="Solo-agents"
-              titel="Eén agent voor één proces."
-              body="Voor MKB-bedrijven met een concrete pijn beginnen wij vrijwel altijd met één losse agent: offerte-, order-, facturatie-, mail- of planning-agent. Live in één tot twee weken, gekoppeld aan uw systemen, binnen úw beleidsregels. Bewuste keus voor klein beginnen — uw mensen leren hoe ze het bijsturen voor we uitbreiden."
-            />
-            <Doen
-              eyebrow="Multi-agent platforms"
-              titel="Een team van digitale collega's met onderlinge samenwerking."
-              body="Voor grotere organisaties bouwen wij multi-agent architecturen: een orchestrator-agent verdeelt werk over gespecialiseerde collega's (offerte, order, inkoop, facturatie, klacht). Elke agent heeft een eigen rol, eigen mandaat, eigen escalatie-pad. Bij één klant draaien zo meerdere afdelings-agents naast elkaar onder één regie."
-            />
-            <Doen
-              eyebrow="Beslissingen onder guardrails"
-              titel="Werk dat oordeel vraagt — niet alleen werk dat regels volgt."
-              body="Onze agents nemen beslissingen binnen door u expliciet vastgelegd beleid: bedragen-mandaten, klantgroep-uitzonderingen, coulance-regels, escalatie-paden, communicatie-toon per kanaal. Daar waar klassieke automatisering breekt op variatie, kan een goed gebouwde agent met context omgaan en zijn afwegingen logben en motiveren."
-            />
-            <Doen
-              eyebrow="Integraties"
-              titel="Praat met de systemen die u al gebruikt."
-              body="Boekhouding (Exact, AFAS, Twinfield, Snelstart, Moneybird), CRM (Pipedrive, Teamleader, HubSpot), e-mail (Microsoft 365, Google Workspace), ERP en WMS, branche-specifieke portals (Resengo, Mews, Funda, RVO, NVWA). Via API als die er is, anders via webhooks, e-mail-bridge of een kleine bridge die handmatige CSV-exports nabootst. Verouderd systeem zonder API is zelden een blokkade."
-            />
-            <Doen
-              eyebrow="Eigen kennis & context"
-              titel="RAG en kennisbanken op uw bedrijfsdata."
-              body="Sommige agents hebben toegang tot uw eigen kennis nodig: jurisprudentie-archieven, productdatabases, prijsafspraken, voorgaande dossiers. Wij bouwen veilige RAG-systemen op uw bedrijfsdata met expliciete logging en bron-vermelding. Data blijft in NL/EU, modellen worden niet getraind op uw inhoud."
-            />
-            <Doen
-              eyebrow="Doorontwikkeling"
-              titel="De agent die meegroeit met uw bedrijf."
-              body="Een AI-agent is geen statisch product. Modellen worden elk kwartaal beter en goedkoper, uw processen verschuiven, integraties krijgen updates, beleid evolueert. Optionele maandelijkse retainer voor monitoring, model-updates, beleidsreviews en kleine bijstellingen — of alleen de bouw, en aanpassen ad hoc. U kiest zelf."
-            />
-            <Doen
-              eyebrow="Wat wij niet doen"
-              titel="Eerlijke afbakening."
-              body="Wij verkopen geen kant-en-klaar SaaS-platform en geen consultancy-rapporten. Wij trainen geen foundation-modellen. Wij bouwen geen agent voor een proces dat zich nog niet leent voor automatisering — eerlijk teruggeven wanneer het nog niet rijp is, hoort bij het werk."
-            />
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--paper-edge)] border border-[var(--paper-edge)] rounded-[3px] overflow-hidden">
+            {DOEN.map((d, i) => (
+              <DoenCard key={d.titel} index={i + 1} {...d} />
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start px-5 sm:px-7 py-6 rounded-[3px] border border-dashed border-[var(--oker)]/50 bg-[var(--paper)]">
+            <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em] sm:pt-1 shrink-0 sm:w-[160px]">
+              Wat wij niet doen
+            </div>
+            <p className="text-[14.5px] leading-[1.7] text-[var(--ink-dim)]">
+              Wij verkopen geen kant-en-klaar SaaS-platform en geen consultancy-rapporten. Wij
+              trainen geen foundation-modellen. En wij bouwen geen agent voor een proces dat zich
+              nog niet leent voor automatisering. Eerlijk teruggeven wanneer het nog niet rijp is,
+              hoort bij het werk.
+            </p>
           </div>
         </div>
       </section>
@@ -145,63 +126,7 @@ export default function OverPage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--paper-edge)]">
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-            <div>
-              <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
-                Het team
-              </div>
-              <h2 className="mt-2 font-display text-[28px] sm:text-[34px] leading-tight text-[var(--ink)]">
-                Wie u te zien krijgt aan tafel.
-              </h2>
-            </div>
-            <p className="text-[14px] text-[var(--ink-dim)] max-w-[360px] sm:text-right">
-              Klein team, korte lijnen. De persoon die u spreekt, bouwt ook mee aan uw agent.
-            </p>
-          </div>
-
-          <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TEAM.map((m) => (
-              <li key={m.slug}>
-                <Link
-                  href={`/over/${m.slug}`}
-                  className="block h-full bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] overflow-hidden hover:border-[var(--oker)] transition-colors group"
-                  style={{ boxShadow: 'var(--shadow-lift)' }}
-                >
-                  <CardPortret member={m} />
-                  <div className="px-5 py-5">
-                    <div className="font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                      {m.voornaam} {m.achternaam}
-                    </div>
-                    <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
-                      {m.rol}
-                    </div>
-                    <p className="mt-3 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
-                      {m.korteBio}
-                    </p>
-                    <div className="mt-4 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                      Bekijk profiel
-                      <ArrowRight size={12} strokeWidth={1.8} />
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-            <li>
-              <div className="h-full min-h-[280px] px-6 py-6 rounded-[2px] border border-dashed border-[var(--paper-edge)] flex flex-col justify-center text-[var(--ink-faint)]">
-                <div className="font-display text-[17px] text-[var(--ink-dim)] leading-tight">
-                  Ruimte voor uitbreiding
-                </div>
-                <p className="mt-2 text-[13px] leading-[1.6]">
-                  Wij groeien voorzichtig. Een nieuwe collega komt erbij wanneer wij het werk niet
-                  meer alleen aankunnen — niet eerder.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <FounderSection />
 
       <section
         className="border-t border-[var(--paper-edge)]"
@@ -310,51 +235,216 @@ function Fact({ label, value, sub }: { label: string; value: string; sub?: strin
   );
 }
 
-function CardPortret({
-  member,
+const DOEN = [
+  {
+    eyebrow: 'Solo-agents',
+    titel: 'Eén agent voor één proces.',
+    body: 'Voor MKB-bedrijven met een concrete pijn beginnen wij vrijwel altijd met één losse agent: offerte, order, facturatie, mail of planning. Live in één tot twee weken, gekoppeld aan uw systemen, binnen úw beleidsregels. Bewust klein beginnen, zodat uw mensen leren bijsturen voor we uitbreiden.',
+  },
+  {
+    eyebrow: 'Multi-agent platforms',
+    titel: 'Een team van digitale collega’s.',
+    body: 'Voor grotere organisaties bouwen wij multi-agent architecturen: een orchestrator verdeelt werk over gespecialiseerde collega’s (offerte, order, inkoop, facturatie, klacht). Elke agent heeft een eigen rol, eigen mandaat en eigen escalatie-pad, onder één regie.',
+  },
+  {
+    eyebrow: 'Beslissingen onder guardrails',
+    titel: 'Werk dat oordeel vraagt.',
+    body: 'Onze agents beslissen binnen door u vastgelegd beleid: bedragen-mandaten, klantgroep-uitzonderingen, coulance-regels, escalatie-paden en toon per kanaal. Waar klassieke automatisering breekt op variatie, gaat een goed gebouwde agent met context om en motiveert hij zijn afwegingen.',
+  },
+  {
+    eyebrow: 'Integraties',
+    titel: 'Praat met wat u al gebruikt.',
+    body: 'Boekhouding (Exact, AFAS, Twinfield, Moneybird), CRM (Pipedrive, Teamleader, HubSpot), e-mail (Microsoft 365, Google Workspace), ERP, WMS en branche-portals. Via API als die er is, anders via webhooks of een kleine bridge. Een verouderd systeem zonder API is zelden een blokkade.',
+  },
+  {
+    eyebrow: 'Eigen kennis & context',
+    titel: 'RAG op uw bedrijfsdata.',
+    body: 'Sommige agents hebben toegang tot uw eigen kennis nodig: productdatabases, prijsafspraken, dossiers, archieven. Wij bouwen veilige RAG-systemen met expliciete logging en bronvermelding. Data blijft in NL/EU en modellen worden niet getraind op uw inhoud.',
+  },
+  {
+    eyebrow: 'Doorontwikkeling',
+    titel: 'De agent die meegroeit.',
+    body: 'Een AI-agent is geen statisch product. Modellen worden elk kwartaal beter, uw processen verschuiven, beleid evolueert. Optionele retainer voor monitoring, model-updates en beleidsreviews, of alleen de bouw en ad hoc aanpassen. U kiest zelf.',
+  },
+];
+
+const VERHAALLIJN = [
+  {
+    fase: 'Opleiding',
+    titel: 'Bedrijfskunde',
+    body: 'De taal van ondernemers leren spreken: processen, marges en de keuzes die daar achter zitten.',
+  },
+  {
+    fase: '8+ jaar',
+    titel: 'IT-praktijk',
+    body: 'Optimalisatie, procesverbetering, strategie en projectmanagement bij bedrijven van elke maat.',
+  },
+  {
+    fase: '2026',
+    titel: 'FactumAI',
+    body: 'AI-agents bereikbaar maken voor het MKB, zonder groot consultancy-traject of dashboard-wirwar.',
+  },
+  {
+    fase: 'Nu',
+    titel: 'Aan tafel én aan de bouw',
+    body: 'Ik voer het gesprek met ondernemers en bouw mee aan de agents. Dat houdt de beloftes eerlijk.',
+  },
+];
+
+function DoenCard({
+  index,
+  eyebrow,
+  titel,
+  body,
 }: {
-  member: { initialen: string; portretSrc?: string; voornaam: string; achternaam: string; rolKort: string };
+  index: number;
+  eyebrow: string;
+  titel: string;
+  body: string;
 }) {
-  if (member.portretSrc) {
-    return (
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--paper-warm)] border-b border-[var(--paper-edge)]">
-        <Image
-          src={member.portretSrc}
-          alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
-          className="object-cover object-[center_25%]"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none opacity-20"
-          style={{
-            backgroundImage: 'url(/paper-grain.svg)',
-            backgroundSize: '240px',
-            mixBlendMode: 'multiply',
-          }}
-          aria-hidden
-        />
-      </div>
-    );
-  }
   return (
-    <div className="relative aspect-[4/3] w-full bg-[var(--paper-warm)] border-b border-[var(--paper-edge)] flex items-center justify-center">
-      <span className="font-display text-[64px] text-[var(--oker-deep)]">{member.initialen}</span>
+    <div className="bg-[var(--paper)] px-6 py-6 sm:px-7 sm:py-7">
+      <div className="flex items-baseline gap-3">
+        <span className="font-display italic text-[15px] text-[var(--oker)] tabular-nums">
+          {String(index).padStart(2, '0')}
+        </span>
+        <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+          {eyebrow}
+        </div>
+      </div>
+      <h3 className="mt-2 font-display text-[19px] sm:text-[21px] leading-tight text-[var(--ink)]">
+        {titel}
+      </h3>
+      <p className="mt-3 text-[14px] leading-[1.7] text-[var(--ink-dim)]">{body}</p>
     </div>
   );
 }
 
-function Doen({ eyebrow, titel, body }: { eyebrow: string; titel: string; body: string }) {
+function FounderSection() {
+  const founder = TEAM[0];
   return (
-    <div className="border-l-[3px] border-[var(--oker)] pl-5">
-      <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-        {eyebrow}
+    <section className="border-t border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+        <div className="max-w-[640px]">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+            De oprichter
+          </div>
+          <h2 className="mt-2 font-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.1] text-[var(--ink)]">
+            Wie u aan tafel krijgt.
+          </h2>
+          <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)]">
+            Klein team, korte lijnen. De persoon die u spreekt, bouwt ook mee aan uw agent.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-[300px_1fr] lg:grid-cols-[340px_1fr] gap-8 md:gap-12">
+          {/* Portret + naam */}
+          <div className="md:sticky md:top-8 md:self-start">
+            <div
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)]"
+              style={{ boxShadow: 'var(--shadow-lift)' }}
+            >
+              {founder.portretSrc ? (
+                <Image
+                  src={founder.portretSrc}
+                  alt={`${founder.voornaam} ${founder.achternaam} — ${founder.rolKort} FactumAI`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 340px"
+                  className="object-cover object-[center_20%]"
+                  priority
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="font-display text-[72px] text-[var(--oker-deep)]">
+                    {founder.initialen}
+                  </span>
+                </div>
+              )}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-20"
+                style={{
+                  backgroundImage: 'url(/paper-grain.svg)',
+                  backgroundSize: '240px',
+                  mixBlendMode: 'multiply',
+                }}
+                aria-hidden
+              />
+            </div>
+            <div className="mt-4">
+              <div className="font-display text-[22px] leading-tight text-[var(--ink)]">
+                {founder.voornaam} {founder.achternaam}
+              </div>
+              <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+                {founder.rol}
+              </div>
+              {founder.linkedin && (
+                <a
+                  href={founder.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider hover:text-[var(--ink)] transition-colors"
+                >
+                  LinkedIn
+                  <ArrowRight size={12} strokeWidth={1.8} />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Verhaal + verhaallijn */}
+          <div>
+            <div className="space-y-5 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)] max-w-[560px]">
+              {founder.langeBio.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+
+            <ol className="mt-10 relative">
+              <div
+                aria-hidden
+                className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--paper-edge)]"
+              />
+              {VERHAALLIJN.map((m) => (
+                <li key={m.titel} className="relative pl-7 pb-6 last:pb-0">
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-[5px] w-[11px] h-[11px] rounded-full bg-[var(--paper)] border-2 border-[var(--oker)]"
+                  />
+                  <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+                    {m.fase}
+                  </div>
+                  <div className="mt-0.5 font-display text-[17px] leading-tight text-[var(--ink)]">
+                    {m.titel}
+                  </div>
+                  <p className="mt-1 text-[14px] leading-[1.65] text-[var(--ink-dim)] max-w-[440px]">
+                    {m.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-9 flex flex-wrap gap-2">
+              {founder.expertise.map((e) => (
+                <span
+                  key={e.titel}
+                  className="px-3 py-1.5 rounded-full border border-[var(--paper-edge)] bg-[var(--paper-warm)] font-mono text-[11px] text-[var(--ink-dim)] tracking-wide"
+                >
+                  {e.titel}
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={`/over/${founder.slug}`}
+              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-warm)] hover:border-[var(--oker)] transition-colors group"
+            >
+              Lees het volledige profiel
+              <ArrowRight size={16} strokeWidth={1.8} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+        </div>
       </div>
-      <h3 className="mt-1 font-display text-[19px] sm:text-[21px] leading-tight text-[var(--ink)]">
-        {titel}
-      </h3>
-      <p className="mt-3 text-[14.5px] leading-[1.75] text-[var(--ink-dim)]">{body}</p>
-    </div>
+    </section>
   );
 }
 
