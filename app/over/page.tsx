@@ -118,12 +118,12 @@ export default function OverPage() {
 
       <section className="border-t border-[var(--paper-edge)] bg-[var(--ink)]">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-          <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             Waar wij in geloven
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[720px]">
             Drie uitgangspunten die{' '}
-            <span className="italic text-[var(--oker)]">alles bepalen.</span>
+            <span className="italic text-[var(--oker-deep)]">alles bepalen.</span>
           </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
             <DarkPrinciple
@@ -373,7 +373,7 @@ function DarkPrinciple({
         aria-hidden
         className="absolute left-0 top-1 bottom-1 w-px bg-[var(--paper-deep)] opacity-30"
       />
-      <div className="font-display italic text-[72px] sm:text-[88px] text-[var(--oker)] leading-none tracking-tight">
+      <div className="font-display italic text-[72px] sm:text-[88px] text-[var(--oker-deep)] leading-none tracking-tight">
         {number}
       </div>
       <h3 className="mt-4 font-display text-[19px] leading-tight text-[var(--paper)]">{title}</h3>

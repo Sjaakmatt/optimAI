@@ -208,7 +208,7 @@ export default function AIAgentLatenBouwenPage() {
               <Link
                 href="/plan"
                 {...calPopupAttrs}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Plan een kennismaking
                 <ArrowRight size={16} strokeWidth={1.8} />
@@ -270,12 +270,12 @@ export default function AIAgentLatenBouwenPage() {
           }}
         />
         <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-          <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             Hoe het werkt
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[780px]">
             Van eerste gesprek naar werkende agent{' '}
-            <span className="italic text-[var(--oker)]">in 1 tot 2 weken.</span>
+            <span className="italic text-[var(--oker-deep)]">in 1 tot 2 weken.</span>
           </h2>
           <ol className="mt-12 relative">
             <div
@@ -573,7 +573,7 @@ export default function AIAgentLatenBouwenPage() {
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -643,7 +643,7 @@ function DarkStep({
   return (
     <li className={`relative flex gap-5 sm:gap-7 ${last ? '' : 'pb-8'}`}>
       <div
-        className="relative shrink-0 z-10 flex items-center justify-center w-[30px] sm:w-[38px] h-[30px] sm:h-[38px] rounded-full bg-[var(--ink)] border border-[var(--oker)] font-mono tabular-nums text-[11px] sm:text-[12px] text-[var(--oker)] tracking-wider"
+        className="relative shrink-0 z-10 flex items-center justify-center w-[30px] sm:w-[38px] h-[30px] sm:h-[38px] rounded-full bg-[var(--ink)] border border-[var(--oker)] font-mono tabular-nums text-[11px] sm:text-[12px] text-[var(--oker-deep)] tracking-wider"
       >
         {number}
       </div>

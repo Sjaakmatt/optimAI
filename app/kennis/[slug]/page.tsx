@@ -153,7 +153,7 @@ export default async function PostPage({
             {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen ·{' '}
             <Link
               href="/over/sjaak-ter-veld"
-              className="underline decoration-dotted underline-offset-[3px] hover:text-[var(--oker)]"
+              className="underline decoration-dotted underline-offset-[3px] hover:text-[var(--oker-deep)]"
             >
               {p.author}
             </Link>
@@ -301,7 +301,7 @@ function Block({ block }: { block: PostBlock }) {
         <ul className="my-5 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]">
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-3">
-              <span className="text-[var(--oker)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
               <span>{item}</span>
             </li>
           ))}

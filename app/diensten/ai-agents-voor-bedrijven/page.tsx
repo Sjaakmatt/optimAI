@@ -139,7 +139,7 @@ export default function AIAgentsVoorBedrijvenPage() {
               <Link
                 href="/plan"
                 {...calPopupAttrs}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Plan een kennismaking
                 <ArrowRight size={16} strokeWidth={1.8} />
@@ -237,7 +237,7 @@ export default function AIAgentsVoorBedrijvenPage() {
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />

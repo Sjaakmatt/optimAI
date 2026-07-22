@@ -178,7 +178,7 @@ export default function SubverwerkersPage() {
               key={s}
               className="flex gap-3 text-[15.5px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
             >
-              <span className="text-[var(--oker)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
               <span>{s}</span>
             </li>
           ))}

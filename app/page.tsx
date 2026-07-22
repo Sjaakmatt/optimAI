@@ -101,9 +101,15 @@ function Hero() {
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
             >
               Plan een gesprek
+            </Link>
+            <Link
+              href="/demo"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+            >
+              Bekijk de demo
             </Link>
           </div>
 
@@ -233,12 +239,12 @@ function DemoTeaser() {
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-end">
           <div className="max-w-[620px]">
-            <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
               Zie het werken
             </div>
             <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--paper)]">
               De Werkbank.{' '}
-              <span className="italic text-[var(--oker)]">Een live demo.</span>
+              <span className="italic text-[var(--oker-deep)]">Een live demo.</span>
             </h2>
             <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--paper-deep)]">
               Kies een klantvraag (klacht, order, offerte) en kijk hoe acht afdelingen samen aan
@@ -304,7 +310,7 @@ function Aanpak() {
             ['Bijhouden', 'Maandelijks een kort gesprek om aan te passen.'],
           ].map(([title, body], i) => (
             <li key={i} className="flex gap-4">
-              <span className="font-mono text-[11px] text-[var(--oker)] tabular-nums pt-1 w-8 shrink-0">
+              <span className="font-mono text-[11px] text-[var(--oker-deep)] tabular-nums pt-1 w-8 shrink-0">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div>

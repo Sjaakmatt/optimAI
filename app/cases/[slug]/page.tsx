@@ -154,7 +154,7 @@ export default async function CaseDetail({
             <ul className="mt-4 space-y-2.5 text-[14px] leading-[1.6] text-[var(--ink)]">
               {c.oplossing.map((o, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="text-[var(--oker)] pt-1 shrink-0">→</span>
+                  <span className="text-[var(--oker-deep)] pt-1 shrink-0">→</span>
                   <span>{o}</span>
                 </li>
               ))}
@@ -175,14 +175,14 @@ export default async function CaseDetail({
             <div className="relative mx-auto max-w-[820px] px-5 sm:px-8 lg:px-10 py-16 sm:py-20 text-center">
               <div
                 aria-hidden
-                className="font-display italic text-[64px] leading-none text-[var(--oker)] opacity-50 mb-2"
+                className="font-display italic text-[64px] leading-none text-[var(--oker-deep)] opacity-50 mb-2"
               >
                 &ldquo;
               </div>
               <p className="font-display italic text-[22px] sm:text-[28px] leading-[1.4] text-[var(--paper)]">
                 {c.quote.text}
               </p>
-              <div className="mt-8 font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.18em]">
+              <div className="mt-8 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                 {c.quote.by} · {c.quote.role}
               </div>
             </div>

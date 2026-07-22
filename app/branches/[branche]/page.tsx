@@ -122,7 +122,7 @@ export default async function BranchePage({
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -144,7 +144,7 @@ export default async function BranchePage({
               key={p}
               className="flex gap-3 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
             >
-              <span className="text-[var(--oker)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
               <span>{p}</span>
             </li>
           ))}
@@ -162,7 +162,7 @@ export default async function BranchePage({
               key={o}
               className="flex gap-3 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
             >
-              <span className="text-[var(--oker)] pt-1 shrink-0">→</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">→</span>
               <span>{o}</span>
             </li>
           ))}
@@ -180,12 +180,12 @@ export default async function BranchePage({
           }}
         />
         <div className="relative mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
-          <div className="font-mono text-[11px] text-[var(--oker)] uppercase tracking-[0.2em]">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             De agents
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[720px]">
             Welke agents samen{' '}
-            <span className="italic text-[var(--oker)]">één klantzaak</span> afhandelen.
+            <span className="italic text-[var(--oker-deep)]">één klantzaak</span> afhandelen.
           </h2>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             {b.agents.map((a, i) => (
@@ -194,7 +194,7 @@ export default async function BranchePage({
                   aria-hidden
                   className="absolute left-0 top-1 bottom-1 w-px bg-[var(--paper-deep)] opacity-30"
                 />
-                <div className="font-mono text-[10px] text-[var(--oker)] tabular-nums tracking-[0.18em] uppercase">
+                <div className="font-mono text-[10px] text-[var(--oker-deep)] tabular-nums tracking-[0.18em] uppercase">
                   {String(i + 1).padStart(2, '0')} · Agent
                 </div>
                 <div className="mt-1 font-display text-[19px] text-[var(--paper)] leading-snug">
@@ -278,7 +278,7 @@ export default async function BranchePage({
                 key={e}
                 className="flex gap-3 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
               >
-                <span className="text-[var(--oker)] pt-1 shrink-0">✓</span>
+                <span className="text-[var(--oker-deep)] pt-1 shrink-0">✓</span>
                 <span>{e}</span>
               </li>
             ))}
@@ -312,7 +312,7 @@ export default async function BranchePage({
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
               <ArrowRight size={16} strokeWidth={1.8} />

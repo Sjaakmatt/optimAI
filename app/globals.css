@@ -3,22 +3,24 @@
 :root {
   /* Paper — warm crème, linnen */
   --paper: #f4ede0;
-  --paper-deep: #ebe2cf;
-  --paper-edge: #ddd1b8;
+  --paper-deep: #e9ddc2;
+  --paper-edge: #d2c3a4;
   --paper-warm: #f7ecd6;
 
-  /* Inkt — warm donker */
+  /* Inkt — warm donker. ink-faint blijft de lichtste teksttint maar haalt
+     nu wel AA-contrast (≥4.5:1) op paper — hij draagt vaak echte informatie. */
   --ink: #2a2420;
   --ink-dim: #5c5248;
-  --ink-faint: #8a8070;
+  --ink-faint: #6f6555;
 
-  /* Accenten */
+  /* Accenten. terra is de vaste conversiekleur (plan/boek-knoppen);
+     verdiept zodat paper-tekst erop ruim AA haalt. */
   --oker: #a8803a;
   --oker-deep: #7d5e24;
   --oker-soft: rgba(168, 128, 58, 0.08);
-  --terra: #a15842;
+  --terra: #8f4a36;
   --mos: #5e6e3f;
-  --steen: #8b857a;
+  --steen: #6e6759;
 
   --grain-opacity: 0.06;
   --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.06), 0 8px 24px rgba(42, 36, 32, 0.04);
@@ -138,7 +140,7 @@ body::after {
 
 *:focus { outline: none; }
 *:focus-visible {
-  outline: 1px solid var(--oker);
+  outline: 2px solid var(--oker-deep);
   outline-offset: 2px;
 }
 
