@@ -2,51 +2,51 @@
 
 import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { PointMaterial, Points } from '@react-three/drei';
 import * as THREE from 'three';
 import * as random from 'maath/random';
 
 /**
- * Het gedachtenveld bij halte 2: een wolk van deeltjes die traag om
- * elkaar draaien terwijl de agent nadenkt. Instanced points, laag
- * budget, alleen gemount terwijl de halte in de buurt is.
+ * Het gedachtenveld bij halte 2: een compacte wolk van zachte, ronde
+ * deeltjes die traag om elkaar draaien boven het bankje. Laag budget,
+ * alleen gemount terwijl de halte in de buurt is.
  */
 
-const AANTAL = 260;
+const AANTAL = 150;
 
 function Deeltjes({ actief }: { actief: boolean }) {
-  const punten = useRef<THREE.Points>(null);
+  const groep = useRef<THREE.Group>(null);
   const mat = useRef<THREE.PointsMaterial>(null);
   const posities = useMemo(
-    () => random.inSphere(new Float32Array(AANTAL * 3), { radius: 1.6 }) as Float32Array,
+    () => random.inSphere(new Float32Array(AANTAL * 3), { radius: 0.75 }) as Float32Array,
     [],
   );
 
   useFrame((state, delta) => {
-    if (punten.current) {
-      punten.current.rotation.y += delta * 0.12;
-      punten.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.15;
+    if (groep.current) {
+      groep.current.rotation.y += delta * 0.16;
+      groep.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.25) * 0.2;
     }
     if (mat.current) {
-      mat.current.opacity = THREE.MathUtils.lerp(mat.current.opacity, actief ? 0.85 : 0, 0.05);
+      mat.current.opacity = THREE.MathUtils.lerp(mat.current.opacity, actief ? 0.8 : 0, 0.05);
     }
   });
 
   return (
-    <points ref={punten}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[posities, 3]} />
-      </bufferGeometry>
-      <pointsMaterial
-        ref={mat}
-        size={0.035}
-        color="#a8803a"
-        transparent
-        opacity={0}
-        depthWrite={false}
-        sizeAttenuation
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
+    <group ref={groep} position={[-0.5, 0.45, 0]}>
+      <Points positions={posities} stride={3} frustumCulled={false}>
+        <PointMaterial
+          ref={mat}
+          transparent
+          color="#a8803a"
+          size={0.045}
+          sizeAttenuation
+          depthWrite={false}
+          opacity={0}
+          blending={THREE.AdditiveBlending}
+        />
+      </Points>
+    </group>
   );
 }
 

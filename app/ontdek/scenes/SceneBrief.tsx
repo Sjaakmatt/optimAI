@@ -67,7 +67,7 @@ export function SceneBrief({ beat, reduced, actief, interacted, onInteract }: Sc
             animate={{ opacity: 1, y: 0, rotate: -1 }}
             exit={{ opacity: 0 }}
             transition={{ type: 'spring', stiffness: 140, damping: 16 }}
-            className="absolute right-[3%] top-[3%] w-[min(300px,60%)] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3.5 shadow-[var(--shadow-lift)]"
+            className="absolute right-[8%] top-[4%] w-[min(300px,58%)] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3.5 shadow-[var(--shadow-lift)]"
           >
             <figcaption className="flex items-baseline justify-between gap-2 border-b border-[var(--paper-edge)] pb-2">
               <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-[var(--ink-faint)]">
@@ -94,7 +94,7 @@ export function SceneBrief({ beat, reduced, actief, interacted, onInteract }: Sc
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-[3%] left-[3%] hidden sm:flex flex-wrap items-center gap-2"
+            className="absolute bottom-[4%] left-[8%] hidden sm:flex flex-wrap items-center gap-2"
           >
             {BRIEF_STAPPEN.map((stap, i) => (
               <li

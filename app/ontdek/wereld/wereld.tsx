@@ -94,37 +94,38 @@ export function Vogels({ x, y }: { x: number; y: number }) {
 export function Land({ children }: { children?: ReactNode }) {
   return (
     <g>
-      {/* verre heuvels: glad vlak, ruwe kamlijn */}
+      {/* verre heuvels: glad vlak, ruwe kamlijn. Begin- en eindhoogte zijn
+          gelijk zodat de cellen naadloos tegelen tijdens de camera-pan. */}
       <path
-        d={`M0 ${GROND_Y - 68} C 180 ${GROND_Y - 128}, 340 ${GROND_Y - 60}, 520 ${GROND_Y - 96} C 700 ${GROND_Y - 132}, 860 ${GROND_Y - 70}, 1000 ${GROND_Y - 92} L 1000 ${VB_H} L 0 ${VB_H} Z`}
+        d={`M0 ${GROND_Y - 80} C 180 ${GROND_Y - 128}, 340 ${GROND_Y - 60}, 520 ${GROND_Y - 96} C 700 ${GROND_Y - 132}, 860 ${GROND_Y - 56}, 1000 ${GROND_Y - 80} L 1000 ${VB_H} L 0 ${VB_H} Z`}
         fill="var(--paper-deep)"
         opacity={0.45}
       />
       <path
-        d={`M0 ${GROND_Y - 26} C 200 ${GROND_Y - 74}, 420 ${GROND_Y - 12}, 640 ${GROND_Y - 46} C 820 ${GROND_Y - 72}, 920 ${GROND_Y - 26}, 1000 ${GROND_Y - 40} L 1000 ${VB_H} L 0 ${VB_H} Z`}
+        d={`M0 ${GROND_Y - 40} C 200 ${GROND_Y - 74}, 420 ${GROND_Y - 12}, 640 ${GROND_Y - 46} C 820 ${GROND_Y - 72}, 920 ${GROND_Y - 16}, 1000 ${GROND_Y - 40} L 1000 ${VB_H} L 0 ${VB_H} Z`}
         fill="var(--paper-warm)"
       />
       <RPad
-        d={`M0 ${GROND_Y - 26} C 200 ${GROND_Y - 74}, 420 ${GROND_Y - 12}, 640 ${GROND_Y - 46} C 820 ${GROND_Y - 72}, 920 ${GROND_Y - 26}, 1000 ${GROND_Y - 40}`}
+        d={`M0 ${GROND_Y - 40} C 200 ${GROND_Y - 74}, 420 ${GROND_Y - 12}, 640 ${GROND_Y - 46} C 820 ${GROND_Y - 72}, 920 ${GROND_Y - 16}, 1000 ${GROND_Y - 40}`}
         stroke="var(--ink-faint)"
         strokeWidth={0.9}
         roughness={1.6}
       />
       {/* grondvlak */}
       <path
-        d={`M0 ${GROND_Y} C 250 ${GROND_Y - 14}, 700 ${GROND_Y + 10}, 1000 ${GROND_Y - 6} L 1000 ${VB_H} L 0 ${VB_H} Z`}
+        d={`M0 ${GROND_Y - 4} C 250 ${GROND_Y - 16}, 700 ${GROND_Y + 8}, 1000 ${GROND_Y - 4} L 1000 ${VB_H} L 0 ${VB_H} Z`}
         fill="var(--paper-deep)"
         opacity={0.55}
       />
       <RPad
-        d={`M0 ${GROND_Y} C 250 ${GROND_Y - 14}, 700 ${GROND_Y + 10}, 1000 ${GROND_Y - 6}`}
+        d={`M0 ${GROND_Y - 4} C 250 ${GROND_Y - 16}, 700 ${GROND_Y + 8}, 1000 ${GROND_Y - 4}`}
         stroke="var(--ink-faint)"
         strokeWidth={1}
         roughness={1.8}
       />
       {/* het pad: dubbele karrenspoor-lijn */}
       <RPad
-        d={`M0 ${PAD_Y} C 200 ${PAD_Y - 12}, 380 ${PAD_Y + 12}, 560 ${PAD_Y - 4} C 740 ${PAD_Y - 16}, 880 ${PAD_Y + 8}, 1000 ${PAD_Y - 2}`}
+        d={`M0 ${PAD_Y - 4} C 200 ${PAD_Y - 14}, 380 ${PAD_Y + 10}, 560 ${PAD_Y - 6} C 740 ${PAD_Y - 16}, 880 ${PAD_Y + 6}, 1000 ${PAD_Y - 4}`}
         stroke="var(--oker)"
         strokeWidth={1.5}
         roughness={1}
@@ -132,7 +133,7 @@ export function Land({ children }: { children?: ReactNode }) {
       />
       <g opacity={0.55}>
         <RPad
-          d={`M0 ${PAD_Y + 9} C 200 ${PAD_Y - 3}, 380 ${PAD_Y + 21}, 560 ${PAD_Y + 5} C 740 ${PAD_Y - 7}, 880 ${PAD_Y + 17}, 1000 ${PAD_Y + 7}`}
+          d={`M0 ${PAD_Y + 7} C 200 ${PAD_Y - 3}, 380 ${PAD_Y + 21}, 560 ${PAD_Y + 5} C 740 ${PAD_Y - 5}, 880 ${PAD_Y + 17}, 1000 ${PAD_Y + 7}`}
           stroke="var(--oker)"
           strokeWidth={1}
           roughness={1}

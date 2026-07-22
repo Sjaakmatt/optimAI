@@ -51,11 +51,11 @@ function Orb() {
       <mesh>
         <icosahedronGeometry args={[1.15, 24]} />
         <MeshDistortMaterial
-          color="#a8803a"
-          emissive="#8f4a36"
-          emissiveIntensity={0.22}
-          roughness={0.32}
-          metalness={0.1}
+          color="#c9a55e"
+          emissive="#a15842"
+          emissiveIntensity={0.3}
+          roughness={0.26}
+          metalness={0.08}
           distort={0.32}
           speed={1.6}
         />
@@ -88,10 +88,10 @@ export default function Hero3D() {
   }, []);
 
   return (
-    <div ref={wrap} className="absolute inset-0" aria-hidden>
+    <div ref={wrap} className="pointer-events-none absolute inset-0" aria-hidden>
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 4.6], fov: 42 }}
+        camera={{ position: [0, 0, 6.1], fov: 42 }}
         frameloop={zichtbaar ? 'always' : 'never'}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
@@ -99,9 +99,11 @@ export default function Hero3D() {
         <ambientLight intensity={0.85} color="#f7ecd6" />
         <directionalLight position={[3, 4, 5]} intensity={1.4} color="#f4ede0" />
         <directionalLight position={[-4, -2, 2]} intensity={0.5} color="#a15842" />
-        <Float speed={1.4} rotationIntensity={0.15} floatIntensity={0.55}>
-          <Orb />
-        </Float>
+        <group position={[0, 1.05, 0]}>
+          <Float speed={1.4} rotationIntensity={0.15} floatIntensity={0.55}>
+            <Orb />
+          </Float>
+        </group>
         <EffectComposer>
           <Bloom intensity={0.55} luminanceThreshold={0.55} luminanceSmoothing={0.3} mipmapBlur />
         </EffectComposer>

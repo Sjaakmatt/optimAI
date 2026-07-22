@@ -85,15 +85,21 @@ function WandelingScroll() {
         end: 'bottom bottom',
         onUpdate: (self) => {
           const p = self.progress;
-          // camera: 6 vensters opschuiven over de strip van 7
-          if (stripRef.current) gsap.set(stripRef.current, { xPercent: (-p * 600) / N });
-          if (wolkenRef.current) gsap.set(wolkenRef.current, { xPercent: (-p * 6 * 0.45 * 100) / N });
-          if (voorRef.current) gsap.set(voorRef.current, { xPercent: (-p * 6 * 1.3 * 100) / (N + 3) });
-
           const s = Math.min(N - 1, Math.floor(p * N));
           const lokaal = p * N - s;
+
+          // camera met plateau: reizen in de eerste 38% van een segment,
+          // daarna stilstaan precies op de halte terwijl het paneel leest
+          const reis = s === 0 ? 1 : Math.min(1, lokaal / 0.38);
+          const eased = reis < 0.5 ? 2 * reis * reis : 1 - Math.pow(-2 * reis + 2, 2) / 2;
+          const k = s === 0 ? 0 : s - 1 + eased;
+          if (stripRef.current) gsap.set(stripRef.current, { xPercent: (-k * 100) / N });
+          if (wolkenRef.current) gsap.set(wolkenRef.current, { xPercent: (-k * 0.45 * 100) / N });
+          if (voorRef.current) gsap.set(voorRef.current, { xPercent: (-k * 1.3 * 100) / (N + 3) });
+
           const beats = CHAPTERS[s].beats;
-          const b = Math.min(beats, Math.floor((lokaal / 0.72) * (beats + 1)));
+          const naReis = s === 0 ? lokaal : Math.max(0, (lokaal - 0.38) / 0.62);
+          const b = Math.min(beats, Math.floor((naReis / 0.8) * (beats + 1)));
 
           if (s !== stopRef.current) {
             stopRef.current = s;

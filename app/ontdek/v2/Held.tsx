@@ -62,7 +62,7 @@ export function Held() {
     <section
       ref={ref}
       aria-label="Ontdek FactumAI agents"
-      className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-5 text-center"
+      className="relative flex min-h-[92vh] flex-col items-center justify-end overflow-hidden px-5 pb-[13vh] text-center"
     >
       {/* de kern van de agent */}
       {rustig ? (

@@ -26,7 +26,7 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
         {[0, 1, 2].map((i) => (
           <motion.circle
             key={i}
-            cx={415 + i * 12}
+            cx={385 - i * 14}
             cy={PAD_Y - 52 - i * 16}
             r={2.5 + i * 1.3}
             fill="var(--paper)"
@@ -41,7 +41,7 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
 
       {/* de gedachtenwolk met het werkbriefje */}
       <div
-        className="absolute right-[4%] top-[3%] w-[min(330px,58%)] rounded-[16px] border border-[var(--ink-faint)]/50 bg-[var(--paper)]/95 px-4 py-3.5 shadow-[var(--shadow-lift)]"
+        className="absolute left-[5%] top-[10%] w-[min(330px,58%)] rounded-[16px] border border-[var(--ink-faint)]/50 bg-[var(--paper)]/95 px-4 py-3.5 shadow-[var(--shadow-lift)]"
         style={{ borderStyle: 'dashed' }}
       >
         <div className="flex items-baseline justify-between gap-3">

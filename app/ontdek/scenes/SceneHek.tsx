@@ -65,7 +65,7 @@ export function SceneHek({ beat, reduced, actief, interacted, onInteract }: Scen
       </Toneel>
 
       {/* bordjes */}
-      <div className="absolute right-[3%] top-[16%] flex items-center gap-1.5 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)]/95 px-2.5 py-1 shadow-[var(--shadow-soft)]">
+      <div className="absolute right-[8%] top-[16%] flex items-center gap-1.5 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)]/95 px-2.5 py-1 shadow-[var(--shadow-soft)]">
         <Check size={11} strokeWidth={2.2} className={twijfel ? 'text-[var(--ink-faint)]' : 'text-[var(--mos)]'} aria-hidden />
         <span className="font-mono text-[9.5px] uppercase tracking-[0.14em] text-[var(--ink-dim)]">
           Afgehandeld
