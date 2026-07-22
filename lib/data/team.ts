@@ -79,6 +79,52 @@ export const TEAM: TeamMember[] = [
     ],
     startedAt: '2026-01-01',
   },
+  {
+    slug: 'danny-rossenaar',
+    voornaam: 'Danny',
+    achternaam: 'Rossenaar',
+    initialen: 'DR',
+    rol: 'Sales & Marketing Manager',
+    rolKort: 'Sales & Marketing',
+    vestiging: 'Hoogkarspel · West-Friesland',
+    email: 'danny@factumai.nl',
+    // portretSrc: '/danny.jpg' — koppelen zodra de foto in public/ staat.
+    korteBio:
+      'Eerste aanspreekpunt bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
+    langeBio: [
+      'Als Sales & Marketing Manager is Danny vaak het eerste gezicht van FactumAI. Hij zit aan tafel bij ondernemers, luistert naar waar de werkdag stroef loopt, en vertaalt dat naar een helder voorstel: wat kan een agent overnemen, wat levert het op, en waar beginnen we.',
+      'Hij bewaakt dat de belofte eerlijk blijft. Geen luchtkastelen, maar een concreet eerste resultaat binnen één tot twee weken. Wat aan tafel wordt beloofd, maken de bouwers waar.',
+      'Daarnaast geeft hij FactumAI een gezicht naar buiten: van de eerste kennismaking tot de verhalen die we delen over wat AI wél en niet voor het MKB kan betekenen.',
+    ],
+    expertise: [
+      {
+        titel: 'Sales voor het MKB',
+        body: 'Begrijpt de ondernemer achter de vraag. Vertaalt een vaag "we moeten iets met AI" naar een concreet, behapbaar eerste project met een duidelijke opbrengst.',
+      },
+      {
+        titel: 'Marketing & positionering',
+        body: 'Zorgt dat het verhaal van FactumAI klopt en klopt blijft: eerlijk, nuchter en zonder hype. Van de website en kennisbank tot de eerste kennismaking.',
+      },
+      {
+        titel: 'Van vraag naar voorstel',
+        body: 'Brengt in kaart welk proces zich leent voor een agent, wat het oplevert en waar we klein beginnen, zodat de klant weet waar hij aan toe is voordat er gebouwd wordt.',
+      },
+      {
+        titel: 'Klantrelatie',
+        body: 'Korte lijnen, kort op de bal. Blijft betrokken na de kennismaking, zodat de samenwerking soepel loopt en de verwachtingen helder blijven.',
+      },
+    ],
+    knowsAbout: [
+      'Sales',
+      'Marketing',
+      'MKB',
+      'Klantrelaties',
+      'AI-agents',
+      'Leadgeneratie',
+      'Positionering',
+    ],
+    startedAt: '2026-06-01',
+  },
 ];
 
 export const TEAM_BY_SLUG = TEAM.reduce<Record<string, TeamMember>>((acc, m) => {

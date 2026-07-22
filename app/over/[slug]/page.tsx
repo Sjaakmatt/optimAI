@@ -170,7 +170,7 @@ export default async function TeamMemberPage({
       </section>
 
       {m.expertise.length > 0 && (
-        <Section eyebrow="Expertise" title="Waar ik aan werk en over schrijf.">
+        <Section eyebrow="Expertise" title="Waar ik aan werk.">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
             {m.expertise.map((e) => (
               <article key={e.titel} className="site-card px-6 py-6">
