@@ -13,8 +13,12 @@ import {
   Database,
   RotateCcw,
   AlertCircle,
+  Mail,
 } from 'lucide-react';
 import type { ScanAnalysis, ScanEvent, ScanStageId } from '@/lib/scan/types';
+
+const CONSENT_TEKST =
+  'Ja, FactumAI mag mij af en toe mailen over wat AI voor mijn bedrijf kan betekenen.';
 
 type StageStatus = 'pending' | 'busy' | 'done';
 type Phase = 'form' | 'scanning' | 'result' | 'error';
@@ -233,8 +237,8 @@ export function ScanTool() {
                   <ArrowRight size={16} strokeWidth={1.8} />
                 </button>
                 <p className="text-[12px] leading-[1.6] text-[var(--ink-faint)]">
-                  We analyseren alleen openbare informatie op de website die u opgeeft. Geen
-                  registratie, geen e-mailadres nodig. Het resultaat is een automatische analyse —
+                  We analyseren alleen openbare informatie op de website die u opgeeft. Voor de scan
+                  zelf hoeft u niets achter te laten. Het resultaat is een automatische analyse —
                   een eerste beeld, geen offerte.
                 </p>
               </div>
@@ -507,8 +511,15 @@ export function ScanTool() {
               </div>
             )}
 
+            {/* Volledig rapport per e-mail */}
+            <RapportBlok
+              result={result}
+              bedrijfsnaam={resultNaam || bedrijfsnaam}
+              website={url}
+            />
+
             {/* CTA */}
-            <div className="mt-14 bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div className="mt-8 bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
               <div>
                 <h3 className="font-display text-[22px] sm:text-[24px] leading-snug text-[var(--ink)] max-w-[520px]">
                   Benieuwd wat dit concreet oplevert?{' '}
@@ -541,6 +552,158 @@ export function ScanTool() {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+type RapportStatus = 'idle' | 'busy' | 'done' | 'error';
+
+function RapportBlok({
+  result,
+  bedrijfsnaam,
+  website,
+}: {
+  result: ScanAnalysis;
+  bedrijfsnaam: string;
+  website: string;
+}) {
+  const [email, setEmail] = useState('');
+  const [consent, setConsent] = useState(true); // opt-in standaard aangevinkt
+  const [status, setStatus] = useState<RapportStatus>('idle');
+  const [foutmelding, setFoutmelding] = useState<string | null>(null);
+  const honeypot = useRef('');
+
+  async function verstuur(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim() || status === 'busy') return;
+    setStatus('busy');
+    setFoutmelding(null);
+    try {
+      const res = await fetch('/api/scan-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          website,
+          bedrijfsnaam,
+          email: email.trim(),
+          consent,
+          consentText: CONSENT_TEKST,
+          result,
+          telefoon: honeypot.current,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (!res.ok || !data.ok) {
+        setFoutmelding(data.error ?? 'Verzenden mislukte. Probeer het opnieuw.');
+        setStatus('error');
+        return;
+      }
+      setStatus('done');
+    } catch {
+      setFoutmelding('Verzenden mislukte. Controleer uw verbinding en probeer opnieuw.');
+      setStatus('error');
+    }
+  }
+
+  if (status === 'done') {
+    return (
+      <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--oker)] rounded-[2px] p-6 sm:p-8">
+        <div className="flex items-start gap-3">
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--oker)] text-[var(--paper)]">
+            <Check size={14} strokeWidth={2.5} />
+          </span>
+          <div>
+            <h3 className="font-display text-[20px] leading-snug text-[var(--ink)]">
+              Het volledige rapport is onderweg.
+            </h3>
+            <p className="mt-1.5 text-[13px] leading-[1.7] text-[var(--ink-dim)]">
+              Check uw inbox (en eventueel de spam-map). Niets ontvangen? Mail ons gerust op
+              info@factumai.nl.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8">
+      <div className="flex items-start gap-3">
+        <Mail size={20} strokeWidth={1.8} className="text-[var(--oker-deep)] mt-0.5 shrink-0" />
+        <div className="flex-1">
+          <h3 className="font-display text-[22px] sm:text-[24px] leading-snug text-[var(--ink)]">
+            Wilt u het volledige rapport per e-mail?
+          </h3>
+          <p className="mt-2 text-[13px] leading-[1.7] text-[var(--ink-dim)] max-w-[560px]">
+            U ontvangt een uitgebreide versie van deze analyse, met een concreet stappenplan en een
+            duiding per geavanceerd voorstel. Handig om intern te delen.
+          </p>
+
+          <form onSubmit={verstuur} className="mt-5 max-w-[520px]">
+            {/* Honeypot */}
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+              onChange={(e) => (honeypot.current = e.target.value)}
+            />
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                maxLength={160}
+                placeholder="uw@bedrijf.nl"
+                aria-label="Uw e-mailadres"
+                className="flex-1 px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
+              />
+              <button
+                type="submit"
+                disabled={status === 'busy'}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[2px] text-[15px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors disabled:opacity-60"
+              >
+                {status === 'busy' ? (
+                  <>
+                    <Loader2 size={16} strokeWidth={2} className="animate-spin" />
+                    Versturen…
+                  </>
+                ) : (
+                  <>
+                    Stuur mij het rapport
+                    <ArrowRight size={16} strokeWidth={1.8} />
+                  </>
+                )}
+              </button>
+            </div>
+
+            <label className="mt-4 flex items-start gap-2.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--oker-deep)]"
+              />
+              <span className="text-[12.5px] leading-[1.6] text-[var(--ink-dim)]">
+                {CONSENT_TEKST} U kunt zich altijd weer afmelden. Zie onze{' '}
+                <Link
+                  href="/privacy"
+                  className="underline decoration-dotted underline-offset-2 hover:text-[var(--oker-deep)]"
+                >
+                  privacyverklaring
+                </Link>
+                .
+              </span>
+            </label>
+
+            {foutmelding && (
+              <p className="mt-3 text-[13px] leading-[1.6] text-[var(--terra)]">{foutmelding}</p>
+            )}
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

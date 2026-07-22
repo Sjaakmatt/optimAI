@@ -7,6 +7,7 @@
 
 import { scrapeCompanyWebsite, normalizeScanUrl } from '@/lib/scan/scraper';
 import { analyzeCompany } from '@/lib/scan/analyze';
+import { saveScanStart, attachScanResult } from '@/lib/scan/leads';
 import type { ScanEvent } from '@/lib/scan/types';
 
 export const runtime = 'nodejs';
@@ -79,6 +80,11 @@ export async function POST(request: Request) {
     );
   }
 
+  // Leg de scan-start alvast vast in het dashboard (bedrijfsnaam + website).
+  // Best-effort en niet-blokkerend: de scan wacht hier niet op.
+  const userAgent = request.headers.get('user-agent') ?? undefined;
+  void saveScanStart({ website: url, bedrijfsnaam: bedrijfsnaam || undefined, ip, userAgent });
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
@@ -134,6 +140,9 @@ export async function POST(request: Request) {
 
         const naam = bedrijfsnaam || scrape.title || new URL(scrape.url).hostname;
         const result = await analyzeCompany(naam, scrape);
+
+        // Verrijk de opgeslagen lead met het scan-resultaat (best-effort).
+        void attachScanResult({ website: url, bedrijfsnaam: naam, analysis: result });
 
         finish(() => {
           // Eventueel nog niet gepasseerde tussenstappen alsnog aftikken.
