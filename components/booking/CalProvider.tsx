@@ -21,7 +21,8 @@ const HIDE_ON: ReadonlySet<string> = new Set([
  */
 export function CalProvider() {
   const pathname = usePathname();
-  const hideFloating = HIDE_ON.has(pathname) || pathname.startsWith('/aanvraag');
+  const hideFloating =
+    HIDE_ON.has(pathname) || pathname.startsWith('/aanvraag') || pathname.startsWith('/ontdek');
 
   useEffect(() => {
     if (hideFloating) return;

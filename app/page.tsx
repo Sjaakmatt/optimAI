@@ -17,6 +17,7 @@ export default function HomePage() {
     <SitePage>
       <Hero />
       <Klanten />
+      <OntdekBand />
       <WatDoenWe />
       <Stats />
       <VoorWie />
@@ -123,6 +124,56 @@ function Hero() {
               Vaste bouwprijs · live in 1 tot 2 weken · retainer optioneel
             </span>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OntdekBand() {
+  return (
+    <section className="border-t border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-10 sm:py-12">
+        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+          {/* wandelpaadje als uitnodiging */}
+          <svg
+            viewBox="0 0 200 70"
+            className="w-[150px] sm:w-[180px] h-auto shrink-0"
+            aria-hidden
+            focusable="false"
+          >
+            <path
+              d="M8 60 C 50 52, 46 24, 100 27 C 154 30, 148 56, 192 12"
+              fill="none"
+              stroke="var(--oker)"
+              strokeWidth="1.3"
+              strokeDasharray="2 7"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+            <circle cx="8" cy="60" r="3" fill="var(--oker)" />
+            <circle cx="192" cy="12" r="2.5" fill="none" stroke="var(--oker)" strokeWidth="1.2" />
+          </svg>
+          <div className="min-w-0 flex-1">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+              Nieuw hier?
+            </div>
+            <h2 className="mt-2 font-display text-[22px] sm:text-[26px] leading-tight tracking-tight text-[var(--ink)]">
+              Wat is een AI-agent eigenlijk?{' '}
+              <span className="italic text-[var(--oker-deep)]">Loop even mee.</span>
+            </h2>
+            <p className="mt-2 text-[14px] leading-[1.65] text-[var(--ink-dim)] max-w-[520px]">
+              Een korte, visuele wandeling langs zeven haltes: hoe een agent leest, denkt, maakt en
+              waar hij netjes stopt.
+            </p>
+          </div>
+          <Link
+            href="/ontdek"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover shrink-0 self-start md:self-center"
+          >
+            Ontdek FactumAI agents
+            <ArrowRight size={16} strokeWidth={1.8} />
+          </Link>
         </div>
       </div>
     </section>
