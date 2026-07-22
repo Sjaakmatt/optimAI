@@ -59,11 +59,11 @@ export function CockpitHeader() {
   return (
     <div className="border-b border-[var(--paper-edge)] bg-[var(--paper-deep)]">
       <div className="mx-auto max-w-[1080px] px-4 sm:px-8 py-2 sm:py-2.5 flex items-start sm:items-center gap-5 sm:gap-6 lg:justify-between overflow-x-auto whitespace-nowrap">
-        <Metric label="Orders" value={cockpit.orders} />
-        <Metric label="Voorraad" value={cockpit.stockMutations} />
-        <Metric label="Ritten" value={cockpit.routesPlanned} />
-        <Metric label="Mails" value={cockpit.mails} />
-        <Metric label="Omzet" value={cockpit.revenue} format={(n) => formatEuro(n)} />
+        <Metric label="Chats" value={cockpit.orders} />
+        <Metric label="E-mails" value={cockpit.mails} />
+        <Metric label="Social" value={cockpit.routesPlanned} />
+        <Metric label="Retouren" value={cockpit.stockMutations} />
+        <Metric label="Behouden" value={cockpit.revenue} format={(n) => formatEuro(n)} />
       </div>
     </div>
   );

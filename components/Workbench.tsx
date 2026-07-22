@@ -95,8 +95,9 @@ function EmptyState() {
         Rustig op de werkbank
       </div>
       <p className="text-[14px] text-[var(--ink-dim)] leading-[1.6] max-w-[440px] mx-auto">
-        Trigger via De Dirigent een event. Mails, facturen, belnotities, pakbonnen en
-        transportplannen ontstaan hieronder, regel voor regel.
+        Kies een klantvraag uit chat, mail of social. Chatantwoorden, e-mails, retouren en
+        interne memo&apos;s ontstaan hieronder, regel voor regel, terwijl de agents het ERP en
+        de vervoerder raadplegen.
       </p>
     </motion.div>
   );

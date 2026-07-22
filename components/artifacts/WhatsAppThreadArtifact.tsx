@@ -28,7 +28,7 @@ export function WhatsAppThreadArtifact({ artifact }: Props) {
           <div className="font-mono text-[11px] text-[var(--ink-faint)]">{meta.phone}</div>
         </div>
         <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-wider">
-          WhatsApp
+          {(meta.channelLabel as string) ?? 'WhatsApp'}
         </div>
       </header>
 

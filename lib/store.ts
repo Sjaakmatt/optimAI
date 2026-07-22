@@ -27,7 +27,7 @@ import {
 } from '@/lib/data/mockHistory';
 import { HOURLY_RATE_EUR, sleep, uid } from '@/lib/utils';
 
-const POLICY_STORAGE_KEY = 'factumai.policies.v1';
+const POLICY_STORAGE_KEY = 'factumai.policies.v2';
 
 type PolicyOverrideMap = Record<string, boolean>;
 
@@ -85,13 +85,16 @@ function emptyROI(): ROIState {
   };
 }
 
+// Cockpit-tellers aan het begin van de dag. De sleutels zijn historisch
+// (orders/stockMutations/routesPlanned/mails/revenue) maar staan in de UI voor
+// klantenservice-cijfers: chats, e-mails, social, retouren en behouden omzet.
 function initialCockpit(): CockpitState {
   return {
-    orders: 12,
-    stockMutations: 34,
-    routesPlanned: 5,
-    mails: 47,
-    revenue: 18420,
+    orders: 68, // chats vandaag
+    stockMutations: 21, // retouren
+    routesPlanned: 15, // social-reacties
+    mails: 43, // e-mails
+    revenue: 3260, // behouden omzet (€)
   };
 }
 

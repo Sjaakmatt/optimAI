@@ -32,10 +32,10 @@ export function InvoiceArtifact({ artifact }: Props) {
       <header className="flex items-start justify-between pb-5 border-b border-[var(--paper-edge)]">
         <div>
           <div className="font-display text-[22px] leading-none text-[var(--ink)]">
-            {(meta.afzender as string) ?? 'NORDVELD'}
+            {(meta.afzender as string) ?? 'VONK'}
           </div>
           <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider mt-1">
-            {(meta.afzenderSub as string) ?? 'Groothandel Bouwmaterialen'}
+            {(meta.afzenderSub as string) ?? 'Online woonwinkel'}
           </div>
         </div>
         <div className="text-right">

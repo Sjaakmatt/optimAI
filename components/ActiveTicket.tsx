@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Mail, Bell, Phone, MessageCircle, FileText } from 'lucide-react';
+import { Mail, Bell, Phone, MessageCircle, FileText, MessageSquare, AtSign } from 'lucide-react';
 import type { DemoEvent, EventChannel } from '@/lib/types';
 import { formatTime } from '@/lib/utils';
 
@@ -18,6 +18,8 @@ const CHANNEL_META: Record<
   phone: { label: 'Telefoon', Icon: Phone },
   whatsapp: { label: 'WhatsApp', Icon: MessageCircle },
   form: { label: 'Formulier', Icon: FileText },
+  chat: { label: 'Website-chat', Icon: MessageSquare },
+  social: { label: 'Social', Icon: AtSign },
 };
 
 export function ActiveTicket({ event }: Props) {

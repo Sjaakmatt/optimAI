@@ -24,7 +24,7 @@ export function InternalMemoArtifact({ artifact }: Props) {
     >
       <header className="pb-4 border-b border-[var(--paper-edge)]">
         <div className="inline-block font-mono text-[10px] text-[var(--paper)] uppercase tracking-[0.2em] bg-[var(--terra)] px-2 py-0.5 rounded-[1px]">
-          Intern · Nordveld
+          Intern · {(meta.org as string) ?? 'Vonk'}
         </div>
         <h2 className="font-display text-[20px] text-[var(--ink)] mt-3">
           {meta.memoSubject ?? meta.subject}

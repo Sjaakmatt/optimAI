@@ -43,13 +43,13 @@ export interface AgentBarPoint {
 // Baseline besparing per agent (totaal vandaag, voordat live-sessie begint).
 // Live ROI-events worden hier bovenop getoond, zodat getallen geloofwaardig blijven.
 export const SAVED_MINUTES_BY_AGENT: AgentBarPoint[] = [
-  { agent: 'sales', label: 'Sales', minuten: 185 },
-  { agent: 'inkoop', label: 'Inkoop', minuten: 142 },
-  { agent: 'voorraad', label: 'Voorraad', minuten: 94 },
-  { agent: 'orders', label: 'Orders', minuten: 168 },
-  { agent: 'facturatie', label: 'Facturatie', minuten: 76 },
-  { agent: 'klantservice', label: 'Klantservice', minuten: 221 },
-  { agent: 'verzending', label: 'Verzending', minuten: 128 },
+  { agent: 'orders', label: 'Website-chat', minuten: 246 },
+  { agent: 'klantservice', label: 'E-mail', minuten: 221 },
+  { agent: 'verzending', label: 'Social', minuten: 158 },
+  { agent: 'voorraad', label: 'Bestellingen', minuten: 132 },
+  { agent: 'facturatie', label: 'Retouren', minuten: 104 },
+  { agent: 'inkoop', label: 'Kennisbank', minuten: 88 },
+  { agent: 'sales', label: 'Reviews', minuten: 71 },
 ];
 
 export const BASELINE_TOTAL_MINUTES = SAVED_MINUTES_BY_AGENT.reduce(

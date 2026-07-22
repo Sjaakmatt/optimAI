@@ -1,20 +1,20 @@
 import type { Script } from '@/lib/types';
-import { script_order_new } from './scripts/order-new';
-import { script_inquiry } from './scripts/inquiry';
-import { script_complaint } from './scripts/complaint';
-import { script_stock_low } from './scripts/stock-low';
-import { script_supplier_delay } from './scripts/supplier-delay';
-import { script_question } from './scripts/question';
-import { script_invoice_overdue } from './scripts/invoice-overdue';
-import { script_shipment_issue } from './scripts/shipment-issue';
+import { script_chat_wismo } from './scripts/chat-wismo';
+import { script_chat_address } from './scripts/chat-address';
+import { script_mail_return } from './scripts/mail-return';
+import { script_mail_product } from './scripts/mail-product';
+import { script_mail_payment } from './scripts/mail-payment';
+import { script_social_complaint } from './scripts/social-complaint';
+import { script_social_restock } from './scripts/social-restock';
+import { script_review_negative } from './scripts/review-negative';
 
 export const SCRIPTS: Record<string, Script> = {
-  script_order_new,
-  script_inquiry,
-  script_complaint,
-  script_stock_low,
-  script_supplier_delay,
-  script_question,
-  script_invoice_overdue,
-  script_shipment_issue,
+  script_chat_wismo,
+  script_chat_address,
+  script_mail_return,
+  script_mail_product,
+  script_mail_payment,
+  script_social_complaint,
+  script_social_restock,
+  script_review_negative,
 };

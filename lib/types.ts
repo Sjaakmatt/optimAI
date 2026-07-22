@@ -27,16 +27,23 @@ export interface Agent {
 }
 
 export type EventType =
-  | 'order.new'
-  | 'order.inquiry'
-  | 'mail.complaint'
-  | 'mail.question'
-  | 'stock.low'
-  | 'supplier.delay'
-  | 'invoice.overdue'
-  | 'shipment.issue';
+  | 'chat.wismo'
+  | 'chat.address'
+  | 'mail.return'
+  | 'mail.product'
+  | 'mail.payment'
+  | 'social.complaint'
+  | 'social.restock'
+  | 'review.negative';
 
-export type EventChannel = 'email' | 'system' | 'phone' | 'whatsapp' | 'form';
+export type EventChannel =
+  | 'email'
+  | 'system'
+  | 'phone'
+  | 'whatsapp'
+  | 'form'
+  | 'chat'
+  | 'social';
 
 export interface EventExtra {
   label: string;

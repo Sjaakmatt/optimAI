@@ -22,7 +22,7 @@ export function WorkbenchHeader() {
             <span className="italic text-[var(--oker-deep)]">AI</span>
           </Link>
           <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em] truncate">
-            De Werkbank · Nordveld
+            De Werkbank · Vonk
           </span>
         </div>
 

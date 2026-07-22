@@ -78,7 +78,7 @@ export function OrderConfirmationArtifact({ artifact }: Props) {
           <div className="flex justify-between items-baseline text-[12px]">
             <span className="font-mono text-[var(--mos)] tracking-wider">✓ {footer}</span>
             <span className="font-mono text-[var(--ink-faint)]">
-              {(meta.contactRegel as string) ?? 'Vragen? 0228-554100'}
+              {(meta.contactRegel as string) ?? 'Vragen? klantenservice@vonk.nl'}
             </span>
           </div>
           <ArtifactByline agent={artifact.agent} startedAt={artifact.startedAt} />
