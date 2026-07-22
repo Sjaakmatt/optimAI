@@ -106,12 +106,6 @@ function Hero() {
             >
               Plan een gesprek
             </Link>
-            <Link
-              href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
-            >
-              Bekijk de demo
-            </Link>
           </div>
 
           <div className="mt-10 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
