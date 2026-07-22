@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
+import { CookiePrefsButton } from '@/components/analytics/CookiePrefsButton';
 
 export function SiteFooter() {
   const topPosts = [...POSTS]
@@ -183,6 +184,9 @@ export function SiteFooter() {
             >
               Sub-verwerkers
             </Link>
+          </li>
+          <li>
+            <CookiePrefsButton />
           </li>
         </ul>
         <span className="uppercase tracking-[0.14em]">Gebouwd met ambacht</span>

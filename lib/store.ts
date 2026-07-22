@@ -26,6 +26,7 @@ import {
   SAVED_MINUTES_BY_AGENT,
 } from '@/lib/data/mockHistory';
 import { HOURLY_RATE_EUR, sleep, uid } from '@/lib/utils';
+import { trackEvent } from '@/lib/analytics/gtag';
 
 const POLICY_STORAGE_KEY = 'factumai.policies.v2';
 
@@ -182,6 +183,7 @@ export const useStore = create<AppState>((set, get) => ({
 
     const eventId = uid('evt');
     const event: DemoEvent = { ...scenario, id: eventId, timestamp: Date.now() };
+    trackEvent('demo_scenario_start', { scenario: scenarioId, label: scenario.label });
 
     set((state) => ({
       events: [event, ...state.events],

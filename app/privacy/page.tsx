@@ -77,21 +77,24 @@ export default function PrivacyPage() {
           items={[
             [
               'Welke gegevens',
-              'Pagina-bezoeken, verwijzende bron, type apparaat, geanonimiseerd IP-adres. Geen cookies voor tracking of advertenties.',
+              'Pagina-bezoeken, verwijzende bron, type apparaat en geanonimiseerd IP-adres. De basisstatistieken meten wij cookieloos (Vercel Analytics). Voor meer inzicht in het gebruik zetten wij daarnaast Google Analytics 4 in; dat plaatst analytische cookies en meet uitsluitend als je daar via de cookiebanner toestemming voor geeft.',
             ],
             [
               'Waarom',
-              'Om te begrijpen welke content nuttig is en hoe we de website kunnen verbeteren.',
+              'Om te begrijpen welke content nuttig is, welke functies (zoals de AI-scan en de demo) gebruikt worden, en hoe we de website kunnen verbeteren.',
             ],
             [
               'Grondslag',
-              'Ons gerechtvaardigd belang bij het verbeteren van onze website (art. 6 lid 1 sub f AVG).',
+              'Voor de cookieloze basisstatistieken: ons gerechtvaardigd belang (art. 6 lid 1 sub f AVG). Voor Google Analytics: jouw toestemming (art. 6 lid 1 sub a AVG), die je altijd kunt intrekken via "Cookievoorkeuren" onderaan elke pagina.',
             ],
             [
               'Bewaartermijn',
-              'Geaggregeerde statistieken: 12 maanden. Gedetailleerde bezoeken: 30 dagen.',
+              'Geaggregeerde statistieken: 12 maanden. Google Analytics-gegevens: maximaal 14 maanden.',
             ],
-            ['Verwerker', 'Vercel Analytics (privacy-vriendelijk, zonder cookies).'],
+            [
+              'Verwerkers',
+              'Vercel Analytics (cookieloos) en Google Analytics 4 (Google Ireland Limited, alleen met toestemming).',
+            ],
           ]}
         />
 
@@ -193,7 +196,8 @@ export default function PrivacyPage() {
             'SnelStart — boekhouding (Nederland)',
             'Microsoft 365 — e-mail en documenten (EU/VS onder EU-US Data Privacy Framework)',
             'Apple iCloud — back-up en synchronisatie (EU/VS onder EU-US Data Privacy Framework)',
-            'Vercel — hosting en website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Vercel — hosting en cookieloze website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Google — website-statistieken via Google Analytics 4, uitsluitend met toestemming (Google Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
             'Supabase — databasehosting voor onder meer scan-leads (data-opslag in de EU, Ierland)',
             'Resend — verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
             'Anthropic — AI-analyse voor de AI-scan (VS, met Standard Contractual Clauses)',
@@ -291,7 +295,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.1 — {LAST_UPDATED}
+          Versie 1.2 — {LAST_UPDATED}
         </p>
       </article>
     </SitePage>

@@ -16,6 +16,7 @@ import {
   Mail,
 } from 'lucide-react';
 import type { ScanAnalysis, ScanEvent, ScanStageId } from '@/lib/scan/types';
+import { trackEvent } from '@/lib/analytics/gtag';
 
 const CONSENT_TEKST =
   'Ja, FactumAI mag mij af en toe mailen over wat AI voor mijn bedrijf kan betekenen.';
@@ -91,6 +92,7 @@ export function ScanTool() {
     setError(null);
     setResult(null);
     setStages({ website: 'pending', profiel: 'pending', branche: 'pending', voorstellen: 'pending' });
+    trackEvent('scan_start', { url: scanUrl });
 
     const controller = new AbortController();
     abortRef.current?.abort();
@@ -143,6 +145,10 @@ export function ScanTool() {
             gotResult = true;
             setResult(event.result);
             setResultNaam(event.bedrijfsnaam);
+            trackEvent('scan_complete', {
+              score: event.result.score,
+              label: event.result.label,
+            });
             // Laatste vinkje even laten landen voor we doorschakelen.
             setTimeout(() => setPhase('result'), 650);
           } else if (event.type === 'error') {
@@ -598,6 +604,7 @@ function RapportBlok({
         setStatus('error');
         return;
       }
+      trackEvent('scan_report_request', { consent });
       setStatus('done');
     } catch {
       setFoutmelding('Verzenden mislukte. Controleer uw verbinding en probeer opnieuw.');

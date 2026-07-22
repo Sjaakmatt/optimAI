@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getCalApi } from './calLoader';
 import { calPopupAttrs } from './config';
+import { trackEvent } from '@/lib/analytics/gtag';
+
+let bookingListenerAttached = false;
 
 const HIDE_ON: ReadonlySet<string> = new Set([
   '/contact',
@@ -26,9 +29,20 @@ export function CalProvider() {
 
   useEffect(() => {
     if (hideFloating) return;
-    getCalApi().catch((err) => {
-      console.warn('[cal] embed init failed:', err);
-    });
+    getCalApi()
+      .then((ns) => {
+        // Eén keer een booking-event registreren voor analytics (no-op zonder
+        // toestemming; trackEvent guardt op window.gtag).
+        if (bookingListenerAttached) return;
+        bookingListenerAttached = true;
+        ns('on', {
+          action: 'bookingSuccessful',
+          callback: () => trackEvent('book_intro', { source: 'floating' }),
+        });
+      })
+      .catch((err) => {
+        console.warn('[cal] embed init failed:', err);
+      });
   }, [hideFloating]);
 
   if (hideFloating) return null;

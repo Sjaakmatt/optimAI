@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics/gtag';
 
 type FieldErrors = Partial<Record<'naam' | 'email' | 'bericht', string>>;
 
@@ -40,6 +41,7 @@ export function ContactForm() {
         error?: string;
       };
       if (res.ok && result.ok) {
+        trackEvent('contact_submit', {});
         setSubmitted(true);
       } else if (result.errors) {
         setErrors(result.errors);

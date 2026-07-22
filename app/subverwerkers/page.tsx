@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/subverwerkers' },
 };
 
-const LAST_UPDATED = '20 april 2026';
+const LAST_UPDATED = '22 juli 2026';
 
 interface SubProcessor {
   naam: string;
@@ -40,9 +40,15 @@ const SUB_PROCESSORS: SubProcessor[] = [
   },
   {
     naam: 'Vercel Analytics',
-    doel: 'Privacy-vriendelijke website-statistieken',
+    doel: 'Cookieloze website-statistieken',
     locatie: 'VS',
     kader: 'EU-US Data Privacy Framework',
+  },
+  {
+    naam: 'Google Analytics 4',
+    doel: 'Website-statistieken, uitsluitend met toestemming',
+    locatie: 'EU / VS',
+    kader: 'EU-US Data Privacy Framework (Google Ireland Limited)',
   },
 ];
 
@@ -52,6 +58,10 @@ interface ChangelogEntry {
 }
 
 const CHANGELOG: ChangelogEntry[] = [
+  {
+    datum: '22 juli 2026',
+    wijziging: 'Google Analytics 4 toegevoegd voor website-statistieken (alleen na toestemming).',
+  },
   {
     datum: '20 april 2026',
     wijziging: 'Eerste publicatie van het sub-verwerkersregister.',

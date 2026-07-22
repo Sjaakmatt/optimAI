@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { CalProvider } from "@/components/booking/CalProvider";
+import { ConsentGate } from "@/components/analytics/ConsentGate";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -83,6 +84,7 @@ export default function RootLayout({
         <OrganizationSchema />
         <CalProvider />
         {children}
+        <ConsentGate />
         <Analytics />
         <SpeedInsights />
       </body>
