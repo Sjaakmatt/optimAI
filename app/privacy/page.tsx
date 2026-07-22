@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const LAST_UPDATED = '20 april 2026';
+const LAST_UPDATED = '22 juli 2026';
 
 export default function PrivacyPage() {
   return (
@@ -141,6 +141,44 @@ export default function PrivacyPage() {
           ]}
         />
 
+        <H3>2.4 AI-scan en het scan-rapport</H3>
+        <P>
+          Met onze gratis AI-scan (de tool op{' '}
+          <Link
+            href="/scan"
+            className="text-[var(--oker-deep)] underline decoration-[var(--oker)] underline-offset-4 hover:text-[var(--ink)]"
+          >
+            factumai.nl/scan
+          </Link>
+          ) laat je zien wat AI-agents voor jouw bedrijf kunnen betekenen. Je vult je website in;
+          wij halen alleen openbaar beschikbare informatie van die website op en laten een
+          AI-model die content analyseren. Wij bezoeken geen afgeschermde of ingelogde delen.
+        </P>
+        <DefList
+          items={[
+            [
+              'Welke gegevens',
+              'De website-URL die je opgeeft en (optioneel) je bedrijfsnaam, het IP-adres en apparaattype van de aanvraag (tegen misbruik), en de automatisch gegenereerde analyse. Vraag je het volledige rapport per e-mail aan, dan verwerken wij ook je e-mailadres en je keuze voor de marketing-opt-in (met tijdstip).',
+            ],
+            [
+              'Waarom',
+              'Om de scan uit te voeren en het rapport te tonen of te versturen. En, alleen als je daarvoor toestemming geeft via het vinkje, om je af en toe te mailen over wat AI voor jouw bedrijf kan betekenen.',
+            ],
+            [
+              'Grondslag',
+              'Het uitvoeren van de scan en het versturen van het door jou gevraagde rapport: op jouw verzoek / precontractueel (art. 6 lid 1 sub b AVG) of gerechtvaardigd belang (art. 6 lid 1 sub f AVG). Het versturen van marketingmails: jouw toestemming (art. 6 lid 1 sub a AVG), die je op elk moment kunt intrekken.',
+            ],
+            [
+              'Bewaartermijn',
+              'Scan-gegevens bewaren wij maximaal 24 maanden, of tot je je afmeldt of om verwijdering vraagt. Daarna verwijderen wij ze, tenzij het tot een klantrelatie heeft geleid.',
+            ],
+            [
+              'Opslag en verwerkers',
+              'Opgeslagen in onze database bij Supabase (EU, Ierland). Het rapport en de bevestiging versturen wij via Resend. De analyse gebeurt met een AI-model van Anthropic (Claude). Zie sectie 3.',
+            ],
+          ]}
+        />
+
         <H2 number="3">Met wie wij gegevens delen</H2>
         <P>
           Wij delen alleen gegevens met partijen die wij strikt nodig hebben om ons werk te doen.
@@ -152,7 +190,10 @@ export default function PrivacyPage() {
             'SnelStart — boekhouding (Nederland)',
             'Microsoft 365 — e-mail en documenten (EU/VS onder EU-US Data Privacy Framework)',
             'Apple iCloud — back-up en synchronisatie (EU/VS onder EU-US Data Privacy Framework)',
-            'Vercel Analytics — website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Vercel — hosting en website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Supabase — databasehosting voor onder meer scan-leads (data-opslag in de EU, Ierland)',
+            'Resend — verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
+            'Anthropic — AI-analyse voor de AI-scan (VS, met Standard Contractual Clauses)',
           ]}
         />
         <P>
@@ -247,7 +288,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.0 — {LAST_UPDATED}
+          Versie 1.1 — {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
