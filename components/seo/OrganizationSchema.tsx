@@ -8,6 +8,7 @@ export function OrganizationSchema() {
     '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
     '@id': `${SITE_URL}/#organization`,
     name: 'FactumAI',
+    legalName: 'FactumAI B.V.',
     url: SITE_URL,
     email: 'info@factumai.nl',
     telephone: '+31-6-10555658',

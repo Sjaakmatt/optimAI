@@ -47,7 +47,10 @@ export default function PrivacyPage() {
 
       <article className="mx-auto max-w-[860px] px-5 sm:px-8 lg:px-10 pb-16 sm:pb-24 prose-block">
         <H2 number="1">Wie zijn wij</H2>
-        <P>FactumAI is de handelsnaam van Ter Veld Holding B.V.</P>
+        <P>
+          FactumAI B.V. is de rechtspersoon achter deze website en onze dienstverlening; FactumAI
+          is de handelsnaam waaronder wij werken.
+        </P>
         <DefList
           items={[
             ['Adres', 'Julianastraat 15, 1616 CH Hoogkarspel'],
