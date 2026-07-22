@@ -205,10 +205,10 @@ export default function SubverwerkersPage() {
         <p className="text-[15px] leading-[1.7] text-[var(--ink-dim)]">
           Vragen over onze sub-verwerkers? Neem contact op via{' '}
           <a
-            href="mailto:privacy@factumai.nl"
+            href="mailto:info@factumai.nl"
             className="text-[var(--oker-deep)] underline decoration-[var(--oker)] underline-offset-4 hover:text-[var(--ink)]"
           >
-            privacy@factumai.nl
+            info@factumai.nl
           </a>
           . Zie ook onze{' '}
           <Link

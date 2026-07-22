@@ -55,7 +55,7 @@ export default function PrivacyPage() {
           items={[
             ['Adres', 'Julianastraat 15, 1616 CH Hoogkarspel'],
             ['KvK-nummer', '[IN TE VULLEN]'],
-            ['E-mail privacy-vragen', 'privacy@factumai.nl'],
+            ['E-mail privacy-vragen', 'info@factumai.nl'],
             ['Contactpersoon privacy', 'Sjaak ter Veld'],
           ]}
         />
@@ -260,10 +260,10 @@ export default function PrivacyPage() {
         <P>
           Een verzoek dien je in via{' '}
           <a
-            href="mailto:privacy@factumai.nl"
+            href="mailto:info@factumai.nl"
             className="text-[var(--oker-deep)] underline decoration-[var(--oker)] underline-offset-4 hover:text-[var(--ink)]"
           >
-            privacy@factumai.nl
+            info@factumai.nl
           </a>
           . Wij kunnen je om bewijs van identiteit vragen om te voorkomen dat wij gegevens aan de
           verkeerde persoon verstrekken.

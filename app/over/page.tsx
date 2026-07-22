@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
-import { TEAM } from '@/lib/data/team';
+import { TEAM, type TeamMember } from '@/lib/data/team';
 
 export const metadata: Metadata = {
   title: 'Over FactumAI · het bedrijf achter AI-agents voor MKB',
@@ -126,7 +126,7 @@ export default function OverPage() {
         </div>
       </section>
 
-      <FounderSection />
+      <TeamSection />
 
       <section
         className="border-t border-[var(--paper-edge)]"
@@ -147,7 +147,6 @@ export default function OverPage() {
                 <Row label="Werkgebied" value="Heel Nederland" />
                 <Row label="E-mail" value="info@factumai.nl" href="mailto:info@factumai.nl" />
                 <Row label="Telefoon" value="06-10 55 56 58" href="tel:+31610555658" />
-                <Row label="Privacy" value="privacy@factumai.nl" href="mailto:privacy@factumai.nl" />
               </dl>
             </div>
             <div>
@@ -320,8 +319,15 @@ function DoenCard({
   );
 }
 
-function FounderSection() {
-  const founder = TEAM[0];
+// Eén oprichter → een persoonlijke verhaallijn. Zodra er meer mensen bij
+// komen, schakelt de sectie automatisch over naar een teamraster, zodat de
+// pagina niet overvol raakt.
+function TeamSection() {
+  if (TEAM.length <= 1) return <FounderSpotlight founder={TEAM[0]} />;
+  return <TeamGrid members={TEAM} />;
+}
+
+function FounderSpotlight({ founder }: { founder: TeamMember }) {
   return (
     <section className="border-t border-[var(--paper-edge)]">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
@@ -445,6 +451,84 @@ function FounderSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TeamGrid({ members }: { members: TeamMember[] }) {
+  return (
+    <section className="border-t border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div>
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+              Het team
+            </div>
+            <h2 className="mt-2 font-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.1] text-[var(--ink)]">
+              Wie u aan tafel krijgt.
+            </h2>
+          </div>
+          <p className="text-[14px] text-[var(--ink-dim)] max-w-[360px] sm:text-right">
+            Klein team, korte lijnen. De persoon die u spreekt, bouwt ook mee aan uw agent.
+          </p>
+        </div>
+
+        <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {members.map((m) => (
+            <li key={m.slug}>
+              <MemberCard member={m} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function MemberCard({ member }: { member: TeamMember }) {
+  return (
+    <Link
+      href={`/over/${member.slug}`}
+      className="block h-full bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[3px] overflow-hidden hover:border-[var(--oker)] transition-colors group"
+      style={{ boxShadow: 'var(--shadow-lift)' }}
+    >
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--paper-warm)] border-b border-[var(--paper-edge)]">
+        {member.portretSrc ? (
+          <Image
+            src={member.portretSrc}
+            alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+            className="object-cover object-[center_20%]"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-display text-[64px] text-[var(--oker-deep)]">{member.initialen}</span>
+          </div>
+        )}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: 'url(/paper-grain.svg)',
+            backgroundSize: '240px',
+            mixBlendMode: 'multiply',
+          }}
+          aria-hidden
+        />
+      </div>
+      <div className="px-5 py-5">
+        <div className="font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+          {member.voornaam} {member.achternaam}
+        </div>
+        <div className="mt-1 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-wider">
+          {member.rol}
+        </div>
+        <p className="mt-3 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">{member.korteBio}</p>
+        <div className="mt-4 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+          Bekijk profiel
+          <ArrowRight size={12} strokeWidth={1.8} />
+        </div>
+      </div>
+    </Link>
   );
 }
 
