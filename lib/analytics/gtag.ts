@@ -7,7 +7,10 @@
 // Window.gtag/dataLayer worden elders al globaal gedeclareerd
 // (components/booking/useAdsConversion.ts); niet opnieuw declareren.
 
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? '';
+// GA4 Measurement ID. Standaard de FactumAI-property; via NEXT_PUBLIC_GA_ID in
+// Vercel te overschrijven of (met een lege waarde) uit te zetten. Een GA-ID is
+// publiek (staat toch in de paginabron), dus mag gerust in de repo staan.
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-QZQRD1D0BY';
 
 /** Handmatige pageview voor client-side navigatie (App Router). */
 export function pageview(path: string) {
