@@ -1,50 +1,83 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Check, ChevronDown } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { Toneel } from '../wereld/Toneel';
+import { Boom, Bankje, Figuur, Struik, Bloemen, PAD_Y } from '../wereld/wereld';
 import { DENKEN_CHECKS, DENKEN_REASONING, type SceneProps } from '../film-content';
-import { beatReveal } from '../film-motion';
 
 /**
- * Halte 2. Het werkbriefje: de agent controleert hardop, en zijn
- * redenering is altijd terug te lezen.
+ * Halte 2. De agent zit op een bankje onder een grote boom en denkt
+ * hardop: zijn gedachten verschijnen als een wolkje boven zijn hoofd.
  */
 export function SceneDenken({ beat, reduced }: SceneProps) {
-  return (
-    <div className="mx-auto w-full max-w-[520px]">
-      <div className="artifact-card px-6 sm:px-8 py-6">
-        <div className="flex items-baseline justify-between border-b border-[var(--paper-edge)] pb-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
-            Werkbriefje · order 24831
-          </span>
-          <ThinkingDots active={!reduced && beat < 3} />
-        </div>
+  const denktNog = !reduced && beat < DENKEN_CHECKS.length;
 
-        <ul className="mt-4 space-y-3">
+  return (
+    <div className="absolute inset-0">
+      <Toneel stop={1} reduced={reduced}>
+        <Boom x={330} y={PAD_Y - 4} s={1.7} />
+        <Bankje x={400} y={PAD_Y + 2} />
+        <Figuur x={392} y={PAD_Y + 2} pose="zittend" s={1.15} />
+        <Struik x={560} y={PAD_Y - 6} />
+        <Bloemen x={200} y={PAD_Y + 18} />
+        <Boom x={840} y={PAD_Y - 2} s={0.85} />
+        {/* gedachtenbelletjes richting de wolk */}
+        {[0, 1, 2].map((i) => (
+          <motion.circle
+            key={i}
+            cx={415 + i * 12}
+            cy={PAD_Y - 52 - i * 16}
+            r={2.5 + i * 1.3}
+            fill="var(--paper)"
+            stroke="var(--ink-faint)"
+            strokeWidth={1}
+            initial={false}
+            animate={denktNog ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.9 }}
+            transition={denktNog ? { duration: 1.6, repeat: Infinity, delay: i * 0.35 } : undefined}
+          />
+        ))}
+      </Toneel>
+
+      {/* de gedachtenwolk met het werkbriefje */}
+      <div
+        className="absolute right-[4%] top-[3%] w-[min(330px,58%)] rounded-[16px] border border-[var(--ink-faint)]/50 bg-[var(--paper)]/95 px-4 py-3.5 shadow-[var(--shadow-lift)]"
+        style={{ borderStyle: 'dashed' }}
+      >
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--ink-faint)]">
+            Wat hij denkt
+          </span>
+          {!denktNog && (
+            <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-[var(--mos)]">
+              gecontroleerd
+            </span>
+          )}
+        </div>
+        <ul className="mt-2.5 space-y-2">
           {DENKEN_CHECKS.map((check, i) => {
             const done = reduced || beat >= i + 1;
             return (
               <motion.li
                 key={check.label}
-                {...beatReveal(done, reduced)}
-                className="flex items-start gap-3"
+                initial={reduced ? false : { opacity: 0, x: -8 }}
+                animate={done ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className="flex items-start gap-2.5"
               >
-                <span className="mt-[1px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border border-[var(--mos)] bg-[var(--paper-warm)]">
-                  {done &&
-                    (reduced ? (
-                      <Check size={11} strokeWidth={2.2} className="text-[var(--mos)]" />
-                    ) : (
-                      <motion.span
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.15 }}
-                        className="flex"
-                      >
-                        <Check size={11} strokeWidth={2.2} className="text-[var(--mos)]" />
-                      </motion.span>
-                    ))}
+                <span className="mt-[1px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full border border-[var(--mos)] bg-[var(--paper-warm)]">
+                  {done && (
+                    <motion.span
+                      initial={reduced ? false : { scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.12 }}
+                      className="flex"
+                    >
+                      <Check size={9} strokeWidth={2.4} className="text-[var(--mos)]" />
+                    </motion.span>
+                  )}
                 </span>
-                <span className="text-[14px] leading-snug">
+                <span className="text-[12px] leading-snug">
                   <span className="font-display text-[var(--ink)]">{check.label}.</span>{' '}
                   <span className="text-[var(--ink-dim)]">{check.value}</span>
                 </span>
@@ -52,50 +85,15 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
             );
           })}
         </ul>
-
-        {/* De open Waarom-la: het geheugen van de agent */}
-        <motion.div
-          {...beatReveal(reduced || beat >= 4, reduced)}
-          className="mt-5 border-t border-dashed border-[var(--paper-edge)] pt-3"
+        <motion.p
+          initial={reduced ? false : { opacity: 0 }}
+          animate={reduced || beat >= 4 ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-2.5 border-t border-dashed border-[var(--paper-edge)] pt-2 text-[11.5px] leading-[1.55] text-[var(--ink-dim)] italic"
         >
-          <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--oker-deep)]">
-            <ChevronDown size={11} strokeWidth={1.5} aria-hidden />
-            Waarom deed hij dit?
-          </div>
-          <ul className="mt-2 space-y-1.5 text-[12.5px] leading-relaxed text-[var(--ink-dim)]">
-            {DENKEN_REASONING.map((r, i) => (
-              <li key={i} className="flex gap-2">
-                <span aria-hidden className="select-none text-[var(--ink-faint)]">
-                  —
-                </span>
-                <span>{r}</span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {DENKEN_REASONING}
+        </motion.p>
       </div>
     </div>
-  );
-}
-
-function ThinkingDots({ active }: { active: boolean }) {
-  if (!active) {
-    return (
-      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--mos)]">
-        Gecontroleerd
-      </span>
-    );
-  }
-  return (
-    <span className="flex items-center gap-1" aria-hidden>
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="h-[4px] w-[4px] rounded-full bg-[var(--oker)]"
-          animate={{ opacity: [0.25, 1, 0.25] }}
-          transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.18, ease: 'easeInOut' }}
-        />
-      ))}
-    </span>
   );
 }

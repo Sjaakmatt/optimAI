@@ -1,109 +1,114 @@
 'use client';
 
 import { motion, AnimatePresence } from 'motion/react';
-import { EmailArtifact } from '@/components/artifacts/EmailArtifact';
-import { BRIEF_EMAIL, BRIEF_STAPPEN, type SceneProps } from '../film-content';
-import { beatReveal, EASE } from '../film-motion';
+import { Toneel } from '../wereld/Toneel';
+import { Huisje, Brievenbus, Boom, Struik, Bloemen, Envelopje, PAD_Y } from '../wereld/wereld';
+import { BRIEF, BRIEF_STAPPEN, type SceneProps } from '../film-content';
 
 /**
- * Halte 1. Een envelop valt op de mat; de bezoeker opent hem zelf en ziet
- * hoe de agent er een klaargezet antwoord van maakt.
+ * Halte 1. Een huisje aan het pad, een brievenbus, en een envelop die
+ * uit de lucht komt dwarrelen. De bezoeker opent de brievenbus zelf.
  */
-export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps) {
+export function SceneBrief({ beat, reduced, actief, interacted, onInteract }: SceneProps) {
   const open = interacted;
+  const brievenbusX = 560;
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[300px] sm:min-h-[340px]">
-      <AnimatePresence mode="wait">
-        {!open ? (
-          <motion.div
-            key="dicht"
-            className="flex flex-col items-center"
-            exit={reduced ? { opacity: 0 } : { opacity: 0, y: -16, transition: { duration: 0.3 } }}
+    <div className="absolute inset-0">
+      <Toneel stop={0} reduced={reduced}>
+        <Huisje x={300} y={PAD_Y - 14} w={96} h={56} schoorsteen />
+        <Boom x={190} y={PAD_Y - 6} s={1.15} />
+        <Boom x={880} y={PAD_Y - 2} s={0.9} />
+        <Struik x={420} y={PAD_Y - 8} />
+        <Bloemen x={640} y={PAD_Y + 16} />
+        <Brievenbus x={brievenbusX} y={PAD_Y + 4} vlagOmhoog={reduced || beat >= 0 ? !open : false} />
+        {/* de envelop dwarrelt naar de brievenbus */}
+        {!open && (
+          <motion.g
+            initial={reduced ? { x: brievenbusX, y: PAD_Y - 44 } : { x: brievenbusX + 220, y: 60, rotate: -14 }}
+            animate={
+              actief || reduced
+                ? { x: brievenbusX, y: PAD_Y - 44, rotate: 0 }
+                : { x: brievenbusX + 220, y: 60, rotate: -14 }
+            }
+            transition={reduced ? { duration: 0 } : { duration: 1.6, ease: 'easeInOut', delay: 0.4 }}
           >
-            {/* De mat */}
-            <motion.button
-              type="button"
-              onClick={onInteract}
-              aria-expanded={open}
-              aria-label="Open de brief"
-              className="group relative flex flex-col items-center focus-visible:outline-2 focus-visible:outline-[var(--oker-deep)] rounded-[4px] p-4"
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <motion.svg
-                viewBox="0 0 150 104"
-                className="w-[150px] sm:w-[180px] h-auto drop-shadow-sm"
-                aria-hidden
-                focusable="false"
-                initial={reduced ? false : { y: -110, rotate: -7, opacity: 0 }}
-                animate={{ y: 0, rotate: 0, opacity: 1 }}
-                transition={
-                  reduced ? undefined : { type: 'spring', stiffness: 160, damping: 15, delay: 0.25 }
-                }
-              >
-                {/* envelop */}
-                <rect
-                  x="15" y="18" width="120" height="72" rx="2"
-                  fill="var(--paper)" stroke="var(--ink-dim)" strokeWidth="1.2"
-                />
-                {/* flaplijnen */}
-                <path d="M15 20 L75 58 L135 20" fill="none" stroke="var(--ink-dim)" strokeWidth="1.2" />
-                <path d="M15 88 L58 56 M135 88 L92 56" fill="none" stroke="var(--paper-edge)" strokeWidth="1" />
-                {/* zegel */}
-                <circle cx="75" cy="58" r="7" fill="var(--oker)" opacity="0.9" />
-                <circle cx="75" cy="58" r="7" fill="none" stroke="var(--oker-deep)" strokeWidth="1" />
-              </motion.svg>
-              <span className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-dim)] group-hover:text-[var(--oker-deep)] transition-colors">
-                Er is post
+            <Envelopje s={0.9} />
+          </motion.g>
+        )}
+      </Toneel>
+
+      {/* klik-uitnodiging op de brievenbus */}
+      {!open && (
+        <motion.button
+          type="button"
+          onClick={onInteract}
+          aria-expanded={open}
+          initial={reduced ? false : { opacity: 0, y: 8 }}
+          animate={reduced || beat >= 1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+          className="absolute flex items-center gap-2 rounded-full border border-[var(--oker)] bg-[var(--paper)] px-3.5 py-1.5 text-[12px] text-[var(--ink)] shadow-[var(--shadow-soft)] transition-colors hover:bg-[var(--paper-warm)]"
+          style={{ left: '52%', bottom: '24%' }}
+        >
+          <motion.span
+            aria-hidden
+            className="inline-block h-2 w-2 rounded-full bg-[var(--oker)]"
+            animate={reduced ? undefined : { scale: [1, 1.5, 1], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 1.4, repeat: Infinity }}
+          />
+          Open de brievenbus
+        </motion.button>
+      )}
+
+      {/* de brief, opgehouden voor de camera */}
+      <AnimatePresence>
+        {open && (
+          <motion.figure
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 30, rotate: 3 }}
+            animate={{ opacity: 1, y: 0, rotate: -1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 140, damping: 16 }}
+            className="absolute right-[3%] top-[3%] w-[min(300px,60%)] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3.5 shadow-[var(--shadow-lift)]"
+          >
+            <figcaption className="flex items-baseline justify-between gap-2 border-b border-[var(--paper-edge)] pb-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-[var(--ink-faint)]">
+                {BRIEF.van}
               </span>
-            </motion.button>
-
-            {/* Hint verschijnt op de wacht-beat */}
-            <motion.div
-              {...beatReveal(beat >= 1, reduced)}
-              className="mt-3 flex items-center gap-2 text-[13px] text-[var(--ink-dim)]"
-            >
-              <span
-                aria-hidden
-                className="inline-block h-[1px] w-6"
-                style={{ background: 'var(--oker)' }}
-              />
-              Klik op de envelop om hem te openen
-            </motion.div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="open"
-            className="w-full"
-            initial={reduced ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE }}
-          >
-            <div className="mx-auto max-w-[560px] origin-top scale-[0.92] sm:scale-100">
-              <EmailArtifact artifact={BRIEF_EMAIL} />
-            </div>
-
-            <motion.ol
-              {...beatReveal(reduced || beat >= 3, reduced)}
-              className="mt-5 flex flex-col sm:flex-row items-stretch justify-center gap-3 sm:gap-4"
-            >
-              {BRIEF_STAPPEN.map((stap, i) => (
-                <li
-                  key={stap.label}
-                  className="flex items-center gap-3 rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-2.5"
-                >
-                  <span className="font-mono text-[11px] text-[var(--oker-deep)]">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="text-[13px] leading-snug">
-                    <span className="font-display text-[var(--ink)]">{stap.label}.</span>{' '}
-                    <span className="text-[var(--ink-dim)]">{stap.body}</span>
-                  </span>
-                </li>
+            </figcaption>
+            <div className="mt-2 font-display text-[13px] text-[var(--ink)]">{BRIEF.onderwerp}</div>
+            <div className="mt-1.5 space-y-1.5 text-[11.5px] leading-[1.55] text-[var(--ink-dim)]">
+              {BRIEF.regels.map((r, i) => (
+                <p key={i}>{r}</p>
               ))}
-            </motion.ol>
-          </motion.div>
+            </div>
+            <div className="mt-2.5 border-t border-dashed border-[var(--paper-edge)] pt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--mos)]">
+              ✓ {BRIEF.stempel}
+            </div>
+          </motion.figure>
+        )}
+      </AnimatePresence>
+
+      {/* de drie stappen als wegwijzertjes */}
+      <AnimatePresence>
+        {open && (reduced || beat >= 3) && (
+          <motion.ol
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="absolute bottom-[3%] left-[3%] hidden sm:flex flex-wrap items-center gap-2"
+          >
+            {BRIEF_STAPPEN.map((stap, i) => (
+              <li
+                key={stap.label}
+                className="flex items-center gap-2 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)]/90 px-3 py-1.5 text-[11.5px] shadow-[var(--shadow-soft)]"
+              >
+                <span className="font-mono text-[10px] text-[var(--oker-deep)]">{i + 1}</span>
+                <span>
+                  <span className="font-display text-[var(--ink)]">{stap.label}</span>{' '}
+                  <span className="text-[var(--ink-dim)]">· {stap.body}</span>
+                </span>
+              </li>
+            ))}
+          </motion.ol>
         )}
       </AnimatePresence>
     </div>

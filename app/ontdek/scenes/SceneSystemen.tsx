@@ -2,123 +2,100 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, BookOpenCheck, CalendarDays, Users } from 'lucide-react';
+import { Toneel } from '../wereld/Toneel';
+import { Huisje, Figuur, Boom, Den, Struik, PAD_Y } from '../wereld/wereld';
 import { SYSTEMEN, type SceneProps } from '../film-content';
-import { beatReveal } from '../film-motion';
 
 /**
- * Halte 4. De agent als stille kracht midden tussen de systemen die er
- * al zijn. Pulsen reizen over de lijnen: hij haalt en brengt.
+ * Halte 4. Een buurtschap van vier huisjes: mail, boekhouding, agenda,
+ * CRM. De agent staat met zijn lantaarn op het kruispunt en loopt bij
+ * iedereen langs; waar hij is geweest, brandt licht.
  */
 
-const W = 440;
-const H = 240;
-const CX = W / 2;
-const CY = H / 2;
-
-// posities van de vier systeemkaartjes in het assenstelsel van de SVG
-const NODES = [
-  { x: 78, y: 46 },
-  { x: 362, y: 46 },
-  { x: 78, y: 194 },
-  { x: 362, y: 194 },
+const HUISJES = [
+  { x: 200, y: PAD_Y - 46, w: 80 },
+  { x: 430, y: PAD_Y - 78, w: 74 },
+  { x: 660, y: PAD_Y - 60, w: 78 },
+  { x: 866, y: PAD_Y - 30, w: 80 },
 ];
+const AGENT_X = 545;
+const AGENT_Y = PAD_Y + 6;
 
-const ICONS = [Mail, BookOpenCheck, CalendarDays, Users];
-
-export function SceneSystemen({ beat, reduced }: SceneProps) {
-  // Na de opbouw blijven pulsen rustig rondgaan
+export function SceneSystemen({ beat, reduced, actief }: SceneProps) {
   const [pulseIndex, setPulseIndex] = useState(0);
-  const allVisible = reduced || beat >= SYSTEMEN.length;
+  const klaar = reduced || beat >= SYSTEMEN.length;
 
   useEffect(() => {
-    if (reduced || !allVisible) return;
-    const t = setInterval(() => setPulseIndex((p) => (p + 1) % SYSTEMEN.length), 1400);
+    if (reduced || !klaar || !actief) return;
+    const t = setInterval(() => setPulseIndex((p) => (p + 1) % SYSTEMEN.length), 1500);
     return () => clearInterval(t);
-  }, [reduced, allVisible]);
+  }, [reduced, klaar, actief]);
 
   return (
-    <div className="mx-auto w-full max-w-[560px]">
-      <div className="relative" style={{ aspectRatio: `${W} / ${H}` }}>
-        <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden focusable="false">
-          {NODES.map((node, i) => {
-            const visible = reduced || beat >= i + 1;
-            const pulsing = !reduced && allVisible && pulseIndex === i;
-            return (
-              <g key={i}>
-                <line
-                  x1={CX}
-                  y1={CY}
-                  x2={node.x}
-                  y2={node.y}
-                  stroke={visible ? 'var(--oker)' : 'var(--paper-edge)'}
-                  strokeWidth={visible ? 1.2 : 1}
-                  strokeDasharray="1 5"
-                  strokeLinecap="round"
-                  style={{ transition: 'stroke 500ms ease' }}
-                />
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={2.5}
-                  fill={visible ? 'var(--oker)' : 'var(--paper-edge)'}
-                  style={{ transition: 'fill 500ms ease' }}
-                />
-                {pulsing && (
-                  <motion.circle
-                    r={3.2}
-                    fill="var(--oker)"
-                    initial={{ cx: CX, cy: CY, opacity: 0.9 }}
-                    animate={{ cx: node.x, cy: node.y, opacity: [0.9, 0.9, 0] }}
-                    transition={{ duration: 1.15, ease: 'easeInOut' }}
-                  />
-                )}
-              </g>
-            );
-          })}
-          {/* zachte gloed onder de agent-node */}
-          <circle cx={CX} cy={CY} r={30} fill="var(--oker)" opacity={0.07} />
-        </svg>
+    <div className="absolute inset-0">
+      <Toneel stop={3} reduced={reduced}>
+        {/* paadjes van de agent naar elk huisje */}
+        {HUISJES.map((h, i) => (
+          <path
+            key={i}
+            d={`M${AGENT_X} ${AGENT_Y - 10} Q ${(AGENT_X + h.x) / 2} ${(AGENT_Y + h.y) / 2 + 26} ${h.x} ${h.y + 6}`}
+            fill="none"
+            stroke={reduced || beat >= i + 1 ? 'var(--oker)' : 'var(--paper-edge)'}
+            strokeWidth={1.1}
+            strokeDasharray="2 6"
+            strokeLinecap="round"
+            style={{ transition: 'stroke 500ms ease' }}
+          />
+        ))}
+        {HUISJES.map((h, i) => (
+          <g key={i} style={{ opacity: reduced || beat >= i + 1 ? 1 : 0.35, transition: 'opacity 500ms ease' }}>
+            <Huisje x={h.x} y={h.y + 46} w={h.w} lampAan={reduced || beat >= i + 1} schoorsteen={i === 1} />
+          </g>
+        ))}
+        <Figuur x={AGENT_X} y={AGENT_Y} pose="lantaarn" s={1.15} />
+        <Boom x={100} y={PAD_Y - 2} s={0.9} />
+        <Den x={760} y={PAD_Y - 6} s={1.1} />
+        <Struik x={320} y={PAD_Y + 4} />
+        {/* de lopende puls: de agent doet zijn rondje */}
+        {!reduced && klaar && actief && (
+          <motion.circle
+            key={pulseIndex}
+            r={3.4}
+            fill="var(--oker)"
+            initial={{ cx: AGENT_X, cy: AGENT_Y - 12, opacity: 0 }}
+            animate={{
+              cx: [AGENT_X, (AGENT_X + HUISJES[pulseIndex].x) / 2, HUISJES[pulseIndex].x],
+              cy: [AGENT_Y - 12, (AGENT_Y + HUISJES[pulseIndex].y) / 2 + 20, HUISJES[pulseIndex].y + 8],
+              opacity: [0, 0.9, 0],
+            }}
+            transition={{ duration: 1.35, ease: 'easeInOut' }}
+          />
+        )}
+      </Toneel>
 
-        {/* Agent in het midden */}
-        <div
-          className="absolute -translate-x-1/2 -translate-y-1/2"
-          style={{ left: '50%', top: '50%' }}
-        >
-          <div className="rounded-[3px] border border-[var(--oker)] bg-[var(--paper)] px-4 py-2.5 text-center shadow-[var(--shadow-soft)]">
-            <div className="font-display text-[15px] leading-none text-[var(--ink)]">Uw agent</div>
-            <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--oker-deep)]">
-              haalt en brengt
+      {/* naambordjes bij de huisjes */}
+      {SYSTEMEN.map((sys, i) => {
+        const h = HUISJES[i];
+        const visible = reduced || beat >= i + 1;
+        return (
+          <motion.div
+            key={sys.label}
+            initial={reduced ? false : { opacity: 0, y: 6 }}
+            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            className="absolute -translate-x-1/2 text-center"
+            style={{
+              left: `${(h.x / 1000) * 100}%`,
+              top: `${((h.y - 58) / 520) * 100}%`,
+            }}
+          >
+            <div className="rounded-full border border-[var(--paper-edge)] bg-[var(--paper)]/95 px-2.5 py-1 shadow-[var(--shadow-soft)]">
+              <span className="font-display text-[11.5px] leading-none text-[var(--ink)]">{sys.label}</span>
+              <span className="ml-1.5 hidden sm:inline text-[10px] text-[var(--ink-dim)]">{sys.detail}</span>
             </div>
-          </div>
-        </div>
-
-        {/* Systeemkaartjes */}
-        {SYSTEMEN.map((sys, i) => {
-          const Icon = ICONS[i];
-          return (
-            <motion.div
-              key={sys.label}
-              {...beatReveal(reduced || beat >= i + 1, reduced)}
-              className="absolute w-[118px] sm:w-[132px] -translate-x-1/2 -translate-y-1/2"
-              style={{
-                left: `${(NODES[i].x / W) * 100}%`,
-                top: `${(NODES[i].y / H) * 100}%`,
-              }}
-            >
-              <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3 py-2 text-center">
-                <Icon size={14} strokeWidth={1.5} className="mx-auto text-[var(--ink-dim)]" aria-hidden />
-                <div className="mt-1 font-display text-[13px] leading-none text-[var(--ink)]">
-                  {sys.label}
-                </div>
-                <div className="mt-0.5 text-[10.5px] leading-tight text-[var(--ink-dim)]">
-                  {sys.detail}
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
