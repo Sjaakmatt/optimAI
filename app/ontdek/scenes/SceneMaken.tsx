@@ -2,28 +2,28 @@
 
 import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
-import { QuoteArtifact } from '@/components/artifacts/QuoteArtifact';
-import { WhatsAppThreadArtifact } from '@/components/artifacts/WhatsAppThreadArtifact';
+import { OrderConfirmationArtifact } from '@/components/artifacts/OrderConfirmationArtifact';
+import { InvoiceArtifact } from '@/components/artifacts/InvoiceArtifact';
 import { CalendarItemArtifact } from '@/components/artifacts/CalendarItemArtifact';
-import { MAKEN_QUOTE, MAKEN_WHATSAPP, MAKEN_AGENDA, type SceneProps } from '../film-content';
+import { MAKEN_ORDER, MAKEN_FACTUUR, MAKEN_PLANNING, type SceneProps } from '../film-content';
 
 /**
- * Halte 3. Papieren op het bureau: een offerte, een appje, een
- * agenda-afspraak. Dezelfde documentkaarten als in de Werkbank.
- * De offerte krijgt de ruimte (tabel), appje en agenda stapelen ernaast.
+ * Halte 3. De orderketen op papier: orderbevestiging, factuur met
+ * exportdocumentatie en de verpakkingsplanning. De orderbevestiging
+ * krijgt de ruimte; factuur en planning stapelen ernaast.
  */
 export function SceneMaken({ beat, reduced }: SceneProps) {
   return (
     <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-[1.2fr_1fr] md:gap-6">
       <Paper visible={reduced || beat >= 1} rotate={-1.4} reduced={reduced}>
-        <QuoteArtifact artifact={MAKEN_QUOTE} />
+        <OrderConfirmationArtifact artifact={MAKEN_ORDER} />
       </Paper>
       <div className="flex flex-col gap-4">
         <Paper visible={reduced || beat >= 2} rotate={1.3} reduced={reduced}>
-          <WhatsAppThreadArtifact artifact={MAKEN_WHATSAPP} />
+          <InvoiceArtifact artifact={MAKEN_FACTUUR} />
         </Paper>
         <Paper visible={reduced || beat >= 3} rotate={-0.9} reduced={reduced}>
-          <CalendarItemArtifact artifact={MAKEN_AGENDA} />
+          <CalendarItemArtifact artifact={MAKEN_PLANNING} />
         </Paper>
       </div>
     </div>

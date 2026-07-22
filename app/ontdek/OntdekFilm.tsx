@@ -11,6 +11,7 @@ import { SceneMaken } from './scenes/SceneMaken';
 import { SceneSystemen } from './scenes/SceneSystemen';
 import { SceneHek } from './scenes/SceneHek';
 import { SceneTeam } from './scenes/SceneTeam';
+import { SceneVooruit } from './scenes/SceneVooruit';
 import { SceneOogst } from './scenes/SceneOogst';
 
 /**
@@ -30,6 +31,7 @@ const SCENES: ComponentType<SceneProps>[] = [
   SceneSystemen,
   SceneHek,
   SceneTeam,
+  SceneVooruit,
   SceneOogst,
 ];
 

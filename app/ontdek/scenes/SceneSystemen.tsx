@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, BookOpenCheck, CalendarDays, Users } from 'lucide-react';
+import { Database, Receipt, Warehouse, MessagesSquare } from 'lucide-react';
 import { SYSTEMEN, type SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
@@ -24,7 +24,7 @@ const NODES = [
   { x: 362, y: 194 },
 ];
 
-const ICONS = [Mail, BookOpenCheck, CalendarDays, Users];
+const ICONS = [Database, Receipt, Warehouse, MessagesSquare];
 
 export function SceneSystemen({ beat, reduced }: SceneProps) {
   // Na de opbouw blijven pulsen rustig rondgaan
@@ -64,6 +64,19 @@ export function SceneSystemen({ beat, reduced }: SceneProps) {
                   fill={visible ? 'var(--oker)' : 'var(--paper-edge)'}
                   style={{ transition: 'fill 500ms ease' }}
                 />
+                {/* elk systeem hangt aan een adapter */}
+                <text
+                  x={(CX + node.x) / 2}
+                  y={(CY + node.y) / 2 - 5}
+                  textAnchor="middle"
+                  fontSize="7.5"
+                  letterSpacing="1"
+                  fill="var(--ink-faint)"
+                  fontFamily="var(--font-plex-mono), monospace"
+                  style={{ opacity: visible ? 0.9 : 0, transition: 'opacity 500ms ease' }}
+                >
+                  ADAPTER
+                </text>
                 {pulsing && (
                   <motion.circle
                     r={3.2}

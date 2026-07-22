@@ -144,8 +144,8 @@ export function SceneHek({ beat, reduced, interacted, onInteract }: SceneProps) 
               animate={{ opacity: 1, y: 0 }}
               className="max-w-[380px] text-center text-[12.5px] leading-relaxed text-[var(--ink-dim)]"
             >
-              Geen gok, geen halve waarheid. Wat buiten de afspraken valt, komt netjes bij een mens
-              terecht.
+              Afwijkende private-label-verpakking gevraagd. Dat valt buiten de afspraken, dus het
+              komt netjes bij een mens terecht. Geen gok, geen halve waarheid.
             </motion.p>
           )}
         </AnimatePresence>

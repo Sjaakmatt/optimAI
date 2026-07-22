@@ -15,7 +15,7 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
       <div className="artifact-card px-6 sm:px-8 py-6">
         <div className="flex items-baseline justify-between border-b border-[var(--paper-edge)] pb-3">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
-            Werkbriefje · order 24831
+            Werkbriefje · order Gartenwelt Berlin
           </span>
           <ThinkingDots active={!reduced && beat < 3} />
         </div>
