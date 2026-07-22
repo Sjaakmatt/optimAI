@@ -51,23 +51,23 @@ function Orb() {
       <mesh>
         <icosahedronGeometry args={[1.15, 24]} />
         <MeshDistortMaterial
-          color="#c9a55e"
-          emissive="#a15842"
-          emissiveIntensity={0.3}
-          roughness={0.26}
-          metalness={0.08}
-          distort={0.32}
-          speed={1.6}
+          color="#2a2420"
+          emissive="#1a1410"
+          emissiveIntensity={0.15}
+          roughness={0.16}
+          metalness={0.12}
+          distort={0.34}
+          speed={1.4}
         />
       </mesh>
-      {/* dunne inktring eromheen, als een getekende baan */}
+      {/* dunne getekende banen eromheen, inkt op inkt */}
       <mesh rotation={[Math.PI / 2.4, 0, 0.4]}>
-        <torusGeometry args={[1.75, 0.008, 8, 120]} />
-        <meshBasicMaterial color="#7d5e24" transparent opacity={0.55} />
+        <torusGeometry args={[1.75, 0.007, 8, 120]} />
+        <meshBasicMaterial color="#6f6555" transparent opacity={0.4} />
       </mesh>
       <mesh rotation={[Math.PI / 1.9, 0.3, -0.2]}>
         <torusGeometry args={[2.05, 0.005, 8, 120]} />
-        <meshBasicMaterial color="#6f6555" transparent opacity={0.35} />
+        <meshBasicMaterial color="#6f6555" transparent opacity={0.25} />
       </mesh>
     </group>
   );
@@ -105,7 +105,7 @@ export default function Hero3D() {
           </Float>
         </group>
         <EffectComposer>
-          <Bloom intensity={0.55} luminanceThreshold={0.55} luminanceSmoothing={0.3} mipmapBlur />
+          <Bloom intensity={0.2} luminanceThreshold={0.8} luminanceSmoothing={0.3} mipmapBlur />
         </EffectComposer>
       </Canvas>
     </div>

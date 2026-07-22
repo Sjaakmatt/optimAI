@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Check, Pencil, Send, X, RotateCcw } from 'lucide-react';
-import { Gids, type GidsState } from './Gids';
 import { useInstellingen } from './instellingen';
 import { speelStap, speelMoment } from './geluid';
 import { EASE_UIT_CSS } from './tokens';
@@ -78,15 +77,15 @@ const BERICHTEN: Bericht[] = [
 
 type Fase = 'inbox' | 'leest' | 'denkt' | 'tikt' | 'wacht' | 'verstuurd' | 'aangepast' | 'geannuleerd';
 
-const GIDS_BIJ_FASE: Record<Fase, GidsState> = {
-  inbox: 'idle',
-  leest: 'leest',
-  denkt: 'denkt',
-  tikt: 'maakt',
-  wacht: 'stopt',
-  verstuurd: 'overlegt',
-  aangepast: 'maakt',
-  geannuleerd: 'idle',
+const STATUS_BIJ_FASE: Record<Fase, string> = {
+  inbox: 'Gereed',
+  leest: 'Leest het bericht',
+  denkt: 'Controleert dossier en afspraken',
+  tikt: 'Stelt het concept op',
+  wacht: 'Wacht op uw besluit',
+  verstuurd: 'Verstuurd',
+  aangepast: 'Aangepast door u',
+  geannuleerd: 'Gestopt',
 };
 
 export function Sandbox() {
@@ -241,8 +240,17 @@ export function Sandbox() {
 
           {/* de werkbank van de agent */}
           <div className="relative min-h-[420px] rounded-[4px] border border-[var(--paper-edge)] bg-[var(--paper)] p-5 sm:p-7 shadow-[var(--shadow-lift)]">
-            <div className="pointer-events-none absolute right-3 top-3 h-[92px] sm:h-[110px]">
-              <Gids state={GIDS_BIJ_FASE[fase]} walking={false} rustig={rustig} className="h-full" />
+            <div className="pointer-events-none absolute right-4 top-4 flex items-center gap-2">
+              <motion.span
+                aria-hidden
+                className="inline-block h-2 w-2 rounded-full"
+                style={{ background: fase === 'wacht' ? 'var(--terra)' : 'var(--oker)' }}
+                animate={rustig || !bezig ? undefined : { opacity: [0.35, 1, 0.35] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+              />
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-[var(--ink-faint)]">
+                {STATUS_BIJ_FASE[fase]}
+              </span>
             </div>
 
             <AnimatePresence mode="wait">

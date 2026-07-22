@@ -81,7 +81,7 @@ export function Held() {
 
       <div className="relative z-10 max-w-[760px]">
         <div data-hero-sub className="font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--oker-deep)]">
-          De wandeling · ± 4 minuten · scroll op uw eigen tempo
+          Drie minuten · scroll op uw eigen tempo
         </div>
         <h1 className="mt-5 overflow-hidden font-display text-[44px] sm:text-[64px] lg:text-[76px] leading-[1.02] tracking-tight text-[var(--ink)]">
           Ontdek FactumAI <span className="italic text-[var(--oker-deep)]">agents.</span>
@@ -90,8 +90,8 @@ export function Held() {
           data-hero-sub
           className="mx-auto mt-6 max-w-[540px] text-[15px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]"
         >
-          Wat is een AI-agent, als je alle grote woorden weglaat? Loop mee door agent-land: zie hem
-          lezen, denken, maken en overleggen. En vooral: netjes stoppen waar u het wilt.
+          Wat is een AI-agent, als u alle grote woorden weglaat? Zie in zeven korte hoofdstukken hoe
+          een digitale collega leest, denkt en levert. En waar hij stopt, omdat u beslist.
         </p>
       </div>
 

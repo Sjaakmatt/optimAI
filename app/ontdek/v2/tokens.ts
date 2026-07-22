@@ -1,24 +1,31 @@
 /**
- * Bewegingstaal van de wandeling: drie signature-easings en vaste
- * tijden, overal hergebruikt zodat de hele pagina als één product
- * voelt. GSAP en Motion gebruiken dezelfde curves.
+ * Het motion-systeem van /ontdek: drie easings, vier duren, één stagger.
+ * Elke animatie op de pagina put uit deze set; dat ene besluit is de
+ * grootste drijver van het "duur en doordacht"-gevoel.
+ *
+ * Waarden volgen het motion-onderzoek: ease-out voor alles wat de
+ * bezoeker in gang zet, ease-in-out voor zichtbaar verplaatsende
+ * elementen, één subtiele spring (overshoot < 8%) voor het speelse
+ * accent. Exit is 0.8x de enter-duur.
  */
 
-// zacht uitrollend, voor onthullingen
-export const EASE_UIT = 'power3.out';
-export const EASE_UIT_CSS: [number, number, number, number] = [0.215, 0.61, 0.355, 1];
+// onthullingen en binnenkomers (expo-out-gevoel)
+export const EASE_UIT = 'expo.out';
+export const EASE_UIT_CSS: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-// verend, voor speelse elementen
-export const EASE_VEER = 'back.out(1.6)';
-
-// kalm in-en-uit, voor camera en grote vlakken
+// zichtbare verplaatsingen A -> B
 export const EASE_KALM = 'power2.inOut';
-export const EASE_KALM_CSS: [number, number, number, number] = [0.455, 0.03, 0.515, 0.955];
+export const EASE_KALM_CSS: [number, number, number, number] = [0.4, 0, 0.2, 1];
+
+// het speelse accent: subtiele veer, nooit cartoon-bounce
+export const VEER = { type: 'spring', stiffness: 170, damping: 26 } as const;
 
 export const DUUR = {
-  kort: 0.35,
-  basis: 0.6,
-  lang: 1.1,
+  micro: 0.12,
+  basis: 0.2,
+  paneel: 0.32,
+  hoofdstuk: 0.7,
 } as const;
 
-export const STAGGER = 0.07;
+export const STAGGER = 0.06;
+export const EXIT_FACTOR = 0.8;

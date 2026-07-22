@@ -33,7 +33,7 @@ const NAV: NavEntry[] = [
     label: 'Tools',
     matchPrefixes: ['/demo', '/tools/', '/scan', '/ontdek'],
     items: [
-      { href: '/ontdek', label: 'Ontdek · de wandeling' },
+      { href: '/ontdek', label: 'Ontdek AI-agents' },
       { href: '/scan', label: 'AI-agents scan' },
       { href: '/demo', label: 'Demo · De Werkbank' },
       { href: '/tools/ai-roi-calculator', label: 'AI ROI calculator' },

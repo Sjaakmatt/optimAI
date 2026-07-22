@@ -159,12 +159,12 @@ function OntdekBand() {
               Nieuw hier?
             </div>
             <h2 className="mt-2 font-display text-[22px] sm:text-[26px] leading-tight tracking-tight text-[var(--ink)]">
-              Wat is een AI-agent eigenlijk?{' '}
-              <span className="italic text-[var(--oker-deep)]">Loop even mee.</span>
+              Wat is een AI-agent{' '}
+              <span className="italic text-[var(--oker-deep)]">eigenlijk?</span>
             </h2>
             <p className="mt-2 text-[14px] leading-[1.65] text-[var(--ink-dim)] max-w-[520px]">
-              Een korte, visuele wandeling langs zeven haltes: hoe een agent leest, denkt, maakt en
-              waar hij netjes stopt.
+              Zie in drie minuten hoe een digitale collega leest, denkt en levert. En waar hij
+              stopt, omdat u beslist.
             </p>
           </div>
           <Link

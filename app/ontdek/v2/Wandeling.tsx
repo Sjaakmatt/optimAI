@@ -1,84 +1,112 @@
 'use client';
 
 import { useRef, useState, type ComponentType } from 'react';
-import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { useGSAP } from '@gsap/react';
-import { CHAPTERS, type SceneProps } from '../film-content';
-import { SceneBrief } from '../scenes/SceneBrief';
-import { SceneDenken } from '../scenes/SceneDenken';
-import { SceneMaken } from '../scenes/SceneMaken';
-import { SceneSystemen } from '../scenes/SceneSystemen';
-import { SceneHek } from '../scenes/SceneHek';
-import { SceneTeam } from '../scenes/SceneTeam';
-import { SceneOogst } from '../scenes/SceneOogst';
-import { WolkenCel, VoorgrondCel } from '../wereld/lagen';
-import { Gids, type GidsState } from './Gids';
+import { HOOFDSTUKKEN } from '../film-content';
+import { DRUPPEL_STATEN } from './druppel';
+import {
+  LaagMaandag,
+  LaagCollega,
+  LaagDenkt,
+  LaagLevert,
+  LaagStuur,
+  LaagGrenzen,
+  LaagBegin,
+  type LaagProps,
+} from './hoofdstukken';
 import { useInstellingen } from './instellingen';
 import { speelStap, speelMoment } from './geluid';
 import { EASE_UIT, DUUR, STAGGER } from './tokens';
 
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
-
-// 3D-gedachtenveld voor halte 2, alleen client-side en alleen in de buurt
-const GedachtenVeld = dynamic(() => import('./GedachtenVeld'), { ssr: false });
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MorphSVGPlugin);
 
 /**
- * De wandeling als scroll-verhaal: de getekende wereld hangt sticky in
- * beeld en schuift horizontaal mee met de verticale scroll, terwijl de
- * tekstpanelen van de zeven haltes voorbij komen. De gids loopt zodra
- * er gescrold wordt en wisselt per halte van toestand.
+ * Het verhaal van /ontdek: één inktdruppel als hoofdrolspeler, gescrubd
+ * aan de scroll. De druppel morpht per hoofdstuk van gedaante (chaos ->
+ * collega -> denken -> document -> grens -> stilte -> goud zegel),
+ * terwijl korte tekstpanelen voorbij komen. Kalm basisbeeld, één
+ * verandering per beat, goud verschijnt pas bij het slot.
  *
- * In de rustige modus (prefers-reduced-motion of "Animaties uit") is er
- * geen pin en geen scrub: de haltes staan als volwaardige, statische
- * hoofdstukken onder elkaar.
+ * In de rustige modus (prefers-reduced-motion of "Animaties uit") staan
+ * de zeven hoofdstukken statisch en compleet onder elkaar.
  */
 
-const SCENES: ComponentType<SceneProps>[] = [
-  SceneBrief,
-  SceneDenken,
-  SceneMaken,
-  SceneSystemen,
-  SceneHek,
-  SceneTeam,
-  SceneOogst,
+const LAGEN: ComponentType<LaagProps>[] = [
+  LaagMaandag,
+  LaagCollega,
+  LaagDenkt,
+  LaagLevert,
+  LaagStuur,
+  LaagGrenzen,
+  LaagBegin,
 ];
 
-const GIDS_PER_STOP: GidsState[] = ['leest', 'denkt', 'maakt', 'idle', 'stopt', 'overlegt', 'idle'];
-
-const N = CHAPTERS.length;
-const PANEEL_VH = 135;
+const N = HOOFDSTUKKEN.length;
+const SEGMENT_SVH = 180;
+const REIS = 0.34; // eerste deel van elk segment: de druppel transformeert
 
 export function Wandeling() {
   const { rustig } = useInstellingen();
-  return rustig ? <WandelingRustig /> : <WandelingScroll />;
+  return rustig ? <VerhaalRustig /> : <VerhaalScroll />;
 }
 
 /* ------------------------------------------------------------------ */
-/* Scroll-gedreven variant                                             */
+/* Scroll-gedreven verhaal                                             */
 /* ------------------------------------------------------------------ */
 
-function WandelingScroll() {
+function VerhaalScroll() {
   const { geluidAan } = useInstellingen();
   const containerRef = useRef<HTMLDivElement>(null);
-  const stripRef = useRef<HTMLDivElement>(null);
-  const wolkenRef = useRef<HTMLDivElement>(null);
-  const voorRef = useRef<HTMLDivElement>(null);
+  const padRef = useRef<SVGPathElement>(null);
+  const wrapRef = useRef<SVGGElement>(null);
+  const zegelRef = useRef<SVGCircleElement>(null);
 
   const [stop, setStop] = useState(0);
   const [beat, setBeat] = useState(0);
-  const [walking, setWalking] = useState(false);
-  const [geklikt, setGeklikt] = useState<Record<number, boolean>>({});
-
   const stopRef = useRef(0);
   const beatRef = useRef(0);
-  const loopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useGSAP(
     () => {
+      // de morph-tijdlijn van de druppel, gescrubd aan de container
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1,
+        },
+      });
+      tl.to({}, { duration: REIS }); // rustpunt op hoofdstuk 1
+      for (let i = 1; i < N; i++) {
+        const s = DRUPPEL_STATEN[i];
+        tl.to(
+          padRef.current,
+          { morphSVG: s.d, fill: s.fill, duration: REIS, ease: 'power2.inOut' },
+          i,
+        );
+        tl.to(
+          wrapRef.current,
+          { x: s.x, y: s.y, scale: s.scale, duration: REIS, ease: 'power2.inOut' },
+          i,
+        );
+      }
+      // het zegelrandje tekent zich pas bij het slot
+      tl.fromTo(
+        zegelRef.current,
+        { drawSVG: '0%', opacity: 1 },
+        { drawSVG: '100%', duration: 0.5, ease: 'power2.out' },
+        N - 1 + 0.1,
+      );
+      tl.to({}, { duration: 1 - REIS }, N - 1 + REIS); // rust op het slot
+      tl.duration(N);
+
+      // hoofdstuk- en beat-status voor de lagen
       const st = ScrollTrigger.create({
         trigger: containerRef.current,
         start: 'top top',
@@ -87,20 +115,9 @@ function WandelingScroll() {
           const p = self.progress;
           const s = Math.min(N - 1, Math.floor(p * N));
           const lokaal = p * N - s;
-
-          // camera met plateau: reizen in de eerste 38% van een segment,
-          // daarna stilstaan precies op de halte terwijl het paneel leest
-          const reis = s === 0 ? 1 : Math.min(1, lokaal / 0.38);
-          const eased = reis < 0.5 ? 2 * reis * reis : 1 - Math.pow(-2 * reis + 2, 2) / 2;
-          const k = s === 0 ? 0 : s - 1 + eased;
-          if (stripRef.current) gsap.set(stripRef.current, { xPercent: (-k * 100) / N });
-          if (wolkenRef.current) gsap.set(wolkenRef.current, { xPercent: (-k * 0.45 * 100) / N });
-          if (voorRef.current) gsap.set(voorRef.current, { xPercent: (-k * 1.3 * 100) / (N + 3) });
-
-          const beats = CHAPTERS[s].beats;
-          const naReis = s === 0 ? lokaal : Math.max(0, (lokaal - 0.38) / 0.62);
-          const b = Math.min(beats, Math.floor((naReis / 0.8) * (beats + 1)));
-
+          const naReis = s === 0 ? lokaal : Math.max(0, (lokaal - REIS) / (1 - REIS));
+          const beats = HOOFDSTUKKEN[s].beats;
+          const b = Math.min(beats, Math.floor((naReis / 0.75) * (beats + 1)));
           if (s !== stopRef.current) {
             stopRef.current = s;
             setStop(s);
@@ -111,12 +128,6 @@ function WandelingScroll() {
             beatRef.current = b;
             setBeat(b);
           }
-
-          if (Math.abs(self.getVelocity()) > 40) {
-            setWalking(true);
-            if (loopTimer.current) clearTimeout(loopTimer.current);
-            loopTimer.current = setTimeout(() => setWalking(false), 220);
-          }
         },
       });
       return () => st.kill();
@@ -124,82 +135,61 @@ function WandelingScroll() {
     { scope: containerRef, dependencies: [geluidAan] },
   );
 
+  const Laag = LAGEN[stop];
+  const hoofdstuk = HOOFDSTUKKEN[stop];
+
   return (
-    <div ref={containerRef} className="relative" style={{ height: `${N * PANEEL_VH}vh` }}>
-      {/* de sticky wereld */}
+    <div ref={containerRef} className="relative" style={{ height: `${N * SEGMENT_SVH}svh` }}>
+      {/* de sticky stage */}
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute inset-x-0 bottom-0 top-0">
-          {/* wolkenlaag */}
-          <div
-            ref={wolkenRef}
+        {/* zacht watermerk dat nét langzamer beweegt: voelbare, onzichtbare diepte */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              'radial-gradient(ellipse 55% 42% at 50% 48%, var(--oker) 0%, transparent 65%)',
+          }}
+        />
+        {/* het domein van de druppel: gecentreerd, op desktop links van de panelen */}
+        <div className="absolute inset-0 lg:right-[430px]">
+          <svg
+            viewBox="0 0 400 400"
+            className="absolute inset-0 m-auto h-[min(74vh,560px)] w-auto"
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 flex h-full"
-            style={{ width: `${N * 100}%` }}
+            focusable="false"
           >
-            {Array.from({ length: N }, (_, i) => (
-              <div key={i} className="relative h-full" style={{ width: `${100 / N}%` }}>
-                <WolkenCel i={i} />
-              </div>
-            ))}
-          </div>
-          {/* scènestrip */}
-          <div
-            ref={stripRef}
-            className="absolute inset-y-0 left-0 flex h-full"
-            style={{ width: `${N * 100}%` }}
-          >
-            {CHAPTERS.map((c, i) => {
-              const Scene = SCENES[i];
-              const actief = i === stop;
-              const pauze = c.pauseAtBeat;
-              const interacted =
-                (actief && pauze !== undefined && beat > pauze) || i < stop || !!geklikt[i];
-              return (
-                <div key={c.id} className="relative h-full" style={{ width: `${100 / N}%` }}>
-                  <Scene
-                    beat={actief ? beat : i < stop ? c.beats : 0}
-                    reduced={false}
-                    actief={actief}
-                    interacted={interacted}
-                    onInteract={() => setGeklikt((g) => ({ ...g, [i]: true }))}
-                  />
-                </div>
-              );
-            })}
-          </div>
-          {/* voorgrond */}
-          <div
-            ref={voorRef}
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 flex h-full"
-            style={{ width: `${(N + 3) * 100}%` }}
-          >
-            {Array.from({ length: N + 3 }, (_, i) => (
-              <div key={i} className="relative h-full" style={{ width: `${100 / (N + 3)}%` }}>
-                <VoorgrondCel i={i} />
-              </div>
-            ))}
-          </div>
-          {/* 3D-gedachten boven het bankje van halte 2 */}
-          {stop >= 0 && stop <= 2 && <GedachtenVeld actief={stop === 1} />}
-          {/* de gids */}
-          <Gids
-            state={GIDS_PER_STOP[stop]}
-            walking={walking}
-            rustig={false}
-            className="pointer-events-none absolute"
-            style={{ left: '12%', bottom: '13%', height: 'min(19vh, 150px)' }}
-          />
+            <g ref={wrapRef} style={{ transformOrigin: '200px 220px' }}>
+              {/* het zegelrandje (alleen zichtbaar bij het slot) */}
+              <circle
+                ref={zegelRef}
+                cx={200}
+                cy={206}
+                r={86}
+                fill="none"
+                stroke="var(--oker-deep)"
+                strokeWidth={1.6}
+                strokeDasharray="10 6"
+                strokeLinecap="round"
+                opacity={0}
+              />
+              <path ref={padRef} d={DRUPPEL_STATEN[0].d} fill={DRUPPEL_STATEN[0].fill} />
+              {/* glansaccent: de druppel is nat */}
+              <ellipse cx={172} cy={190} rx={16} ry={9} fill="var(--paper)" opacity={0.14} transform="rotate(-24 172 190)" />
+            </g>
+          </svg>
+          {/* de laag van het actieve hoofdstuk */}
+          <Laag key={hoofdstuk.id} beat={beat} reduced={false} actief />
         </div>
       </div>
 
       {/* de tekstpanelen */}
       <div className="pointer-events-none absolute inset-0">
-        {CHAPTERS.map((c, i) => (
+        {HOOFDSTUKKEN.map((h, i) => (
           <div
-            key={c.id}
-            className="flex items-center justify-center px-5 lg:justify-end lg:pr-[7vw]"
-            style={{ height: `${PANEEL_VH}vh` }}
+            key={h.id}
+            className="flex items-center justify-center px-5 lg:justify-end lg:pr-[6vw]"
+            style={{ height: `${SEGMENT_SVH}svh` }}
           >
             <Paneel index={i} />
           </div>
@@ -211,10 +201,10 @@ function WandelingScroll() {
   );
 }
 
-/** Tekstpaneel van één halte, met SplitText-reveal en een flourish die zichzelf tekent. */
+/** Tekstpaneel: kop per woord, body als één rustige fade. */
 function Paneel({ index }: { index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const c = CHAPTERS[index];
+  const h = HOOFDSTUKKEN[index];
 
   useGSAP(
     () => {
@@ -224,31 +214,30 @@ function Paneel({ index }: { index: number }) {
       gsap.from(split.words, {
         yPercent: 110,
         opacity: 0,
-        duration: DUUR.basis,
+        duration: DUUR.hoofdstuk,
         ease: EASE_UIT,
         stagger: STAGGER,
-        scrollTrigger: { trigger: ref.current, start: 'top 78%' },
+        scrollTrigger: { trigger: ref.current, start: 'top 76%' },
       });
       gsap.from(ref.current!.querySelectorAll('[data-regel]'), {
-        y: 18,
+        y: 14,
         opacity: 0,
-        duration: DUUR.basis,
+        duration: DUUR.paneel,
         ease: EASE_UIT,
-        stagger: 0.1,
-        delay: 0.15,
-        scrollTrigger: { trigger: ref.current, start: 'top 78%' },
+        stagger: 0.09,
+        delay: 0.12,
+        scrollTrigger: { trigger: ref.current, start: 'top 76%' },
       });
-      const paden = ref.current!.querySelectorAll<SVGPathElement>('[data-flourish] path');
-      if (paden.length) {
+      const lijn = ref.current!.querySelector<SVGPathElement>('[data-lijn] path');
+      if (lijn) {
         gsap.fromTo(
-          paden,
+          lijn,
           { drawSVG: '0%' },
           {
             drawSVG: '100%',
-            duration: DUUR.lang,
+            duration: DUUR.hoofdstuk,
             ease: EASE_UIT,
-            stagger: 0.06,
-            scrollTrigger: { trigger: ref.current, start: 'top 74%' },
+            scrollTrigger: { trigger: ref.current, start: 'top 72%' },
           },
         );
       }
@@ -257,33 +246,32 @@ function Paneel({ index }: { index: number }) {
   );
 
   return (
-    <div
-      ref={ref}
-      className="pointer-events-auto w-full max-w-[420px] rounded-[4px] border border-[var(--paper-edge)] bg-[var(--paper)]/92 px-6 py-6 shadow-[var(--shadow-lift)] backdrop-blur-[2px]"
-    >
-      <svg data-flourish viewBox="0 0 120 14" className="mb-3 w-[110px]" aria-hidden focusable="false">
-        <path
-          d="M2 10 C 26 4, 44 13, 66 8 C 88 3, 102 10, 118 5"
-          fill="none"
-          stroke="var(--oker)"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-        />
-      </svg>
-      <div data-regel className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--oker-deep)]">
-        {c.eyebrow}
+    <div ref={ref} className="pointer-events-auto w-full max-w-[400px]">
+      <div className="border-l border-[var(--paper-edge)] pl-6 lg:bg-transparent">
+        <div data-regel className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--oker-deep)]">
+          {h.eyebrow}
+        </div>
+        <h2 className="mt-3 overflow-hidden font-display text-[30px] sm:text-[36px] leading-[1.08] tracking-tight text-[var(--ink)]">
+          {h.titel} <span className="italic text-[var(--oker-deep)]">{h.titelAccent}</span>
+        </h2>
+        <svg data-lijn viewBox="0 0 140 10" className="mt-3 w-[120px]" aria-hidden focusable="false">
+          <path
+            d="M2 6 C 34 2, 66 9, 98 5 C 114 3, 126 6, 138 4"
+            fill="none"
+            stroke="var(--oker)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+        </svg>
+        <p data-regel className="mt-3 text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">
+          {h.body}
+        </p>
       </div>
-      <h2 className="mt-2 overflow-hidden font-display text-[24px] sm:text-[28px] leading-[1.12] tracking-tight text-[var(--ink)]">
-        {c.titel} <span className="italic text-[var(--oker-deep)]">{c.titelAccent}</span>
-      </h2>
-      <p data-regel className="mt-3 text-[13.5px] sm:text-[14.5px] leading-[1.65] text-[var(--ink-dim)]">
-        {c.intro}
-      </p>
     </div>
   );
 }
 
-/** Vaste rail met de zeven haltes; klikbaar en keyboard-bedienbaar. */
+/** Vaste voortgangsrail; klikbaar en keyboard-bedienbaar. */
 function VoortgangsRail({
   stop,
   containerRef,
@@ -294,7 +282,7 @@ function VoortgangsRail({
   function naar(i: number) {
     const el = containerRef.current;
     if (!el) return;
-    const top = el.offsetTop + ((i + 0.45) / N) * el.offsetHeight - window.innerHeight * 0.45;
+    const top = el.offsetTop + ((i + 0.6) / N) * el.offsetHeight - window.innerHeight * 0.5;
     const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number) => void } }).__lenis;
     if (lenis) lenis.scrollTo(top);
     else window.scrollTo({ top, behavior: 'smooth' });
@@ -302,24 +290,30 @@ function VoortgangsRail({
 
   return (
     <nav
-      aria-label="Haltes van de wandeling"
-      className="fixed left-4 top-1/2 z-20 hidden -translate-y-1/2 lg:flex flex-col items-center gap-2.5"
+      aria-label="Hoofdstukken"
+      className="fixed left-5 top-1/2 z-20 hidden -translate-y-1/2 lg:flex flex-col gap-1"
     >
-      {CHAPTERS.map((c, i) => (
+      {HOOFDSTUKKEN.map((h, i) => (
         <button
-          key={c.id}
+          key={h.id}
           type="button"
           onClick={() => naar(i)}
-          aria-label={c.eyebrow}
+          aria-label={h.eyebrow}
           aria-current={i === stop ? 'step' : undefined}
-          className="group flex h-5 w-5 items-center justify-center rounded-full"
+          className="group flex items-center gap-2 py-1"
         >
           <span
             aria-hidden
-            className="block rounded-full transition-all duration-300 group-hover:scale-125"
+            className="font-mono text-[9px] tabular-nums transition-colors duration-300"
+            style={{ color: i === stop ? 'var(--oker-deep)' : 'var(--ink-faint)' }}
+          >
+            {h.nummer}
+          </span>
+          <span
+            aria-hidden
+            className="block h-px transition-all duration-300 group-hover:bg-[var(--oker)]"
             style={{
-              width: i === stop ? 10 : 6,
-              height: i === stop ? 10 : 6,
+              width: i === stop ? 26 : 12,
               background: i <= stop ? 'var(--oker)' : 'var(--paper-edge)',
             }}
           />
@@ -330,39 +324,39 @@ function VoortgangsRail({
 }
 
 /* ------------------------------------------------------------------ */
-/* Rustige variant: volwaardige statische hoofdstukken                 */
+/* Rustige variant: statische, complete hoofdstukken                   */
 /* ------------------------------------------------------------------ */
 
-function WandelingRustig() {
+function VerhaalRustig() {
   return (
     <div className="mx-auto w-full max-w-[1080px] px-5 sm:px-8 lg:px-10">
-      {CHAPTERS.map((c, i) => {
-        const Scene = SCENES[i];
+      {HOOFDSTUKKEN.map((h, i) => {
+        const Laag = LAGEN[i];
+        const staat = DRUPPEL_STATEN[i];
         return (
-          <section key={c.id} aria-labelledby={`halte-${c.id}`} className="py-10 sm:py-14">
-            <div className="max-w-[560px]">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--oker-deep)]">
-                {c.eyebrow}
+          <section key={h.id} aria-labelledby={`hoofdstuk-${h.id}`} className="grid grid-cols-1 items-center gap-8 py-12 sm:py-16 lg:grid-cols-2">
+            <div className="max-w-[440px]">
+              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--oker-deep)]">
+                {h.eyebrow}
               </div>
               <h2
-                id={`halte-${c.id}`}
-                className="mt-2 font-display text-[24px] sm:text-[30px] leading-[1.12] tracking-tight text-[var(--ink)]"
+                id={`hoofdstuk-${h.id}`}
+                className="mt-3 font-display text-[28px] sm:text-[32px] leading-[1.1] tracking-tight text-[var(--ink)]"
               >
-                {c.titel} <span className="italic text-[var(--oker-deep)]">{c.titelAccent}</span>
+                {h.titel} <span className="italic text-[var(--oker-deep)]">{h.titelAccent}</span>
               </h2>
-              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">{c.intro}</p>
+              <p className="mt-3 text-[14px] leading-[1.7] text-[var(--ink-dim)]">{h.body}</p>
             </div>
-            <div
-              className="relative mt-6 w-full overflow-hidden rounded-[4px] border border-[var(--paper-edge)]"
-              style={{ aspectRatio: '1000 / 520', minHeight: 240 }}
-            >
-              <Scene
-                beat={c.beats}
-                reduced
-                actief
-                interacted
-                onInteract={() => undefined}
-              />
+            <div className="relative h-[420px]">
+              <svg viewBox="0 0 400 400" className="absolute inset-0 m-auto h-full w-auto" aria-hidden focusable="false">
+                <g style={{ transform: `translate(${staat.x}px, ${staat.y}px) scale(${staat.scale})`, transformOrigin: '200px 220px' }}>
+                  {i === N - 1 && (
+                    <circle cx={200} cy={206} r={86} fill="none" stroke="var(--oker-deep)" strokeWidth={1.6} strokeDasharray="10 6" strokeLinecap="round" />
+                  )}
+                  <path d={staat.d} fill={staat.fill} />
+                </g>
+              </svg>
+              <Laag beat={h.beats} reduced actief />
             </div>
           </section>
         );

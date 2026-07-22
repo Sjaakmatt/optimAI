@@ -1,174 +1,131 @@
 /**
- * Copy en timing voor de wandeling op /ontdek.
+ * Copy en inhoud van /ontdek: zeven zakelijke hoofdstukken die samen
+ * het verhaal Probleem -> Mechanisme -> Vertrouwen -> Actie vertellen.
  *
- * De film bestaat uit zeven haltes in een doorlopend getekend landschap.
- * Elke halte bouwt op in "beats": de controller (OntdekFilm) verhoogt de
- * beat op beatDelayMs zolang er wordt afgespeeld en gaat holdMs na de
- * laatste beat door naar de volgende halte. Een halte met pauseAtBeat
- * wacht daar tot de bezoeker iets doet.
+ * Schrijfregels (uit het onderzoek): u-vorm, nuchter, kop <= 8 woorden,
+ * body 15-40 woorden, één idee per hoofdstuk. Geen "robot", geen
+ * "magie"; het frame is de digitale collega met uw handen aan het
+ * stuur.
  */
 
-export interface FilmChapter {
+export interface Hoofdstuk {
   id: string;
+  nummer: string;
   eyebrow: string;
   titel: string;
   titelAccent: string;
-  intro: string;
+  body: string;
   beats: number;
-  beatDelayMs: number;
-  holdMs: number;
-  pauseAtBeat?: number;
 }
 
-export const CHAPTERS: FilmChapter[] = [
+export const HOOFDSTUKKEN: Hoofdstuk[] = [
   {
-    id: 'brief',
-    eyebrow: 'Halte 1 · De brievenbus',
-    titel: 'Er valt werk',
-    titelAccent: 'binnen.',
-    intro:
-      'Een AI-agent is een digitale collega. Hij leest wat er binnenkomt, net als uw mensen. Alleen meteen, en altijd.',
+    id: 'maandag',
+    nummer: '01',
+    eyebrow: '01 · Maandagochtend',
+    titel: 'Veertig mailtjes.',
+    titelAccent: 'Waar begint u?',
+    body:
+      'Offerteaanvragen, factuurvragen, bestellingen. Het meeste is routine, maar het moet wel vandaag. En het loopt dwars door uw eigen werk heen.',
     beats: 3,
-    beatDelayMs: 1700,
-    holdMs: 4200,
-    pauseAtBeat: 1,
   },
   {
-    id: 'denken',
-    eyebrow: 'Halte 2 · Het bankje',
-    titel: 'Eerst denken, dan',
-    titelAccent: 'doen.',
-    intro:
-      'Voor elke stap kijkt de agent na wat er klopt. En u kunt altijd teruglezen waarom hij iets deed. Geen zwarte doos.',
-    beats: 4,
-    beatDelayMs: 1500,
-    holdMs: 4200,
+    id: 'collega',
+    nummer: '02',
+    eyebrow: '02 · De digitale collega',
+    titel: 'Geen robot.',
+    titelAccent: 'Een collega.',
+    body:
+      'Software doet taken. Een collega denkt de stappen ertussen: lezen, opzoeken, afwegen, klaarzetten. Dat is wat een agent is. Niet meer, niet minder.',
+    beats: 1,
   },
   {
-    id: 'maken',
-    eyebrow: 'Halte 3 · De waslijn',
-    titel: 'Hij praat niet alleen. Hij',
-    titelAccent: 'levert.',
-    intro:
-      'Offertes, antwoorden, afspraken: de agent hangt ze klaar zoals uw mensen dat zouden doen. U hoeft alleen nog te versturen.',
+    id: 'denkt',
+    nummer: '03',
+    eyebrow: '03 · Zo denkt hij',
+    titel: 'Elke stap',
+    titelAccent: 'leesbaar.',
+    body:
+      'Voor elk antwoord kijkt de agent eerst na wat er klopt. En elke afweging wordt vastgelegd, zodat u altijd kunt teruglezen waarom iets is gebeurd.',
     beats: 3,
-    beatDelayMs: 1700,
-    holdMs: 4500,
   },
   {
-    id: 'systemen',
-    eyebrow: 'Halte 4 · Het buurtschap',
-    titel: 'Geen nieuw scherm erbij.',
-    titelAccent: 'Hij komt naar u.',
-    intro:
-      'De agent loopt tussen uw mail, uw boekhouding, uw agenda en uw CRM. Niet in wéér een apart pakket dat niemand opent.',
-    beats: 4,
-    beatDelayMs: 1400,
-    holdMs: 4200,
+    id: 'levert',
+    nummer: '04',
+    eyebrow: '04 · Hij levert',
+    titel: 'Klaar voor',
+    titelAccent: 'verzending.',
+    body:
+      'Geen samenvatting van wat u zou kunnen doen, maar het werk zelf: de offerte, het antwoord, de orderbevestiging. Opgesteld zoals uw mensen dat doen.',
+    beats: 3,
   },
   {
-    id: 'hek',
-    eyebrow: 'Halte 5 · Het hek',
-    titel: 'Bij twijfel beslist',
-    titelAccent: 'een mens.',
-    intro:
-      'De agent werkt binnen regels die u samen afspreekt. Komt hij iets tegen dat daarbuiten valt, dan stopt hij bij het hek.',
+    id: 'stuur',
+    nummer: '05',
+    eyebrow: '05 · U houdt het stuur',
+    titel: 'Bij twijfel',
+    titelAccent: 'stopt hij.',
+    body:
+      'De agent werkt binnen grenzen die u samen afspreekt. Wat daarbuiten valt, legt hij bij u neer. Als een copiloot: hij vliegt, u beslist.',
     beats: 2,
-    beatDelayMs: 1600,
-    holdMs: 4200,
-    pauseAtBeat: 1,
   },
   {
-    id: 'team',
-    eyebrow: 'Halte 6 · Het dorpsplein',
-    titel: 'Grote klussen doet hij',
-    titelAccent: 'samen.',
-    intro:
-      'Voor werk dat door meerdere afdelingen loopt werken agents als een klein team, met een dirigent die de maat aangeeft.',
-    beats: 2,
-    beatDelayMs: 1600,
-    holdMs: 4800,
-  },
-  {
-    id: 'oogst',
-    eyebrow: 'Halte 7 · De boomgaard',
-    titel: 'Wat het',
-    titelAccent: 'oplevert.',
-    intro: 'Uren terug voor werk dat aandacht verdient. Dat is de hele bedoeling.',
+    id: 'grenzen',
+    nummer: '06',
+    eyebrow: '06 · Wat Factum niet doet',
+    titel: 'Grenzen,',
+    titelAccent: 'zwart op wit.',
+    body:
+      'Eerlijk is eerlijk: ongeveer één op de tien gevallen kijkt u zelf even na. En een aantal dingen doet de agent principieel niet.',
     beats: 4,
-    beatDelayMs: 1300,
-    holdMs: 6000,
+  },
+  {
+    id: 'begin',
+    nummer: '07',
+    eyebrow: '07 · Begin klein',
+    titel: 'Werk hem in als een',
+    titelAccent: 'nieuwe collega.',
+    body:
+      'Eén proces, een vaste bouwprijs, en binnen twee weken draait de eerste versie. Bevalt het niet, dan stopt het daar. Zo simpel mag het zijn.',
+    beats: 4,
   },
 ];
 
-export interface SceneProps {
-  beat: number;
-  reduced: boolean;
-  actief: boolean;
-  interacted: boolean;
-  onInteract: () => void;
-}
-
 /* ------------------------------------------------------------------ */
-/* Halte-inhoud                                                        */
+/* Inhoud per hoofdstuk                                                */
 /* ------------------------------------------------------------------ */
 
-export const BRIEF = {
-  van: 'j.vermeer@dehaanbouw.nl',
-  onderwerp: 'Levertijd kozijnen, order 24831',
+export const MAANDAG_BERICHTEN = [
+  { van: 'inkoop@bouwbedrijfhendriks.nl', regel: 'Offerte 40 m2 eiken vloerdelen?' },
+  { van: 'administratie@dekort.nl', regel: 'Toeslag op factuur 2026-0341?' },
+  { van: 'j.smit@smitafbouw.nl', regel: 'Bestelling: 12 zakken egaline' },
+];
+
+export const DENKT_LOG = [
+  'Klant herkend: Bouwbedrijf Hendriks, betaalafspraak 30 dagen.',
+  'Voorraad gecheckt: 62 m2 eiken op locatie C-2.',
+  'Staffelprijs van toepassing. Concept klaargezet.',
+];
+
+export const LEVERT_DOCUMENT = {
+  soort: 'Offerte',
+  nummer: 'OFF-2026-118',
+  klant: 'Bouwbedrijf Hendriks',
   regels: [
-    'Beste meneer Vermeer,',
-    'Uw kozijnen staan gepland voor donderdag tussen 8.00 en 12.00 uur. De chauffeur belt een half uur van tevoren.',
+    { omschrijving: '40 m2 eiken vloerdelen, geschaafd', bedrag: '€ 2.480,00' },
+    { omschrijving: 'Levering week 12, af magazijn', bedrag: '€ 200,00' },
   ],
-  stempel: 'Concept klaargezet · wacht op uw akkoord',
+  totaal: '€ 2.680,00 excl. btw',
 };
 
-export const BRIEF_STAPPEN = [
-  { label: 'Lezen', body: 'wat wordt er gevraagd?' },
-  { label: 'Opzoeken', body: 'wat weten we al?' },
-  { label: 'Doen', body: 'antwoord klaarzetten, in uw toon' },
+export const NIET_DOEN = [
+  'Verstuurt nooit iets zonder uw akkoord.',
+  'Verzint geen bedragen en geen levertijden.',
+  'Beslist niet over uw klanten of uw prijzen.',
+  'Werkt niet buiten de afspraken die u zelf zet.',
 ];
 
-export const DENKEN_CHECKS = [
-  { label: 'Dossier gevonden', value: 'klant sinds 2019, order 24831' },
-  { label: 'Beleid nagekeken', value: 'levertijd mag gedeeld, korting niet' },
-  { label: 'Voorraad gecheckt', value: 'alles op locatie B-14' },
-];
-
-export const DENKEN_REASONING =
-  'Deze klant heeft een betalingsafspraak die aandacht vraagt, dus het antwoord staat klaar als concept. U beslist.';
-
-export const WASLIJN_PAPIEREN = [
-  {
-    soort: 'Offerte',
-    titel: 'Renovatie dakkapel',
-    regels: ['4 × HR++ glas', '12 × kozijnprofiel', 'montageset'],
-    slot: '€ 1.395,13 incl. btw',
-  },
-  {
-    soort: 'WhatsApp',
-    titel: 'Installatiebedrijf Roos',
-    regels: ['"Is de bestelling al onderweg?"', 'Geladen, levering 13.00 en 15.00 uur.'],
-    slot: 'beantwoord om 08:42',
-  },
-  {
-    soort: 'Agenda',
-    titel: 'Inmeten bij Kuiper',
-    regels: ['dinsdag 10.00 uur, 45 min', 'monteur Van Dijk'],
-    slot: 'uitnodiging verstuurd',
-  },
-];
-
-export const SYSTEMEN = [
-  { label: 'E-mail', detail: 'leest en beantwoordt' },
-  { label: 'Boekhouding', detail: 'boekt en controleert' },
-  { label: 'Agenda', detail: 'plant en bevestigt' },
-  { label: 'CRM', detail: 'kent elke klant' },
-];
-
-export const TEAM_AGENTS = ['Verkoop', 'Planning', 'Inkoop', 'Facturatie'];
-
-export interface OogstStat {
+export interface BeginStat {
   value: number;
   prefix: string;
   suffix: string;
@@ -176,8 +133,8 @@ export interface OogstStat {
   literal?: string;
 }
 
-export const OOGST_STATS: OogstStat[] = [
+export const BEGIN_STATS: BeginStat[] = [
+  { value: 1, prefix: '', suffix: ' proces', label: 'om mee te beginnen', literal: '1' },
+  { value: 2, prefix: '1–', suffix: ' wk', label: 'tot de eerste versie live staat' },
   { value: 40, prefix: '~', suffix: '%', label: 'minder tijd aan terugkerend werk' },
-  { value: 2, prefix: '1–', suffix: ' wk', label: 'van kennismaking tot live' },
-  { value: 0, prefix: '', suffix: '', label: 'nieuwe schermen om te leren', literal: '0' },
 ];
