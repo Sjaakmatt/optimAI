@@ -88,7 +88,7 @@ export const TEAM: TeamMember[] = [
     rolKort: 'Sales & Marketing',
     vestiging: 'Hoogkarspel · West-Friesland',
     email: 'danny@factumai.nl',
-    // portretSrc: '/danny.jpg' — koppelen zodra de foto in public/ staat.
+    portretSrc: '/danny.jpg',
     korteBio:
       'Eerste aanspreekpunt bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
     langeBio: [
