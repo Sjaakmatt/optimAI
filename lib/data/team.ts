@@ -90,11 +90,11 @@ export const TEAM: TeamMember[] = [
     email: 'danny@factumai.nl',
     portretSrc: '/danny.jpg',
     korteBio:
-      'Eerste aanspreekpunt bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
+      'Verzorgt contact en marketing bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
     langeBio: [
-      'Als Sales & Marketing Manager is Danny vaak het eerste gezicht van FactumAI. Hij zit aan tafel bij ondernemers, luistert naar waar de werkdag stroef loopt, en vertaalt dat naar een helder voorstel: wat kan een agent overnemen, wat levert het op, en waar beginnen we.',
+      'Als Sales & Marketing Manager verzorgt Danny het contact en de marketing bij FactumAI. Hij zit aan tafel bij ondernemers, luistert naar waar de werkdag stroef loopt, en vertaalt dat naar een helder voorstel: wat kan een agent overnemen, wat levert het op, en waar beginnen we.',
       'Hij bewaakt dat de belofte eerlijk blijft. Geen luchtkastelen, maar een concreet eerste resultaat binnen één tot twee weken. Wat aan tafel wordt beloofd, maken de bouwers waar.',
-      'Daarnaast geeft hij FactumAI een gezicht naar buiten: van de eerste kennismaking tot de verhalen die we delen over wat AI wél en niet voor het MKB kan betekenen.',
+      'Daarnaast geeft hij FactumAI een gezicht naar buiten: van het klantcontact tot de verhalen die we delen over wat AI wél en niet voor het MKB kan betekenen.',
     ],
     expertise: [
       {
