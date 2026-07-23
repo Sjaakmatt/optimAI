@@ -1292,6 +1292,49 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'agents-koppelen-exact-twinfield-afas',
+    title: 'AI-agents koppelen aan Exact, Twinfield of AFAS',
+    lede: 'Drie van de meestgebruikte boekhoudpakketten in het Nederlandse MKB. Elk met eigen koppelmogelijkheden, eigen eigenaardigheden en eigen valkuilen. Wat u moet weten voordat u begint.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-23',
+    readingMinutes: 6,
+    tags: ['integraties', 'boekhouder', 'systemen', 'techniek', 'MKB'],
+    blocks: [
+      { kind: 'p', text: 'Wanneer een ondernemer overweegt een agent te bouwen voor facturatie, debiteurenbeheer of inkoopverwerking, komt al snel de vraag: hoe praat die agent straks met ons boekhoudpakket? Terechte vraag. De koppeling tussen een agent en uw financiële administratie is bepalend voor hoeveel hij werkelijk kan automatiseren. Geen koppeling betekent dat uw medewerker alsnog handmatig gegevens overneemt, en dat is precies wat u wilde voorkomen.' },
+      { kind: 'h2', text: 'Exact: de meest gangbare koppeling' },
+      { kind: 'p', text: 'Exact Online heeft een uitgebreide REST API die real-time werkt. Een agent kan via die API facturen ophalen, aanmaken, betalingen uitlezen en relaties opzoeken. De documentatie is goed op orde. Aansluiten kost doorgaans twee tot vier dagen werk, afhankelijk van hoeveel entiteiten u nodig hebt.' },
+      { kind: 'p', text: 'Waar u rekening mee moet houden: Exact werkt per divisie. Als u meerdere bedrijfsentiteiten heeft in één Exact-omgeving, moet de agent weten in welke divisie hij moet werken. Dat klinkt technisch, maar het is vooral een configuratievraag die u vooraf beantwoordt. Een tweede aandachtspunt is de OAuth-authenticatie. Exact vereist dat een gebruiker eenmalig toestemming verleent via een browserflow. Daarna verloopt het automatisch. Dat eenmalige moment regelen we tijdens de implementatie.' },
+      { kind: 'h2', text: 'Twinfield: solide maar minder bekend' },
+      { kind: 'p', text: 'Twinfield wordt veel gebruikt door accountantskantoren en hun klanten. De API is XML-gebaseerd, wat ouder aandoet dan de REST-interfaces van Exact of AFAS, maar het werkt betrouwbaar. Een agent kan boekingen aanmaken, openstaande posten opvragen en relatiegegevens uitlezen. Het inrichten van de koppeling vraagt iets meer technische kennis van de Twinfield-structuur, met name rondom grootboekrekeningen en kostenplaatsen.' },
+      { kind: 'p', text: 'Twinfield heeft ook een webservices-interface die directe bestandsuitwisseling mogelijk maakt. Dat is nuttig als uw agent inkoopfacturen verwerkt die via e-mail binnenkomen: de agent leest de bijlage uit, structureert de gegevens en boekt ze via de webservice direct in. Voor middelgrote bedrijven met een eigen accountant die Twinfield beheert, werkt dit goed zolang u de grootboekinrichting van tevoren afspreekt.' },
+      { kind: 'h2', text: 'AFAS: krachtig, maar eigenwijzer' },
+      { kind: 'p', text: 'AFAS is meer dan alleen boekhoudsoftware. Het omvat ook HR, CRM en projectadministratie. Dat maakt de koppelmogelijkheden breder, maar ook complexer. AFAS werkt met een eigen connector-laag genaamd GetConnectors en UpdateConnectors. Die zijn flexibel, maar vereisen dat iemand bij AFAS of bij u intern de juiste connectors heeft ingericht.' },
+      { kind: 'p', text: 'Een agent die facturen moet aanmaken in AFAS heeft een UpdateConnector nodig die daarvoor is geconfigureerd. Als die connector er nog niet is, moet een AFAS-beheerder hem aanmaken. Dat is geen ict-probleem, maar een beheervraagstuk. Plan dit in als onderdeel van uw implementatietraject, anders loopt u er tegenaan op het moment dat u wilt livegang.' },
+      { kind: 'list', items: [
+        'Exact Online: REST API, goed gedocumenteerd, twee tot vier dagen koppelwerk, let op divisie-structuur.',
+        'Twinfield: XML-webservices, stabiel, iets meer configuratie rond grootboekrekeningen en kostenplaatsen.',
+        'AFAS: GetConnectors en UpdateConnectors, breed inzetbaar maar afhankelijk van intern AFAS-beheer.',
+        'Bij alle drie geldt: regel testomgeving en beperkte API-rechten vooraf, niet achteraf.',
+        'De agent leest altijd eerst, schrijft pas nadat u de regels voor automatisch boeken hebt vastgesteld.',
+      ] },
+      { kind: 'h2', text: 'Wat u vooraf regelt' },
+      { kind: 'p', text: 'Ongeacht welk pakket u gebruikt, zijn er drie dingen die u vóór de bouw regelt. Eén: toegang tot een testomgeving of een gesandboxte account. Zo bouwen en testen we zonder dat er iets misgaat in uw live administratie. Twee: een lijst van de entiteiten die de agent mag lezen en schrijven. Facturen ja, grootboekinstellingen nee. Dat is een beslissing van u, niet van ons. Drie: uw rekeningschema of een voorbeeld van hoe een handmatige boeking er normaal uitziet. Zonder dat referentiepunt boekt de agent in het luchtledige.' },
+      { kind: 'quote', text: 'Een agent die correct boekt, is een agent die de logica van uw administratie kent. Niet die van het gemiddelde MKB-bedrijf.' },
+      { kind: 'h2', text: 'Hoever mag de agent gaan zonder bevestiging?' },
+      { kind: 'p', text: 'Dit is de vraag die het meest over het hoofd wordt gezien. Technisch kan een agent veel: facturen aanmaken, betalingen inplannen, crediteuren verwerken. Maar wat hij mág doen zonder menselijke bevestiging, is een beleidskeuze. Wij adviseren om te beginnen met lezen en signaleren, en pas na twee tot vier weken gebruik de schrijfrechten open te zetten voor de handelingen die in de praktijk foutloos verlopen.' },
+      { kind: 'p', text: 'Een debiteurenagent die openstaande facturen opspoort en een herinnering klaarzet ter goedkeuring, geeft u grip. Een agent die ook meteen verzendt zonder dat u het ziet, is een stap verder. Beide zijn mogelijk. De eerste is verstandiger om mee te beginnen.' },
+    ],
+    faq: [
+      { q: 'Kan een AI-agent automatisch facturen aanmaken in Exact Online?', a: 'Ja, dat kan via de REST API van Exact. De agent maakt facturen aan op basis van door u ingestelde regels, zoals een afgeleverde order of een goedgekeurd project. Wij raden aan om de eerste weken te werken met een goedkeuringsstap, zodat u controle houdt tot het proces bewezen betrouwbaar is.' },
+      { q: 'Werkt een AI-agent ook met AFAS als wij dat gebruiken voor zowel boekhouding als HR?', a: 'Ja. AFAS biedt via GetConnectors en UpdateConnectors toegang tot vrijwel alle modules, inclusief HR en financieel. Voorwaarde is dat uw AFAS-beheerder de juiste connectors inricht. Dat is doorgaans een dag werk. Daarna kan de agent over meerdere AFAS-modules heen werken.' },
+      { q: 'Wat als onze boekhouder Twinfield beheert en wij geen technische kennis in huis hebben?', a: 'Dan regelen wij de koppeling in overleg met uw accountant of boekhouder. Wij hebben de API-documentatie nodig, toegang tot een testomgeving en afspraken over welke grootboekrekeningen de agent mag gebruiken. Uw boekhouder hoeft daar zelf geen code voor te schrijven.' },
+      { q: 'Is het veilig om een AI-agent schrijftoegang te geven tot mijn boekhoudpakket?', a: 'Mits u de rechten beperkt tot de noodzakelijke entiteiten, is het risico beheersbaar. Wij werken altijd met een account met minimale rechten, gescheiden van uw beheerdersaccount. Daarnaast stellen we guardrails in: bedragen boven een door u bepaalde grens gaan altijd langs een medewerker voor akkoord.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
