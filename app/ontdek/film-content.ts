@@ -3,10 +3,12 @@ import type { Artifact } from '@/lib/types';
 /**
  * Copy, timing en fixtures voor de wandeling op /ontdek.
  *
- * Rode draad: één fictieve exporteur ("Bolster Export", bloembollen en
- * zaden, levert aan retailers in dertig landen). De film laat zien hoe
- * één agent daar meertalig orders afhandelt, en groeit tot een
- * multi-agent orderketen en geavanceerde, vooruitkijkende agents.
+ * Rode draad: een gewoon MKB-bedrijf dat klantvragen, bestellingen en
+ * facturen afhandelt (in het voorbeeld "Meridian", een fictieve leverancier
+ * met klanten in binnen- en buitenland). De film laat zien hoe één agent daar
+ * meertalig orders afhandelt, en groeit tot een multi-agent keten en
+ * geavanceerde, vooruitkijkende agents. Bewust sector-neutraal, zodat elk
+ * bedrijf zich erin herkent.
  *
  * De film bestaat uit hoofdstukken die elk in "beats" opbouwen. De
  * controller (OntdekFilm) verhoogt de beat op beatDelayMs zolang er
@@ -33,7 +35,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'Er valt werk binnen.',
     titelAccent: 'In vier talen.',
     intro:
-      'Bolster Export levert bloembollen aan retailers in dertig landen. De agent leest elke order mee, ook als hij in het Duits, Engels of Frans binnenkomt.',
+      'Klanten sturen aanvragen en bestellingen, soms in het Nederlands, soms in het Duits, Engels of Frans. De agent leest elke binnenkomende vraag mee, in de taal van de klant.',
     beats: 4,
     beatDelayMs: 1600,
     holdMs: 3500,
@@ -45,7 +47,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'Geen zwarte doos, maar een',
     titelAccent: 'werkbriefje.',
     intro:
-      'Voor elke order kijkt de agent na wat er klopt: klant, valuta, voorraad, seizoen, exportpapieren. En u kunt altijd teruglezen waarom hij iets deed.',
+      'Voor elke aanvraag kijkt de agent na wat er klopt: wie de klant is, wat er is afgesproken, of het leverbaar is en welke voorwaarden gelden. En u kunt altijd teruglezen waarom hij iets deed.',
     beats: 5,
     beatDelayMs: 1400,
     holdMs: 4000,
@@ -56,7 +58,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'Hij praat niet alleen. Hij',
     titelAccent: 'levert.',
     intro:
-      'Orderbevestiging, factuur met de juiste valuta en exportdocumentatie, verpakkingsplanning voor de najaarspiek: de agent zet het klaar zoals uw mensen dat doen.',
+      'Een bevestiging, een factuur met de juiste gegevens en valuta, een planning voor de uitvoering: de agent zet het klaar zoals uw mensen dat doen.',
     beats: 3,
     beatDelayMs: 1800,
     holdMs: 4500,
@@ -67,7 +69,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'Geen nieuw scherm erbij.',
     titelAccent: 'Hij komt naar u.',
     intro:
-      'Via een adapter per systeem werkt de agent in het ERP, de facturatie, de magazijnplanning en alle klantkanalen tegelijk: mail, chat en social.',
+      'Via een adapter per systeem werkt de agent in uw ERP of administratie, de facturatie, de planning en al uw klantkanalen tegelijk: mail, chat en social.',
     beats: 4,
     beatDelayMs: 1300,
     holdMs: 4000,
@@ -78,7 +80,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'Bij twijfel beslist',
     titelAccent: 'een mens.',
     intro:
-      'Een standaardorder loopt door. Maar vraagt een retailer om afwijkende private-label-verpakking, dan stopt de agent en legt hij de keuze bij u neer.',
+      'Een standaardgeval loopt door. Maar wijkt een aanvraag af, gaat het om een uitzondering of een groot bedrag, dan stopt de agent en legt hij de keuze bij u neer.',
     beats: 3,
     beatDelayMs: 1500,
     holdMs: 4000,
@@ -86,11 +88,11 @@ export const CHAPTERS: FilmChapter[] = [
   },
   {
     id: 'team',
-    eyebrow: 'Halte 6 · De orderketen',
+    eyebrow: 'Halte 6 · De keten',
     titel: 'Grote klussen doet hij',
     titelAccent: 'samen.',
     intro:
-      'Eén order loopt van sales naar verpakking, logistiek en facturatie. Agents geven het werk aan elkaar door, met een dirigent die het overzicht houdt.',
+      'Eén opdracht loopt van verkoop naar uitvoering, planning en facturatie. Agents geven het werk aan elkaar door, met een dirigent die het overzicht houdt.',
     beats: 3,
     beatDelayMs: 1500,
     holdMs: 4500,
@@ -101,7 +103,7 @@ export const CHAPTERS: FilmChapter[] = [
     titel: 'En dan wordt het pas',
     titelAccent: 'echt interessant.',
     intro:
-      'Naast het dagelijkse werk zijn er agents die vooruitkijken: vraag voorspellen, regels bewaken, kennis ontsluiten en de markt volgen.',
+      'Naast het dagelijkse werk zijn er agents die vooruitkijken: vraag voorspellen, afspraken en regels bewaken, kennis uit uw eigen documenten ontsluiten en de markt volgen.',
     beats: 4,
     beatDelayMs: 1500,
     holdMs: 5500,
@@ -138,21 +140,21 @@ export const BRIEF_EMAIL: Artifact = {
   startedAt: 0,
   footer: 'Concept in het Duits klaargezet, wacht op uw akkoord',
   meta: {
-    from: 'agent@bolster-export.nl',
-    to: 'einkauf@gartenwelt-berlin.de',
-    subject: 'Re: Bestellung Tulpenzwiebeln Herbstsaison',
+    from: 'orders@meridian.nl',
+    to: 'einkauf@nordmann-gmbh.de',
+    subject: 'Re: Ihre Bestellung 2214',
     date: 'vandaag · 09:12',
     reasoning: [
-      'Order herkend: 18.000 tulpenbollen, gemengd assortiment, levering week 38.',
+      'Order herkend: bestelling 2214, levering in week 38.',
       'Beantwoord in de taal van de klant (Duits), toon uit eerdere mails overgenomen.',
-      'Voorraad en verpakkingscapaciteit gecheckt vóór het toezeggen van de leverweek.',
+      'Beschikbaarheid en planning gecheckt vóór het toezeggen van de leverweek.',
     ],
   },
   content: {
     paragraphs: [
-      'Sehr geehrte Frau Weber,',
-      'vielen Dank für Ihre Bestellung von 18.000 Tulpenzwiebeln für die Herbstsaison. Die Lieferung ist für Woche 38 eingeplant; die Auftragsbestätigung und die Exportdokumente folgen in separater Mail.',
-      'Mit freundlichen Grüßen,\nBolster Export',
+      'Sehr geehrter Herr Nordmann,',
+      'vielen Dank für Ihre Bestellung 2214. Die Lieferung ist für Woche 38 eingeplant; die Auftragsbestätigung und die Rechnung folgen in separater Mail.',
+      'Mit freundlichen Grüßen,\nMeridian',
     ],
   },
 };
@@ -163,21 +165,21 @@ export const MAKEN_ORDER: Artifact = {
   type: 'order-confirmation',
   state: 'complete',
   startedAt: 0,
-  footer: 'Bevestigd naar de retailer, in het Duits',
+  footer: 'Bevestigd naar de klant, in het Duits',
   meta: {
     orderNumber: 'ORD-2026-2214',
-    customer: 'Gartenwelt Berlin GmbH',
-    contactRegel: 'bolster-export.nl',
+    customer: 'Nordmann GmbH',
+    contactRegel: 'meridian.nl',
     date: 'vandaag',
-    deliveryDate: 'Week 38 · najaarslevering',
+    deliveryDate: 'Week 38',
     deliveryWindow: 'Laadslot magazijn: dinsdag 7.00 uur',
-    deliveryAddress: 'Zentrallager Gartenwelt\nBerlin-Spandau, DE',
+    deliveryAddress: 'Zentrallager Nordmann\nBerlin, DE',
   },
   content: {
     items: [
-      { artikel: 'Tulp Triumph, gemengd 12/+', aantal: 12000 },
-      { artikel: 'Tulp Darwin hybride 12/+', aantal: 6000 },
-      { artikel: 'Displaydozen private label', aantal: 240 },
+      { artikel: 'Standaardassortiment, gemengd', aantal: 240 },
+      { artikel: 'Aanvullende artikelen', aantal: 60 },
+      { artikel: 'Verpakking met klantlogo', aantal: 24 },
     ],
   },
 };
@@ -188,20 +190,20 @@ export const MAKEN_FACTUUR: Artifact = {
   type: 'invoice',
   state: 'complete',
   startedAt: 0,
-  footer: 'Multi-valuta en exportdocumentatie meegenomen',
+  footer: 'Juiste valuta en klantvoorwaarden meegenomen',
   meta: {
     invoiceNumber: 'F-2026-1841',
     date: 'vandaag',
-    afzender: 'BOLSTER EXPORT',
-    afzenderSub: 'Bloembollen & zaden',
-    customer: 'Gartenwelt Berlin GmbH',
-    to: 'Zentrallager Berlin-Spandau\nDuitsland · facturatie in EUR',
-    terms: '30 dagen · fytosanitair certificaat bijgevoegd',
+    afzender: 'MERIDIAN',
+    afzenderSub: 'Levering aan zakelijke klanten',
+    customer: 'Nordmann GmbH',
+    to: 'Zentrallager Berlin\nDuitsland · facturatie in EUR',
+    terms: '30 dagen · levering in overleg',
   },
   content: {
     lines: [
-      { omschrijving: 'Tulpenbollen najaarsorder ORD-2026-2214', aantal: 1, prijs: 14680, totaal: 14680 },
-      { omschrijving: 'Exportdocumentatie en keuring', aantal: 1, prijs: 240, totaal: 240 },
+      { omschrijving: 'Levering order ORD-2026-2214', aantal: 1, prijs: 14680, totaal: 14680 },
+      { omschrijving: 'Verzend- en administratiekosten', aantal: 1, prijs: 240, totaal: 240 },
     ],
   },
 };
@@ -212,17 +214,17 @@ export const MAKEN_PLANNING: Artifact = {
   type: 'calendar-item',
   state: 'complete',
   startedAt: 0,
-  footer: 'Ingepland rond de najaarspiek',
+  footer: 'Ingepland ruim voor de leverweek',
   meta: {},
   content: {
     slot: {
       wanneer: 'week 37, ma t/m wo',
       duur: '3 dagdelen',
-      voor: 'verpakkingslijn 2',
-      onderwerp: 'Verpakken order Gartenwelt (18.000 bollen)',
+      voor: 'het uitvoerende team',
+      onderwerp: 'Order Nordmann klaarmaken (2214)',
       details: [
-        'Displaydozen private label staan dinsdag klaar',
-        'Laadslot magazijn week 38 is al gereserveerd',
+        'Materiaal en capaciteit zijn gereserveerd',
+        'Levering in week 38 is met de klant bevestigd',
       ],
     },
   },
@@ -234,30 +236,30 @@ export const MAKEN_PLANNING: Artifact = {
 
 export const BRIEF_STAPPEN = [
   { label: 'Lezen', body: 'in de taal van de klant (NL/EN/DE/FR)' },
-  { label: 'Opzoeken', body: 'klant, voorraad en seizoen erbij' },
+  { label: 'Opzoeken', body: 'klant, afspraken en beschikbaarheid erbij' },
   { label: 'Doen', body: 'antwoord en vervolgstappen klaarzetten' },
 ];
 
 export const DENKEN_CHECKS = [
-  { label: 'Klant en valuta', value: 'Gartenwelt Berlin, EUR, btw verlegd, 30 dagen' },
-  { label: 'Voorraad en seizoen', value: '31.000 Triumph op voorraad, najaarspiek +12% vs vorig jaar' },
-  { label: 'Exportdocumenten', value: 'fytosanitair certificaat DE vereist, sjabloon klaar' },
+  { label: 'Klant en voorwaarden', value: 'Nordmann GmbH, EUR, btw verlegd, 30 dagen' },
+  { label: 'Beschikbaarheid', value: 'leverbaar, levering week 38 haalbaar' },
+  { label: 'Afspraken', value: 'klantspecifieke prijs- en levervoorwaarden toegepast' },
 ];
 
 export const DENKEN_REASONING = [
-  'De vraag naar Triumph-bollen ligt dit najaar naar verwachting 12% hoger dan vorig seizoen; de voorraad kan deze order dragen zonder andere klanten te raken.',
-  'Duitsland vraagt een fytosanitair certificaat; dat sjabloon staat klaar en gaat mee met de factuur.',
-  'De leverweek is pas toegezegd nadat verpakkingslijn 2 en het laadslot gecheckt waren.',
+  'De bestelling past binnen de beschikbaarheid en raakt geen andere klanten.',
+  'De klantspecifieke prijsafspraak en betaaltermijn (30 dagen) zijn automatisch toegepast.',
+  'De leverweek is pas toegezegd nadat capaciteit en planning gecheckt waren.',
 ];
 
 export const SYSTEMEN = [
-  { label: 'ERP · voorraad', detail: 'orders en partijen' },
-  { label: 'Facturatie', detail: 'multi-valuta, export' },
-  { label: 'Magazijnplanning', detail: 'laadsloten, lijnen' },
+  { label: 'ERP · administratie', detail: 'orders en klanten' },
+  { label: 'Facturatie', detail: 'facturen en betalingen' },
+  { label: 'Planning', detail: 'capaciteit en levering' },
   { label: 'Klantkanalen', detail: 'mail · chat · social' },
 ];
 
-export const TEAM_AGENTS = ['Sales', 'Verpakking', 'Logistiek', 'Facturatie'];
+export const TEAM_AGENTS = ['Verkoop', 'Uitvoering', 'Planning', 'Facturatie'];
 
 /** De geavanceerde agents van halte 7. */
 export interface VooruitAgent {
@@ -270,27 +272,27 @@ export interface VooruitAgent {
 export const VOORUIT_AGENTS: VooruitAgent[] = [
   {
     type: 'Voorspellend',
-    titel: 'Seizoensvraag-forecasting',
-    body: 'Combineert verkoopdata per land, weerpatronen en plantseizoenen om vraagpieken te voorspellen, zodat inkoop en verpakking vooruit gepland worden.',
-    voorbeeld: 'Hoeveel tulpenbollen heeft de Duitse retail komend najaar nodig?',
+    titel: 'Vraagvoorspelling',
+    body: 'Combineert verkoophistorie, seizoenspatronen en externe signalen om drukte en vraag te voorspellen, zodat inkoop, planning en bezetting vooruit geregeld worden.',
+    voorbeeld: 'Wordt het over zes weken druk? De planning weet het nu al.',
   },
   {
     type: 'Kennis & RAG',
-    titel: 'Compliance-assistent certificering',
-    body: 'Ontsluit alle kwaliteits- en certificeringsdocumentatie (SKAL, MPS, SKBH), zodat sales direct het juiste, land-specifieke antwoord heeft.',
-    voorbeeld: 'Een Franse retailer vraagt naar bio-certificering: het juiste SKAL-bewijs, direct.',
+    titel: 'Kennis uit uw eigen documenten',
+    body: 'Ontsluit uw handleidingen, contracten, prijsafspraken en dossiers, zodat iedereen direct het juiste, onderbouwde antwoord heeft, met bronvermelding.',
+    voorbeeld: 'Wat spraken we met deze klant af over levertijden? Meteen paraat, met bron.',
   },
   {
     type: 'Autonome monitoring',
-    titel: 'Fytosanitaire bewaking, 30 landen',
-    body: 'Volgt continu wijzigingen in import- en fytosanitaire eisen per exportland en waarschuwt vóórdat een zending geweigerd kan worden.',
-    voorbeeld: 'Nieuw invoervereiste in Polen? Melding vandaag, niet bij de grens.',
+    titel: 'Regels en afspraken bewaken',
+    body: 'Volgt continu wijzigingen in regels, tarieven of afspraken die voor u gelden en waarschuwt vóórdat het een probleem wordt.',
+    voorbeeld: 'Een voorwaarde of tarief verandert? Melding vandaag, niet als het al misging.',
   },
   {
-    type: 'Klantintelligentie',
-    titel: 'Prijs- en marktmonitoring',
-    body: 'Monitort assortiment, prijzen en promoties van concurrenten en retailtrends, zodat sales proactief kan inspelen op private-label-kansen.',
-    voorbeeld: 'Concurrent lanceert een bio-bollenlijn in Duitsland: signaal voor het eigen SKAL-assortiment.',
+    type: 'Marktintelligentie',
+    titel: 'Markt- en prijsmonitoring',
+    body: 'Volgt prijzen, aanbod en trends in uw markt, zodat u proactief kunt inspelen op kansen in plaats van achteraf te reageren.',
+    voorbeeld: 'Een concurrent verandert zijn aanbod: signaal zodat u op tijd kunt bijsturen.',
   },
 ];
 
@@ -303,7 +305,7 @@ export interface OogstStat {
 }
 
 export const OOGST_STATS: OogstStat[] = [
-  { value: 40, prefix: '~', suffix: '%', label: 'minder tijd aan terugkerend orderwerk' },
+  { value: 40, prefix: '~', suffix: '%', label: 'minder tijd aan terugkerend werk' },
   { value: 2, prefix: '1–', suffix: ' wk', label: 'van kennismaking tot eerste agent live' },
   { value: 4, prefix: '', suffix: '', label: 'talen beantwoord, zonder extra mensen', literal: '4' },
 ];

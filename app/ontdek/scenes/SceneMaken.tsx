@@ -8,9 +8,9 @@ import { CalendarItemArtifact } from '@/components/artifacts/CalendarItemArtifac
 import { MAKEN_ORDER, MAKEN_FACTUUR, MAKEN_PLANNING, type SceneProps } from '../film-content';
 
 /**
- * Halte 3. De orderketen op papier: orderbevestiging, factuur met
- * exportdocumentatie en de verpakkingsplanning. De orderbevestiging
- * krijgt de ruimte; factuur en planning stapelen ernaast.
+ * Halte 3. De keten op papier: orderbevestiging, factuur en de
+ * planning voor de uitvoering. De orderbevestiging krijgt de ruimte;
+ * factuur en planning stapelen ernaast.
  */
 export function SceneMaken({ beat, reduced }: SceneProps) {
   return (

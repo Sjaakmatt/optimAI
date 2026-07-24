@@ -13,12 +13,12 @@ const PAGE_PATH = '/ontdek';
 export const metadata: Metadata = {
   title: 'Ontdek FactumAI agents · een wandeling door agent-land',
   description:
-    'Loop in een paar minuten door het land van de AI-agents, aan de hand van één exporteur: meertalige orders, multi-valuta facturatie, een multi-agent orderketen en agents die vooruitkijken. En overal: een mens die beslist.',
+    'Loop in een paar minuten door het land van de AI-agents, aan de hand van een gewoon bedrijf: meertalige klantvragen, facturatie, een multi-agent keten en agents die vooruitkijken. En overal: een mens die beslist.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'Ontdek FactumAI agents',
     description:
-      'Een korte, visuele wandeling door het land van de AI-agents. Zeven haltes, geen jargon.',
+      'Een korte, visuele wandeling door het land van de AI-agents. Acht haltes, geen jargon.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -58,9 +58,9 @@ export default function OntdekPage() {
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[620px]">
             Wat is een AI-agent nou eigenlijk, als je alle grote woorden weglaat? Loop even mee met
-            één (fictieve) exporteur die bloembollen aan retailers in dertig landen levert. U ziet
-            hoe een agent leest, denkt, levert en samenwerkt. En vooral: waar hij netjes stopt en
-            een mens beslist.
+            een gewoon bedrijf dat klantvragen, bestellingen en facturen afhandelt. U ziet hoe een
+            agent leest, denkt, levert en samenwerkt. En vooral: waar hij netjes stopt en een mens
+            beslist.
           </p>
         </div>
       </section>

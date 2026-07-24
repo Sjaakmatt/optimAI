@@ -116,8 +116,8 @@ export function SceneTeam({ beat, reduced }: SceneProps) {
         {...beatReveal(reduced || beat >= 2, reduced)}
         className="mx-auto mt-1 max-w-[400px] text-center text-[12.5px] leading-relaxed text-[var(--ink-dim)]"
       >
-        Een order van een Scandinavische retailer loopt automatisch door verpakking, logistiek en
-        facturatie; alleen de afwijkende private-label-check komt nog bij een mens.
+        Een grote order loopt automatisch door verkoop, uitvoering, planning en facturatie; alleen
+        een afwijking of uitzondering komt nog bij een mens.
       </motion.p>
     </div>
   );
