@@ -15,6 +15,7 @@ export function FounderSchema() {
       'Oprichter van FactumAI. Bedrijfskundig geschoold en 8+ jaar werkzaam in IT-optimalisatie, procesverbetering en projectmanagement. Bouwt AI-agents op maat voor Nederlandse MKB-bedrijven.',
     image: `${SITE_URL}/portret.jpg`,
     url: `${SITE_URL}/over`,
+    sameAs: ['https://www.linkedin.com/in/sjaak-ter-veld/'],
     worksFor: { '@id': `${SITE_URL}/#organization` },
     founderOf: { '@id': `${SITE_URL}/#organization` },
     address: {
