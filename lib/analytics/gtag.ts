@@ -12,6 +12,21 @@
 // publiek (staat toch in de paginabron), dus mag gerust in de repo staan.
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-QZQRD1D0BY';
 
+// Google Ads (marketing). Leeg tot er een echte conversie-tag is. Zolang deze
+// leeg is, verschijnt de "Marketing"-categorie in de cookiebanner niet en wordt
+// er geen advertentiecookie geplaatst. Vul in Vercel in:
+//   NEXT_PUBLIC_GOOGLE_ADS_ID    = AW-XXXXXXXXXX
+//   NEXT_PUBLIC_GOOGLE_ADS_LABEL = <conversielabel>
+export const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? '';
+export const ADS_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_LABEL ?? '';
+
+/** Is er een geldige Google Ads-tag geconfigureerd? (voor remarketing + tonen categorie) */
+export const adsConfigured = (): boolean => /^AW-\d+$/.test(ADS_ID);
+
+/** Kan er een conversie gevuurd worden? (Ads-ID én label aanwezig) */
+export const adsConversionConfigured = (): boolean =>
+  adsConfigured() && ADS_LABEL.length > 0 && !ADS_LABEL.includes('X');
+
 /** Handmatige pageview voor client-side navigatie (App Router). */
 export function pageview(path: string) {
   if (!GA_ID || typeof window === 'undefined' || typeof window.gtag !== 'function') return;

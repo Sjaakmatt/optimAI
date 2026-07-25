@@ -2,10 +2,10 @@
 
 // Heropent de cookiebanner zodat de bezoeker zijn keuze kan herzien of
 // intrekken. Alleen zichtbaar als er analytics geconfigureerd is.
-import { GA_ID } from '@/lib/analytics/gtag';
+import { GA_ID, adsConfigured } from '@/lib/analytics/gtag';
 
 export function CookiePrefsButton({ className }: { className?: string }) {
-  if (!GA_ID) return null;
+  if (!GA_ID && !adsConfigured()) return null;
   return (
     <button
       type="button"

@@ -3,34 +3,28 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
-import { GA_ID, pageview } from '@/lib/analytics/gtag';
+import { GA_ID, ADS_ID, adsConfigured, pageview } from '@/lib/analytics/gtag';
+import {
+  type Consent,
+  readConsent,
+  writeConsent,
+  CONSENT_EVENT,
+} from '@/lib/analytics/consent';
 
-// Opt-in cookie-consent + Google Analytics 4.
+// Opt-in cookie-consent + Google Consent Mode v2.
 //
-// AVG-uitgangspunt: Google Analytics plaatst cookies en verwerkt persoons-
-// gegevens, dus wij laden de tag pas ná expliciete toestemming. Vóór akkoord
-// wordt er geen gtag.js geladen en niets gemeten. De bezoeker kan per categorie
-// kiezen (voorkeuren) en de keuze is via "Cookievoorkeuren" in de footer altijd
-// te herzien of in te trekken (event 'open-cookie-consent'). Zonder
-// NEXT_PUBLIC_GA_ID is er niets te meten en tonen we ook geen banner.
+// AVG-uitgangspunt: analytische (Google Analytics) en marketing (Google Ads)
+// cookies plaatsen we pas ná expliciete toestemming, per categorie. Vóór
+// akkoord wordt geen gtag.js geladen en niets gemeten. De "Marketing"-categorie
+// verschijnt alleen als er echt een Google Ads-tag is geconfigureerd
+// (NEXT_PUBLIC_GOOGLE_ADS_ID), zodat we geen toestemming vragen voor iets dat
+// niets doet. De keuze is via "Cookievoorkeuren" in de footer altijd te
+// herzien of in te trekken.
 
-const STORAGE_KEY = 'factumai.consent.v1';
 const REOPEN_EVENT = 'open-cookie-consent';
 
-type Choice = 'granted' | 'denied' | null;
-
-function readChoice(): Choice {
-  if (typeof window === 'undefined') return null;
-  try {
-    const v = window.localStorage.getItem(STORAGE_KEY);
-    return v === 'granted' || v === 'denied' ? v : null;
-  } catch {
-    return null;
-  }
-}
-
 export function ConsentGate() {
-  const [choice, setChoice] = useState<Choice>(null);
+  const [consent, setConsent] = useState<Consent | null>(null);
   const [bannerOpen, setBannerOpen] = useState(false);
   const [showPrefs, setShowPrefs] = useState(false);
   const [ready, setReady] = useState(false);
@@ -38,9 +32,8 @@ export function ConsentGate() {
   const firstRun = useRef(true);
 
   useEffect(() => {
-    setChoice(readChoice());
+    setConsent(readConsent());
     setReady(true);
-    // Vanuit de footer heropenen we direct de voorkeuren.
     const reopen = () => {
       setShowPrefs(true);
       setBannerOpen(true);
@@ -49,56 +42,63 @@ export function ConsentGate() {
     return () => window.removeEventListener(REOPEN_EVENT, reopen);
   }, []);
 
-  const granted = choice === 'granted';
+  const analytics = consent?.analytics ?? false;
+  const marketing = consent?.marketing ?? false;
+  const showMarketing = adsConfigured();
 
-  // SPA-pageviews bij routewissel. De eerste view wordt door de GA-config
-  // (send_page_view) zelf gemeten, dus die slaan we hier over.
+  // SPA-pageviews bij routewissel. De eerste view meet de GA-config zelf.
   useEffect(() => {
-    if (!granted) return;
+    if (!analytics) return;
     if (firstRun.current) {
       firstRun.current = false;
       return;
     }
     pageview(pathname);
-  }, [pathname, granted]);
+  }, [pathname, analytics]);
 
-  const persist = useCallback((value: 'granted' | 'denied') => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, value);
-    } catch {
-      /* private mode e.d. — keuze geldt dan alleen deze sessie */
-    }
-    setChoice(value);
+  const persist = useCallback((c: Consent) => {
+    writeConsent(c);
+    setConsent(c);
     setBannerOpen(false);
     setShowPrefs(false);
+    try {
+      window.dispatchEvent(new Event(CONSENT_EVENT));
+    } catch {
+      /* ignore */
+    }
   }, []);
 
-  if (!GA_ID) return null;
+  if (!GA_ID && !showMarketing) return null;
 
-  const showBanner = ready && (choice === null || bannerOpen);
+  const loadAds = marketing && showMarketing;
+  const needsTag = analytics || loadAds;
+  const tagId = analytics ? GA_ID : ADS_ID;
+
+  const showBanner = ready && (consent === null || bannerOpen);
 
   return (
     <>
-      {granted && (
+      {needsTag && (
         <>
           <Script
-            id="ga-lib"
+            id="gtag-lib"
             strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${tagId}`}
           />
-          <Script id="ga-init" strategy="afterInteractive">
+          <Script id="gtag-init" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               window.gtag = gtag;
               gtag('js', new Date());
               gtag('consent', 'default', {
-                ad_storage: 'granted',
-                ad_user_data: 'granted',
-                ad_personalization: 'granted',
-                analytics_storage: 'granted'
+                analytics_storage: '${analytics ? 'granted' : 'denied'}',
+                ad_storage: '${loadAds ? 'granted' : 'denied'}',
+                ad_user_data: '${loadAds ? 'granted' : 'denied'}',
+                ad_personalization: '${loadAds ? 'granted' : 'denied'}'
               });
-              gtag('config', '${GA_ID}', { anonymize_ip: true });
+              ${analytics ? `gtag('config', '${GA_ID}', { anonymize_ip: true });` : ''}
+              ${loadAds ? `gtag('config', '${ADS_ID}');` : ''}
             `}
           </Script>
         </>
@@ -106,12 +106,13 @@ export function ConsentGate() {
 
       {showBanner && (
         <ConsentBanner
-          initialAnalytics={choice === 'granted'}
+          initial={{ analytics, marketing }}
+          showMarketing={showMarketing}
           showPrefs={showPrefs}
           onOpenPrefs={() => setShowPrefs(true)}
-          onAcceptAll={() => persist('granted')}
-          onRejectAll={() => persist('denied')}
-          onSave={(analytics) => persist(analytics ? 'granted' : 'denied')}
+          onAcceptAll={() => persist({ analytics: true, marketing: showMarketing })}
+          onRejectAll={() => persist({ analytics: false, marketing: false })}
+          onSave={(c) => persist(c)}
         />
       )}
     </>
@@ -119,21 +120,24 @@ export function ConsentGate() {
 }
 
 function ConsentBanner({
-  initialAnalytics,
+  initial,
+  showMarketing,
   showPrefs,
   onOpenPrefs,
   onAcceptAll,
   onRejectAll,
   onSave,
 }: {
-  initialAnalytics: boolean;
+  initial: Consent;
+  showMarketing: boolean;
   showPrefs: boolean;
   onOpenPrefs: () => void;
   onAcceptAll: () => void;
   onRejectAll: () => void;
-  onSave: (analytics: boolean) => void;
+  onSave: (c: Consent) => void;
 }) {
-  const [analytics, setAnalytics] = useState(initialAnalytics);
+  const [analytics, setAnalytics] = useState(initial.analytics);
+  const [marketing, setMarketing] = useState(initial.marketing);
 
   return (
     <div
@@ -153,9 +157,9 @@ function ConsentBanner({
         {!showPrefs ? (
           <>
             <p className="mt-2 text-[13.5px] leading-[1.65] text-[var(--ink-dim)]">
-              Wij gebruiken analytische cookies (Google Analytics) om te zien hoe de site gebruikt
-              wordt en hem te verbeteren. Alleen met uw toestemming. Noodzakelijke functies werken
-              altijd. Meer leest u in onze{' '}
+              Wij gebruiken cookies om te zien hoe de site gebruikt wordt en hem te verbeteren
+              {showMarketing ? ', en om onze advertenties te meten' : ''}. Alleen met uw
+              toestemming. Noodzakelijke functies werken altijd. Meer leest u in onze{' '}
               <a
                 href="/privacy"
                 className="text-[var(--oker-deep)] underline underline-offset-2 hover:text-[var(--ink)] transition-colors"
@@ -205,17 +209,25 @@ function ConsentBanner({
                 checked={analytics}
                 onChange={setAnalytics}
               />
+              {showMarketing && (
+                <CategoryRow
+                  titel="Marketing"
+                  body="Google Ads: meet welke advertenties tot een aanvraag leiden en maakt relevante advertenties mogelijk."
+                  checked={marketing}
+                  onChange={setMarketing}
+                />
+              )}
             </div>
 
             <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
               <button
-                onClick={() => onSave(false)}
+                onClick={() => onSave({ analytics: false, marketing: false })}
                 className="order-2 sm:order-1 sm:mr-auto inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
               >
                 Alles weigeren
               </button>
               <button
-                onClick={() => onSave(analytics)}
+                onClick={() => onSave({ analytics, marketing: showMarketing ? marketing : false })}
                 className="order-1 sm:order-2 inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Voorkeuren opslaan
