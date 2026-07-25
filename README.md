@@ -6,6 +6,8 @@ Live cockpit-strip bovenaan telt mee terwijl het werk loopt: orders, voorraad-mu
 
 **Volledig gescript. Geen externe API calls. Werkt offline.**
 
+https://factumai.nl
+
 ## Setup
 
 ```bash
