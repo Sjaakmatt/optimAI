@@ -54,7 +54,7 @@ export default function PrivacyPage() {
         <DefList
           items={[
             ['Adres', 'Julianastraat 15, 1616 CH Hoogkarspel'],
-            ['KvK-nummer', '[IN TE VULLEN]'],
+            ['KvK-nummer', '42123186'],
             ['E-mail privacy-vragen', 'info@factumai.nl'],
             ['Contactpersoon privacy', 'Sjaak ter Veld'],
           ]}

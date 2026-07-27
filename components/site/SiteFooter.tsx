@@ -20,6 +20,9 @@ export function SiteFooter() {
             Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
             lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.
           </p>
+          <p className="mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
+            FactumAI B.V. · KvK 42123186
+          </p>
         </div>
 
         <div>

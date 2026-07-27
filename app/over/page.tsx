@@ -142,7 +142,8 @@ export default function OverPage() {
                 Praktisch.
               </h2>
               <dl className="mt-6 space-y-3 text-[14px]">
-                <Row label="Bedrijfsnaam" value="FactumAI" />
+                <Row label="Bedrijfsnaam" value="FactumAI B.V." />
+                <Row label="KvK-nummer" value="42123186" />
                 <Row label="Vestiging" value="Hoogkarspel, West-Friesland" />
                 <Row label="Werkgebied" value="Heel Nederland" />
                 <Row label="E-mail" value="info@factumai.nl" href="mailto:info@factumai.nl" />

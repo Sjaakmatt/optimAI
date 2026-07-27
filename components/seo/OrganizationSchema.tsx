@@ -14,6 +14,11 @@ export function OrganizationSchema() {
     '@id': `${SITE_URL}/#organization`,
     name: 'FactumAI',
     legalName: 'FactumAI B.V.',
+    identifier: {
+      '@type': 'PropertyValue',
+      propertyID: 'KvK',
+      value: '42123186',
+    },
     url: SITE_URL,
     email: 'info@factumai.nl',
     telephone: '+31-6-10555658',
