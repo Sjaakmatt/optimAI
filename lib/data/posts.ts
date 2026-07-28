@@ -1335,6 +1335,54 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'multi-agent-systemen-wanneer-meer-dan-een-agent',
+    title: 'Multi-agent systemen: wanneer heeft u meer dan één nodig?',
+    lede: 'Eén agent lost één probleem op. Maar soms zijn het er meer. Wanneer is een tweede agent zinvol, wanneer is het onnodig, en hoe voorkomt u dat u een systeem bouwt dat niemand meer begrijpt?',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-28',
+    readingMinutes: 6,
+    tags: ['techniek', 'agents', 'strategie', 'proces', 'systemen'],
+    blocks: [
+      { kind: 'p', text: 'De meeste bedrijven beginnen goed: één agent, één taak, goed gedefinieerd. Maar na een paar maanden komt de vraag: kunnen we die agent ook nog dit laten doen? En dat? Voor u het weet heeft u een agent die alles kan en niets meer goed doet. Het alternatief is een multi-agent systeem. Maar ook dat is geen vrije doorgang naar complexiteit.' },
+      { kind: 'h2', text: 'Wat een multi-agent systeem eigenlijk is' },
+      { kind: 'p', text: 'Bij een multi-agent systeem werken twee of meer gespecialiseerde agents samen. De ene herkent binnenkomende verzoeken en stuurt ze door. De andere haalt informatie op. Een derde schrijft de reactie. Ze zijn elk verantwoordelijk voor een klein stuk, en communiceren via gestructureerde berichten of gedeeld geheugen.' },
+      { kind: 'p', text: 'Het klinkt technisch, maar de analogie is eenvoudig: denk aan een klein kantoor. De receptioniste neemt de telefoon op, noteert de vraag, geeft die door aan de juiste collega, en stuurt de bevestiging zodra het antwoord klaar is. Niemand verwacht van de receptioniste dat ze ook de boekhouding doet.' },
+      { kind: 'h2', text: 'Drie signalen dat u een tweede agent nodig heeft' },
+      { kind: 'list', items: [
+        'Uw huidige agent doet taken die niets met elkaar te maken hebben. Een agent die offertes maakt én klachten afhandelt én voorraadupdates verstuurt, is geen gespecialiseerde agent meer. Dat is een junk drawer.',
+        'De instructies van uw agent zijn langer dan één A4. Als u meer dan vijftien regels nodig heeft om uit te leggen wat de agent moet doen, is de taak waarschijnlijk te breed voor één agent.',
+        'De foutgevoeligheid stijgt naarmate de agent meer taken krijgt. Een tweede agent voor een specifiek onderdeel brengt de foutmarge terug naar een beheersbaar niveau.',
+      ] },
+      { kind: 'h2', text: 'Een praktisch voorbeeld' },
+      { kind: 'p', text: 'Bij een bedrijf in technische dienstverlening verwerkte één agent zowel de binnenkomende serviceaanvragen als de bijbehorende facturatie. Dat werkte aanvankelijk. Maar zodra het volume steeg, liep de agent soms de stappen door elkaar. Een servicebon werd bevestigd voordat de factuur klaar was, of omgekeerd.' },
+      { kind: 'p', text: 'De oplossing was een splitsing: één agent voor klantkommunicatie en planning, één agent voor de financiële afhandeling. Beide kregen hun eigen instructies en hun eigen verbinding met de betreffende systemen. De eerste werkte via de planningsmodule, de tweede via Exact. Sindsdien lopen de twee processen parallel en onafhankelijk van elkaar.' },
+      { kind: 'quote', text: 'Twee eenvoudige agents die elk één ding goed doen, zijn betrouwbaarder dan één complexe agent die alles probeert.' },
+      { kind: 'h2', text: 'Wanneer u nog geen tweede agent nodig heeft' },
+      { kind: 'p', text: 'Niet elke uitbreiding vraagt om een nieuwe agent. Soms is het antwoord een extra stap binnen dezelfde agent, of een extra beleidsregel. Als de taken sterk overlappende context hebben, dezelfde gegevensbronnen gebruiken en door dezelfde medewerker worden gemonitord, is uitbreiden van de bestaande agent veelal eenvoudiger dan een tweede bouwen.' },
+      { kind: 'list', items: [
+        'Taken delen dezelfde databron: één agent is waarschijnlijk voldoende.',
+        'Taken vereisen verschillende systemen of rechten: overweeg een splitsing.',
+        'Taken worden door verschillende medewerkers gecontroleerd: splitsing maakt verantwoordelijkheid helderder.',
+        'Taken hebben elk een andere frequentie of urgentie: aparte agents geven elk hun eigen prioriteitenlogica.',
+      ] },
+      { kind: 'h2', text: 'De valkuil van de orchestrator' },
+      { kind: 'p', text: 'Wie een multi-agent systeem bouwt, heeft al snel de neiging een derde agent toe te voegen die de andere twee aanstuurt: de zogenaamde orchestrator. Dat kan zinvol zijn, maar het introduceert ook een extra schakel die kan falen. Mijn vuistregel: gebruik een orchestrator pas als de twee agents anders geen informatie kunnen uitwisselen die ze allebei nodig hebben. Als ze volledig onafhankelijk van elkaar werken, is een orchestrator overbodig.' },
+      { kind: 'p', text: 'Een systeem van twee onafhankelijke agents die elk hun eigen triggermoment hebben, is vaak robuuster dan een hiërarchie van drie agents waarbij alles door één middelpunt loopt. Hoe meer schakels, hoe groter de kans op een storing die u niet meteen ziet.' },
+      { kind: 'h2', text: 'Hoe u het overzicht bewaart' },
+      { kind: 'p', text: 'Multi-agent systemen worden snel onoverzichtelijk als er geen eigenaar is per agent. Wijs voor elke agent één medewerker aan die de instructies kent, de logboeken kan lezen en de eerste verantwoordelijke is als er iets misgaat. Dat hoeft geen technische rol te zijn. Het is een beheerrol, vergelijkbaar met wie de agenda bijhoudt van een gedeelde mailbox.' },
+      { kind: 'p', text: 'Begin klein. Eén agent goed werkend is altijd de betere startpositie. De tweede agent bouwt u pas als de eerste stabiel draait en u precies weet wat die niet meer moet doen.' },
+    ],
+    faq: [
+      { q: 'Hoeveel agents heb ik nodig voor mijn MKB-bedrijf?', a: 'Voor de meeste MKB-bedrijven zijn één tot drie agents genoeg om de grootste proceswinst te behalen. Begin met één agent voor het meest voorspelbare proces. Een tweede agent voegt u toe zodra de eerste stabiel draait en u een tweede duidelijk afgebakend proces wilt automatiseren. Meer is zelden beter als de basis niet op orde is.' },
+      { q: 'Wat is het verschil tussen één agent uitbreiden en een tweede agent bouwen?', a: 'Als de nieuwe taak dezelfde databronnen en dezelfde beleidsregels gebruikt, is uitbreiden van de bestaande agent logischer. Gebruikt de nieuwe taak andere systemen, andere rechten of een andere verantwoordelijke medewerker, dan is een aparte agent duidelijker en betrouwbaarder. De grens ligt bij complexiteit en verantwoordelijkheid.' },
+      { q: 'Kan een agent andere agents aansturen?', a: 'Ja, dat heet een orchestrator-agent. Die is zinvol als twee agents informatie moeten uitwisselen die ze elk afzonderlijk niet hebben. Maar een orchestrator introduceert ook een extra schakel. Als uw agents volledig onafhankelijk van elkaar werken, heeft u geen orchestrator nodig en beperkt u het risico op onzichtbare fouten.' },
+      { q: 'Hoe houd ik overzicht als ik meerdere agents heb?', a: 'Wijs per agent één verantwoordelijke medewerker aan die de instructies kent en de logboeken bijhoudt. Dat hoeft geen technische functie te zijn. Documenteer per agent wat hij doet, welke systemen hij gebruikt en wanneer hij een mens inschakelt. Zonder die documentatie groeit een multi-agent systeem al snel uit tot iets dat niemand meer begrijpt.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
