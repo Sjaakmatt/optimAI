@@ -1383,6 +1383,51 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'veilig-rag-bouwen-op-bedrijfsdata',
+    title: 'Veilig RAG bouwen op uw bedrijfsdata: praktische randvoorwaarden',
+    lede: 'Een agent die uw eigen documenten raadpleegt klinkt ideaal. Dat is het ook, mits de fundering klopt. De meeste problemen ontstaan niet bij de AI zelf, maar bij wat er vóór de AI komt.',
+    author: 'Sjaak ter Veld',
+    published: '2026-07-30',
+    readingMinutes: 6,
+    tags: ['techniek', 'systemen', 'governance', 'guardrails', 'integraties'],
+    blocks: [
+      { kind: 'p', text: 'RAG staat voor Retrieval-Augmented Generation: de techniek waarbij een AI-agent niet op geheugen vertrouwt, maar actief uw eigen documenten doorzoekt voordat hij antwoord geeft. Prijslijsten, interne procedures, contracten, productspecificaties. Klinkt krachtig, en dat is het. Maar zonder de juiste randvoorwaarden geeft zo\'n agent antwoorden op basis van verouderde, onvolledige of zelfs vertrouwelijke informatie die hij eigenlijk niet had mogen zien.' },
+      { kind: 'h2', text: 'Wat RAG precies doet en waar het misgaat' },
+      { kind: 'p', text: 'De agent zoekt bij elke vraag door een index van uw documenten, haalt de meest relevante fragmenten op en combineert die met zijn taalvaardigheid tot een antwoord. Dat werkt goed zolang de index betrouwbaar is. De problemen die ik het vaakst tegenkom zijn niet technisch van aard: ze zijn organisatorisch. Documenten staan door elkaar, zijn niet gedateerd, of bevatten tegenstrijdige versies van hetzelfde beleid.' },
+      { kind: 'p', text: 'Een tweede risico is toegangsbeheer. Wie mag welke documenten zien? Bij een eenvoudige RAG-implementatie zonder autorisatielaag ziet elke gebruiker alles wat in de index zit. HR-dossiers naast productbrochures. Dat is zelden de bedoeling.' },
+      { kind: 'h2', text: 'De vier randvoorwaarden die u vooraf regelt' },
+      { kind: 'list', items: [
+        'Documentbeheer op orde: elk document heeft een eigenaar, een versiedatum en een status (actueel, verlopen, concept). Verouderde documenten uit de index houden is minstens zo belangrijk als nieuwe documenten toevoegen.',
+        'Toegangslagen per rol: een agent die inkoopmedewerkers bedient heeft geen toegang nodig tot salarisgegevens. Bouw autorisatie in op documentniveau, niet achteraf op systeemniveau.',
+        'Bronvermelding in elk antwoord: de agent geeft altijd aan uit welk document hij put, inclusief datum. Zo kan een gebruiker zelf verifiëren of de bron nog geldig is.',
+        'Een testset van referentievragen: stel voor livegang twintig tot dertig vragen waarvan u het juiste antwoord kent. Meet of de agent ze goed beantwoordt, en doe dat elke keer als u documenten wijzigt.',
+      ] },
+      { kind: 'h2', text: 'Welke documenten wel en niet in de index horen' },
+      { kind: 'p', text: 'Niet alles wat in een gedeelde map staat is geschikt. Ik gebruik een simpele indeling. Documenten die horen in de index zijn stabiel, breed toepasbaar en feitelijk van aard: productspecificaties, tariefkaarten, algemene voorwaarden, werkprocedures. Documenten die er niet in horen zijn persoonsgebonden, juridisch gevoelig of zo contextafhankelijk dat een fragment ervan meer kwaad dan goed doet.' },
+      { kind: 'list', items: [
+        'Wél: actuele productdocumentatie, interne handleidingen, goedgekeurde sjablonen, FAQ-documenten.',
+        'Niet zonder extra beveiligingslaag: arbeidscontracten, beoordelingsgesprekken, klachtendossiers, onderhandelingsposities.',
+        'Nooit zonder expliciete toestemming en AVG-toets: documenten met persoonsgegevens van klanten of medewerkers.',
+      ] },
+      { kind: 'h2', text: 'Hoe u de index actueel houdt' },
+      { kind: 'p', text: 'Een RAG-systeem is geen project dat u eenmalig afrondt. De index veroudert zodra uw bedrijfsvoering verandert. Dat betekent dat u een beheerproces nodig heeft, niet alleen een bouwtechnische oplossing. In de praktijk werkt een maandelijkse review het best: een vaste eigenaar per documentcategorie controleert of zijn bronnen nog kloppen. Bij meer dan vijf à tien procent verouderde documenten neemt de betrouwbaarheid merkbaar af.' },
+      { kind: 'quote', text: 'Een RAG-agent is zo betrouwbaar als zijn minst actuele document. Documentbeheer is geen IT-taak, het is een bedrijfstaak.' },
+      { kind: 'h2', text: 'AVG en gegevensbescherming' },
+      { kind: 'p', text: 'Als uw index documenten bevat met persoonsgegevens, bent u verplicht te kunnen aantonen dat de verwerking rechtmatig is, dat de gegevens niet langer worden bewaard dan nodig, en dat toegang beperkt is tot wie dat nodig heeft. Dat geldt ook als een AI-agent de data alleen leest en niet opslaat. Laat een AVG-toets uitvoeren voordat u klantdossiers of HR-gegevens in de index opneemt. Dat is geen formaliteit; het is bescherming voor uzelf.' },
+      { kind: 'h2', text: 'Een realistisch startpunt' },
+      { kind: 'p', text: 'Begin met één documentcategorie die overzichtelijk is en geen persoonsgegevens bevat. Productinformatie of interne procedures werken goed als startpunt. Bewijs dat het systeem betrouwbaar antwoorden geeft op die categorie, en breid daarna stap voor stap uit. Zes weken voor een solide eerste versie is haalbaar, mits de documenten op orde zijn voordat u begint.' },
+    ],
+    faq: [
+      { q: 'Wat is het verschil tussen RAG en een gewone chatbot?', a: 'Een gewone chatbot werkt op basis van wat het taalmodel tijdens zijn training heeft geleerd. Een RAG-agent doorzoekt actief uw eigen documenten bij elke vraag en baseert zijn antwoord op die specifieke bronnen. Dat maakt hem veel geschikter voor bedrijfsspecifieke kennis, maar stelt hogere eisen aan de kwaliteit en actualiteit van uw documentatie.' },
+      { q: 'Mag ik klantgegevens opnemen in een RAG-index?', a: 'Dat mag alleen als u aan de AVG-vereisten voldoet: een rechtmatige grondslag, beperkte toegang, een bewaartermijn en aantoonbare technische beveiliging. In de praktijk adviseer ik om klantgegevens pas in de index op te nemen nadat een AVG-toets is uitgevoerd. Begin liever met documentatie die geen persoonsgegevens bevat.' },
+      { q: 'Hoe voorkom ik dat een medewerker informatie ziet die niet voor hem bedoeld is?', a: 'Door autorisatie op documentniveau in te bouwen. Elke gebruiker of rol krijgt toegang tot een afgebakende subset van de index. Dat vereist wat meer technische inrichting bij de bouw, maar is onmisbaar zodra uw index meer dan één afdeling bedient. Achteraf inbouwen is veel kostbaarder dan vooraf meenemen.' },
+      { q: 'Hoe vaak moet ik de RAG-index bijwerken?', a: 'Minimaal maandelijks een review, en direct bij elke wijziging in beleid, tarieven of procedures. Wijs per documentcategorie een eigenaar aan die verantwoordelijk is voor de actualiteit. Verouderde documenten in de index zijn de voornaamste oorzaak van onjuiste antwoorden, niet de techniek zelf.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
