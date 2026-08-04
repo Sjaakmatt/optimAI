@@ -1428,6 +1428,52 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'logging-monitoring-ai-agents-wat-moet-u-zien',
+    title: 'Logging en monitoring van agents: wat moet u zien?',
+    lede: 'Een agent die draait maar niet te controleren is, is een agent die u niet vertrouwt. Terecht. Goede monitoring is geen luxe voor grote bedrijven. Het is de basisvereiste voordat u iets live zet.',
+    author: 'Sjaak ter Veld',
+    published: '2026-08-04',
+    readingMinutes: 6,
+    tags: ['techniek', 'guardrails', 'governance', 'beleid', 'transparantie'],
+    blocks: [
+      { kind: 'p', text: 'De vraag die ik het vaakst hoor als een agent al een paar weken draait: "Hoe weet ik eigenlijk wat hij heeft gedaan?" Dat is precies de goede vraag. Niet omdat er iets misgegaan is, maar omdat u dat überhaupt zou moeten kunnen zien. Logging en monitoring zijn de enige manier om een agent écht te vertrouwen in plaats van te hopen dat het goed gaat.' },
+      { kind: 'h2', text: 'Wat logging is en waarom het niet hetzelfde is als monitoring' },
+      { kind: 'p', text: 'Logging is het vastleggen van wat er is gebeurd. Monitoring is het actief in de gaten houden of er iets is dat uw aandacht nodig heeft. Beide zijn nodig, maar voor verschillende doelen. Logging vertelt u achteraf wat de agent heeft gedaan. Monitoring vertelt u nu of er iets opvallends aan de hand is.' },
+      { kind: 'p', text: 'In de praktijk zien wij dat MKB-bedrijven beginnen zonder beide. De agent doet iets, de uitkomst wordt verwerkt, en niemand kijkt mee. Dat werkt prima totdat het een keer misgaat en u niet meer kunt reconstrueren waarom.' },
+      { kind: 'h2', text: 'Vijf dingen die u altijd moet kunnen terugzien' },
+      { kind: 'list', items: [
+        'Welke taak is uitgevoerd, op welk moment, op basis van welke invoer. Zonder dit kunt u een fout niet reproduceren.',
+        'Welke beslissing heeft de agent genomen en op basis van welke regel. Niet alleen de uitkomst, maar ook het pad ernaartoe.',
+        'Of de actie automatisch is uitgevoerd of langs een mens is gegaan. Dat onderscheid is cruciaal voor uw AVG-verantwoordelijkheid.',
+        'Wat het systeem heeft teruggegeven na de actie. Een geslaagde boeking in Exact, een mislukte API-call, een time-out.',
+        'Welke uitzonderingen zijn opgetreden en hoe de agent daarmee is omgegaan. Heeft hij een fallback toegepast, gestopt, of toch doorgegaan?',
+      ] },
+      { kind: 'h2', text: 'Wanneer u een melding wilt krijgen' },
+      { kind: 'p', text: 'Niet elke logmelding is een actie waard. De kunst is onderscheiden wat uw aandacht nodig heeft en wat niet. Wij richten standaard drie soorten meldingen in bij elke agent die we bouwen.' },
+      { kind: 'list', items: [
+        'Fouten die de taak hebben geblokkeerd. De agent kon iets niet afmaken. Dat wilt u altijd weten, dezelfde dag.',
+        'Afwijkingen van normaal volume. Als een agent maandag 40 facturen verwerkt en woensdag ineens 4, klopt er iets niet in de aanvoer.',
+        'Acties boven een drempel die u zelf bepaalt. Bedragen, aantallen, klantcategorieën. Alles wat u normaal zelf zou controleren.',
+      ] },
+      { kind: 'quote', text: 'Een agent die u niet kunt auditen, kunt u niet verantwoorden. Aan uzelf niet, en aan uw klant niet.' },
+      { kind: 'h2', text: 'Hoe lang bewaart u de logs' },
+      { kind: 'p', text: 'Voor processen met financiële of juridische gevolgen geldt dezelfde bewaartermijn als voor de onderliggende documenten. Factuurverwerking: zeven jaar. Klachtafhandeling: afhankelijk van uw sectorregels. Voor interne processen zonder externe verplichtingen hanteren wij als richtlijn drie maanden. Lang genoeg om patronen te herkennen, kort genoeg om geen onnodige gegevens te bewaren.' },
+      { kind: 'p', text: 'Let op: als de agent persoonsgegevens verwerkt, vallen de logs ook onder de AVG. Bewaar dan niet meer dan nodig en zorg dat toegang beperkt is tot wie die logs ook echt nodig heeft.' },
+      { kind: 'h2', text: 'Wat u praktisch kunt inrichten zonder technische kennis' },
+      { kind: 'p', text: 'U hoeft geen aparte monitoringtool aan te schaffen. Wij leveren bij elke agent een eenvoudig logscherm mee: een overzicht van de laatste uitgevoerde taken, met een groene of rode status, een tijdstempel en de mogelijkheid om één taak uit te klappen voor detail. Dat is voor de meeste MKB-bedrijven voldoende. Pas als de aantallen groeien boven de honderd acties per dag, heeft het zin om te kijken naar een apart dashboard.' },
+      { kind: 'p', text: 'Het belangrijkste is dat iemand in uw organisatie die verantwoordelijkheid krijgt. Niet een technicus die logs bekijkt om technische redenen, maar iemand die het proces begrijpt en merkt wanneer een uitkomst niet klopt. Twee minuten per dag. Meer is het niet.' },
+    ],
+    faq: [
+      { q: 'Moet ik dure software aanschaffen voor monitoring van een AI-agent?', a: 'Nee. Voor de meeste MKB-toepassingen volstaat een ingebouwd logscherm met taakoverzicht, tijdstempel en statuskleur. Aparte monitoringtools worden pas relevant boven de honderd acties per dag of bij meerdere agents parallel. Begin eenvoudig en breid uit als de volumes dat rechtvaardigen.' },
+      { q: 'Wie is verantwoordelijk als een AI-agent een fout maakt?', a: 'De ondernemer blijft eindverantwoordelijk, ook als een agent de beslissing heeft genomen. Goede logging helpt u te laten zien welke regels er golden, wat de agent heeft gedaan en of die regels zijn gevolgd. Dat is geen garantie, maar het is wel de basis voor een verdedigbaar verweer bij een klacht of audit.' },
+      { q: 'Hoe vaak moet ik de logs van mijn agent bekijken?', a: 'Dagelijks, maar kort. Een snelle blik op het overzicht van de afgelopen 24 uur, gericht op fouten en afwijkingen. Reserveer één keer per maand een langere blik op trends: neemt het foutpercentage toe, zijn er processen die vaker uitzonderingen triggeren dan verwacht?' },
+      { q: 'Vallen AI-agent logs onder de AVG?', a: 'Zodra de logs gegevens bevatten over identificeerbare personen, bijvoorbeeld klantnamen of e-mailadressen, vallen ze onder de AVG. Beperk de bewaartermijn tot wat nodig is voor uw doel, beperk de toegang tot betrokken medewerkers, en leg vast wie toegang heeft en waarom.' },
+    ],
+    cluster: 'B',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
