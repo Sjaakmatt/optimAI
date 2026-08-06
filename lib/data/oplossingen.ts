@@ -211,3 +211,24 @@ export const OPLOSSING_BY_SLUG = OPLOSSINGEN.reduce<Record<string, Oplossing>>((
   acc[o.slug] = o;
   return acc;
 }, {});
+
+/**
+ * Welke oplossingspagina's het meest relevant zijn per branche.
+ * Gebruikt op de branchepagina's om naar de beslislaag door te verwijzen.
+ */
+export const OPLOSSINGEN_PER_BRANCHE: Record<string, string[]> = {
+  groothandel: ['vraagvoorspelling', 'inkoop-automatiseren'],
+  'e-commerce': ['vraagvoorspelling', 'inkoop-automatiseren'],
+  detailhandel: ['vraagvoorspelling', 'inkoop-automatiseren'],
+  agrarisch: ['vraagvoorspelling', 'inkoop-automatiseren'],
+  installatietechniek: ['klantenservice-automatiseren', 'inkoop-automatiseren'],
+  bouw: ['klantenservice-automatiseren', 'inkoop-automatiseren'],
+  productie: ['klantenservice-automatiseren', 'inkoop-automatiseren'],
+  'transport-logistiek': ['inkoop-automatiseren', 'vraagvoorspelling'],
+  'zakelijke-dienstverlening': ['klantenservice-automatiseren', 'leadopvolging-automatiseren'],
+  accountancy: ['klantenservice-automatiseren', 'leadopvolging-automatiseren'],
+  advocatuur: ['klantenservice-automatiseren', 'leadopvolging-automatiseren'],
+  makelaardij: ['klantenservice-automatiseren', 'leadopvolging-automatiseren'],
+  zorg: ['klantenservice-automatiseren'],
+  horeca: ['klantenservice-automatiseren'],
+};

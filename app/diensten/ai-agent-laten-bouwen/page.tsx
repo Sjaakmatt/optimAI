@@ -104,7 +104,7 @@ const HOWTO_SCHEMA = {
       '@type': 'HowToStep',
       position: 4,
       name: 'Live in stille modus',
-      text: 'De agent gaat eerst in stille modus — hij neemt beslissingen mee maar verstuurt nog niets. U controleert de output en stelt het beleid bij waar nodig.',
+      text: 'De agent gaat eerst in stille modus, hij neemt beslissingen mee maar verstuurt nog niets. U controleert de output en stelt het beleid bij waar nodig.',
     },
     {
       '@type': 'HowToStep',
@@ -200,8 +200,9 @@ export default function AIAgentLatenBouwenPage() {
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               Een AI-agent is een digitale collega die het repetitieve werk van uw binnendienst
               overneemt. Mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten,
-              voorraadsignalen opvolgen. Binnen úw regels, gekoppeld aan úw systemen. Wij
-              bouwen hem op maat, met vaste prijs en duidelijke opleveringsdatum.
+              voorraadsignalen opvolgen. Hij draait op de laag boven uw ERP of CRM: daar waar
+              geoordeeld moet worden, of gerekend met gegevens die nu niemand combineert. Binnen
+              úw regels, gekoppeld aan úw systemen, en met een mens die de knop indrukt.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -358,7 +359,7 @@ export default function AIAgentLatenBouwenPage() {
               Een AI-agent is geen statisch product. Modellen worden beter, uw processen veranderen,
               externe systemen krijgen updates, beleid schuift. Voor klanten die die doorontwikkeling
               willen borgen is er een maandelijkse retainer. Wilt u alleen de implementatie? Ook
-              prima — aanpassingen gaan dan ad hoc tegen vaste prijs.
+              prima, aanpassingen gaan dan ad hoc tegen vaste prijs.
             </p>
             <ul className="mt-5 space-y-2 text-[14px] leading-[1.6] text-[var(--ink)]">
               {[
@@ -408,7 +409,7 @@ export default function AIAgentLatenBouwenPage() {
 
       <Section
         eyebrow="Verschil met andere oplossingen"
-        title="Wat is een AI-agent — en wat is hij niet?"
+        title="Wat is een AI-agent, en wat is hij niet?"
         tint
       >
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[760px]">
@@ -477,7 +478,7 @@ export default function AIAgentLatenBouwenPage() {
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[760px]">
           Een AI-agent zonder koppeling is een speeltje. Wij regelen de integraties met uw
           bestaande systemen via API, webhook of e-mail-bridge. Onderstaand een greep uit wat we
-          al draaiend hebben gehad — staat uw pakket er niet bij, vraag ernaar.
+          al draaiend hebben gehad, staat uw pakket er niet bij, vraag ernaar.
         </p>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[

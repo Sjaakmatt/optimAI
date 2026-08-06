@@ -4,7 +4,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Sub-verwerkers — FactumAI',
+  title: 'Sub-verwerkers, FactumAI',
   description:
     'Transparant overzicht van de sub-verwerkers die FactumAI inzet voor klantopdrachten, met locatie, doel en juridisch kader.',
   alternates: { canonical: '/subverwerkers' },
@@ -188,7 +188,7 @@ export default function SubverwerkersPage() {
               key={s}
               className="flex gap-3 text-[15.5px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
             >
-              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
               <span>{s}</span>
             </li>
           ))}

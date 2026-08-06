@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const ITEMLIST_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'FactumAI Kennisbank — artikelen over AI-agents',
+  name: 'FactumAI Kennisbank, artikelen over AI-agents',
   numberOfItems: POSTS.length,
   itemListElement: POSTS.map((p, i) => ({
     '@type': 'ListItem',
@@ -33,7 +33,7 @@ const BLOG_SCHEMA = {
   '@id': `${SITE_URL}/kennis#blog`,
   name: 'FactumAI Kennisbank',
   description:
-    'Artikelen over AI-agents in het Nederlandse MKB — strategie, techniek, governance, branche-toepassingen.',
+    'Artikelen over AI-agents in het Nederlandse MKB, strategie, techniek, governance, branche-toepassingen.',
   url: `${SITE_URL}/kennis`,
   inLanguage: 'nl-NL',
   publisher: { '@id': `${SITE_URL}/#organization` },

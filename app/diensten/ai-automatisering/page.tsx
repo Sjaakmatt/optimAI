@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: 'Wat is AI-automatisering precies?',
-    a: 'AI-automatisering is het laten uitvoeren van terugkerend werk door een AI-agent: een digitale collega die mails leest, offertes opstelt, orders verwerkt, facturen klaarzet en planning regelt — binnen door u bepaalde regels. In tegenstelling tot klassieke automatisering (vaste workflows, scripts, RPA) kan een AI-agent omgaan met variatie, context en uitzonderingen, en daarover transparant rapporteren.',
+    a: 'AI-automatisering is het laten uitvoeren van terugkerend werk door een AI-agent: een digitale collega die mails leest, offertes opstelt, orders verwerkt, facturen klaarzet en planning regelt, binnen door u bepaalde regels. In tegenstelling tot klassieke automatisering (vaste workflows, scripts, RPA) kan een AI-agent omgaan met variatie, context en uitzonderingen, en daarover transparant rapporteren.',
   },
   {
     q: 'Wat is het verschil tussen AI-automatisering en RPA of Zapier?',
@@ -153,7 +153,7 @@ export default function AIAutomatiseringPage() {
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               AI-automatisering is meer dan een chatbot of een Zapier-flow. Het is een digitale
               collega die uw mailstroom leest, offertes opstelt, orders verwerkt en facturen
-              klaarzet — binnen úw regels, gekoppeld aan úw systemen. Zonder dashboard. Zonder
+              klaarzet, binnen úw regels, gekoppeld aan úw systemen. Zonder dashboard. Zonder
               jarenlang implementatietraject. Vaste prijs per fase, elke uitgaande actie langs een mens.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -190,7 +190,7 @@ export default function AIAutomatiseringPage() {
           />
           <Card
             title="Offertes die te laat de deur uit gaan"
-            body="Concurrenten reageren binnen het uur, u stuurt na drie dagen. Een offerte-agent rekent met actuele prijslijst, klantkortingen en marge-regels, en stuurt door voor uw akkoord — of verstuurt direct binnen mandaat."
+            body="Concurrenten reageren binnen het uur, u stuurt na drie dagen. Een offerte-agent rekent met actuele prijslijst, klantkortingen en marge-regels, en stuurt door voor uw akkoord, of verstuurt direct binnen mandaat."
           />
           <Card
             title="Facturen die liquiditeit kosten"
@@ -226,7 +226,7 @@ export default function AIAutomatiseringPage() {
 
       <Section eyebrow="Voor welke branches" title="AI-automatisering per sector.">
         <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
-          Per branche andere systemen, andere regels, andere taken. Onze agents zijn op maat —
+          Per branche andere systemen, andere regels, andere taken. Onze agents zijn op maat,
           maar wij komen ze in de praktijk tegen op deze plekken het meest.
         </p>
         <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">

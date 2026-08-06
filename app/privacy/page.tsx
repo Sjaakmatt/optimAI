@@ -4,7 +4,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Privacyverklaring — FactumAI',
+  title: 'Privacyverklaring, FactumAI',
   description:
     'Hoe FactumAI persoonsgegevens verwerkt: welke gegevens, waarom, met wie wij ze delen, jouw rechten en onze beveiligingsmaatregelen.',
   alternates: { canonical: '/privacy' },
@@ -193,14 +193,14 @@ export default function PrivacyPage() {
         <P>Onze huidige verwerkers:</P>
         <Bullets
           items={[
-            'SnelStart — boekhouding (Nederland)',
-            'Microsoft 365 — e-mail en documenten (EU/VS onder EU-US Data Privacy Framework)',
-            'Apple iCloud — back-up en synchronisatie (EU/VS onder EU-US Data Privacy Framework)',
-            'Vercel — hosting en cookieloze website-statistieken (VS onder EU-US Data Privacy Framework)',
-            'Google — website-statistieken via Google Analytics 4, uitsluitend met toestemming (Google Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
-            'Supabase — databasehosting voor onder meer scan-leads (data-opslag in de EU, Ierland)',
-            'Resend — verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
-            'Anthropic — AI-analyse voor de AI-scan (VS, met Standard Contractual Clauses)',
+            'SnelStart, boekhouding (Nederland)',
+            'Microsoft 365, e-mail en documenten (EU/VS onder EU-US Data Privacy Framework)',
+            'Apple iCloud, back-up en synchronisatie (EU/VS onder EU-US Data Privacy Framework)',
+            'Vercel, hosting en cookieloze website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Google, website-statistieken via Google Analytics 4, uitsluitend met toestemming (Google Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
+            'Supabase, databasehosting voor onder meer scan-leads (data-opslag in de EU, Ierland)',
+            'Resend, verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
+            'Anthropic, AI-analyse voor de AI-scan (VS, met Standard Contractual Clauses)',
           ]}
         />
         <P>
@@ -295,7 +295,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.2 — {LAST_UPDATED}
+          Versie 1.2, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
@@ -335,7 +335,7 @@ function Bullets({ items }: { items: string[] }) {
           key={i}
           className="flex gap-3 text-[15.5px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
         >
-          <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+          <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
           <span>{i}</span>
         </li>
       ))}

@@ -354,7 +354,7 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
               {founder.portretSrc ? (
                 <Image
                   src={founder.portretSrc}
-                  alt={`${founder.voornaam} ${founder.achternaam} — ${founder.rolKort} FactumAI`}
+                  alt={`${founder.voornaam} ${founder.achternaam}, ${founder.rolKort} FactumAI`}
                   fill
                   sizes="(max-width: 768px) 100vw, 340px"
                   className="object-cover object-[center_20%]"
@@ -496,7 +496,7 @@ function MemberCard({ member }: { member: TeamMember }) {
         {member.portretSrc ? (
           <Image
             src={member.portretSrc}
-            alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
+            alt={`${member.voornaam} ${member.achternaam}, ${member.rolKort} FactumAI`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
             className="object-cover object-[center_20%]"

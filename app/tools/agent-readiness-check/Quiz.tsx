@@ -65,9 +65,9 @@ const QUESTIONS: Question[] = [
     id: 'q6',
     text: 'Wat is de houding van uw team tegenover automatisering?',
     options: [
-      { label: 'Sceptisch — bang om vervangen te worden', score: 0 },
-      { label: 'Neutraal — wachten af', score: 1 },
-      { label: 'Geïnteresseerd — willen mee bouwen', score: 3 },
+      { label: 'Sceptisch, bang om vervangen te worden', score: 0 },
+      { label: 'Neutraal, wachten af', score: 1 },
+      { label: 'Geïnteresseerd, willen mee bouwen', score: 3 },
       { label: 'Vragen er zelf om', score: 3 },
     ],
   },
@@ -87,7 +87,7 @@ const QUESTIONS: Question[] = [
     options: [
       { label: 'Bijna nooit', score: 0 },
       { label: 'Soms', score: 1 },
-      { label: 'Regelmatig — kennis zit bij één persoon', score: 3 },
+      { label: 'Regelmatig, kennis zit bij één persoon', score: 3 },
       { label: 'Wekelijks paniek', score: 3 },
     ],
   },
@@ -97,7 +97,7 @@ const QUESTIONS: Question[] = [
     options: [
       { label: 'Nee, reactietijd is geen issue', score: 0 },
       { label: 'Soms', score: 1 },
-      { label: 'Regelmatig — concurrenten zijn sneller', score: 3 },
+      { label: 'Regelmatig, concurrenten zijn sneller', score: 3 },
       { label: 'Structureel', score: 3 },
     ],
   },
@@ -129,7 +129,7 @@ const BANDS: ResultBand[] = [
     band: 'Nog niet starten',
     title: 'Begin eerst met basis-organisatie.',
     body:
-      'Uw situatie is nog niet rijp voor een AI-agent. Niet erg — investeer eerst in een modern boekhoudpakket, het op papier zetten van een paar basis-beleidsregels, en het vrijmaken van iemand intern die mee kan denken. Daarna is een eerste agent een logische volgende stap.',
+      'Uw situatie is nog niet rijp voor een AI-agent. Niet erg, investeer eerst in een modern boekhoudpakket, het op papier zetten van een paar basis-beleidsregels, en het vrijmaken van iemand intern die mee kan denken. Daarna is een eerste agent een logische volgende stap.',
     cta: { href: '/kennis/welk-proces-is-geschikt-voor-een-agent', label: 'Lees: welk proces is geschikt' },
   },
   {
@@ -163,7 +163,7 @@ function bandFor(score: number): ResultBand {
 }
 
 export function Quiz() {
-  // value is option-index (0-3), not score — twee opties kunnen dezelfde score
+  // value is option-index (0-3), not score, twee opties kunnen dezelfde score
   // delen waardoor ze allebei als geselecteerd zouden tonen
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [submitted, setSubmitted] = useState(false);

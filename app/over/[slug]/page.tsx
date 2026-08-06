@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!m) return { title: 'Profiel niet gevonden' };
   const fullName = `${m.voornaam} ${m.achternaam}`;
   return {
-    title: `${fullName} — ${m.rolKort} FactumAI`,
+    title: `${fullName}, ${m.rolKort} FactumAI`,
     description: m.korteBio,
     alternates: { canonical: `/over/${slug}` },
     openGraph: {
@@ -249,7 +249,7 @@ function Portret({ member }: { member: TeamMember }) {
       >
         <Image
           src={member.portretSrc}
-          alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
+          alt={`${member.voornaam} ${member.achternaam}, ${member.rolKort} FactumAI`}
           fill
           sizes="(max-width: 640px) 100vw, 320px"
           className="object-cover"

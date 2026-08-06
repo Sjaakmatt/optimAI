@@ -10,14 +10,14 @@ export interface TeamMember {
   linkedin?: string;
   github?: string;
   twitter?: string;
-  portretSrc?: string; // /portret.jpg etc — optioneel
+  portretSrc?: string; // /portret.jpg etc, optioneel
   korteBio: string; // max ~200 tekens, voor kaart
   langeBio: string[]; // paragrafen, voor persoonlijke pagina
   expertise: { titel: string; body: string }[];
   knowsAbout: string[]; // schema.org Person.knowsAbout
   alumniOf?: string;
   publicatieSlugs?: string[]; // koppelt aan posts.ts via slug
-  startedAt: string; // ISO date — wanneer bij FactumAI gestart
+  startedAt: string; // ISO date, wanneer bij FactumAI gestart
 }
 
 export const TEAM: TeamMember[] = [
@@ -37,7 +37,7 @@ export const TEAM: TeamMember[] = [
     langeBio: [
       'Ik ben opgeleid in de bedrijfskunde en heb daarna meer dan acht jaar in IT gewerkt: aan optimalisatie, procesverbetering, strategie en projectmanagement bij bedrijven van uiteenlopende grootte. In 2026 ben ik FactumAI gestart om AI-agents bereikbaar te maken voor MKB-bedrijven die niet wachten op een groot consultancy-traject.',
       'Mijn rol bij FactumAI is dubbel. Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en ik bouw mee aan de agents die wij opleveren. Dat houdt het werk eerlijk: ik beloof niets dat ik niet zelf zou kunnen waarmaken.',
-      'Op deze site schrijf ik bovendien de kennisbank. De artikelen zijn observaties uit de praktijk — wat werkt, wat niet, en waarom het MKB juist nu de meeste winst kan pakken. Geen jargon, geen hype.',
+      'Op deze site schrijf ik bovendien de kennisbank. De artikelen zijn observaties uit de praktijk, wat werkt, wat niet, en waarom het MKB juist nu de meeste winst kan pakken. Geen jargon, geen hype.',
     ],
     expertise: [
       {
@@ -46,7 +46,7 @@ export const TEAM: TeamMember[] = [
       },
       {
         titel: 'Bedrijfskunde + techniek',
-        body: 'Hbo-bedrijfskunde, doorgegroeid in IT-optimalisatie, projectmanagement en procesverbetering. Combineert het zakelijke gesprek met de technische uitvoering — beide onder één dak.',
+        body: 'Hbo-bedrijfskunde, doorgegroeid in IT-optimalisatie, projectmanagement en procesverbetering. Combineert het zakelijke gesprek met de technische uitvoering, beide onder één dak.',
       },
       {
         titel: 'MKB-context',
@@ -54,7 +54,7 @@ export const TEAM: TeamMember[] = [
       },
       {
         titel: 'Governance & guardrails',
-        body: 'Alle agents draaien binnen expliciete beleidsregels. AVG, NEN 7510 (zorg), WWFT (financieel), beroepsgeheim (juridisch) — randvoorwaarden zijn vanaf dag één ingericht.',
+        body: 'Alle agents draaien binnen expliciete beleidsregels. AVG, NEN 7510 (zorg), WWFT (financieel), beroepsgeheim (juridisch), randvoorwaarden zijn vanaf dag één ingericht.',
       },
     ],
     knowsAbout: [

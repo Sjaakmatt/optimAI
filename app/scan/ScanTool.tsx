@@ -226,7 +226,7 @@ export function ScanTool() {
                     className="w-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
                   />
                 </div>
-                {/* Honeypot — verborgen voor mensen */}
+                {/* Honeypot, verborgen voor mensen */}
                 <input
                   type="text"
                   name="emailadres"
@@ -244,7 +244,7 @@ export function ScanTool() {
                 </button>
                 <p className="text-[12px] leading-[1.6] text-[var(--ink-faint)]">
                   We analyseren alleen openbare informatie op de website die u opgeeft. Voor de scan
-                  zelf hoeft u niets achter te laten. Het resultaat is een automatische analyse —
+                  zelf hoeft u niets achter te laten. Het resultaat is een automatische analyse,
                   een eerste beeld, geen offerte.
                 </p>
               </div>
@@ -471,7 +471,7 @@ export function ScanTool() {
                   </h3>
                 </div>
                 <p className="text-[13px] text-[var(--ink-faint)] mb-5 max-w-[640px]">
-                  Complexere agent-oplossingen, toegespitst op uw bedrijf — voorbij de
+                  Complexere agent-oplossingen, toegespitst op uw bedrijf, voorbij de
                   standaardprocessen.
                 </p>
                 <div className="grid gap-4 lg:grid-cols-2">

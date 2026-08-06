@@ -28,7 +28,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Welke kosten zitten er nog naast de bouwprijs?',
-    a: 'Naast de eenmalige bouwprijs is er een optionele maandelijkse retainer voor monitoring, onderhoud en model-updates. Daarnaast lopen er API-kosten van het taalmodel — typisch 50 tot 300 euro per maand voor een MKB-agent — die wij doorbelasten of in de retainer verrekenen. De calculator rekent met een conservatieve schatting.',
+    a: 'Naast de eenmalige bouwprijs is er een optionele maandelijkse retainer voor monitoring, onderhoud en model-updates. Daarnaast lopen er API-kosten van het taalmodel, typisch 50 tot 300 euro per maand voor een MKB-agent, die wij doorbelasten of in de retainer verrekenen. De calculator rekent met een conservatieve schatting.',
   },
   {
     q: 'Wat als mijn medewerker geen 30% admin-tijd heeft?',
@@ -36,7 +36,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Wat doe ik met de uitkomst?',
-    a: 'Gebruik het als startpunt voor uw beslissing. Een geschatte besparing van € 25.000 per jaar bij een bouwprijs van € 12.000 betekent een terugverdientijd van iets meer dan een half jaar — daarna is de winst structureel. Plan een gesprek voor een specifieker beeld op basis van uw situatie.',
+    a: 'Gebruik het als startpunt voor uw beslissing. Een geschatte besparing van € 25.000 per jaar bij een bouwprijs van € 12.000 betekent een terugverdientijd van iets meer dan een half jaar, daarna is de winst structureel. Plan een gesprek voor een specifieker beeld op basis van uw situatie.',
   },
 ];
 
@@ -91,7 +91,7 @@ export default function ROICalculatorPage() {
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[640px]">
             Vul uw situatie in en zie wat een AI-agent uw bedrijf kan besparen. Gebaseerd op
-            getallen die wij in MKB-implementaties terugzien — geen marketing-cijfers, wel een
+            getallen die wij in MKB-implementaties terugzien, geen marketing-cijfers, wel een
             eerste richting.
           </p>
         </div>

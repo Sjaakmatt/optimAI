@@ -25,6 +25,7 @@ function isGroup(e: NavEntry): e is NavGroup {
 
 const NAV: NavEntry[] = [
   { href: '/diensten', label: 'Diensten' },
+  { href: '/oplossingen', label: 'Oplossingen' },
   { href: '/info', label: 'Wat is AI-agent' },
   { href: '/cases', label: 'Cases' },
   { href: '/kennis', label: 'Kennis' },

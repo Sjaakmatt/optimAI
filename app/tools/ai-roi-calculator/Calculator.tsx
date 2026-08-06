@@ -185,13 +185,13 @@ export function Calculator() {
                   value={
                     result.terugverdientijdMaanden > 0
                       ? `${result.terugverdientijdMaanden.toString().replace('.', ',')} maanden`
-                      : '—'
+                      : '·'
                   }
                   hint={
                     result.terugverdientijdMaanden > 0 && result.terugverdientijdMaanden < 12
-                      ? 'Onder een jaar — typische uitkomst voor MKB-implementaties.'
+                      ? 'Onder een jaar, typische uitkomst voor MKB-implementaties.'
                       : result.terugverdientijdMaanden >= 12
-                      ? 'Langer dan een jaar — overweeg een kleiner eerste proces.'
+                      ? 'Langer dan een jaar, overweeg een kleiner eerste proces.'
                       : 'Vul boven uw cijfers in om uitkomst te zien.'
                   }
                 />
@@ -199,7 +199,7 @@ export function Calculator() {
 
               <p className="mt-8 text-[12px] leading-[1.6] text-[var(--ink-faint)] border-t border-[var(--paper-edge)] pt-5">
                 Indicatie. Werkelijke besparing hangt af van proces-keuze, integraties en adoptie.
-                Wij rekenen niet met productiviteitswinst van vrijgekomen tijd — dat is bovenop de
+                Wij rekenen niet met productiviteitswinst van vrijgekomen tijd, dat is bovenop de
                 besparing.
               </p>
             </div>

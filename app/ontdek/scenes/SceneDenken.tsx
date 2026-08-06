@@ -66,7 +66,7 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
             {DENKEN_REASONING.map((r, i) => (
               <li key={i} className="flex gap-2">
                 <span aria-hidden className="select-none text-[var(--ink-faint)]">
-                  —
+                  ·
                 </span>
                 <span>{r}</span>
               </li>

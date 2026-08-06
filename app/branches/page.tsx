@@ -9,7 +9,7 @@ import { BRANCHES } from '@/lib/data/branches';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const metadata: Metadata = {
-  title: 'AI-agents per branche — sectorspecifieke oplossingen',
+  title: 'AI-agents per branche, sectorspecifieke oplossingen',
   description:
     'AI-agents op maat per branche: groothandel, installatietechniek, transport, zakelijke dienstverlening, bouw, zorg, productie, detailhandel, accountancy, advocatuur, makelaardij, agrarisch, e-commerce en horeca.',
   alternates: { canonical: '/branches' },

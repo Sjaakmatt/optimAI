@@ -1,4 +1,4 @@
-// POST /api/scan-report — de bezoeker vraagt na de scan het volledige
+// POST /api/scan-report, de bezoeker vraagt na de scan het volledige
 // rapport per e-mail aan. We mailen het uitgebreide rapport via Resend,
 // leggen e-mail + marketing-consent vast in de dashboard-database (ScanLead)
 // en sturen info@ een leadmelding.

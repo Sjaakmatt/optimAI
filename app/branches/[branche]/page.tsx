@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BRANCHES, BRANCHE_BY_SLUG, type Branche } from '@/lib/data/branches';
 import { CASE_BY_SLUG } from '@/lib/data/cases';
+import { OPLOSSING_BY_SLUG, OPLOSSINGEN_PER_BRANCHE } from '@/lib/data/oplossingen';
 import { calPopupAttrs } from '@/components/booking/config';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
@@ -88,6 +89,9 @@ export default async function BranchePage({
   const b = BRANCHE_BY_SLUG[branche];
   if (!b) notFound();
   const caseStudy = b.caseSlug ? CASE_BY_SLUG[b.caseSlug] : undefined;
+  const relevanteOplossingen = (OPLOSSINGEN_PER_BRANCHE[b.slug] ?? [])
+    .map((slug) => OPLOSSING_BY_SLUG[slug])
+    .filter(Boolean);
 
   return (
     <SitePage>
@@ -144,7 +148,7 @@ export default async function BranchePage({
               key={p}
               className="flex gap-3 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]"
             >
-              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
               <span>{p}</span>
             </li>
           ))}
@@ -246,7 +250,7 @@ export default async function BranchePage({
                 &ldquo;{caseStudy.quote.text}&rdquo;
               </p>
               <div className="mt-2 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
-                — {caseStudy.quote.by} · {caseStudy.quote.role}
+               , {caseStudy.quote.by} · {caseStudy.quote.role}
               </div>
             </blockquote>
           )}
@@ -269,8 +273,8 @@ export default async function BranchePage({
           tint
         >
           <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
-            Dit zijn de uitkomsten die wij bij vergelijkbare opdrachten halen. Uw situatie bepaalt
-            welke het eerst opvalt — dat stemmen we af in het intake-gesprek.
+            Dit is wat wij in dit soort processen aanpakken. Of het in uw situatie haalbaar is en
+            wat het eerst oplevert, bepalen we samen in het intake-gesprek.
           </p>
           <ul className="mt-8 space-y-3 max-w-[820px]">
             {b.expectations.map((e) => (
@@ -300,6 +304,41 @@ export default async function BranchePage({
           {b.waaromNu}
         </p>
       </Section>
+
+      {relevanteOplossingen.length > 0 && (
+        <Section
+          eyebrow="Waar het meestal begint"
+          title="De processen die hier het vaakst spelen."
+          tint
+        >
+          <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
+            Uw pakket legt vast wat er gebeurd is. Deze processen vragen een besluit dat daarna
+            nog genomen moet worden.
+          </p>
+          <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[820px]">
+            {relevanteOplossingen.map((o) => (
+              <li key={o.slug}>
+                <Link
+                  href={`/oplossingen/${o.slug}`}
+                  className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                >
+                  <span className="font-display text-[17px] text-[var(--ink)] leading-snug">
+                    {o.navLabel}
+                    <ArrowRight
+                      size={14}
+                      strokeWidth={1.8}
+                      className="inline ml-2 text-[var(--oker-deep)]"
+                    />
+                  </span>
+                  <span className="block mt-2 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
+                    {o.cardBody}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
 
       <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">

@@ -4,7 +4,7 @@
 // (src/lib/crm/ai-enrichment.ts): een bedrijfsprofiel, simpele
 // standaard-automatiseringskansen en complexere agent-voorstellen met
 // categorie/complexiteit/impact. Contactgegevens worden hier bewust NIET
-// verzameld — dit is een publieke tool.
+// verzameld, dit is een publieke tool.
 
 export type Complexiteit = 'gemiddeld' | 'hoog' | 'zeer hoog';
 export type Impact = 'laag' | 'middel' | 'hoog';

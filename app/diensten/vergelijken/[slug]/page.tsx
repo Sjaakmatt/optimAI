@@ -175,7 +175,7 @@ export default async function VergelijkenPage({
             <ul className="mt-5 space-y-3">
               {c.whenAgent.map((item) => (
                 <li key={item} className="flex gap-3 text-[15px] leading-[1.7] text-[var(--ink)]">
-                  <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+                  <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -188,7 +188,7 @@ export default async function VergelijkenPage({
             <ul className="mt-5 space-y-3">
               {c.whenAlternative.map((item) => (
                 <li key={item} className="flex gap-3 text-[15px] leading-[1.7] text-[var(--ink)]">
-                  <span className="text-[var(--ink-faint)] pt-1 shrink-0">—</span>
+                  <span className="text-[var(--ink-faint)] pt-1 shrink-0">·</span>
                   <span>{item}</span>
                 </li>
               ))}

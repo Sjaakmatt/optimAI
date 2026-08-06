@@ -8,7 +8,7 @@ import { CASES } from '@/lib/data/cases';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const metadata: Metadata = {
-  title: 'AI-agent cases — resultaten bij Nederlandse bedrijven',
+  title: 'AI-agent cases, resultaten bij Nederlandse bedrijven',
   description:
     'Praktijkvoorbeelden van AI-agents die wij bouwden voor Nederlandse bedrijven. Van lead-generatie op basis van kaartselectie tot digitale inspectierapportage op locatie.',
   alternates: { canonical: '/cases' },
@@ -23,7 +23,7 @@ const ITEMLIST_SCHEMA = {
     '@type': 'ListItem',
     position: i + 1,
     url: `${SITE_URL}/cases/${c.slug}`,
-    name: `${c.klant} — ${c.tagline}`,
+    name: `${c.klant}, ${c.tagline}`,
   })),
 };
 

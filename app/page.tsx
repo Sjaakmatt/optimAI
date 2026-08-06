@@ -45,8 +45,8 @@ function Klanten() {
               <li key={c.slug}>
                 <Link
                   href={`/cases/${c.slug}`}
-                  title={`${c.klant} — bekijk de case`}
-                  aria-label={`Case: ${c.klant} — ${c.tagline}`}
+                  title={`${c.klant}, bekijk de case`}
+                  aria-label={`Case: ${c.klant}, ${c.tagline}`}
                   className="group block"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -338,7 +338,7 @@ function VoorWie() {
               aria-hidden
               className="font-mono text-[11px] text-[var(--steen)] tracking-[0.1em]"
             >
-              —
+              ·
             </span>
             <span>{b}</span>
           </li>

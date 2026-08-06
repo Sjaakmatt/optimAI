@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI-agents scan · FactumAI',
     description:
-      'Zie binnen een minuut wat AI-agents voor uw bedrijf kunnen betekenen — op basis van uw eigen website.',
+      'Zie binnen een minuut wat AI-agents voor uw bedrijf kunnen betekenen, op basis van uw eigen website.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -62,7 +62,7 @@ export default function ScanPage() {
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[640px]">
             Vul uw website in. We analyseren uw bedrijf, uw branche en uw processen, en laten
-            binnen een minuut zien welke taken een AI-agent kan overnemen — van snelle
+            binnen een minuut zien welke taken een AI-agent kan overnemen, van snelle
             standaard-automatisering tot geavanceerde agents op maat.
           </p>
         </div>

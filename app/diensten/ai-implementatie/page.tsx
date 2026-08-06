@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: 'Wat betekent "AI implementeren" precies in een MKB-bedrijf?',
-    a: 'AI implementeren betekent dat een concrete AI-toepassing — meestal een AI-agent — productief draait in uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid, met uw mensen die het bijhouden. Het is niet een experiment of een proof-of-concept, het is een werkend onderdeel van uw operatie.',
+    a: 'AI implementeren betekent dat een concrete AI-toepassing, meestal een AI-agent, productief draait in uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid, met uw mensen die het bijhouden. Het is niet een experiment of een proof-of-concept, het is een werkend onderdeel van uw operatie.',
   },
   {
     q: 'Waarom mislukken zoveel AI-implementaties bij MKB?',
@@ -45,7 +45,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Wat als de implementatie tegenvalt?',
-    a: 'In de eerste week zetten wij eerst een testkoppeling op met uw systemen. Werkt die niet zoals afgesproken, dan stoppen wij voordat we aan de agent beginnen — geen factuur. De vaste-prijs-aanpak betekent dat doorlooptijd en scope vooraf vastliggen, dus risico op tegenvallen is beperkt.',
+    a: 'In de eerste week zetten wij eerst een testkoppeling op met uw systemen. Werkt die niet zoals afgesproken, dan stoppen wij voordat we aan de agent beginnen, geen factuur. De vaste-prijs-aanpak betekent dat doorlooptijd en scope vooraf vastliggen, dus risico op tegenvallen is beperkt.',
   },
   {
     q: 'Hoe zit het met AVG, governance en beveiliging?',
@@ -131,7 +131,7 @@ const STAPPEN: Array<{ nr: string; titel: string; tekst: string }> = [
     nr: '03',
     titel: 'Test de integratie eerst',
     tekst:
-      'Voordat de agent gebouwd wordt, zetten wij een testkoppeling op met uw boekhoudpakket, CRM of ERP. Werkt die niet zoals afgesproken, dan stoppen we — zonder factuur. Geen verrassingen achteraf.',
+      'Voordat de agent gebouwd wordt, zetten wij een testkoppeling op met uw boekhoudpakket, CRM of ERP. Werkt die niet zoals afgesproken, dan stoppen we, zonder factuur. Geen verrassingen achteraf.',
   },
   {
     nr: '04',
@@ -243,7 +243,7 @@ export default function AIImplementatiePage() {
           />
           <Card
             title="Geen koppeling met bestaande systemen"
-            body="Een AI die los staat van uw boekhoudpakket of CRM is een speeltje. Implementatie betekent koppelen — vanaf dag één, niet als laatste stap."
+            body="Een AI die los staat van uw boekhoudpakket of CRM is een speeltje. Implementatie betekent koppelen, vanaf dag één, niet als laatste stap."
           />
           <Card
             title="Geen eigenaar binnen het bedrijf"
@@ -266,7 +266,7 @@ export default function AIImplementatiePage() {
               key={item}
               className="flex items-start gap-3 border border-[var(--paper-edge)] rounded-[2px] px-4 py-4 bg-[var(--paper)]"
             >
-              <span className="text-[var(--oker-deep)] pt-0.5">—</span>
+              <span className="text-[var(--oker-deep)] pt-0.5">·</span>
               <span className="text-[14.5px] leading-[1.6] text-[var(--ink)]">{item}</span>
             </li>
           ))}

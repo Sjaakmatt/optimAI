@@ -77,12 +77,12 @@ async function sendBookingFollowUp(
     `De Google Meet-link zit in de agenda-uitnodiging die u zojuist heeft gekregen.\n\n` +
     `Een paar dingen om te weten:\n\n` +
     `· Het gesprek duurt ongeveer 30 minuten.\n` +
-    `· Geen voorbereiding nodig — vertel gewoon waar uw mensen tijd aan kwijt zijn.\n` +
+    `· Geen voorbereiding nodig, vertel gewoon waar uw mensen tijd aan kwijt zijn.\n` +
     `· Past het toch niet meer? In de uitnodiging staat een rescheduling-link.\n\n` +
     `Tot dan,\n` +
     `Sjaak ter Veld\n` +
     `FactumAI\n\n` +
-    `—\n` +
+    `---\n` +
     `Hoogkarspel · 06-10 55 56 58 · info@factumai.nl`;
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -95,7 +95,7 @@ async function sendBookingFollowUp(
       from: `Sjaak ter Veld <${from}>`,
       to: [attendee.email],
       reply_to: replyTo,
-      subject: `Bedankt — kennismaking ${dateStr}`,
+      subject: `Bedankt, kennismaking ${dateStr}`,
       text,
     }),
   });

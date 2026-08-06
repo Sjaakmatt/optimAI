@@ -2,6 +2,7 @@ import { POSTS } from '@/lib/data/posts';
 import { CASES } from '@/lib/data/cases';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
+import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
@@ -47,13 +48,23 @@ function buildLlmsTxt(): string {
     `- [AI implementeren in uw bedrijf](${SITE_URL}/diensten/ai-implementatie): begeleiding bij AI-implementatie van strategie tot productie, inclusief stappenplan, integraties, governance en adoptie.`,
   );
   lines.push(
-    `- [AI-agents voor bedrijven](${SITE_URL}/diensten/ai-agents-voor-bedrijven): wat AI-agents voor B2B-bedrijven concreet betekenen — type-agents, ROI, integraties, randvoorwaarden.`,
+    `- [AI-agents voor bedrijven](${SITE_URL}/diensten/ai-agents-voor-bedrijven): wat AI-agents voor B2B-bedrijven concreet betekenen, type-agents, ROI, integraties, randvoorwaarden.`,
   );
+  lines.push('');
+
+  lines.push('## Oplossingen');
+  lines.push('');
+  lines.push(
+    `- [Alle oplossingen](${SITE_URL}/oplossingen): vier processen waar de beslislaag boven het ERP het meeste oplevert.`,
+  );
+  for (const o of OPLOSSINGEN) {
+    lines.push(`- [${o.navLabel}](${SITE_URL}/oplossingen/${o.slug}): ${o.cardBody}`);
+  }
   lines.push('');
 
   lines.push("## Kern-pagina's");
   lines.push('');
-  lines.push(`- [Homepage](${SITE_URL}/): AI-agents voor MKB — wat wij bouwen en voor wie.`);
+  lines.push(`- [Homepage](${SITE_URL}/): AI-agents voor MKB, wat wij bouwen en voor wie.`);
   lines.push(
     `- [Wat is een AI-agent](${SITE_URL}/info): Uitleg van het begrip, vergelijking met chatbot en workflow-tool, FAQ.`,
   );
@@ -78,7 +89,7 @@ function buildLlmsTxt(): string {
   lines.push('## Cases');
   lines.push('');
   for (const c of CASES) {
-    lines.push(`- [${c.klant} — ${c.branche}](${SITE_URL}/cases/${c.slug}): ${c.tagline}`);
+    lines.push(`- [${c.klant}, ${c.branche}](${SITE_URL}/cases/${c.slug}): ${c.tagline}`);
   }
   lines.push('');
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-agent readiness check · FactumAI',
-    description: 'Tien-vraag quiz die uw AI-readiness in kaart brengt — direct een eerlijke score.',
+    description: 'Tien-vraag quiz die uw AI-readiness in kaart brengt, direct een eerlijke score.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
