@@ -1474,6 +1474,51 @@ export const POSTS: Post[] = [
     generatedBy: 'ai-draft',
   },
 
+  {
+    slug: 'ai-in-accountancy-wat-verandert-2026',
+    title: 'AI in de accountancy: wat verandert er in 2026?',
+    lede: 'Accountantskantoren staan onder druk. Niet alleen door personeelstekort, maar ook omdat hun klanten — MKB-bedrijven — steeds vaker vragen om meer dan een jaarrekening. AI verandert wat accountants doen, hoe ze dat doen, en wat u van hen mag verwachten.',
+    author: 'Sjaak ter Veld',
+    published: '2026-08-06',
+    readingMinutes: 6,
+    tags: ['MKB', 'integraties', 'rolverandering', 'strategie', 'trends'],
+    blocks: [
+      { kind: 'p', text: 'Als u eens per kwartaal contact heeft met uw accountant, is de kans groot dat dat contact de komende twee jaar van aard verandert. Niet omdat uw accountant een andere persoon wordt, maar omdat een deel van het werk dat hij of zij nu handmatig doet, straks geautomatiseerd is. Dat heeft gevolgen voor de prijs, de snelheid en het type advies dat u krijgt.' },
+      { kind: 'h2', text: 'Wat accountants nu nog handmatig doen' },
+      { kind: 'p', text: 'Een groot deel van het werk bij een accountantskantoor is regelmatig, voorspelbaar en documentgedreven. Bonnetjes verwerken, bankafschriften matchen, btw-aangiften opstellen, salarisspecificaties controleren. Dit zijn precies de taken waarop AI-agents goed presteren. Ze zijn beschrijfbaar, herhaalbaar en hebben een duidelijk begin en einde.' },
+      { kind: 'p', text: 'Kantoren die Exact, Twinfield, AFAS of Snelstart gebruiken, kunnen al heute een flink deel van die documentverwerking automatiseren. Scannen, herkennen, boeken — dat vergt straks geen menselijke handeling meer. Wat overblijft is controleren op uitzonderingen en beoordelen wat de cijfers betekenen.' },
+      { kind: 'h2', text: 'Drie verschuivingen die u direct raken' },
+      { kind: 'list', items: [
+        'Snellere tussentijdse rapportages: waar u nu eens per kwartaal inzicht krijgt, kunnen geautomatiseerde boekingen en dashboards u wekelijks of zelfs dagelijks bijhouden.',
+        'Minder uren, andere tariefopbouw: als de verwerkingstijd daalt, verschuift de rekening van uren naar abonnement of advieswaarde. Vraag uw accountant hoe hij daarmee omgaat.',
+        'Meer signalering, minder registratie: een agent die continu meekijkt, kan afwijkingen sneller signaleren dan een mens die eens per maand in de boeken duikt. Achterstallige debiteuren, ongebruikelijke kostenposten, cashflow-dips — dat soort observaties komen eerder op tafel.',
+      ] },
+      { kind: 'h2', text: 'Wat uw accountant waarschijnlijk niet vertelt' },
+      { kind: 'p', text: 'Veel kantoren zijn nog midden in de omslag. Ze experimenteren intern, maar communiceren er weinig over naar klanten. Dat is begrijpelijk — wie vertelt er graag dat zijn vaste uurtarief straks onder druk staat? Maar het betekent wel dat u zelf de vraag moet stellen: wat automatiseert u al, en wat betekent dat voor mijn kosten de komende twee jaar?' },
+      { kind: 'p', text: 'Dezelfde vraag geldt voor uw eigen administratie. Als uw accountant straks documenten geautomatiseerd verwerkt, dan helpt het als u aanlevert in een formaat dat daarvoor geschikt is. PDF-facturen die via e-mail binnenkomen zijn verwerkbaar. Een handgeschreven bonnetje op foto is dat minder.' },
+      { kind: 'quote', text: 'Accountancy verandert niet door AI. Accountancy wordt zichtbaarder door AI — en dat is iets anders.' },
+      { kind: 'h2', text: 'Wat u zelf kunt doen' },
+      { kind: 'p', text: 'U hoeft de AI-strategie van uw accountant niet over te nemen. Maar u kunt uw eigen administratie zo inrichten dat ze makkelijk aansluit. Dat begint bij het consequent digitaal aanleveren van inkoop- en verkoopfacturen, het gebruik van een koppelbaar boekhoudpakket zoals Moneybird of Snelstart, en het afspreken van een duidelijk proces voor bankafschriften.' },
+      { kind: 'list', items: [
+        'Stel uw accountant de vraag: welke aanleversystematiek werkt het beste voor geautomatiseerde verwerking?',
+        'Controleer of uw boekhoudpakket een directe API-koppeling ondersteunt — dat scheelt handmatig exporteren.',
+        'Bespreek of tussentijdse rapportages standaard kunnen worden in plaats van op aanvraag.',
+        'Vraag naar de tariefopbouw voor 2027 — als die nog op uurregistratie staat, is de automatisering nog niet doorgevoerd.',
+      ] },
+      { kind: 'h2', text: 'De grens van automatisering' },
+      { kind: 'p', text: 'Niet alles verandert. De aangifte vennootschapsbelasting voor een bedrijf met complexe deelnemingen, een overname waarbij goodwill moet worden bepaald, een arbeidsconflict met financiële consequenties — dat vraagt om een accountant die begrijpt hoe uw bedrijf werkt en welke risico\'s er spelen. Een agent kan de data aanreiken. De weging blijft mensenwerk.' },
+      { kind: 'p', text: 'De kantoren die in 2026 het beste presteren voor MKB-klanten zijn niet de kantoren die het meest geautomatiseerd hebben, maar de kantoren die de vrijgekomen tijd het meest zinvol inzetten: voor advies, voor signalering, voor het gesprek dat tot nu toe niet plaatsvond omdat de urenregistratie het niet toeliet.' },
+    ],
+    faq: [
+      { q: 'Wordt mijn accountantsrekening lager door AI?', a: 'Niet automatisch. Als uw kantoor AI inzet om verwerkingstijd te reduceren maar de tariefopbouw niet aanpast, merkt u er financieel niets van. Vraag expliciet naar hoe de kantoorkosten zich de komende jaren ontwikkelen en of er een overgang naar vaste abonnementen in het verschiet ligt.' },
+      { q: 'Moet ik mijn administratie anders inrichten voor AI-verwerking?', a: 'Grotendeels niet. Als u al digitaal factureert via een pakket als Moneybird, Snelstart of Exact, bent u er klaar voor. Het grootste verschil zit in consistentie: facturen altijd als gestructureerde PDF aanleveren, geen foto\'s van bonnetjes, en bankafschriften via directe koppeling in plaats van handmatig exporteren.' },
+      { q: 'Wat doet een AI-agent bij een accountantskantoor precies?', a: 'In de praktijk gaat het om documenten herkennen en boeken, btw-bedragen controleren, debiteuren bewaken en rapportages samenstellen op basis van actuele data. De agent verwerkt en signaleert. De accountant beoordeelt, weegt en adviseert. De taakverdeling verschuift, de verantwoordelijkheid blijft bij de mens.' },
+      { q: 'Is mijn financiële data veilig als mijn accountant AI gebruikt?', a: 'Dat hangt af van hoe het kantoor het heeft ingericht. Stel vragen over waar data wordt opgeslagen, of er verwerking plaatsvindt buiten de EU, en of de verwerking voldoet aan de AVG. Een serieus kantoor heeft hier een verwerkersovereenkomst voor en kan u die op verzoek toesturen.' },
+    ],
+    cluster: 'C',
+    generatedBy: 'ai-draft',
+  },
+
 ];
 
 export const POST_BY_SLUG = POSTS.reduce<Record<string, Post>>((acc, p) => {
