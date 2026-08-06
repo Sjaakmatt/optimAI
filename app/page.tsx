@@ -9,7 +9,7 @@ import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste prijs per fase, elke uitgaande actie langs een mens. Voor het werk dat uw ERP niet doet: mails beoordelen, patronen uit uw eigen data halen, handelingen klaarzetten tussen systemen.',
+    'FactumAI bouwt AI-agents voor Nederlandse MKB-bedrijven: digitale collega\'s die mails afhandelen, offertes opvolgen en bestellingen klaarzetten. Op maat, binnen uw regels, met een mens die goedkeurt. Vaste prijs per fase.',
   alternates: { canonical: '/' },
 };
 
@@ -83,15 +83,15 @@ function Hero() {
             AI-agents voor MKB · Nederland
           </div>
           <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            Het werk dat <span className="ink-highlight">uw ERP</span>{' '}
-            <span className="italic text-[var(--oker-deep)]">niet doet.</span>
+            <span className="ink-highlight">Menselijk</span> waar het moet,{' '}
+            <span className="italic text-[var(--oker-deep)]">AI waar het kan.</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
-            Uw ERP en CRM leggen vast wat er gebeurd is. Ze bepalen niet wat u nu moet doen. Dat
-            oordeel ligt nog bij uw mensen: de mail lezen en afhandelen, zien welke klant stil is
-            gevallen, uitrekenen wat u volgende maand nodig heeft, de bestelling klaarzetten.
-            FactumAI bouwt agents voor precies die laag. Op maat, binnen uw regels, en altijd met
-            een mens die de knop indrukt.
+            Elke dag opnieuw: mails afhandelen, offertes opvolgen, bestellingen klaarzetten,
+            gegevens overtypen. Werk dat af moet, maar uw bedrijf niet vooruit helpt. FactumAI
+            bouwt AI-agents die dat werk voorbereiden zoals een goede collega dat doet: opzoeken,
+            uitrekenen, klaarzetten. U keurt goed, en uw mensen houden tijd over voor het werk
+            waar ze goed in zijn.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
