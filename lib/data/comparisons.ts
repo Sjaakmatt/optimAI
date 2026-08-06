@@ -12,14 +12,21 @@ export interface ComparisonFAQ {
 export interface Comparison {
   slug: string;
   alternative: string; // "chatbot", "RPA", "Zapier/Make"
+  /** Afwijkende kop boven de rechterkolom van de tabel. Valt terug op alternative. */
+  alternativeColumnLabel?: string;
   pageTitle: string;
   metaDescription: string;
   heroEyebrow: string;
   heroTitle: string;
   heroItalic: string;
   intro: string;
+  /** Optioneel. Leeg laten als de pagina met lopende tekst werkt in plaats van bullets. */
   whenAgent: string[];
   whenAlternative: string[];
+  /** Optioneel prozablok: wanneer een agent niet nodig is. */
+  geenAgentNodig?: string;
+  /** Optioneel prozablok: hoe agent en bestaand pakket elkaar aanvullen. */
+  vultElkaarAan?: string;
   rows: ComparisonRow[];
   conclusion: string;
   faq: ComparisonFAQ[];
@@ -126,7 +133,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: 'Wat is goedkoper: RPA of een AI-agent?',
-        a: 'In bouwkosten ontlopen ze elkaar niet veel. In onderhoudskosten wint de AI-agent: een RPA-bot moet bij elke UI-wijziging worden aangepast, een agent niet. Over een paar jaar gemeten is een AI-agent doorgaans 30 tot 50 procent goedkoper.',
+        a: 'In bouwkosten ontlopen ze elkaar niet veel. In onderhoudskosten wint de AI-agent: een RPA-bot moet bij elke UI-wijziging worden aangepast, een agent niet. Over meerdere jaren gemeten valt een AI-agent daardoor doorgaans goedkoper uit.',
       },
       {
         q: 'Kunnen AI-agent en RPA samenwerken?',
@@ -184,6 +191,49 @@ export const COMPARISONS: Comparison[] = [
       {
         q: 'Wat kost het om een Zapier-flow te vervangen door een AI-agent?',
         a: 'Hangt af van wat de Zap doet. Vaste-trigger-flows met simpele velden zijn vaak prima in Zapier. Maar als u een Zap heeft die "een mail leest en dan iets doet" en daar regelmatig fouten in voorkomen, is vervangen door een agent meestal binnen één tot twee maanden terugverdiend door minder fouten en minder bijstuurwerk.',
+      },
+    ],
+  },
+  {
+    slug: 'ai-agent-vs-erp-automatisering',
+    alternative: 'ERP-automatisering',
+    alternativeColumnLabel: 'Automatisering in uw ERP of CRM',
+    pageTitle: 'AI-agent of ERP-automatisering: wat is het verschil?',
+    metaDescription:
+      'Doet uw ERP dit al? Vaak voor een deel. Hier staat waar de grens ligt tussen automatisering in uw eigen pakket en een AI-agent, en wanneer u beter uw ERP of een koppeltool gebruikt.',
+    heroEyebrow: 'Vergelijking · agent vs ERP-automatisering',
+    heroTitle: '\u201cDat doet ons ERP toch al?\u201d',
+    heroItalic: 'Voor een deel, ja.',
+    intro:
+      'Dit is de meest gestelde vraag in onze eerste gesprekken, en meestal is het antwoord: voor een deel, ja. Hieronder staat waar de grens ligt.',
+    whenAgent: [],
+    whenAlternative: [],
+    geenAgentNodig:
+      'Als een taak in vaste regels te vangen is en de input altijd uit dezelfde velden komt, gebruik dan uw ERP of een koppeltool. Dat is goedkoper, sneller en beter te onderhouden. Wij zeggen dat ook gewoon in het eerste gesprek. Een agent is pas zinnig zodra er geoordeeld moet worden of gerekend met gegevens die niemand nu combineert.',
+    vultElkaarAan:
+      'In de praktijk vervangt een agent uw pakket niet. Hij zit ernaast: hij leest eruit, denkt na en zet een handeling klaar die vervolgens in uw pakket wordt uitgevoerd. Uw administratie blijft de bron van waarheid.',
+    rows: [
+      { feature: 'Werkt op basis van', agent: 'Regels plus interpretatie van tekst, bijlagen en context', alternative: 'Vaste regels die u vooraf instelt' },
+      { feature: 'Input', agent: 'Mails, documenten, foto\u2019s, notities, én uw velden', alternative: 'Gestructureerde velden' },
+      { feature: 'Bij een uitzondering', agent: 'Beoordeelt, onderbouwt of legt het voor aan een mens', alternative: 'Stopt of geeft een foutmelding' },
+      { feature: 'Rekent met historie', agent: 'Leidt er patronen uit af en trekt er een conclusie uit', alternative: 'Toont die in een rapportage' },
+      { feature: 'Tussen twee pakketten', agent: 'Leest beide en handelt in beide', alternative: 'Vraagt een koppeling of een export' },
+      { feature: 'Verantwoording', agent: 'Elke stap, bron en afweging teruggekeken', alternative: 'Logregel van de handeling' },
+    ],
+    conclusion:
+      'Uw pakket is niet het probleem, het houdt alleen ergens op. Alles wat in vaste regels te vangen is, hoort thuis in uw ERP of CRM. Het werk dat overblijft vraagt oordeel of rekenwerk met gegevens die nu naast elkaar liggen zonder gecombineerd te worden. Daar bouwen wij, en het resultaat gaat altijd langs een mens voordat er iets de deur uit gaat.',
+    faq: [
+      {
+        q: 'Vervangt een AI-agent ons ERP?',
+        a: 'Nee. De agent leest uit uw pakket, denkt na en zet een handeling klaar die vervolgens in uw pakket wordt uitgevoerd. Uw administratie blijft de bron van waarheid.',
+      },
+      {
+        q: 'Wanneer heb ik geen agent nodig?',
+        a: 'Als de taak in vaste regels te vangen is en de input altijd uit dezelfde velden komt. Gebruik dan uw ERP of een koppeltool: goedkoper, sneller en beter te onderhouden. Dat zeggen wij ook gewoon in het eerste gesprek.',
+      },
+      {
+        q: 'Onze leverancier zegt dat er AI in het pakket zit. Is dat hetzelfde?',
+        a: 'Dat verschilt per pakket. De vraag die telt: kan het omgaan met een mail waarvan de inhoud niet in een veld staat, en kan het uitrekenen dat er iets níét is gebeurd? Kan het dat, dan heeft u ons niet nodig voor dat proces.',
       },
     ],
   },
