@@ -145,7 +145,7 @@ const BANDS: ResultBand[] = [
     band: 'Goed klaar',
     title: 'U bent klaar voor een serieuze eerste agent.',
     body:
-      'De voorwaarden zijn er: voldoende werkstroom, modern systeem-landschap, beleid op papier, één persoon intern die meekijkt. Een eerste agent kan binnen één tot twee weken live, en betaalt zich vaak binnen het halve jaar terug. Plan een kennismaking om te bepalen wat als eerste het verschil maakt.',
+      'De voorwaarden zijn er: voldoende werkstroom, modern systeem-landschap, beleid op papier, één persoon intern die meekijkt. Plan een kennismaking om te bepalen wat als eerste het verschil maakt.',
     cta: { href: '/plan', label: 'Plan een gesprek' },
   },
   {

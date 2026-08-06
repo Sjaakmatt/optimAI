@@ -13,7 +13,7 @@ const PAGE_PATH = '/diensten/ai-automatisering';
 export const metadata: Metadata = {
   title: 'AI-automatisering voor MKB · van mailstroom tot facturatie',
   description:
-    'AI-automatisering die werkt bij Nederlandse MKB-bedrijven. Mails, offertes, orders, facturatie en planning automatisch — niet via een dashboard, maar via AI-agents die meedraaien in uw bestaande systemen. Vaste prijs, eerste agent in 1 tot 2 weken live.',
+    'AI-automatisering voor het werk dat uw ERP niet doet: mails beoordelen en afhandelen, patronen uit uw eigen historie halen, handelingen klaarzetten tussen systemen die niet met elkaar praten. Vaste prijs per fase, elke actie langs een mens.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-automatisering voor MKB · FactumAI',
@@ -38,7 +38,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe lang duurt zo\'n implementatie?',
-    a: 'De eerste AI-agent is meestal binnen één tot twee weken live, gekoppeld aan uw e-mail, boekhoudpakket of CRM. Een volledig multi-agent platform (zeven samenwerkende agents) hebben we binnen vijf tot acht weken opgeleverd. Zie de cases voor concrete doorlooptijden.',
+    a: 'Wij werken in fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt voordat de volgende begint. Hoeveel fasen nodig zijn hangt af van het proces en het aantal koppelingen, en dat bepalen wij samen in het eerste gesprek.',
   },
   {
     q: 'Wat kost AI-automatisering?',
@@ -46,7 +46,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Houdt AI-automatisering rekening met de AVG?',
-    a: 'Ja. Data blijft in NL of EU, verwerkersovereenkomst is standaard, sub-verwerkers zijn transparant gepubliceerd. AI-modellen worden niet getraind op uw bedrijfsdata. Logging, audit-spoor en role-based toegang zijn vanaf dag één ingericht.',
+    a: 'Ja. Opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst met een transfer impact assessment. De verwerkersovereenkomst is standaard en sub-verwerkers zijn transparant gepubliceerd. AI-modellen worden niet getraind op uw bedrijfsdata. Logging, audit-spoor en role-based toegang zijn vanaf dag één ingericht.',
   },
   {
     q: 'Wat als mijn boekhoudpakket of ERP oud is?',
@@ -74,7 +74,7 @@ const SERVICE_SCHEMA = {
   serviceType: 'AI-automatisering',
   name: 'AI-automatisering voor MKB',
   description:
-    'AI-automatisering voor Nederlandse MKB-bedrijven: mails, offertes, orders, facturatie, inkoop en planning automatisch door AI-agents op maat. Vaste bouwprijs, eerste agent live binnen 1 tot 2 weken.',
+    'AI-automatisering voor Nederlandse MKB-bedrijven: mails beoordelen, patronen uit eigen data halen, inkoop en opvolging voorbereiden met AI-agents op maat. Vaste prijs per fase, elke uitgaande actie langs een mens.',
   provider: { '@id': `${SITE_URL}/#organization` },
   areaServed: { '@type': 'Country', name: 'Netherlands' },
   url: `${SITE_URL}${PAGE_PATH}`,
@@ -107,7 +107,6 @@ const HOWTO_SCHEMA = {
   name: 'AI-automatisering invoeren in een MKB-bedrijf',
   description:
     'Een pragmatisch stappenplan om AI-automatisering in een Nederlandse MKB-organisatie van eerste gesprek tot live agent te brengen.',
-  totalTime: 'P14D',
   step: [
     { '@type': 'HowToStep', name: 'Procesinventarisatie', text: 'Bepaal samen welk proces het meeste tijd kost en zich het best leent voor automatisering.' },
     { '@type': 'HowToStep', name: 'Voorstel met vaste prijs', text: 'Concreet voorstel met agent-ontwerp, integraties, beleidsregels, doorlooptijd en prijs op één A4.' },
@@ -155,7 +154,7 @@ export default function AIAutomatiseringPage() {
               AI-automatisering is meer dan een chatbot of een Zapier-flow. Het is een digitale
               collega die uw mailstroom leest, offertes opstelt, orders verwerkt en facturen
               klaarzet — binnen úw regels, gekoppeld aan úw systemen. Zonder dashboard. Zonder
-              jarenlang implementatietraject. Vaste prijs, eerste proces live in 1 tot 2 weken.
+              jarenlang implementatietraject. Vaste prijs per fase, elke uitgaande actie langs een mens.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -176,7 +175,7 @@ export default function AIAutomatiseringPage() {
             <div className="mt-10 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
               <span className="h-[1px] w-10" style={{ background: 'var(--oker)' }} aria-hidden />
               <span className="font-mono uppercase tracking-[0.18em]">
-                Vaste bouwprijs · 1 tot 2 weken live · retainer optioneel
+                Vaste prijs per fase · elke actie langs een mens · opzegtermijn één maand
               </span>
             </div>
           </div>
@@ -187,7 +186,7 @@ export default function AIAutomatiseringPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           <Card
             title="Mailstroom die nooit op nul komt"
-            body="Zestig tot honderd binnenkomende mails per dag waarvan tachtig procent routine. Een AI-agent leest, sorteert en beantwoordt — uw mensen pakken alleen wat menselijke aandacht vraagt."
+            body="De mailbox is nooit leeg en het meeste is routine. Een AI-agent leest, zoekt de klant en de order erbij en zet een antwoord klaar. Uw mensen pakken alleen wat menselijke aandacht vraagt."
           />
           <Card
             title="Offertes die te laat de deur uit gaan"
@@ -205,7 +204,7 @@ export default function AIAutomatiseringPage() {
           <ProcessNote
             number="01"
             title="Eén proces tegelijk"
-            body="Wij beginnen niet met een platform. Wij beginnen met één concreet proces dat te veel tijd kost. Live binnen 1 tot 2 weken, leerbaar voor uw mensen, schaalbaar daarna."
+            body="Wij beginnen niet met een platform. Wij beginnen met één concreet proces dat te veel tijd kost. In fasen die elk eindigen in iets werkends, leerbaar voor uw mensen, schaalbaar daarna."
           />
           <ProcessNote
             number="02"

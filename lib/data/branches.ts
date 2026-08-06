@@ -85,7 +85,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Groothandels die nu starten bouwen binnen een jaar een reactietijd op die concurrenten niet kunnen volgen. Niet omdat hun mensen harder werken, maar omdat routinewerk automatisch doorstroomt. Dat verschil zien klanten direct aan de hoeveelheid offertes die dezelfde dag binnenkomen.',
     aanpak:
-      'We beginnen niet bij uw grootste pijn. We beginnen bij het meest voorspelbare proces — meestal offertes of orderbevestigingen — om binnen één tot twee weken een eerste agent live te krijgen. Uw mensen leren hoe ze het bijsturen. Daarna rollen we uit naar inkoop, voorraad, klachten en debiteuren.',
+      'We beginnen niet bij uw grootste pijn. We beginnen bij het meest voorspelbare proces — meestal offertes of orderbevestigingen — om daar de eerste agent omheen te bouwen. Uw mensen leren hoe ze het bijsturen. Daarna rollen we uit naar inkoop, voorraad, klachten en debiteuren.',
   },
   {
     slug: 'installatietechniek',
@@ -143,7 +143,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Installatiebedrijven die een keten van werkbon-tot-factuur draaiend hebben, werken structureel profitabeler. De marge zit niet in uurtarief maar in doorstroom. Elke dag dat een factuur later de deur uit gaat, is liquiditeit die klant niet nodig heeft en u wel.',
     aanpak:
-      'Eerste agent: vaak de factuur-agent, omdat cashflow-winst direct voelbaar is. Daarna werkbon-verwerking, materiaal-bestelling en klant-communicatie. Elke stap brengt meetbare tijdwinst binnen twee weken.',
+      'Eerste agent: vaak de factuur-agent, omdat cashflow-winst direct voelbaar is. Daarna werkbon-verwerking, materiaal-bestelling en klant-communicatie. Elke stap staat op zichzelf en eindigt in iets werkends.',
   },
   {
     slug: 'transport-logistiek',
@@ -259,7 +259,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Dienstverleners die intake en administratie automatiseren, winnen declarabele tijd terug zonder harder te werken. Wie nu begint, bouwt een kantoor dat met gelijkblijvende bezetting meer klanten aankan. Concurrenten die dit niet doen, blijven uurtje-factuurtje draaien met stijgende loonkosten.',
     aanpak:
-      'Eerste agent: intake of urenregistratie — afhankelijk van waar uw grootste lek zit. Live binnen één tot twee weken. Vertrouwelijkheid, conflictcheck en bevoegdheden zijn vanaf dag één ingericht. Daarna documenten, communicatie en kennisbank uitrollen.',
+      'Eerste agent: intake of urenregistratie — afhankelijk van waar uw grootste lek zit. Vertrouwelijkheid, conflictcheck en bevoegdheden zijn vanaf dag één ingericht. Daarna documenten, communicatie en kennisbank uitrollen.',
   },
   {
     slug: 'bouw',
@@ -317,7 +317,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Bouwbedrijven die projectadministratie op orde krijgen, winnen twee dingen: snellere facturatie en minder meerwerk-verlies. In een markt waar marges al dun zijn, is dat het verschil tussen draaien en groeien. Wie nu begint, heeft het systeem staan voor de volgende opdrachtpiek.',
     aanpak:
-      'Eerste agent: meerwerk-registratie, omdat daar direct geld verloren gaat. Live binnen één tot twee weken. Koppelingen met uw calculatiesoftware, urenregistratie en leveranciers-portals worden stap voor stap aangezet.',
+      'Eerste agent: meerwerk-registratie, omdat daar direct geld verloren gaat. Koppelingen met uw calculatiesoftware, urenregistratie en leveranciers-portals worden stap voor stap aangezet.',
   },
   {
     slug: 'zorg',
@@ -370,12 +370,12 @@ export const BRANCHES: Branche[] = [
       'Rapportage-tijd per dienst gaat van 30-60 minuten naar 5-10 minuten.',
       'Planning-doorlooptijd halveert — minder stress op de planner, minder fouten in de roosters.',
       'Declaratie-afwijzingen door zorgverzekeraars dalen fors door pre-check.',
-      'AVG- en NEN 7510-compliance is vanaf dag één ingericht: alle data on-premise of in NL-cloud.',
+      'AVG- en NEN 7510-compliance is vanaf dag één ingericht, met opslag en verwerking in Frankfurt.',
     ],
     waaromNu:
       'Zorgorganisaties staan onder dubbele druk: toenemende zorgvraag en krappere bezetting. Wie administratie-tijd terugwint, houdt personeel. Wie dat niet doet, ziet goede zorgmedewerkers vertrekken omdat ze niet meer aan zorgen toekomen. Een AI-agent is geen luxe meer, het is personeelsbehoud.',
     aanpak:
-      'Eerste agent: rapportage, omdat daar de grootste tijdwinst per zorgmedewerker zit. Live binnen twee weken, inclusief AVG-verwerkersovereenkomst en NEN 7510-controle. Daarna planning en declaratie. Data blijft in NL, logging en auditspoor zijn standaard.',
+      'Eerste agent: rapportage, omdat daar de grootste tijdwinst per zorgmedewerker zit. Inclusief AVG-verwerkersovereenkomst en NEN 7510-controle. Daarna planning en declaratie. Opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst met een transfer impact assessment. Logging en auditspoor zijn standaard.',
   },
   {
     slug: 'productie',
@@ -433,7 +433,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Productiebedrijven die orderflow en planning koppelen, winnen op levertijd en betrouwbaarheid. Klanten kiezen steeds vaker op "wanneer kan het af" in plaats van alleen op prijs. Wie nu inricht, heeft over een jaar een reactietijd en leverbetrouwbaarheid die concurrenten niet matchen.',
     aanpak:
-      'Eerste agent: offerte of order-status — afhankelijk van waar uw werkvoorbereiding vastloopt. Live binnen één tot twee weken. Koppeling met uw ERP, MES of planningssoftware stap voor stap. Kwaliteitsregistratie wordt toegevoegd zodra de basis draait.',
+      'Eerste agent: offerte of order-status — afhankelijk van waar uw werkvoorbereiding vastloopt. Koppeling met uw ERP, MES of planningssoftware stap voor stap. Kwaliteitsregistratie wordt toegevoegd zodra de basis draait.',
   },
   {
     slug: 'detailhandel',
@@ -491,7 +491,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Retail is een reactietijd-markt geworden. Consumenten vergelijken binnen minuten en bestellen waar ze direct antwoord krijgen. Winkels die daar niet op meekomen, verliezen omzet niet aan prijs maar aan snelheid. Een AI-agent op uw inbox draait die wedstrijd terug in uw voordeel.',
     aanpak:
-      'Eerste agent: kanaal-inbox, omdat de winst direct voelbaar is op werkvloer en in klanttevredenheid. Live binnen één tot twee weken. Koppelingen met uw kassasysteem, webshop en voorraadsysteem stap voor stap. Retour- en order-flows volgen zodra de basis draait.',
+      'Eerste agent: kanaal-inbox, omdat de winst direct voelbaar is op werkvloer en in klanttevredenheid. Koppelingen met uw kassasysteem, webshop en voorraadsysteem stap voor stap. Retour- en order-flows volgen zodra de basis draait.',
   },
   {
     slug: 'accountancy',
@@ -549,7 +549,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Boekhoudsoftware en AI-modellen koppelen in 2026 als nooit tevoren. Kantoren die dit nu inrichten, verkopen meer adviesuren tegen hetzelfde tarief en houden hun mensen vast omdat het werk leuker wordt. Wie wacht, ziet klanten overstappen naar collega-kantoren die wel sneller en goedkoper de basis leveren.',
     aanpak:
-      'Eerste agent: boekingen of klantvraag-afhandeling, afhankelijk van waar uw kantoor het meest tijd verliest. Live binnen één tot twee weken. Koppelingen met Exact, AFAS, Twinfield, Snelstart of Visma stap voor stap. AVG- en WWFT-randvoorwaarden vanaf dag één.',
+      'Eerste agent: boekingen of klantvraag-afhandeling, afhankelijk van waar uw kantoor het meest tijd verliest. Koppelingen met Exact, AFAS, Twinfield, Snelstart of Visma stap voor stap. AVG- en WWFT-randvoorwaarden vanaf dag één.',
   },
   {
     slug: 'advocatuur',
@@ -605,9 +605,9 @@ export const BRANCHES: Branche[] = [
       'Cliënttevredenheid stijgt door pro-actieve status-updates.',
     ],
     waaromNu:
-      'De AI-tooling in 2026 maakt het mogelijk om vertrouwelijk én juridisch zorgvuldig te werken — data blijft in NL, geen training op uw dossiers, expliciete logging. Kantoren die dit nu inrichten, draaien hogere marges en behouden ambitieuze advocaten die geen administratie willen doen.',
+      'De AI-tooling in 2026 maakt het mogelijk om vertrouwelijk én juridisch zorgvuldig te werken — opslag en verwerking in Frankfurt, geen training op uw dossiers, expliciete logging. Kantoren die dit nu inrichten, draaien hogere marges en behouden ambitieuze advocaten die geen administratie willen doen.',
     aanpak:
-      'Eerste agent: intake of urenregistratie. Geheimhouding, conflictcheck en bevoegdheden zijn vanaf dag één geconfigureerd. Live binnen één tot twee weken, daarna document-templates en cliënt-communicatie uitrollen.',
+      'Eerste agent: intake of urenregistratie. Geheimhouding, conflictcheck en bevoegdheden zijn vanaf dag één geconfigureerd. Daarna document-templates en cliënt-communicatie uitrollen.',
   },
   {
     slug: 'makelaardij',
@@ -665,7 +665,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Een huizenmarkt waar consumenten in minuten beslissen welke makelaar ze bellen, beloont kantoren die direct kunnen reageren. AI-agents maken die snelheid bereikbaar zonder extra bezetting.',
     aanpak:
-      'Eerste agent: aanvraag-afhandeling, omdat snelheid daar direct opdracht-conversie verbetert. Live binnen één tot twee weken. Koppeling met Funda, agenda en NVM-software stap voor stap.',
+      'Eerste agent: aanvraag-afhandeling, omdat snelheid daar direct opdracht-conversie verbetert. Koppeling met Funda, agenda en NVM-software stap voor stap.',
   },
   {
     slug: 'agrarisch',
@@ -723,7 +723,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Regelgeving wordt strenger, marges blijven dun, opvolging is onzeker. Bedrijven die nu de administratie automatiseren, blijven over de generaties heen werkbaar. Wie blijft hangen in pen-en-papier of Excel, raakt achter op kantoorwerk waarvan de eisen alleen maar groeien.',
     aanpak:
-      'Eerste agent: factuurverwerking of registratie. Live binnen één tot twee weken. Koppelingen met sector-systemen (RVO, NVWA, KringloopWijzer, FarmInfo) en eigen bedrijfsadministratie stap voor stap.',
+      'Eerste agent: factuurverwerking of registratie. Koppelingen met sector-systemen (RVO, NVWA, KringloopWijzer, FarmInfo) en eigen bedrijfsadministratie stap voor stap.',
   },
   {
     slug: 'e-commerce',
@@ -781,7 +781,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'E-commerce is een snelheids- en service-markt geworden. Kopers kiezen niet meer alleen op prijs maar op snelheid van antwoord, retour en levering. AI-agents brengen dat niveau bereikbaar voor MKB-webshops zonder een service-organisatie van twintig.',
     aanpak:
-      'Eerste agent: klantservice-kanaal of retour-afhandeling. Koppeling met Shopify, WooCommerce, Magento, Bol Seller, Amazon Seller, Magento, eigen WMS stap voor stap. Live binnen één tot twee weken.',
+      'Eerste agent: klantservice-kanaal of retour-afhandeling. Koppeling met Shopify, WooCommerce, Magento, Bol Seller, Amazon Seller, Magento, eigen WMS stap voor stap.',
   },
   {
     slug: 'horeca',
@@ -839,7 +839,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Horeca-marges zijn dun en personeel schaars. Wie de operationele backoffice automatiseert, houdt mensen vast en houdt de zaak werkbaar voor de eigenaar. Wie blijft hangen, brandt op of sluit.',
     aanpak:
-      'Eerste agent: reservering of inkoop. Live binnen één tot twee weken. Koppelingen met Resengo, Untill, Lightspeed, Mews, Mr.Winston, leveranciersportals en eigen kassasysteem stap voor stap.',
+      'Eerste agent: reservering of inkoop. Koppelingen met Resengo, Untill, Lightspeed, Mews, Mr.Winston, leveranciersportals en eigen kassasysteem stap voor stap.',
   },
 ];
 

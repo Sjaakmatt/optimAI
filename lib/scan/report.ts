@@ -29,7 +29,7 @@ const STAPPENPLAN = [
   },
   {
     kop: '2 · Productieklaar opleveren',
-    body: 'De eerste versie draait binnen één tot twee weken live mee, met u aan het stuur: wat automatisch mag en wat langs u komt, bepaalt u.',
+    body: 'De eerste versie draait mee met u aan het stuur: wat de agent voorbereidt en wat langs u komt, bepaalt u. Elke uitgaande actie wordt door een mens goedgekeurd.',
   },
   {
     kop: '3 · Uitbreiden op bewijs',

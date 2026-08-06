@@ -13,7 +13,7 @@ const PAGE_PATH = '/diensten/ai-agents-voor-bedrijven';
 export const metadata: Metadata = {
   title: 'AI-agents voor bedrijven · digitale collega\'s die werk overnemen',
   description:
-    'AI-agents voor bedrijven: digitale collega\'s die mails lezen, offertes opstellen, orders verwerken en planning regelen — binnen úw regels en gekoppeld aan úw systemen. Vaste prijs, eerste agent in 1 tot 2 weken live in Nederland.',
+    'AI-agents voor bedrijven: digitale collega\'s die mails beoordelen, uw eigen historie doorrekenen en handelingen klaarzetten binnen úw regels en gekoppeld aan úw systemen. Vaste prijs per fase, elke uitgaande actie langs een mens.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-agents voor bedrijven · FactumAI',

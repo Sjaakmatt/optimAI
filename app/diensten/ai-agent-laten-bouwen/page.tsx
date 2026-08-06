@@ -13,12 +13,12 @@ const PAGE_PATH = '/diensten/ai-agent-laten-bouwen';
 export const metadata: Metadata = {
   title: 'AI-agent laten bouwen voor uw MKB-bedrijf',
   description:
-    'AI-agent laten bouwen die het werk van uw binnendienst overneemt: mails, offertes, orders, facturatie. Vaste bouwprijs, eerste agent in 1 tot 2 weken live. Optionele retainer voor onderhoud en monitoring, of alleen implementatie.',
+    'AI-agent laten bouwen voor het werk dat na uw pakket overblijft: mails beoordelen, patronen uit uw eigen historie halen, handelingen klaarzetten tussen systemen. Vaste prijs per fase, elke uitgaande actie langs een mens.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-agent laten bouwen · FactumAI',
     description:
-      'Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring - u kiest zelf. Wij bouwen AI-agents op maat voor MKB-bedrijven in Nederland.',
+      'Vaste prijs per fase, elke uitgaande actie langs een mens, opzegtermijn van één maand. Wij bouwen AI-agents op maat voor MKB-bedrijven in Nederland.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -30,7 +30,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe lang duurt het om een AI-agent te laten bouwen?',
-    a: 'De eerste versie van een agent staat meestal binnen één tot twee weken live. Daarna breiden we uit met meer scenario’s of extra afdelingen. Een volledig multi-agent-platform met zeven samenwerkende agents hebben we binnen vijf tot acht weken opgeleverd - zie onze cases voor concrete doorlooptijden.',
+    a: 'Wij bouwen in fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt voordat de volgende begint. Hoeveel fasen er nodig zijn, hangt af van het proces en het aantal systemen dat eraan hangt. Dat zeggen wij in het eerste gesprek, niet op deze pagina.',
   },
   {
     q: 'Moet ik eerst alle processen in kaart hebben?',
@@ -80,8 +80,7 @@ const HOWTO_SCHEMA = {
   '@type': 'HowTo',
   name: 'Een AI-agent laten bouwen voor uw MKB-bedrijf',
   description:
-    'Stappenplan om een AI-agent op maat te laten bouwen — van eerste gesprek tot werkende implementatie binnen één tot twee weken.',
-  totalTime: 'P14D',
+    'Stappenplan om een AI-agent op maat te laten bouwen, van eerste gesprek tot werkende implementatie in uw eigen systemen.',
   step: [
     {
       '@type': 'HowToStep',
@@ -122,7 +121,7 @@ const SERVICE_SCHEMA = {
   serviceType: 'AI-agent ontwikkeling',
   name: 'AI-agent laten bouwen',
   description:
-    'Wij ontwerpen, bouwen en implementeren AI-agents op maat voor MKB-bedrijven in Nederland. Vaste bouwprijs, eerste agent live in 1 tot 2 weken, optionele maandelijkse retainer voor onderhoud en monitoring.',
+    'Wij ontwerpen, bouwen en implementeren AI-agents op maat voor MKB-bedrijven in Nederland. Vaste prijs per fase, elke uitgaande actie langs een mens, opzegtermijn van één maand.',
   provider: { '@id': `${SITE_URL}/#organization` },
   areaServed: { '@type': 'Country', name: 'Netherlands' },
   url: `${SITE_URL}${PAGE_PATH}`,
@@ -227,7 +226,7 @@ export default function AIAgentLatenBouwenPage() {
                 aria-hidden
               />
               <span className="font-mono uppercase tracking-[0.18em]">
-                Vaste bouwprijs · 1 tot 2 weken live · retainer optioneel
+                Vaste prijs per fase · elke actie langs een mens · opzegtermijn één maand
               </span>
             </div>
           </div>
@@ -238,7 +237,7 @@ export default function AIAgentLatenBouwenPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           <Benefit
             title="Uren tijd per dag"
-            body="Een goed gebouwde agent neemt 30 tot 60 procent van het repetitieve binnendienstwerk over. Mails beantwoorden, offertes opstellen, orders verwerken. In de praktijk ziet u dat terug in uren per medewerker per dag."
+            body="Het opzoekwerk voor een besluit gaat weg: de klant erbij zoeken, de historie nalezen, het beleid controleren. Uw mensen houden het besluit zelf over, en dat kost minder tijd dan het werk eromheen."
           />
           <Benefit
             title="Minder fouten en vergeten zaken"
@@ -275,7 +274,7 @@ export default function AIAgentLatenBouwenPage() {
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[780px]">
             Van eerste gesprek naar werkende agent{' '}
-            <span className="italic text-[var(--oker-deep)]">in 1 tot 2 weken.</span>
+            <span className="italic text-[var(--oker-deep)]">in fasen die u goedkeurt.</span>
           </h2>
           <ol className="mt-12 relative">
             <div

@@ -45,7 +45,7 @@ const TRUST_POINTS = [
     body: 'De agent volgt hoe uw bedrijf werkt, niet andersom. Uw regels, uw toon, uw systemen.',
   },
   {
-    title: 'Vaste prijs, 1 tot 2 weken',
+    title: 'Vaste prijs per fase',
     body: 'Eén voorstel met bouwprijs en opleverdatum voordat we starten. Geen open einden.',
   },
 ];
@@ -112,7 +112,7 @@ export default async function AanvraagPage({
               <div className="mt-6 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
                 <span className="h-[1px] w-10" style={{ background: 'var(--oker)' }} aria-hidden />
                 <span className="font-mono uppercase tracking-[0.16em]">
-                  Vaste bouwprijs · live in 1 tot 2 weken · geen verplichtingen
+                  Vaste prijs per fase · elke actie langs een mens · geen verplichtingen
                 </span>
               </div>
             </div>

@@ -57,7 +57,7 @@ export const COMPARISONS: Comparison[] = [
       { feature: 'Koppelt met systemen', agent: 'API, webhook, e-mail-bridge', alternative: 'Soms via knowledge base, zelden voor schrijfacties' },
       { feature: 'Beleidsregels', agent: 'Expliciet, configureerbaar per scenario', alternative: 'Vaak hard-coded in flow' },
       { feature: 'Logboek', agent: 'Per actie, terug te draaien', alternative: 'Conversation log, geen actie-log' },
-      { feature: 'Implementatietijd', agent: '1–2 weken voor eerste versie', alternative: 'Dagen tot weken, afhankelijk van content' },
+      { feature: 'Oplevering', agent: 'In fasen, elke fase iets werkends', alternative: 'Dagen tot weken, afhankelijk van content' },
       { feature: 'Doel', agent: 'Werk overnemen', alternative: 'Vragen beantwoorden' },
     ],
     conclusion:
@@ -77,7 +77,7 @@ export const COMPARISONS: Comparison[] = [
       },
       {
         q: 'Kost een AI-agent meer dan een chatbot?',
-        a: 'Meestal wel. Een chatbot komt vaak uit een SaaS-doos en kost een paar honderd euro per maand. Een AI-agent op maat — gekoppeld aan uw systemen, met expliciete beleidsregels — is een vaste-prijs-implementatie van enkele duizenden tot enkele tienduizenden euro\'s. De ROI ligt ook hoger: een agent neemt vaak 30–60% van het binnendienstwerk over.',
+        a: 'Meestal wel. Een chatbot komt vaak uit een SaaS-doos en kost een paar honderd euro per maand. Een AI-agent op maat — gekoppeld aan uw systemen, met expliciete beleidsregels — is een vaste-prijs-implementatie van enkele duizenden tot enkele tienduizenden euro\'s. Daar staat tegenover dat een agent werk overneemt waar een chatbot niet aan begint.',
       },
     ],
   },
@@ -111,7 +111,7 @@ export const COMPARISONS: Comparison[] = [
       { feature: 'Beleidsregels', agent: 'Expliciet, configureerbaar', alternative: 'Hard-coded in flow' },
       { feature: 'Geschikt voor MKB', agent: 'Ja — vaste prijs, lage onderhoudslast', alternative: 'Zwaar — vraagt RPA-specialist' },
       { feature: 'Combineerbaar', agent: 'Ja, kan RPA-bot aansturen', alternative: 'Ja, kan door agent worden aangestuurd' },
-      { feature: 'Implementatietijd', agent: '1–2 weken', alternative: 'Weken tot maanden per proces' },
+      { feature: 'Oplevering', agent: 'In fasen, elke fase iets werkends', alternative: 'Weken tot maanden per proces' },
     ],
     conclusion:
       'RPA had zijn moment in grote bedrijven met legacy-systemen die geen API hadden. Voor MKB-bedrijven anno 2026 is een AI-agent vrijwel altijd de betere keuze: lagere onderhoudslast, beter omgaan met variatie, geen specialist nodig. In zeldzame gevallen kunnen de twee samenwerken — bijvoorbeeld een agent die een RPA-bot aanstuurt om een verouderde desktop-app te bedienen.',
@@ -161,7 +161,7 @@ export const COMPARISONS: Comparison[] = [
       { feature: 'Input', agent: 'Vrije tekst, e-mails, PDFs, gesprek', alternative: 'Trigger-events met vaste velden' },
       { feature: 'Stappen', agent: 'Beslist per stap op context', alternative: 'Vaste keten, geen "denken" tussen stappen' },
       { feature: 'Variatie', agent: 'Ja', alternative: 'Breekt of geeft fout terug' },
-      { feature: 'Bouwtijd', agent: '1–2 weken voor agent op maat', alternative: 'Uren tot dagen voor een Zap' },
+      { feature: 'Bouwtijd', agent: 'In fasen, elke fase iets werkends', alternative: 'Uren tot dagen voor een Zap' },
       { feature: 'Onderhoud', agent: 'Maandelijks 30 minuten', alternative: 'Per zap meerdere keren per jaar' },
       { feature: 'Logboek', agent: 'Per beslissing, met motivatie', alternative: 'Per run, zonder uitleg' },
       { feature: 'Schaalt naar', agent: 'Tientallen agents in een platform', alternative: 'Honderden Zaps die los staan' },

@@ -8,7 +8,7 @@ import { CASES } from '@/lib/data/cases';
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring, u kiest zelf. Mails, offertes, planning, inkoop, rapportage.',
+    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste prijs per fase, elke uitgaande actie langs een mens. Voor het werk dat uw ERP niet doet: mails beoordelen, patronen uit uw eigen data halen, handelingen klaarzetten tussen systemen.',
   alternates: { canonical: '/' },
 };
 
@@ -115,7 +115,7 @@ function Hero() {
               aria-hidden
             />
             <span className="font-mono uppercase tracking-[0.18em]">
-              Vaste bouwprijs · live in 1 tot 2 weken · retainer optioneel
+              Vaste prijs per fase · elke actie langs een mens · opzegtermijn één maand
             </span>
           </div>
         </div>
@@ -350,7 +350,7 @@ function Aanpak() {
           {[
             ['Kennismaken', 'Eén gesprek bij u of bij ons. Wij kijken wat uw mensen vooral kost.'],
             ['Ontwerpen', 'Samen kiezen we één proces waar de grootste winst zit.'],
-            ['Bouwen', 'Wij bouwen de agent, u test mee. Een eerste agent staat vaak al binnen één tot twee weken live.'],
+            ['Bouwen', 'Wij bouwen in fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt voordat de volgende begint.'],
             ['Implementeren', 'Koppelen aan uw systemen. Uw mensen krijgen uitleg over het beheer.'],
             ['Bijhouden', 'Maandelijks een kort gesprek om aan te passen.'],
           ].map(([title, body], i) => (
@@ -372,25 +372,28 @@ function Aanpak() {
   );
 }
 
+interface StatCell {
+  /** Optioneel. Alleen invullen als er een cijfer is dat wij kunnen onderbouwen. */
+  value?: string;
+  label: string;
+  body: string;
+  italic?: boolean;
+}
+
 function Stats() {
-  const cells = [
+  const cells: StatCell[] = [
     {
-      value: '1–2 wk',
-      label: 'Eerste agent live',
-      body: 'Van kennismaking tot een werkende agent in uw praktijk.',
-      italic: false,
+      label: 'Mens beslist',
+      body: 'Elke uitgaande mail, bestelling of statuswijziging staat eerst als concept klaar en wordt door uw mensen goedgekeurd.',
     },
     {
-      value: '~40%',
-      label: 'Tijdwinst',
-      body: 'Op terugkerend werk — mails, orders, offertes, planning.',
+      label: 'Data in Frankfurt',
+      body: 'Applicatie en database draaien in Europa. De taalmodelcalls lopen via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst.',
       italic: true,
     },
     {
-      value: '8',
-      label: 'Afdelingen',
-      body: 'Samenwerkende agents in de Werkbank, elk met eigen rol.',
-      italic: false,
+      label: 'Eén maand opzegtermijn',
+      body: 'Geen minimale looptijd na de eerste drie maanden. Levert het niet, dan stopt u.',
     },
   ];
   return (
@@ -405,18 +408,27 @@ function Stats() {
                 (i > 0 ? ' md:border-l border-[var(--paper-edge)]' : '')
               }
             >
+              {c.value && (
+                <div
+                  className={
+                    'font-display tabular-nums text-[72px] sm:text-[88px] lg:text-[96px] leading-[0.95] tracking-tight ' +
+                    (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
+                  }
+                >
+                  {c.value}
+                </div>
+              )}
               <div
                 className={
-                  'font-display tabular-nums text-[72px] sm:text-[88px] lg:text-[96px] leading-[0.95] tracking-tight ' +
-                  (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
+                  c.value
+                    ? 'mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]'
+                    : 'font-display text-[26px] sm:text-[30px] lg:text-[34px] leading-[1.1] tracking-tight ' +
+                      (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
                 }
               >
-                {c.value}
-              </div>
-              <div className="mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
                 {c.label}
               </div>
-              <p className="mt-2 text-[14px] leading-[1.6] text-[var(--ink-dim)] max-w-[280px]">
+              <p className="mt-3 text-[14px] leading-[1.6] text-[var(--ink-dim)] max-w-[280px]">
                 {c.body}
               </p>
             </div>

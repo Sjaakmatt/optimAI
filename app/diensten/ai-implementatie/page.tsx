@@ -12,7 +12,7 @@ const PAGE_PATH = '/diensten/ai-implementatie';
 export const metadata: Metadata = {
   title: 'AI implementeren in uw bedrijf · stappenplan en uitvoering',
   description:
-    'AI implementeren in uw bedrijf zonder pilot-moeras. Wij leiden u van eerste gesprek naar werkende AI-agents in productie — strategie, integratie, governance en adoptie. Vaste prijs, eerste agent in 1 tot 2 weken live.',
+    'AI implementeren in uw bedrijf zonder pilot-moeras. Wij leiden u van eerste gesprek naar werkende AI-agents in productie: strategie, integratie, governance en adoptie. Vaste prijs per fase, elke uitgaande actie langs een mens.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI implementeren · FactumAI',
@@ -29,7 +29,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Waarom mislukken zoveel AI-implementaties bij MKB?',
-    a: 'Drie redenen: te groot beginnen, geen koppeling met bestaande systemen, en geen eigenaarschap binnen het bedrijf. Wij beginnen klein (één proces, één tot twee weken), koppelen vanaf dag één met uw systemen, en zorgen dat één persoon binnen uw organisatie weet hoe hij het beleid bijstuurt.',
+    a: 'Drie redenen: te groot beginnen, geen koppeling met bestaande systemen, en geen eigenaarschap binnen het bedrijf. Wij beginnen klein, bij één proces, koppelen vanaf dag één met uw systemen, en zorgen dat één persoon binnen uw organisatie weet hoe hij het beleid bijstuurt.',
   },
   {
     q: 'In welke stappen gebeurt een AI-implementatie?',
@@ -37,7 +37,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe lang duurt een AI-implementatie?',
-    a: 'De eerste agent staat doorgaans binnen één tot twee weken live. Een volledig multi-agent platform binnen vijf tot acht weken. Doorlooptijd hangt af van complexiteit van het proces en het aantal te koppelen systemen.',
+    a: 'Wij leveren in fasen die elk eindigen in iets werkends, zodat u niet maandenlang in een pilot zit zonder resultaat. Het aantal fasen hangt af van de complexiteit van het proces en het aantal te koppelen systemen. Dat bepalen wij samen voordat er gebouwd wordt.',
   },
   {
     q: 'Wat moet ik intern regelen voor de implementatie?',
@@ -49,7 +49,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe zit het met AVG, governance en beveiliging?',
-    a: 'Data blijft in NL of EU, verwerkersovereenkomst standaard, sub-verwerkers transparant gepubliceerd. AI-modellen worden niet getraind op uw bedrijfsdata. Logging en audit-spoor zijn vanaf dag één ingericht. Voor zorg- en juridische toepassingen geldt extra: NEN 7510, geheimhoudingsplicht, conflictcheck.',
+    a: 'Opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst met een transfer impact assessment. Verwerkersovereenkomst standaard, sub-verwerkers transparant gepubliceerd. AI-modellen worden niet getraind op uw bedrijfsdata. Logging en audit-spoor zijn vanaf dag één ingericht. Voor zorg- en juridische toepassingen geldt extra: NEN 7510, geheimhoudingsplicht, conflictcheck.',
   },
   {
     q: 'Heb ik een AI-strategie nodig voordat ik begin?',
@@ -183,8 +183,8 @@ export default function AIImplementatiePage() {
             </h1>
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               De meeste AI-projecten lopen vast in proof-of-concept-fase. Niet bij ons. Wij brengen
-              AI binnen één tot twee weken in productie — gekoppeld aan uw systemen, binnen uw
-              beleid, met logboek en escalatiepad. Geen pilot zonder vervolg, geen platform zonder
+              AI in productie in fasen die elk eindigen in iets werkends, gekoppeld aan uw systemen,
+              binnen uw beleid, met logboek en escalatiepad. Geen pilot zonder vervolg, geen platform zonder
               gebruikers, geen consultancy-rapport zonder uitvoering.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -206,7 +206,7 @@ export default function AIImplementatiePage() {
             <div className="mt-10 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
               <span className="h-[1px] w-10" style={{ background: 'var(--oker)' }} aria-hidden />
               <span className="font-mono uppercase tracking-[0.18em]">
-                Vaste bouwprijs · 1 tot 2 weken live · retainer optioneel
+                Vaste prijs per fase · elke actie langs een mens · opzegtermijn één maand
               </span>
             </div>
           </div>

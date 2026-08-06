@@ -29,7 +29,7 @@ const SERVICES: ServiceCard[] = [
     href: '/diensten/ai-agent-laten-bouwen',
     eyebrow: 'Hoofd-dienst',
     title: 'AI-agent laten bouwen',
-    body: 'Een agent op maat voor uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid. Vaste bouwprijs, eerste agent live in 1 tot 2 weken.',
+    body: 'Een agent op maat voor uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid. Vaste prijs per fase, elke uitgaande actie langs een mens.',
     highlight: true,
   },
   {
@@ -42,7 +42,7 @@ const SERVICES: ServiceCard[] = [
     href: '/diensten/ai-implementatie',
     eyebrow: 'Begeleiding',
     title: 'AI implementeren',
-    body: 'Wij brengen AI binnen één tot twee weken in productie — zonder pilot-moeras. Stappenplan, integraties, governance en adoptie ingebouwd.',
+    body: 'Wij leveren in fasen die elk eindigen in iets werkends, zodat u niet maandenlang in een pilot zit zonder resultaat. Stappenplan, integraties, governance en adoptie ingebouwd.',
   },
   {
     href: '/diensten/ai-agents-voor-bedrijven',
