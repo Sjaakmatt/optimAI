@@ -13,7 +13,7 @@ const PAGE_PATH = '/diensten/ai-agents-voor-bedrijven';
 export const metadata: Metadata = {
   title: 'AI-agents voor bedrijven · digitale collega\'s die werk overnemen',
   description:
-    'AI-agents voor bedrijven: digitale collega\'s die mails lezen, offertes opstellen, orders verwerken en planning regelen — binnen úw regels en gekoppeld aan úw systemen. Vaste prijs, eerste agent in 1 tot 2 weken live in Nederland.',
+    'AI-agents voor bedrijven: digitale collega\'s die mails beoordelen, uw eigen historie doorrekenen en handelingen klaarzetten binnen úw regels en gekoppeld aan úw systemen. Vaste prijs per fase, elke uitgaande actie langs een mens.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'AI-agents voor bedrijven · FactumAI',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: 'Wat is een AI-agent voor bedrijven?',
-    a: 'Een AI-agent is een digitale collega die zelfstandig werk uitvoert binnen door u bepaalde regels: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen. Anders dan een chatbot wacht hij niet op een vraag — hij ziet werk binnenkomen en handelt af. Anders dan een workflow-tool kan hij omgaan met variatie en uitzonderingen.',
+    a: 'Een AI-agent is een digitale collega die zelfstandig werk uitvoert binnen door u bepaalde regels: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen. Anders dan een chatbot wacht hij niet op een vraag, hij ziet werk binnenkomen en handelt af. Anders dan een workflow-tool kan hij omgaan met variatie en uitzonderingen.',
   },
   {
     q: 'Wat is het verschil tussen een AI-agent en een chatbot?',
@@ -54,7 +54,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe houd ik grip op wat de AI-agent doet?',
-    a: 'Elke actie staat in een logboek met welke data is geraadpleegd, welk beleid is toegepast en wat er is besloten. Bedragen of beslissingen boven uw mandaat komen standaard langs een mens. U kunt elke beslissing terugdraaien en het beleid aanpassen — vandaag, niet over een sprint.',
+    a: 'Elke actie staat in een logboek met welke data is geraadpleegd, welk beleid is toegepast en wat er is besloten. Bedragen of beslissingen boven uw mandaat komen standaard langs een mens. U kunt elke beslissing terugdraaien en het beleid aanpassen, vandaag, niet over een sprint.',
   },
 ];
 
@@ -85,7 +85,7 @@ const SERVICE_SCHEMA = {
 };
 
 const AGENT_TYPES: Array<{ titel: string; tekst: string }> = [
-  { titel: 'Offerte-agent', tekst: 'Leest aanvragen, rekent met prijslijst, klantkortingen en marges, stelt offerte op voor akkoord — of verstuurt direct binnen mandaat.' },
+  { titel: 'Offerte-agent', tekst: 'Leest aanvragen, rekent met prijslijst, klantkortingen en marges, stelt offerte op voor akkoord, of verstuurt direct binnen mandaat.' },
   { titel: 'Order-agent', tekst: 'Kredietcheck, voorraadcheck, orderbevestiging, ERP-boeking, koppeling met magazijn en planning.' },
   { titel: 'Mail-agent', tekst: 'Sorteert binnenkomende klantmail, beantwoordt routine in uw merk-toon, escaleert wat menselijke aandacht vraagt.' },
   { titel: 'Facturatie-agent', tekst: 'Concept-facturen op de dag van oplevering, creditnota\'s, debiteurenopvolging met toon per klantgroep.' },
@@ -132,7 +132,7 @@ export default function AIAgentsVoorBedrijvenPage() {
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               Een AI-agent is geen chatbot en geen workflow-script. Het is een digitale collega die
               werk binnen ziet komen, beslissingen neemt binnen úw regels, en escaleert wat hij niet
-              zeker weet. Wij bouwen ze op maat voor MKB-bedrijven in Nederland — gekoppeld aan uw
+              zeker weet. Wij bouwen ze op maat voor MKB-bedrijven in Nederland, gekoppeld aan uw
               systemen, met logboek en duidelijke escalatiepaden.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -166,12 +166,12 @@ export default function AIAgentsVoorBedrijvenPage() {
         </div>
         <p className="mt-8 text-[14.5px] leading-[1.7] text-[var(--ink-dim)] max-w-[720px]">
           In de praktijk werken meerdere agents samen onder één orchestrator-agent die het werk
-          verdeelt. Eén klantmail kan zo via offerte-agent, order-agent en facturatie-agent lopen —
+          verdeelt. Eén klantmail kan zo via offerte-agent, order-agent en facturatie-agent lopen,
           met de mens er alleen tussen voor wat menselijke aandacht vraagt.
         </p>
       </Section>
 
-      <Section eyebrow="Wat het oplevert" title="Concrete cijfers uit MKB-implementaties." tint>
+      <Section eyebrow="Waar het draait" title="Twee processen die wij eerder hebben gebouwd." tint>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           {CASES.map((c) => (
             <Link
@@ -180,7 +180,7 @@ export default function AIAgentsVoorBedrijvenPage() {
               className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
             >
               <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-                {c.branche} · {c.regio}
+                {c.branche}{c.regio ? ` · ${c.regio}` : ''}
               </div>
               <h3 className="mt-2 font-display text-[19px] text-[var(--ink)] leading-snug">{c.klant}</h3>
               <p className="mt-2 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">{c.tagline}</p>

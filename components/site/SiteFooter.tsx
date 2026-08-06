@@ -64,6 +64,14 @@ export function SiteFooter() {
             </li>
             <li>
               <Link
+                href="/oplossingen"
+                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
+              >
+                Oplossingen
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/branches"
                 className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
               >

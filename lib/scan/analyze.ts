@@ -33,7 +33,7 @@ WERKWIJZE:
 
 SCORE (0-100, "AI-potentieel"):
 Weeg vooral het zichtbare volume aan terugkerend, automatiseerbaar werk: offerte- en ordertrajecten, planning/roostering, klantcontact, facturatie, intake/aanvragen, voorraad, administratie. Hoe meer herhaalbaar werk agents kunnen overnemen, hoe hoger.
-- 70-100: duidelijk veel herhaalbare processen — AI-agents kunnen hier direct waarde leveren.
+- 70-100: duidelijk veel herhaalbare processen, AI-agents kunnen hier direct waarde leveren.
 - 40-69: concrete kansen zichtbaar, maar beperkter volume of nog onduidelijke processen.
 - 0-39: weinig zichtbaar automatiseerbaar volume of te weinig informatie op de website.
 Wees eerlijk maar constructief: ook bij een lagere score benoem je wat wél kan.
@@ -58,7 +58,7 @@ Geef je EINDANTWOORD uitsluitend als één JSON-object (geen markdown, geen teks
     "doelgroep": <string|null>,
     "locatie": <string|null>
   },
-  "websiteAnalyse": <string|null — 2-4 zinnen: wat doet dit bedrijf en welke processen zie je>,
+  "websiteAnalyse": <string|null, 2-4 zinnen: wat doet dit bedrijf en welke processen zie je>,
   "brancheKansen": <string|null>,
   "aiOpportunities": ["<concrete standaard-automatiseringskans>", ...],
   "advancedSolutions": [
@@ -83,7 +83,7 @@ function buildUserTurn(bedrijfsnaam: string, scrape: ScanScrape): string {
     sections.push(`WEBSITE-CONTENT\n${header.join('\n')}\n\n---\n\n${scrape.markdown}`);
   } else {
     sections.push(
-      'WEBSITE-CONTENT\n(niet beschikbaar — de website leverde geen leesbare content op. ' +
+      'WEBSITE-CONTENT\n(niet beschikbaar, de website leverde geen leesbare content op. ' +
         'Baseer je op de bedrijfsnaam en wees expliciet terughoudend: lage zekerheid, generiekere kansen.)',
     );
   }
@@ -181,7 +181,7 @@ export async function analyzeCompany(
   });
 
   if (message.stop_reason === 'max_tokens') {
-    throw new Error('De analyse werd afgekapt — probeer het opnieuw.');
+    throw new Error('De analyse werd afgekapt, probeer het opnieuw.');
   }
   const text = message.content
     .map((b) => (b.type === 'text' ? b.text : ''))

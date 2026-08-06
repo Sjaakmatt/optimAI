@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // reserveert vervangende borden in het voorraadsysteem.
 export const script_mail_return: Script = {
   id: 'script_mail_return',
-  eventTitle: 'E-mail — Retour beschadigd servies',
+  eventTitle: 'E-mail, Retour beschadigd servies',
   eventContext: 'Beschadigd geleverd · ERP + retourbeleid + creditering via de betaalprovider',
   minutesSaved: 44,
   steps: [
@@ -66,7 +66,7 @@ export const script_mail_return: Script = {
       meta: {
         from: 'klantenservice@vonk.nl',
         to: 'm.bosma@ziggo.nl',
-        subject: 'Re: Beschadigd servies — order VNK-2026-08790',
+        subject: 'Re: Beschadigd servies, order VNK-2026-08790',
         date: 'Vandaag · 09:52',
         reasoning: [
           'Toon: warm, geen schuldvraag over de breuk',

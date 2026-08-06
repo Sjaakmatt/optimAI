@@ -43,8 +43,8 @@ export default function OverPage() {
           <p className="mt-6 text-[15px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
             FactumAI is in {FOUNDED} opgericht in Hoogkarspel om AI-agents bereikbaar te maken voor
             Nederlandse MKB-bedrijven. Geen consultancy-rapport, geen jarenlang traject, geen
-            dashboard-wirwar. Eén vaste bouwprijs, eerste agent live binnen één tot twee weken,
-            optionele retainer voor doorontwikkeling.
+            dashboard-wirwar. Een vaste prijs per fase, elke uitgaande actie langs een mens, en een
+            opzegtermijn van één maand.
           </p>
         </div>
       </section>
@@ -239,7 +239,7 @@ const DOEN = [
   {
     eyebrow: 'Solo-agents',
     titel: 'Eén agent voor één proces.',
-    body: 'Voor MKB-bedrijven met een concrete pijn beginnen wij vrijwel altijd met één losse agent: offerte, order, facturatie, mail of planning. Live in één tot twee weken, gekoppeld aan uw systemen, binnen úw beleidsregels. Bewust klein beginnen, zodat uw mensen leren bijsturen voor we uitbreiden.',
+    body: 'Voor MKB-bedrijven met een concrete pijn beginnen wij vrijwel altijd met één losse agent: offerte, order, facturatie, mail of planning. Gekoppeld aan uw systemen, binnen úw beleidsregels. Bewust klein beginnen, zodat uw mensen leren bijsturen voor we uitbreiden.',
   },
   {
     eyebrow: 'Multi-agent platforms',
@@ -259,7 +259,7 @@ const DOEN = [
   {
     eyebrow: 'Eigen kennis & context',
     titel: 'RAG op uw bedrijfsdata.',
-    body: 'Sommige agents hebben toegang tot uw eigen kennis nodig: productdatabases, prijsafspraken, dossiers, archieven. Wij bouwen veilige RAG-systemen met expliciete logging en bronvermelding. Data blijft in NL/EU en modellen worden niet getraind op uw inhoud.',
+    body: 'Sommige agents hebben toegang tot uw eigen kennis nodig: productdatabases, prijsafspraken, dossiers, archieven. Wij bouwen veilige RAG-systemen met expliciete logging en bronvermelding. Opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst met een transfer impact assessment. Modellen worden niet getraind op uw inhoud.',
   },
   {
     eyebrow: 'Doorontwikkeling',
@@ -354,7 +354,7 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
               {founder.portretSrc ? (
                 <Image
                   src={founder.portretSrc}
-                  alt={`${founder.voornaam} ${founder.achternaam} — ${founder.rolKort} FactumAI`}
+                  alt={`${founder.voornaam} ${founder.achternaam}, ${founder.rolKort} FactumAI`}
                   fill
                   sizes="(max-width: 768px) 100vw, 340px"
                   className="object-cover object-[center_20%]"
@@ -496,7 +496,7 @@ function MemberCard({ member }: { member: TeamMember }) {
         {member.portretSrc ? (
           <Image
             src={member.portretSrc}
-            alt={`${member.voornaam} ${member.achternaam} — ${member.rolKort} FactumAI`}
+            alt={`${member.voornaam} ${member.achternaam}, ${member.rolKort} FactumAI`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
             className="object-cover object-[center_20%]"

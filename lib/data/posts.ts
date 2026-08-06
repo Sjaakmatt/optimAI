@@ -17,7 +17,7 @@ export interface Post {
   lede: string;
   author: string;
   published: string; // ISO date
-  updated?: string; // ISO date — last meaningful edit
+  updated?: string; // ISO date, last meaningful edit
   readingMinutes: number;
   tags: string[];
   blocks: PostBlock[];
@@ -61,7 +61,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Bij MKB-bedrijven is de situatie omgekeerd. Veel wordt nog via mail en Excel gedaan. Eén goed gebouwde agent neemt daar direct 30-60% van de administratieve tijd weg. De impact is groter, de bouwtijd korter, de ROI meetbaar binnen één maand.',
+          'Bij MKB-bedrijven is de situatie omgekeerd. Veel wordt nog via mail en Excel gedaan. Daar haalt één goed gebouwde agent direct een flink deel van de administratieve tijd weg. De impact is groter en de bouwtijd korter dan bij een concern met een dichtgetimmerd systeemlandschap.',
       },
       {
         kind: 'quote',
@@ -72,18 +72,18 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Wij verwachten dat de bedrijven die nu beginnen over twee jaar een onhaalbare voorsprong hebben in hun branche. Niet omdat ze “meer met AI doen”, maar omdat ze met dezelfde bezetting 30% meer omzet draaien. Dat vertaalt zich naar investeringsruimte, inkoopkracht, en werksnelheid richting klanten.',
+          'Wij verwachten dat de bedrijven die nu beginnen over twee jaar een onhaalbare voorsprong hebben in hun branche. Niet omdat ze “meer met AI doen”, maar omdat ze met dezelfde bezetting meer werk aankunnen. Dat vertaalt zich naar investeringsruimte, inkoopkracht, en werksnelheid richting klanten.',
       },
       {
         kind: 'p',
         text:
-          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs, één tot twee weken live voor de eerste versie. Geen groot project-bord nodig.',
+          'De adoptiecurve loopt hard. Maar in tegenstelling tot eerdere technologische golven is de instapdrempel laag. Eén agent, vaste prijs per fase, en een eerste versie die u ziet en goedkeurt voordat er verder gebouwd wordt. Geen groot project-bord nodig.',
       },
     ],
     faq: [
       {
         q: 'Waarom is nu het juiste moment voor een MKB-bedrijf om met AI-agents te starten?',
-        a: 'Omdat het tooling-landschap rond generatieve AI in 2025 en 2026 volwassen is geworden. Agents kunnen betrouwbaar koppelen met bestaande systemen, beleidsregels zijn configureerbaar geworden, en integraties kosten dagen in plaats van maanden. MKB-bedrijven hebben vaak nog veel via mail en Excel — daar neemt één goed gebouwde agent direct 30 tot 60 procent van de administratieve tijd weg.',
+        a: 'Omdat het tooling-landschap rond generatieve AI in 2025 en 2026 volwassen is geworden. Agents kunnen betrouwbaar koppelen met bestaande systemen, beleidsregels zijn configureerbaar geworden, en integraties kosten dagen in plaats van maanden. MKB-bedrijven hebben vaak nog veel via mail en Excel, daar neemt één goed gebouwde agent direct 30 tot 60 procent van de administratieve tijd weg.',
       },
       {
         q: 'Hebben grote bedrijven geen voorsprong met AI?',
@@ -91,7 +91,7 @@ export const POSTS: Post[] = [
       },
       {
         q: 'Wat als ik nu niet instap?',
-        a: 'Bedrijven die nu beginnen hebben over twee jaar een meetbare voorsprong in hun branche. Niet omdat ze "meer met AI doen", maar omdat ze met dezelfde bezetting 30 procent meer omzet draaien. Dat vertaalt zich naar investeringsruimte, inkoopkracht en werksnelheid richting klanten.',
+        a: 'Bedrijven die nu beginnen hebben over twee jaar een meetbare voorsprong in hun branche. Niet omdat ze "meer met AI doen", maar omdat ze met dezelfde bezetting meer werk aankunnen. Dat vertaalt zich naar investeringsruimte, inkoopkracht en werksnelheid richting klanten.',
       },
     ],
   },
@@ -282,7 +282,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Iets kleins, iets snels, iets met duidelijk resultaat binnen één tot twee weken. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. Voorraadsignalen die een inkooporder klaarzetten. Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
+          'Iets kleins, iets snels, iets met een duidelijk resultaat dat u zelf kunt zien. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. Voorraadsignalen die een inkooporder klaarzetten. Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
       },
       {
         kind: 'quote',
@@ -306,7 +306,7 @@ export const POSTS: Post[] = [
     slug: 'integraties-makkelijker-dan-u-denkt',
     title: 'Integraties met bestaande systemen: makkelijker dan u denkt',
     lede:
-      'De grootste aarzeling die ik hoor: "wij hebben een oud boekhoudpakket, dat werkt nooit". In 90% van de gevallen valt dat reuze mee. Hoe het technisch werkt, zonder jargon.',
+      'De grootste aarzeling die ik hoor: "wij hebben een oud boekhoudpakket, dat werkt nooit". In verreweg de meeste gevallen valt dat reuze mee. Hoe het technisch werkt, zonder jargon.',
     author: 'Sjaak ter Veld',
     published: '2026-02-12',
     readingMinutes: 5,
@@ -461,7 +461,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Reken het simpel door. Eén medewerker, 40 uur per week, doet naar schatting 30% administratief werk dat automatiseerbaar is. Dat is 12 uur per week, 520 uur per jaar. Tegen € 30 komt u op € 15.600 directe kosten. Voor één medewerker. Bij drie medewerkers die dat doen: bijna € 50.000.',
+          'Reken het simpel door met uw eigen cijfers. Stel dat één medewerker 12 uur per week aan automatiseerbaar administratief werk kwijt is. Dat is 520 uur per jaar. Tegen € 30 per uur komt u op € 15.600 aan directe kosten, voor één medewerker. Bij drie medewerkers die hetzelfde doen, staat er bijna € 50.000. Vul uw eigen uren en tarief in, dan weet u waar u staat.',
       },
       {
         kind: 'quote',
@@ -553,7 +553,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'In elk eerste gesprek komt de vraag: "En wat kost dat?" Dat antwoord begint bij ons met een onderscheid dat voor veel ondernemers wennen is. Wij werken met een vaste prijs voor de bouw, én een maandelijkse retainer voor daarna. Die retainer is niet verplicht — u kiest zelf of u hem afneemt. Maar hij is wel belangrijk voor veel klanten. Hieronder leg ik uit waarom.',
+          'In elk eerste gesprek komt de vraag: "En wat kost dat?" Dat antwoord begint bij ons met een onderscheid dat voor veel ondernemers wennen is. Wij werken met een vaste prijs voor de bouw, én een maandelijkse retainer voor daarna. Die retainer is niet verplicht, u kiest zelf of u hem afneemt. Maar hij is wel belangrijk voor veel klanten. Hieronder leg ik uit waarom.',
       },
       { kind: 'h2', text: 'De bouw: één vaste prijs' },
       {
@@ -587,7 +587,7 @@ export const POSTS: Post[] = [
         text:
           'Een agent die stilstaat, raakt vanzelf achterop. Een agent die meegroeit, blijft waarde leveren zolang uw bedrijf dat doet.',
       },
-      { kind: 'h2', text: 'Of alleen implementatie — ook prima' },
+      { kind: 'h2', text: 'Of alleen implementatie: ook prima' },
       {
         kind: 'p',
         text:
@@ -660,10 +660,10 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'Stap 3: Koppel de systemen die u al hebt' },
       { kind: 'p', text: 'U hoeft niet te migreren naar nieuwe software. Een agent werkt met wat er al staat. Exact, Moneybird, AFAS, Snelstart, Twinfield voor boekhouding. Pipedrive, Teamleader of HubSpot voor klantrelaties. Microsoft 365 of Google Workspace voor communicatie. In verreweg de meeste gevallen heeft uw huidige pakket een API of een andere koppelingsmethode. Die beoordelen we in stap drie.' },
       { kind: 'quote', text: 'Een agent die uw bestaande systemen gebruikt is productiever dan een nieuw systeem dat iedereen moet leren.' },
-      { kind: 'p', text: 'De koppeling zelf kost doorgaans enkele dagen werk. De voorbereiding — toegangsrechten regelen, een testomgeving inrichten, een representatieve dataset klaarzetten — kost minstens evenveel tijd. Plan daar op.' },
+      { kind: 'p', text: 'De koppeling zelf kost doorgaans enkele dagen werk. De voorbereiding, toegangsrechten regelen, een testomgeving inrichten, een representatieve dataset klaarzetten, kost minstens evenveel tijd. Plan daar op.' },
       { kind: 'h2', text: 'Stap 4: Test met echte situaties, niet met ideale gevallen' },
       { kind: 'p', text: 'De meeste tests gaan fout omdat ze te netjes zijn. U test met een duidelijke factuur van een bekende klant, op een werkdag zonder drukte. Dat is niet de werkelijkheid. Test met de klant die altijd een afwijkend betalingskenmerk invult. Met de aanvraag die drie bestanden als bijlage heeft. Met de mail die half Engels, half Nederlands is.' },
-      { kind: 'p', text: 'Uw medewerker die het proces kent, is de beste tester. Vraag diegene de vijf meest lastige situaties uit de afgelopen maanden na te spelen. Als de agent daar goed mee omgaat, is het klaar voor gebruik. Zo niet, dan pas u de regels aan — niet de agent.' },
+      { kind: 'p', text: 'De beste tester is uw eigen medewerker die het proces kent. Vraag diegene de vijf meest lastige situaties uit de afgelopen maanden na te spelen. Als de agent daar goed mee omgaat, is het klaar voor gebruik. Zo niet, dan pas u de regels aan, niet de agent.' },
       { kind: 'h2', text: 'Stap 5: Ga live met een terugvaloptie' },
       { kind: 'p', text: 'De eerste weken loopt de agent parallel aan de medewerker. Niet als wantrouwen, maar als kalibratie. U vergelijkt uitkomsten, signaleert afwijkingen, en past beleidsregels bij waar nodig. Na twee tot vier weken is duidelijk of de agent zelfstandig kan draaien of dat er nog een regel ontbreekt.' },
       { kind: 'list', items: [
@@ -675,7 +675,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Daarna is het onderhoud. Geen groot project, maar een kwartaalcheck: zijn de regels nog actueel, zijn er nieuwe uitzonderingen bijgekomen, klopt de koppeling nog met de huidige systeemversie. Wie dat doet, houdt de agent betrouwbaar.' },
     ],
     faq: [
-      { q: 'Hoe lang duurt het om een AI-agent te implementeren in een MKB-bedrijf?', a: 'Een eerste werkende agent is bij een goed afgebakend proces doorgaans binnen zes tot tien weken live. De voorbereiding — regels opschrijven, systemen koppelen, testcases samenstellen — neemt de helft van die tijd in beslag. Complexere processen of meer koppelingen verlengen de doorlooptijd.' },
+      { q: 'Hoe lang duurt het om een AI-agent te implementeren in een MKB-bedrijf?', a: 'Een eerste werkende agent is bij een goed afgebakend proces doorgaans binnen zes tot tien weken live. De voorbereiding, regels opschrijven, systemen koppelen, testcases samenstellen, neemt de helft van die tijd in beslag. Complexere processen of meer koppelingen verlengen de doorlooptijd.' },
       { q: 'Moet ik nieuwe software aanschaffen om met AI-agents te starten?', a: 'In de meeste gevallen niet. Gangbare Nederlandse pakketten zoals Exact, Moneybird, AFAS, Snelstart en Teamleader hebben koppelingsmogelijkheden die wij gebruiken. U hoeft niet te migreren. De agent werkt bovenop wat u al hebt.' },
       { q: 'Wat als mijn medewerkers weerstand hebben tegen AI?', a: 'Weerstand komt bijna altijd voort uit onduidelijkheid over wat de agent wel en niet overneemt. Benoem dat concreet: de agent doet de herhaalhandelingen, de medewerker houdt de uitzonderingen en klantcontact. Betrek de medewerker die het proces nu uitvoert bij het opstellen van de regels. Eigenaarschap verlaagt weerstand.' },
       { q: 'Wat is het eerste proces dat ik moet automatiseren?', a: 'Het allersaaiste, meest voorspelbare proces in uw bedrijf. Niet het meest urgente of het meest zichtbare. Een eerste agent die vlekkeloos draait op een eenvoudig proces geeft uw team vertrouwen en uw organisatie ervaring. Daarna kunt u complexere processen aanpakken.' },
@@ -699,15 +699,15 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'Stap 1: Heeft u een proces dat herhaalbaar is?' },
       { kind: 'p', text: 'Dit is de belangrijkste vraag. Een agent werkt op patronen. Als elk geval een uniek geval is, is er geen patroon om op te bouwen. Het criterium: kunt u aan een nieuwe medewerker uitleggen hoe het proces verloopt in tien stappen of minder? Dan is het waarschijnlijk geschikt. Lukt dat niet zonder drie uitzonderingsgevallen te noemen in elke stap, dan is het proces zelf nog niet rijp.' },
       { kind: 'list', items: [
-        'Het proces gebeurt minimaal twee keer per week — anders is de bouwtijd zelden terug te verdienen.',
+        'Het proces gebeurt minimaal twee keer per week, anders is de bouwtijd zelden terug te verdienen.',
         'De regels zijn beschrijfbaar, ook voor randgevallen.',
         'Er is een duidelijk beginpunt en een duidelijk eindpunt.',
-        'Het resultaat is controleerbaar — u kunt zien of het goed gedaan is.',
+        'Het resultaat is controleerbaar, u kunt zien of het goed gedaan is.',
         'Het proces verandert niet elke maand fundamenteel.',
       ] },
       { kind: 'h2', text: 'Stap 2: Zijn uw gegevens op orde?' },
       { kind: 'p', text: 'Een agent is zo goed als de data waarop hij werkt. Als uw klantenlijst in drie verschillende Excel-bestanden staat, uw orders in een oud systeem dat niemand meer begrijpt, en uw productprijzen \'ergens in een map\', dan begint u niet met een agent-project. Dan begint u met een opruimproject. Dat is geen straf, het is noodzakelijk onderhoud dat u toch een keer moest doen.' },
-      { kind: 'p', text: 'De basiseisen zijn laag. U hoeft geen datawarehouse te hebben. Wat u wel nodig heeft: één plek waar klantgegevens staan die actueel zijn, een systeem voor orders of offertes dat u zelf vertrouwt, en een boekhouding die aansluit op de werkelijkheid. Exact, Moneybird, AFAS, Snelstart — ze werken allemaal. Als u er één gebruikt en er in gelooft, is de basis goed genoeg.' },
+      { kind: 'p', text: 'De basiseisen zijn laag. U hoeft geen datawarehouse te hebben. Wat u wel nodig heeft: één plek waar klantgegevens staan die actueel zijn, een systeem voor orders of offertes dat u zelf vertrouwt, en een boekhouding die aansluit op de werkelijkheid. Exact, Moneybird, AFAS, Snelstart, ze werken allemaal. Als u er één gebruikt en er in gelooft, is de basis goed genoeg.' },
       { kind: 'h2', text: 'Stap 3: Staat uw team er open voor?' },
       { kind: 'p', text: 'Dit is de meest onderschatte factor. Een agent die technisch perfect werkt maar door uw binnendienst wordt genegeerd, levert niets op. Ik heb dat meegemaakt. Niet omdat het systeem slecht was, maar omdat niemand was meegenomen in de keuze. Het resultaat: mensen bleven het handmatig doen, naast de agent.' },
       { kind: 'p', text: 'U hoeft geen enthousiasme te forceren. Wat u wel nodig heeft: één persoon in uw team die het begrijpt, er verantwoordelijkheid voor wil nemen, en anderen kan uitleggen waarom het er is. Zonder dat ankerpunt wordt elke agent vroeg of laat een duur experiment.' },
@@ -715,11 +715,11 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'Stap 4: Heeft u capaciteit om het te begeleiden?' },
       { kind: 'p', text: 'Een eerste agent bouwen kost uw tijd. Niet veel, maar wel structureel. Reken op twee tot vier uur per week in de eerste zes weken: voor afstemming, testen, en bijsturen. Daarna daalt dat naar één uur per week voor onderhoud. Als u of uw aangewezen contactpersoon die uren er niet bij heeft, is het beter om het project drie maanden uit te stellen dan te beginnen en halverwege te stranden.' },
       { kind: 'h2', text: 'Wat als u nog niet klaar bent?' },
-      { kind: 'p', text: 'Dan is dat geen probleem, maar een startpunt. In de meeste gevallen liggen de knelpunten op één of twee van de vier gebieden. Wij helpen ook bij het opruimen van die knelpunten — niet omdat wij een consultancybureau zijn, maar omdat een agent op een wankele basis ons beide werk en u geld kost. Het is eerlijker om dat eerst recht te zetten.' },
+      { kind: 'p', text: 'Dan is dat geen probleem, maar een startpunt. In de meeste gevallen liggen de knelpunten op één of twee van de vier gebieden. Wij helpen ook bij het opruimen van die knelpunten, niet omdat wij een consultancybureau zijn, maar omdat een agent op een wankele basis ons beide werk en u geld kost. Het is eerlijker om dat eerst recht te zetten.' },
       { kind: 'p', text: 'Scoort u op alle vier de gebieden redelijk? Dan kunt u morgen beginnen. Kies het saaiste, meest herhaalbare proces dat u heeft. Zorg dat de data op orde is voor dat specifieke proces. Wijs één intern aanspreekpunt aan. En reserveer zes weken voor de eerste versie. Zo simpel is het begin.' },
     ],
     faq: [
-      { q: 'Hoe weet ik welk proces ik als eerste moet automatiseren?', a: 'Begin bij het proces dat het vaakst voorkomt en de duidelijkste regels heeft — niet bij het proces dat u het meest ergert. Een voorspelbaar, saai proces staat live in zes weken en levert meteen zichtbaar resultaat. Daarna kunt u stap voor stap complexere situaties aanpakken.' },
+      { q: 'Hoe weet ik welk proces ik als eerste moet automatiseren?', a: 'Begin bij het proces dat het vaakst voorkomt en de duidelijkste regels heeft, niet bij het proces dat u het meest ergert. Een voorspelbaar, saai proces staat live in zes weken en levert meteen zichtbaar resultaat. Daarna kunt u stap voor stap complexere situaties aanpakken.' },
       { q: 'Wat zijn de minimale IT-vereisten om te starten met een AI-agent?', a: 'U heeft geen geavanceerde infrastructuur nodig. Een gangbaar boekhoudpakket zoals Exact, Moneybird of Snelstart, gecombineerd met Microsoft 365 of Google Workspace voor e-mail en documenten, is een goede basis. De meeste MKB-bedrijven hebben dat al in huis.' },
       { q: 'Wat als mijn medewerkers weerstand hebben tegen automatisering?', a: 'Dat is normaal en hoeft geen blokkade te zijn. Zorg dat één persoon in uw team het project begrijpt en er verantwoordelijkheid voor draagt. Weerstand verdwijnt meestal zodra mensen merken dat de agent het saaie werk wegneemt en hen tijd geeft voor taken die meer voldoening geven.' },
       { q: 'Hoeveel tijd kost het begeleiden van een eerste agent-implementatie?', a: 'Reken op twee tot vier uur per week in de eerste zes weken, voor afstemming, testen en bijsturen. Daarna is één uur per week voor onderhoud een realistisch gemiddelde. Als die uren er niet zijn, is het beter het project even uit te stellen.' },
@@ -749,7 +749,7 @@ export const POSTS: Post[] = [
         'Uw data staat bij een derde partij, wat AVG-aandacht vraagt.',
       ] },
       { kind: 'h2', text: 'Wat u koopt met een custom agent' },
-      { kind: 'p', text: 'Een custom agent wordt gebouwd op uw proces, uw systemen en uw beleidsregels. De agent sluit aan op Exact of Moneybird, kent uw klantcategorieën, volgt uw escalatiepad. Hij doet precies wat u hem leert, niet meer en niet minder. Dat vraagt een hogere investering vooraf en een goede briefing, maar het resultaat sluit naadloos aan.' },
+      { kind: 'p', text: 'Een custom agent wordt gebouwd op uw proces, uw systemen en uw beleidsregels. De agent sluit aan op Exact of Moneybird, kent uw klantcategorieën, volgt uw escalatiepad. Hij doet precies wat u hem leert, niet meer en niet minder. Dat vraagt een hogere investering vooraf en een goede briefing, maar het resultaat sluit precies aan op hoe u werkt.' },
       { kind: 'p', text: 'Custom bouwen is zinvol als uw proces afwijkend genoeg is dat geen standaardtool het dekt, of als u de agent wilt koppelen aan meerdere interne systemen tegelijk. Ook als u concurrentievoordeel haalt uit de manier waarop u werkt, is dat geen logisch moment om uw proces plat te slaan naar wat een SaaS-vendor bedacht heeft.' },
       { kind: 'list', items: [
         'Volledig afgestemd op uw eigen werkwijze en terminologie.',
@@ -800,8 +800,8 @@ export const POSTS: Post[] = [
         'Onderhoud en beheer: maandelijkse kosten voor monitoring, aanpassingen in beleidsregels, updates na wijzigingen in uw werkproces.',
       ] },
       { kind: 'h2', text: 'Wat u in de praktijk betaalt' },
-      { kind: 'p', text: 'Voor een enkelvoudige agent die één proces afhandelt — zeg: het beantwoorden van inkomende klantmails op basis van uw FAQ en bestelhistorie — ligt de bouw tussen € 3.000 en € 8.000 eenmalig. Dat is inclusief één integratie, bijvoorbeeld met Moneybird of Exact voor ordergegevens. De maandelijkse modelkosten bij een typisch MKB-volume van 200 tot 600 berichten per maand liggen tussen € 30 en € 90. Beheer en kleine aanpassingen kosten doorgaans € 150 tot € 350 per maand als u dat uitbesteedt.' },
-      { kind: 'p', text: 'Bij een complexere agent die meerdere processen combineert — offertes uitsturen, facturen aanmaken, herinneringen versturen — stijgen de bouwkosten naar € 12.000 tot € 25.000. Dat klinkt als veel. Maar tel dan ook mee wat u nu per jaar betaalt aan de mensen die datzelfde doen.' },
+      { kind: 'p', text: 'Voor een enkelvoudige agent die één proces afhandelt, zeg: het beantwoorden van inkomende klantmails op basis van uw FAQ en bestelhistorie, ligt de bouw tussen € 3.000 en € 8.000 eenmalig. Dat is inclusief één integratie, bijvoorbeeld met Moneybird of Exact voor ordergegevens. De maandelijkse modelkosten bij een typisch MKB-volume van 200 tot 600 berichten per maand liggen tussen € 30 en € 90. Beheer en kleine aanpassingen kosten doorgaans € 150 tot € 350 per maand als u dat uitbesteedt.' },
+      { kind: 'p', text: 'Bij een complexere agent die meerdere processen combineert, offertes uitsturen, facturen aanmaken, herinneringen versturen, stijgen de bouwkosten naar € 12.000 tot € 25.000. Dat klinkt als veel. Maar tel dan ook mee wat u nu per jaar betaalt aan de mensen die datzelfde doen.' },
       { kind: 'quote', text: 'De bouwkosten zijn eenmalig. De besparing op uurloon is structureel. Dat maakt de rekensom gunstiger dan hij op het eerste gezicht lijkt.' },
       { kind: 'h2', text: 'Terugverdientijd: een reëel voorbeeld' },
       { kind: 'p', text: 'Neem een binnendienst van twee medewerkers die samen acht uur per week kwijt zijn aan orderverwerking en facturatie. Tegen € 32 per uur bruto zijn dat € 13.300 per jaar aan directe loonkosten voor dat ene proces. Een agent die dat voor 80 procent overneemt, bespaart ruim € 10.000 per jaar. Een bouwproject van € 15.000 verdient zichzelf dan terug in achttien maanden. Daarna houdt u elke maand geld over.' },
@@ -842,7 +842,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Kies één proces. Niet uw hele administratie, maar één ding. Zeg: het verwerken van binnenkomende orders. Beantwoord dan drie vragen: hoe vaak gebeurt dit per week, hoeveel minuten kost het per keer, en wie doet het?' },
       { kind: 'p', text: 'Stel: uw binnendienst verwerkt 60 orders per week. Elke order kost gemiddeld 12 minuten: controleren, inboeken in Exact, bevestigingsmail sturen. Dat is 720 minuten per week, ofwel 12 uur. Bij een all-in uurtarief van € 32 voor die medewerker kost dit u € 384 per week, of ruim € 20.000 per jaar. Voor één proces.' },
       { kind: 'h2', text: 'Stap twee: schat wat de agent overneemt' },
-      { kind: 'p', text: 'Een agent neemt zelden 100% over. Dat hoeft ook niet. Bij orderverwerking is een realistisch getal 70 tot 85 procent: standaardorders volledig automatisch, uitzonderingen gaan naar de medewerker. Reken conservatief: 70 procent. Dan bespaart u 8,4 uur per week, oftewel € 269 per week of circa € 14.000 per jaar.' },
+      { kind: 'p', text: 'Een agent neemt zelden 100% over. Dat hoeft ook niet. Ga uit van een aandeel dat u zelf conservatief inschat: standaardorders volledig voorbereid, uitzonderingen naar de medewerker. In dit rekenvoorbeeld nemen wij 70 procent. Dan bespaart u 8,4 uur per week, oftewel € 269 per week of circa € 14.000 per jaar.' },
       { kind: 'quote', text: 'Een agent hoeft niet alles over te nemen. 70 procent automatisering van één proces geeft u al een terugverdientijd onder de twaalf maanden.' },
       { kind: 'h2', text: 'Stap drie: zet de investering ertegenover' },
       { kind: 'p', text: 'Een goed gebouwde agent voor dit soort orderverwerking kost bij ons eenmalig tussen de € 4.000 en € 8.000 in bouw, afhankelijk van de complexiteit van de integratie met uw boekhoudpakket. Daarna betaalt u een maandelijks onderhoudsbedrag van gemiddeld € 250 tot € 400 voor hosting, monitoring en kleine aanpassingen.' },
@@ -850,7 +850,7 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'Wat u niet in de rekensom ziet' },
       { kind: 'p', text: 'De besparing in euro\'s is het makkelijke deel. Wat de berekening niet vat, is wat uw medewerker met die 8,4 uur per week gaat doen. Als die tijd gaat naar klantgesprekken, offertes of complexere taken, is de werkelijke opbrengst hoger dan € 14.000. Soms aanzienlijk hoger. Maar dat is moeilijker te voorspellen, en ik vind het onverstandig om daar in een businesscase op te rekenen.' },
       { kind: 'list', items: [
-        'Minder fouten: handmatige orderverwerking heeft een foutpercentage van 2 tot 5 procent. Een agent maakt die fout niet als de invoer klopt.',
+        'Minder fouten: bij handmatige invoer sluipen er onvermijdelijk fouten in. Een agent maakt die niet als de invoer klopt.',
         'Minder verzuim: repetitief administratief werk is één van de bekende oorzaken van uitval. Minder routinelast vermindert die druk.',
         'Schaalbaarheid: als het ordervolume verdubbelt, schaalt de agent mee. Een tweede medewerker inhuren hoeft niet.',
       ] },
@@ -925,13 +925,13 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Wij bouwen een agent, trainen uw team er twee keer op, en drie maanden later gebruikt nog maar één iemand hem. De rest werkt gewoon door zoals altijd. Herkenbaar? Bij bijna elk MKB-bedrijf dat zelf zonder begeleiding een AI-tool invoert, ziet het proces er zo uit. Niet omdat de medewerkers dom zijn of dwarsliggen. Maar omdat verandering tijd, uitleg en vertrouwen vraagt. En die drie dingen worden structureel onderschat.' },
       { kind: 'h2', text: 'Waarom weerstand geen probleem is, maar informatie' },
       { kind: 'p', text: 'Als iemand in uw team zegt "ik vertrouw dat ding niet", is dat een vraag in vermomming. Meestal gaat het om één van drie dingen: ze begrijpen niet wat de agent precies doet, ze zijn bang dat ze het straks fout doen als de agent iets geks uitvoert, of ze denken dat hun baan op het spel staat. Al die drie zijn oplosbaar. Maar niet door ze te negeren.' },
-      { kind: 'p', text: 'Het gesprek dat bijna nooit gevoerd wordt: "Wat moet de agent voor jou betekenen?" Niet wat de agent technisch kan. Niet wat de ondernemer ervan verwacht. Maar wat uw medewerker zelf kwijt wil — het werk dat energie kost, de fouten die keer op keer terugkomen, de klantvraag die elke dag hetzelfde is. Zodra die vraag op tafel ligt, verandert het gesprek. Van "ze moeten dit accepteren" naar "wij lossen dit samen op".' },
+      { kind: 'p', text: 'Het gesprek dat bijna nooit gevoerd wordt: "Wat moet de agent voor jou betekenen?" Niet wat de agent technisch kan. Niet wat de ondernemer ervan verwacht. Maar wat uw medewerker zelf kwijt wil, het werk dat energie kost, de fouten die keer op keer terugkomen, de klantvraag die elke dag hetzelfde is. Zodra die vraag op tafel ligt, verandert het gesprek. Van "ze moeten dit accepteren" naar "wij lossen dit samen op".' },
       { kind: 'h2', text: 'De drie fasen die werken' },
       { kind: 'p', text: 'Ik zie een vaste volgorde die succesvol is, ongeacht de branche of de grootte van het team. Kort samengevat:' },
       { kind: 'list', items: [
-        'Fase 1 — betrek vroeg: bespreek nog vóór de bouw welk proces automatisch mag. Laat uw medewerkers meedenken over de regels, niet alleen de uitkomst.',
-        'Fase 2 — werk samen: laat minstens één medewerker de eerste weken naast de agent werken, niet ernaast. Laat hen fouten ontdekken en rapporteren. Dat eigenaarschap is goud waard.',
-        'Fase 3 — vier kleine winsten: als de agent voor het eerst een taak foutloos afhandelt die normaal een kwartier kostte, benoem dat. Niet groot, gewoon concreet.',
+        'Fase 1, betrek vroeg: bespreek nog vóór de bouw welk proces automatisch mag. Laat uw medewerkers meedenken over de regels, niet alleen de uitkomst.',
+        'Fase 2, werk samen: laat minstens één medewerker de eerste weken naast de agent werken, niet ernaast. Laat hen fouten ontdekken en rapporteren. Dat eigenaarschap is goud waard.',
+        'Fase 3, vier kleine winsten: als de agent voor het eerst een taak foutloos afhandelt die normaal een kwartier kostte, benoem dat. Niet groot, gewoon concreet.',
       ] },
       { kind: 'h2', text: 'Wat u beter kunt vermijden' },
       { kind: 'list', items: [
@@ -1023,7 +1023,7 @@ export const POSTS: Post[] = [
         'Stel een realistisch criterium voor succes: niet \'alles automatiseren\', maar \'de medewerker heeft hier twee uur per week minder aan\'.',
       ] },
       { kind: 'h2', text: 'Kwartaal 2: uw eerste agent live' },
-      { kind: 'p', text: 'In het tweede kwartaal bouwt en test u. Voor een goed gekozen eerste proces duurt dat zes tot tien weken. De eerste twee weken gaan naar koppeling met uw bestaande systemen — uw boekhoudpakket, uw CRM, uw mailomgeving. De volgende weken naar testen met echte data, maar met een mens die alles nog even nakijkt voordat het de deur uitgaat.' },
+      { kind: 'p', text: 'In het tweede kwartaal bouwt en test u. Voor een goed gekozen eerste proces duurt dat zes tot tien weken. De eerste twee weken gaan naar koppeling met uw bestaande systemen, uw boekhoudpakket, uw CRM, uw mailomgeving. De volgende weken naar testen met echte data, maar met een mens die alles nog even nakijkt voordat het de deur uitgaat.' },
       { kind: 'p', text: 'Die nakijkfase is niet optioneel. Het is waar u leert hoe de agent zich gedraagt bij afwijkende situaties. U past de beleidsregels aan. U voegt uitzonderingen toe die u in het inventarisatiegesprek niet had bedacht. Na vier weken naast-de-agent werken weet u of u hem kunt vertrouwen. Dan pas gaat hij zelfstandig.' },
       { kind: 'quote', text: 'Een agent die vier weken lang alles goed doet terwijl iemand meekijkt, mag daarna zelfstandig. Niet eerder.' },
       { kind: 'h2', text: 'Kwartaal 3: uitbreiden op basis van wat u hebt geleerd' },
@@ -1114,7 +1114,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Een agent die klantvragen beantwoordt, facturen verwerkt of offertes verstuurt, raakt vrijwel altijd persoonsgegevens. Namen, e-mailadressen, bestelinformatie, soms zelfs betalingsgeschiedenis. De AVG verbiedt dat niet. Wat de wet vraagt, is dat u bewust en gedocumenteerd omgaat met die gegevens. Dat is een ander gesprek dan de meeste ondernemers verwachten.' },
       { kind: 'h2', text: 'De basis: verwerkersgrondslag en doelbinding' },
       { kind: 'p', text: 'Elke verwerking van persoonsgegevens heeft een grondslag nodig. Voor de meeste bedrijfsprocessen is dat ofwel uitvoering van een overeenkomst, ofwel een gerechtvaardigd belang. Een agent die een orderbevestiging verstuurt valt onder de eerste grondslag. Een agent die een klant automatisch een herinnering stuurt voor een openstaande factuur valt onder de tweede. U hoeft daarvoor geen expliciete toestemming te vragen. Wat u wel nodig heeft, is een verwerkersregister.' },
-      { kind: 'p', text: 'Doelbinding betekent dat de gegevens die u voor het ene doel verzamelt, niet zomaar voor iets anders gebruikt mogen worden. Klantgegevens die u heeft omdat iemand iets bestelde, mag u niet gebruiken voor een marketingcampagne zonder extra grondslag. Dat geldt ook als een agent die gegevens verwerkt. De agent doet wat u hem opdraagt — dus als de opdracht buiten de grondslag valt, is de agent het probleem niet, maar u als verwerkingsverantwoordelijke.' },
+      { kind: 'p', text: 'Doelbinding betekent dat de gegevens die u voor het ene doel verzamelt, niet zomaar voor iets anders gebruikt mogen worden. Klantgegevens die u heeft omdat iemand iets bestelde, mag u niet gebruiken voor een marketingcampagne zonder extra grondslag. Dat geldt ook als een agent die gegevens verwerkt. De agent doet wat u hem opdraagt, dus als de opdracht buiten de grondslag valt, is de agent het probleem niet, maar u als verwerkingsverantwoordelijke.' },
       { kind: 'h2', text: 'Verwerkersovereenkomst: vergeet dit niet' },
       { kind: 'p', text: 'Zodra een externe partij persoonsgegevens verwerkt namens uw organisatie, is een verwerkersovereenkomst verplicht. Dat geldt ook voor het platform waarop uw agent draait. Wij sluiten bij elk project een verwerkersovereenkomst af en zorgen dat de onderliggende infrastructuurpartijen dat ook doen. Maar dit is iets u zelf moet opvragen en bewaren. De Autoriteit Persoonsgegevens beschouwt de afwezigheid van zo\'n overeenkomst als een directe overtreding, ook als er feitelijk niets misging.' },
       { kind: 'list', items: [
@@ -1128,7 +1128,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Er zijn situaties waarin een mens de beslissing moet nemen. De AVG heeft hiervoor een specifieke bepaling: volledig geautomatiseerde besluitvorming met rechtsgevolgen voor een persoon is in beginsel verboden. Concreet: een agent mag geen creditbeoordeling doen die automatisch leidt tot weigering van een order, geen sollicitant afwijzen zonder menselijke tussenkomst, en geen klant blokkeren op basis van een score zonder dat iemand dat heeft beoordeeld. De agent mag die informatie verzamelen en een voorstel doen. De beslissing moet bij een mens liggen.' },
       { kind: 'quote', text: 'De agent verzamelt, weegt en adviseert. De mens beslist. Dat is niet alleen AVG-conform, het is ook gewoon verstandig.' },
       { kind: 'h2', text: 'Bijzondere categorieën: hier stopt de agent' },
-      { kind: 'p', text: 'Gezondheidsgegevens, politieke opvattingen, etnische achtergrond, biometrische gegevens — dit zijn bijzondere categorieën onder de AVG. Verwerking is in principe verboden, tenzij u valt onder een van de uitzonderingen. Voor de meeste MKB-bedrijven is geen van die uitzonderingen van toepassing. Bouw uw agent zo dat hij deze gegevens niet opslaat, niet uitleest en er geen actie op onderneemt. Als een klant in een bericht iets over zijn gezondheid schrijft en de agent antwoordt op basis van die informatie, zit u al snel in een grijs gebied.' },
+      { kind: 'p', text: 'Gezondheidsgegevens, politieke opvattingen, etnische achtergrond, biometrische gegevens, dit zijn bijzondere categorieën onder de AVG. Verwerking is in principe verboden, tenzij u valt onder een van de uitzonderingen. Voor de meeste MKB-bedrijven is geen van die uitzonderingen van toepassing. Bouw uw agent zo dat hij deze gegevens niet opslaat, niet uitleest en er geen actie op onderneemt. Als een klant in een bericht iets over zijn gezondheid schrijft en de agent antwoordt op basis van die informatie, zit u al snel in een grijs gebied.' },
       { kind: 'h2', text: 'Dataretentie: hoe lang bewaart de agent gegevens?' },
       { kind: 'p', text: 'Een agent die gesprekshistorie bijhoudt om context te hebben, slaat gegevens op. Die opslag heeft een bewaartermijn nodig. Bepaal vooraf hoe lang conversatielogs bewaard worden, wie er toegang toe heeft en wanneer ze worden gewist. In de praktijk werkt een termijn van 90 dagen voor conversatielogs goed voor de meeste servicegerichte toepassingen. Transactiegegevens vallen onder fiscale bewaarplichten en houden andere termijnen aan. Leg beide vast.' },
       { kind: 'h2', text: 'Wat u vandaag kunt doen' },
@@ -1137,7 +1137,7 @@ export const POSTS: Post[] = [
     faq: [
       { q: 'Mag een AI-agent persoonsgegevens verwerken?', a: 'Ja, dat mag, mits er een geldige verwerkingsgrondslag is, zoals uitvoering van een overeenkomst of gerechtvaardigd belang. U bent als verwerkingsverantwoordelijke verplicht dit te documenteren in een verwerkersregister en een verwerkersovereenkomst af te sluiten met de partij die de agent host.' },
       { q: 'Is toestemming van klanten vereist voordat een agent hun gegevens verwerkt?', a: 'Niet altijd. Voor de uitvoering van een bestelling of het versturen van een factuur is toestemming niet nodig; de grondslag is dan de overeenkomst. Toestemming is wel vereist als u gegevens wilt gebruiken voor doelen waarvoor geen andere grondslag bestaat, zoals direct marketing buiten de bestaande klantrelatie.' },
-      { q: 'Wat is geautomatiseerde besluitvorming en wanneer is dat verboden?', a: 'Geautomatiseerde besluitvorming houdt in dat een systeem zonder menselijke tussenkomst een beslissing neemt die rechtsgevolgen heeft voor een persoon. Dat is in beginsel verboden onder de AVG. Een agent mag wel informatie verzamelen en een advies geven, maar de uiteindelijke beslissing — zoals het weigeren van een order of het blokkeren van een klant — moet altijd door een mens worden genomen.' },
+      { q: 'Wat is geautomatiseerde besluitvorming en wanneer is dat verboden?', a: 'Geautomatiseerde besluitvorming houdt in dat een systeem zonder menselijke tussenkomst een beslissing neemt die rechtsgevolgen heeft voor een persoon. Dat is in beginsel verboden onder de AVG. Een agent mag wel informatie verzamelen en een advies geven, maar de uiteindelijke beslissing, zoals het weigeren van een order of het blokkeren van een klant, moet altijd door een mens worden genomen.' },
       { q: 'Hoe lang mag een AI-agent gesprekshistorie bewaren?', a: 'De AVG schrijft geen vaste termijn voor, maar vereist dat u een termijn vastlegt die niet langer is dan noodzakelijk voor het doel. Voor klantenservice-logs werkt 90 dagen in de praktijk goed. Transactiegegevens vallen onder de fiscale bewaarplicht van zeven jaar. Leg uw keuzes schriftelijk vast en controleer ze jaarlijks.' },
     ],
     cluster: 'B',
@@ -1153,7 +1153,7 @@ export const POSTS: Post[] = [
     readingMinutes: 6,
     tags: ['governance', 'beleid', 'MKB', 'strategie', 'guardrails'],
     blocks: [
-      { kind: 'p', text: 'De AI-act is op 1 augustus 2024 in werking getreden en rolt in fasen uit. Veel ondernemers dachten dat het iets was voor grote techbedrijven. Dat klopt voor de zwaarste categorieën. Maar wie AI-agents inzet in zijn bedrijfsvoering — voor klantenservice, hrm, kredietbeoordeling of personeelsplanning — heeft te maken met verplichtingen die al dit jaar ingaan. Niet over drie jaar.' },
+      { kind: 'p', text: 'De AI-act is op 1 augustus 2024 in werking getreden en rolt in fasen uit. Veel ondernemers dachten dat het iets was voor grote techbedrijven. Dat klopt voor de zwaarste categorieën. Maar wie AI-agents inzet in zijn bedrijfsvoering, voor klantenservice, hrm, kredietbeoordeling of personeelsplanning, heeft te maken met verplichtingen die al dit jaar ingaan. Niet over drie jaar.' },
       { kind: 'h2', text: 'Wat de AI-act onderscheidt: risicocategorieën' },
       { kind: 'p', text: 'De wet werkt met vier risiconiveaus. Voor MKB-bedrijven zijn er twee die er toe doen in de praktijk.' },
       { kind: 'list', items: [
@@ -1164,7 +1164,7 @@ export const POSTS: Post[] = [
       ] },
       { kind: 'h2', text: 'Wat in 2026 concreet geldt' },
       { kind: 'p', text: 'Vanaf februari 2025 zijn de verboden toepassingen van kracht. Vanaf augustus 2026 gelden de volledige verplichtingen voor hoog-risico-systemen, inclusief documentatieplicht, conformiteitsbeoordeling en registratie in een EU-database. Dat klinkt zwaar. Voor de meeste MKB-toepassingen valt het mee, mits u goed documenteert wat uw agent doet.' },
-      { kind: 'p', text: 'Wat direct actie vraagt: de transparantieplicht bij klantencontact. Elke agent die communiceert met klanten — via e-mail, chat of telefoon — moet zichzelf als AI identificeren. Dat is eenvoudig in te bouwen, maar het moet expliciet geregeld zijn. Dit is niet iets om later te doen.' },
+      { kind: 'p', text: 'Wat direct actie vraagt: de transparantieplicht bij klantencontact. Elke agent die communiceert met klanten, via e-mail, chat of telefoon, moet zichzelf als AI identificeren. Dat is eenvoudig in te bouwen, maar het moet expliciet geregeld zijn. Dit is niet iets om later te doen.' },
       { kind: 'h2', text: 'De hoog-risico-grens: wanneer geldt die voor u?' },
       { kind: 'p', text: 'De vraag die ik het meest krijg: "valt mijn agent onder hoog risico?" Het antwoord hangt af van waarvoor u de agent inzet, niet van hoe de technologie werkt. Bijlage III van de AI-act somt de categorieën op. De relevante voor MKB:' },
       { kind: 'list', items: [
@@ -1183,7 +1183,7 @@ export const POSTS: Post[] = [
       ] },
       { kind: 'quote', text: 'De AI-act vraagt niet dat u stopt met automatiseren. Hij vraagt dat u kunt uitleggen wat uw systeem doet en waarom.' },
       { kind: 'h2', text: 'Wat nog onduidelijk is' },
-      { kind: 'p', text: 'De AI-act laat ruimte voor nationale interpretatie op een aantal punten. De Nederlandse toezichthouder — de Autoriteit Persoonsgegevens heeft een rol, maar er komt ook een aparte AI-autoriteit — heeft nog niet alle handhavingsprioriteiten gepubliceerd. Dat betekent dat de precieze invulling van begrippen als "wezenlijke invloed op een persoon" in 2026 nog niet volledig uitgekristalliseerd is.' },
+      { kind: 'p', text: 'De AI-act laat ruimte voor nationale interpretatie op een aantal punten. De Nederlandse toezichthouder, de Autoriteit Persoonsgegevens heeft een rol, maar er komt ook een aparte AI-autoriteit, heeft nog niet alle handhavingsprioriteiten gepubliceerd. Dat betekent dat de precieze invulling van begrippen als "wezenlijke invloed op een persoon" in 2026 nog niet volledig uitgekristalliseerd is.' },
       { kind: 'p', text: 'Mijn advies: wacht niet op die duidelijkheid. De richting staat vast. Wie nu goed documenteert en menselijk toezicht inbouwt, zit bij elke uitwerking goed. Wie nu niets doet en later terugkijkt, heeft een inhaalslag te maken die duurder is dan de oorspronkelijke inrichting.' },
     ],
     faq: [
@@ -1308,7 +1308,7 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'Twinfield: solide maar minder bekend' },
       { kind: 'p', text: 'Twinfield wordt veel gebruikt door accountantskantoren en hun klanten. De API is XML-gebaseerd, wat ouder aandoet dan de REST-interfaces van Exact of AFAS, maar het werkt betrouwbaar. Een agent kan boekingen aanmaken, openstaande posten opvragen en relatiegegevens uitlezen. Het inrichten van de koppeling vraagt iets meer technische kennis van de Twinfield-structuur, met name rondom grootboekrekeningen en kostenplaatsen.' },
       { kind: 'p', text: 'Twinfield heeft ook een webservices-interface die directe bestandsuitwisseling mogelijk maakt. Dat is nuttig als uw agent inkoopfacturen verwerkt die via e-mail binnenkomen: de agent leest de bijlage uit, structureert de gegevens en boekt ze via de webservice direct in. Voor middelgrote bedrijven met een eigen accountant die Twinfield beheert, werkt dit goed zolang u de grootboekinrichting van tevoren afspreekt.' },
-      { kind: 'h2', text: 'AFAS: krachtig, maar eigenwijzer' },
+      { kind: 'h2', text: 'AFAS: veel mogelijk, maar eigenwijzer' },
       { kind: 'p', text: 'AFAS is meer dan alleen boekhoudsoftware. Het omvat ook HR, CRM en projectadministratie. Dat maakt de koppelmogelijkheden breder, maar ook complexer. AFAS werkt met een eigen connector-laag genaamd GetConnectors en UpdateConnectors. Die zijn flexibel, maar vereisen dat iemand bij AFAS of bij u intern de juiste connectors heeft ingericht.' },
       { kind: 'p', text: 'Een agent die facturen moet aanmaken in AFAS heeft een UpdateConnector nodig die daarvoor is geconfigureerd. Als die connector er nog niet is, moet een AFAS-beheerder hem aanmaken. Dat is geen ict-probleem, maar een beheervraagstuk. Plan dit in als onderdeel van uw implementatietraject, anders loopt u er tegenaan op het moment dat u wilt livegang.' },
       { kind: 'list', items: [
@@ -1392,7 +1392,7 @@ export const POSTS: Post[] = [
     readingMinutes: 6,
     tags: ['techniek', 'systemen', 'governance', 'guardrails', 'integraties'],
     blocks: [
-      { kind: 'p', text: 'RAG staat voor Retrieval-Augmented Generation: de techniek waarbij een AI-agent niet op geheugen vertrouwt, maar actief uw eigen documenten doorzoekt voordat hij antwoord geeft. Prijslijsten, interne procedures, contracten, productspecificaties. Klinkt krachtig, en dat is het. Maar zonder de juiste randvoorwaarden geeft zo\'n agent antwoorden op basis van verouderde, onvolledige of zelfs vertrouwelijke informatie die hij eigenlijk niet had mogen zien.' },
+      { kind: 'p', text: 'RAG staat voor Retrieval-Augmented Generation: de techniek waarbij een AI-agent niet op geheugen vertrouwt, maar actief uw eigen documenten doorzoekt voordat hij antwoord geeft. Prijslijsten, interne procedures, contracten, productspecificaties. Dat klinkt goed, en dat is het ook. Maar zonder de juiste randvoorwaarden geeft zo\'n agent antwoorden op basis van verouderde, onvolledige of zelfs vertrouwelijke informatie die hij eigenlijk niet had mogen zien.' },
       { kind: 'h2', text: 'Wat RAG precies doet en waar het misgaat' },
       { kind: 'p', text: 'De agent zoekt bij elke vraag door een index van uw documenten, haalt de meest relevante fragmenten op en combineert die met zijn taalvaardigheid tot een antwoord. Dat werkt goed zolang de index betrouwbaar is. De problemen die ik het vaakst tegenkom zijn niet technisch van aard: ze zijn organisatorisch. Documenten staan door elkaar, zijn niet gedateerd, of bevatten tegenstrijdige versies van hetzelfde beleid.' },
       { kind: 'p', text: 'Een tweede risico is toegangsbeheer. Wie mag welke documenten zien? Bij een eenvoudige RAG-implementatie zonder autorisatielaag ziet elke gebruiker alles wat in de index zit. HR-dossiers naast productbrochures. Dat is zelden de bedoeling.' },
@@ -1477,7 +1477,7 @@ export const POSTS: Post[] = [
   {
     slug: 'ai-in-accountancy-wat-verandert-2026',
     title: 'AI in de accountancy: wat verandert er in 2026?',
-    lede: 'Accountantskantoren staan onder druk. Niet alleen door personeelstekort, maar ook omdat hun klanten — MKB-bedrijven — steeds vaker vragen om meer dan een jaarrekening. AI verandert wat accountants doen, hoe ze dat doen, en wat u van hen mag verwachten.',
+    lede: 'Accountantskantoren staan onder druk. Niet alleen door personeelstekort, maar ook omdat hun klanten, MKB-bedrijven, steeds vaker vragen om meer dan een jaarrekening. AI verandert wat accountants doen, hoe ze dat doen, en wat u van hen mag verwachten.',
     author: 'Sjaak ter Veld',
     published: '2026-08-06',
     readingMinutes: 6,
@@ -1486,27 +1486,27 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Als u eens per kwartaal contact heeft met uw accountant, is de kans groot dat dat contact de komende twee jaar van aard verandert. Niet omdat uw accountant een andere persoon wordt, maar omdat een deel van het werk dat hij of zij nu handmatig doet, straks geautomatiseerd is. Dat heeft gevolgen voor de prijs, de snelheid en het type advies dat u krijgt.' },
       { kind: 'h2', text: 'Wat accountants nu nog handmatig doen' },
       { kind: 'p', text: 'Een groot deel van het werk bij een accountantskantoor is regelmatig, voorspelbaar en documentgedreven. Bonnetjes verwerken, bankafschriften matchen, btw-aangiften opstellen, salarisspecificaties controleren. Dit zijn precies de taken waarop AI-agents goed presteren. Ze zijn beschrijfbaar, herhaalbaar en hebben een duidelijk begin en einde.' },
-      { kind: 'p', text: 'Kantoren die Exact, Twinfield, AFAS of Snelstart gebruiken, kunnen al heute een flink deel van die documentverwerking automatiseren. Scannen, herkennen, boeken — dat vergt straks geen menselijke handeling meer. Wat overblijft is controleren op uitzonderingen en beoordelen wat de cijfers betekenen.' },
+      { kind: 'p', text: 'Kantoren die Exact, Twinfield, AFAS of Snelstart gebruiken, kunnen al heute een flink deel van die documentverwerking automatiseren. Scannen, herkennen, boeken, dat vergt straks geen menselijke handeling meer. Wat overblijft is controleren op uitzonderingen en beoordelen wat de cijfers betekenen.' },
       { kind: 'h2', text: 'Drie verschuivingen die u direct raken' },
       { kind: 'list', items: [
         'Snellere tussentijdse rapportages: waar u nu eens per kwartaal inzicht krijgt, kunnen geautomatiseerde boekingen en dashboards u wekelijks of zelfs dagelijks bijhouden.',
         'Minder uren, andere tariefopbouw: als de verwerkingstijd daalt, verschuift de rekening van uren naar abonnement of advieswaarde. Vraag uw accountant hoe hij daarmee omgaat.',
-        'Meer signalering, minder registratie: een agent die continu meekijkt, kan afwijkingen sneller signaleren dan een mens die eens per maand in de boeken duikt. Achterstallige debiteuren, ongebruikelijke kostenposten, cashflow-dips — dat soort observaties komen eerder op tafel.',
+        'Meer signalering, minder registratie: een agent die continu meekijkt, kan afwijkingen sneller signaleren dan een mens die eens per maand in de boeken duikt. Achterstallige debiteuren, ongebruikelijke kostenposten, cashflow-dips, dat soort observaties komen eerder op tafel.',
       ] },
       { kind: 'h2', text: 'Wat uw accountant waarschijnlijk niet vertelt' },
-      { kind: 'p', text: 'Veel kantoren zijn nog midden in de omslag. Ze experimenteren intern, maar communiceren er weinig over naar klanten. Dat is begrijpelijk — wie vertelt er graag dat zijn vaste uurtarief straks onder druk staat? Maar het betekent wel dat u zelf de vraag moet stellen: wat automatiseert u al, en wat betekent dat voor mijn kosten de komende twee jaar?' },
+      { kind: 'p', text: 'Veel kantoren zijn nog midden in de omslag. Ze experimenteren intern, maar communiceren er weinig over naar klanten. Dat is begrijpelijk, wie vertelt er graag dat zijn vaste uurtarief straks onder druk staat? Maar het betekent wel dat u zelf de vraag moet stellen: wat automatiseert u al, en wat betekent dat voor mijn kosten de komende twee jaar?' },
       { kind: 'p', text: 'Dezelfde vraag geldt voor uw eigen administratie. Als uw accountant straks documenten geautomatiseerd verwerkt, dan helpt het als u aanlevert in een formaat dat daarvoor geschikt is. PDF-facturen die via e-mail binnenkomen zijn verwerkbaar. Een handgeschreven bonnetje op foto is dat minder.' },
-      { kind: 'quote', text: 'Accountancy verandert niet door AI. Accountancy wordt zichtbaarder door AI — en dat is iets anders.' },
+      { kind: 'quote', text: 'Accountancy verandert niet door AI. Accountancy wordt zichtbaarder door AI, en dat is iets anders.' },
       { kind: 'h2', text: 'Wat u zelf kunt doen' },
       { kind: 'p', text: 'U hoeft de AI-strategie van uw accountant niet over te nemen. Maar u kunt uw eigen administratie zo inrichten dat ze makkelijk aansluit. Dat begint bij het consequent digitaal aanleveren van inkoop- en verkoopfacturen, het gebruik van een koppelbaar boekhoudpakket zoals Moneybird of Snelstart, en het afspreken van een duidelijk proces voor bankafschriften.' },
       { kind: 'list', items: [
         'Stel uw accountant de vraag: welke aanleversystematiek werkt het beste voor geautomatiseerde verwerking?',
-        'Controleer of uw boekhoudpakket een directe API-koppeling ondersteunt — dat scheelt handmatig exporteren.',
+        'Controleer of uw boekhoudpakket een directe API-koppeling ondersteunt, dat scheelt handmatig exporteren.',
         'Bespreek of tussentijdse rapportages standaard kunnen worden in plaats van op aanvraag.',
-        'Vraag naar de tariefopbouw voor 2027 — als die nog op uurregistratie staat, is de automatisering nog niet doorgevoerd.',
+        'Vraag naar de tariefopbouw voor 2027, als die nog op uurregistratie staat, is de automatisering nog niet doorgevoerd.',
       ] },
       { kind: 'h2', text: 'De grens van automatisering' },
-      { kind: 'p', text: 'Niet alles verandert. De aangifte vennootschapsbelasting voor een bedrijf met complexe deelnemingen, een overname waarbij goodwill moet worden bepaald, een arbeidsconflict met financiële consequenties — dat vraagt om een accountant die begrijpt hoe uw bedrijf werkt en welke risico\'s er spelen. Een agent kan de data aanreiken. De weging blijft mensenwerk.' },
+      { kind: 'p', text: 'Niet alles verandert. De aangifte vennootschapsbelasting voor een bedrijf met complexe deelnemingen, een overname waarbij goodwill moet worden bepaald, een arbeidsconflict met financiële consequenties, dat vraagt om een accountant die begrijpt hoe uw bedrijf werkt en welke risico\'s er spelen. Een agent kan de data aanreiken. De weging blijft mensenwerk.' },
       { kind: 'p', text: 'De kantoren die in 2026 het beste presteren voor MKB-klanten zijn niet de kantoren die het meest geautomatiseerd hebben, maar de kantoren die de vrijgekomen tijd het meest zinvol inzetten: voor advies, voor signalering, voor het gesprek dat tot nu toe niet plaatsvond omdat de urenregistratie het niet toeliet.' },
     ],
     faq: [

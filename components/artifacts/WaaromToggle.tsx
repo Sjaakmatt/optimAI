@@ -35,7 +35,7 @@ export function WaaromToggle({ reasoning }: Props) {
           >
             {reasoning.map((r, i) => (
               <li key={i} className="flex gap-2">
-                <span className="text-[var(--ink-faint)] select-none">—</span>
+                <span className="text-[var(--ink-faint)] select-none">·</span>
                 <span>{r}</span>
               </li>
             ))}

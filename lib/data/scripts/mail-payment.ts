@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // direct terug en bevestigt dat naar de klant.
 export const script_mail_payment: Script = {
   id: 'script_mail_payment',
-  eventTitle: 'E-mail — Twee keer afgeschreven',
+  eventTitle: 'E-mail, Twee keer afgeschreven',
   eventContext: 'Betaalvraag · transacties checken bij de betaalprovider en terugstorten',
   minutesSaved: 34,
   steps: [

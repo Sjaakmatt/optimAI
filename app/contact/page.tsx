@@ -5,7 +5,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { ContactForm } from '@/components/site/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact — plan een gesprek over uw AI-agent',
+  title: 'Contact, plan een gesprek over uw AI-agent',
   description:
     'Neem contact op met FactumAI voor een vrijblijvend kennismakingsgesprek over het laten bouwen van een AI-agent. Eén gesprek, geen verplichting. E-mail, telefoon, of formulier.',
   alternates: { canonical: '/contact' },
@@ -66,15 +66,15 @@ export default function ContactPage() {
               </div>
               <ul className="mt-3 space-y-1.5 text-[13px] text-[var(--ink-dim)] leading-[1.55]">
                 <li className="flex gap-2">
-                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span aria-hidden className="font-mono text-[var(--steen)]">·</span>
                   <span>Wat voor bedrijf (branche, aantal mensen)</span>
                 </li>
                 <li className="flex gap-2">
-                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span aria-hidden className="font-mono text-[var(--steen)]">·</span>
                   <span>Welk proces kost u de meeste tijd</span>
                 </li>
                 <li className="flex gap-2">
-                  <span aria-hidden className="font-mono text-[var(--steen)]">—</span>
+                  <span aria-hidden className="font-mono text-[var(--steen)]">·</span>
                   <span>Wanneer zou u iets live willen hebben</span>
                 </li>
               </ul>

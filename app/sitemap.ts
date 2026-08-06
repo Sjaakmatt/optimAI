@@ -3,6 +3,7 @@ import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
+import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
 import { TEAM } from '@/lib/data/team';
 
@@ -15,6 +16,7 @@ const STATIC_ROUTES: Array<{
 }> = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
   { path: '/diensten', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/oplossingen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-agent-laten-bouwen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-automatisering', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-implementatie', changeFrequency: 'monthly', priority: 0.9 },
@@ -98,6 +100,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const oplossingEntries: MetadataRoute.Sitemap = OPLOSSINGEN.map((o) => {
+    const url = `${SITE_URL}/oplossingen/${o.slug}`;
+    return {
+      url,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+      alternates: withAlternates(url),
+    };
+  });
+
   const teamEntries: MetadataRoute.Sitemap = TEAM.map((m) => {
     const url = `${SITE_URL}/over/${m.slug}`;
     return {
@@ -122,6 +135,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticEntries,
+    ...oplossingEntries,
     ...teamEntries,
     ...brancheEntries,
     ...comparisonEntries,

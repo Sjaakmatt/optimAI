@@ -45,7 +45,7 @@ const TRUST_POINTS = [
     body: 'De agent volgt hoe uw bedrijf werkt, niet andersom. Uw regels, uw toon, uw systemen.',
   },
   {
-    title: 'Vaste prijs, 1 tot 2 weken',
+    title: 'Vaste prijs per fase',
     body: 'Eén voorstel met bouwprijs en opleverdatum voordat we starten. Geen open einden.',
   },
 ];
@@ -72,7 +72,7 @@ export default async function AanvraagPage({
       </header>
 
       <main className="flex-1">
-        {/* Hero — op mobiel moet de CTA zonder scrollen zichtbaar zijn */}
+        {/* Hero, op mobiel moet de CTA zonder scrollen zichtbaar zijn */}
         <section className="mx-auto w-full max-w-[860px] px-5 sm:px-8 pt-9 sm:pt-16 pb-10 sm:pb-14">
           <div className="relative">
             <div
@@ -112,14 +112,14 @@ export default async function AanvraagPage({
               <div className="mt-6 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
                 <span className="h-[1px] w-10" style={{ background: 'var(--oker)' }} aria-hidden />
                 <span className="font-mono uppercase tracking-[0.16em]">
-                  Vaste bouwprijs · live in 1 tot 2 weken · geen verplichtingen
+                  Vaste prijs per fase · elke actie langs een mens · geen verplichtingen
                 </span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Logoband — vertrouwen, zonder uitgangen */}
+        {/* Logoband, vertrouwen, zonder uitgangen */}
         <section className="border-y border-[var(--paper-edge)] bg-[var(--paper-warm)]">
           <div className="mx-auto w-full max-w-[860px] px-5 sm:px-8 py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
             <span className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] shrink-0">
@@ -163,7 +163,7 @@ export default async function AanvraagPage({
           </ol>
         </section>
 
-        {/* Persoonlijk blok — u spreekt de bouwer, geen salesteam */}
+        {/* Persoonlijk blok, u spreekt de bouwer, geen salesteam */}
         <section className="mx-auto w-full max-w-[860px] px-5 sm:px-8 pb-12 sm:pb-16">
           <div className="site-card px-6 sm:px-8 py-6 sm:py-7 flex items-start gap-5 sm:gap-7">
             <div className="relative shrink-0 w-[76px] h-[95px] sm:w-[92px] sm:h-[115px] rounded-[2px] overflow-hidden border border-[var(--paper-edge)]">
@@ -209,7 +209,7 @@ export default async function AanvraagPage({
           </ul>
         </section>
 
-        {/* Boeking — inline kalender, zelfde event als /plan */}
+        {/* Boeking, inline kalender, zelfde event als /plan */}
         <section
           id="boeken"
           className="mx-auto w-full max-w-[860px] px-5 sm:px-8 pb-16 sm:pb-24 scroll-mt-6"
@@ -232,7 +232,7 @@ export default async function AanvraagPage({
         </section>
       </main>
 
-      {/* Minimale footer — alleen naam en de wettelijk verplichte privacy-link */}
+      {/* Minimale footer, alleen naam en de wettelijk verplichte privacy-link */}
       <footer className="border-t border-[var(--paper-edge)]">
         <div className="mx-auto w-full max-w-[860px] px-5 sm:px-8 py-5 flex items-center justify-between gap-4 text-[11px] font-mono text-[var(--ink-faint)]">
           <span>© {new Date().getFullYear()} FactumAI</span>

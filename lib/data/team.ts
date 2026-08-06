@@ -10,14 +10,14 @@ export interface TeamMember {
   linkedin?: string;
   github?: string;
   twitter?: string;
-  portretSrc?: string; // /portret.jpg etc — optioneel
+  portretSrc?: string; // /portret.jpg etc, optioneel
   korteBio: string; // max ~200 tekens, voor kaart
   langeBio: string[]; // paragrafen, voor persoonlijke pagina
   expertise: { titel: string; body: string }[];
   knowsAbout: string[]; // schema.org Person.knowsAbout
   alumniOf?: string;
   publicatieSlugs?: string[]; // koppelt aan posts.ts via slug
-  startedAt: string; // ISO date — wanneer bij FactumAI gestart
+  startedAt: string; // ISO date, wanneer bij FactumAI gestart
 }
 
 export const TEAM: TeamMember[] = [
@@ -37,7 +37,7 @@ export const TEAM: TeamMember[] = [
     langeBio: [
       'Ik ben opgeleid in de bedrijfskunde en heb daarna meer dan acht jaar in IT gewerkt: aan optimalisatie, procesverbetering, strategie en projectmanagement bij bedrijven van uiteenlopende grootte. In 2026 ben ik FactumAI gestart om AI-agents bereikbaar te maken voor MKB-bedrijven die niet wachten op een groot consultancy-traject.',
       'Mijn rol bij FactumAI is dubbel. Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en ik bouw mee aan de agents die wij opleveren. Dat houdt het werk eerlijk: ik beloof niets dat ik niet zelf zou kunnen waarmaken.',
-      'Op deze site schrijf ik bovendien de kennisbank. De artikelen zijn observaties uit de praktijk — wat werkt, wat niet, en waarom het MKB juist nu de meeste winst kan pakken. Geen jargon, geen hype.',
+      'Op deze site schrijf ik bovendien de kennisbank. De artikelen zijn observaties uit de praktijk, wat werkt, wat niet, en waarom het MKB juist nu de meeste winst kan pakken. Geen jargon, geen hype.',
     ],
     expertise: [
       {
@@ -46,7 +46,7 @@ export const TEAM: TeamMember[] = [
       },
       {
         titel: 'Bedrijfskunde + techniek',
-        body: 'Hbo-bedrijfskunde, doorgegroeid in IT-optimalisatie, projectmanagement en procesverbetering. Combineert het zakelijke gesprek met de technische uitvoering — beide onder één dak.',
+        body: 'Hbo-bedrijfskunde, doorgegroeid in IT-optimalisatie, projectmanagement en procesverbetering. Combineert het zakelijke gesprek met de technische uitvoering, beide onder één dak.',
       },
       {
         titel: 'MKB-context',
@@ -54,7 +54,7 @@ export const TEAM: TeamMember[] = [
       },
       {
         titel: 'Governance & guardrails',
-        body: 'Alle agents draaien binnen expliciete beleidsregels. AVG, NEN 7510 (zorg), WWFT (financieel), beroepsgeheim (juridisch) — randvoorwaarden zijn vanaf dag één ingericht.',
+        body: 'Alle agents draaien binnen expliciete beleidsregels. AVG, NEN 7510 (zorg), WWFT (financieel), beroepsgeheim (juridisch), randvoorwaarden zijn vanaf dag één ingericht.',
       },
     ],
     knowsAbout: [
@@ -93,7 +93,7 @@ export const TEAM: TeamMember[] = [
       'Verzorgt contact en marketing bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
     langeBio: [
       'Als Sales & Marketing Manager verzorgt Danny het contact en de marketing bij FactumAI. Hij zit aan tafel bij ondernemers, luistert naar waar de werkdag stroef loopt, en vertaalt dat naar een helder voorstel: wat kan een agent overnemen, wat levert het op, en waar beginnen we.',
-      'Hij bewaakt dat de belofte eerlijk blijft. Geen luchtkastelen, maar een concreet eerste resultaat binnen één tot twee weken. Wat aan tafel wordt beloofd, maken de bouwers waar.',
+      'Hij bewaakt dat de belofte eerlijk blijft. Geen luchtkastelen, maar een concreet eerste resultaat waar u zelf akkoord op geeft. Wat aan tafel wordt beloofd, maken de bouwers waar.',
       'Daarnaast geeft hij FactumAI een gezicht naar buiten: van het klantcontact tot de verhalen die we delen over wat AI wél en niet voor het MKB kan betekenen.',
     ],
     expertise: [

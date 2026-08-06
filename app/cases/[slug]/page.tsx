@@ -16,7 +16,7 @@ function caseSchema(c: CaseStudy) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${c.klant} — ${c.tagline}`,
+    headline: `${c.klant}, ${c.tagline}`,
     description: c.intro,
     inLanguage: 'nl-NL',
     author: { '@id': `${SITE_URL}/#organization` },

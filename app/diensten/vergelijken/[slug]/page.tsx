@@ -120,7 +120,7 @@ export default async function VergelijkenPage({
                     AI-agent
                   </th>
                   <th className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em] py-3 pl-4 border-b border-[var(--paper-edge)]">
-                    {c.alternative}
+                    {c.alternativeColumnLabel ?? c.alternative}
                   </th>
                 </tr>
               </thead>
@@ -138,6 +138,34 @@ export default async function VergelijkenPage({
         </div>
       </section>
 
+      {(c.geenAgentNodig || c.vultElkaarAan) && (
+        <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-warm)' }}>
+          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14">
+            {c.geenAgentNodig && (
+              <div>
+                <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
+                  Waar u geen agent voor nodig heeft
+                </div>
+                <p className="mt-4 text-[15.5px] leading-[1.75] text-[var(--ink)]">
+                  {c.geenAgentNodig}
+                </p>
+              </div>
+            )}
+            {c.vultElkaarAan && (
+              <div>
+                <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+                  Waar het elkaar aanvult
+                </div>
+                <p className="mt-4 text-[15.5px] leading-[1.75] text-[var(--ink)]">
+                  {c.vultElkaarAan}
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {c.whenAgent.length > 0 && c.whenAlternative.length > 0 && (
       <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-warm)' }}>
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20 grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
@@ -147,7 +175,7 @@ export default async function VergelijkenPage({
             <ul className="mt-5 space-y-3">
               {c.whenAgent.map((item) => (
                 <li key={item} className="flex gap-3 text-[15px] leading-[1.7] text-[var(--ink)]">
-                  <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+                  <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -160,7 +188,7 @@ export default async function VergelijkenPage({
             <ul className="mt-5 space-y-3">
               {c.whenAlternative.map((item) => (
                 <li key={item} className="flex gap-3 text-[15px] leading-[1.7] text-[var(--ink)]">
-                  <span className="text-[var(--ink-faint)] pt-1 shrink-0">—</span>
+                  <span className="text-[var(--ink-faint)] pt-1 shrink-0">·</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -168,6 +196,7 @@ export default async function VergelijkenPage({
           </div>
         </div>
       </section>
+      )}
 
       <section className="border-t border-[var(--paper-edge)]">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">

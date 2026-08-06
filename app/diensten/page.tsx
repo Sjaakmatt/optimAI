@@ -6,6 +6,7 @@ import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
+import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -29,26 +30,26 @@ const SERVICES: ServiceCard[] = [
     href: '/diensten/ai-agent-laten-bouwen',
     eyebrow: 'Hoofd-dienst',
     title: 'AI-agent laten bouwen',
-    body: 'Een agent op maat voor uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid. Vaste bouwprijs, eerste agent live in 1 tot 2 weken.',
+    body: 'Een agent op maat voor uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid. Vaste prijs per fase, elke uitgaande actie langs een mens.',
     highlight: true,
   },
   {
     href: '/diensten/ai-automatisering',
     eyebrow: 'Bredere dienst',
     title: 'AI-automatisering',
-    body: 'Mailstroom, offertes, orders, facturatie en planning automatisch. Niet via een dashboard, maar via AI-agents die meedraaien in uw bestaande systemen.',
+    body: 'Het werk dat overblijft nadat uw pakket zijn deel heeft gedaan: mails beoordelen en afhandelen, patronen uit uw eigen historie halen, en handelingen klaarzetten tussen systemen die niet met elkaar praten.',
   },
   {
     href: '/diensten/ai-implementatie',
     eyebrow: 'Begeleiding',
     title: 'AI implementeren',
-    body: 'Wij brengen AI binnen één tot twee weken in productie — zonder pilot-moeras. Stappenplan, integraties, governance en adoptie ingebouwd.',
+    body: 'Wij leveren in fasen die elk eindigen in iets werkends, zodat u niet maandenlang in een pilot zit zonder resultaat. Stappenplan, integraties, governance en adoptie ingebouwd.',
   },
   {
     href: '/diensten/ai-agents-voor-bedrijven',
     eyebrow: 'B2B-framing',
     title: 'AI-agents voor bedrijven',
-    body: 'Wat AI-agents concreet voor B2B-bedrijven doen — type-agents, integraties, randvoorwaarden, ROI. Met concrete cijfers uit MKB-implementaties.',
+    body: 'Wat AI-agents concreet voor B2B-bedrijven doen: type-agents, integraties, randvoorwaarden en de grenzen die wij bewust aanhouden.',
   },
 ];
 
@@ -89,8 +90,9 @@ export default function DienstenPage() {
             <span className="italic text-[var(--oker-deep)]">Eén plek, alles bij elkaar.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Vier hoofd-diensten, veertien branche-pagina&rsquo;s, drie vergelijkingen en twee
-            tools. Begin bij de hoofd-dienst, of duik direct in uw branche.
+            Vier hoofd-diensten, vier oplossingen, veertien branche-pagina&rsquo;s, vier
+            vergelijkingen en twee tools. Begin bij de hoofd-dienst, kijk bij de oplossingen waar
+            het bij u speelt, of duik direct in uw branche.
           </p>
         </div>
       </section>
@@ -122,6 +124,38 @@ export default function DienstenPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="border-t border-[var(--paper-edge)]">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+            Per proces
+          </div>
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <h2 className="font-display text-[26px] sm:text-[32px] leading-tight text-[var(--ink)] max-w-[640px]">
+              Vier plekken waar uw pakket ophoudt.
+            </h2>
+            <Link
+              href="/oplossingen"
+              className="font-mono text-[11px] text-[var(--ink)] uppercase tracking-wider hover:text-[var(--oker-deep)] flex items-center gap-1.5"
+            >
+              Alle oplossingen
+              <ArrowRight size={12} strokeWidth={1.8} />
+            </Link>
+          </div>
+          <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            {OPLOSSINGEN.map((o) => (
+              <li key={o.slug}>
+                <Link
+                  href={`/oplossingen/${o.slug}`}
+                  className="block h-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                >
+                  {o.navLabel}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-warm)' }}>
@@ -200,10 +234,10 @@ export default function DienstenPage() {
                   className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[15.5px] text-[var(--ink)]">
-                    AI ROI calculator
+                    AI-agent procesdiagnose
                   </span>
                   <span className="block mt-1 text-[12.5px] text-[var(--ink-dim)]">
-                    Bereken uw besparing in een minuut.
+                    Zes vragen over één proces, eerlijk antwoord.
                   </span>
                 </Link>
               </li>

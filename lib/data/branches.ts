@@ -37,7 +37,7 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de groothandel.',
     heroItalic: 'Minder mails, snellere offertes, stabielere marges.',
     intro:
-      'Groothandels hebben één gemeenschappelijke pijn: de binnendienst verzuipt in mails, offerte-aanvragen en order-coördinatie. Een AI-agent haalt dat werk weg — mits hij kan koppelen met uw ERP, uw prijslijsten en uw voorraad-administratie.',
+      'Groothandels hebben één gemeenschappelijke pijn: de binnendienst verzuipt in mails, offerte-aanvragen en order-coördinatie. Een AI-agent haalt dat werk weg, mits hij kan koppelen met uw ERP, uw prijslijsten en uw voorraad-administratie.',
     lede:
       'Specialist groothandels in bouwmaterialen, installatiemateriaal, technische producten, food en non-food. Waar offertes in uren verouderen en elke telefooncirkel tien minuten kost.',
     pijnpunten: [
@@ -49,7 +49,7 @@ export const BRANCHES: Branche[] = [
     ],
     oplossing: [
       'Eén orchestrator-agent verdeelt binnenkomende mails over gespecialiseerde afdelings-agents.',
-      'Offertes worden binnen minuten opgesteld met actuele prijzen, klantkortingen en marge-regels — klaar voor uw akkoord.',
+      'Offertes worden binnen minuten opgesteld met actuele prijzen, klantkortingen en marge-regels, klaar voor uw akkoord.',
       'Orderverwerking gebeurt automatisch inclusief kredietcheck, voorraadcheck, bevestigingsmail en ERP-boeking.',
       'Voorraadsignalen leiden automatisch tot inkoopvoorstellen binnen uw mandaat.',
       'Debiteuren-agent stuurt herinneringen met de toon die u voorschrijft per klantgroep.',
@@ -85,7 +85,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Groothandels die nu starten bouwen binnen een jaar een reactietijd op die concurrenten niet kunnen volgen. Niet omdat hun mensen harder werken, maar omdat routinewerk automatisch doorstroomt. Dat verschil zien klanten direct aan de hoeveelheid offertes die dezelfde dag binnenkomen.',
     aanpak:
-      'We beginnen niet bij uw grootste pijn. We beginnen bij het meest voorspelbare proces — meestal offertes of orderbevestigingen — om binnen één tot twee weken een eerste agent live te krijgen. Uw mensen leren hoe ze het bijsturen. Daarna rollen we uit naar inkoop, voorraad, klachten en debiteuren.',
+      'We beginnen niet bij uw grootste pijn. We beginnen bij het meest voorspelbare proces, meestal offertes of orderbevestigingen, om daar de eerste agent omheen te bouwen. Uw mensen leren hoe ze het bijsturen. Daarna rollen we uit naar inkoop, voorraad, klachten en debiteuren.',
   },
   {
     slug: 'installatietechniek',
@@ -95,7 +95,7 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor het installatiebedrijf.',
     heroItalic: 'Van werkbon tot factuur in één vloeiende keten.',
     intro:
-      'Installatiebedrijven verliezen veel tijd aan werkvoorbereiding, materiaalbestelling en facturatie. Een AI-agent koppelt offerte, materiaallijst, bestelling, rit en factuur als één doorstromende keten — mits hij praat met uw werkbon-systeem, leveranciers-portals en boekhouding.',
+      'Installatiebedrijven verliezen veel tijd aan werkvoorbereiding, materiaalbestelling en facturatie. Een AI-agent koppelt offerte, materiaallijst, bestelling, rit en factuur als één doorstromende keten, mits hij praat met uw werkbon-systeem, leveranciers-portals en boekhouding.',
     lede:
       'Voor elektrotechniek, werktuigbouw, klimaat, sanitair, dak en onderhoud. Waar monteurs het werk buiten doen, en kantoor structureel onder-bemand is voor het papierwerk.',
     pijnpunten: [
@@ -136,14 +136,14 @@ export const BRANCHES: Branche[] = [
     ],
     expectations: [
       'Administratietijd van werkvoorbereiding gaat fors omlaag.',
-      'Facturen gaan de deur uit op de dag van oplevering, niet dagen later — cashflow-winst.',
+      'Facturen gaan de deur uit op de dag van oplevering in plaats van dagen later, wat u in de cashflow terugziet.',
       'Dubbele bestellingen dalen door centrale voorraad-check.',
       'Status-telefoontjes van klanten verdwijnen door pro-actieve updates.',
     ],
     waaromNu:
       'Installatiebedrijven die een keten van werkbon-tot-factuur draaiend hebben, werken structureel profitabeler. De marge zit niet in uurtarief maar in doorstroom. Elke dag dat een factuur later de deur uit gaat, is liquiditeit die klant niet nodig heeft en u wel.',
     aanpak:
-      'Eerste agent: vaak de factuur-agent, omdat cashflow-winst direct voelbaar is. Daarna werkbon-verwerking, materiaal-bestelling en klant-communicatie. Elke stap brengt meetbare tijdwinst binnen twee weken.',
+      'Eerste agent: vaak de factuur-agent, omdat cashflow-winst direct voelbaar is. Daarna werkbon-verwerking, materiaal-bestelling en klant-communicatie. Elke stap staat op zichzelf en eindigt in iets werkends.',
   },
   {
     slug: 'transport-logistiek',
@@ -153,13 +153,13 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor het transportbedrijf.',
     heroItalic: 'Planning die meedenkt, niet die u moet bijhouden.',
     intro:
-      'Transportbedrijven werken met kleine marges en weinig tijd voor bijkomstigheden. Een AI-agent neemt het zoek- en meldwerk over — ritten combineren, klanten informeren bij vertraging, alternatieven inschakelen bij overmacht. Zodat uw planner en chauffeurs kunnen rijden en plannen.',
+      'Transportbedrijven werken met kleine marges en weinig tijd voor bijkomstigheden. Een AI-agent neemt het zoek- en meldwerk over, ritten combineren, klanten informeren bij vertraging, alternatieven inschakelen bij overmacht. Zodat uw planner en chauffeurs kunnen rijden en plannen.',
     lede:
       'Voor nationale distributie, bouwlogistiek, koelvervoer, expediteurs en eigen vervoer. Waar files, laadtijden en laatste-minuut-wijzigingen de dagelijkse werkelijkheid zijn.',
     pijnpunten: [
-      'Bij vertragingen moet de planner zelf bellen of mailen — gebeurt niet altijd in de hectiek.',
+      'Bij vertragingen moet de planner zelf bellen of mailen, gebeurt niet altijd in de hectiek.',
       'Alternatief transporteur inhuren bij overmacht kost minuten zoeken in een Excel-lijst.',
-      'Ritten combineren gebeurt uit het hoofd — niet altijd de meest efficiënte combinatie.',
+      'Ritten combineren gebeurt uit het hoofd, niet altijd de meest efficiënte combinatie.',
       'Klanten bellen voor status omdat ze geen update krijgen bij wijziging van de ETA.',
       'Rekening-courant met vaste klanten wordt niet meer nagelopen dan eens per maand, terwijl dat dagelijks kan.',
     ],
@@ -194,7 +194,7 @@ export const BRANCHES: Branche[] = [
     ],
     expectations: [
       'Ritten worden vaker gecombineerd zonder handmatig puzzelen.',
-      'Klanten krijgen automatisch update bij vertraging — geen escalaties meer.',
+      'Klanten krijgen bij vertraging uit zichzelf een update, zodat het niet escaleert.',
       'Bij overmacht ligt er binnen minuten een charter-vergelijking klaar.',
       'Planner kan plannen in plaats van branden blussen.',
     ],
@@ -211,21 +211,21 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor zakelijke dienstverleners.',
     heroItalic: 'Minder administratie. Meer tijd voor het vak.',
     intro:
-      'Advocaten, accountants, consultants en bureaus werken uur-voor-uur. Elk uur dat aan administratie opgaat, is een uur dat niet aan de klant wordt besteed. Een AI-agent neemt intake, dossiervoorbereiding, urenregistratie en klant-communicatie over — zonder aan vertrouwelijkheid of zorgvuldigheid in te boeten.',
+      'Advocaten, accountants, consultants en bureaus werken uur-voor-uur. Elk uur dat aan administratie opgaat, is een uur dat niet aan de klant wordt besteed. Een AI-agent neemt intake, dossiervoorbereiding, urenregistratie en klant-communicatie over, zonder aan vertrouwelijkheid of zorgvuldigheid in te boeten.',
     lede:
       'Voor advocatenkantoren, accountants, belastingadviseurs, consultants, notarissen, communicatiebureaus en HR-dienstverleners. Waar declarabele uren het verdienmodel zijn en administratie de stille roofmoordenaar van marge.',
     pijnpunten: [
       'Declarabele uren gaan verloren aan mail, urenbriefjes en dossiervoorbereiding.',
-      'Intake-gesprekken moeten handmatig worden uitgewerkt tot dossier — soms dagen na het gesprek.',
+      'Intake-gesprekken moeten handmatig worden uitgewerkt tot dossier, soms dagen na het gesprek.',
       'Standaard-documenten (opdrachtbevestiging, NDA, jaarrekening-brief) worden telkens opnieuw opgesteld.',
       'Klanten vragen status van hun zaak of dossier zonder dat er iets nieuws te melden is.',
-      'Kennis zit in hoofden van senioren — junioren zoeken het telkens opnieuw uit.',
+      'Kennis zit in hoofden van senioren, junioren zoeken het telkens opnieuw uit.',
     ],
     oplossing: [
       'Intake-agent luistert mee (met toestemming), vat samen, stelt dossier op volgens uw kantoorsjabloon.',
       'Urenregistratie gebeurt automatisch op basis van agenda, e-mailactiviteit en dossier-touches.',
       'Standaard-documenten worden opgesteld met klantgegevens, dossierreferenties en uw voorwaarden.',
-      'Klant-updates bij mijlpalen in het dossier — u bepaalt welke gebeurtenissen trigger zijn.',
+      'Klant-updates bij mijlpalen in het dossier, u bepaalt welke gebeurtenissen trigger zijn.',
       'Kennisbank-agent doorzoekt eigen archief, jurisprudentie of richtlijnen binnen de door u gezette grenzen.',
     ],
     agents: [
@@ -251,15 +251,15 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Tien tot twintig procent meer declarabele uren per medewerker per maand.',
-      'Intake-gesprek tot volledig dossier binnen één uur in plaats van één tot drie dagen.',
+      'Meer declarabele uren per medewerker, doordat de registratie niet meer blijft liggen.',
+      'Van intake-gesprek naar een volledig dossier zonder dat iemand het naderhand overtypt.',
       'Standaard-documenten binnen minuten in plaats van halve uren.',
-      'Klanttevredenheid stijgt meetbaar door pro-actieve updates zonder extra werk.',
+      'Klanten krijgen uit zichzelf een update, zonder dat iemand daar werk aan heeft.',
     ],
     waaromNu:
       'Dienstverleners die intake en administratie automatiseren, winnen declarabele tijd terug zonder harder te werken. Wie nu begint, bouwt een kantoor dat met gelijkblijvende bezetting meer klanten aankan. Concurrenten die dit niet doen, blijven uurtje-factuurtje draaien met stijgende loonkosten.',
     aanpak:
-      'Eerste agent: intake of urenregistratie — afhankelijk van waar uw grootste lek zit. Live binnen één tot twee weken. Vertrouwelijkheid, conflictcheck en bevoegdheden zijn vanaf dag één ingericht. Daarna documenten, communicatie en kennisbank uitrollen.',
+      'Eerste agent: intake of urenregistratie, afhankelijk van waar uw grootste lek zit. Vertrouwelijkheid, conflictcheck en bevoegdheden zijn vanaf dag één ingericht. Daarna documenten, communicatie en kennisbank uitrollen.',
   },
   {
     slug: 'bouw',
@@ -269,14 +269,14 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor bouwbedrijven.',
     heroItalic: 'Van calculatie tot oplevering zonder papierstroom.',
     intro:
-      'Bouwbedrijven werken in projecten met lange doorlooptijden en veel partijen: opdrachtgever, architect, onderaannemers, leveranciers, gemeente. Een AI-agent houdt de papierstroom bij — calculaties, meerwerk, bouwverslagen, materiaalbestellingen, facturatie — zodat projectleiders kunnen bouwen in plaats van administreren.',
+      'Bouwbedrijven werken in projecten met lange doorlooptijden en veel partijen: opdrachtgever, architect, onderaannemers, leveranciers, gemeente. Een AI-agent houdt de papierstroom bij, calculaties, meerwerk, bouwverslagen, materiaalbestellingen, facturatie, zodat projectleiders kunnen bouwen in plaats van administreren.',
     lede:
       'Voor utiliteitsbouw, woningbouw, renovatie, afbouw, grond-, weg- en waterbouw. Waar elk project een eigen administratie-traject is en meerwerk-discussies marges wegvreten.',
     pijnpunten: [
       'Calculaties kosten dagen per offerte, terwijl opdrachtgevers binnen een week een prijs willen.',
-      'Meerwerk wordt mondeling afgesproken en later pas op papier gezet — met discussie tot gevolg.',
-      'Bouwverslagen, urenstaten en materiaalbonnen stapelen op — verwerking loopt weken achter.',
-      'Onderaannemers en leveranciers mailen over planning, levertijd en facturen — allemaal via de projectleider.',
+      'Meerwerk wordt mondeling afgesproken en later pas op papier gezet, met discussie tot gevolg.',
+      'Bouwverslagen, urenstaten en materiaalbonnen stapelen op, verwerking loopt weken achter.',
+      'Onderaannemers en leveranciers mailen over planning, levertijd en facturen, allemaal via de projectleider.',
       'Eindafrekening vraagt weken puzzelen omdat meerwerk en minderwerk verspreid zijn over mails en bouwverslagen.',
     ],
     oplossing: [
@@ -309,15 +309,15 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Calculatie-doorlooptijd halveert — meer offertes uit dezelfde bezetting.',
+      'Calculaties gaan sneller de deur uit, waardoor er meer offertes uit dezelfde bezetting komen.',
       'Meerwerk-discussies verdwijnen: alles digitaal vastgelegd, direct akkoord of afwijzing.',
       'Projectdossiers zijn realtime compleet, niet pas bij oplevering.',
-      'Eindafrekeningen binnen dagen in plaats van weken — liquiditeit komt sneller binnen.',
+      'Eindafrekeningen blijven niet liggen, waardoor liquiditeit sneller binnenkomt.',
     ],
     waaromNu:
       'Bouwbedrijven die projectadministratie op orde krijgen, winnen twee dingen: snellere facturatie en minder meerwerk-verlies. In een markt waar marges al dun zijn, is dat het verschil tussen draaien en groeien. Wie nu begint, heeft het systeem staan voor de volgende opdrachtpiek.',
     aanpak:
-      'Eerste agent: meerwerk-registratie, omdat daar direct geld verloren gaat. Live binnen één tot twee weken. Koppelingen met uw calculatiesoftware, urenregistratie en leveranciers-portals worden stap voor stap aangezet.',
+      'Eerste agent: meerwerk-registratie, omdat daar direct geld verloren gaat. Koppelingen met uw calculatiesoftware, urenregistratie en leveranciers-portals worden stap voor stap aangezet.',
   },
   {
     slug: 'zorg',
@@ -327,12 +327,12 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de zorg.',
     heroItalic: 'Minder administratie. Meer tijd aan het bed.',
     intro:
-      'Zorgorganisaties verliezen dertig tot veertig procent van de tijd aan administratie. Een AI-agent — ingericht binnen AVG en NEN 7510 — neemt rapportage, planning en declaratie-voorbereiding over. Zodat zorgmedewerkers zorgen, en kantoor de organisatie laat doorlopen.',
+      'Zorgorganisaties verliezen dertig tot veertig procent van de tijd aan administratie. Een AI-agent, ingericht binnen AVG en NEN 7510, neemt rapportage, planning en declaratie-voorbereiding over. Zodat zorgmedewerkers zorgen, en kantoor de organisatie laat doorlopen.',
     lede:
       'Voor thuiszorg, VVT, gehandicaptenzorg, GGZ, huisartsenpraktijken en tandartspraktijken. Waar administratie structureel onderbezet is en zorgmedewerkers met steeds meer registratieverplichtingen worden belast.',
     pijnpunten: [
-      'Rapportage na een dienst kost dertig tot zestig minuten — tijd die niet declarabel is.',
-      'Planners puzzelen dagelijks met ziekmeldingen, beschikbaarheid en zorgvraag — meestal met Excel.',
+      'Rapportage na een dienst kost dertig tot zestig minuten, tijd die niet declarabel is.',
+      'Planners puzzelen dagelijks met ziekmeldingen, beschikbaarheid en zorgvraag, meestal met Excel.',
       'Declaraties naar zorgverzekeraars en gemeenten vragen handmatige controle op codes en onderbouwing.',
       'Cliëntdossiers worden niet altijd tijdig bijgewerkt, waardoor collega\'s onvolledige informatie hebben.',
       'Klachten en incidenten worden mondeling doorgegeven en niet systematisch geregistreerd.',
@@ -341,7 +341,7 @@ export const BRANCHES: Branche[] = [
       'Rapportage-agent zet spraakmemo of korte aantekening om in gestructureerde ECD-rapportage.',
       'Planning-agent verwerkt ziekmeldingen, beschikbaarheid en zorgvraag tot een voorstel dat de planner alleen akkoord hoeft te geven.',
       'Declaratie-agent controleert codes, onderbouwing en dubbele registraties vóór verzending.',
-      'Dossier-agent vat contact-momenten samen en vult het ECD bij — altijd ter akkoord door zorgverlener.',
+      'Dossier-agent vat contact-momenten samen en vult het ECD bij, altijd ter akkoord door zorgverlener.',
       'Incident-agent registreert MIC/MIM-meldingen gestructureerd, signaleert patronen.',
     ],
     agents: [
@@ -367,15 +367,15 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Rapportage-tijd per dienst gaat van 30-60 minuten naar 5-10 minuten.',
-      'Planning-doorlooptijd halveert — minder stress op de planner, minder fouten in de roosters.',
-      'Declaratie-afwijzingen door zorgverzekeraars dalen fors door pre-check.',
-      'AVG- en NEN 7510-compliance is vanaf dag één ingericht: alle data on-premise of in NL-cloud.',
+      'Rapportage per dienst kost een fractie van de tijd, omdat de agent het concept klaarzet.',
+      'Plannen kost minder tijd, met minder stress op de planner en minder fouten in de roosters.',
+      'Declaraties worden vooraf gecontroleerd, zodat afwijzingen eerder worden opgemerkt.',
+      'AVG- en NEN 7510-compliance is vanaf dag één ingericht, met opslag en verwerking in Frankfurt.',
     ],
     waaromNu:
       'Zorgorganisaties staan onder dubbele druk: toenemende zorgvraag en krappere bezetting. Wie administratie-tijd terugwint, houdt personeel. Wie dat niet doet, ziet goede zorgmedewerkers vertrekken omdat ze niet meer aan zorgen toekomen. Een AI-agent is geen luxe meer, het is personeelsbehoud.',
     aanpak:
-      'Eerste agent: rapportage, omdat daar de grootste tijdwinst per zorgmedewerker zit. Live binnen twee weken, inclusief AVG-verwerkersovereenkomst en NEN 7510-controle. Daarna planning en declaratie. Data blijft in NL, logging en auditspoor zijn standaard.',
+      'Eerste agent: rapportage, omdat daar de grootste tijdwinst per zorgmedewerker zit. Inclusief AVG-verwerkersovereenkomst en NEN 7510-controle. Daarna planning en declaratie. Opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst met een transfer impact assessment. Logging en auditspoor zijn standaard.',
   },
   {
     slug: 'productie',
@@ -385,18 +385,18 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor productiebedrijven.',
     heroItalic: 'Orderflow, planning en kwaliteit in één ritme.',
     intro:
-      'Maakbedrijven leveren op klantorder of voorraad, vaak met complexe stuklijsten en strakke levertijden. Een AI-agent verbindt orderintake, werkvoorbereiding, inkoop, productieplanning en kwaliteitsregistratie — zodat de werkvloer kan produceren en de binnendienst regie houdt zonder overbelasting.',
+      'Maakbedrijven leveren op klantorder of voorraad, vaak met complexe stuklijsten en strakke levertijden. Een AI-agent verbindt orderintake, werkvoorbereiding, inkoop, productieplanning en kwaliteitsregistratie, zodat de werkvloer kan produceren en de binnendienst regie houdt zonder overbelasting.',
     lede:
       'Voor metaal, kunststof, machinebouw, voedingsmiddelen, meubels, verpakkingen en engineer-to-order bedrijven. Waar een order door tien handen gaat voor hij de machine raakt.',
     pijnpunten: [
       'Offertes op maat kosten dagen omdat werkvoorbereiding moet rekenen aan stuklijst en capaciteit.',
       'Materialen worden soms te laat besteld doordat stuklijst-eisen en voorraad niet realtime gekoppeld zijn.',
-      'Productieplanning schuift bij elke spoedorder — handmatig, met stress en fouten.',
+      'Productieplanning schuift bij elke spoedorder, handmatig, met stress en fouten.',
       'Kwaliteitsmetingen worden op papier genoteerd en pas weken later verwerkt in trends.',
-      'Klanten vragen status van hun order — antwoord vraagt rondje langs werkvoorbereiding en planning.',
+      'Klanten vragen status van hun order, antwoord vraagt rondje langs werkvoorbereiding en planning.',
     ],
     oplossing: [
-      'Offerte-agent rekent aan stuklijst, uurtarief per bewerking en beschikbare capaciteit — offerte binnen uren.',
+      'Offerte-agent rekent aan stuklijst, uurtarief per bewerking en beschikbare capaciteit, offerte binnen uren.',
       'Inkoop-agent vergelijkt materialen in voorraad met stuklijst-eis en zet bestellingen klaar voor akkoord.',
       'Planning-agent herplant automatisch bij spoedorder, geeft impact op andere orders direct inzichtelijk.',
       'Kwaliteit-agent verwerkt metingen realtime, signaleert drift voordat het afkeur wordt.',
@@ -425,15 +425,15 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Offerte-doorlooptijd van dagen naar uren — hogere hitrate op klantaanvragen.',
-      'Spoedorders worden realistisch ingeschoven in plaats van chaotisch — minder stress op werkvloer.',
-      'Kwaliteitsafwijkingen zichtbaar voor ze afkeur worden — directe besparing op productiekosten.',
+      'Offertes gaan sneller de deur uit, wat de kans op de opdracht vergroot.',
+      'Spoedorders worden realistisch ingeschoven in plaats van chaotisch, wat rust geeft op de werkvloer.',
+      'Kwaliteitsafwijkingen worden zichtbaar voordat het afkeur wordt, wat productiekosten scheelt.',
       'Status-vragen van klanten worden direct beantwoord zonder dat binnendienst erop hoeft te reageren.',
     ],
     waaromNu:
       'Productiebedrijven die orderflow en planning koppelen, winnen op levertijd en betrouwbaarheid. Klanten kiezen steeds vaker op "wanneer kan het af" in plaats van alleen op prijs. Wie nu inricht, heeft over een jaar een reactietijd en leverbetrouwbaarheid die concurrenten niet matchen.',
     aanpak:
-      'Eerste agent: offerte of order-status — afhankelijk van waar uw werkvoorbereiding vastloopt. Live binnen één tot twee weken. Koppeling met uw ERP, MES of planningssoftware stap voor stap. Kwaliteitsregistratie wordt toegevoegd zodra de basis draait.',
+      'Eerste agent: offerte of order-status, afhankelijk van waar uw werkvoorbereiding vastloopt. Koppeling met uw ERP, MES of planningssoftware stap voor stap. Kwaliteitsregistratie wordt toegevoegd zodra de basis draait.',
   },
   {
     slug: 'detailhandel',
@@ -443,11 +443,11 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de detailhandel.',
     heroItalic: 'Van klantvraag tot verkoop zonder kassa-ruis.',
     intro:
-      'Winkels en webshops krijgen vragen via tien kanalen — winkel, telefoon, mail, WhatsApp, webshop-chat, socials. Een AI-agent centraliseert die stroom, beantwoordt routine-vragen en zet verkopen door. Zodat uw medewerkers tijd hebben voor klanten die echt in de winkel staan.',
+      'Winkels en webshops krijgen vragen via tien kanalen, winkel, telefoon, mail, WhatsApp, webshop-chat, socials. Een AI-agent centraliseert die stroom, beantwoordt routine-vragen en zet verkopen door. Zodat uw medewerkers tijd hebben voor klanten die echt in de winkel staan.',
     lede:
       'Voor speciaalzaken, retail-ketens, webshops, omnichannel-retailers en showroom-bedrijven. Waar klanten steeds vaker vooraf contact opnemen en de winkel of webshop 24/7 bereikbaar moet lijken.',
     pijnpunten: [
-      'Vragen komen via mail, WhatsApp, Instagram-DM en webshop-chat — niemand heeft overzicht.',
+      'Vragen komen via mail, WhatsApp, Instagram-DM en webshop-chat, niemand heeft overzicht.',
       'Voorraadvraag ("hebben jullie dit nog in M?") kost iedere keer een loopje naar het magazijn.',
       'Retouren vragen handmatige controle op aankoopbewijs, staat van het product en beleid.',
       'Webshop-bestellingen blijven liggen omdat de verwerkende medewerker ook in de winkel staat.',
@@ -479,19 +479,19 @@ export const BRANCHES: Branche[] = [
       },
       {
         naam: 'Onboarding-agent',
-        doet: 'Vaste procedures en productkennis toegankelijk voor tijdelijke krachten — chat-antwoord in plaats van handleiding.',
+        doet: 'Vaste procedures en productkennis toegankelijk voor tijdelijke krachten, chat-antwoord in plaats van handleiding.',
       },
     ],
     expectations: [
       'Routinevragen (openingstijden, voorraad, levertijd) worden 24/7 beantwoord zonder extra bezetting.',
       'Webshop-verwerking stopt met knellen op winkel-bezetting in piekuren.',
-      'Retour-doorlooptijd van dagen naar uren — klantbeleving stijgt meetbaar.',
+      'Retouren blijven niet liggen, omdat de afhandeling al klaarstaat als iemand hem nakijkt.',
       'Tijdelijke krachten zijn productief vanaf dag één in plaats van dag drie.',
     ],
     waaromNu:
       'Retail is een reactietijd-markt geworden. Consumenten vergelijken binnen minuten en bestellen waar ze direct antwoord krijgen. Winkels die daar niet op meekomen, verliezen omzet niet aan prijs maar aan snelheid. Een AI-agent op uw inbox draait die wedstrijd terug in uw voordeel.',
     aanpak:
-      'Eerste agent: kanaal-inbox, omdat de winst direct voelbaar is op werkvloer en in klanttevredenheid. Live binnen één tot twee weken. Koppelingen met uw kassasysteem, webshop en voorraadsysteem stap voor stap. Retour- en order-flows volgen zodra de basis draait.',
+      'Eerste agent: kanaal-inbox, omdat de winst direct voelbaar is op werkvloer en in klanttevredenheid. Koppelingen met uw kassasysteem, webshop en voorraadsysteem stap voor stap. Retour- en order-flows volgen zodra de basis draait.',
   },
   {
     slug: 'accountancy',
@@ -501,7 +501,7 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor het accountantskantoor.',
     heroItalic: 'Saaie uren weg, advies-uren terug.',
     intro:
-      'Accountantskantoren verliezen marge aan boekingen, BTW-checks en standaardrapportages. Een AI-agent neemt dat routinewerk over en koppelt direct met uw boekhoudpakket — zodat uw mensen aan adviesuren toekomen in plaats van inkloppen.',
+      'Accountantskantoren verliezen marge aan boekingen, BTW-checks en standaardrapportages. Een AI-agent neemt dat routinewerk over en koppelt direct met uw boekhoudpakket, zodat uw mensen aan adviesuren toekomen in plaats van inkloppen.',
     lede:
       'Voor accountants- en administratiekantoren, MKB-accountants en samenstelpraktijken. Waar elk kwartaal dezelfde handelingen herhaald worden en advies-uren onder druk staan.',
     pijnpunten: [
@@ -509,12 +509,12 @@ export const BRANCHES: Branche[] = [
       'Vragen van klanten over saldo, BTW-aangifte of openstaande posten komen via mail en telefoon.',
       'Standaard-rapportages (kwartaal, jaarrekening, samenstelverklaring) vragen handmatig samenstellen.',
       'Adviesgesprekken worden uitgesteld omdat de basis-administratie voorgaat.',
-      'Junioren leren werk dat over twee jaar geautomatiseerd is — terwijl seniors te weinig tijd hebben voor advies.',
+      'Junioren leren werk dat over twee jaar geautomatiseerd is, terwijl seniors te weinig tijd hebben voor advies.',
     ],
     oplossing: [
       'Boekings-agent verwerkt facturen en bonnen automatisch met de juiste BTW-code en grootboekrekening.',
       'Klant-agent beantwoordt routine-vragen over saldo en aangifte op basis van actuele cijfers.',
-      'Rapportage-agent stelt periodieke rapporten samen — accountant doet review en publiceert.',
+      'Rapportage-agent stelt periodieke rapporten samen, accountant doet review en publiceert.',
       'Signaal-agent waarschuwt bij afwijkingen (omzetdaling, marge-erosie, debiteurenstand) zodat advies pro-actief kan.',
       'Aangifte-agent bereidt BTW- en IB-aangiftes voor controle door de accountant.',
     ],
@@ -541,7 +541,7 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Boekingstijd per klant daalt met 50 tot 70 procent.',
+      'Boekingstijd per klant daalt fors, omdat de agent het voorwerk al heeft gedaan.',
       'Adviesuren per klant per jaar verdubbelen zonder extra bezetting.',
       'Klanttevredenheid stijgt door pro-actieve signalen in plaats van reactieve gesprekken.',
       'Junioren krijgen interessanter werk: review en advies in plaats van inkloppen.',
@@ -549,7 +549,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Boekhoudsoftware en AI-modellen koppelen in 2026 als nooit tevoren. Kantoren die dit nu inrichten, verkopen meer adviesuren tegen hetzelfde tarief en houden hun mensen vast omdat het werk leuker wordt. Wie wacht, ziet klanten overstappen naar collega-kantoren die wel sneller en goedkoper de basis leveren.',
     aanpak:
-      'Eerste agent: boekingen of klantvraag-afhandeling, afhankelijk van waar uw kantoor het meest tijd verliest. Live binnen één tot twee weken. Koppelingen met Exact, AFAS, Twinfield, Snelstart of Visma stap voor stap. AVG- en WWFT-randvoorwaarden vanaf dag één.',
+      'Eerste agent: boekingen of klantvraag-afhandeling, afhankelijk van waar uw kantoor het meest tijd verliest. Koppelingen met Exact, AFAS, Twinfield, Snelstart of Visma stap voor stap. AVG- en WWFT-randvoorwaarden vanaf dag één.',
   },
   {
     slug: 'advocatuur',
@@ -559,11 +559,11 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor het advocatenkantoor.',
     heroItalic: 'Dossierwerk geautomatiseerd. Uren over voor pleidooi.',
     intro:
-      'Advocatenkantoren werken uur-voor-uur, met intake, conflictcheck, dossiervoorbereiding en standaard-stukken die elke keer terugkeren. Een AI-agent — binnen geheimhouding en gedragsregels — neemt die voorbereiding over zodat advocaten meer declarabele tijd aan de zaak besteden.',
+      'Advocatenkantoren werken uur-voor-uur, met intake, conflictcheck, dossiervoorbereiding en standaard-stukken die elke keer terugkeren. Een AI-agent, binnen geheimhouding en gedragsregels, neemt die voorbereiding over zodat advocaten meer declarabele tijd aan de zaak besteden.',
     lede:
       'Voor algemene praktijken, niche-kantoren in arbeidsrecht, ondernemingsrecht, familierecht of huurrecht. Waar de combinatie van vertrouwelijkheid, kwaliteit en uurtarief onhoudbaar wordt zonder hulp.',
     pijnpunten: [
-      'Intake-gesprekken kosten een uur — uitwerken tot dossier nog eens een halve dag.',
+      'Intake-gesprekken kosten een uur, uitwerken tot dossier nog eens een halve dag.',
       'Conflictcheck gebeurt handmatig of niet op tijd, met vrijblijvendheids-risico.',
       'Standaard-stukken (sommatie, NDA, dagvaarding-concept) worden steeds opnieuw opgesteld.',
       'Uren bijhouden raakt achterop, declarabele uren lekken weg.',
@@ -599,15 +599,15 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      '15 tot 25 procent meer declarabele uren per advocaat per maand.',
+      'Meer declarabele uren per advocaat, doordat registratie en dossiervoorbereiding niet blijven liggen.',
       'Intake tot dossier binnen het uur in plaats van een halve dag.',
       'Conflictcheck gebeurt automatisch en op tijd, zonder vergeten.',
       'Cliënttevredenheid stijgt door pro-actieve status-updates.',
     ],
     waaromNu:
-      'De AI-tooling in 2026 maakt het mogelijk om vertrouwelijk én juridisch zorgvuldig te werken — data blijft in NL, geen training op uw dossiers, expliciete logging. Kantoren die dit nu inrichten, draaien hogere marges en behouden ambitieuze advocaten die geen administratie willen doen.',
+      'De AI-tooling in 2026 maakt het mogelijk om vertrouwelijk én juridisch zorgvuldig te werken, opslag en verwerking in Frankfurt, geen training op uw dossiers, expliciete logging. Kantoren die dit nu inrichten, draaien hogere marges en behouden ambitieuze advocaten die geen administratie willen doen.',
     aanpak:
-      'Eerste agent: intake of urenregistratie. Geheimhouding, conflictcheck en bevoegdheden zijn vanaf dag één geconfigureerd. Live binnen één tot twee weken, daarna document-templates en cliënt-communicatie uitrollen.',
+      'Eerste agent: intake of urenregistratie. Geheimhouding, conflictcheck en bevoegdheden zijn vanaf dag één geconfigureerd. Daarna document-templates en cliënt-communicatie uitrollen.',
   },
   {
     slug: 'makelaardij',
@@ -617,11 +617,11 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor het makelaarskantoor.',
     heroItalic: 'Bezichtigen op locatie. De rest gaat vanzelf.',
     intro:
-      'Makelaarskantoren werken in pieken: aanmelding, bezichtiging, bod, transactie, oplevering. Een AI-agent neemt de mail-, planning- en documentstroom over zodat NVM-makelaars of zelfstandigen zich op de mensen kunnen richten — kopers, verkopers, taxaties.',
+      'Makelaarskantoren werken in pieken: aanmelding, bezichtiging, bod, transactie, oplevering. Een AI-agent neemt de mail-, planning- en documentstroom over zodat NVM-makelaars of zelfstandigen zich op de mensen kunnen richten, kopers, verkopers, taxaties.',
     lede:
       'Voor verkoop- en aankoopmakelaars, taxateurs, beheerders en bedrijfsmakelaars. Waar reactietijd het verschil maakt tussen opdracht binnen of opdracht naar de concurrent.',
     pijnpunten: [
-      'Aanvragen voor bezichtigingen komen via Funda, mail, WhatsApp, telefoon — nooit in één bak.',
+      'Aanvragen voor bezichtigingen komen via Funda, mail, WhatsApp, telefoon, nooit in één bak.',
       'Standaard-stukken (koopovereenkomst, opdracht tot dienstverlening, taxatieopdracht) elke keer opnieuw invullen.',
       'Bezichtigings-planning kost dagelijks puzzelen, bijhouden van wie wanneer geweest is.',
       'Status-updates aan opdrachtgevers worden vergeten in de drukte.',
@@ -657,7 +657,7 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'Reactietijd op bezichtigingsverzoek van uren naar minuten — meer doorlopen tot opdracht.',
+      'Reactietijd op bezichtigingsverzoek van uren naar minuten, meer doorlopen tot opdracht.',
       'Document-doorlooptijd halveert.',
       'Opdrachtgevers krijgen wekelijks update zonder dat u eraan denkt.',
       'Capaciteit voor marktwerving en taxatie verdubbelt.',
@@ -665,7 +665,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Een huizenmarkt waar consumenten in minuten beslissen welke makelaar ze bellen, beloont kantoren die direct kunnen reageren. AI-agents maken die snelheid bereikbaar zonder extra bezetting.',
     aanpak:
-      'Eerste agent: aanvraag-afhandeling, omdat snelheid daar direct opdracht-conversie verbetert. Live binnen één tot twee weken. Koppeling met Funda, agenda en NVM-software stap voor stap.',
+      'Eerste agent: aanvraag-afhandeling, omdat snelheid daar direct opdracht-conversie verbetert. Koppeling met Funda, agenda en NVM-software stap voor stap.',
   },
   {
     slug: 'agrarisch',
@@ -675,14 +675,14 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de agrarische sector.',
     heroItalic: 'Buiten boer. Binnen administratie geautomatiseerd.',
     intro:
-      'Agrarische bedrijven werken met krappe marges, veel registratieverplichtingen en weinig kantoorbezetting. Een AI-agent neemt mestadministratie, GLB-aanvragen, leveranciers-mails en factuurverwerking over — zodat de boer kan boeren en het kantoor maandagochtend op orde is.',
+      'Agrarische bedrijven werken met krappe marges, veel registratieverplichtingen en weinig kantoorbezetting. Een AI-agent neemt mestadministratie, GLB-aanvragen, leveranciers-mails en factuurverwerking over, zodat de boer kan boeren en het kantoor maandagochtend op orde is.',
     lede:
       'Voor melkveehouderij, akkerbouw, varkens- en pluimveehouderij, glastuinbouw, fruitteelt en loonwerkers. Waar registratie en regelgeving net zo zwaar zijn als de operatie zelf.',
     pijnpunten: [
       'Mestadministratie, GLB, derogatie en NVWA-meldingen vragen wekelijks bewerkelijke registratie.',
       'Inkoopfacturen voor voer, kunstmest en gewasbescherming komen via mail in tientallen formaten.',
       'Leveranciers en afnemers mailen over levering, prijs, kwaliteit, planning.',
-      'Subsidies en regelingen veranderen per jaar — bijhouden lukt niet zonder externe adviseur.',
+      'Subsidies en regelingen veranderen per jaar, bijhouden lukt niet zonder externe adviseur.',
       'Avonden en weekenden gaan op aan administratie omdat overdag geen tijd is.',
     ],
     oplossing: [
@@ -723,7 +723,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Regelgeving wordt strenger, marges blijven dun, opvolging is onzeker. Bedrijven die nu de administratie automatiseren, blijven over de generaties heen werkbaar. Wie blijft hangen in pen-en-papier of Excel, raakt achter op kantoorwerk waarvan de eisen alleen maar groeien.',
     aanpak:
-      'Eerste agent: factuurverwerking of registratie. Live binnen één tot twee weken. Koppelingen met sector-systemen (RVO, NVWA, KringloopWijzer, FarmInfo) en eigen bedrijfsadministratie stap voor stap.',
+      'Eerste agent: factuurverwerking of registratie. Koppelingen met sector-systemen (RVO, NVWA, KringloopWijzer, FarmInfo) en eigen bedrijfsadministratie stap voor stap.',
   },
   {
     slug: 'e-commerce',
@@ -733,7 +733,7 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de webshop.',
     heroItalic: 'Service op niveau zonder service-team van twintig.',
     intro:
-      'Webshops verdienen of verliezen op klantenservice, retouren en operationele snelheid. Een AI-agent neemt klantvragen, retour-afhandeling en orderverwerking over — zodat een team van vijf voelt als een team van twintig zonder extra loonkosten.',
+      'Webshops verdienen of verliezen op klantenservice, retouren en operationele snelheid. Een AI-agent neemt klantvragen, retour-afhandeling en orderverwerking over, zodat een team van vijf voelt als een team van twintig zonder extra loonkosten.',
     lede:
       'Voor B2C en B2B-webshops, marketplaces-sellers en omnichannel-retailers met een eigen e-commerce-tak. Waar klantverwachtingen op Bol/Coolblue-niveau liggen terwijl uw team kleiner is.',
     pijnpunten: [
@@ -741,7 +741,7 @@ export const BRANCHES: Branche[] = [
       'Retouren vragen handmatige controle, terugbetaling en voorraadcorrectie.',
       'Productvragen ("welke maat", "is dit waterdicht") krijgen trage of inconsistente antwoorden.',
       'Marketplace-meldingen (klacht, A-Z claim, performance) blijven liggen tot het te laat is.',
-      'Orderverwerking schaalt niet mee met seizoenspieken — Black Friday is panic-modus.',
+      'Orderverwerking schaalt niet mee met seizoenspieken, Black Friday is panic-modus.',
     ],
     oplossing: [
       'Service-agent beantwoordt routinevragen 24/7 in uw merk-toon, escaleert complexe zaken.',
@@ -774,14 +774,14 @@ export const BRANCHES: Branche[] = [
     ],
     expectations: [
       'Klantservice 24/7 zonder extra bezetting.',
-      'Retour-doorlooptijd van dagen naar uren — terugbetaling sneller, klant blijft fan.',
+      'Retour-doorlooptijd van dagen naar uren, terugbetaling sneller, klant blijft fan.',
       'Marketplace-rating stijgt door snelle respons.',
       'Black Friday wordt voorspelbaar in plaats van paniek.',
     ],
     waaromNu:
       'E-commerce is een snelheids- en service-markt geworden. Kopers kiezen niet meer alleen op prijs maar op snelheid van antwoord, retour en levering. AI-agents brengen dat niveau bereikbaar voor MKB-webshops zonder een service-organisatie van twintig.',
     aanpak:
-      'Eerste agent: klantservice-kanaal of retour-afhandeling. Koppeling met Shopify, WooCommerce, Magento, Bol Seller, Amazon Seller, Magento, eigen WMS stap voor stap. Live binnen één tot twee weken.',
+      'Eerste agent: klantservice-kanaal of retour-afhandeling. Koppeling met Shopify, WooCommerce, Magento, Bol Seller, Amazon Seller, Magento, eigen WMS stap voor stap.',
   },
   {
     slug: 'horeca',
@@ -791,7 +791,7 @@ export const BRANCHES: Branche[] = [
     heroTitle: 'AI-agent voor de horecaondernemer.',
     heroItalic: 'Reserveren, inkoop, planning automatisch. U doet de gasten.',
     intro:
-      'Horecazaken werken met onvoorspelbare drukte, smalle marges en een team dat vooral op de vloer staat. Een AI-agent regelt reserveringen, inkoopbestellingen, personeelsplanning en social-media-respons — zodat de eigenaar niet meer ’s nachts factureert en bestelt.',
+      'Horecazaken werken met onvoorspelbare drukte, smalle marges en een team dat vooral op de vloer staat. Een AI-agent regelt reserveringen, inkoopbestellingen, personeelsplanning en social-media-respons, zodat de eigenaar niet meer ’s nachts factureert en bestelt.',
     lede:
       'Voor restaurants, lunchrooms, hotels, cafés en cateringbedrijven. Waar elk uur dat de eigenaar achter de laptop zit een uur is dat niet in de zaak gewerkt wordt.',
     pijnpunten: [
@@ -799,7 +799,7 @@ export const BRANCHES: Branche[] = [
       'Inkoopbestellingen worden ’s avonds gedaan met handmatige controle op voorraad.',
       'Personeelsplanning verandert dagelijks door ziekte, no-shows en piekdrukte.',
       'Reviews en DM\'s op social blijven liggen, met reputatie-effect.',
-      'Catering-aanvragen vragen offerte op maat — vaak te laat de deur uit.',
+      'Catering-aanvragen vragen offerte op maat, vaak te laat de deur uit.',
     ],
     oplossing: [
       'Reservering-agent vangt aanvragen uit alle kanalen, plaatst in reserveringssysteem, bevestigt en herinnert.',
@@ -831,7 +831,7 @@ export const BRANCHES: Branche[] = [
       },
     ],
     expectations: [
-      'No-shows dalen met 30 tot 50 procent door betere bevestigingen en herinneringen.',
+      'Minder no-shows, doordat bevestigingen en herinneringen consequent uitgaan.',
       'Inkoop in minuten in plaats van een uur per avond.',
       'Personeelsplanning gaat van paniek naar voorspelbaar.',
       'Reputatie-onderhoud op social gebeurt vanzelf.',
@@ -839,7 +839,7 @@ export const BRANCHES: Branche[] = [
     waaromNu:
       'Horeca-marges zijn dun en personeel schaars. Wie de operationele backoffice automatiseert, houdt mensen vast en houdt de zaak werkbaar voor de eigenaar. Wie blijft hangen, brandt op of sluit.',
     aanpak:
-      'Eerste agent: reservering of inkoop. Live binnen één tot twee weken. Koppelingen met Resengo, Untill, Lightspeed, Mews, Mr.Winston, leveranciersportals en eigen kassasysteem stap voor stap.',
+      'Eerste agent: reservering of inkoop. Koppelingen met Resengo, Untill, Lightspeed, Mews, Mr.Winston, leveranciersportals en eigen kassasysteem stap voor stap.',
   },
 ];
 

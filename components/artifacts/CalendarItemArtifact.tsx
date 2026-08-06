@@ -49,7 +49,7 @@ export function CalendarItemArtifact({ artifact }: Props) {
           <ul className="pt-2 border-t border-[var(--paper-edge)] space-y-1 text-[13px]">
             {slot.details.map((d, i) => (
               <li key={i} className="flex gap-2 text-[var(--ink-dim)]">
-                <span className="text-[var(--ink-faint)] select-none">—</span>
+                <span className="text-[var(--ink-faint)] select-none">·</span>
                 <span>{d}</span>
               </li>
             ))}

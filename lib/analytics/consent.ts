@@ -39,6 +39,6 @@ export function writeConsent(c: Consent): void {
   try {
     window.localStorage.setItem(KEY_V2, JSON.stringify(c));
   } catch {
-    /* private mode e.d. — keuze geldt dan alleen deze sessie */
+    /* private mode e.d., keuze geldt dan alleen deze sessie */
   }
 }

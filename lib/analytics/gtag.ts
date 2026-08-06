@@ -1,7 +1,7 @@
 // Dunne wrapper rond Google Analytics 4 (gtag). Alles is opt-in: de tag wordt
 // pas geladen nadat de bezoeker in de cookiebanner toestemming heeft gegeven
 // (zie components/analytics/ConsentGate.tsx). Deze helpers zijn no-ops zolang
-// gtag niet op window staat, dus ze zijn overal veilig aan te roepen — ook
+// gtag niet op window staat, dus ze zijn overal veilig aan te roepen, ook
 // server-side (guard op window) en zonder toestemming.
 //
 // Window.gtag/dataLayer worden elders al globaal gedeclareerd

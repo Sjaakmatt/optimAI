@@ -26,7 +26,7 @@ export const AANVRAAG_PAGES: AanvraagContent[] = [
     slug: 'ai-agent-laten-bouwen',
     h1: 'Een AI-agent',
     h1Accent: 'laten bouwen',
-    sub: 'Wij bouwen agents op maat rond één proces in uw bedrijf. Vaste bouwprijs, eerste versie in 1 tot 2 weken live. Plan een gesprek en hoor of uw proces zich ervoor leent.',
+    sub: 'Wij bouwen agents op maat rond één proces in uw bedrijf. Vaste prijs per fase, elke uitgaande actie langs een mens. Plan een gesprek en hoor of uw proces zich ervoor leent.',
     offer: [
       'U vertelt welk werk u uit handen wilt geven, wij vertellen wat daar technisch voor nodig is.',
       'U hoort met welk klein deel we zouden beginnen en hoe dat productieklaar wordt opgeleverd.',

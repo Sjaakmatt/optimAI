@@ -1,7 +1,7 @@
 // Bouwt het uitgebreidere rapport dat per e-mail wordt verstuurd nadat de
 // bezoeker om het volledige rapport heeft gevraagd. Bevat alles van het
 // scherm plus een concreet stappenplan en per geavanceerd voorstel een
-// duiding — de echte meerwaarde t.o.v. de scanpagina zelf.
+// duiding, de echte meerwaarde t.o.v. de scanpagina zelf.
 
 import type { ScanAnalysis } from './types';
 
@@ -29,7 +29,7 @@ const STAPPENPLAN = [
   },
   {
     kop: '2 · Productieklaar opleveren',
-    body: 'De eerste versie draait binnen één tot twee weken live mee, met u aan het stuur: wat automatisch mag en wat langs u komt, bepaalt u.',
+    body: 'De eerste versie draait mee met u aan het stuur: wat de agent voorbereidt en wat langs u komt, bepaalt u. Elke uitgaande actie wordt door een mens goedgekeurd.',
   },
   {
     kop: '3 · Uitbreiden op bewijs',
@@ -42,7 +42,7 @@ export function buildReportText(naam: string, a: ScanAnalysis): string {
   lines.push(`Uitgebreid AI-rapport voor ${naam}`);
   lines.push('='.repeat(48));
   lines.push('');
-  lines.push(`AI-potentieel: ${a.score}/100 — ${LABEL_TEXT[a.label]}`);
+  lines.push(`AI-potentieel: ${a.score}/100, ${LABEL_TEXT[a.label]}`);
   lines.push('');
   lines.push(a.samenvatting);
   if (a.websiteAnalyse) lines.push('', a.websiteAnalyse);
@@ -85,7 +85,7 @@ export function buildReportText(naam: string, a: ScanAnalysis): string {
 
   lines.push('', '-'.repeat(48));
   lines.push('Dit rapport is een automatische analyse op basis van openbare');
-  lines.push('website-informatie — een eerste beeld, geen offerte. In een gesprek');
+  lines.push('website-informatie, een eerste beeld, geen offerte. In een gesprek');
   lines.push('van 30 minuten maken we het concreet en rekenen we het met u door.');
   lines.push(`Plan een gesprek: ${SITE_URL}/plan`);
   lines.push('');

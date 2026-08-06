@@ -1,6 +1,6 @@
 // Website-content ophalen voor de publieke scan.
 //
-// Primaire route: de bedrijven-MCP (`get_company_website_content`) — dezelfde
+// Primaire route: de bedrijven-MCP (`get_company_website_content`), dezelfde
 // worker die het FactumAI-dashboard gebruikt voor lead-verrijking. Die crawlt
 // meerdere relevante pagina's (homepage + over-ons/diensten/contact) en geeft
 // schone tekst terug. Zet hiervoor `FACTUMAI_MCP_BEDRIJVEN_URL` (en de
@@ -78,7 +78,7 @@ function isPrivateIp(ip: string): boolean {
   );
 }
 
-/** Weiger interne hosts — de bezoeker bepaalt de URL, dus wij checken 'm. */
+/** Weiger interne hosts, de bezoeker bepaalt de URL, dus wij checken 'm. */
 async function assertPublicHost(url: string): Promise<void> {
   const { hostname } = new URL(url);
   const bare = hostname.replace(/^\[|\]$/g, '');
@@ -93,7 +93,7 @@ async function assertPublicHost(url: string): Promise<void> {
     const { address } = await lookup(bare);
     if (isPrivateIp(address)) throw new Error('Deze host kan niet gescand worden.');
   } catch {
-    throw new Error('Website niet gevonden — controleer het adres.');
+    throw new Error('Website niet gevonden, controleer het adres.');
   }
 }
 

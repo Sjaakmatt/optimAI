@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // een voorraadmelding plus een alternatief aan.
 export const script_social_restock: Script = {
   id: 'script_social_restock',
-  eventTitle: 'Social — DM: komt dit terug op voorraad?',
+  eventTitle: 'Social, DM: komt dit terug op voorraad?',
   eventContext: 'Voorraadvraag in DM · PIM raadplegen en ETA uit het inkoopsysteem halen',
   minutesSaved: 13,
   steps: [
@@ -128,7 +128,7 @@ export const script_social_restock: Script = {
         memoSubject: 'Voorraadmelding · Vinga oker voor @home.by.lot',
         date: 'Vandaag · 13:29',
         reasoning: [
-          'Melding gekoppeld aan de ETA uit het inkoopsysteem — gaat automatisch af bij binnenkomst',
+          'Melding gekoppeld aan de ETA uit het inkoopsysteem, gaat automatisch af bij binnenkomst',
           'Zo hoeft de klant niet te checken en wij niet handmatig na te bellen',
         ],
       },

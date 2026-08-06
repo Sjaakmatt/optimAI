@@ -12,7 +12,7 @@ export const AGENT_DEFINITIONS: Record<AgentId, Agent> = {
   orchestrator: {
     id: 'orchestrator',
     name: 'De Dirigent',
-    role: 'Triage — leest chat, mail en social en routeert naar het juiste team',
+    role: 'Triage, leest chat, mail en social en routeert naar het juiste team',
     status: 'idle',
     color: '#d4a857',
     minutesSavedPerTask: 0,
@@ -26,7 +26,7 @@ export const AGENT_DEFINITIONS: Record<AgentId, Agent> = {
   orders: {
     id: 'orders',
     name: 'Website-chat',
-    role: 'Live chat op vonk.nl — WISMO, adreswijziging, snelle vragen',
+    role: 'Live chat op vonk.nl, WISMO, adreswijziging, snelle vragen',
     status: 'idle',
     color: '#a87cc4',
     minutesSavedPerTask: 14,
@@ -40,7 +40,7 @@ export const AGENT_DEFINITIONS: Record<AgentId, Agent> = {
   klantservice: {
     id: 'klantservice',
     name: 'E-mail',
-    role: 'Klantenservice-inbox — retouren, klachten en vragen',
+    role: 'Klantenservice-inbox, retouren, klachten en vragen',
     status: 'idle',
     color: '#e0a24f',
     minutesSavedPerTask: 16,
@@ -54,7 +54,7 @@ export const AGENT_DEFINITIONS: Record<AgentId, Agent> = {
   verzending: {
     id: 'verzending',
     name: 'Social',
-    role: 'Instagram, Facebook en TikTok — reacties en DM’s, publieke toon',
+    role: 'Instagram, Facebook en TikTok, reacties en DM’s, publieke toon',
     status: 'idle',
     color: '#5a9bd4',
     minutesSavedPerTask: 18,

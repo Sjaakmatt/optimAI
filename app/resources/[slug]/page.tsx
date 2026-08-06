@@ -118,7 +118,7 @@ export default async function ResourcePage({
                     key={v}
                     className="flex gap-3 text-[14.5px] leading-[1.65] text-[var(--ink-dim)]"
                   >
-                    <span className="text-[var(--oker-deep)]">—</span>
+                    <span className="text-[var(--oker-deep)]">·</span>
                     <span>{v}</span>
                   </li>
                 ))}

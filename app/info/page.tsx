@@ -31,7 +31,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Hoe snel werkt het?',
-    a: 'Een eerste agent staat vaak binnen één tot twee weken live. Daarna breiden we uit met meer scenario’s of meer afdelingen. Geen jaren-traject.',
+    a: 'Wij bouwen in fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt voordat de volgende begint. Daarna breiden we uit met meer scenario’s of meer afdelingen. Geen jaren-traject.',
   },
   {
     q: 'Wat kost dat?',

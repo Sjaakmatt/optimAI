@@ -2,6 +2,7 @@ import { POSTS } from '@/lib/data/posts';
 import { CASES } from '@/lib/data/cases';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
+import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
@@ -14,7 +15,7 @@ function buildLlmsTxt(): string {
   lines.push('# FactumAI');
   lines.push('');
   lines.push(
-    '> FactumAI bouwt AI-agents op maat voor Nederlandse MKB-bedrijven. Een AI-agent is een digitale medewerker die zelf beslissingen neemt binnen door u bepaalde grenzen: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele maandelijkse retainer voor onderhoud, monitoring en model-updates — of alleen implementatie, u kiest zelf.',
+    '> FactumAI bouwt AI-agents op maat voor Nederlandse MKB-bedrijven. De agents draaien op de laag boven het ERP of CRM: het werk waar geoordeeld moet worden of gerekend met gegevens die niemand nu combineert. Mails beoordelen en afhandelen, patronen uit de eigen historie halen, handelingen klaarzetten tussen systemen. Vaste prijs per fase, elke uitgaande actie langs een mens, opzegtermijn van één maand.',
   );
   lines.push('');
   lines.push(
@@ -29,15 +30,16 @@ function buildLlmsTxt(): string {
   lines.push('- Werkgebied: Nederland');
   lines.push('- Vestiging: Hoogkarspel, Noord-Holland');
   lines.push('- Oprichter: Sjaak ter Veld');
-  lines.push('- Prijsmodel: vaste bouwprijs per agent, optionele maandelijkse retainer voor onderhoud en monitoring');
-  lines.push('- Doorlooptijd eerste agent: 1 tot 2 weken live');
+  lines.push('- Prijsmodel: vaste prijs per fase, optionele maandelijkse retainer voor onderhoud en monitoring, opzegtermijn één maand');
+  lines.push('- Werkwijze: bouwen in fasen, elke fase eindigt in iets werkends dat de klant goedkeurt');
+  lines.push('- Grondregel: elke uitgaande actie gaat langs menselijke goedkeuring');
   lines.push('- Talen: Nederlands');
   lines.push('');
 
   lines.push('## Diensten');
   lines.push('');
   lines.push(
-    `- [AI-agent laten bouwen](${SITE_URL}/diensten/ai-agent-laten-bouwen): hoofd-dienst — ontwerp, bouw en implementatie van AI-agents op maat. Vaste prijs, eerste agent in 1 tot 2 weken live.`,
+    `- [AI-agent laten bouwen](${SITE_URL}/diensten/ai-agent-laten-bouwen): hoofd-dienst: ontwerp, bouw en implementatie van AI-agents op maat. Vaste prijs per fase, elke uitgaande actie langs een mens.`,
   );
   lines.push(
     `- [AI-automatisering voor MKB](${SITE_URL}/diensten/ai-automatisering): bredere dienst rond AI-automatisering en het automatiseren van administratie, klantcommunicatie, planning en inkoop met AI-agents.`,
@@ -46,13 +48,23 @@ function buildLlmsTxt(): string {
     `- [AI implementeren in uw bedrijf](${SITE_URL}/diensten/ai-implementatie): begeleiding bij AI-implementatie van strategie tot productie, inclusief stappenplan, integraties, governance en adoptie.`,
   );
   lines.push(
-    `- [AI-agents voor bedrijven](${SITE_URL}/diensten/ai-agents-voor-bedrijven): wat AI-agents voor B2B-bedrijven concreet betekenen — type-agents, ROI, integraties, randvoorwaarden.`,
+    `- [AI-agents voor bedrijven](${SITE_URL}/diensten/ai-agents-voor-bedrijven): wat AI-agents voor B2B-bedrijven concreet betekenen, type-agents, ROI, integraties, randvoorwaarden.`,
   );
+  lines.push('');
+
+  lines.push('## Oplossingen');
+  lines.push('');
+  lines.push(
+    `- [Alle oplossingen](${SITE_URL}/oplossingen): vier processen waar de beslislaag boven het ERP het meeste oplevert.`,
+  );
+  for (const o of OPLOSSINGEN) {
+    lines.push(`- [${o.navLabel}](${SITE_URL}/oplossingen/${o.slug}): ${o.cardBody}`);
+  }
   lines.push('');
 
   lines.push("## Kern-pagina's");
   lines.push('');
-  lines.push(`- [Homepage](${SITE_URL}/): AI-agents voor MKB — wat wij bouwen en voor wie.`);
+  lines.push(`- [Homepage](${SITE_URL}/): AI-agents voor MKB, wat wij bouwen en voor wie.`);
   lines.push(
     `- [Wat is een AI-agent](${SITE_URL}/info): Uitleg van het begrip, vergelijking met chatbot en workflow-tool, FAQ.`,
   );
@@ -67,23 +79,23 @@ function buildLlmsTxt(): string {
   lines.push('## Veelgestelde vragen (kort)');
   lines.push('');
   lines.push('- Wat is een AI-agent? Een digitale collega die binnen door u bepaalde regels zelfstandig werk uitvoert: mails lezen, offertes opstellen, orders verwerken, facturen klaarzetten, planning regelen.');
-  lines.push('- Wat kost een AI-agent? Vaste bouwprijs per agent, afhankelijk van complexiteit en aantal integraties. Optioneel een maandelijkse retainer voor onderhoud en monitoring.');
-  lines.push('- Hoe lang duurt implementatie? De eerste agent is doorgaans binnen 1 tot 2 weken live; een volledig multi-agent platform binnen 5 tot 8 weken.');
+  lines.push('- Wat kost een AI-agent? Vaste prijs per fase, afhankelijk van complexiteit en aantal integraties. Optioneel een maandelijkse retainer voor onderhoud en monitoring, met een opzegtermijn van één maand.');
+  lines.push('- Hoe lang duurt implementatie? Wij bouwen in fasen. Elke fase eindigt in iets werkends dat de klant ziet en goedkeurt voordat de volgende begint. Het aantal fasen hangt af van het proces en het aantal koppelingen.');
   lines.push('- Welke systemen koppelen jullie? Onder andere Exact, Moneybird, AFAS, Snelstart, Twinfield, Microsoft 365, Google Workspace, Outlook, Gmail, Pipedrive, Teamleader en eigen ERP/CRM via API, webhooks of e-mail-bridge.');
   lines.push('- Voor welke bedrijven? MKB-bedrijven in Nederland in groothandel, installatietechniek, transport, zakelijke dienstverlening, bouw, zorg, productie, detailhandel en aanverwante branches.');
-  lines.push('- AVG en privacy? Data blijft in NL/EU, verwerkersovereenkomst standaard, sub-verwerkers transparant gepubliceerd.');
+  lines.push('- AVG en privacy? Opslag en verwerking in Frankfurt, verwerkersovereenkomst standaard. De taalmodelcalls lopen via Anthropic in de VS, opgenomen in de sub-verwerkerslijst met een transfer impact assessment.');
   lines.push('');
 
   lines.push('## Cases');
   lines.push('');
   for (const c of CASES) {
-    lines.push(`- [${c.klant} — ${c.branche}](${SITE_URL}/cases/${c.slug}): ${c.tagline}`);
+    lines.push(`- [${c.klant}, ${c.branche}](${SITE_URL}/cases/${c.slug}): ${c.tagline}`);
   }
   lines.push('');
 
   lines.push('## Tools en resources');
   lines.push('');
-  lines.push(`- [AI ROI calculator](${SITE_URL}/tools/ai-roi-calculator): bereken in een minuut wat een AI-agent uw MKB-bedrijf bespaart.`);
+  lines.push(`- [AI-agent procesdiagnose](${SITE_URL}/tools/ai-roi-calculator): zes vragen over één proces, met een eerlijk oordeel of een agent daar iets toevoegt of dat het bestaande pakket volstaat. Geen bedragen.`);
   lines.push(`- [AI-agent readiness check](${SITE_URL}/tools/agent-readiness-check): tien-vraag quiz die uw AI-readiness scoort met direct advies.`);
   for (const r of RESOURCES) {
     lines.push(`- [${r.shortTitle}](${SITE_URL}/resources/${r.slug}): ${r.description}`);

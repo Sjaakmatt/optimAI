@@ -301,7 +301,7 @@ function Block({ block }: { block: PostBlock }) {
         <ul className="my-5 space-y-2.5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink)]">
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-3">
-              <span className="text-[var(--oker-deep)] pt-1 shrink-0">—</span>
+              <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
               <span>{item}</span>
             </li>
           ))}
@@ -318,7 +318,7 @@ function Block({ block }: { block: PostBlock }) {
           </p>
           {block.by && (
             <div className="mt-2 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
-              — {block.by}
+             , {block.by}
             </div>
           )}
         </blockquote>

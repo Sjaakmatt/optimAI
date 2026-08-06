@@ -4,11 +4,12 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { calPopupAttrs } from '@/components/booking/config';
 import { CASES } from '@/lib/data/cases';
+import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
   description:
-    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste bouwprijs, eerste agent live in 1 tot 2 weken. Optionele retainer voor onderhoud en monitoring, u kiest zelf. Mails, offertes, planning, inkoop, rapportage.',
+    'AI-agent laten bouwen voor uw MKB-bedrijf. Vaste prijs per fase, elke uitgaande actie langs een mens. Voor het werk dat uw ERP niet doet: mails beoordelen, patronen uit uw eigen data halen, handelingen klaarzetten tussen systemen.',
   alternates: { canonical: '/' },
 };
 
@@ -17,6 +18,7 @@ export default function HomePage() {
     <SitePage>
       <Hero />
       <Klanten />
+      <Verschil />
       <OntdekBand />
       <WatDoenWe />
       <Stats />
@@ -43,8 +45,8 @@ function Klanten() {
               <li key={c.slug}>
                 <Link
                   href={`/cases/${c.slug}`}
-                  title={`${c.klant} — bekijk de case`}
-                  aria-label={`Case: ${c.klant} — ${c.tagline}`}
+                  title={`${c.klant}, bekijk de case`}
+                  aria-label={`Case: ${c.klant}, ${c.tagline}`}
                   className="group block"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -81,14 +83,15 @@ function Hero() {
             AI-agents voor MKB · Nederland
           </div>
           <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
-            <span className="ink-highlight">Menselijk</span> waar het moet,{' '}
-            <span className="italic text-[var(--oker-deep)]">AI waar het kan.</span>
+            Het werk dat <span className="ink-highlight">uw ERP</span>{' '}
+            <span className="italic text-[var(--oker-deep)]">niet doet.</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
-            FactumAI bouwt AI-agents voor Nederlandse MKB-bedrijven. Een AI-agent is een digitale
-            medewerker die terugkerend werk overneemt: administratie, planning, inkoop,
-            klantcommunicatie, rapportage. Op maat voor uw bedrijf, binnen uw regels, met duidelijke
-            grip. Zodat uw mensen bezig zijn met waar ze goed in zijn.
+            Uw ERP en CRM leggen vast wat er gebeurd is. Ze bepalen niet wat u nu moet doen. Dat
+            oordeel ligt nog bij uw mensen: de mail lezen en afhandelen, zien welke klant stil is
+            gevallen, uitrekenen wat u volgende maand nodig heeft, de bestelling klaarzetten.
+            FactumAI bouwt agents voor precies die laag. Op maat, binnen uw regels, en altijd met
+            een mens die de knop indrukt.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -115,9 +118,58 @@ function Hero() {
               aria-hidden
             />
             <span className="font-mono uppercase tracking-[0.18em]">
-              Vaste bouwprijs · live in 1 tot 2 weken · retainer optioneel
+              Vaste prijs per fase · elke actie langs een mens · opzegtermijn één maand
             </span>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Verschil() {
+  const kolommen = [
+    {
+      eyebrow: '01 · Oordeel in plaats van regel',
+      body:
+        'Uw pakket werkt met vaste regels: als dit, dan dat. Het werk dat overblijft vraagt interpretatie. Een mail met een bijlage, een klacht die eigenlijk een retour is, een aanvraag waarbij de voorwaarde nergens in een veld staat. Een agent leest dat, toetst het aan uw beleid en stelt een afhandeling voor.',
+    },
+    {
+      eyebrow: '02 · Rekenen in plaats van tonen',
+      body:
+        'De gegevens liggen er al. Er wordt alleen niets mee uitgerekend. Bestelritme per klant, seizoenspatroon per artikel, offertes die te lang openstaan. Een rapportage laat u dat zelf uitzoeken. Een agent levert de uitkomst met de onderbouwing eronder.',
+    },
+    {
+      eyebrow: '03 · De naad tussen systemen',
+      body:
+        'Elk pakket is van binnen prima geregeld. De tijd gaat verloren tussen de pakketten: tussen de webshop en de boekhouding, tussen de mailbox en het ERP, tussen het ERP en de leverancier. Daar staat nu een mens te kopiëren en te plakken. Daar bouwen wij, niet eroverheen.',
+    },
+  ];
+  return (
+    <section className="border-t border-[var(--paper-edge)]">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+        <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+          Het verschil
+        </div>
+        <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)] max-w-[820px]">
+          Uw pakket is niet het probleem.{' '}
+          <span className="italic text-[var(--oker-deep)]">Het houdt alleen ergens op.</span>
+        </h2>
+        <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
+          Bijna elk bedrijf dat wij spreken heeft de administratie al draaien in Exact, AFAS, Odoo
+          of WooCommerce. Toch zitten er nog uren in werk dat niemand leuk vindt. Dat komt door drie
+          dingen, en daar bouwen wij op.
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+          {kolommen.map((k) => (
+            <article key={k.eyebrow} className="site-card px-6 py-7">
+              <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+                {k.eyebrow}
+              </div>
+              <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">{k.body}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -180,7 +232,7 @@ function WatDoenWe() {
       eyebrow: '01 · Bouwen',
       title: 'Op maat voor uw werk',
       body:
-        'Wij beginnen bij wat uw mensen elke dag doen. Welke taken kosten tijd? Welk werk blijft liggen? Waar loopt u vast? Daar bouwen wij de agent omheen. Geen generieke oplossing. Iets dat past bij uw bedrijf.',
+        'Wij beginnen bij het besluit dat uw mensen nu handmatig nemen. Wat kijken ze op, wat wegen ze af, wanneer twijfelen ze? Dat leggen wij vast in regels en bouwen wij na, zodat de agent hetzelfde besluit voorbereidt en uw mensen alleen nog goedkeuren.',
     },
     {
       eyebrow: '02 · Implementeren',
@@ -219,6 +271,34 @@ function WatDoenWe() {
             </article>
           ))}
         </div>
+
+        <div className="mt-12 pt-8 border-t border-[var(--paper-edge)]">
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
+            <h3 className="font-display text-[20px] sm:text-[22px] leading-tight text-[var(--ink)]">
+              Vier plekken waar dit{' '}
+              <span className="italic text-[var(--oker-deep)]">het vaakst speelt.</span>
+            </h3>
+            <Link
+              href="/oplossingen"
+              className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider hover:text-[var(--ink)] flex items-center gap-1.5"
+            >
+              Alle oplossingen
+              <ArrowRight size={12} strokeWidth={1.8} />
+            </Link>
+          </div>
+          <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+            {OPLOSSINGEN.map((o) => (
+              <li key={o.slug}>
+                <Link
+                  href={`/oplossingen/${o.slug}`}
+                  className="block h-full px-4 py-3 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                >
+                  {o.navLabel}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -226,12 +306,12 @@ function WatDoenWe() {
 
 function VoorWie() {
   const werkgebieden = [
-    'Terugkerende administratie',
-    'Klant- en leverancierscommunicatie',
-    'Offertes en orderverwerking',
-    'Inkoop en voorraadbeheer',
-    'Planning en logistiek',
-    'Rapportage en opvolging',
+    'Mails die eerst door drie schermen moeten voordat iemand kan antwoorden',
+    'Klanten die stil vallen zonder dat iemand het op tijd ziet',
+    'Offertes die openstaan zonder dat iemand weet wat de stand is',
+    'Bestellingen die op onderbuikgevoel worden geplaatst',
+    'Voorraad die te laat of te vroeg binnenkomt',
+    'Gegevens die uit het ene pakket in het andere worden overgetypt',
   ];
   return (
     <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
@@ -240,17 +320,15 @@ function VoorWie() {
           Voor wie
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)]">
-          Bedrijven waar mensen{' '}
-          <span className="italic text-[var(--oker-deep)]">harder werken</span> dan ze zouden
-          moeten.
+          Bedrijven waar het pakket draait en er{' '}
+          <span className="italic text-[var(--oker-deep)]">tóch handwerk</span> overblijft.
         </h2>
         <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
-          Wij werken met ondernemers die merken dat hun mensen te veel tijd kwijt zijn aan
-          terugkerend werk. Overal waar een mens dezelfde handeling te vaak doet, ontstaat
-          ruimte. Denk aan:
+          Wij werken met ondernemers die hun systemen op orde hebben en merken dat de uren ergens
+          anders weglopen. Herkenbaar?
         </p>
       </div>
-      <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+      <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         {werkgebieden.map((b) => (
           <li
             key={b}
@@ -260,7 +338,7 @@ function VoorWie() {
               aria-hidden
               className="font-mono text-[11px] text-[var(--steen)] tracking-[0.1em]"
             >
-              —
+              ·
             </span>
             <span>{b}</span>
           </li>
@@ -350,7 +428,7 @@ function Aanpak() {
           {[
             ['Kennismaken', 'Eén gesprek bij u of bij ons. Wij kijken wat uw mensen vooral kost.'],
             ['Ontwerpen', 'Samen kiezen we één proces waar de grootste winst zit.'],
-            ['Bouwen', 'Wij bouwen de agent, u test mee. Een eerste agent staat vaak al binnen één tot twee weken live.'],
+            ['Bouwen', 'Wij bouwen in fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt voordat de volgende begint.'],
             ['Implementeren', 'Koppelen aan uw systemen. Uw mensen krijgen uitleg over het beheer.'],
             ['Bijhouden', 'Maandelijks een kort gesprek om aan te passen.'],
           ].map(([title, body], i) => (
@@ -372,25 +450,28 @@ function Aanpak() {
   );
 }
 
+interface StatCell {
+  /** Optioneel. Alleen invullen als er een cijfer is dat wij kunnen onderbouwen. */
+  value?: string;
+  label: string;
+  body: string;
+  italic?: boolean;
+}
+
 function Stats() {
-  const cells = [
+  const cells: StatCell[] = [
     {
-      value: '1–2 wk',
-      label: 'Eerste agent live',
-      body: 'Van kennismaking tot een werkende agent in uw praktijk.',
-      italic: false,
+      label: 'Mens beslist',
+      body: 'Elke uitgaande mail, bestelling of statuswijziging staat eerst als concept klaar en wordt door uw mensen goedgekeurd.',
     },
     {
-      value: '~40%',
-      label: 'Tijdwinst',
-      body: 'Op terugkerend werk — mails, orders, offertes, planning.',
+      label: 'Data in Frankfurt',
+      body: 'Applicatie en database draaien in Europa. De taalmodelcalls lopen via Anthropic in de VS, opgenomen in onze sub-verwerkerslijst.',
       italic: true,
     },
     {
-      value: '8',
-      label: 'Afdelingen',
-      body: 'Samenwerkende agents in de Werkbank, elk met eigen rol.',
-      italic: false,
+      label: 'Eén maand opzegtermijn',
+      body: 'Geen minimale looptijd na de eerste drie maanden. Levert het niet, dan stopt u.',
     },
   ];
   return (
@@ -405,18 +486,27 @@ function Stats() {
                 (i > 0 ? ' md:border-l border-[var(--paper-edge)]' : '')
               }
             >
+              {c.value && (
+                <div
+                  className={
+                    'font-display tabular-nums text-[72px] sm:text-[88px] lg:text-[96px] leading-[0.95] tracking-tight ' +
+                    (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
+                  }
+                >
+                  {c.value}
+                </div>
+              )}
               <div
                 className={
-                  'font-display tabular-nums text-[72px] sm:text-[88px] lg:text-[96px] leading-[0.95] tracking-tight ' +
-                  (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
+                  c.value
+                    ? 'mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]'
+                    : 'font-display text-[26px] sm:text-[30px] lg:text-[34px] leading-[1.1] tracking-tight ' +
+                      (c.italic ? 'italic text-[var(--oker-deep)]' : 'text-[var(--ink)]')
                 }
               >
-                {c.value}
-              </div>
-              <div className="mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
                 {c.label}
               </div>
-              <p className="mt-2 text-[14px] leading-[1.6] text-[var(--ink-dim)] max-w-[280px]">
+              <p className="mt-3 text-[14px] leading-[1.6] text-[var(--ink-dim)] max-w-[280px]">
                 {c.body}
               </p>
             </div>

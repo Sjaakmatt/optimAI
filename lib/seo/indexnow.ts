@@ -3,7 +3,7 @@
  *
  * IndexNow is een open protocol (Bing, Yandex, Seznam, Naver, Yep, Mojeek)
  * waarmee je proactief signaleert dat URLs nieuw of gewijzigd zijn.
- * Versnelt indexering — vooral bij Bing, wat ChatGPT-search voedt.
+ * Versnelt indexering, vooral bij Bing, wat ChatGPT-search voedt.
  *
  * De key is geen geheim; hij dient alleen als ownership-token. Je hebt
  * een matchend bestand op /<key>.txt nodig om te bewijzen dat je het

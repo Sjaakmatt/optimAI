@@ -1,4 +1,4 @@
-// POST /api/scan — publieke AI-agents-scan met live voortgang (SSE).
+// POST /api/scan, publieke AI-agents-scan met live voortgang (SSE).
 //
 // De bezoeker stuurt { bedrijfsnaam?, url }. De route scrapet de website
 // (bedrijven-MCP indien geconfigureerd, anders de ingebouwde scraper), laat
@@ -13,7 +13,7 @@ import type { ScanEvent } from '@/lib/scan/types';
 export const runtime = 'nodejs';
 export const maxDuration = 120;
 
-// Best-effort rate-limit per IP (in-memory; op serverless per instance —
+// Best-effort rate-limit per IP (in-memory; op serverless per instance,
 // geen waterdichte bescherming, wel een rem op misbruik en API-kosten).
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 4;
@@ -40,7 +40,7 @@ function rateLimited(ip: string): boolean {
 interface ScanPayload {
   bedrijfsnaam?: unknown;
   url?: unknown;
-  // Honeypot — mensen zien dit veld niet; ingevuld = bot.
+  // Honeypot, mensen zien dit veld niet; ingevuld = bot.
   emailadres?: unknown;
 }
 
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     'onbekend';
   if (rateLimited(ip)) {
     return Response.json(
-      { ok: false, error: 'Even geduld — u heeft net al een paar scans gedaan. Probeer het over een paar minuten opnieuw.' },
+      { ok: false, error: 'Even geduld, u heeft net al een paar scans gedaan. Probeer het over een paar minuten opnieuw.' },
       { status: 429 },
     );
   }

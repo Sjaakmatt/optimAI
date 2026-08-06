@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // ordersysteem en bevestigt met een nieuwe orderbevestiging.
 export const script_chat_address: Script = {
   id: 'script_chat_address',
-  eventTitle: 'Website-chat — Bezorgadres wijzigen',
+  eventTitle: 'Website-chat, Bezorgadres wijzigen',
   eventContext: 'Adreswijziging vóór verzending · status checken in ERP, aanpassen en bevestigen',
   minutesSaved: 17,
   steps: [

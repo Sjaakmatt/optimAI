@@ -31,7 +31,7 @@ export function Workbench() {
     : null;
 
   // Viewer takes precedence over active/empty.
-  // (Triggering a new event automatically clears viewing — see store.triggerEvent.)
+  // (Triggering a new event automatically clears viewing, see store.triggerEvent.)
   const showViewer = !!viewingEvent;
   const showActive = !showViewer && !!activeEvent;
 
