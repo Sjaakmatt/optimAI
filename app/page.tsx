@@ -18,11 +18,11 @@ export default function HomePage() {
     <SitePage>
       <Hero />
       <Klanten />
-      <Verschil />
+      <VoorWie />
       <OntdekBand />
       <WatDoenWe />
+      <Verschil />
       <Stats />
-      <VoorWie />
       <DemoDivider />
       <DemoTeaser />
       <Aanpak />
@@ -87,11 +87,11 @@ function Hero() {
             <span className="italic text-[var(--oker-deep)]">AI waar het kan.</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[620px]">
-            Elke dag opnieuw: mails afhandelen, offertes opvolgen, bestellingen klaarzetten,
-            gegevens overtypen. Werk dat af moet, maar uw bedrijf niet vooruit helpt. FactumAI
-            bouwt AI-agents die dat werk voorbereiden zoals een goede collega dat doet: opzoeken,
-            uitrekenen, klaarzetten. U keurt goed, en uw mensen houden tijd over voor het werk
-            waar ze goed in zijn.
+            Mails uitzoeken, offertes najagen, bestellingen overtikken. Werk dat af moet, maar
+            uw bedrijf niet laat groeien. FactumAI bouwt AI-agents die dat werk klaarzetten zoals
+            een goede collega dat zou doen: opzoeken, uitrekenen, voorbereiden. U kijkt het na en
+            drukt op de knop. Uw mensen houden hun handen vrij voor het werk waar klanten voor
+            terugkomen.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -111,7 +111,7 @@ function Hero() {
             </Link>
           </div>
 
-          <div className="mt-10 flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
+          <div className="mt-10 flex items-center gap-3 text-[12px] text-[var(--ink-faint)] pr-24 sm:pr-0">
             <span
               className="h-[1px] w-10"
               style={{ background: 'var(--oker)' }}
@@ -130,19 +130,19 @@ function Hero() {
 function Verschil() {
   const kolommen = [
     {
-      eyebrow: '01 · Oordeel in plaats van regel',
+      eyebrow: '01 · Hij leest wat er echt staat',
       body:
-        'Uw pakket werkt met vaste regels: als dit, dan dat. Het werk dat overblijft vraagt interpretatie. Een mail met een bijlage, een klacht die eigenlijk een retour is, een aanvraag waarbij de voorwaarde nergens in een veld staat. Een agent leest dat, toetst het aan uw beleid en stelt een afhandeling voor.',
+        'Een mail met een bijlage, een klacht die eigenlijk een retour is, een aanvraag waarbij de voorwaarde nergens in een veld staat. Uw pakket kan daar niets mee. Een agent leest het, toetst het aan uw beleid en zet een afhandeling klaar.',
     },
     {
-      eyebrow: '02 · Rekenen in plaats van tonen',
+      eyebrow: '02 · Hij rekent met uw eigen cijfers',
       body:
-        'De gegevens liggen er al. Er wordt alleen niets mee uitgerekend. Bestelritme per klant, seizoenspatroon per artikel, offertes die te lang openstaan. Een rapportage laat u dat zelf uitzoeken. Een agent levert de uitkomst met de onderbouwing eronder.',
+        'Bestelritme per klant, seizoenspatroon per artikel, offertes die te lang openstaan. De gegevens liggen er al, alleen rekent niemand ermee. Een rapportage laat u dat zelf uitzoeken. Een agent levert de uitkomst, met de onderbouwing eronder.',
     },
     {
-      eyebrow: '03 · De naad tussen systemen',
+      eyebrow: '03 · Hij werkt tussen uw systemen',
       body:
-        'Elk pakket is van binnen prima geregeld. De tijd gaat verloren tussen de pakketten: tussen de webshop en de boekhouding, tussen de mailbox en het ERP, tussen het ERP en de leverancier. Daar staat nu een mens te kopiëren en te plakken. Daar bouwen wij, niet eroverheen.',
+        'Tussen de webshop en de boekhouding, tussen de mailbox en de administratie, tussen u en de leverancier. Daar staat nu iemand te kopiëren en te plakken. Precies daar doet een agent zijn werk.',
     },
   ];
   return (
@@ -152,13 +152,12 @@ function Verschil() {
           Het verschil
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)] max-w-[820px]">
-          Uw pakket is niet het probleem.{' '}
-          <span className="italic text-[var(--oker-deep)]">Het houdt alleen ergens op.</span>
+          Uw pakket onthoudt.{' '}
+          <span className="italic text-[var(--oker-deep)]">Een agent denkt mee.</span>
         </h2>
         <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
-          Bijna elk bedrijf dat wij spreken heeft de administratie al draaien in Exact, AFAS, Odoo
-          of WooCommerce. Toch zitten er nog uren in werk dat niemand leuk vindt. Dat komt door drie
-          dingen, en daar bouwen wij op.
+          Uw administratie draait al ergens in, en dat moet vooral zo blijven. Een agent vervangt
+          uw pakket niet. Hij pakt het werk op dat uw pakket laat liggen, en dat is meestal dit:
         </p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -232,7 +231,7 @@ function WatDoenWe() {
       eyebrow: '01 · Bouwen',
       title: 'Op maat voor uw werk',
       body:
-        'Wij beginnen bij het besluit dat uw mensen nu handmatig nemen. Wat kijken ze op, wat wegen ze af, wanneer twijfelen ze? Dat leggen wij vast in regels en bouwen wij na, zodat de agent hetzelfde besluit voorbereidt en uw mensen alleen nog goedkeuren.',
+        'Wij beginnen bij het werk zoals uw mensen het nu doen. Wat zoeken ze op, wat wegen ze af, wanneer twijfelen ze? Dat bouwen wij na, zodat de agent het voorwerk doet en uw mensen alleen nog goedkeuren.',
     },
     {
       eyebrow: '02 · Implementeren',
@@ -275,8 +274,8 @@ function WatDoenWe() {
         <div className="mt-12 pt-8 border-t border-[var(--paper-edge)]">
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
             <h3 className="font-display text-[20px] sm:text-[22px] leading-tight text-[var(--ink)]">
-              Vier plekken waar dit{' '}
-              <span className="italic text-[var(--oker-deep)]">het vaakst speelt.</span>
+              Waar wij{' '}
+              <span className="italic text-[var(--oker-deep)]">het vaakst bouwen.</span>
             </h3>
             <Link
               href="/oplossingen"
@@ -320,12 +319,12 @@ function VoorWie() {
           Voor wie
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)]">
-          Bedrijven waar het pakket draait en er{' '}
-          <span className="italic text-[var(--oker-deep)]">tóch handwerk</span> overblijft.
+          De administratie is bij.{' '}
+          <span className="italic text-[var(--oker-deep)]">En toch is de dag om.</span>
         </h2>
         <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
-          Wij werken met ondernemers die hun systemen op orde hebben en merken dat de uren ergens
-          anders weglopen. Herkenbaar?
+          Wij werken voor ondernemers die hun zaak op orde hebben en tóch elke week uren zien
+          weglekken. Herkent u dit?
         </p>
       </div>
       <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -403,8 +402,8 @@ function Aanpak() {
           </h2>
           <p className="mt-4 text-[14px] sm:text-[15px] leading-[1.65] text-[var(--ink-dim)]">
             Het eerste gesprek is altijd vrijblijvend. Wij kijken samen of er iets concreets te
-            winnen valt. Zo ja, dan komt er een voorstel: één agent, vaste prijs, duidelijke
-            opleveringsdatum. Geen pilot van zes maanden zonder resultaat.
+            winnen valt. Zo ja, dan komt er een voorstel: één agent, vaste prijs per fase, en
+            elke fase eindigt in iets dat werkt. Geen pilot van zes maanden zonder resultaat.
           </p>
           <div className="mt-6 flex flex-wrap gap-4 text-[13px]">
             <Link
@@ -477,6 +476,13 @@ function Stats() {
   return (
     <section className="border-t border-[var(--paper-edge)]">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
+        <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em]">
+          Onze afspraken
+        </div>
+        <h2 className="mt-2 mb-10 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)] max-w-[720px]">
+          Drie afspraken.{' '}
+          <span className="italic text-[var(--oker-deep)]">Geen kleine lettertjes.</span>
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3">
           {cells.map((c, i) => (
             <div
