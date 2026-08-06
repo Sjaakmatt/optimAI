@@ -26,7 +26,7 @@ function installSnippet(): void {
   if (snippetInstalled) return;
   snippetInstalled = true;
 
-  // Cal's officiële IIFE — installeert window.Cal als een queueing-stub
+  // Cal's officiële IIFE, installeert window.Cal als een queueing-stub
   // en triggert async load van embed.js.
   (function (C: Window, A: string, L: string) {
     const cw = C as Window & { Cal?: CalApi };
@@ -71,7 +71,7 @@ function installSnippet(): void {
 
   // Trigger de namespace-branch in de IIFE zodat Cal.ns[NAMESPACE]
   // direct als queueing-stub bestaat. Zonder dit blijft Cal.ns[NAMESPACE]
-  // undefined tot embed.js geladen is — race condition op consumers.
+  // undefined tot embed.js geladen is, race condition op consumers.
   Cal('Cal', CAL_NAMESPACE);
 
   Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
@@ -86,7 +86,7 @@ function installSnippet(): void {
 
 /**
  * Geeft de namespace-functie waarop je 'inline', 'floatingButton',
- * 'modal' etc. kan aanroepen. Synchroon klaar — calls queueën in
+ * 'modal' etc. kan aanroepen. Synchroon klaar, calls queueën in
  * de namespace-stub tot embed.js de queue verwerkt.
  */
 export function getCalApi(): Promise<CalNamespaceFn> {

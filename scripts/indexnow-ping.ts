@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
+ 
 /**
  * indexnow-ping.ts
  *
  * Pingt IndexNow (Bing, Yandex, Seznam, Naver, Yep, Mojeek) zodra er
- * nieuwe URLs op factumai.nl bijkomen. Versnelt indexering — Google
+ * nieuwe URLs op factumai.nl bijkomen. Versnelt indexering, Google
  * gebruikt IndexNow niet zelf, maar Bing voedt ChatGPT-search en de
  * crawl-signaal helpt indirect overal.
  *

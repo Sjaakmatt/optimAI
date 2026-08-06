@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useStore, useArtifactById } from '@/lib/store';
 import { formatTime } from '@/lib/utils';
-import type { AgentId, WorkItem } from '@/lib/types';
+import type { WorkItem } from '@/lib/types';
 import { ArtifactView } from './artifacts/ArtifactView';
 
 export function InboxPanel() {
@@ -60,7 +60,7 @@ export function InboxPanel() {
                   {agent.name}
                 </h2>
                 <div className="text-[12px] text-[var(--ink-dim)] mt-0.5">
-                  {agent.role.split(' — ')[0]}
+                  {agent.role.split(', ')[0]}
                 </div>
               </div>
               <button

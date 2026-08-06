@@ -3,15 +3,15 @@ import type { DemoEvent } from '@/lib/types';
 // De klantenservice van Vonk (online woonwinkel) krijgt de hele dag vragen
 // binnen over drie kanalen: de live chat op vonk.nl, de e-mailinbox en social
 // (Instagram/Facebook). Elk scenario laat zien hoe de agents de interne
-// systemen raadplegen — ERP/ordersysteem, de vervoerder voor track & trace,
-// de PIM-productdatabase en de betaalprovider — voordat ze antwoorden.
+// systemen raadplegen, ERP/ordersysteem, de vervoerder voor track & trace,
+// de PIM-productdatabase en de betaalprovider, voordat ze antwoorden.
 
 export const SCENARIOS: DemoEvent[] = [
   {
     id: 's1',
     scriptId: 'script_chat_wismo',
     type: 'chat.wismo',
-    label: 'Website-chat — Waar blijft mijn bestelling?',
+    label: 'Website-chat, Waar blijft mijn bestelling?',
     context: 'Klant wacht al 5 dagen op een hanglamp, vraagt het na in de live chat',
     channel: 'chat',
     from: 'Chat · Sanne de Wit',
@@ -36,11 +36,11 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's2',
     scriptId: 'script_mail_return',
     type: 'mail.return',
-    label: 'E-mail — Retour beschadigd servies',
+    label: 'E-mail, Retour beschadigd servies',
     context: 'Serviesset aangekomen met 2 gebroken borden, klant wil het opgelost',
     channel: 'email',
     from: 'Mark Bosma · m.bosma@ziggo.nl',
-    subject: 'Beschadigd servies — order VNK-2026-08790',
+    subject: 'Beschadigd servies, order VNK-2026-08790',
     body: [
       'Beste Vonk,',
       'Gisteren is mijn serviesset (order VNK-2026-08790) bezorgd, maar bij het uitpakken bleken twee borden gebroken. Ik heb foto\'s bijgevoegd.',
@@ -64,7 +64,7 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's3',
     scriptId: 'script_social_complaint',
     type: 'social.complaint',
-    label: 'Social — Publieke klacht op Instagram',
+    label: 'Social, Publieke klacht op Instagram',
     context: 'Openbare reactie onder een post: 8 dagen wachten en geen enkel bericht',
     channel: 'social',
     from: 'Instagram · @merel.woont',
@@ -75,7 +75,7 @@ export const SCENARIOS: DemoEvent[] = [
     extra: [
       { label: 'Zichtbaarheid', value: 'Openbare reactie · account 11.4k volgers' },
       { label: 'Gekoppelde order', value: 'VNK-2026-08712 · besteld 14 juli' },
-      { label: 'Toon', value: 'Boos en publiek — reputatierisico' },
+      { label: 'Toon', value: 'Boos en publiek, reputatierisico' },
     ],
     payload: {
       klant: '@merel.woont',
@@ -89,7 +89,7 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's4',
     scriptId: 'script_mail_product',
     type: 'mail.product',
-    label: 'E-mail — Vraag over eettafel',
+    label: 'E-mail, Vraag over eettafel',
     context: 'Maatvoering en materiaal van de eettafel Sunde, en of die leverbaar is',
     channel: 'email',
     from: 'Julia Vermeer · julia.vermeer@outlook.com',
@@ -97,7 +97,7 @@ export const SCENARIOS: DemoEvent[] = [
     body: [
       'Hallo,',
       'Ik twijfel over de eettafel Sunde. Mijn eethoek is ongeveer 2,20 meter breed. Passen daar zes stoelen omheen bij deze tafel?',
-      'En waar is het blad van gemaakt — is dat massief hout of fineer? Ik wil hem graag volgende week in gebruik nemen, dus is hij op voorraad?',
+      'En waar is het blad van gemaakt, is dat massief hout of fineer? Ik wil hem graag volgende week in gebruik nemen, dus is hij op voorraad?',
       'Alvast bedankt, Julia',
     ],
     extra: [
@@ -116,13 +116,13 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's5',
     scriptId: 'script_chat_address',
     type: 'chat.address',
-    label: 'Website-chat — Bezorgadres wijzigen',
+    label: 'Website-chat, Bezorgadres wijzigen',
     context: 'Klant bestelde vanochtend, wil de levering naar het werkadres',
     channel: 'chat',
     from: 'Chat · Thomas Peters',
     body: [
       'Hey, ik heb vanochtend een wandplank besteld (VNK-2026-08918).',
-      'Ik ben overdag niet thuis — kan het pakket naar mijn werkadres in plaats van huis? Het is nog niet verzonden hoop ik.',
+      'Ik ben overdag niet thuis, kan het pakket naar mijn werkadres in plaats van huis? Het is nog niet verzonden hoop ik.',
     ],
     extra: [
       { label: 'Order', value: 'VNK-2026-08918 · besteld vandaag 09:04 · Wandplank Rise eiken' },
@@ -141,7 +141,7 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's6',
     scriptId: 'script_social_restock',
     type: 'social.restock',
-    label: 'Social — DM: komt dit terug op voorraad?',
+    label: 'Social, DM: komt dit terug op voorraad?',
     context: 'Instagram-DM over het uitverkochte vloerkleed Vinga',
     channel: 'social',
     from: 'Instagram · @home.by.lot',
@@ -166,7 +166,7 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's7',
     scriptId: 'script_mail_payment',
     type: 'mail.payment',
-    label: 'E-mail — Twee keer afgeschreven',
+    label: 'E-mail, Twee keer afgeschreven',
     context: 'Klant ziet twee afschrijvingen voor één bestelling en wil geld terug',
     channel: 'email',
     from: 'Priya Nair · priya.nair@gmail.com',
@@ -180,7 +180,7 @@ export const SCENARIOS: DemoEvent[] = [
     extra: [
       { label: 'Order', value: 'VNK-2026-08902 · € 149 · Bijzettafel Lume walnoot' },
       { label: 'Klanthistorie', value: '2 orders sinds 2025 · nette betaler' },
-      { label: 'Signaal', value: 'Betaalvraag — snel en zeker afhandelen' },
+      { label: 'Signaal', value: 'Betaalvraag, snel en zeker afhandelen' },
     ],
     payload: {
       klant: 'Priya Nair',
@@ -194,7 +194,7 @@ export const SCENARIOS: DemoEvent[] = [
     id: 's8',
     scriptId: 'script_review_negative',
     type: 'review.negative',
-    label: 'Review — 2 sterren over verpakking',
+    label: 'Review, 2 sterren over verpakking',
     context: 'Nieuwe review op het reviewplatform: slordige verpakking, deukje in de kast',
     channel: 'system',
     from: 'Reviewplatform · automatische melding',

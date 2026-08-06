@@ -88,7 +88,7 @@ export default function ReadinessCheckPage() {
               href="/tools/ai-roi-calculator"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
-              ROI berekenen
+              Doe de procesdiagnose
             </Link>
           </div>
         </div>

@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // en zet een opvolging klaar zodat de omzetkans niet wegloopt.
 export const script_mail_product: Script = {
   id: 'script_mail_product',
-  eventTitle: 'E-mail — Vraag over eettafel',
+  eventTitle: 'E-mail, Vraag over eettafel',
   eventContext: 'Aankoopvraag · PIM voor maat en materiaal, ERP voor voorraad',
   minutesSaved: 30,
   steps: [

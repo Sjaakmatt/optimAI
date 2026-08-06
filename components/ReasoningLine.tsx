@@ -25,7 +25,7 @@ export function ReasoningLine({ reasoning }: Props) {
         {reasoning.text}
       </p>
       <div className="mt-1 font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
-        — {name}
+       , {name}
       </div>
     </motion.div>
   );

@@ -95,7 +95,7 @@ function buildLlmsTxt(): string {
 
   lines.push('## Tools en resources');
   lines.push('');
-  lines.push(`- [AI ROI calculator](${SITE_URL}/tools/ai-roi-calculator): bereken in een minuut wat een AI-agent uw MKB-bedrijf bespaart.`);
+  lines.push(`- [AI-agent procesdiagnose](${SITE_URL}/tools/ai-roi-calculator): zes vragen over één proces, met een eerlijk oordeel of een agent daar iets toevoegt of dat het bestaande pakket volstaat. Geen bedragen.`);
   lines.push(`- [AI-agent readiness check](${SITE_URL}/tools/agent-readiness-check): tien-vraag quiz die uw AI-readiness scoort met direct advies.`);
   for (const r of RESOURCES) {
     lines.push(`- [${r.shortTitle}](${SITE_URL}/resources/${r.slug}): ${r.description}`);

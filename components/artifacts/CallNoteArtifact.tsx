@@ -56,7 +56,7 @@ export function CallNoteArtifact({ artifact }: Props) {
               <ul className="space-y-1 text-[var(--ink)]">
                 {section.items.map((item, j) => (
                   <li key={j} className="flex gap-2">
-                    <span className="text-[var(--ink-faint)] select-none">—</span>
+                    <span className="text-[var(--ink-faint)] select-none">·</span>
                     <span>{item}</span>
                   </li>
                 ))}

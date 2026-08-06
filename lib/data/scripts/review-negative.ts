@@ -6,7 +6,7 @@ import type { Script } from '@/lib/types';
 // magazijn.
 export const script_review_negative: Script = {
   id: 'script_review_negative',
-  eventTitle: 'Review — 2 sterren over verpakking',
+  eventTitle: 'Review, 2 sterren over verpakking',
   eventContext: '2-sterrenreview · orderhistorie uit ERP, herstelaanbod en interne feedback',
   minutesSaved: 40,
   steps: [

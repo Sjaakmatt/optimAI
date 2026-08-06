@@ -234,10 +234,10 @@ export default function DienstenPage() {
                   className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[15.5px] text-[var(--ink)]">
-                    AI ROI calculator
+                    AI-agent procesdiagnose
                   </span>
                   <span className="block mt-1 text-[12.5px] text-[var(--ink-dim)]">
-                    Bereken uw besparing in een minuut.
+                    Zes vragen over één proces, eerlijk antwoord.
                   </span>
                 </Link>
               </li>

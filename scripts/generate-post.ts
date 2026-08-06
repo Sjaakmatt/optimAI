@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+ 
 /**
  * generate-post.ts
  *
@@ -226,10 +226,19 @@ function buildUserPrompt(item: BacklogItem, today: string): string {
 
 - Onderwerp: ${item.topic}
 - Cluster: ${item.cluster}
-- Voorgestelde tags (overweeg, mag uitbreiden of swappen): ${(item.tags ?? []).join(', ') || '—'}
+- Voorgestelde tags (overweeg, mag uitbreiden of swappen): ${(item.tags ?? []).join(', ') || 'geen'}
 - Publicatiedatum (gebruik dit voor 'published'): ${today}
 
-Schrijf in u-vorm. Vermijd hype-taal. Maak het concreet en bruikbaar voor een Nederlandse MKB-ondernemer die overweegt AI-agents in te zetten.
+Schrijf in u-vorm. Maak het concreet en bruikbaar voor een Nederlandse MKB-ondernemer die overweegt AI-agents in te zetten.
+
+Huisregels, houd u hier strikt aan:
+- Gebruik nergens een em-dash. Gebruik een komma, een dubbele punt of een punt.
+- Verzin geen cijfers. Geen percentages, besparingen, doorlooptijden, klantaantallen of ROI-getallen die u niet uit de meegegeven context kunt halen. Een rekenvoorbeeld mag, mits u expliciet schrijft dat het een aanname is die de lezer met eigen cijfers invult.
+- Beloof geen doorlooptijd. FactumAI bouwt in fasen die elk eindigen in iets werkends dat de klant goedkeurt.
+- Geen fictieve of illustratieve klantvoorbeelden. Geen anonieme voorbeeldklanten, geen verzonnen scenario's met een bedrijfsnaam erbij.
+- Elke uitgaande actie van een agent gaat langs menselijke goedkeuring. Beloof nooit autonoom verzenden.
+- Over dataopslag schrijft u: opslag en verwerking in Frankfurt, taalmodelcalls via Anthropic in de VS, opgenomen in de sub-verwerkerslijst met een transfer impact assessment. Schrijf nooit dat alle data in de EU blijft.
+- Vermijd marketingtaal. Verboden woorden: transformeren, revolutionair, game changer, naadloos, krachtig, ontzorgen, en formuleringen als "in het huidige AI-landschap".
 
 Lever ALLEEN het JSON-object terug, geen tekst eromheen.`;
 }
@@ -328,7 +337,7 @@ async function insertIntoPostsFile(p: GeneratedPost) {
   const marker = '\n];\n\nexport const POST_BY_SLUG';
   const idx = src.indexOf(marker);
   if (idx < 0) {
-    throw new Error('Kan POSTS-array sluiting niet vinden in posts.ts — handmatig bijwerken nodig.');
+    throw new Error('Kan POSTS-array sluiting niet vinden in posts.ts, handmatig bijwerken nodig.');
   }
 
   const insertion = postToTsLiteral(p);
@@ -355,7 +364,7 @@ async function main() {
   } else {
     item = pickNext(backlog);
     if (!item) {
-      console.log('Backlog is leeg — niets te doen. Voeg items toe in scripts/content-backlog.json.');
+      console.log('Backlog is leeg, niets te doen. Voeg items toe in scripts/content-backlog.json.');
       return;
     }
     console.log(`> Volgend backlog-item: ${item.topic} (cluster ${item.cluster})`);
@@ -385,7 +394,7 @@ async function main() {
     try {
       parsed = JSON.parse(raw);
     } catch {
-      lastError = 'JSON-parse faalde — model gaf geen geldig JSON.';
+      lastError = 'JSON-parse faalde, model gaf geen geldig JSON.';
       console.error(`${lastError} Eerste 200 chars:\n${raw.slice(0, 200)}`);
       continue;
     }

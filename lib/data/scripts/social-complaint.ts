@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // ERP + PostNL, en lost het daarna op in een DM met een herzending en tegoed.
 export const script_social_complaint: Script = {
   id: 'script_social_complaint',
-  eventTitle: 'Social — Publieke klacht op Instagram',
+  eventTitle: 'Social, Publieke klacht op Instagram',
   eventContext: 'Openbare klacht · reputatierisico · order zoekgeraakt bij PostNL',
   minutesSaved: 48,
   steps: [
@@ -80,7 +80,7 @@ export const script_social_complaint: Script = {
         customer: '@merel.woont',
         phone: 'Openbaar zichtbaar · 11.4k volgers',
         reasoning: [
-          'Kort, menselijk en niet defensief — meelezers zien hoe we het oppakken',
+          'Kort, menselijk en niet defensief, meelezers zien hoe we het oppakken',
           'Geen ordernummer of adres in het openbaar, dat gaat naar de DM',
         ],
       },
@@ -225,7 +225,7 @@ export const script_social_complaint: Script = {
         heading: 'Effect',
         items: [
           'Publieke klacht in 13 minuten omgebogen naar een tevreden reactie',
-          'Klant met 11.4k volgers behouden — reputatie beschermd',
+          'Klant met 11.4k volgers behouden, reputatie beschermd',
         ],
       },
     },
@@ -278,7 +278,7 @@ export const script_social_complaint: Script = {
         details: [
           'Track & trace herzending controleren in PostNL',
           'Goed aangekomen? Vriendelijk vragen of ze de reactie wil bijwerken',
-          'Niet pushen — relatie staat voorop',
+          'Niet pushen, relatie staat voorop',
         ],
       },
     },

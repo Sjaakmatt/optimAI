@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store';
 import { AGENT_ORDER } from '@/lib/agents/definitions';
 import type { AgentId } from '@/lib/types';
 
-// Let op: "De Dirigent" / orchestrator bewust uit de UI gehouden — zijn policies
+// Let op: "De Dirigent" / orchestrator bewust uit de UI gehouden, zijn policies
 // sturen het gedrag wel, maar staan niet als afdeling in de beleidsregels-lijst.
 
 export function PolicyPanel() {
@@ -62,7 +62,7 @@ export function PolicyPanel() {
                         {agent.name}
                       </h3>
                       <span className="font-mono text-[11px] text-[var(--ink-faint)]">
-                        {agent.role.split(' — ')[0]}
+                        {agent.role.split(', ')[0]}
                       </span>
                     </div>
                     <ul className="space-y-2">

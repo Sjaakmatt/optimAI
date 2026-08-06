@@ -18,7 +18,7 @@ const HIDE_ON: ReadonlySet<string> = new Set([
 
 /**
  * Zwevende "Plan gesprek"-knop rechtsonder. Eigen knop in de huisstijl
- * i.p.v. Cal's ingebouwde floatingButton — die was fors en slecht
+ * i.p.v. Cal's ingebouwde floatingButton, die was fors en slecht
  * gecentreerd. De klik opent dezelfde Cal-popup via de data-cal-attrs;
  * de embed wordt in de effect alvast geladen zodat de popup direct opent.
  */

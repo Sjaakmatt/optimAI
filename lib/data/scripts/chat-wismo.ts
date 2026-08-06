@@ -5,7 +5,7 @@ import type { Script } from '@/lib/types';
 // en antwoordt in de chat met een concrete nieuwe datum.
 export const script_chat_wismo: Script = {
   id: 'script_chat_wismo',
-  eventTitle: 'Website-chat — Waar blijft mijn bestelling?',
+  eventTitle: 'Website-chat, Waar blijft mijn bestelling?',
   eventContext: 'WISMO in de live chat · order opzoeken in ERP + track & trace bij PostNL',
   minutesSaved: 21,
   steps: [

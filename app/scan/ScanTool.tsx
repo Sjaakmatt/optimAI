@@ -78,7 +78,7 @@ export function ScanTool() {
     setUrl(paramUrl);
     setBedrijfsnaam(paramNaam);
     void runScan(paramNaam, paramUrl);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [searchParams]);
 
   function startScan(e: React.FormEvent) {

@@ -23,7 +23,7 @@ interface Props {
 export function Stage({ items }: Props) {
   if (items.length === 0) return null;
 
-  // Find latest artifact id — used to keep focus on the most recent one
+  // Find latest artifact id, used to keep focus on the most recent one
   const latestArtifactId = [...items]
     .reverse()
     .find((it) => it.kind === 'artifact')?.id;

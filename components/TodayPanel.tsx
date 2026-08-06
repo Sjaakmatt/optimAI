@@ -15,14 +15,14 @@ export function TodayPanel() {
       </div>
       <ul className="space-y-1.5 text-[var(--ink-dim)]">
         <li className="flex gap-2">
-          <span className="text-[var(--ink-faint)] select-none">—</span>
+          <span className="text-[var(--ink-faint)] select-none">·</span>
           <span>
             <span className="font-mono text-[var(--ink)]">{formatNumber(casesTotal)}</span>{' '}
             zaken afgehandeld
           </span>
         </li>
         <li className="flex gap-2">
-          <span className="text-[var(--ink-faint)] select-none">—</span>
+          <span className="text-[var(--ink-faint)] select-none">·</span>
           <span>
             <span className="font-mono text-[var(--ink)]">
               {minutesToHoursLabel(roi.totalMinutesSaved)}
@@ -31,7 +31,7 @@ export function TodayPanel() {
           </span>
         </li>
         <li className="flex gap-2">
-          <span className="text-[var(--ink-faint)] select-none">—</span>
+          <span className="text-[var(--ink-faint)] select-none">·</span>
           <span>
             <span className="font-mono text-[var(--ink)]">
               {formatEuro(roi.eurosEquivalent)}
