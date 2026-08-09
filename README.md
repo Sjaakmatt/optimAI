@@ -129,3 +129,20 @@ public/paper-grain.svg   zachte papier-vezel overlay
 - **Toon / stijl van een mail?** Alle tekst staat in die scenario-files — geen template-engine, gewoon Nederlands.
 - **Policies** blijven via `localStorage` bewaard tussen refreshes.
 - **Reset-knop** rechtsboven gooit werkbon, artefacten en Vandaag-teller schoon.
+
+## Externe blogartikelen (Soro)
+
+De artikelen die Soro publiceert worden server-side opgehaald en samengevoegd
+met de eigen kennisartikelen op `/kennis`. Ze krijgen dezelfde opmaak, hetzelfde
+Article-schema en een plek in de sitemap.
+
+Aanzetten:
+
+1. Zet in het Soro-dashboard de RSS-feed aan (die staat standaard uit) en kopieer
+   de feed-URL. Let op: de feed heeft een eigen token, niet het embed-token.
+2. Zet `SORO_FEED_URL` als omgevingsvariabele in Vercel.
+
+Zonder die variabele doet de site precies wat hij daarvoor deed: geen externe
+artikelen, geen extra requests. De feed wordt elk uur opnieuw opgehaald
+(`revalidate = 3600`). HTML uit de feed wordt gesaneerd voordat hij gerenderd
+wordt: scripts, iframes, event-handlers en `javascript:`-URL's gaan eruit.

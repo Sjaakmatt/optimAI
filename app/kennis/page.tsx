@@ -5,6 +5,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { POSTS } from '@/lib/data/posts';
 import { RESOURCES } from '@/lib/data/resources';
+import { getSoroPostsExcluding } from '@/lib/data/soro';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -15,18 +16,20 @@ export const metadata: Metadata = {
   alternates: { canonical: '/kennis' },
 };
 
-const ITEMLIST_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'FactumAI Kennisbank, artikelen over AI-agents',
-  numberOfItems: POSTS.length,
-  itemListElement: POSTS.map((p, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    url: `${SITE_URL}/kennis/${p.slug}`,
-    name: p.title,
-  })),
-};
+function itemListSchema(items: Array<{ slug: string; title: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'FactumAI Kennisbank, artikelen over AI-agents',
+    numberOfItems: items.length,
+    itemListElement: items.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}/kennis/${p.slug}`,
+      name: p.title,
+    })),
+  };
+}
 
 const BLOG_SCHEMA = {
   '@context': 'https://schema.org',
@@ -47,10 +50,34 @@ const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
   year: 'numeric',
 });
 
-export default function KennisPage() {
+export const revalidate = 3600;
+
+export default async function KennisPage() {
+  const extern = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
+  const artikelen = [
+    ...POSTS.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      lede: p.lede,
+      published: p.published,
+      readingMinutes: p.readingMinutes,
+      tags: p.tags,
+      extern: false,
+    })),
+    ...extern.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      lede: p.lede,
+      published: p.published,
+      readingMinutes: p.readingMinutes,
+      tags: p.tags,
+      extern: true,
+    })),
+  ].sort((a, b) => (a.published < b.published ? 1 : -1));
+
   return (
     <SitePage>
-      <JsonLd data={[BLOG_SCHEMA, ITEMLIST_SCHEMA]} />
+      <JsonLd data={[BLOG_SCHEMA, itemListSchema(artikelen)]} />
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-14 sm:pt-20 pb-10 sm:pb-12">
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
@@ -69,7 +96,7 @@ export default function KennisPage() {
       </section>
 
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-20 divide-y divide-[var(--paper-edge)] border-y border-[var(--paper-edge)]">
-        {POSTS.map((p) => (
+        {artikelen.map((p) => (
           <Link
             key={p.slug}
             href={`/kennis/${p.slug}`}
@@ -84,6 +111,9 @@ export default function KennisPage() {
                 <div className="max-w-[660px]">
                   <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                     {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen
+                    {p.extern && (
+                      <span className="text-[var(--steen)]"> · blog</span>
+                    )}
                   </div>
                   <h2 className="mt-2 font-display text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.15] text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
                     {p.title}

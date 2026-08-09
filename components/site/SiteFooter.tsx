@@ -135,14 +135,7 @@ export function SiteFooter() {
                 Alle artikelen
               </Link>
             </li>
-            <li>
-              <Link
-                href="/blog"
-                className="text-[var(--ink-faint)] hover:text-[var(--ink)] italic"
-              >
-                Blog
-              </Link>
-            </li>
+
           </ul>
         </div>
 
