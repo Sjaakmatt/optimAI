@@ -2,8 +2,9 @@ name: Generate kennis-artikel
 
 on:
   schedule:
-    # Dinsdag en donderdag, 08:00 UTC = 09:00 NL-tijd (10:00 in zomertijd)
-    - cron: '0 8 * * 2,4'
+    # Elke werkdag 06:30 UTC = 08:30 NL-tijd (07:30 in wintertijd). Vroeg genoeg
+    # om voor kantoortijd te staan, buiten het drukste GitHub-Actions-uur.
+    - cron: '30 6 * * 1-5'
   workflow_dispatch:
     inputs:
       topic:

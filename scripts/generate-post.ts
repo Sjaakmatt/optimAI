@@ -468,10 +468,21 @@ async function main() {
   } else {
     item = pickNext(backlog);
     if (!item) {
-      console.log('Backlog is leeg, niets te doen. Voeg items toe in scripts/content-backlog.json.');
+      // Als GitHub-annotatie, zodat een lege backlog zichtbaar wordt in de
+      // Actions-samenvatting in plaats van stil te blijven.
+      console.log(
+        '::warning title=Backlog leeg::Geen onderwerpen meer in scripts/content-backlog.json. Er verschijnen geen nieuwe artikelen tot er items zijn toegevoegd.',
+      );
       return;
     }
+    const resterend = backlog.items.filter((i) => i.status === 'pending').length - 1;
     console.log(`> Volgend backlog-item: ${item.topic} (cluster ${item.cluster})`);
+    console.log(`> Nog ${resterend} onderwerpen in de backlog na deze.`);
+    if (resterend <= 10) {
+      console.log(
+        `::warning title=Backlog raakt op::Nog ${resterend} onderwerpen te gaan. Vul scripts/content-backlog.json aan.`,
+      );
+    }
   }
 
   const existingSlugs = await readExistingSlugs();
