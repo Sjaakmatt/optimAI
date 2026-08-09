@@ -4,12 +4,13 @@ import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
 import { OPLOSSINGEN } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
+import { getSoroPostsExcluding } from '@/lib/data/soro';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
 export const dynamic = 'force-static';
 
-function buildLlmsTxt(): string {
+async function buildLlmsTxt(): Promise<string> {
   const lines: string[] = [];
 
   lines.push('# FactumAI');
@@ -119,7 +120,11 @@ function buildLlmsTxt(): string {
 
   lines.push('## Kennisartikelen');
   lines.push('');
-  const postsByDate = [...POSTS].sort((a, b) => (a.published < b.published ? 1 : -1));
+  const externePosts = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
+  const postsByDate = [
+    ...POSTS.map((p) => ({ slug: p.slug, title: p.title, lede: p.lede, published: p.published })),
+    ...externePosts.map((p) => ({ slug: p.slug, title: p.title, lede: p.lede, published: p.published })),
+  ].sort((a, b) => (a.published < b.published ? 1 : -1));
   for (const p of postsByDate) {
     lines.push(`- [${p.title}](${SITE_URL}/kennis/${p.slug}): ${p.lede}`);
   }
@@ -148,7 +153,7 @@ function buildLlmsTxt(): string {
 }
 
 export async function GET() {
-  return new Response(buildLlmsTxt(), {
+  return new Response(await buildLlmsTxt(), {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',

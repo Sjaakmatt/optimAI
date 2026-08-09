@@ -18,10 +18,22 @@ export interface SoroPost {
   tags: string[];
   /** Gesaneerde HTML van het artikel. */
   html: string;
+  /** Uitgelichte afbeelding uit enclosure of media:content, indien aanwezig. */
+  image?: string;
   source: 'soro';
 }
 
-const FEED_URL = process.env.SORO_FEED_URL;
+/**
+ * De feed is account-gebonden en read-only; hetzelfde token stond ook in het
+ * publieke embed-snippet. Via SORO_FEED_URL te overschrijven, of leeg te zetten
+ * om externe artikelen uit te schakelen.
+ */
+const DEFAULT_FEED_URL =
+  'https://app.trysoro.com/api/rss/32b19ece-d2a9-4775-819a-6c816c13aa02';
+const FEED_URL =
+  process.env.SORO_FEED_URL === undefined
+    ? DEFAULT_FEED_URL
+    : process.env.SORO_FEED_URL;
 const REVALIDATE_SECONDS = 3600;
 
 function stripCdata(value: string): string {
@@ -103,6 +115,14 @@ function slugFrom(link: string | undefined, guid: string | undefined, title: str
     .slice(0, 96);
 }
 
+function attributeValue(item: string, tag: string, attr: string): string | undefined {
+  const re = new RegExp(`<${tag}\\b[^>]*\\b${attr}\\s*=\\s*"([^"]+)"`, 'i');
+  const match = item.match(re);
+  if (!match) return undefined;
+  const value = match[1].trim();
+  return /^https:\/\//i.test(value) ? value : undefined;
+}
+
 function toIsoDate(value: string | undefined): string | undefined {
   if (!value) return undefined;
   const parsed = new Date(value);
@@ -147,6 +167,9 @@ function parseFeed(xml: string): SoroPost[] {
       readingMinutes: Math.max(1, Math.round(plain.split(/\s+/).length / 200)),
       tags: allTagValues(item, 'category').map(decodeEntities).slice(0, 5),
       html,
+      image:
+        attributeValue(item, 'enclosure', 'url') ??
+        attributeValue(item, 'media:content', 'url'),
       source: 'soro',
     });
   }
