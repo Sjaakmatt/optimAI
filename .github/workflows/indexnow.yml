@@ -10,12 +10,17 @@ on:
       - 'lib/data/comparisons.ts'
       - 'lib/data/resources.ts'
       - 'lib/data/team.ts'
+  schedule:
+    # Dagelijks 07:30 UTC, een uur na de artikelgenerator. Vangt de artikelen
+    # uit de Soro-feed op, die zonder commit binnenkomen en dus geen push-run
+    # veroorzaken.
+    - cron: '30 7 * * *'
   workflow_dispatch:
     inputs:
       mode:
-        description: 'auto = git diff, all = bulk-resubmit alle URLs'
+        description: 'auto = git diff, soro = recente feed-artikelen, all = bulk-resubmit alle URLs'
         type: choice
-        options: [auto, all]
+        options: [auto, soro, all]
         default: auto
 
 permissions:
@@ -41,5 +46,14 @@ jobs:
 
       - name: Ping IndexNow
         run: |
-          MODE="${{ github.event.inputs.mode || 'auto' }}"
+          # Bij een push kijken we naar de diff, op het dagelijkse schema naar
+          # de feed. Handmatig starten kan met elke modus.
+          if [ -n "${{ github.event.inputs.mode }}" ]; then
+            MODE="${{ github.event.inputs.mode }}"
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            MODE="soro"
+          else
+            MODE="auto"
+          fi
+          echo "Modus: $MODE"
           npm run indexnow-ping -- --$MODE

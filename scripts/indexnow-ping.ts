@@ -13,6 +13,10 @@
  *     Diff HEAD~1 vs HEAD op alle data-files. Pingt elke nieuw
  *     toegevoegde slug. Gebruikt vanuit GitHub Actions.
  *
+ *   npm run indexnow-ping -- --soro
+ *     Pingt de artikelen die Soro de afgelopen dagen publiceerde. Die
+ *     komen zonder commit binnen, dus de diff-modus ziet ze niet.
+ *
  *   npm run indexnow-ping -- --all
  *     Pingt alle URLs uit de data-files (+ statics). Eenmalig nuttig
  *     bij eerste setup of een grote refactor.
@@ -37,6 +41,12 @@ const STATIC_URLS: string[] = [
   '/diensten/ai-automatisering',
   '/diensten/ai-implementatie',
   '/diensten/ai-agents-voor-bedrijven',
+  '/diensten/vergelijken/ai-agent-vs-erp-automatisering',
+  '/oplossingen',
+  '/oplossingen/klantenservice-automatiseren',
+  '/oplossingen/leadopvolging-automatiseren',
+  '/oplossingen/vraagvoorspelling',
+  '/oplossingen/inkoop-automatiseren',
   '/over',
   '/info',
   '/cases',
@@ -106,6 +116,22 @@ async function readAllUrls(): Promise<string[]> {
   return Array.from(new Set(urls));
 }
 
+/**
+ * Artikelen uit de Soro-feed komen zonder commit binnen, dus de diff-modus
+ * ziet ze niet. Deze modus pingt de artikelen die de afgelopen dagen zijn
+ * gepubliceerd. Draait één keer per dag, dus het volume blijft laag.
+ */
+async function detectSoroUrls(dagen = 3): Promise<string[]> {
+  const { getSoroPosts } = await import('../lib/data/soro');
+  const posts = await getSoroPosts();
+  const grens = new Date();
+  grens.setDate(grens.getDate() - dagen);
+
+  return posts
+    .filter((p) => new Date(p.published) >= grens)
+    .map((p) => `${SITE}/kennis/${p.slug}`);
+}
+
 async function ping(urls: string[]): Promise<void> {
   if (urls.length === 0) {
     console.log('Geen URLs om te pingen. Klaar.');
@@ -152,6 +178,7 @@ async function main() {
   if (args.length === 0) {
     console.error('Usage:');
     console.error('  indexnow-ping --auto              # diff HEAD~1 vs HEAD');
+    console.error('  indexnow-ping --soro              # recent gepubliceerde Soro-artikelen');
     console.error('  indexnow-ping --all               # alle bekende URLs');
     console.error('  indexnow-ping <url> [url...]      # specifieke URLs');
     process.exit(1);
@@ -160,6 +187,9 @@ async function main() {
   if (args[0] === '--auto') {
     urls = detectNewUrls();
     console.log(`Diff-detectie: ${urls.length} nieuwe URL${urls.length === 1 ? '' : 's'}`);
+  } else if (args[0] === '--soro') {
+    urls = await detectSoroUrls();
+    console.log(`Soro-feed: ${urls.length} recent gepubliceerd${urls.length === 1 ? '' : 'e'} artikel${urls.length === 1 ? '' : 'en'}`);
   } else if (args[0] === '--all') {
     urls = await readAllUrls();
     console.log(`Bulk-mode: ${urls.length} URLs`);

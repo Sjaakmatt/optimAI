@@ -1,5 +1,5 @@
 {
-  "$schema": "Backlog van te schrijven kennisartikelen. Het generate-post-script pakt de eerstvolgende item met status=pending, schrijft een draft, opent een PR en zet status=drafted.",
+  "$schema": "Backlog van te schrijven kennisartikelen. Het generate-post-script pakt de eerstvolgende item met status=pending, schrijft een draft, opent een PR en zet status=drafted. Onderwerpen bevatten geen cijfers of resultaatclaims: die zouden als verzonnen statistiek in het artikel terechtkomen.",
   "items": [
     {
       "topic": "AI implementeren in vijf stappen voor het Nederlandse MKB",
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "topic": "AI in de zorg: rapportage-tijd van zestig naar tien minuten",
+      "topic": "AI in de zorg: rapportage voorbereiden zonder de zorgverlener te vervangen",
       "cluster": "C",
       "status": "pending",
       "tags": [
@@ -274,12 +274,284 @@
       ]
     },
     {
-      "topic": "Lessen na 30 AI-implementaties bij Nederlandse MKB-bedrijven",
+      "topic": "Wat er misgaat bij een eerste AI-agent, en hoe u dat voorkomt",
       "cluster": "E",
       "status": "pending",
       "tags": [
         "lessons-learned",
         "MKB"
+      ]
+    },
+    {
+      "topic": "Waarom uw ERP het laatste stukje werk niet afmaakt",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "ERP",
+        "beslislaag",
+        "MKB"
+      ]
+    },
+    {
+      "topic": "Het verschil tussen een regel en een oordeel in uw processen",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "proces",
+        "automatisering"
+      ]
+    },
+    {
+      "topic": "Welk proces kiest u als eerste? Vier vragen die het antwoord geven",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "proces",
+        "selectie"
+      ]
+    },
+    {
+      "topic": "In fasen bouwen: waarom een pilot van zes maanden zelden iets oplevert",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "aanpak",
+        "implementatie"
+      ]
+    },
+    {
+      "topic": "Beleid op papier krijgen voordat een agent het kan toetsen",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "beleid",
+        "governance"
+      ]
+    },
+    {
+      "topic": "De werkbak: waarom een agent voorbereidt en uw mensen goedkeuren",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "human-in-the-loop",
+        "aanpak"
+      ]
+    },
+    {
+      "topic": "Uw mensen meekrijgen zonder dat het een AI-project wordt",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "adoptie",
+        "verandering"
+      ]
+    },
+    {
+      "topic": "Wanneer een AI-agent niet het antwoord is op uw probleem",
+      "cluster": "A",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "eerlijkheid"
+      ]
+    },
+    {
+      "topic": "Waar uw data staat als u met een AI-agent werkt",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "privacy",
+        "AVG",
+        "hosting"
+      ]
+    },
+    {
+      "topic": "Een verwerkersovereenkomst voor AI-agents: waar let u op",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "AVG",
+        "contracten"
+      ]
+    },
+    {
+      "topic": "Hoe u controleert of een agent iets verzint",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "betrouwbaarheid",
+        "grounding"
+      ]
+    },
+    {
+      "topic": "Mandaten instellen: wat mag automatisch en wat komt langs een mens",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "guardrails",
+        "beleid"
+      ]
+    },
+    {
+      "topic": "Wat u moet kunnen terugkijken als een agent een fout maakt",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "logging",
+        "governance"
+      ]
+    },
+    {
+      "topic": "De AI-verordening in de praktijk voor een MKB-bedrijf",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "AI Act",
+        "compliance"
+      ]
+    },
+    {
+      "topic": "Koppelen zonder API: wat er kan met mail, export en webhooks",
+      "cluster": "B",
+      "status": "pending",
+      "tags": [
+        "integraties",
+        "techniek"
+      ]
+    },
+    {
+      "topic": "AI-agents in de detailhandel: van kanaal-inbox tot retour",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "detailhandel",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents voor e-commerce: waar de winst zit na de bestelling",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "e-commerce",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents in de horeca: reserveringen, inkoop en gastcontact",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "horeca",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents in de makelaardij: aanvragen sneller beantwoorden",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "makelaardij",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents in de agrarische sector: administratie en registratie",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "agrarisch",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents in de productie: van offerte tot orderstatus",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "productie",
+        "branche"
+      ]
+    },
+    {
+      "topic": "AI-agents voor advocatenkantoren: intake en dossiervoorbereiding",
+      "cluster": "C",
+      "status": "pending",
+      "tags": [
+        "advocatuur",
+        "branche"
+      ]
+    },
+    {
+      "topic": "Een agent naast uw CRM-workflow: wat doet wat",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "CRM",
+        "vergelijking"
+      ]
+    },
+    {
+      "topic": "Waarom een dashboard uw inkoopvraag niet beantwoordt",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "rapportage",
+        "besluiten"
+      ]
+    },
+    {
+      "topic": "Standaardsoftware of maatwerk-agent: hoe u kiest",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "selectie",
+        "maatwerk"
+      ]
+    },
+    {
+      "topic": "Chatbot op de site of een agent in de mailbox",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "chatbot",
+        "vergelijking"
+      ]
+    },
+    {
+      "topic": "Wat een koppeltool wel doet en een agent niet hoeft over te nemen",
+      "cluster": "D",
+      "status": "pending",
+      "tags": [
+        "integraties",
+        "vergelijking"
+      ]
+    },
+    {
+      "topic": "De eerste maand met een agent: wat u realistisch mag verwachten",
+      "cluster": "E",
+      "status": "pending",
+      "tags": [
+        "praktijk",
+        "adoptie"
+      ]
+    },
+    {
+      "topic": "Hoe u merkt dat een agent zijn werk goed doet",
+      "cluster": "E",
+      "status": "pending",
+      "tags": [
+        "meten",
+        "kwaliteit"
+      ]
+    },
+    {
+      "topic": "Wat een agent kost aan onderhoud nadat hij draait",
+      "cluster": "E",
+      "status": "pending",
+      "tags": [
+        "onderhoud",
+        "kosten"
       ]
     }
   ]
