@@ -418,12 +418,46 @@ function ExternArtikel({ post }: { post: SoroPost }) {
   );
 }
 
+/**
+ * Rendert markdown-achtige links in artikeltekst: [ankertekst](/pad).
+ * Interne paden gaan via next/link, externe URL's krijgen rel="noopener".
+ * Alles wat geen link is blijft platte tekst, dus er kan geen HTML in.
+ */
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\((?:\/|https?:\/\/)[^)\s]+\))/g);
+  if (parts.length === 1) return <>{text}</>;
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\(((?:\/|https?:\/\/)[^)\s]+)\)$/);
+        if (!match) return <span key={i}>{part}</span>;
+        const [, label, href] = match;
+        const className =
+          'text-[var(--oker-deep)] underline decoration-dotted underline-offset-[3px] hover:text-[var(--ink)] transition-colors';
+        if (href.startsWith('/')) {
+          return (
+            <Link key={i} href={href} className={className}>
+              {label}
+            </Link>
+          );
+        }
+        return (
+          <a key={i} href={href} className={className} rel="noopener nofollow" target="_blank">
+            {label}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
 function Block({ block }: { block: PostBlock }) {
   switch (block.kind) {
     case 'p':
       return (
         <p className="my-5 text-[15.5px] sm:text-[16.5px] leading-[1.8] text-[var(--ink)]">
-          {block.text}
+          <RichText text={block.text} />
         </p>
       );
     case 'h2':
@@ -444,7 +478,9 @@ function Block({ block }: { block: PostBlock }) {
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-3">
               <span className="text-[var(--oker-deep)] pt-1 shrink-0">·</span>
-              <span>{item}</span>
+              <span>
+                <RichText text={item} />
+              </span>
             </li>
           ))}
         </ul>
@@ -460,7 +496,7 @@ function Block({ block }: { block: PostBlock }) {
           </p>
           {block.by && (
             <div className="mt-2 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
-             , {block.by}
+              · {block.by}
             </div>
           )}
         </blockquote>

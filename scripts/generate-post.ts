@@ -20,6 +20,9 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import Anthropic from '@anthropic-ai/sdk';
 import { z } from 'zod';
+import { POSTS } from '../lib/data/posts';
+import { OPLOSSINGEN } from '../lib/data/oplossingen';
+import { COMPARISONS } from '../lib/data/comparisons';
 
 const ROOT = join(import.meta.dirname ?? __dirname, '..');
 const POSTS_PATH = join(ROOT, 'lib', 'data', 'posts.ts');
@@ -59,7 +62,7 @@ const postSchema = z.object({
   published: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   readingMinutes: z.number().int().min(3).max(9),
   tags: z.array(z.string().min(2)).min(2).max(6),
-  blocks: z.array(blockSchema).min(6).max(20),
+  blocks: z.array(blockSchema).min(10).max(40),
   faq: z.array(faqSchema).min(0).max(5).optional(),
   cluster: z.enum(['A', 'B', 'C', 'D', 'E']),
   generatedBy: z.literal('ai-draft'),
@@ -112,6 +115,63 @@ function normalize(raw: unknown): unknown {
   }
 
   return obj;
+}
+
+// ---------- Interne links valideren ----------
+
+/**
+ * Alle paden waar een artikel naartoe mag linken. Een link naar iets anders is
+ * een fout: die haalt de lezer uit de site en levert een 404 op.
+ */
+function allowedPaths(): Set<string> {
+  const paths = new Set<string>([
+    '/info',
+    '/oplossingen',
+    '/diensten',
+    '/diensten/ai-agent-laten-bouwen',
+    '/diensten/ai-automatisering',
+    '/diensten/ai-implementatie',
+    '/diensten/ai-agents-voor-bedrijven',
+    '/cases',
+    '/kennis',
+    '/branches',
+  ]);
+  for (const o of OPLOSSINGEN) paths.add(`/oplossingen/${o.slug}`);
+  for (const c of COMPARISONS) paths.add(`/diensten/vergelijken/${c.slug}`);
+  for (const p of POSTS) paths.add(`/kennis/${p.slug}`);
+  return paths;
+}
+
+const LINK_RE = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+
+function collectLinks(post: GeneratedPost): string[] {
+  const found: string[] = [];
+  for (const b of post.blocks) {
+    const texts = b.kind === 'list' ? b.items : 'text' in b ? [b.text] : [];
+    for (const t of texts) {
+      for (const m of t.matchAll(LINK_RE)) found.push(m[2]);
+    }
+  }
+  return found;
+}
+
+/** Faalt met een leesbare melding, zodat de retry-lus het model kan bijsturen. */
+function assertLinksAreValid(post: GeneratedPost) {
+  const allowed = allowedPaths();
+  const links = collectLinks(post);
+  const broken = links.filter((l) => !allowed.has(l.replace(/\/$/, '')));
+  if (broken.length > 0) {
+    throw new Error(
+      `Artikel linkt naar niet-bestaande pagina's: ${broken.join(', ')}. ` +
+        'Gebruik uitsluitend paden uit de meegeleverde lijst.',
+    );
+  }
+  if (links.length < 2) {
+    throw new Error(
+      `Artikel bevat ${links.length} interne link(s), er zijn er minimaal 2 nodig. ` +
+        'Gebruik de schrijfwijze [ankertekst](/pad) in de lopende tekst.',
+    );
+  }
 }
 
 // ---------- Backlog ----------
@@ -197,7 +257,7 @@ Geen markdown, geen toelichting, geen \`\`\`json fence.
   published: "yyyy-mm-dd",        // vandaag
   readingMinutes: number,         // 4-8
   tags: string[],                 // 3-5 items
-  blocks: Block[],                // 6-20 items, zie hieronder
+  blocks: Block[],                // 10-40 items, zie hieronder
   faq?: { q: string, a: string }[],  // optioneel, 2-4 items. VELDNAMEN ZIJN q EN a, NIET question/answer
   cluster: "A" | "B" | "C" | "D" | "E",
   generatedBy: "ai-draft"
@@ -221,6 +281,40 @@ Belangrijk:
   ];
 }
 
+/**
+ * De paden waar het artikel naartoe mag linken. Wordt uit de echte data
+ * opgebouwd, zodat het model nooit naar een niet-bestaande pagina kan wijzen.
+ */
+function buildLinkInventory(): string {
+  const lines: string[] = [];
+
+  lines.push('Oplossingen (gebruik deze als u een proces beschrijft):');
+  for (const o of OPLOSSINGEN) {
+    lines.push(`- /oplossingen/${o.slug} : ${o.navLabel}. ${o.cardBody}`);
+  }
+
+  lines.push('');
+  lines.push('Diensten:');
+  lines.push('- /diensten/ai-agent-laten-bouwen : een agent op maat laten bouwen');
+  lines.push('- /diensten/ai-automatisering : het werk dat na het pakket overblijft');
+  lines.push('- /diensten/ai-implementatie : begeleiding van eerste gesprek tot productie');
+  lines.push('- /info : uitleg van het begrip AI-agent');
+
+  lines.push('');
+  lines.push('Vergelijkingen:');
+  for (const c of COMPARISONS) {
+    lines.push(`- /diensten/vergelijken/${c.slug} : AI-agent versus ${c.alternative}`);
+  }
+
+  lines.push('');
+  lines.push('Bestaande kennisartikelen:');
+  for (const p of POSTS) {
+    lines.push(`- /kennis/${p.slug} : ${p.title}`);
+  }
+
+  return lines.join('\n');
+}
+
 function buildUserPrompt(item: BacklogItem, today: string): string {
   return `Schrijf het volgende kennisartikel:
 
@@ -231,8 +325,18 @@ function buildUserPrompt(item: BacklogItem, today: string): string {
 
 Schrijf in u-vorm. Maak het concreet en bruikbaar voor een Nederlandse MKB-ondernemer die overweegt AI-agents in te zetten.
 
+# Beschikbare pagina's om naar te linken
+Verwerk 2 tot 4 van onderstaande paden als link in de lopende tekst, met de
+schrijfwijze [ankertekst](/pad). Link uitsluitend naar paden uit deze lijst.
+
+${buildLinkInventory()}
+
 Huisregels, houd u hier strikt aan:
 - Gebruik nergens een em-dash. Gebruik een komma, een dubbele punt of een punt.
+- Open met een concrete scène uit de werkweek van de lezer, niet met een observatie over de markt of over AI in het algemeen.
+- Koppen zijn stellingen die op zichzelf iets beweren, geen labels als "Aandachtspunten" of "Conclusie".
+- Schrijf 1100 tot 1500 woorden, verdeeld over 5 tot 7 secties.
+- Verwerk 2 tot 4 interne links uit de lijst hierboven, met beschrijvende ankertekst midden in een zin.
 - Verzin geen cijfers. Geen percentages, besparingen, doorlooptijden, klantaantallen of ROI-getallen die u niet uit de meegegeven context kunt halen. Een rekenvoorbeeld mag, mits u expliciet schrijft dat het een aanname is die de lezer met eigen cijfers invult.
 - Beloof geen doorlooptijd. FactumAI bouwt in fasen die elk eindigen in iets werkends dat de klant goedkeurt.
 - Geen fictieve of illustratieve klantvoorbeelden. Geen anonieme voorbeeldklanten, geen verzonnen scenario's met een bedrijfsnaam erbij.
@@ -416,8 +520,16 @@ async function main() {
     }
 
     const wc = approxWordCount(result.data);
-    if (wc < 450 || wc > 1500) {
-      lastError = `Lengte (${wc} woorden) buiten bandbreedte 450-1500.`;
+    if (wc < 900 || wc > 1800) {
+      lastError = `Lengte (${wc} woorden) buiten bandbreedte 900-1800.`;
+      console.error(lastError);
+      continue;
+    }
+
+    try {
+      assertLinksAreValid(result.data);
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : String(error);
       console.error(lastError);
       continue;
     }
