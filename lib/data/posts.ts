@@ -40,14 +40,14 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Iedereen heeft de afgelopen twee jaar wel iets gedemonstreerd gekregen met generatieve AI. Chatbots, tekstgeneratoren, plaatjes. Leuk, niet altijd bruikbaar. Dat is in 2025 en 2026 fundamenteel gekanteld. Niet zozeer omdat de modellen slimmer zijn (dat ook), maar omdat het tooling-landschap er omheen volwassen is geworden.',
+          'Iedereen heeft de afgelopen twee jaar wel iets gedemonstreerd gekregen met generatieve AI. [Chatbots](/diensten/vergelijken/ai-agent-vs-chatbot), tekstgeneratoren, plaatjes. Leuk, niet altijd bruikbaar. Dat is in 2025 en 2026 fundamenteel gekanteld. Niet zozeer omdat de modellen slimmer zijn (dat ook), maar omdat het tooling-landschap er omheen volwassen is geworden.',
       },
       { kind: 'h2', text: 'Wat er praktisch veranderd is' },
       {
         kind: 'list',
         items: [
           'Agents kunnen betrouwbaar koppelen met bestaande systemen. E-mail, boekhoudpakket, CRM, magazijn.',
-          'Beleidsregels zijn niet meer een stuk prompt, maar een configureerbare laag die mensen zelf kunnen aan/uitzetten.',
+          '[Beleidsregels](/kennis/guardrails-niet-een-rem-maar-een-kompas) zijn niet meer een stuk prompt, maar een configureerbare laag die mensen zelf kunnen aan/uitzetten.',
           'Hallucineren komt nog voor, maar is voorspelbaar en af te vangen met checks.',
           'Integraties zijn met een paar dagen werk te bouwen, niet met een paar maanden.',
         ],
@@ -116,7 +116,7 @@ export const POSTS: Post[] = [
         items: [
           'Bedragen boven € 5.000 altijd langs directie.',
           'Overheidsklanten: betaaltermijn standaard 30 dagen, geen aanbetaling.',
-          'Klanten met >10 orders en 0 klachten: coulance toepassen zonder discussie over schuldvraag.',
+          'Klanten met >10 orders en 0 klachten: [coulance toepassen](/oplossingen/klantenservice-automatiseren) zonder discussie over schuldvraag.',
           'Bij vertraging: alternatief transporteur inschakelen tot € 200 meerkosten.',
           'Drie herinneringen, dan juridisch. Tenzij de klantgeschiedenis iets anders zegt.',
         ],
@@ -172,7 +172,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Wij bouwen agents die zelf naar u toe komen met dingen die uw aandacht nodig hebben. Geen dashboard. Een belnotitie die klaarstaat. Een klantmail die niet is verzonden omdat het bedrag boven uw mandaat valt. Een werkbak met drie zaken die u kort moet afvinken.',
+          'Wij bouwen agents die zelf naar u toe komen met dingen die uw aandacht nodig hebben. Geen dashboard. Een belnotitie die klaarstaat. [Een klantmail die niet is verzonden](/oplossingen/klantenservice-automatiseren) omdat het bedrag boven uw mandaat valt. Een werkbak met drie zaken die u kort moet afvinken.',
       },
       {
         kind: 'quote',
@@ -185,7 +185,7 @@ export const POSTS: Post[] = [
         items: [
           'In plaats van een KPI-dashboard: een maandrapport per e-mail met drie zinnen.',
           'In plaats van een CRM-scherm: een belnotitie in de inbox van de verantwoordelijke.',
-          'In plaats van een voorraad-alert-app: de agent die zelf al een inkooporder heeft klaargezet.',
+          'In plaats van een voorraad-alert-app: [de agent die zelf al een inkooporder heeft klaargezet](/oplossingen/inkoop-automatiseren).',
         ],
       },
       {
@@ -228,7 +228,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Klantmails met een voorspelbaar patroon. Offertes op basis van actuele prijslijst. Orderverwerking waar kredietcheck en voorraadcheck in elkaar schuiven. Factureren na oplevering. Belnotities voor finance wanneer een factuur lang openstaat. Dit zijn routinematige, regel-gebaseerde stromen. Ideaal terrein.',
+          '[Klantmails met een voorspelbaar patroon](/oplossingen/klantenservice-automatiseren). Offertes op basis van actuele prijslijst. [Orderverwerking waar kredietcheck en voorraadcheck in elkaar schuiven](/oplossingen/inkoop-automatiseren). Factureren na oplevering. Belnotities voor finance wanneer een factuur lang openstaat. Dit zijn routinematige, regel-gebaseerde stromen. Ideaal terrein.',
       },
       { kind: 'h2', text: 'Waar het juist fout gaat' },
       {
@@ -282,7 +282,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Iets kleins, iets snels, iets met een duidelijk resultaat dat u zelf kunt zien. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. Voorraadsignalen die een inkooporder klaarzetten. Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
+          'Iets kleins, iets snels, iets met een duidelijk resultaat dat u zelf kunt zien. Ontvangstbevestiging op inkomende mails. Automatisch een concept-factuur klaarzetten na oplevering. [Voorraadsignalen die een inkooporder klaarzetten](/oplossingen/inkoop-automatiseren). Dingen waar weinig risico aan zit en waar uw mensen de winst direct voelen.',
       },
       {
         kind: 'quote',
@@ -328,7 +328,7 @@ export const POSTS: Post[] = [
         items: [
           'API: directe koppeling, real-time, meest elegant. Exact, Moneybird, AFAS, Snelstart, Odoo. Allemaal via API. Koppelen kost een paar dagen.',
           'Webhooks: het systeem roept ons als er iets gebeurt. Ideaal voor "factuur verstuurd" of "order gewijzigd" meldingen.',
-          'E-mail en bestand: het oude werkpaard. Veel boekhoudsystemen kunnen automatisch mails versturen met een factuur als PDF. Wij lezen die uit en verwerken ze. Niet elegant, wel betrouwbaar.',
+          'E-mail en bestand: het oude werkpaard. [Veel boekhoudsystemen kunnen automatisch mails versturen](/oplossingen/klantenservice-automatiseren) met een factuur als PDF. Wij lezen die uit en verwerken ze. Niet elegant, wel betrouwbaar.',
         ],
       },
       { kind: 'h2', text: 'Wat vaak blokkeert en waarom dat oplosbaar is' },
@@ -390,7 +390,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Zodra we een agent bouwen die facturen verwerkt, vragen ondernemers me steevast: "Wat moet ik tegen mijn boekhouder zeggen?" Eerlijke observatie: die gesprekken zijn de afgelopen twee jaar beter geworden.',
+          'Zodra we [een agent bouwen die facturen verwerkt](/diensten/ai-automatisering), vragen ondernemers me steevast: "Wat moet ik tegen mijn boekhouder zeggen?" Eerlijke observatie: die gesprekken zijn de afgelopen twee jaar beter geworden.',
       },
       { kind: 'h2', text: 'Wat boekhouders vroeger deden' },
       {
@@ -438,7 +438,7 @@ export const POSTS: Post[] = [
       {
         kind: 'p',
         text:
-          'Wanneer ik in een eerste gesprek vraag wat een klantmail uw binnendienst kost, krijg ik zelden een getal. Begrijpelijk. Niemand meet dat. Maar zodra we samen de rekensom maken, schrikt bijna iedereen.',
+          'Wanneer ik in een eerste gesprek vraag [wat een klantmail uw binnendienst kost](/oplossingen/klantenservice-automatiseren), krijg ik zelden een getal. Begrijpelijk. Niemand meet dat. Maar zodra we samen de rekensom maken, schrikt bijna iedereen.',
       },
       { kind: 'h2', text: 'De harde kosten die iedereen ziet' },
       {
@@ -534,7 +534,7 @@ export const POSTS: Post[] = [
         items: [
           'Noem het doel eerst: ruimte maken voor het werk waar jullie goed in zijn.',
           'Wees eerlijk over wat er mogelijk verdwijnt (vaak routine-administratie).',
-          'Vraag hun hulp om de beleidsregels op te stellen. Zij kennen de uitzonderingen.',
+          '[Vraag hun hulp om de beleidsregels op te stellen](/kennis/guardrails-niet-een-rem-maar-een-kompas). Zij kennen de uitzonderingen.',
           'Beloof een maandelijks kort moment om bij te sturen. Geen eenzijdig proces.',
         ],
       },
@@ -571,9 +571,9 @@ export const POSTS: Post[] = [
         kind: 'list',
         items: [
           'Taalmodellen worden elk kwartaal beter én goedkoper. Als we niet meekijken, betaalt u volgend jaar te veel voor minder kwaliteit.',
-          'Uw processen veranderen. Klantgroepen komen erbij, beleidsregels schuiven, seizoensdrukte verandert. De agent moet meebewegen.',
+          'Uw processen veranderen. Klantgroepen komen erbij, beleidsregels schuiven, [seizoensdrukte verandert](/oplossingen/vraagvoorspelling). De agent moet meebewegen.',
           'Uw externe systemen krijgen updates. Boekhoudpakket een API-wijziging, e-mailserver nieuwe authenticatie, CRM een interfaceverandering.',
-          'Guardrails vragen aandacht. Nieuwe uitzonderingen leren de agent wat er automatisch mag en wat langs een mens moet.',
+          '[Guardrails vragen aandacht](/kennis/guardrails-niet-een-rem-maar-een-kompas). Nieuwe uitzonderingen leren de agent wat er automatisch mag en wat langs een mens moet.',
           'Monitoring is geen luxe. Je wilt weten dat de agent doet wat hij hoort te doen, en dat zijn logboek klopt.',
         ],
       },
@@ -665,7 +665,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'De meeste tests gaan fout omdat ze te netjes zijn. U test met een duidelijke factuur van een bekende klant, op een werkdag zonder drukte. Dat is niet de werkelijkheid. Test met de klant die altijd een afwijkend betalingskenmerk invult. Met de aanvraag die drie bestanden als bijlage heeft. Met de mail die half Engels, half Nederlands is.' },
       { kind: 'p', text: 'De beste tester is uw eigen medewerker die het proces kent. Vraag diegene de vijf meest lastige situaties uit de afgelopen maanden na te spelen. Als de agent daar goed mee omgaat, is het klaar voor gebruik. Zo niet, dan pas u de regels aan, niet de agent.' },
       { kind: 'h2', text: 'Stap 5: Ga live met een terugvaloptie' },
-      { kind: 'p', text: 'De eerste weken loopt de agent parallel aan de medewerker. Niet als wantrouwen, maar als kalibratie. U vergelijkt uitkomsten, signaleert afwijkingen, en past beleidsregels bij waar nodig. Na twee tot vier weken is duidelijk of de agent zelfstandig kan draaien of dat er nog een regel ontbreekt.' },
+      { kind: 'p', text: 'De eerste weken loopt de agent parallel aan de medewerker. Niet als wantrouwen, maar als kalibratie. U vergelijkt uitkomsten, signaleert afwijkingen, en [past beleidsregels bij waar nodig](/kennis/guardrails-niet-een-rem-maar-een-kompas). Na twee tot vier weken is duidelijk of de agent zelfstandig kan draaien of dat er nog een regel ontbreekt.' },
       { kind: 'list', items: [
         'Houd bij hoeveel acties de agent zelfstandig afhandelt versus doorstuurt naar een mens.',
         'Noteer elk geval waarbij de agent een verkeerde keuze maakte of twijfelde.',
@@ -693,7 +693,7 @@ export const POSTS: Post[] = [
     readingMinutes: 6,
     tags: ['strategie', 'MKB', 'selectie', 'methodiek', 'proces'],
     blocks: [
-      { kind: 'p', text: 'De meeste ondernemers die mij bellen hebben al nagedacht over wat ze willen automatiseren. Soms is het heel concreet: offertes versturen, klantmails beantwoorden, facturen verwerken. Soms is het vaguer: \'minder rompslomp\'. Wat ik zelden hoor, is of het bedrijf er op dit moment eigenlijk klaar voor is. Dat is de vraag die bepaalt of een project soepel loopt of strandt na vier weken.' },
+      { kind: 'p', text: 'De meeste ondernemers die mij bellen hebben al nagedacht over wat ze willen automatiseren. Soms is het heel concreet: offertes versturen, [klantmails beantwoorden](/oplossingen/klantenservice-automatiseren), facturen verwerken. Soms is het vaguer: \'minder rompslomp\'. Wat ik zelden hoor, is of het bedrijf er op dit moment eigenlijk klaar voor is. Dat is de vraag die bepaalt of een project soepel loopt of strandt na vier weken.' },
       { kind: 'h2', text: 'Waarom readiness er echt toe doet' },
       { kind: 'p', text: 'Een agent bouwt op wat er al is. Op uw processen, uw data, uw systemen, en de bereidheid van uw mensen. Als één van die vier wankel staat, betaalt u dat later terug in herstelwerk, vertraging, of een agent die niemand gebruikt. Dat wil ik voorkomen. Daarom gebruik ik bij elk eerste gesprek een vast setje vragen. Dat setje deel ik hier.' },
       { kind: 'h2', text: 'Stap 1: Heeft u een proces dat herhaalbaar is?' },
@@ -749,7 +749,7 @@ export const POSTS: Post[] = [
         'Uw data staat bij een derde partij, wat AVG-aandacht vraagt.',
       ] },
       { kind: 'h2', text: 'Wat u koopt met een custom agent' },
-      { kind: 'p', text: 'Een custom agent wordt gebouwd op uw proces, uw systemen en uw beleidsregels. De agent sluit aan op Exact of Moneybird, kent uw klantcategorieën, volgt uw escalatiepad. Hij doet precies wat u hem leert, niet meer en niet minder. Dat vraagt een hogere investering vooraf en een goede briefing, maar het resultaat sluit precies aan op hoe u werkt.' },
+      { kind: 'p', text: 'Een custom agent wordt gebouwd op uw proces, [uw systemen en uw beleidsregels](/kennis/guardrails-niet-een-rem-maar-een-kompas). De agent sluit aan op Exact of Moneybird, kent uw klantcategorieën, volgt uw escalatiepad. Hij doet precies wat u hem leert, niet meer en niet minder. Dat vraagt een hogere investering vooraf en een goede briefing, maar het resultaat sluit precies aan op hoe u werkt.' },
       { kind: 'p', text: 'Custom bouwen is zinvol als uw proces afwijkend genoeg is dat geen standaardtool het dekt, of als u de agent wilt koppelen aan meerdere interne systemen tegelijk. Ook als u concurrentievoordeel haalt uit de manier waarop u werkt, is dat geen logisch moment om uw proces plat te slaan naar wat een SaaS-vendor bedacht heeft.' },
       { kind: 'list', items: [
         'Volledig afgestemd op uw eigen werkwijze en terminologie.',
@@ -797,10 +797,10 @@ export const POSTS: Post[] = [
         'Bouw: de eenmalige investering om de agent te ontwerpen, te koppelen met uw systemen en live te zetten. Dit is waar de meeste uren in gaan.',
         'Modelkosten: wat u betaalt aan de onderliggende AI-dienst per verwerkt bericht of document. Dit is variabel en loopt mee met gebruik.',
         'Integraties: koppelingen met uw boekhoudpakket, CRM of mailbox. Eenmalig, maar soms meerdere weken werk bij complexe systemen.',
-        'Onderhoud en beheer: maandelijkse kosten voor monitoring, aanpassingen in beleidsregels, updates na wijzigingen in uw werkproces.',
+        'Onderhoud en beheer: maandelijkse kosten voor monitoring, [aanpassingen in beleidsregels](/kennis/guardrails-niet-een-rem-maar-een-kompas), updates na wijzigingen in uw werkproces.',
       ] },
       { kind: 'h2', text: 'Wat u in de praktijk betaalt' },
-      { kind: 'p', text: 'Voor een enkelvoudige agent die één proces afhandelt, zeg: het beantwoorden van inkomende klantmails op basis van uw FAQ en bestelhistorie, ligt de bouw tussen € 3.000 en € 8.000 eenmalig. Dat is inclusief één integratie, bijvoorbeeld met Moneybird of Exact voor ordergegevens. De maandelijkse modelkosten bij een typisch MKB-volume van 200 tot 600 berichten per maand liggen tussen € 30 en € 90. Beheer en kleine aanpassingen kosten doorgaans € 150 tot € 350 per maand als u dat uitbesteedt.' },
+      { kind: 'p', text: 'Voor een enkelvoudige agent die één proces afhandelt, zeg: [het beantwoorden van inkomende klantmails](/oplossingen/klantenservice-automatiseren) op basis van uw FAQ en bestelhistorie, ligt de bouw tussen € 3.000 en € 8.000 eenmalig. Dat is inclusief één integratie, bijvoorbeeld met Moneybird of Exact voor ordergegevens. De maandelijkse modelkosten bij een typisch MKB-volume van 200 tot 600 berichten per maand liggen tussen € 30 en € 90. Beheer en kleine aanpassingen kosten doorgaans € 150 tot € 350 per maand als u dat uitbesteedt.' },
       { kind: 'p', text: 'Bij een complexere agent die meerdere processen combineert, offertes uitsturen, facturen aanmaken, herinneringen versturen, stijgen de bouwkosten naar € 12.000 tot € 25.000. Dat klinkt als veel. Maar tel dan ook mee wat u nu per jaar betaalt aan de mensen die datzelfde doen.' },
       { kind: 'quote', text: 'De bouwkosten zijn eenmalig. De besparing op uurloon is structureel. Dat maakt de rekensom gunstiger dan hij op het eerste gezicht lijkt.' },
       { kind: 'h2', text: 'Terugverdientijd: een reëel voorbeeld' },
@@ -839,7 +839,7 @@ export const POSTS: Post[] = [
     blocks: [
       { kind: 'p', text: 'Een AI-agent bouwen kost geld. Dat weet u. Wat u wilt weten, is hoeveel u er tegenover staat. Niet in vage beloftes, maar in euro\'s per jaar. Die berekening is minder ingewikkeld dan ze lijkt, als u het in de juiste volgorde aanpakt.' },
       { kind: 'h2', text: 'Stap één: stel vast wat het nu kost' },
-      { kind: 'p', text: 'Kies één proces. Niet uw hele administratie, maar één ding. Zeg: het verwerken van binnenkomende orders. Beantwoord dan drie vragen: hoe vaak gebeurt dit per week, hoeveel minuten kost het per keer, en wie doet het?' },
+      { kind: 'p', text: 'Kies één proces. Niet uw hele administratie, maar één ding. Zeg: [het verwerken van binnenkomende orders](/oplossingen/klantenservice-automatiseren). Beantwoord dan drie vragen: hoe vaak gebeurt dit per week, hoeveel minuten kost het per keer, en wie doet het?' },
       { kind: 'p', text: 'Stel: uw binnendienst verwerkt 60 orders per week. Elke order kost gemiddeld 12 minuten: controleren, inboeken in Exact, bevestigingsmail sturen. Dat is 720 minuten per week, ofwel 12 uur. Bij een all-in uurtarief van € 32 voor die medewerker kost dit u € 384 per week, of ruim € 20.000 per jaar. Voor één proces.' },
       { kind: 'h2', text: 'Stap twee: schat wat de agent overneemt' },
       { kind: 'p', text: 'Een agent neemt zelden 100% over. Dat hoeft ook niet. Ga uit van een aandeel dat u zelf conservatief inschat: standaardorders volledig voorbereid, uitzonderingen naar de medewerker. In dit rekenvoorbeeld nemen wij 70 procent. Dan bespaart u 8,4 uur per week, oftewel € 269 per week of circa € 14.000 per jaar.' },
@@ -884,7 +884,7 @@ export const POSTS: Post[] = [
       { kind: 'list', items: [
         'Benoem één proceseigenaar. Iemand die elke week tien minuten neemt om te kijken wat de agent doet en welke uitzonderingen hij tegenkomt.',
         'Stel vooraf succes vast. Niet vaag (\'het moet beter gaan\'), maar concreet: \'De gemiddelde verwerkingstijd daalt van 25 naar 8 minuten\'.',
-        'Bouw guardrails in vóór u live gaat. Bepaal welke handelingen de agent autonoom mag uitvoeren en welke altijd langs een mens gaan.',
+        '[Bouw guardrails in vóór u live gaat](/kennis/guardrails-niet-een-rem-maar-een-kompas). Bepaal welke handelingen de agent autonoom mag uitvoeren en welke altijd langs een mens gaan.',
         'Plan een evaluatiemoment op week twee én week zes. Week twee om bij te sturen, week zes om te besluiten.',
         'Vertel uw medewerkers eerlijk wat u doet en waarom. Angst over baanverlies blokkeert adoptie meer dan elke technische tekortkoming.',
       ] },
@@ -925,7 +925,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Wij bouwen een agent, trainen uw team er twee keer op, en drie maanden later gebruikt nog maar één iemand hem. De rest werkt gewoon door zoals altijd. Herkenbaar? Bij bijna elk MKB-bedrijf dat zelf zonder begeleiding een AI-tool invoert, ziet het proces er zo uit. Niet omdat de medewerkers dom zijn of dwarsliggen. Maar omdat verandering tijd, uitleg en vertrouwen vraagt. En die drie dingen worden structureel onderschat.' },
       { kind: 'h2', text: 'Waarom weerstand geen probleem is, maar informatie' },
       { kind: 'p', text: 'Als iemand in uw team zegt "ik vertrouw dat ding niet", is dat een vraag in vermomming. Meestal gaat het om één van drie dingen: ze begrijpen niet wat de agent precies doet, ze zijn bang dat ze het straks fout doen als de agent iets geks uitvoert, of ze denken dat hun baan op het spel staat. Al die drie zijn oplosbaar. Maar niet door ze te negeren.' },
-      { kind: 'p', text: 'Het gesprek dat bijna nooit gevoerd wordt: "Wat moet de agent voor jou betekenen?" Niet wat de agent technisch kan. Niet wat de ondernemer ervan verwacht. Maar wat uw medewerker zelf kwijt wil, het werk dat energie kost, de fouten die keer op keer terugkomen, de klantvraag die elke dag hetzelfde is. Zodra die vraag op tafel ligt, verandert het gesprek. Van "ze moeten dit accepteren" naar "wij lossen dit samen op".' },
+      { kind: 'p', text: 'Het gesprek dat bijna nooit gevoerd wordt: "Wat moet de agent voor jou betekenen?" Niet wat de agent technisch kan. Niet wat de ondernemer ervan verwacht. Maar wat uw medewerker zelf kwijt wil, het werk dat energie kost, de fouten die keer op keer terugkomen, [de klantvraag die elke dag hetzelfde is](/oplossingen/klantenservice-automatiseren). Zodra die vraag op tafel ligt, verandert het gesprek. Van "ze moeten dit accepteren" naar "wij lossen dit samen op".' },
       { kind: 'h2', text: 'De drie fasen die werken' },
       { kind: 'p', text: 'Ik zie een vaste volgorde die succesvol is, ongeacht de branche of de grootte van het team. Kort samengevat:' },
       { kind: 'list', items: [
@@ -968,7 +968,7 @@ export const POSTS: Post[] = [
     blocks: [
       { kind: 'p', text: 'De meeste MKB-ondernemers denken bij AI-implementatie aan techniek. Aan servers, aan code, aan mensen met een IT-achtergrond. Dat is begrijpelijk, maar het is niet waar de meeste projecten op stranden. Ze mislukken op het organisatorische vlak: niemand die eigenaarschap voelt, niemand die de regels bijhoudt, niemand die de agent terugstuurt als hij de fout in gaat. Techniek is het makkelijkste deel.' },
       { kind: 'h2', text: 'Rol 1: de proceseigenaar' },
-      { kind: 'p', text: 'Dit is de persoon die het proces dat u wilt automatiseren het beste kent. Niet de directeur, maar de medewerker die het dagelijks doet. De binnendienst die elke klantmail afhandelt. De planner die de orders inschiet. De boekhouder die facturen controleert.' },
+      { kind: 'p', text: 'Dit is de persoon die het proces dat u wilt automatiseren het beste kent. Niet de directeur, maar de medewerker die het dagelijks doet. [De binnendienst die elke klantmail afhandelt](/oplossingen/klantenservice-automatiseren). De planner die de orders inschiet. De boekhouder die facturen controleert.' },
       { kind: 'p', text: 'De proceseigenaar vertelt ons wat de regels zijn, wat de uitzonderingen zijn en waar de agent het mis mag hebben. Zonder die persoon kunnen wij geen goede agent bouwen. Wij kunnen het proces technisch namaken, maar de nuances zitten in het hoofd van de proceseigenaar. Die kennis moet er expliciet uit.' },
       { kind: 'list', items: [
         'Beschikbaarheid: twee tot vier uur per week tijdens de bouwfase, daarna één uur per maand voor beheer.',
@@ -976,7 +976,7 @@ export const POSTS: Post[] = [
         'Profiel: geen technische kennis nodig. Wel kennis van het proces en bereidheid om dat op te schrijven.',
       ] },
       { kind: 'h2', text: 'Rol 2: de beslisser' },
-      { kind: 'p', text: 'Elke agent heeft beleidsregels nodig: wat mag automatisch, wat gaat langs een mens, wat nooit zonder goedkeuring. Die regels zijn geen technische beslissingen. Het zijn bedrijfsbeslissingen. Wie mag coulance toepassen? Tot welk bedrag? Welke klanten krijgen een afwijkende aanpak?' },
+      { kind: 'p', text: '[Elke agent heeft beleidsregels nodig](/kennis/guardrails-niet-een-rem-maar-een-kompas): wat mag automatisch, wat gaat langs een mens, wat nooit zonder goedkeuring. Die regels zijn geen technische beslissingen. Het zijn bedrijfsbeslissingen. Wie mag coulance toepassen? Tot welk bedrag? Welke klanten krijgen een afwijkende aanpak?' },
       { kind: 'p', text: 'De beslisser is meestal de directeur, de operations manager of de financieel verantwoordelijke. Het hoeft maar één iemand te zijn. Wat telt is dat die persoon de bevoegdheid heeft om het beleid vast te stellen én bereid is dat te doen voordat we live gaan. Niet achteraf.' },
       { kind: 'quote', text: 'Een agent zonder vastgesteld beleid is als een nieuwe medewerker zonder inwerkgids. Hij gaat improviseren, en dat wilt u niet.' },
       { kind: 'h2', text: 'Rol 3: de aanspreekpersoon voor techniek' },
@@ -1024,7 +1024,7 @@ export const POSTS: Post[] = [
       ] },
       { kind: 'h2', text: 'Kwartaal 2: uw eerste agent live' },
       { kind: 'p', text: 'In het tweede kwartaal bouwt en test u. Voor een goed gekozen eerste proces duurt dat zes tot tien weken. De eerste twee weken gaan naar koppeling met uw bestaande systemen, uw boekhoudpakket, uw CRM, uw mailomgeving. De volgende weken naar testen met echte data, maar met een mens die alles nog even nakijkt voordat het de deur uitgaat.' },
-      { kind: 'p', text: 'Die nakijkfase is niet optioneel. Het is waar u leert hoe de agent zich gedraagt bij afwijkende situaties. U past de beleidsregels aan. U voegt uitzonderingen toe die u in het inventarisatiegesprek niet had bedacht. Na vier weken naast-de-agent werken weet u of u hem kunt vertrouwen. Dan pas gaat hij zelfstandig.' },
+      { kind: 'p', text: 'Die nakijkfase is niet optioneel. Het is waar u leert hoe de agent zich gedraagt bij afwijkende situaties. [U past de beleidsregels aan](/kennis/guardrails-niet-een-rem-maar-een-kompas). U voegt uitzonderingen toe die u in het inventarisatiegesprek niet had bedacht. Na vier weken naast-de-agent werken weet u of u hem kunt vertrouwen. Dan pas gaat hij zelfstandig.' },
       { kind: 'quote', text: 'Een agent die vier weken lang alles goed doet terwijl iemand meekijkt, mag daarna zelfstandig. Niet eerder.' },
       { kind: 'h2', text: 'Kwartaal 3: uitbreiden op basis van wat u hebt geleerd' },
       { kind: 'p', text: 'Uw eerste agent draait. Uw medewerkers hebben er inmiddels een mening over. Sommige dingen werken beter dan u dacht, andere dingen missen ze. Dat is normaal. Nu gaat u twee dingen tegelijk doen: de eerste agent verder verbeteren op basis van die feedback, en een tweede proces voorbereiden.' },
@@ -1064,7 +1064,7 @@ export const POSTS: Post[] = [
       { kind: 'list', items: [
         'Volledigheid: zijn de velden die de agent nodig heeft structureel ingevuld, of ontbreken ze bij een kwart van de records?',
         'Eenduidigheid: staat een klant op één plek, of verspreid over drie records omdat iemand een tikfout maakte bij invoer?',
-        'Actualiteit: kloppen de prijzen, contactpersonen en voorraadcijfers nog, of werkt u met gegevens van zes maanden geleden?',
+        'Actualiteit: [kloppen de prijzen, contactpersonen en voorraadcijfers nog](/oplossingen/vraagvoorspelling), of werkt u met gegevens van zes maanden geleden?',
         'Structuur: staan de gegevens in vaste velden, of in vrije notitievelden die niemand op dezelfde manier invult?',
       ] },
       { kind: 'p', text: 'Een mens kan om deze gebreken heen werken. Hij belt even, kijkt in zijn hoofd, vraagt een collega. Een agent kan dat niet. Die heeft structurele, betrouwbare invoer nodig om betrouwbare output te geven.' },
@@ -1077,7 +1077,7 @@ export const POSTS: Post[] = [
         'Hoe oud zijn de gegevens in de records die de agent dagelijks nodig heeft? Data ouder dan drie maanden die niet automatisch ververst wordt, is een risico.',
       ] },
       { kind: 'h2', text: 'De meest voorkomende problemen per systeemtype' },
-      { kind: 'p', text: 'In de praktijk zien wij per type systeem terugkerende patronen. In boekhoudpakketten als Exact, Moneybird en Snelstart is de relatiestamkaart vaak het struikelblok: meerdere records voor dezelfde klant, ontbrekende BTW-nummers, adressen die nooit zijn bijgewerkt na een verhuizing. In CRM-systemen als Pipedrive of Teamleader zijn het de notitievelden. Iedereen schrijft er iets anders in, en niemand gebruikt de vaste velden consequent. In ordersystemen is het de productstamkaart: artikelcodes die niet overeenkomen met wat de leverancier stuurt, ontbrekende eenheden, dubbele SKU\'s.' },
+      { kind: 'p', text: 'In de praktijk zien wij per type systeem terugkerende patronen. In boekhoudpakketten als Exact, Moneybird en Snelstart is de relatiestamkaart vaak het struikelblok: meerdere records voor dezelfde klant, ontbrekende BTW-nummers, adressen die nooit zijn bijgewerkt na een verhuizing. [In CRM-systemen als Pipedrive of Teamleader](/oplossingen/leadopvolging-automatiseren) zijn het de notitievelden. Iedereen schrijft er iets anders in, en niemand gebruikt de vaste velden consequent. In ordersystemen is het de productstamkaart: artikelcodes die niet overeenkomen met wat de leverancier stuurt, ontbrekende eenheden, dubbele SKU\'s.' },
       { kind: 'p', text: 'Dit zijn structurele gewoontes, geen eenmalige fouten. Ze herstellen niet vanzelf.' },
       { kind: 'h2', text: 'Wat u kunt doen zonder een groot project te starten' },
       { kind: 'p', text: 'U hoeft niet alles tegelijk op te lossen. Dat is de goede nieuws. Het gaat erom dat de data die de agent dagelijks gebruikt, klopt. De rest mag later.' },
@@ -1111,7 +1111,7 @@ export const POSTS: Post[] = [
     readingMinutes: 6,
     tags: ['governance', 'beleid', 'guardrails', 'MKB', 'strategie'],
     blocks: [
-      { kind: 'p', text: 'Een agent die klantvragen beantwoordt, facturen verwerkt of offertes verstuurt, raakt vrijwel altijd persoonsgegevens. Namen, e-mailadressen, bestelinformatie, soms zelfs betalingsgeschiedenis. De AVG verbiedt dat niet. Wat de wet vraagt, is dat u bewust en gedocumenteerd omgaat met die gegevens. Dat is een ander gesprek dan de meeste ondernemers verwachten.' },
+      { kind: 'p', text: '[Een agent die klantvragen beantwoordt](/oplossingen/klantenservice-automatiseren), facturen verwerkt of offertes verstuurt, raakt vrijwel altijd persoonsgegevens. Namen, e-mailadressen, bestelinformatie, soms zelfs betalingsgeschiedenis. De AVG verbiedt dat niet. Wat de wet vraagt, is dat u bewust en gedocumenteerd omgaat met die gegevens. Dat is een ander gesprek dan de meeste ondernemers verwachten.' },
       { kind: 'h2', text: 'De basis: verwerkersgrondslag en doelbinding' },
       { kind: 'p', text: 'Elke verwerking van persoonsgegevens heeft een grondslag nodig. Voor de meeste bedrijfsprocessen is dat ofwel uitvoering van een overeenkomst, ofwel een gerechtvaardigd belang. Een agent die een orderbevestiging verstuurt valt onder de eerste grondslag. Een agent die een klant automatisch een herinnering stuurt voor een openstaande factuur valt onder de tweede. U hoeft daarvoor geen expliciete toestemming te vragen. Wat u wel nodig heeft, is een verwerkersregister.' },
       { kind: 'p', text: 'Doelbinding betekent dat de gegevens die u voor het ene doel verzamelt, niet zomaar voor iets anders gebruikt mogen worden. Klantgegevens die u heeft omdat iemand iets bestelde, mag u niet gebruiken voor een marketingcampagne zonder extra grondslag. Dat geldt ook als een agent die gegevens verwerkt. De agent doet wat u hem opdraagt, dus als de opdracht buiten de grondslag valt, is de agent het probleem niet, maar u als verwerkingsverantwoordelijke.' },
@@ -1159,7 +1159,7 @@ export const POSTS: Post[] = [
       { kind: 'list', items: [
         'Onaanvaardbaar risico: verboden toepassingen. Denk aan social scoring of manipulatieve systemen. U komt hier als MKB\'er niet in de buurt.',
         'Hoog risico: strenge verplichtingen. Hieronder vallen onder meer systemen voor personeelsselectie, kredietbeoordeling en toegang tot diensten. Wie hier een agent voor inzet, moet documentatie, audits en menselijk toezicht aantonen.',
-        'Beperkt risico: transparantieplicht. Als een klant een chatbot te woord staat, moet duidelijk zijn dat het een AI is. Dit geldt voor vrijwel elke klantenservice-agent.',
+        'Beperkt risico: transparantieplicht. [Als een klant een chatbot te woord staat](/diensten/vergelijken/ai-agent-vs-chatbot), moet duidelijk zijn dat het een AI is. Dit geldt voor vrijwel elke klantenservice-agent.',
         'Minimaal risico: geen extra verplichtingen. De meeste interne procesautomatisering valt hier. Denk aan orderverwerking of factuurverwerking.',
       ] },
       { kind: 'h2', text: 'Wat in 2026 concreet geldt' },
@@ -1178,7 +1178,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Wij adviseren elk MKB-bedrijf dat AI-agents gebruikt drie dingen vast te leggen, ongeacht de risicocategorie. Dit beschermt u juridisch en maakt audits een stuk eenvoudiger als ze ooit komen.' },
       { kind: 'list', items: [
         'Gebruik-logging: bewaar wat de agent beslist heeft en op basis van welke input. Geen uitputtende technische logs, maar een leesbaar spoor van beslissingen.',
-        'Menselijk toezicht: beschrijf schriftelijk welke beslissingen de agent autonoom neemt en welke langs een medewerker gaan. Dit is ook waarom guardrails zo belangrijk zijn.',
+        'Menselijk toezicht: beschrijf schriftelijk welke beslissingen de agent autonoom neemt en welke langs een medewerker gaan. Dit is ook [waarom guardrails zo belangrijk zijn](/kennis/guardrails-niet-een-rem-maar-een-kompas).',
         'Transparantie naar klanten: zorg dat uw privacyverklaring en klantcommunicatie vermelden dat AI wordt ingezet. Eén zin is genoeg, mits die er staat.',
       ] },
       { kind: 'quote', text: 'De AI-act vraagt niet dat u stopt met automatiseren. Hij vraagt dat u kunt uitleggen wat uw systeem doet en waarom.' },
@@ -1224,7 +1224,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Voeg een validatiestap in tussen het antwoord dat de agent opstelt en het moment dat het naar de klant gaat. Dat kan een tweede controle door het model zelf zijn op basis van een checklist, maar ook een automatische verificatie tegen uw databron. Wij bouwen dit standaard in als de agent klantgerichte berichten verstuurt.' },
       { kind: 'list', items: [
         'Bevat het antwoord een prijs? Controleer of die prijs overeenkomt met de actuele prijs in het systeem.',
-        'Bevat het antwoord een levertijd of datum? Toets die aan de planning of voorraadstatus.',
+        'Bevat het antwoord een levertijd of datum? [Toets die aan de planning of voorraadstatus](/oplossingen/vraagvoorspelling).',
         'Bevat het antwoord een naam of referentienummer? Verifieer of die daadwerkelijk bestaat in uw administratie.',
         'Klopt er iets niet? Stuur het bericht niet, maar zet het in een wachtrij voor menselijke review.',
       ] },
@@ -1232,7 +1232,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Een agent in productie zonder logging is een systeem dat u niet kunt verbeteren. Sla elk gesprek op, markeer gevallen waarbij een mens moest ingrijpen, en bekijk die wekelijks. Na vier tot acht weken ziet u patronen: welke vragen leiden steeds tot twijfelachtige antwoorden, welke databron ontbreekt, welke beleidsregel onduidelijk is.' },
       { kind: 'p', text: 'Die terugkoppeling is niet optioneel. Een agent die in januari goed functioneert, kan in april de mist ingaan als uw productaanbod of werkwijze is veranderd maar de instructies niet zijn bijgewerkt. Behandel de agent als een medewerker die regelmatig feedback nodig heeft, niet als software die u eenmalig installeert.' },
       { kind: 'h2', text: 'Wat dit betekent voor uw implementatie' },
-      { kind: 'p', text: 'Begin bij de bron: uw data. Als uw CRM vervuilde klantgegevens bevat, vergroot u het risico op fouten, ongeacht hoe goed de agent is geconfigureerd. Schone data is de basis. Daarna komen de technische maatregelen: databronkoppeling, domeinbeperking, validatie, logging. Geen van die stappen is ingewikkeld op zichzelf. De moeite zit in het samenspel en het volhouden.' },
+      { kind: 'p', text: 'Begin bij de bron: uw data. Als uw CRM vervuilde klantgegevens bevat, vergroot u het risico op fouten, ongeacht hoe goed de agent is geconfigureerd. [Schone data is de basis](/kennis/data-kwaliteit-voorwaarde-werkende-ai-agents). Daarna komen de technische maatregelen: databronkoppeling, domeinbeperking, validatie, logging. Geen van die stappen is ingewikkeld op zichzelf. De moeite zit in het samenspel en het volhouden.' },
     ],
     faq: [
       { q: 'Zijn hallucinaties bij AI-agents volledig te voorkomen?', a: 'Volledig voorkomen is niet realistisch, maar het risico is sterk te beperken. Door de agent te koppelen aan uw actuele systemen, het taakveld te beperken en elke uitspraak te valideren tegen een databron, komt u in de praktijk tot een foutmarge die vergelijkbaar is met die van een medewerker die handmatig werkt. Het gaat om beheersing, niet om perfectie.' },
@@ -1270,7 +1270,7 @@ export const POSTS: Post[] = [
       { kind: 'list', items: [
         'Financiële verplichtingen boven een drempelbedrag dat u zelf vaststelt. Bij een maakbedrijf kan dat € 2.000 zijn, bij een groothandel € 10.000.',
         'Communicatie bij een klacht waarbij de klantrelatie op het spel staat, zeker bij klanten boven een bepaalde omzetdrempel.',
-        'Juridisch bindende berichten: opzeggingen, aanmaningen in de laatste fase, offertes met afwijkende voorwaarden.',
+        'Juridisch bindende berichten: opzeggingen, aanmaningen in de laatste fase, [offertes met afwijkende voorwaarden](/oplossingen/leadopvolging-automatiseren).',
         'Situaties waarbij de agent aangeeft dat hij er niet uitkomt. Als het vertrouwensniveau van de agent laag is, moet dat altijd escaleren.',
         'Nieuwe klanten of leveranciers waar nog geen historische data over bestaat.',
       ] },
@@ -1307,10 +1307,10 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Waar u rekening mee moet houden: Exact werkt per divisie. Als u meerdere bedrijfsentiteiten heeft in één Exact-omgeving, moet de agent weten in welke divisie hij moet werken. Dat klinkt technisch, maar het is vooral een configuratievraag die u vooraf beantwoordt. Een tweede aandachtspunt is de OAuth-authenticatie. Exact vereist dat een gebruiker eenmalig toestemming verleent via een browserflow. Daarna verloopt het automatisch. Dat eenmalige moment regelen we tijdens de implementatie.' },
       { kind: 'h2', text: 'Twinfield: solide maar minder bekend' },
       { kind: 'p', text: 'Twinfield wordt veel gebruikt door accountantskantoren en hun klanten. De API is XML-gebaseerd, wat ouder aandoet dan de REST-interfaces van Exact of AFAS, maar het werkt betrouwbaar. Een agent kan boekingen aanmaken, openstaande posten opvragen en relatiegegevens uitlezen. Het inrichten van de koppeling vraagt iets meer technische kennis van de Twinfield-structuur, met name rondom grootboekrekeningen en kostenplaatsen.' },
-      { kind: 'p', text: 'Twinfield heeft ook een webservices-interface die directe bestandsuitwisseling mogelijk maakt. Dat is nuttig als uw agent inkoopfacturen verwerkt die via e-mail binnenkomen: de agent leest de bijlage uit, structureert de gegevens en boekt ze via de webservice direct in. Voor middelgrote bedrijven met een eigen accountant die Twinfield beheert, werkt dit goed zolang u de grootboekinrichting van tevoren afspreekt.' },
+      { kind: 'p', text: 'Twinfield heeft ook een webservices-interface die directe bestandsuitwisseling mogelijk maakt. Dat is nuttig als [uw agent inkoopfacturen verwerkt](/oplossingen/inkoop-automatiseren) die via e-mail binnenkomen: de agent leest de bijlage uit, structureert de gegevens en boekt ze via de webservice direct in. Voor middelgrote bedrijven met een eigen accountant die Twinfield beheert, werkt dit goed zolang u de grootboekinrichting van tevoren afspreekt.' },
       { kind: 'h2', text: 'AFAS: veel mogelijk, maar eigenwijzer' },
       { kind: 'p', text: 'AFAS is meer dan alleen boekhoudsoftware. Het omvat ook HR, CRM en projectadministratie. Dat maakt de koppelmogelijkheden breder, maar ook complexer. AFAS werkt met een eigen connector-laag genaamd GetConnectors en UpdateConnectors. Die zijn flexibel, maar vereisen dat iemand bij AFAS of bij u intern de juiste connectors heeft ingericht.' },
-      { kind: 'p', text: 'Een agent die facturen moet aanmaken in AFAS heeft een UpdateConnector nodig die daarvoor is geconfigureerd. Als die connector er nog niet is, moet een AFAS-beheerder hem aanmaken. Dat is geen ict-probleem, maar een beheervraagstuk. Plan dit in als onderdeel van uw implementatietraject, anders loopt u er tegenaan op het moment dat u wilt livegang.' },
+      { kind: 'p', text: 'Een agent die facturen moet aanmaken in AFAS heeft een UpdateConnector nodig die daarvoor is geconfigureerd. Als die connector er nog niet is, moet een AFAS-beheerder hem aanmaken. Dat is geen ict-probleem, maar een beheervraagstuk. Plan dit in als [onderdeel van uw implementatietraject](/kennis/ai-implementeren-vijf-stappen-mkb), anders loopt u er tegenaan op het moment dat u wilt livegang.' },
       { kind: 'list', items: [
         'Exact Online: REST API, goed gedocumenteerd, twee tot vier dagen koppelwerk, let op divisie-structuur.',
         'Twinfield: XML-webservices, stabiel, iets meer configuratie rond grootboekrekeningen en kostenplaatsen.',
@@ -1350,7 +1350,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Het klinkt technisch, maar de analogie is eenvoudig: denk aan een klein kantoor. De receptioniste neemt de telefoon op, noteert de vraag, geeft die door aan de juiste collega, en stuurt de bevestiging zodra het antwoord klaar is. Niemand verwacht van de receptioniste dat ze ook de boekhouding doet.' },
       { kind: 'h2', text: 'Drie signalen dat u een tweede agent nodig heeft' },
       { kind: 'list', items: [
-        'Uw huidige agent doet taken die niets met elkaar te maken hebben. Een agent die offertes maakt én klachten afhandelt én voorraadupdates verstuurt, is geen gespecialiseerde agent meer. Dat is een junk drawer.',
+        'Uw huidige agent doet taken die niets met elkaar te maken hebben. [Een agent die offertes maakt](/oplossingen/leadopvolging-automatiseren) én klachten afhandelt én voorraadupdates verstuurt, is geen gespecialiseerde agent meer. Dat is een junk drawer.',
         'De instructies van uw agent zijn langer dan één A4. Als u meer dan vijftien regels nodig heeft om uit te leggen wat de agent moet doen, is de taak waarschijnlijk te breed voor één agent.',
         'De foutgevoeligheid stijgt naarmate de agent meer taken krijgt. Een tweede agent voor een specifiek onderdeel brengt de foutmarge terug naar een beheersbaar niveau.',
       ] },
@@ -1399,7 +1399,7 @@ export const POSTS: Post[] = [
       { kind: 'h2', text: 'De vier randvoorwaarden die u vooraf regelt' },
       { kind: 'list', items: [
         'Documentbeheer op orde: elk document heeft een eigenaar, een versiedatum en een status (actueel, verlopen, concept). Verouderde documenten uit de index houden is minstens zo belangrijk als nieuwe documenten toevoegen.',
-        'Toegangslagen per rol: een agent die inkoopmedewerkers bedient heeft geen toegang nodig tot salarisgegevens. Bouw autorisatie in op documentniveau, niet achteraf op systeemniveau.',
+        'Toegangslagen per rol: [een agent die inkoopmedewerkers bedient](/oplossingen/inkoop-automatiseren) heeft geen toegang nodig tot salarisgegevens. Bouw autorisatie in op documentniveau, niet achteraf op systeemniveau.',
         'Bronvermelding in elk antwoord: de agent geeft altijd aan uit welk document hij put, inclusief datum. Zo kan een gebruiker zelf verifiëren of de bron nog geldig is.',
         'Een testset van referentievragen: stel voor livegang twintig tot dertig vragen waarvan u het juiste antwoord kent. Meet of de agent ze goed beantwoordt, en doe dat elke keer als u documenten wijzigt.',
       ] },
@@ -1453,7 +1453,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Niet elke logmelding is een actie waard. De kunst is onderscheiden wat uw aandacht nodig heeft en wat niet. Wij richten standaard drie soorten meldingen in bij elke agent die we bouwen.' },
       { kind: 'list', items: [
         'Fouten die de taak hebben geblokkeerd. De agent kon iets niet afmaken. Dat wilt u altijd weten, dezelfde dag.',
-        'Afwijkingen van normaal volume. Als een agent maandag 40 facturen verwerkt en woensdag ineens 4, klopt er iets niet in de aanvoer.',
+        'Afwijkingen van normaal volume. [Als een agent maandag 40 facturen verwerkt](/diensten/ai-automatisering) en woensdag ineens 4, klopt er iets niet in de aanvoer.',
         'Acties boven een drempel die u zelf bepaalt. Bedragen, aantallen, klantcategorieën. Alles wat u normaal zelf zou controleren.',
       ] },
       { kind: 'quote', text: 'Een agent die u niet kunt auditen, kunt u niet verantwoorden. Aan uzelf niet, en aan uw klant niet.' },
@@ -1498,7 +1498,7 @@ export const POSTS: Post[] = [
       { kind: 'p', text: 'Dezelfde vraag geldt voor uw eigen administratie. Als uw accountant straks documenten geautomatiseerd verwerkt, dan helpt het als u aanlevert in een formaat dat daarvoor geschikt is. PDF-facturen die via e-mail binnenkomen zijn verwerkbaar. Een handgeschreven bonnetje op foto is dat minder.' },
       { kind: 'quote', text: 'Accountancy verandert niet door AI. Accountancy wordt zichtbaarder door AI, en dat is iets anders.' },
       { kind: 'h2', text: 'Wat u zelf kunt doen' },
-      { kind: 'p', text: 'U hoeft de AI-strategie van uw accountant niet over te nemen. Maar u kunt uw eigen administratie zo inrichten dat ze makkelijk aansluit. Dat begint bij het consequent digitaal aanleveren van inkoop- en verkoopfacturen, het gebruik van een koppelbaar boekhoudpakket zoals Moneybird of Snelstart, en het afspreken van een duidelijk proces voor bankafschriften.' },
+      { kind: 'p', text: 'U hoeft de AI-strategie van uw accountant niet over te nemen. Maar u kunt uw eigen administratie zo inrichten dat ze makkelijk aansluit. Dat begint bij het [consequent digitaal aanleveren van inkoop- en verkoopfacturen](/oplossingen/inkoop-automatiseren), het gebruik van een koppelbaar boekhoudpakket zoals Moneybird of Snelstart, en het afspreken van een duidelijk proces voor bankafschriften.' },
       { kind: 'list', items: [
         'Stel uw accountant de vraag: welke aanleversystematiek werkt het beste voor geautomatiseerde verwerking?',
         'Controleer of uw boekhoudpakket een directe API-koppeling ondersteunt, dat scheelt handmatig exporteren.',
