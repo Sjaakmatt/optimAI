@@ -313,7 +313,7 @@ function externArticleSchema(post: SoroPost) {
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
-    image: `${SITE_URL}/opengraph-image`,
+    image: post.image ?? `${SITE_URL}/opengraph-image`,
     keywords: post.tags,
     articleSection: 'Kennis',
     isPartOf: {

@@ -136,13 +136,18 @@ De artikelen die Soro publiceert worden server-side opgehaald en samengevoegd
 met de eigen kennisartikelen op `/kennis`. Ze krijgen dezelfde opmaak, hetzelfde
 Article-schema en een plek in de sitemap.
 
-Aanzetten:
+De feed-URL staat als standaard in `lib/data/soro.ts` en werkt zonder verdere
+configuratie. Het token is account-gebonden en read-only; hetzelfde token stond
+in het publieke embed-snippet.
 
-1. Zet in het Soro-dashboard de RSS-feed aan (die staat standaard uit) en kopieer
-   de feed-URL. Let op: de feed heeft een eigen token, niet het embed-token.
-2. Zet `SORO_FEED_URL` als omgevingsvariabele in Vercel.
+- Andere feed gebruiken: zet `SORO_FEED_URL` in de omgeving.
+- Externe artikelen uitzetten: zet `SORO_FEED_URL` op een lege waarde.
 
-Zonder die variabele doet de site precies wat hij daarvoor deed: geen externe
-artikelen, geen extra requests. De feed wordt elk uur opnieuw opgehaald
-(`revalidate = 3600`). HTML uit de feed wordt gesaneerd voordat hij gerenderd
-wordt: scripts, iframes, event-handlers en `javascript:`-URL's gaan eruit.
+De feed wordt elk uur opnieuw opgehaald (`revalidate = 3600`). Nieuwe artikelen
+verschijnen dus vanzelf, zonder deploy. HTML uit de feed wordt gesaneerd voordat
+hij gerenderd wordt: scripts, iframes, event-handlers en `javascript:`-URL's
+gaan eruit.
+
+Soro publiceert artikelen met een link naar de root van het domein
+(`factumai.nl/<slug>`), terwijl wij ze onder `/kennis/<slug>` hosten. De route
+`app/[slug]/page.tsx` vangt die root-URL's op met een permanente redirect.

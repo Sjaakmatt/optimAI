@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GA_ID, ADS_ID, adsConfigured, pageview } from '@/lib/analytics/gtag';
 import {
@@ -160,12 +161,12 @@ function ConsentBanner({
               Wij gebruiken cookies om te zien hoe de site gebruikt wordt en hem te verbeteren
               {showMarketing ? ', en om onze advertenties te meten' : ''}. Alleen met uw
               toestemming. Noodzakelijke functies werken altijd. Meer leest u in onze{' '}
-              <a
+              <Link
                 href="/privacy"
                 className="text-[var(--oker-deep)] underline underline-offset-2 hover:text-[var(--ink)] transition-colors"
               >
                 privacyverklaring
-              </a>
+              </Link>
               .
             </p>
             <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
