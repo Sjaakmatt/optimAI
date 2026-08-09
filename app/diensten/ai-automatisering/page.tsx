@@ -78,16 +78,6 @@ const SERVICE_SCHEMA = {
   provider: { '@id': `${SITE_URL}/#organization` },
   areaServed: { '@type': 'Country', name: 'Netherlands' },
   url: `${SITE_URL}${PAGE_PATH}`,
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'EUR',
-    availability: 'https://schema.org/InStock',
-    priceSpecification: {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'EUR',
-      description: 'Vaste prijs per geautomatiseerd proces, afhankelijk van complexiteit en integraties.',
-    },
-  },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Vormen van AI-automatisering',

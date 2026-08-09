@@ -6,6 +6,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { POSTS, POST_BY_SLUG, type PostBlock, type Post } from '@/lib/data/posts';
+import { getSoroPostBySlug, getSoroPostsExcluding, type SoroPost } from '@/lib/data/soro';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -49,7 +50,7 @@ function articleSchema(post: Post) {
     inLanguage: 'nl-NL',
     author: {
       '@type': 'Person',
-      '@id': `${SITE_URL}/over/sjaak-ter-veld#person`,
+      '@id': `${SITE_URL}/over#sjaak-ter-veld`,
       name: post.author,
       url: `${SITE_URL}/over/sjaak-ter-veld`,
     },
@@ -88,8 +89,11 @@ function faqSchema(post: Post) {
   };
 }
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
-  return POSTS.map((p) => ({ slug: p.slug }));
+  const extern = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
+  return [...POSTS, ...extern].map((p) => ({ slug: p.slug }));
 }
 
 const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
@@ -105,7 +109,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = POST_BY_SLUG[slug];
-  if (!p) return { title: 'Artikel niet gevonden' };
+  if (!p) {
+    const extern = await getSoroPostBySlug(slug);
+    if (!extern) return { title: 'Artikel niet gevonden' };
+    return {
+      title: extern.title,
+      description: extern.lede,
+      alternates: { canonical: `/kennis/${slug}` },
+      openGraph: {
+        title: extern.title,
+        description: extern.lede,
+        type: 'article',
+        publishedTime: extern.published,
+        modifiedTime: extern.updated ?? extern.published,
+      },
+    };
+  }
   return {
     title: p.title,
     description: p.lede,
@@ -128,7 +147,11 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
   const p = POST_BY_SLUG[slug];
-  if (!p) notFound();
+  if (!p) {
+    const extern = await getSoroPostBySlug(slug);
+    if (!extern) notFound();
+    return <ExternArtikel post={extern} />;
+  }
 
   const related = relatedPosts(p, POSTS, 3);
   const nextPost = related[0] ?? POSTS[(POSTS.findIndex((x) => x.slug === slug) + 1) % POSTS.length];
@@ -262,6 +285,125 @@ export default async function PostPage({
                 <ArrowRight size={18} strokeWidth={1.8} />
               </Link>
             </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+            >
+              Sparren over uw situatie
+              <ArrowRight size={16} strokeWidth={1.8} />
+            </Link>
+          </div>
+        </section>
+      </article>
+    </SitePage>
+  );
+}
+
+function externArticleSchema(post: SoroPost) {
+  const url = `${SITE_URL}/kennis/${post.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.lede,
+    datePublished: post.published,
+    dateModified: post.updated ?? post.published,
+    inLanguage: 'nl-NL',
+    author: { '@id': `${SITE_URL}/#organization` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+    image: `${SITE_URL}/opengraph-image`,
+    keywords: post.tags,
+    articleSection: 'Kennis',
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${SITE_URL}/kennis#blog`,
+      name: 'FactumAI Kennisbank',
+    },
+  };
+}
+
+function ExternArtikel({ post }: { post: SoroPost }) {
+  const verderLezen = POSTS.slice(0, 3);
+
+  return (
+    <SitePage>
+      <JsonLd data={externArticleSchema(post)} />
+      <article>
+        <section className="mx-auto max-w-[740px] px-5 sm:px-8 lg:px-10 pt-12 sm:pt-16 pb-6 sm:pb-8">
+          <div className="mb-6 sm:mb-8">
+            <Breadcrumbs
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Kennis', href: '/kennis' },
+                { label: post.title, href: `/kennis/${post.slug}` },
+              ]}
+            />
+          </div>
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+            {DATE_FORMATTER.format(new Date(post.published))} · {post.readingMinutes} min lezen
+          </div>
+          <h1 className="mt-4 font-display text-[30px] sm:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight text-[var(--ink)]">
+            {post.title}
+          </h1>
+          <p className="mt-5 font-display italic text-[18px] sm:text-[22px] leading-[1.45] text-[var(--oker-deep)]">
+            {post.lede}
+          </p>
+        </section>
+
+        <section className="mx-auto max-w-[680px] px-5 sm:px-8 lg:px-10 pb-16 pt-2">
+          <div
+            className="extern-artikel"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+          {post.tags.length > 0 && (
+            <div className="mt-10 pt-6 border-t border-[var(--paper-edge)] flex flex-wrap gap-2">
+              {post.tags.map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-1 rounded-[2px] bg-[var(--paper-deep)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-[0.14em]"
+                >
+                  #{t}
+                </span>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section className="border-t border-[var(--paper-edge)]">
+          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 sm:py-14">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
+              Verder lezen
+            </div>
+            <h2 className="mt-2 font-display text-[24px] sm:text-[30px] leading-tight text-[var(--ink)]">
+              Uit onze eigen kennisbank.
+            </h2>
+            <ul className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {verderLezen.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/kennis/${r.slug}`}
+                    className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  >
+                    <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
+                      {DATE_FORMATTER.format(new Date(r.published))} · {r.readingMinutes} min
+                    </div>
+                    <div className="mt-2 font-display text-[16px] leading-snug text-[var(--ink)]">
+                      {r.title}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="border-t border-[var(--paper-edge)] bg-[var(--paper-deep)]">
+          <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <h2 className="font-display text-[22px] text-[var(--ink)] max-w-[560px] leading-snug">
+              Benieuwd wat dit voor uw bedrijf betekent?
+            </h2>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"

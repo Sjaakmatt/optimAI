@@ -135,6 +135,7 @@ export function SiteFooter() {
                 Alle artikelen
               </Link>
             </li>
+
           </ul>
         </div>
 

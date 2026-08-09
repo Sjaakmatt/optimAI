@@ -237,3 +237,103 @@ body::after {
   background-image: linear-gradient(transparent 60%, rgba(168, 128, 58, 0.25) 60%, rgba(168, 128, 58, 0.18) 95%, transparent 100%);
   padding: 0 0.1em;
 }
+
+/* Typografie voor artikelen die als HTML uit een externe feed komen.
+   Volgt dezelfde maatvoering als de Block-componenten van eigen artikelen. */
+.extern-artikel > * + * {
+  margin-top: 1.25rem;
+}
+.extern-artikel p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.extern-artikel h2 {
+  font-family: var(--font-playfair), serif;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-top: 2.5rem;
+}
+.extern-artikel h3 {
+  font-family: var(--font-playfair), serif;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-top: 2rem;
+}
+.extern-artikel h4,
+.extern-artikel h5,
+.extern-artikel h6 {
+  font-family: var(--font-playfair), serif;
+  font-size: 17px;
+  color: var(--ink);
+  margin-top: 1.75rem;
+}
+.extern-artikel ul,
+.extern-artikel ol {
+  padding-left: 1.25rem;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.extern-artikel ul {
+  list-style: disc;
+}
+.extern-artikel ol {
+  list-style: decimal;
+}
+.extern-artikel li + li {
+  margin-top: 0.4rem;
+}
+.extern-artikel a {
+  color: var(--oker-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.extern-artikel a:hover {
+  color: var(--ink);
+}
+.extern-artikel strong {
+  font-weight: 600;
+}
+.extern-artikel blockquote {
+  border-left: 3px solid var(--oker);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.extern-artikel img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+.extern-artikel table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  display: block;
+  overflow-x: auto;
+}
+.extern-artikel th,
+.extern-artikel td {
+  border-bottom: 1px solid var(--paper-edge);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+.extern-artikel code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9em;
+  background: var(--paper-deep);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+.extern-artikel pre {
+  background: var(--paper-deep);
+  padding: 1rem;
+  border-radius: 2px;
+  overflow-x: auto;
+}

@@ -61,7 +61,12 @@ export default async function VergelijkenPage({
     headline: c.pageTitle,
     description: c.metaDescription,
     inLanguage: 'nl-NL',
-    author: { '@id': `${SITE_URL}/over/sjaak-ter-veld#person` },
+    author: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/over#sjaak-ter-veld`,
+      name: 'Sjaak ter Veld',
+      url: `${SITE_URL}/over`,
+    },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,

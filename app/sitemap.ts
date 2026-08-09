@@ -4,6 +4,7 @@ import { POSTS } from '@/lib/data/posts';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
 import { OPLOSSINGEN } from '@/lib/data/oplossingen';
+import { getSoroPostsExcluding } from '@/lib/data/soro';
 import { RESOURCES } from '@/lib/data/resources';
 import { TEAM } from '@/lib/data/team';
 
@@ -42,7 +43,7 @@ function withAlternates(url: string) {
   } satisfies NonNullable<MetadataRoute.Sitemap[number]['alternates']>;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => {
@@ -133,6 +134,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const externePosts = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
+  const externeEntries: MetadataRoute.Sitemap = externePosts.map((p) => {
+    const url = `${SITE_URL}/kennis/${p.slug}`;
+    return {
+      url,
+      lastModified: new Date(p.updated ?? p.published),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+      alternates: withAlternates(url),
+    };
+  });
+
   return [
     ...staticEntries,
     ...oplossingEntries,
@@ -142,5 +155,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...resourceEntries,
     ...caseEntries,
     ...postEntries,
+    ...externeEntries,
   ];
 }
