@@ -30,16 +30,6 @@ const nextConfig: NextConfig = {
         destination: "/diensten",
         permanent: true,
       },
-      {
-        source: "/blog",
-        destination: "/kennis",
-        permanent: true,
-      },
-      {
-        source: "/blog/:slug",
-        destination: "/kennis/:slug",
-        permanent: true,
-      },
     ];
   },
   async headers() {
