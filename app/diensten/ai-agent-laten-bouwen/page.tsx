@@ -125,16 +125,6 @@ const SERVICE_SCHEMA = {
   provider: { '@id': `${SITE_URL}/#organization` },
   areaServed: { '@type': 'Country', name: 'Netherlands' },
   url: `${SITE_URL}${PAGE_PATH}`,
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'EUR',
-    priceSpecification: {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'EUR',
-      description: 'Vaste prijs per agent, afhankelijk van complexiteit en integraties.',
-    },
-    availability: 'https://schema.org/InStock',
-  },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'AI-agent oplossingen',

@@ -49,7 +49,7 @@ function articleSchema(post: Post) {
     inLanguage: 'nl-NL',
     author: {
       '@type': 'Person',
-      '@id': `${SITE_URL}/over/sjaak-ter-veld#person`,
+      '@id': `${SITE_URL}/over#sjaak-ter-veld`,
       name: post.author,
       url: `${SITE_URL}/over/sjaak-ter-veld`,
     },

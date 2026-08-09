@@ -30,7 +30,7 @@ function caseSchema(c: CaseStudy) {
     about: {
       '@type': 'Organization',
       name: c.klant,
-      industry: c.branche,
+      knowsAbout: c.branche,
       address,
     },
     articleSection: 'Cases',

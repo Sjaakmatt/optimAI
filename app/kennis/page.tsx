@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { POSTS } from '@/lib/data/posts';
+import { RESOURCES } from '@/lib/data/resources';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -37,7 +38,7 @@ const BLOG_SCHEMA = {
   url: `${SITE_URL}/kennis`,
   inLanguage: 'nl-NL',
   publisher: { '@id': `${SITE_URL}/#organization` },
-  author: { '@id': `${SITE_URL}/over/sjaak-ter-veld#person` },
+  author: { '@id': `${SITE_URL}/over#sjaak-ter-veld` },
 };
 
 const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
@@ -109,6 +110,39 @@ export default function KennisPage() {
             </div>
           </Link>
         ))}
+      </section>
+
+      <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-warm)' }}>
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16">
+          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+            Om mee te werken
+          </div>
+          <h2 className="mt-2 font-display text-[24px] sm:text-[30px] leading-tight text-[var(--ink)]">
+            Twee documenten die u zelf kunt gebruiken.
+          </h2>
+          <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[820px]">
+            {RESOURCES.map((r) => (
+              <li key={r.slug}>
+                <Link
+                  href={`/resources/${r.slug}`}
+                  className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-deep)] transition-colors"
+                >
+                  <span className="font-display text-[17px] text-[var(--ink)] leading-snug">
+                    {r.shortTitle}
+                    <ArrowRight
+                      size={14}
+                      strokeWidth={1.8}
+                      className="inline ml-2 text-[var(--oker-deep)]"
+                    />
+                  </span>
+                  <span className="block mt-2 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
+                    {r.description}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </SitePage>
   );
