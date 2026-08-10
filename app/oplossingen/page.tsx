@@ -5,7 +5,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { calPopupAttrs } from '@/components/booking/config';
-import { OPLOSSINGEN } from '@/lib/data/oplossingen';
+import { OPLOSSINGEN, OPLOSSINGEN_PER_CATEGORIE } from '@/lib/data/oplossingen';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 const PAGE_PATH = '/oplossingen';
@@ -13,12 +13,12 @@ const PAGE_PATH = '/oplossingen';
 export const metadata: Metadata = {
   title: 'Oplossingen · waar de beslislaag het meeste oplevert',
   description:
-    'Vier processen waar wij het vaakst bouwen: klantenservice, leadopvolging, vraagvoorspelling en inkoop. Het systeem heeft de gegevens al, alleen neemt niemand er een besluit over.',
+    'Zestien processen waar wij het vaakst bouwen: van klantenservice, offertes en orderverwerking tot inkoop, facturen, werkbonnen en rapportage. Het systeem heeft de gegevens al, alleen neemt niemand er een besluit over.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'Oplossingen · FactumAI',
     description:
-      'Vier processen waar de beslislaag boven uw ERP het meeste oplevert.',
+      'Zestien processen waar de beslislaag boven uw ERP het meeste oplevert.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -60,37 +60,72 @@ export default function OplossingenPage() {
             <span className="italic text-[var(--oker-deep)]">het meeste oplevert.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Vier processen waar wij het vaakst bouwen. Ze hebben één ding gemeen: het systeem heeft
-            de gegevens al, alleen neemt niemand er een besluit over.
+            Zestien processen waar wij het vaakst bouwen, verdeeld over vier gebieden. Ze hebben
+            één ding gemeen: het systeem heeft de gegevens al, alleen neemt niemand er een besluit
+            over.
           </p>
+          <nav aria-label="Categorieën" className="mt-7 flex flex-wrap gap-2">
+            {OPLOSSINGEN_PER_CATEGORIE.map((c) => (
+              <a
+                key={c.key}
+                href={`#${c.key}`}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] hover:border-[var(--oker)] hover:text-[var(--oker-deep)] transition-colors"
+              >
+                {c.label}
+                <span className="text-[var(--ink-faint)] tabular-nums">{c.oplossingen.length}</span>
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-12">
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {OPLOSSINGEN.map((o) => (
-            <li key={o.slug}>
-              <Link
-                href={`/oplossingen/${o.slug}`}
-                className="block h-full px-6 py-7 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors group"
-              >
-                <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
-                  {o.heroEyebrow}
-                </div>
-                <h2 className="mt-2 font-display text-[22px] sm:text-[24px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
-                  {o.navLabel}
-                </h2>
-                <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">
-                  {o.cardBody}
-                </p>
-                <div className="mt-5 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                  Bekijk oplossing
-                  <ArrowRight size={12} strokeWidth={1.8} />
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      {OPLOSSINGEN_PER_CATEGORIE.map((c) => (
+        <section
+          key={c.key}
+          id={c.key}
+          className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-10 pb-2 scroll-mt-24"
+        >
+          <div className="pt-8 border-t border-[var(--paper-edge)]">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+              {c.label}
+            </div>
+            <p className="mt-3 text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[680px]">
+              {c.intro}
+            </p>
+            <ul className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {c.oplossingen.map((o) => (
+                <li key={o.slug}>
+                  <Link
+                    href={`/oplossingen/${o.slug}`}
+                    className="block h-full px-6 py-7 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors group"
+                  >
+                    <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
+                      {o.heroEyebrow}
+                    </div>
+                    <h2 className="mt-2 font-display text-[22px] sm:text-[24px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
+                      {o.navLabel}
+                    </h2>
+                    <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">
+                      {o.cardBody}
+                    </p>
+                    <div className="mt-5 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+                      Bekijk oplossing
+                      <ArrowRight size={12} strokeWidth={1.8} />
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ))}
+
+      <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pt-10 pb-12">
+        <p className="pt-8 border-t border-[var(--paper-edge)] text-[15px] leading-[1.7] text-[var(--ink-dim)] max-w-[680px]">
+          Staat uw proces er niet bij? Dat komt vaker voor dan niet. Deze lijst is wat wij het
+          vaakst bouwen, geen assortiment. De vraag die wij stellen is steeds dezelfde: waar heeft
+          uw systeem de gegevens al, en neemt er niemand een besluit over?
+        </p>
       </section>
 
       <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-warm)' }}>

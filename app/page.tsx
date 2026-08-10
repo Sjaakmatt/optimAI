@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { calPopupAttrs } from '@/components/booking/config';
 import { CASES } from '@/lib/data/cases';
-import { OPLOSSINGEN } from '@/lib/data/oplossingen';
+import { OPLOSSINGEN, OPLOSSINGEN_FEATURED } from '@/lib/data/oplossingen';
 
 export const metadata: Metadata = {
   title: 'FactumAI · AI-agents voor MKB',
@@ -281,12 +281,12 @@ function WatDoenWe() {
               href="/oplossingen"
               className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider hover:text-[var(--ink)] flex items-center gap-1.5"
             >
-              Alle oplossingen
+              Alle {OPLOSSINGEN.length} oplossingen
               <ArrowRight size={12} strokeWidth={1.8} />
             </Link>
           </div>
           <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-            {OPLOSSINGEN.map((o) => (
+            {OPLOSSINGEN_FEATURED.map((o) => (
               <li key={o.slug}>
                 <Link
                   href={`/oplossingen/${o.slug}`}

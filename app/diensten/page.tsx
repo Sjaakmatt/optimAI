@@ -6,7 +6,7 @@ import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
-import { OPLOSSINGEN } from '@/lib/data/oplossingen';
+import { OPLOSSINGEN, OPLOSSINGEN_PER_CATEGORIE } from '@/lib/data/oplossingen';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -90,7 +90,7 @@ export default function DienstenPage() {
             <span className="italic text-[var(--oker-deep)]">Eén plek, alles bij elkaar.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Vier hoofd-diensten, vier oplossingen, veertien branche-pagina&rsquo;s, vier
+            Vier hoofd-diensten, zestien oplossingen, veertien branche-pagina&rsquo;s, vier
             vergelijkingen en twee tools. Begin bij de hoofd-dienst, kijk bij de oplossingen waar
             het bij u speelt, of duik direct in uw branche.
           </p>
@@ -133,28 +133,37 @@ export default function DienstenPage() {
           </div>
           <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <h2 className="font-display text-[26px] sm:text-[32px] leading-tight text-[var(--ink)] max-w-[640px]">
-              Vier plekken waar uw pakket ophoudt.
+              De plekken waar uw pakket ophoudt.
             </h2>
             <Link
               href="/oplossingen"
               className="font-mono text-[11px] text-[var(--ink)] uppercase tracking-wider hover:text-[var(--oker-deep)] flex items-center gap-1.5"
             >
-              Alle oplossingen
+              Alle {OPLOSSINGEN.length} oplossingen
               <ArrowRight size={12} strokeWidth={1.8} />
             </Link>
           </div>
-          <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-            {OPLOSSINGEN.map((o) => (
-              <li key={o.slug}>
-                <Link
-                  href={`/oplossingen/${o.slug}`}
-                  className="block h-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
-                >
-                  {o.navLabel}
-                </Link>
-              </li>
+          <div className="mt-8 space-y-7">
+            {OPLOSSINGEN_PER_CATEGORIE.map((c) => (
+              <div key={c.key}>
+                <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
+                  {c.label}
+                </div>
+                <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                  {c.oplossingen.map((o) => (
+                    <li key={o.slug}>
+                      <Link
+                        href={`/oplossingen/${o.slug}`}
+                        className="block h-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                      >
+                        {o.navLabel}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
