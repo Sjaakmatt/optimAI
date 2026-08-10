@@ -319,12 +319,14 @@ function VoorWie() {
           Voor wie
         </div>
         <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-[var(--ink)]">
-          De administratie is bij.{' '}
-          <span className="italic text-[var(--oker-deep)]">En toch is de dag om.</span>
+          Er gaat niets mis.{' '}
+          <span className="italic text-[var(--oker-deep)]">
+            En toch bent u elke week uren kwijt.
+          </span>
         </h2>
         <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
-          Wij werken voor ondernemers die hun zaak op orde hebben en tóch elke week uren zien
-          weglekken. Herkent u dit?
+          Wij werken voor ondernemers bij wie de basis klopt. Het lek zit niet in uw administratie,
+          het zit tussen de schermen. Herkent u dit?
         </p>
       </div>
       <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
