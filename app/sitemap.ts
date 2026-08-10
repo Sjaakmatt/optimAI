@@ -107,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: o.featured ? 0.9 : 0.8,
       alternates: withAlternates(url),
     };
   });

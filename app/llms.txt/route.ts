@@ -2,7 +2,7 @@ import { POSTS } from '@/lib/data/posts';
 import { CASES } from '@/lib/data/cases';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
-import { OPLOSSINGEN } from '@/lib/data/oplossingen';
+import { OPLOSSINGEN, OPLOSSINGEN_PER_CATEGORIE } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
 import { getSoroPostsExcluding } from '@/lib/data/soro';
 
@@ -56,10 +56,12 @@ async function buildLlmsTxt(): Promise<string> {
   lines.push('## Oplossingen');
   lines.push('');
   lines.push(
-    `- [Alle oplossingen](${SITE_URL}/oplossingen): vier processen waar de beslislaag boven het ERP het meeste oplevert.`,
+    `- [Alle oplossingen](${SITE_URL}/oplossingen): ${OPLOSSINGEN.length} processen waar de beslislaag boven het ERP het meeste oplevert.`,
   );
-  for (const o of OPLOSSINGEN) {
-    lines.push(`- [${o.navLabel}](${SITE_URL}/oplossingen/${o.slug}): ${o.cardBody}`);
+  for (const c of OPLOSSINGEN_PER_CATEGORIE) {
+    for (const o of c.oplossingen) {
+      lines.push(`- [${o.navLabel}](${SITE_URL}/oplossingen/${o.slug}) (${c.label}): ${o.cardBody}`);
+    }
   }
   lines.push('');
 

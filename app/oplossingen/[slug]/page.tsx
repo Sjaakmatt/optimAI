@@ -6,7 +6,7 @@ import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { calPopupAttrs } from '@/components/booking/config';
-import { OPLOSSINGEN, OPLOSSING_BY_SLUG } from '@/lib/data/oplossingen';
+import { OPLOSSINGEN, OPLOSSING_BY_SLUG, verwanteOplossingen } from '@/lib/data/oplossingen';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -67,7 +67,7 @@ export default async function OplossingPage({
     })),
   };
 
-  const andere = OPLOSSINGEN.filter((x) => x.slug !== o.slug);
+  const andere = verwanteOplossingen(o.slug);
 
   return (
     <SitePage>
@@ -218,8 +218,17 @@ export default async function OplossingPage({
 
       <section className="border-t border-[var(--paper-edge)]" style={{ background: 'var(--paper-deep)' }}>
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 sm:py-16">
-          <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
-            Andere oplossingen
+          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
+            <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
+              Andere oplossingen
+            </div>
+            <Link
+              href="/oplossingen"
+              className="font-mono text-[11px] text-[var(--ink)] uppercase tracking-wider hover:text-[var(--oker-deep)] flex items-center gap-1.5"
+            >
+              Alle {OPLOSSINGEN.length} oplossingen
+              <ArrowRight size={12} strokeWidth={1.8} />
+            </Link>
           </div>
           <ul className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             {andere.map((x) => (
