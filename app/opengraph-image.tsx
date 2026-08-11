@@ -47,19 +47,21 @@ export default async function OGImage() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              fontSize: 72,
-              lineHeight: 1.05,
+              fontSize: 58,
+              lineHeight: 1.08,
+              whiteSpace: 'nowrap',
               fontWeight: 500,
-              maxWidth: 900,
+              maxWidth: 1040,
             }}
           >
-            <div>Uw digitale collega.</div>
+            <div>Er gaat niets mis.</div>
             <div style={{ fontStyle: 'italic', color: '#5c5248' }}>
-              Geen dashboard.
+              En toch bent u elke week uren kwijt.
             </div>
           </div>
           <div style={{ fontSize: 26, color: '#5c5248', maxWidth: 820, lineHeight: 1.4 }}>
-            AI-agents die het echte werk doen. Mails, offertes, orders, facturatie, planning.
+            Mails, offertes, orders, facturatie en planning: voorbereid tot en met het besluit.
+            Uw mens tekent af.
           </div>
         </div>
 
