@@ -67,6 +67,12 @@ Verder relevant:
 4. **Model.** De repo gebruikt `claude-sonnet-5`, niet `claude-sonnet-4-6`. Voorstel:
    `claude-sonnet-5` voor het gesprek en `claude-haiku-4-5` voor de scoring, allebei
    overschrijfbaar via env, zodat we de repo-conventie volgen.
+5. **Anthropic-SDK opgehoogd (fase 2, geen nieuwe dependency).** De repo stond op
+   `@anthropic-ai/sdk@0.32.1` uit eind 2024. Die versie kent `cache_control`,
+   `thinking` en `output_config` niet, terwijl de opdracht prompt caching expliciet
+   voorschrijft. Opgehoogd naar `^0.116.0`. De bestaande scan-code typecheckt en
+   bouwt onveranderd; `npm run build` is groen. Ook `zod` is van `devDependencies`
+   naar `dependencies` verplaatst, want hij valideert nu een runtime-endpoint.
 
 ## C. Fasering
 
