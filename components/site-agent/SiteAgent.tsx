@@ -142,6 +142,8 @@ export function SiteAgent() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [uitnodiging, setUitnodiging] = useState(false);
+  /** Is het paneel geopend vanuit het wolkje, of koud via de knop? */
+  const [viaWolkje, setViaWolkje] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const aantalGemeldRef = useRef(0);
   /** Pad waarop het wolkje het laatst is getoond; houdt het op één per pagina. */
@@ -290,7 +292,11 @@ export function SiteAgent() {
         sessionId={sessionId}
         paginaPad={pathname}
         playbook={playbook}
-        opening={openingVoorPad(pathname)}
+        // Kwam de bezoeker binnen via het wolkje, dan begint het gesprek met de
+        // vraag waar hij zojuist op klikte. Anders stond er in de bubbel een
+        // vraag en in de chat een andere, en was de klik op "Antwoord geven"
+        // nergens op uitgelopen: je zou opnieuw moeten bedenken waar je begint.
+        opening={viaWolkje ? haakje : openingVoorPad(pathname)}
         onSluiten={sluiten}
       />
     );
@@ -312,7 +318,10 @@ export function SiteAgent() {
         >
           <button
             type="button"
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setViaWolkje(true);
+              setOpen(true);
+            }}
             className="block w-full px-4 py-3.5 pr-9 text-left"
           >
             <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--oker-deep)]">
@@ -356,7 +365,10 @@ export function SiteAgent() {
           achtergrond en verdween daarin. */}
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setViaWolkje(false);
+          setOpen(true);
+        }}
         aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
         className="agent-knop inline-flex items-center justify-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
