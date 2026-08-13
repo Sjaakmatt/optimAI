@@ -8,18 +8,32 @@ context op, beoordeelt en stelt een actie voor die langs een mens gaat. Noemt
 iemand een prijs of een datum, dan gokt hij niet maar escaleert hij zichtbaar
 naar Sjaak. Dat gedrag is de verkoop.
 
-## Aanzetten
+## Aan- en uitzetten
 
-De agent staat standaard **uit**. Twee variabelen moeten allebei op `true`:
+De agent staat **aan**. Nodig om te werken: `ANTHROPIC_API_KEY`, `SUPABASE_URL`
+en `SUPABASE_SERVICE_ROLE_KEY`. Zonder die laatste twee kan hij geen
+berichtgeschiedenis bijhouden en weigert hij netjes.
+
+De noodrem:
 
 ```
-SITE_AGENT_ENABLED=true              # het endpoint
-NEXT_PUBLIC_SITE_AGENT_ENABLED=true  # de widget
+SITE_AGENT_ENABLED=false             # endpoint weigert direct, geen build nodig
+NEXT_PUBLIC_SITE_AGENT_ENABLED=false # widget verdwijnt, vraagt wel een deploy
 ```
 
-Verder heb je minimaal nodig: `ANTHROPIC_API_KEY`, `SUPABASE_URL`,
-`SUPABASE_SERVICE_ROLE_KEY` en `CRON_SECRET`. Zie `.env.example` voor de rest,
-met per variabele wat hij doet.
+Die eerste is de knop die je omzet als de kosten of de kwaliteit uit de hand
+lopen: hij werkt meteen en stopt alle modelcalls. De tweede haalt de widget uit
+beeld, maar `NEXT_PUBLIC_`-waarden worden bij de build in de bundel gebakken,
+dus daar moet een nieuwe deploy overheen.
+
+Tweede rem, altijd actief: het dagelijkse kostenplafond (`SITE_AGENT_DAGPLAFOND_USD`,
+standaard vijf dollar). Boven het plafond weigert het endpoint en verwijst het
+naar info@factumai.nl.
+
+`CRON_SECRET` is apart nodig voor de cron die stille gesprekken afrondt en
+verlopen data opruimt. Zonder die waarde weigert die route alles; het gesprek
+zelf werkt gewoon, maar afronden gebeurt dan alleen als de bezoeker de widget
+sluit.
 
 ## Hoe het in elkaar zit
 
