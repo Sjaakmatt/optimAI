@@ -13,6 +13,8 @@
 import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
 
+import { roepMcpTool } from '@/lib/mcp/client';
+
 export interface ScanScrape {
   status: 'ok' | 'empty' | 'failed';
   url: string;
@@ -104,99 +106,17 @@ async function assertPublicHost(url: string): Promise<void> {
 type ScrapedPage = { url: string; title?: string; text: string };
 type WebsiteScrapeResult = { pages: ScrapedPage[] };
 
-function mcpAuthHeaders(): Record<string, string> {
-  const headers: Record<string, string> = {};
-  const secret = process.env.FACTUMAI_MCP_INBOUND_SECRET;
-  if (secret) headers.Authorization = `Bearer ${secret}`;
-  const cfId = process.env.CF_ACCESS_CLIENT_ID;
-  const cfSecret = process.env.CF_ACCESS_CLIENT_SECRET;
-  if (cfId && cfSecret) {
-    headers['CF-Access-Client-Id'] = cfId;
-    headers['CF-Access-Client-Secret'] = cfSecret;
-  }
-  return headers;
-}
-
-function parseStreamableHttpResponse(text: string): unknown {
-  const sseMatches = text.matchAll(/^data:\s*(.+)$/gm);
-  let lastJson: unknown | null = null;
-  for (const match of sseMatches) {
-    try {
-      lastJson = JSON.parse(match[1]);
-    } catch {
-      // volgende event proberen
-    }
-  }
-  if (lastJson !== null) return lastJson;
-  return JSON.parse(text);
-}
-
-let mcpRequestId = 0;
-
 async function callBedrijvenMcp(url: string): Promise<WebsiteScrapeResult> {
   const baseUrl = process.env.FACTUMAI_MCP_BEDRIJVEN_URL;
   if (!baseUrl) throw new Error('FACTUMAI_MCP_BEDRIJVEN_URL niet gezet');
 
-  const headers = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json, text/event-stream',
-    ...mcpAuthHeaders(),
-  };
-
-  // Initialize (stateless workers geven geen sessie-id terug; dat is prima).
-  const initRes = await fetch(baseUrl, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'initialize',
-      params: {
-        protocolVersion: '2024-11-05',
-        capabilities: {},
-        clientInfo: { name: 'factumai-website-scan', version: '1.0.0' },
-      },
-      id: ++mcpRequestId,
-    }),
-    signal: AbortSignal.timeout(5000),
+  return roepMcpTool<WebsiteScrapeResult>({
+    baseUrl,
+    tool: 'get_company_website_content',
+    argumenten: { url, maxPages: 6 },
+    agentId: 'website-scan',
+    timeoutMs: MCP_TIMEOUT_MS,
   });
-  if (!initRes.ok) throw new Error(`MCP initialize HTTP ${initRes.status}`);
-  const sessionId = initRes.headers.get('mcp-session-id') ?? '';
-  await initRes.text();
-
-  const toolCallId = `scan-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-  const res = await fetch(baseUrl, {
-    method: 'POST',
-    headers: sessionId ? { ...headers, 'Mcp-Session-Id': sessionId } : headers,
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      method: 'tools/call',
-      params: {
-        name: 'get_company_website_content',
-        arguments: {
-          url,
-          maxPages: 6,
-          tenantContext: {
-            organizationId: process.env.FACTUMAI_MCP_ORG_ID ?? 'factumai-website',
-            agentId: 'website-scan',
-            toolCallId,
-          },
-        },
-      },
-      id: ++mcpRequestId,
-    }),
-    signal: AbortSignal.timeout(MCP_TIMEOUT_MS),
-  });
-  if (!res.ok) throw new Error(`MCP tools/call HTTP ${res.status}`);
-
-  const payload = parseStreamableHttpResponse(await res.text()) as {
-    error?: { message: string };
-    result?: { isError?: boolean; content?: Array<{ type: string; text?: string }> };
-  };
-  if (payload.error) throw new Error(payload.error.message);
-  const textBlock = payload.result?.content?.find((c) => c.type === 'text');
-  if (payload.result?.isError) throw new Error(textBlock?.text ?? 'MCP tool error');
-  if (!textBlock?.text) throw new Error('MCP gaf geen content terug');
-  return JSON.parse(textBlock.text) as WebsiteScrapeResult;
 }
 
 /** Meerdere MCP-pagina's plat naar één markdown-document met bron-kopjes. */

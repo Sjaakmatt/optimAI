@@ -2,12 +2,27 @@
 
 import { useEffect, useRef } from 'react';
 import { getCalApi } from '@/components/booking/calLoader';
-import { CAL_LINK } from '@/components/booking/config';
+import { AgendaKiezer } from '@/components/booking/AgendaKiezer';
+import { BOEKING_PROVIDER, CAL_LINK } from '@/components/booking/config';
 import { useAdsConversion } from '@/components/booking/useAdsConversion';
 
 const CAL_FALLBACK_URL = `https://cal.com/${CAL_LINK}`;
 
 export function AanvraagCal() {
+  if (BOEKING_PROVIDER === 'teams') return <EigenAgenda />;
+  return <CalAgenda />;
+}
+
+/** De eigen agenda staat hier in de pagina zelf, niet in een venster. */
+function EigenAgenda() {
+  return (
+    <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper)] px-6 sm:px-8 py-6">
+      <AgendaKiezer bron="aanvraag" />
+    </div>
+  );
+}
+
+function CalAgenda() {
   const containerRef = useRef<HTMLDivElement>(null);
   useAdsConversion();
 

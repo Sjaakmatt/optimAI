@@ -13,7 +13,8 @@ import Link from 'next/link';
 import { X, ArrowUp } from 'lucide-react';
 
 import { getCalApi } from '@/components/booking/calLoader';
-import { CAL_LINK } from '@/components/booking/config';
+import { openAgenda } from '@/components/booking/agendaStore';
+import { BOEKING_PROVIDER, CAL_LINK } from '@/components/booking/config';
 import { useGesprek, type Signaal } from './useGesprek';
 
 const FOCUSBAAR =
@@ -34,10 +35,18 @@ export default function AgentPaneel({
   opening,
   onSluiten,
 }: AgentPaneelProps) {
-  // De agent kan om de agenda vragen. Die komt uit de bestaande Cal-embed van
-  // de site; we bouwen er geen eigen agenda naast.
+  // De agent kan om de agenda vragen. Die komt uit dezelfde agenda als de rest
+  // van de site — we bouwen er geen tweede naast.
   const opSignaal = useCallback((signaal: Signaal) => {
     if (signaal.naam !== 'agenda') return;
+    const aanleiding =
+      typeof signaal.payload.aanleiding === 'string' ? signaal.payload.aanleiding : undefined;
+
+    if (BOEKING_PROVIDER === 'teams') {
+      openAgenda({ bron: 'site-agent', aanleiding });
+      return;
+    }
+
     const link = typeof signaal.payload.calLink === 'string' ? signaal.payload.calLink : CAL_LINK;
     getCalApi()
       .then((ns) => ns('modal', { calLink: link, config: { layout: 'month_view', theme: 'light' } }))
