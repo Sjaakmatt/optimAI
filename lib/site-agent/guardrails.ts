@@ -223,15 +223,55 @@ export interface SluisResultaat {
 const ZINSEINDE = /(?<=[.!?…])\s+|\n+/;
 
 /**
- * Buffert een tekststroom en laat alleen complete, gecontroleerde zinnen door.
- * Zodra één zin een regel raakt, stopt de sluis: alles daarna wordt niet meer
- * doorgegeven en de aanroeper hergenereert.
+ * Boven deze lengte wacht de sluis niet op het einde van de zin maar geeft hij
+ * alvast door tot het laatste woord. Zonder dit verschijnt een lange zin pas in
+ * één klap, en dat leest als haperen.
+ */
+const EAGER_VANAF_TEKENS = 70;
+
+/**
+ * Hoeveel al doorgegeven tekst er bij de controle van het volgende stuk
+ * meegaat. Nodig omdat een overtreding over de knip heen kan lopen: "een paar"
+ * in het ene stuk en "duizend euro" in het volgende.
+ */
+const OVERLAP_TEKENS = 60;
+
+/**
+ * Buffert een tekststroom en laat alleen gecontroleerde stukken door. Zodra een
+ * stuk een regel raakt, stopt de sluis: alles daarna wordt niet meer
+ * doorgegeven en de aanroeper hergenereert. Wat al bij de bezoeker stond wordt
+ * dan ingetrokken; daar is het herstart-signaal voor.
  */
 export class ZinnenSluis {
   private buffer = '';
   private gesloten = false;
+  /** Staart van wat al is doorgegeven, voor de overlapcontrole. */
+  private staart = '';
 
   constructor(private readonly opties: ControleOpties = {}) {}
+
+  /**
+   * Controleert een stuk samen met de staart van het vorige, zodat een patroon
+   * dat over de knip loopt alsnog wordt gezien.
+   */
+  private controleerMetOverlap(stuk: string): ControleResultaat {
+    const resultaat = controleerTekst(this.staart + stuk, this.opties);
+    if (resultaat.toegestaan) {
+      const samen = this.staart + stuk;
+      this.staart = samen.slice(-OVERLAP_TEKENS);
+    }
+    return resultaat;
+  }
+
+  /**
+   * Zoekt een veilige knip in een te lang geworden buffer: het laatste
+   * spatie-teken, zodat we nooit midden in een woord afbreken.
+   */
+  private eagerKnip(): number {
+    if (this.buffer.length <= EAGER_VANAF_TEKENS) return -1;
+    const knip = this.buffer.lastIndexOf(' ', EAGER_VANAF_TEKENS);
+    return knip > 0 ? knip + 1 : -1;
+  }
 
   get isGesloten(): boolean {
     return this.gesloten;
@@ -243,26 +283,28 @@ export class ZinnenSluis {
     this.buffer += delta;
     const zinnen: string[] = [];
 
-    // Alles tot en met het laatste zinseinde is compleet; de rest blijft staan.
+    // Eerst alles tot en met een zinseinde, daarna zolang de rest te lang wordt
+    // ook stukken tot het laatste woord. Zo blijft de tekst doorlopen in plaats
+    // van per hele zin te verspringen.
     for (;;) {
       const match = ZINSEINDE.exec(this.buffer);
-      if (!match || match.index === undefined) break;
+      const grens = match && match.index !== undefined ? match.index + match[0].length : this.eagerKnip();
+      if (grens <= 0) break;
 
-      const grens = match.index + match[0].length;
-      const zin = this.buffer.slice(0, grens);
+      const stuk = this.buffer.slice(0, grens);
       this.buffer = this.buffer.slice(grens);
 
-      if (!zin.trim()) {
-        zinnen.push(zin);
+      if (!stuk.trim()) {
+        zinnen.push(stuk);
         continue;
       }
 
-      const controle = controleerTekst(zin, this.opties);
+      const controle = this.controleerMetOverlap(stuk);
       if (!controle.toegestaan) {
         this.gesloten = true;
         return { zinnen, overtredingen: controle.overtredingen };
       }
-      zinnen.push(zin);
+      zinnen.push(stuk);
     }
 
     return { zinnen, overtredingen: [] };
@@ -278,7 +320,7 @@ export class ZinnenSluis {
     const zin = this.buffer;
     this.buffer = '';
 
-    const controle = controleerTekst(zin, this.opties);
+    const controle = this.controleerMetOverlap(zin);
     if (!controle.toegestaan) {
       this.gesloten = true;
       return { zinnen: [], overtredingen: controle.overtredingen };
