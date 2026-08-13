@@ -1,9 +1,14 @@
 // Aan/uit en het kostenplafond van de site-agent.
 //
-// De schakelaar staat standaard uit. Dat is bewust: de widget hangt in de
-// root-layout, dus zonder schakelaar zou een merge naar main hem meteen op elke
-// pagina zetten. Zet SITE_AGENT_ENABLED (server) en NEXT_PUBLIC_SITE_AGENT_ENABLED
-// (widget) op 'true' om hem aan te zetten.
+// De agent staat aan. Uitzetten kan met SITE_AGENT_ENABLED=false (server) en
+// NEXT_PUBLIC_SITE_AGENT_ENABLED=false (widget); dat is de noodrem als er iets
+// misgaat, en hij werkt zonder code te wijzigen.
+//
+// Let op bij het uitzetten: NEXT_PUBLIC_-variabelen worden bij de build in de
+// bundel gebakken, dus alleen de waarde omzetten is niet genoeg. Er moet een
+// nieuwe deploy overheen voordat de widget verdwijnt. De servervariabele werkt
+// wel direct: het endpoint weigert dan meteen, dus de kosten stoppen ook zonder
+// nieuwe build.
 //
 // Het kostenplafond is de tweede rem. Boven het plafond doet het endpoint geen
 // modelcalls meer en verwijst het naar het contactformulier, tot de dagteller
@@ -12,7 +17,7 @@
 import { getServiceClient } from '@/lib/db/supabase';
 
 export function siteAgentAan(): boolean {
-  return process.env.SITE_AGENT_ENABLED === 'true';
+  return process.env.SITE_AGENT_ENABLED !== 'false';
 }
 
 /** Dagplafond in dollars over alle gesprekken samen. */

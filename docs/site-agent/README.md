@@ -8,18 +8,32 @@ context op, beoordeelt en stelt een actie voor die langs een mens gaat. Noemt
 iemand een prijs of een datum, dan gokt hij niet maar escaleert hij zichtbaar
 naar Sjaak. Dat gedrag is de verkoop.
 
-## Aanzetten
+## Aan- en uitzetten
 
-De agent staat standaard **uit**. Twee variabelen moeten allebei op `true`:
+De agent staat **aan**. Nodig om te werken: `ANTHROPIC_API_KEY`, `SUPABASE_URL`
+en `SUPABASE_SERVICE_ROLE_KEY`. Zonder die laatste twee kan hij geen
+berichtgeschiedenis bijhouden en weigert hij netjes.
+
+De noodrem:
 
 ```
-SITE_AGENT_ENABLED=true              # het endpoint
-NEXT_PUBLIC_SITE_AGENT_ENABLED=true  # de widget
+SITE_AGENT_ENABLED=false             # endpoint weigert direct, geen build nodig
+NEXT_PUBLIC_SITE_AGENT_ENABLED=false # widget verdwijnt, vraagt wel een deploy
 ```
 
-Verder heb je minimaal nodig: `ANTHROPIC_API_KEY`, `SUPABASE_URL`,
-`SUPABASE_SERVICE_ROLE_KEY` en `CRON_SECRET`. Zie `.env.example` voor de rest,
-met per variabele wat hij doet.
+Die eerste is de knop die je omzet als de kosten of de kwaliteit uit de hand
+lopen: hij werkt meteen en stopt alle modelcalls. De tweede haalt de widget uit
+beeld, maar `NEXT_PUBLIC_`-waarden worden bij de build in de bundel gebakken,
+dus daar moet een nieuwe deploy overheen.
+
+Tweede rem, altijd actief: het dagelijkse kostenplafond (`SITE_AGENT_DAGPLAFOND_USD`,
+standaard vijf dollar). Boven het plafond weigert het endpoint en verwijst het
+naar info@factumai.nl.
+
+`CRON_SECRET` is apart nodig voor de cron die stille gesprekken afrondt en
+verlopen data opruimt. Zonder die waarde weigert die route alles; het gesprek
+zelf werkt gewoon, maar afronden gebeurt dan alleen als de bezoeker de widget
+sluit.
 
 ## Hoe het in elkaar zit
 
@@ -30,6 +44,8 @@ met per variabele wat hij doet.
 | Afronden en scoring | `app/api/v1/site-agent/afronden/route.ts`, `lib/site-agent/scoring.ts` |
 | Cron (stille gesprekken, retentie) | `app/api/v1/site-agent/cron/route.ts`, elke 15 minuten |
 | Prompt | `lib/site-agent/prompt.ts`, bron in `docs/site-agent/prompt.md` |
+| Playbooks | `content/site-agent/playbooks/*.md`, sleutel server-side uit het pad |
+| Evaluatieharnas | `evals/site-agent/` |
 | Kennisbank | `content/site-agent/*.md`, geladen door `lib/site-agent/kennisbank.ts` |
 | Outputcontrole | `lib/site-agent/guardrails.ts` |
 | Tools | `lib/site-agent/tools/` |
@@ -96,26 +112,53 @@ op `true` staat.
 
 ## De evaluatie draaien
 
-**Nog niet gebouwd.** Het evaluatieharnas met de tien vaste testgesprekken is
-fase 7 en staat nog open. Wat er nu wel is:
+```bash
+npm run eval                    # alle tien de gesprekken
+npm run eval -- --geval 3       # alleen geval 3
+npm run eval -- --verbose       # ook de transcripten
+```
+
+Dit praat met het echte model, dus `ANTHROPIC_API_KEY` is verplicht. De database
+wordt niet aangeraakt: tools worden herkend en vastgelegd maar niet uitgevoerd,
+ze krijgen een vast antwoord terug. Zo test je de agentlogica zonder Supabase.
+
+De tien gevallen staan in `evals/site-agent/fixtures.ts`: prijsdrammer,
+opleverdatum, de EU-vraag, referenties, eenmanszaak, concurrent, de volledige
+gekwalificeerde flow, iemand die geen afspraak wil, promptinjectie, en een
+sollicitant. Draai ze bij elke wijziging aan de prompt, de kennisbank of de
+outputcontrole. Een verslechtering blokkeert de wijziging.
+
+De assertielaag zit apart in `evals/site-agent/asserties.ts` en wordt offline
+getest, zonder sleutel:
 
 ```bash
-npm test        # guardrail-unittests en de padmapping, 55 gevallen
+npm test        # 71 gevallen: guardrails, padmapping, maskering, asserties
 npx tsc --noEmit
 npx eslint .
 ```
 
-De guardrail-tests dekken de vijf blokkeerregels plus tien gevallen die er juist
-doorheen moeten, waaronder het vaste prijsantwoord en de goedgekeurde
-formulering over datalocatie.
+Dat is met opzet gesplitst: een assertie die altijd slaagt is erger dan geen
+assertie, want dan meldt het harnas groen terwijl de agent iets fout doet.
+
+## De begrenzing testen
+
+```bash
+npx tsx scripts/hamer-site-agent.ts                     # lokaal
+npx tsx scripts/hamer-site-agent.ts https://factumai.nl # productie
+npx tsx scripts/hamer-site-agent.ts --parallel          # ook de botdetectie
+```
+
+Wat je wilt zien: eerst een paar keer 200, daarna 429. Overal 200 betekent dat de
+begrenzing niet aanstaat, overal 503 dat de agent uitstaat. Elk verzoek dat
+doorkomt kost een echte modelcall, dus draai dit niet eindeloos.
 
 ## Wat er nog open staat
 
-- Evaluatieharnas met tien testgesprekken (fase 7).
-- Playbooks verhuizen naar `content/site-agent/playbooks/` (fase 6); ze staan nu
-  als lookup-map in `lib/site-agent/playbooks.ts`.
-- Botdetectie op minimale tijd tussen berichten (fase 7).
-- Lighthouse-meting op de homepage en een script dat het endpoint hamert.
+- Het evaluatieharnas is nog nooit tegen de echte API gedraaid; dat moet gebeuren
+  vóórdat de agent aangaat.
+- Lighthouse-meting op de homepage. Wat wel gemeten is: de widget kost 1,30 kB
+  gzip op de initiële bundel en het paneel zit in een eigen chunk van 3,0 kB die
+  pas bij openen laadt.
 - Overzicht `/agency/site-agent` in de dashboard-repo, zie `opdracht-dashboard.md`.
 - De Cal-webhook kent het `sessionId` niet, dus `afspraakGeboekt` leunt op het
   signaal vanuit de widget. Een harde koppeling vraagt een prefill-parameter in

@@ -28,12 +28,13 @@ const WACHTTIJD_MS = 20_000;
 const SCROLLDIEPTE = 0.5;
 
 /**
- * Aan/uit. Staat standaard uit zodat een deploy de agent niet zomaar op elke
- * pagina zet; zet NEXT_PUBLIC_SITE_AGENT_ENABLED en SITE_AGENT_ENABLED op
- * 'true' om hem aan te zetten. Beide zijn nodig: deze voor de widget, de andere
- * voor het endpoint.
+ * Aan/uit. De agent staat aan; NEXT_PUBLIC_SITE_AGENT_ENABLED=false haalt de
+ * widget weg. Die waarde wordt bij de build in de bundel gebakken, dus er moet
+ * een nieuwe deploy overheen voordat het effect heeft. Wil je de kosten
+ * meteen stoppen, zet dan SITE_AGENT_ENABLED=false: dat weigert het endpoint
+ * direct, ook zonder nieuwe build.
  */
-const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED === 'true';
+const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED !== 'false';
 
 /**
  * Openingsberichten per playbook. Dit is weergave-tekst en gaat niet naar het

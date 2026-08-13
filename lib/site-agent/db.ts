@@ -281,6 +281,25 @@ export async function haalBerichten(conversationId: string, maximum = 60): Promi
   }));
 }
 
+/**
+ * Tijdstip van het laatste bericht in dit gesprek. Basis voor de botdetectie:
+ * twee berichten binnen een fractie van een seconde komen niet van iemand die
+ * zit te typen.
+ */
+export async function haalLaatsteBerichtTijd(conversationId: string): Promise<number | null> {
+  const db = client();
+  const { data, error } = await db
+    .from('SiteMessage')
+    .select('"createdAt"')
+    .eq('conversationId', conversationId)
+    .order('createdAt', { ascending: false })
+    .limit(1)
+    .maybeSingle<{ createdAt: string }>();
+
+  if (error) throw new Error(`site-agent: laatste berichttijd ophalen faalde: ${error.message}`);
+  return data ? new Date(data.createdAt).getTime() : null;
+}
+
 /** Aantal berichten in het gesprek, inclusief geblokkeerde. Voor de harde limiet. */
 export async function telBerichten(conversationId: string): Promise<number> {
   const db = client();
