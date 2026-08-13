@@ -29,7 +29,7 @@ export const SITE_AGENT_SLUG = 'site-agent-factumai';
  */
 export const EVENT_RETENTIE_DAGEN = Number(process.env.SITE_AGENT_EVENT_RETENTIE_DAGEN ?? '180');
 
-export type EventCategorie = 'llm' | 'llm_decision' | 'compliance' | 'user_action';
+export type EventCategorie = 'llm' | 'llm_decision' | 'compliance' | 'user_action' | 'system';
 export type EventType = 'info' | 'warning' | 'error';
 
 export interface EventInvoer {

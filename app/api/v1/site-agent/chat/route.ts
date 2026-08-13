@@ -31,6 +31,7 @@ import { laadKennisbank } from '@/lib/site-agent/kennisbank';
 import { bouwSysteembericht, berekenKosten, SITE_AGENT_MODEL } from '@/lib/site-agent/prompt';
 import { isPlaybookSleutel, brancheUitPad, type PlaybookSleutel } from '@/lib/site-agent/playbooks';
 import { controleerLimieten, boekKosten } from '@/lib/site-agent/ratelimit';
+import { PLAFOND_MELDING, plafondBereikt, siteAgentAan } from '@/lib/site-agent/config';
 import { logEvent } from '@/lib/site-agent/events';
 import { TOOL_DEFINITIES, voerToolUit, type ToolContext } from '@/lib/site-agent/tools';
 import {
@@ -192,6 +193,15 @@ function bouwTranscript(berichten: Anthropic.MessageParam[]): string {
 }
 
 export async function POST(request: Request) {
+  // Schakelaar vóór alles. Staat de agent uit, dan bestaat dit endpoint
+  // feitelijk niet en kost het ook niets.
+  if (!siteAgentAan()) {
+    return Response.json(
+      { ok: false, error: 'De agent staat op dit moment uit. Mail gerust naar info@factumai.nl.' },
+      { status: 503 },
+    );
+  }
+
   let ruw: unknown;
   try {
     ruw = await request.json();
@@ -219,6 +229,17 @@ export async function POST(request: Request) {
   const limiet = await controleerLimieten({ sessionId: invoer.sessionId, ip });
   if (!limiet.toegestaan) {
     return Response.json({ ok: false, error: limiet.melding }, { status: 429 });
+  }
+
+  // 1b. Dagelijks kostenplafond over alle gesprekken samen.
+  if (await plafondBereikt()) {
+    void logEvent({
+      categorie: 'system',
+      type: 'warning',
+      bericht: 'Dagelijks kostenplafond bereikt, site-agent weigert nieuwe berichten',
+      metadata: { playbook: invoer.playbook },
+    });
+    return Response.json({ ok: false, error: PLAFOND_MELDING }, { status: 429 });
   }
 
   const playbook: PlaybookSleutel = isPlaybookSleutel(invoer.playbook) ? invoer.playbook : 'home';

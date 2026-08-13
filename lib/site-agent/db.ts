@@ -186,6 +186,73 @@ export async function haalOfMaakConversatie(invoer: NieuweConversatie): Promise<
   return naarConversatie(aangemaakt.data);
 }
 
+/** Haalt het gesprek bij een sessie op zonder er een aan te maken. */
+export async function haalConversatie(sessionId: string): Promise<Conversatie | null> {
+  const db = client();
+  const { data, error } = await db
+    .from('SiteConversation')
+    .select(CONVERSATIE_VELDEN)
+    .eq('sessionId', sessionId)
+    .maybeSingle<ConversatieRij>();
+
+  if (error) throw new Error(`site-agent: gesprek ophalen faalde: ${error.message}`);
+  return data ? naarConversatie(data) : null;
+}
+
+/**
+ * Open gesprekken waar al een tijd niets meer in gebeurd is. Basis voor de
+ * afronding op inactiviteit; `updatedAt` tikt mee bij elk bericht.
+ */
+export async function haalStilleGesprekken(
+  stilSindsMinuten: number,
+  maximum = 25,
+): Promise<Conversatie[]> {
+  const db = client();
+  const grens = new Date(Date.now() - stilSindsMinuten * 60 * 1000).toISOString();
+
+  const { data, error } = await db
+    .from('SiteConversation')
+    .select(CONVERSATIE_VELDEN)
+    .eq('status', 'OPEN')
+    .lt('updatedAt', grens)
+    .order('updatedAt', { ascending: true })
+    .limit(maximum)
+    .returns<ConversatieRij[]>();
+
+  if (error) throw new Error(`site-agent: stille gesprekken ophalen faalde: ${error.message}`);
+  return (data ?? []).map(naarConversatie);
+}
+
+export interface OpruimResultaat {
+  gesprekken: number;
+  tellers: number;
+}
+
+/**
+ * Ruimt op wat over de retentietermijn heen is. Berichten verdwijnen mee via
+ * de cascade op SiteMessage.
+ */
+export async function ruimVerlopenOp(): Promise<OpruimResultaat> {
+  const db = client();
+  const nu = new Date().toISOString();
+
+  const gesprekken = await db
+    .from('SiteConversation')
+    .delete({ count: 'exact' })
+    .lt('expiresAt', nu)
+    .not('expiresAt', 'is', null);
+  if (gesprekken.error) {
+    throw new Error(`site-agent: gesprekken opruimen faalde: ${gesprekken.error.message}`);
+  }
+
+  const tellers = await db.from('SiteAgentCounter').delete({ count: 'exact' }).lt('expiresAt', nu);
+  if (tellers.error) {
+    throw new Error(`site-agent: tellers opruimen faalde: ${tellers.error.message}`);
+  }
+
+  return { gesprekken: gesprekken.count ?? 0, tellers: tellers.count ?? 0 };
+}
+
 /**
  * De berichtgeschiedenis, oplopend op tijd. Geblokkeerde berichten laten we
  * bewust weg: die zijn nooit bij de bezoeker aangekomen, dus ze horen ook niet

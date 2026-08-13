@@ -28,6 +28,14 @@ const WACHTTIJD_MS = 20_000;
 const SCROLLDIEPTE = 0.5;
 
 /**
+ * Aan/uit. Staat standaard uit zodat een deploy de agent niet zomaar op elke
+ * pagina zet; zet NEXT_PUBLIC_SITE_AGENT_ENABLED en SITE_AGENT_ENABLED op
+ * 'true' om hem aan te zetten. Beide zijn nodig: deze voor de widget, de andere
+ * voor het endpoint.
+ */
+const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED === 'true';
+
+/**
  * Openingsberichten per playbook. Dit is weergave-tekst en gaat niet naar het
  * model: de agent reageert straks op wat de bezoeker terugtypt. De teksten
  * volgen de playbookblokken uit docs/site-agent/prompt.md, maar stellen niet
@@ -71,7 +79,7 @@ export function SiteAgent() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const gemeldRef = useRef(false);
 
-  const verbergen = verbergZwevendeKnoppen(pathname);
+  const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname);
 
   useEffect(() => {
     if (verbergen) return;
@@ -130,7 +138,32 @@ export function SiteAgent() {
     } catch {
       /* opslag niet beschikbaar */
     }
-  }, []);
+
+    // Het sluiten van de widget is een van de drie afrondtriggers. Via
+    // sendBeacon, zodat de scoring ook draait als de bezoeker meteen wegklikt.
+    if (!sessionId) return;
+    const payload = JSON.stringify({ sessionId });
+    try {
+      const verstuurd =
+        typeof navigator.sendBeacon === 'function' &&
+        navigator.sendBeacon(
+          '/api/v1/site-agent/afronden',
+          new Blob([payload], { type: 'application/json' }),
+        );
+      if (!verstuurd) {
+        void fetch('/api/v1/site-agent/afronden', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true,
+        }).catch(() => {
+          /* de cron rondt het later alsnog af */
+        });
+      }
+    } catch {
+      /* de cron rondt het later alsnog af */
+    }
+  }, [sessionId]);
 
   const wegklikken = useCallback(() => {
     setUitnodiging(false);
