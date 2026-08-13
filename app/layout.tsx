@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { CalProvider } from "@/components/booking/CalProvider";
+import { SiteAgent } from "@/components/site-agent/SiteAgent";
 import { ConsentGate } from "@/components/analytics/ConsentGate";
 import "./globals.css";
 
@@ -83,6 +84,7 @@ export default function RootLayout({
       <body className="min-h-screen">
         <OrganizationSchema />
         <CalProvider />
+        <SiteAgent />
         {children}
         <ConsentGate />
         <Analytics />
