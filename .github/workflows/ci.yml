@@ -1,0 +1,45 @@
+name: CI
+
+# Deze repo had geen enkele check op een pull request: typecheck en tests
+# bestonden wel, maar draaiden alleen lokaal. Daardoor was bijvoorbeeld het
+# contract met de werkbak (welk `kind` een ReviewItem mag hebben) alleen in
+# types vastgelegd zonder dat iets het afdwong bij een merge.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      # Node 22, niet 20: het test-script geeft glob-patronen mee aan
+      # `node --test`, en die worden pas vanaf Node 21 uitgevouwen. Op 20 valt
+      # het terug op een letterlijk pad en faalt het met "Could not find".
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Test
+        run: npm test
+
+      # Lint is signalerend, niet blokkerend: de repo heeft bestaande
+      # meldingen die los staan van een individuele PR. Zichtbaar houden,
+      # maar geen merges tegenhouden tot die achterstand weg is.
+      - name: Lint (advisory)
+        run: npm run lint
+        continue-on-error: true

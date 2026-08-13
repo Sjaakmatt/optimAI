@@ -59,7 +59,7 @@ export async function escaleerNaarSjaak(ruw: unknown, ctx: ToolContext): Promise
   const urgent = invoer.urgentie === 'hoog';
 
   const reviewId = await maakReviewItem({
-    kind: 'task',
+    kind: 'site_agent_question',
     domain: 'chat',
     level: urgent ? 'ESCALATION' : 'REVIEW',
     summary: `Vraag uit de site-agent: ${invoer.vraag.slice(0, 160)}`,
