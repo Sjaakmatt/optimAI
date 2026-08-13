@@ -1,19 +1,19 @@
 import type { Artifact } from '@/lib/types';
 
 /**
- * Copy, timing en fixtures voor de wandeling op /ontdek.
+ * Copy, timing en fixtures voor de rondleiding op /ontdek.
  *
  * Rode draad: een gewoon MKB-bedrijf dat klantvragen, bestellingen en
  * facturen afhandelt (in het voorbeeld "Meridian", een fictieve leverancier
- * met klanten in binnen- en buitenland). De film laat zien hoe één agent daar
- * meertalig orders afhandelt, en groeit tot een multi-agent keten en
- * geavanceerde, vooruitkijkende agents. Bewust sector-neutraal, zodat elk
+ * met klanten in binnen- en buitenland). De rondleiding laat zien hoe één
+ * agent daar meertalig orders afhandelt, en groeit tot een multi-agent keten
+ * en geavanceerde, vooruitkijkende agents. Bewust sector-neutraal, zodat elk
  * bedrijf zich erin herkent.
  *
- * De film bestaat uit hoofdstukken die elk in "beats" opbouwen. De
+ * De rondleiding bestaat uit hoofdstukken die elk in "beats" opbouwen. De
  * controller (OntdekFilm) verhoogt de beat op beatDelayMs zolang er
  * wordt afgespeeld en gaat holdMs na de laatste beat door naar de
- * volgende halte. Een halte met pauseAtBeat wacht op de bezoeker.
+ * volgende stap. Een stap met pauseAtBeat wacht op de bezoeker.
  */
 
 export interface FilmChapter {
@@ -31,11 +31,11 @@ export interface FilmChapter {
 export const CHAPTERS: FilmChapter[] = [
   {
     id: 'brief',
-    eyebrow: 'Halte 1 · De brief op de mat',
-    titel: 'Er valt werk binnen.',
+    eyebrow: 'Stap 1 · Binnenkomend werk',
+    titel: 'Er komt werk binnen.',
     titelAccent: 'In vier talen.',
     intro:
-      'Klanten sturen aanvragen en bestellingen, soms in het Nederlands, soms in het Duits, Engels of Frans. De agent leest elke binnenkomende vraag mee, in de taal van de klant.',
+      'Klanten sturen aanvragen en bestellingen, in het Nederlands, Duits, Engels of Frans. De agent leest elke binnenkomende vraag en beantwoordt die in de taal van de klant.',
     beats: 4,
     beatDelayMs: 1600,
     holdMs: 3500,
@@ -43,44 +43,44 @@ export const CHAPTERS: FilmChapter[] = [
   },
   {
     id: 'denken',
-    eyebrow: 'Halte 2 · Hardop denken',
+    eyebrow: 'Stap 2 · Controle en onderbouwing',
     titel: 'Geen zwarte doos, maar een',
-    titelAccent: 'werkbriefje.',
+    titelAccent: 'controleerbaar spoor.',
     intro:
-      'Voor elke aanvraag kijkt de agent na wat er klopt: wie de klant is, wat er is afgesproken, of het leverbaar is en welke voorwaarden gelden. En u kunt altijd teruglezen waarom hij iets deed.',
+      'Voor elke aanvraag controleert de agent wie de klant is, wat er is afgesproken, of het leverbaar is en welke voorwaarden gelden. Elke stap is achteraf terug te lezen.',
     beats: 5,
     beatDelayMs: 1400,
     holdMs: 4000,
   },
   {
     id: 'maken',
-    eyebrow: 'Halte 3 · Echte dingen maken',
-    titel: 'Hij praat niet alleen. Hij',
+    eyebrow: 'Stap 3 · Wat de agent oplevert',
+    titel: 'De agent antwoordt niet alleen. Hij',
     titelAccent: 'levert.',
     intro:
-      'Een bevestiging, een factuur met de juiste gegevens en valuta, een planning voor de uitvoering: de agent zet het klaar zoals uw mensen dat doen.',
+      'Een orderbevestiging, een factuur met de juiste gegevens en valuta, een planning voor de uitvoering: de agent zet het klaar volgens uw eigen werkwijze.',
     beats: 3,
     beatDelayMs: 1800,
     holdMs: 4500,
   },
   {
     id: 'systemen',
-    eyebrow: 'Halte 4 · In uw systemen',
-    titel: 'Geen nieuw scherm erbij.',
-    titelAccent: 'Hij komt naar u.',
+    eyebrow: 'Stap 4 · Koppeling met uw systemen',
+    titel: 'Geen extra systeem.',
+    titelAccent: 'Hij werkt in wat u al heeft.',
     intro:
-      'Via een adapter per systeem werkt de agent in uw ERP of administratie, de facturatie, de planning en al uw klantkanalen tegelijk: mail, chat en social.',
+      'Via een koppeling per systeem werkt de agent in uw ERP of administratie, de facturatie, de planning en al uw klantkanalen tegelijk: mail, chat en social.',
     beats: 4,
     beatDelayMs: 1300,
     holdMs: 4000,
   },
   {
     id: 'hek',
-    eyebrow: 'Halte 5 · Het hek',
+    eyebrow: 'Stap 5 · Grenzen en toezicht',
     titel: 'Bij twijfel beslist',
     titelAccent: 'een mens.',
     intro:
-      'Een standaardgeval loopt door. Maar wijkt een aanvraag af, gaat het om een uitzondering of een groot bedrag, dan stopt de agent en legt hij de keuze bij u neer.',
+      'Standaardgevallen handelt de agent zelf af. Wijkt een aanvraag af, gaat het om een uitzondering of een groot bedrag, dan stopt hij en legt hij de keuze bij u neer.',
     beats: 3,
     beatDelayMs: 1500,
     holdMs: 4000,
@@ -88,20 +88,20 @@ export const CHAPTERS: FilmChapter[] = [
   },
   {
     id: 'team',
-    eyebrow: 'Halte 6 · De keten',
-    titel: 'Grote klussen doet hij',
-    titelAccent: 'samen.',
+    eyebrow: 'Stap 6 · Samenwerkende agents',
+    titel: 'Grotere processen lopen',
+    titelAccent: 'door de keten.',
     intro:
-      'Eén opdracht loopt van verkoop naar uitvoering, planning en facturatie. Agents geven het werk aan elkaar door, met een dirigent die het overzicht houdt.',
+      'Eén opdracht loopt van verkoop naar uitvoering, planning en facturatie. Agents geven het werk aan elkaar door, met een coördinator die het overzicht houdt.',
     beats: 3,
     beatDelayMs: 1500,
     holdMs: 4500,
   },
   {
     id: 'vooruit',
-    eyebrow: 'Halte 7 · Vooruitkijken',
-    titel: 'En dan wordt het pas',
-    titelAccent: 'echt interessant.',
+    eyebrow: 'Stap 7 · Vooruitkijkende agents',
+    titel: 'Van afhandelen naar',
+    titelAccent: 'vooruitkijken.',
     intro:
       'Naast het dagelijkse werk zijn er agents die vooruitkijken: vraag voorspellen, afspraken en regels bewaken, kennis uit uw eigen documenten ontsluiten en de markt volgen.',
     beats: 4,
@@ -110,11 +110,11 @@ export const CHAPTERS: FilmChapter[] = [
   },
   {
     id: 'oogst',
-    eyebrow: 'Halte 8 · De oogst',
+    eyebrow: 'Stap 8 · Het resultaat',
     titel: 'Wat het',
     titelAccent: 'oplevert.',
     intro:
-      'Uren terug voor werk dat aandacht verdient. Dat is de hele bedoeling.',
+      'Minder tijd aan terugkerend werk, meer tijd voor klanten en groei. Daar is het om te doen.',
     beats: 4,
     beatDelayMs: 1200,
     holdMs: 6000,
@@ -236,8 +236,8 @@ export const MAKEN_PLANNING: Artifact = {
 
 export const BRIEF_STAPPEN = [
   { label: 'Lezen', body: 'in de taal van de klant (NL/EN/DE/FR)' },
-  { label: 'Opzoeken', body: 'klant, afspraken en beschikbaarheid erbij' },
-  { label: 'Doen', body: 'antwoord en vervolgstappen klaarzetten' },
+  { label: 'Controleren', body: 'klant, afspraken en beschikbaarheid erbij' },
+  { label: 'Uitvoeren', body: 'antwoord en vervolgstappen klaarzetten' },
 ];
 
 export const DENKEN_CHECKS = [
@@ -261,7 +261,7 @@ export const SYSTEMEN = [
 
 export const TEAM_AGENTS = ['Verkoop', 'Uitvoering', 'Planning', 'Facturatie'];
 
-/** De geavanceerde agents van halte 7. */
+/** De geavanceerde agents van stap 7. */
 export interface VooruitAgent {
   type: string;
   titel: string;
@@ -274,19 +274,19 @@ export const VOORUIT_AGENTS: VooruitAgent[] = [
     type: 'Voorspellend',
     titel: 'Vraagvoorspelling',
     body: 'Combineert verkoophistorie, seizoenspatronen en externe signalen om drukte en vraag te voorspellen, zodat inkoop, planning en bezetting vooruit geregeld worden.',
-    voorbeeld: 'Wordt het over zes weken druk? De planning weet het nu al.',
+    voorbeeld: 'Piek over zes weken? De planning is daar nu al op ingericht.',
   },
   {
     type: 'Kennis & RAG',
     titel: 'Kennis uit uw eigen documenten',
     body: 'Ontsluit uw handleidingen, contracten, prijsafspraken en dossiers, zodat iedereen direct het juiste, onderbouwde antwoord heeft, met bronvermelding.',
-    voorbeeld: 'Wat spraken we met deze klant af over levertijden? Meteen paraat, met bron.',
+    voorbeeld: 'Wat is met deze klant afgesproken over levertijden? Direct paraat, met bron.',
   },
   {
     type: 'Autonome monitoring',
     titel: 'Regels en afspraken bewaken',
     body: 'Volgt continu wijzigingen in regels, tarieven of afspraken die voor u gelden en waarschuwt vóórdat het een probleem wordt.',
-    voorbeeld: 'Een voorwaarde of tarief verandert? Melding vandaag, niet als het al misging.',
+    voorbeeld: 'Een voorwaarde of tarief verandert? U hoort het dezelfde dag, niet achteraf.',
   },
   {
     type: 'Marktintelligentie',

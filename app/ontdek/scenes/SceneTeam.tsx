@@ -6,7 +6,7 @@ import { TEAM_AGENTS, type SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 6. Het dorp: een dirigent en een klein team van agents, elk met
+ * Stap 6. De keten: een coordinator en een klein team van agents, elk met
  * een eigen rol. Zelfde beeldtaal als het organogram in de Werkbank,
  * maar dan zelfstandig en zonder store.
  */
@@ -37,7 +37,7 @@ export function SceneTeam({ beat, reduced }: SceneProps) {
     <div className="mx-auto w-full max-w-[560px]">
       <div className="relative" style={{ aspectRatio: `${W} / ${H}` }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden focusable="false">
-          {/* dirigent naar bus */}
+          {/* coordinator naar bus */}
           <line
             x1={W / 2} y1={DIRIGENT_Y + 22} x2={W / 2} y2={BUS_Y}
             stroke="var(--oker)" strokeWidth={1.1}
@@ -76,14 +76,14 @@ export function SceneTeam({ beat, reduced }: SceneProps) {
           })}
         </svg>
 
-        {/* Dirigent */}
+        {/* Coordinator */}
         <motion.div
           {...beatReveal(true, reduced)}
           className="absolute -translate-x-1/2 -translate-y-1/2"
           style={{ left: '50%', top: `${(DIRIGENT_Y / H) * 100}%` }}
         >
           <div className="rounded-[3px] border border-[var(--oker)] bg-[var(--paper)] px-5 py-2.5 text-center shadow-[var(--shadow-soft)]">
-            <div className="font-display text-[15px] leading-none text-[var(--ink)]">De dirigent</div>
+            <div className="font-display text-[15px] leading-none text-[var(--ink)]">Coördinator</div>
             <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--oker-deep)]">
               verdeelt en bewaakt
             </div>

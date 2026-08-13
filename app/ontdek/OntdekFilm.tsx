@@ -15,10 +15,10 @@ import { SceneVooruit } from './scenes/SceneVooruit';
 import { SceneOogst } from './scenes/SceneOogst';
 
 /**
- * De wandeling: een zichzelf afspelende film van zeven haltes.
+ * De rondleiding: een zichzelf afspelende presentatie van acht stappen.
  *
  * De controller telt "beats" binnen een hoofdstuk (beatDelayMs) en gaat na
- * de laatste beat door naar de volgende halte (holdMs). Hoofdstukken met
+ * de laatste beat door naar de volgende stap (holdMs). Hoofdstukken met
  * pauseAtBeat wachten daar tot de bezoeker iets aanklikt. Met
  * prefers-reduced-motion wordt het een diavoorstelling: geen autoplay,
  * elk hoofdstuk staat er direct compleet en u bladert zelf.
@@ -108,7 +108,7 @@ export function OntdekFilm() {
             <AnimatePresence mode="wait">
               <motion.section
                 key={chapter.id}
-                aria-labelledby={`halte-${chapter.id}`}
+                aria-labelledby={`stap-${chapter.id}`}
                 className="flex flex-1 flex-col"
                 {...(reduced ? {} : sceneSwap)}
               >
@@ -117,7 +117,7 @@ export function OntdekFilm() {
                     {chapter.eyebrow}
                   </div>
                   <h2
-                    id={`halte-${chapter.id}`}
+                    id={`stap-${chapter.id}`}
                     className="mt-2 font-display text-[24px] sm:text-[32px] leading-[1.12] tracking-tight text-[var(--ink)]"
                   >
                     {chapter.titel}{' '}
@@ -147,7 +147,7 @@ export function OntdekFilm() {
         <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <div className="flex items-center gap-2">
             <ControlButton
-              label="Vorige halte"
+              label="Vorige stap"
               disabled={index === 0}
               onClick={() => goTo(index - 1)}
             >
@@ -155,7 +155,7 @@ export function OntdekFilm() {
             </ControlButton>
             {!reduced && (
               <ControlButton
-                label={playing ? 'Pauzeer de wandeling' : 'Speel verder'}
+                label={playing ? 'Pauzeer de rondleiding' : 'Speel verder'}
                 onClick={() => {
                   if (!playing && last && beat >= chapter.beats) {
                     start();
@@ -174,7 +174,7 @@ export function OntdekFilm() {
               </ControlButton>
             )}
             <ControlButton
-              label="Volgende halte"
+              label="Volgende stap"
               disabled={last}
               onClick={() => goTo(index + 1)}
             >
@@ -184,7 +184,7 @@ export function OntdekFilm() {
 
           <div className="flex items-center gap-4">
             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--ink-faint)]">
-              Halte {index + 1} / {CHAPTERS.length}
+              Stap {index + 1} / {CHAPTERS.length}
             </span>
             <div className="flex items-center gap-2">
               {CHAPTERS.map((c, i) => (
@@ -218,7 +218,7 @@ export function OntdekFilm() {
 function StartOverlay({ onStart, reduced }: { onStart: () => void; reduced: boolean }) {
   return (
     <div className="relative flex min-h-[560px] sm:min-h-[600px] flex-col items-center justify-center px-6 text-center">
-      {/* uitnodigend wandelpaadje */}
+      {/* de lijn van het traject: van eerste stap naar resultaat */}
       <svg viewBox="0 0 260 90" className="w-[220px] sm:w-[260px] h-auto" aria-hidden focusable="false">
         <path
           d="M10 78 C 70 66, 60 30, 128 34 C 196 38, 190 70, 250 14"
@@ -233,12 +233,13 @@ function StartOverlay({ onStart, reduced }: { onStart: () => void; reduced: bool
         <circle cx="250" cy="14" r="2.5" fill="none" stroke="var(--oker)" strokeWidth="1.2" />
       </svg>
       <h2 className="mt-6 font-display text-[28px] sm:text-[36px] leading-[1.1] tracking-tight text-[var(--ink)] max-w-[480px]">
-        Een korte wandeling door het land van de{' '}
-        <span className="italic text-[var(--oker-deep)]">agents.</span>
+        Wat een AI-agent doet, in{' '}
+        <span className="italic text-[var(--oker-deep)]">{`${CHAPTERS.length} stappen.`}</span>
       </h2>
       <p className="mt-4 max-w-[420px] text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">
-        Zeven haltes, een minuut of drie. Onderweg ziet u wat een AI-agent is, hoe hij denkt en waar
-        hij stopt. {reduced ? 'U bladert zelf door de haltes.' : 'Pauzeren kan altijd.'}
+        Duurt ongeveer drie minuten. U ziet hoe een agent werk oppakt, controleert en oplevert, en
+        waar een mens het overneemt.{' '}
+        {reduced ? 'U bladert zelf door de stappen.' : 'Pauzeren kan altijd.'}
       </p>
       <button
         type="button"
@@ -246,7 +247,7 @@ function StartOverlay({ onStart, reduced }: { onStart: () => void; reduced: bool
         className="mt-8 inline-flex items-center gap-2 rounded-[2px] bg-[var(--ink)] px-6 py-3 text-[15px] text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] lift-on-hover"
       >
         <Play size={15} strokeWidth={1.8} aria-hidden />
-        Start de wandeling
+        Start de rondleiding
       </button>
     </div>
   );

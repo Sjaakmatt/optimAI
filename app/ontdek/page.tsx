@@ -11,14 +11,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 const PAGE_PATH = '/ontdek';
 
 export const metadata: Metadata = {
-  title: 'Ontdek FactumAI agents · een wandeling door agent-land',
+  title: 'Ontdek FactumAI agents · rondleiding in acht stappen',
   description:
-    'Loop in een paar minuten door het land van de AI-agents, aan de hand van een gewoon bedrijf: meertalige klantvragen, facturatie, een multi-agent keten en agents die vooruitkijken. En overal: een mens die beslist.',
+    'Zie in een paar minuten wat AI-agents doen, aan de hand van een gewoon bedrijf: meertalige klantvragen, facturatie, een multi-agent keten en agents die vooruitkijken. En overal: een mens die beslist.',
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     title: 'Ontdek FactumAI agents',
     description:
-      'Een korte, visuele wandeling door het land van de AI-agents. Acht haltes, geen jargon.',
+      'Een korte, visuele rondleiding langs AI-agents in de praktijk. Acht stappen, geen jargon.',
     url: `${SITE_URL}${PAGE_PATH}`,
   },
 };
@@ -50,17 +50,16 @@ export default function OntdekPage() {
         </div>
         <div className="max-w-[720px]">
           <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
-            De wandeling · ± 3 minuten
+            Rondleiding · ± 3 minuten
           </div>
           <h1 className="mt-4 font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Ontdek FactumAI{' '}
             <span className="italic text-[var(--oker-deep)]">agents.</span>
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[620px]">
-            Wat is een AI-agent nou eigenlijk, als je alle grote woorden weglaat? Loop even mee met
-            een gewoon bedrijf dat klantvragen, bestellingen en facturen afhandelt. U ziet hoe een
-            agent leest, denkt, levert en samenwerkt. En vooral: waar hij netjes stopt en een mens
-            beslist.
+            Wat is een AI-agent precies, zonder de grote woorden? We volgen een gewoon bedrijf dat
+            klantvragen, bestellingen en facturen afhandelt. U ziet hoe een agent leest, controleert,
+            levert en samenwerkt. En vooral: waar hij stopt en een mens beslist.
           </p>
         </div>
       </section>
@@ -77,13 +76,13 @@ export default function OntdekPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-20">
           <div className="max-w-[640px]">
             <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.22em]">
-              Na de wandeling
+              Na de rondleiding
             </div>
             <h2 className="mt-3 font-display text-[28px] sm:text-[36px] leading-[1.1] tracking-tight text-[var(--ink)]">
-              Zin om verder te <span className="italic text-[var(--oker-deep)]">lopen?</span>
+              En in uw <span className="italic text-[var(--oker-deep)]">eigen bedrijf?</span>
             </h2>
             <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)]">
-              Een half uur sparren over uw eigen situatie zegt meer dan welke wandeling ook. Geen
+              Een half uur over uw eigen situatie zegt meer dan welke toelichting ook. Geen
               verkooppraatje: u vertelt waar het werk knelt, wij zeggen eerlijk of een agent daar
               iets aan verandert.
             </p>
