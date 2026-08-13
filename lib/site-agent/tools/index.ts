@@ -7,6 +7,7 @@
 import type Anthropic from '@anthropic-ai/sdk';
 
 import { logEvent, maskeerEmail } from '../events';
+import { BIED_TERUGBELAANBOD_DEFINITIE, biedTerugbelaanbod } from './biedTerugbelaanbod';
 import { BOEK_AFSPRAAK_DEFINITIE, boekAfspraak } from './boekAfspraak';
 import { ESCALEER_DEFINITIE, escaleerNaarSjaak } from './escaleerNaarSjaak';
 import { MAAK_LEAD_DEFINITIE, maakLead } from './maakLead';
@@ -17,6 +18,7 @@ export type { ToolContext, ToolUitvoer, ToolSignaal } from './types';
 
 export const TOOL_DEFINITIES: Anthropic.Tool[] = [
   MAAK_LEAD_DEFINITIE,
+  BIED_TERUGBELAANBOD_DEFINITIE,
   BOEK_AFSPRAAK_DEFINITIE,
   STUUR_SAMENVATTING_DEFINITIE,
   ESCALEER_DEFINITIE,
@@ -26,6 +28,7 @@ type ToolFunctie = (invoer: unknown, ctx: ToolContext) => Promise<ToolUitvoer>;
 
 const TOOLS: Record<string, ToolFunctie> = {
   maakLead,
+  biedTerugbelaanbod,
   boekAfspraak,
   stuurSamenvatting,
   escaleerNaarSjaak,

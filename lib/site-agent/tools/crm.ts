@@ -20,6 +20,10 @@ export interface LeadInvoer {
   score?: LeadScore | null;
   scoreReason?: string | null;
   nextStepSuggestion?: string | null;
+  /** Alleen zetten als de bezoeker het zelf heeft aangevinkt. Zie lib/site-agent/consent.ts. */
+  consentContact?: boolean;
+  consentAt?: string;
+  consentText?: string;
 }
 
 interface LeadRij {
@@ -68,6 +72,9 @@ export async function maakLeadAan(invoer: LeadInvoer): Promise<string> {
     score: invoer.score ?? null,
     scoreReason: invoer.scoreReason ?? null,
     nextStepSuggestion: invoer.nextStepSuggestion ?? null,
+    consentContact: invoer.consentContact ?? false,
+    consentAt: invoer.consentAt ?? null,
+    consentText: invoer.consentText ?? null,
     updatedAt: nu,
   });
 
@@ -125,14 +132,14 @@ export type ReviewNiveau = 'SIMPLE' | 'REVIEW' | 'ESCALATION';
  * systeemactie. Zie het contract in de dashboard-repo,
  * `docs/site-agent-werkbak-contract.md`.
  */
-export type ReviewSoort = 'draft_email' | 'site_agent_question';
+export type ReviewSoort = 'draft_email' | 'site_agent_question' | 'site_agent_callback';
 
 export interface ReviewInvoer {
   kind: ReviewSoort;
   summary: string;
   proposed: Record<string, unknown>;
   grounding?: Record<string, unknown>;
-  domain?: 'chat' | 'mail' | 'calendar';
+  domain?: 'chat' | 'mail' | 'calendar' | 'sales';
   level?: ReviewNiveau;
 }
 
