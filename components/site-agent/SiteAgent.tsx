@@ -198,14 +198,18 @@ export function SiteAgent() {
     );
   }
 
+  // Wolkje én knop in één container, rechts uitgelijnd. Ze horen bij elkaar:
+  // het wolkje komt uit de knop, niet ergens los uit de hoek. Daarom staat de
+  // positionering hier en niet twee keer apart — anders lopen ze uit elkaar
+  // zodra de knop van formaat verandert.
   return (
-    <>
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
       {uitnodiging && (
         <div
-          // De hele bubbel is klikbaar, niet alleen een tekstlink: dit is het
+          // De hele ballon is klikbaar, niet alleen een tekstlink: dit is het
           // moment waarop iemand reageert, en dan moet je niet op een woord van
           // vijftig pixels hoeven mikken. Het kruisje ligt erbovenop.
-          className="agent-uitnodiging fixed bottom-[5.75rem] right-6 z-40 w-[min(300px,calc(100vw-3rem))] rounded-[3px] border border-[var(--oker)] bg-[var(--paper-warm)]"
+          className="agent-wolkje relative w-[min(290px,calc(100vw-3rem))] rounded-[10px] border border-[var(--oker)] bg-[var(--paper-warm)]"
           style={{ boxShadow: 'var(--shadow-lift)' }}
         >
           <button
@@ -227,10 +231,22 @@ export function SiteAgent() {
             type="button"
             onClick={wegklikken}
             aria-label="Niet nu"
-            className="absolute right-1.5 top-1.5 rounded-[2px] p-1.5 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
+            className="absolute right-1.5 top-1.5 rounded-full p-1.5 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
           >
             <X size={14} strokeWidth={1.8} />
           </button>
+
+          {/* Het staartje. Twee driehoeken over elkaar: de onderste in de
+              randkleur, de bovenste een pixel hoger in de vulkleur, zodat de
+              rand doorloopt tot in de punt in plaats van er bovenlangs. */}
+          <span
+            aria-hidden="true"
+            className="absolute right-7 top-full h-0 w-0 border-x-[9px] border-t-[10px] border-x-transparent border-t-[color:var(--oker)]"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute right-7 top-full h-0 w-0 -translate-y-px border-x-[9px] border-t-[10px] border-x-transparent border-t-[color:var(--paper-warm)]"
+          />
         </div>
       )}
 
@@ -245,12 +261,12 @@ export function SiteAgent() {
         onClick={() => setOpen(true)}
         aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
-        className="agent-knop fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3.5 text-[14.5px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
+        className="agent-knop inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3.5 text-[14.5px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
         <MessageSquare size={17} strokeWidth={2} />
         Stel je vraag
       </button>
-    </>
+    </div>
   );
 }
