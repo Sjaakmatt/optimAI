@@ -12,7 +12,9 @@ import { useCallback, useEffect, useRef, type FormEvent, type KeyboardEvent } fr
 import Link from 'next/link';
 import { X, ArrowUp } from 'lucide-react';
 
-import { useGesprek } from './useGesprek';
+import { getCalApi } from '@/components/booking/calLoader';
+import { CAL_LINK } from '@/components/booking/config';
+import { useGesprek, type Signaal } from './useGesprek';
 
 const FOCUSBAAR =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -32,10 +34,21 @@ export default function AgentPaneel({
   opening,
   onSluiten,
 }: AgentPaneelProps) {
+  // De agent kan om de agenda vragen. Die komt uit de bestaande Cal-embed van
+  // de site; we bouwen er geen eigen agenda naast.
+  const opSignaal = useCallback((signaal: Signaal) => {
+    if (signaal.naam !== 'agenda') return;
+    const link = typeof signaal.payload.calLink === 'string' ? signaal.payload.calLink : CAL_LINK;
+    getCalApi()
+      .then((ns) => ns('modal', { calLink: link, config: { layout: 'month_view', theme: 'light' } }))
+      .catch((err) => console.warn('[site-agent] agenda openen faalde:', err));
+  }, []);
+
   const { berichten, status, fout, stuur, voegOpeningToe } = useGesprek({
     sessionId,
     paginaPad,
     playbook,
+    onSignaal: opSignaal,
   });
 
   const paneelRef = useRef<HTMLDivElement>(null);

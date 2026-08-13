@@ -17,9 +17,17 @@ export interface Bericht {
 export type GespreksStatus = 'rust' | 'bezig' | 'fout';
 
 interface ServerEvent {
-  type: 'delta' | 'herstart' | 'klaar' | 'fout';
+  type: 'delta' | 'herstart' | 'signaal' | 'klaar' | 'fout';
   tekst?: string;
   melding?: string;
+  naam?: string;
+  payload?: Record<string, unknown>;
+}
+
+/** Actie die de agent aan de widget vraagt, bijvoorbeeld de agenda openen. */
+export interface Signaal {
+  naam: string;
+  payload: Record<string, unknown>;
 }
 
 const ALGEMENE_FOUT =
@@ -33,7 +41,11 @@ export function useGesprek(opties: {
   sessionId: string;
   paginaPad: string;
   playbook: string;
+  onSignaal?: (signaal: Signaal) => void;
 }) {
+  const signaalRef = useRef(opties.onSignaal);
+  signaalRef.current = opties.onSignaal;
+
   const [berichten, setBerichten] = useState<Bericht[]>([]);
   const [status, setStatus] = useState<GespreksStatus>('rust');
   const [fout, setFout] = useState<string | null>(null);
@@ -117,6 +129,11 @@ export function useGesprek(opties: {
           if (event.type === 'herstart') {
             begonnen = false;
             setBerichten((huidig) => huidig.filter((b) => b.id !== agentId));
+            return;
+          }
+
+          if (event.type === 'signaal' && event.naam) {
+            signaalRef.current?.({ naam: event.naam, payload: event.payload ?? {} });
             return;
           }
 

@@ -161,7 +161,7 @@ export function SiteAgent() {
     <>
       {uitnodiging && (
         <div
-          className="fixed bottom-[9.5rem] right-6 z-40 max-w-[260px] rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3"
+          className="fixed bottom-[5.5rem] right-6 z-40 max-w-[260px] rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3"
           style={{ boxShadow: 'var(--shadow-lift)' }}
         >
           <p className="text-[13.5px] leading-[1.55] text-[var(--ink)]">
@@ -186,15 +186,14 @@ export function SiteAgent() {
         </div>
       )}
 
-      {/* Boven de Cal-knop, niet ernaast: die blijft de primaire conversieknop
-          rechtsonder. Beide verschijnen op dezelfde pagina's, zie
-          verbergZwevendeKnoppen. */}
+      {/* Chat rechtsonder, de Cal-knop linksonder. Beide verschijnen op
+          dezelfde pagina's, zie verbergZwevendeKnoppen. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Stel je vraag aan de agent van FactumAI"
         aria-haspopup="dialog"
-        className="fixed bottom-[5.5rem] right-6 z-40 inline-flex items-center gap-2 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3 text-[14px] leading-none text-[var(--ink)] transition-colors hover:bg-[var(--paper-warm)]"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3 text-[14px] leading-none text-[var(--ink)] transition-colors hover:bg-[var(--paper-warm)]"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
         <MessageSquare size={16} strokeWidth={1.8} />
