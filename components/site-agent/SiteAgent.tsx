@@ -48,6 +48,30 @@ const SCROLLDIEPTE = 0.35;
 const MAX_UITNODIGINGEN = 2;
 
 /**
+ * Testschakelaar: `?agent=nu` toont het wolkje meteen en negeert de
+ * sessievlaggen.
+ *
+ * Die vlaggen zijn hardnekkig met opzet — wie het wolkje wegklikt of de chat
+ * sluit, krijgt het de rest van het tabblad niet meer te zien — maar daardoor
+ * is het bijna niet te testen. Eén keer de chat openen en sluiten is genoeg om
+ * het voor dat tabblad uit te zetten, en een refresh helpt niet omdat
+ * sessionStorage die overleeft.
+ *
+ * Alleen de URL van deze paginaweergave telt; er wordt niets opgeslagen, dus
+ * een gewone bezoeker merkt hier niets van.
+ */
+const TEST_PARAMETER = 'agent';
+const TEST_WAARDE = 'nu';
+
+function testModusAan(): boolean {
+  try {
+    return new URLSearchParams(window.location.search).get(TEST_PARAMETER) === TEST_WAARDE;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Aan/uit. De agent staat aan; NEXT_PUBLIC_SITE_AGENT_ENABLED=false haalt de
  * widget weg. Die waarde wordt bij de build in de bundel gebakken, dus er moet
  * een nieuwe deploy overheen voordat het effect heeft. Wil je de kosten
@@ -114,6 +138,12 @@ export function SiteAgent() {
   useEffect(() => {
     if (verbergen || open) return;
 
+    // Testmodus: meteen tonen, sessievlaggen overslaan.
+    if (testModusAan()) {
+      setUitnodiging(true);
+      return;
+    }
+
     let weggeklikt = false;
     try {
       weggeklikt = window.sessionStorage.getItem(SLEUTEL_WEGGEKLIKT) === '1';
@@ -149,7 +179,16 @@ export function SiteAgent() {
 
   // Bij een paginawissel de openstaande bubbel weghalen: hij hoort bij de zin
   // van de vorige pagina, en die klopt hier niet meer.
+  //
+  // Niet bij de eerste render. Dit effect draait ná het effect hierboven, dus
+  // zonder deze uitzondering zet het een wolkje dat daar net is aangezet meteen
+  // weer uit — precies wat er in testmodus zou gebeuren.
+  const eersteRenderRef = useRef(true);
   useEffect(() => {
+    if (eersteRenderRef.current) {
+      eersteRenderRef.current = false;
+      return;
+    }
     setUitnodiging(false);
   }, [pathname]);
 
