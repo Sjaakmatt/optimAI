@@ -38,7 +38,7 @@ export interface ControleOpties {
 
 /** De vaste tekst waarop we terugvallen als ook de hergeneratie de controle niet haalt. */
 export const VEILIGE_TERUGVAL =
-  'Daar wil ik niet naar gokken. Ik leg het voor aan Sjaak, dan heb je morgen een antwoord ' +
+  'Daar wil ik niet naar gokken. Ik leg het voor aan een collega, dan heb je morgen een antwoord ' +
   'dat klopt. Op welk mailadres mag dat?';
 
 // Nederlandse telwoorden en hoeveelheidsaanduidingen. "een paar" en "enkele"
@@ -208,7 +208,7 @@ export function bouwHergeneratieNotitie(overtredingen: readonly Overtreding[]): 
     '',
     'Schrijf het antwoord opnieuw zonder die elementen. Verzin geen vervangend getal en geen',
     'omschrijving die hetzelfde suggereert. Als de vraag niet te beantwoorden is zonder wat',
-    'hierboven staat, zeg dan eerlijk dat je er niet naar wilt gokken en dat je het aan Sjaak',
+    'hierboven staat, zeg dan eerlijk dat je er niet naar wilt gokken en dat je het aan een collega',
     'voorlegt, en vraag om een mailadres.',
   ].join('\n');
 }

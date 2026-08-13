@@ -1,5 +1,5 @@
-// escaleerNaarSjaak: legt een vraag met gesprekscontext in de werkbak en stuurt
-// Sjaak een signaal.
+// escaleerNaarMens: legt een vraag met gesprekscontext in de werkbak en stuurt
+// een signaal naar het team.
 //
 // Dit is de tool die het gedrag van FactumAI zichtbaar maakt: de agent gokt
 // niet naar een prijs, datum of toezegging maar zet de vraag door naar een
@@ -15,19 +15,19 @@ import { maakReviewItem } from './crm';
 import type { ToolContext, ToolUitvoer } from './types';
 
 export const ESCALEER_DEFINITIE: Anthropic.Tool = {
-  name: 'escaleerNaarSjaak',
+  name: 'escaleerNaarMens',
   description:
-    'Leg een vraag voor aan Sjaak die jij niet mag of kunt beantwoorden: een prijs, een ' +
+    'Leg een vraag voor aan een collega die jij niet mag of kunt beantwoorden: een prijs, een ' +
     'opleverdatum, een toezegging, of iets dat buiten je kennisbank valt. Roep dit aan nadat je ' +
     'tegen de bezoeker hebt gezegd dat je er niet naar wilt gokken. Geef het mailadres mee als je ' +
-    'dat hebt. Er wordt niets naar de bezoeker verstuurd; Sjaak pakt het op.',
+    'dat hebt. Er wordt niets naar de bezoeker verstuurd; een collega pakt het op.',
   input_schema: {
     type: 'object',
     properties: {
       vraag: { type: 'string', description: 'De vraag van de bezoeker, in zijn eigen woorden.' },
       context: {
         type: 'string',
-        description: 'Wat je verder uit het gesprek weet en wat Sjaak nodig heeft om te antwoorden.',
+        description: 'Wat je verder uit het gesprek weet en wat een collega nodig heeft om te antwoorden.',
       },
       email: { type: 'string', description: 'Mailadres van de bezoeker, als je dat hebt.' },
       urgentie: {
@@ -50,7 +50,7 @@ const Invoer = z.object({
   urgentie: z.enum(['normaal', 'hoog']).optional(),
 });
 
-export async function escaleerNaarSjaak(ruw: unknown, ctx: ToolContext): Promise<ToolUitvoer> {
+export async function escaleerNaarMens(ruw: unknown, ctx: ToolContext): Promise<ToolUitvoer> {
   const parsed = Invoer.safeParse(ruw);
   if (!parsed.success) {
     return { voorModel: 'De vraag is niet doorgezet: er ontbrak context. Formuleer de vraag opnieuw.' };
@@ -94,7 +94,7 @@ export async function escaleerNaarSjaak(ruw: unknown, ctx: ToolContext): Promise
 
   return {
     voorModel:
-      `De vraag staat in de werkbak bij Sjaak (${reviewId})` +
+      `De vraag staat in de werkbak (${reviewId})` +
       `${verstuurd ? ' en hij heeft een melding gekregen' : ''}. ` +
       'Zeg tegen de bezoeker dat hij een antwoord krijgt dat klopt, en gok zelf niets.',
   };

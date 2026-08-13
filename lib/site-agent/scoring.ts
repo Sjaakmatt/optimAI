@@ -94,7 +94,7 @@ function isBeoordeling(waarde: unknown): waarde is Beoordeling {
   );
 }
 
-/** Bouwt een samenvatting die Sjaak kan lezen zonder het transcript erbij. */
+/** Bouwt een samenvatting die leesbaar is zonder het transcript erbij. */
 function bouwSamenvatting(b: Beoordeling): string {
   const regels = [
     b.proces ? `Proces: ${b.proces}` : null,

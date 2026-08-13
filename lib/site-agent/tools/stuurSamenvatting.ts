@@ -18,7 +18,7 @@ export const STUUR_SAMENVATTING_DEFINITIE: Anthropic.Tool = {
     'Zet een korte procesnotitie klaar voor de bezoeker: wat je uit het gesprek haalt over zijn ' +
     'proces, en wat daar wel en niet automatiseerbaar aan is. Gebruik dit als de bezoeker geen ' +
     'afspraak wil maar wel een mailadres geeft. De notitie wordt NIET verstuurd: hij komt als ' +
-    'concept in de reviewwachtrij en Sjaak kijkt er eerst overheen. Zeg dat er ook bij tegen de ' +
+    'concept in de reviewwachtrij en een collega kijkt er eerst overheen. Zeg dat er ook bij tegen de ' +
     'bezoeker. Zet geen bedragen, doorlooptijden of besparingscijfers in de notitie.',
   input_schema: {
     type: 'object',
@@ -80,6 +80,6 @@ export async function stuurSamenvatting(ruw: unknown, ctx: ToolContext): Promise
   return {
     voorModel:
       `De procesnotitie staat als concept in de werkbak (${reviewId}). Er is niets verstuurd. ` +
-      'Zeg tegen de bezoeker dat Sjaak er eerst overheen kijkt en dat dat bij FactumAI standaard is.',
+      'Zeg tegen de bezoeker dat een collega er eerst overheen kijkt en dat dat bij FactumAI standaard is.',
   };
 }

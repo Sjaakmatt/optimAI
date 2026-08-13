@@ -42,7 +42,7 @@ export const MAAK_LEAD_DEFINITIE: Anthropic.Tool = {
       },
       vervolgactie: {
         type: 'string',
-        description: 'Wat Sjaak als eerstvolgende stap zou moeten doen, in één zin.',
+        description: 'Wat de eerstvolgende stap zou moeten zijn, in één zin.',
       },
     },
     required: ['bedrijfsnaam', 'samenvatting'],

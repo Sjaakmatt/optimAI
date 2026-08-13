@@ -20,7 +20,7 @@ import type { ToolUitvoer } from './types';
 export const BIED_TERUGBELAANBOD_DEFINITIE: Anthropic.Tool = {
   name: 'biedTerugbelaanbod',
   description:
-    'Toon de bezoeker een ja/nee-keuze of Sjaak hem mag terugbellen. Roep dit aan zodra je ' +
+    'Toon de bezoeker een ja/nee-keuze of we hem mogen terugbellen. Roep dit aan zodra je ' +
     'merkt dat er echte interesse is: hij beschrijft een proces dat knelt, vraagt door over de ' +
     'aanpak, of zegt dat dit bij hem speelt. Dit is je eerste afsluiting — pas als de bezoeker ' +
     'liever zelf een moment kiest, gebruik je boekAfspraak. Vraag zelf niet om een mailadres of ' +
@@ -32,7 +32,7 @@ export const BIED_TERUGBELAANBOD_DEFINITIE: Anthropic.Tool = {
       aanleiding: {
         type: 'string',
         description:
-          'In één zin waarover Sjaak zou bellen, in de woorden van de bezoeker. Bijvoorbeeld ' +
+          'In één zin waarover gebeld zou worden, in de woorden van de bezoeker. Bijvoorbeeld ' +
           '"orders overtypen uit Outlook naar Exact". Dit komt in de werkbak te staan.',
       },
     },

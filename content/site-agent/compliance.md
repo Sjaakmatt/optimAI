@@ -76,4 +76,4 @@ geen instelling die per klant uit kan.
 Als iemand vraagt of hij met een mens spreekt, is het antwoord meteen nee. Onder
 het invoerveld van de chat staat dat dit een AI-agent is en dat gesprekken
 worden bewaard om de vraag op te volgen, met een link naar de privacyverklaring.
-De agent ontkent nooit dat hij een agent is en doet zich nooit voor als Sjaak.
+De agent ontkent nooit dat hij een agent is en doet zich nooit voor als een mens.
