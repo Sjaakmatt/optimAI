@@ -28,39 +28,77 @@ import type { ToolContext, ToolUitvoer } from './types';
 
 const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'sjaak-factumai/kennismaking';
 
-export const BOEK_AFSPRAAK_DEFINITIE: Anthropic.Tool = {
-  name: 'boekAfspraak',
-  description:
-    'Vraag de kennismaking van 20 minuten aan en stuur de bezoeker een bevestigingsmail. Roep dit ' +
-    'alleen aan als je via checkBeschikbaarheid een vrij moment hebt gezien én de bezoeker naam ' +
-    'en mailadres heeft gegeven en het gekozen moment heeft bevestigd. Gebruik voor "start" exact ' +
-    'de start=-waarde uit checkBeschikbaarheid; verzin nooit zelf een tijdstip. LET OP: de ' +
-    'afspraak staat hierna nog NIET in de agenda. De bezoeker moet eerst op de link in die mail ' +
-    'klikken. Zeg dus nooit dat de afspraak vaststaat. Weet je geen vrij moment of geen ' +
-    'mailadres, gebruik dan checkBeschikbaarheid en laat de bezoeker zelf kiezen in de widget.',
-  input_schema: {
-    type: 'object',
-    properties: {
-      start: {
-        type: 'string',
-        description:
-          'De starttijd, exact zoals checkBeschikbaarheid die gaf achter "start=" ' +
-          '(bijvoorbeeld 2026-06-03T10:30:00.000Z).',
+/**
+ * Wat het model over deze tool te horen krijgt, hangt af van welke agenda
+ * draait — net als het agendablok in de prompt.
+ *
+ * Met Cal.com opent deze tool alleen de kalender: er is geen starttijd te
+ * kiezen (checkBeschikbaarheid kan daar niets zien) en de kalender vraagt zelf
+ * om een mailadres. Zou het model hier de teams-omschrijving lezen, dan staan
+ * er drie verplichte velden in het schema die hij niet eerlijk kán vullen, en
+ * dan verzint hij een tijdstip om het schema tevreden te stellen.
+ */
+function boekDefinitie(): Anthropic.Tool {
+  if (BOEKING_PROVIDER !== 'teams') {
+    return {
+      name: 'boekAfspraak',
+      description:
+        'Toon onze agenda in de widget zodat de bezoeker zelf een moment kiest voor een ' +
+        'kennismaking van 20 minuten. Roep dit pas aan als de bezoeker ja heeft gezegd op de ' +
+        'vraag of je zal kijken wanneer het kan. Vraag daarna niet ook nog om een mailadres: de ' +
+        'agenda vraagt dat zelf.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          aanleiding: {
+            type: 'string',
+            description:
+              'In één zin waar het gesprek over gaat, zodat we voorbereid zijn. Bijvoorbeeld ' +
+              '"offertes maken bij een groothandel, loopt via Exact en Outlook".',
+          },
+        },
+        required: ['aanleiding'],
+        additionalProperties: false,
       },
-      naam: { type: 'string', description: 'De naam die de bezoeker zelf heeft gegeven.' },
-      email: { type: 'string', description: 'Het mailadres dat de bezoeker zelf heeft gegeven.' },
-      bedrijf: { type: 'string', description: 'De bedrijfsnaam, als de bezoeker die noemde.' },
-      aanleiding: {
-        type: 'string',
-        description:
-          'In één zin waar het gesprek over gaat, zodat we voorbereid zijn. Bijvoorbeeld ' +
-          '"offertes maken bij een groothandel, loopt via Exact en Outlook".',
+    };
+  }
+
+  return {
+    name: 'boekAfspraak',
+    description:
+      'Vraag de kennismaking van 20 minuten aan en stuur de bezoeker een bevestigingsmail. Roep ' +
+      'dit alleen aan als je via checkBeschikbaarheid een vrij moment hebt gezien én de bezoeker ' +
+      'naam en mailadres heeft gegeven en het gekozen moment heeft bevestigd. Gebruik voor ' +
+      '"start" exact de start=-waarde uit checkBeschikbaarheid; verzin nooit zelf een tijdstip. ' +
+      'LET OP: de afspraak staat hierna nog NIET in de agenda. De bezoeker moet eerst op de link ' +
+      'in die mail klikken. Zeg dus nooit dat de afspraak vaststaat. Weet je geen vrij moment of ' +
+      'geen mailadres, gebruik dan checkBeschikbaarheid en laat de bezoeker zelf kiezen in de widget.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        start: {
+          type: 'string',
+          description:
+            'De starttijd, exact zoals checkBeschikbaarheid die gaf achter "start=" ' +
+            '(bijvoorbeeld 2026-06-03T10:30:00.000Z).',
+        },
+        naam: { type: 'string', description: 'De naam die de bezoeker zelf heeft gegeven.' },
+        email: { type: 'string', description: 'Het mailadres dat de bezoeker zelf heeft gegeven.' },
+        bedrijf: { type: 'string', description: 'De bedrijfsnaam, als de bezoeker die noemde.' },
+        aanleiding: {
+          type: 'string',
+          description:
+            'In één zin waar het gesprek over gaat, zodat we voorbereid zijn. Bijvoorbeeld ' +
+            '"offertes maken bij een groothandel, loopt via Exact en Outlook".',
+        },
       },
+      required: ['start', 'naam', 'email'],
+      additionalProperties: false,
     },
-    required: ['start', 'naam', 'email'],
-    additionalProperties: false,
-  },
-};
+  };
+}
+
+export const BOEK_AFSPRAAK_DEFINITIE: Anthropic.Tool = boekDefinitie();
 
 const Invoer = z.object({
   start: z.string().min(1),
