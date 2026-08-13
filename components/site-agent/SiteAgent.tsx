@@ -26,9 +26,24 @@ import { playbookVoorPad, verbergZwevendeKnoppen } from '@/lib/site-agent/pad-na
 
 const AgentPaneel = dynamic(() => import('./AgentPaneel'), { ssr: false });
 
-const SLEUTEL_SESSIE = 'factumai.agent.sessie';
-const SLEUTEL_WEGGEKLIKT = 'factumai.agent.weggeklikt';
-const SLEUTEL_GEMELD = 'factumai.agent.gemeld';
+/**
+ * Versie van de sessievlaggen. Ophogen zodra de betekenis van een vlag
+ * verandert.
+ *
+ * Waarom dit nodig is: `weggeklikt` betekende tot voor kort óók "heeft het
+ * paneel gesloten". Een tabblad dat die vlag al had staan, houdt het wolkje uit
+ * — ook na een deploy die dat gedrag juist verandert, want sessionStorage
+ * overleeft een refresh. De oude vlag draagt dan een betekenis die de nieuwe
+ * code niet meer bedoelt.
+ *
+ * Met een versie in de sleutel tellen oude vlaggen simpelweg niet meer mee.
+ * Goedkoper en betrouwbaarder dan opruimcode die je later weer moet weghalen.
+ */
+const OPSLAG_VERSIE = 'v2';
+
+const SLEUTEL_SESSIE = `factumai.agent.${OPSLAG_VERSIE}.sessie`;
+const SLEUTEL_WEGGEKLIKT = `factumai.agent.${OPSLAG_VERSIE}.weggeklikt`;
+const SLEUTEL_GEMELD = `factumai.agent.${OPSLAG_VERSIE}.gemeld`;
 
 // Twaalf seconden in plaats van twintig. Twintig is voorbij het moment waarop
 // iemand besluit of deze pagina hem iets oplevert; dan meld je je bij wie al
