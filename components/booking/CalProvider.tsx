@@ -3,17 +3,24 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getCalApi } from './calLoader';
-import { calPopupAttrs } from './config';
 import { trackEvent } from '@/lib/analytics/gtag';
 import { verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
 
 let bookingListenerAttached = false;
 
 /**
- * Zwevende "Plan gesprek"-knop rechtsonder. Eigen knop in de huisstijl
- * i.p.v. Cal's ingebouwde floatingButton, die was fors en slecht
- * gecentreerd. De klik opent dezelfde Cal-popup via de data-cal-attrs;
- * de embed wordt in de effect alvast geladen zodat de popup direct opent.
+ * Laadt de Cal-embed alvast en registreert het booking-event voor analytics.
+ *
+ * Rendert zelf niets meer. De zwevende "Plan gesprek"-knop linksonder is eruit:
+ * twee zwevende knoppen in beeld lieten de bezoeker kiezen tussen praten en
+ * plannen, terwijl de agent dat gesprek juist moet voeren en zelf een afspraak
+ * of terugbelverzoek voorstelt. Eén ingang converteert beter dan twee die om
+ * dezelfde aandacht vragen.
+ *
+ * De embed vooraf laden blijft wél nodig: de agent opent de Cal-popup via
+ * `boekAfspraak`, en zonder dit staat de bezoeker naar een laadscherm te kijken
+ * op het moment dat hij net ja heeft gezegd. De inline Cal-knoppen elders op de
+ * site (o.a. /plan) leunen er ook op.
  */
 export function CalProvider() {
   const pathname = usePathname();
@@ -39,16 +46,5 @@ export function CalProvider() {
       });
   }, [hideFloating]);
 
-  if (hideFloating) return null;
-
-  return (
-    <button
-      type="button"
-      {...calPopupAttrs}
-      className="fixed bottom-6 left-6 z-40 inline-flex items-center justify-center px-5 py-3 rounded-full bg-[var(--terra)] text-[var(--paper)] text-[14px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
-      style={{ boxShadow: 'var(--shadow-lift)' }}
-    >
-      Plan gesprek
-    </button>
-  );
+  return null;
 }

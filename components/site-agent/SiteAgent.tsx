@@ -4,9 +4,12 @@
 // wanneer de agent zich meldt. Het paneel zelf wordt dynamisch geladen, dus
 // zolang de bezoeker niets doet kost dit niets meer dan deze knop.
 //
-// Wanneer meldt de agent zich: na 20 seconden of bij 50% scrolldiepte, wat
-// eerder komt, en eenmalig per sessie. Sluit de bezoeker hem weg, dan blijft
-// het bij de knop tot hij er zelf op klikt.
+// Wanneer meldt de agent zich: na 12 seconden of bij 35% scrolldiepte, wat
+// eerder komt, en hooguit twee keer per sessie — opnieuw per pagina, want elke
+// pagina heeft een eigen zin. Sluit de bezoeker hem weg, dan blijft het bij de
+// knop tot hij er zelf op klikt.
+//
+// Dit is sinds de Cal-knop eruit is de enige zwevende knop op de pagina.
 //
 // Geen cookies. Het sessie-id staat in sessionStorage en verdwijnt met het
 // tabblad; daar is geen toestemming voor nodig.
@@ -53,22 +56,36 @@ const MAX_UITNODIGINGEN = 2;
  */
 const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED !== 'false';
 
+function nieuwSessieId(): string {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  // Terugval voor omgevingen zonder randomUUID; blijft een geldige v4-vorm.
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+/**
+ * Sessie-id, bij voorkeur uit sessionStorage zodat het gesprek een paginawissel
+ * overleeft.
+ *
+ * Lukt opslaan niet — private mode, geblokkeerde opslag — dan geven we alsnog
+ * een id terug, alleen niet bewaard. Eerder leverde dit pad `null`, en omdat de
+ * component op een lege sessie helemaal niets rendert verdween daarmee de hele
+ * widget. Dat was nooit de bedoeling: het commentaar zei het al, de code deed
+ * het andersom.
+ */
 function leesSessie(): string {
-  const bestaand = window.sessionStorage.getItem(SLEUTEL_SESSIE);
-  if (bestaand) return bestaand;
-
-  const id =
-    typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID()
-      : // Terugval voor omgevingen zonder randomUUID; blijft een geldige v4-vorm.
-        'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-          const r = (Math.random() * 16) | 0;
-          const v = c === 'x' ? r : (r & 0x3) | 0x8;
-          return v.toString(16);
-        });
-
-  window.sessionStorage.setItem(SLEUTEL_SESSIE, id);
-  return id;
+  try {
+    const bestaand = window.sessionStorage.getItem(SLEUTEL_SESSIE);
+    if (bestaand) return bestaand;
+    const id = nieuwSessieId();
+    window.sessionStorage.setItem(SLEUTEL_SESSIE, id);
+    return id;
+  } catch {
+    return nieuwSessieId();
+  }
 }
 
 export function SiteAgent() {
@@ -82,13 +99,12 @@ export function SiteAgent() {
 
   useEffect(() => {
     if (verbergen) return;
+    // leesSessie() vangt zijn eigen opslagfouten af en geeft altijd een id.
+    setSessionId(leesSessie());
     try {
-      setSessionId(leesSessie());
       aantalGemeldRef.current = Number(window.sessionStorage.getItem(SLEUTEL_GEMELD) ?? '0') || 0;
     } catch {
-      // Private mode of geblokkeerde opslag: de agent werkt dan alleen niet
-      // over paginawissels heen. Dat is geen reden om hem te verbergen.
-      setSessionId(null);
+      // Geen opslag: dan meldt hij zich deze paginaweergave gewoon opnieuw.
     }
   }, [verbergen]);
 
@@ -250,21 +266,21 @@ export function SiteAgent() {
         </div>
       )}
 
-      {/* Chat rechtsonder, de Cal-knop linksonder. Beide verschijnen op
-          dezelfde pagina's, zie verbergZwevendeKnoppen.
+      {/* De enige zwevende knop op de pagina; de Cal-knop linksonder is eruit.
+          Formaat en typografie gelijk aan wat die knop had (px-5 py-3, 14px),
+          zodat dit dezelfde maat houdt als de rest van de site gewend was.
 
-          Terra in plaats van paper: de oude knop had de kleur van de achtergrond
-          en verdween daarin. Dit is dezelfde kleur als de primaire knoppen op de
-          site, dus hij valt op zonder een vreemd element te worden. */}
+          Terra in plaats van paper: de oude chatknop had de kleur van de
+          achtergrond en verdween daarin. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
-        className="agent-knop inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3.5 text-[14.5px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
+        className="agent-knop inline-flex items-center justify-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
-        <MessageSquare size={17} strokeWidth={2} />
+        <MessageSquare size={16} strokeWidth={2} />
         Stel je vraag
       </button>
     </div>

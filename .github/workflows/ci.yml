@@ -37,6 +37,13 @@ jobs:
       - name: Test
         run: npm test
 
+      # Typecheck en tests raken de bouwstap niet. Een fout in een pagina of in
+      # de CSS-laag komt er pas hier uit — en de Vercel-check die op een PR
+      # verschijnt is de commentaarbot, niet de build. Zonder deze stap kun je
+      # dus groen mergen en alsnog een kapotte site hebben.
+      - name: Build
+        run: npm run build
+
       # Lint is signalerend, niet blokkerend: de repo heeft bestaande
       # meldingen die los staan van een individuele PR. Zichtbaar houden,
       # maar geen merges tegenhouden tot die achterstand weg is.
