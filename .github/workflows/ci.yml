@@ -50,3 +50,44 @@ jobs:
       - name: Lint (advisory)
         run: npm run lint
         continue-on-error: true
+
+  # Browsertests op de site-agent-widget. Aparte job: een echte browser met een
+  # productiebuild duurt langer dan de rest, en dan hoeft de snelle feedback van
+  # typecheck en tests daar niet op te wachten.
+  #
+  # Deze suite raakt geen enkele externe dienst — het chat-endpoint wordt in de
+  # test onderschept — dus er zijn geen sleutels nodig en hij kost niets.
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Alleen Chromium. Beide testprofielen draaien daarop, dus de andere
+      # engines zijn hier pure downloadtijd.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: npm run test:e2e
+
+      # Bij een val is de trace het enige waarmee je achteraf kunt zien wat de
+      # browser deed. Zonder dit sta je te raden bij een test die alleen in CI
+      # omvalt.
+      - name: Bewaar rapport bij een val
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-rapport
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

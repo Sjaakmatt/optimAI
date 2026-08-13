@@ -10,7 +10,9 @@
     "new-post": "tsx scripts/generate-post.ts",
     "indexnow-ping": "tsx scripts/indexnow-ping.ts",
     "test": "node --import tsx --test \"lib/**/*.test.ts\" \"evals/**/*.test.ts\"",
-    "eval": "tsx evals/site-agent/run.ts"
+    "eval": "tsx evals/site-agent/run.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.116.0",
@@ -39,6 +41,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
