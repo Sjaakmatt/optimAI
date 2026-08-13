@@ -5,9 +5,11 @@
 // zolang de bezoeker niets doet kost dit niets meer dan deze knop.
 //
 // Wanneer meldt de agent zich: na 12 seconden of bij 35% scrolldiepte, wat
-// eerder komt, en hooguit twee keer per sessie — opnieuw per pagina, want elke
-// pagina heeft een eigen zin. Sluit de bezoeker hem weg, dan blijft het bij de
-// knop tot hij er zelf op klikt.
+// eerder komt, en één keer per pagina — want elke pagina heeft een eigen zin.
+//
+// Twee dingen zetten hem voor de rest van de sessie uit: het kruisje (of
+// "Liever niet"), en het gevoerd hebben van een gesprek. Alleen het paneel
+// openen en weer sluiten telt niet, want dan heeft de bezoeker niets gezegd.
 //
 // Dit is sinds de Cal-knop eruit is de enige zwevende knop op de pagina.
 //
@@ -36,16 +38,19 @@ const WACHTTIJD_MS = 12_000;
 const SCROLLDIEPTE = 0.35;
 
 /**
- * Hoe vaak de agent zich uit zichzelf meldt per sessie.
+ * Bovengrens op het aantal keer dat de agent zich uit zichzelf meldt per sessie.
  *
- * Twee, en niet één: elke pagina heeft een eigen zin, dus iemand die van de
- * homepage naar zijn branche doorklikt krijgt daar de zin die er wél toe doet.
- * Twee is ook de grens — daarboven is het geen uitnodiging meer maar gezeur.
+ * Het wolkje komt één keer per pagina: elke pagina heeft een eigen zin, dus wie
+ * doorklikt naar zijn branche krijgt daar de zin die er wél toe doet. Dit getal
+ * is niet de normale rem maar een vangnet voor een sessie van tientallen
+ * pagina's.
  *
- * Wegklikken telt zwaarder dan negeren: "Later" of het kruisje zet hem voor de
- * rest van de sessie uit. Iemand die nee zegt, heeft nee gezegd.
+ * De echte uitknop is het kruisje. Wie wegklikt of "Liever niet" kiest, ziet
+ * hem de rest van de sessie niet meer — iemand die nee zegt, heeft nee gezegd.
+ * Hetzelfde geldt zodra de bezoeker daadwerkelijk met de agent heeft gepraat:
+ * die kent hem dan en heeft aan de knop genoeg.
  */
-const MAX_UITNODIGINGEN = 2;
+const MAX_UITNODIGINGEN = 6;
 
 /**
  * Testschakelaar: `?agent=nu` toont het wolkje meteen en negeert de
@@ -118,6 +123,8 @@ export function SiteAgent() {
   const [uitnodiging, setUitnodiging] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const aantalGemeldRef = useRef(0);
+  /** Pad waarop het wolkje het laatst is getoond; houdt het op één per pagina. */
+  const laatstGemeldPadRef = useRef<string | null>(null);
 
   const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname);
 
@@ -144,6 +151,11 @@ export function SiteAgent() {
       return;
     }
 
+    // Eén wolkje per pagina. Zonder dit zou het sluiten van het paneel op
+    // dezelfde pagina een nieuwe timer starten en twaalf seconden later opnieuw
+    // een wolkje opleveren — dat is geen zetje meer maar aandringen.
+    if (laatstGemeldPadRef.current === pathname) return;
+
     let weggeklikt = false;
     try {
       weggeklikt = window.sessionStorage.getItem(SLEUTEL_WEGGEKLIKT) === '1';
@@ -154,6 +166,8 @@ export function SiteAgent() {
 
     const meld = () => {
       if (aantalGemeldRef.current >= MAX_UITNODIGINGEN) return;
+      if (laatstGemeldPadRef.current === pathname) return;
+      laatstGemeldPadRef.current = pathname;
       aantalGemeldRef.current += 1;
       try {
         window.sessionStorage.setItem(SLEUTEL_GEMELD, String(aantalGemeldRef.current));
@@ -192,13 +206,21 @@ export function SiteAgent() {
     setUitnodiging(false);
   }, [pathname]);
 
-  const sluiten = useCallback(() => {
+  const sluiten = useCallback((heeftGesproken: boolean) => {
     setOpen(false);
     setUitnodiging(false);
-    try {
-      window.sessionStorage.setItem(SLEUTEL_WEGGEKLIKT, '1');
-    } catch {
-      /* opslag niet beschikbaar */
+
+    // Alleen een échte stop als de bezoeker het gesprek ook gevoerd heeft. Wie
+    // het paneel opent, de openingszin leest en meteen wegklikt, heeft niets
+    // gezegd — die mag op een volgende pagina nog een zetje krijgen. Eerder
+    // zette elk sluiten de rem erop, en dan verdween juist de bezoeker die je
+    // wilt terugpakken uit beeld.
+    if (heeftGesproken) {
+      try {
+        window.sessionStorage.setItem(SLEUTEL_WEGGEKLIKT, '1');
+      } catch {
+        /* opslag niet beschikbaar */
+      }
     }
 
     // Het sluiten van de widget is een van de drie afrondtriggers. Via

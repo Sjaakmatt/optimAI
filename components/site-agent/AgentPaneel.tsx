@@ -25,7 +25,15 @@ export interface AgentPaneelProps {
   paginaPad: string;
   playbook: string;
   opening: string;
-  onSluiten: () => void;
+  /**
+   * `heeftGesproken` is true zodra de bezoeker zelf iets heeft gestuurd.
+   *
+   * Dat onderscheid bepaalt of het wolkje later terugkomt: wie het paneel
+   * opent, de openingszin leest en meteen wegklikt, heeft niets gezegd en mag
+   * op een volgende pagina nog een zetje krijgen. Wie wél heeft gepraat kent de
+   * agent inmiddels; die heeft aan de knop genoeg.
+   */
+  onSluiten: (heeftGesproken: boolean) => void;
 }
 
 export default function AgentPaneel({
@@ -76,13 +84,22 @@ export default function AgentPaneel({
     onderkantRef.current?.scrollIntoView({ block: 'end' });
   }, [berichten]);
 
+  // Heeft de bezoeker zelf iets gestuurd? Via een ref, zodat de Escape-handler
+  // niet bij elk nieuw bericht opnieuw hoeft te binden.
+  const heeftGesprokenRef = useRef(false);
+  heeftGesprokenRef.current = berichten.some((b) => b.rol === 'bezoeker');
+
+  const sluitPaneel = useCallback(() => {
+    onSluiten(heeftGesprokenRef.current);
+  }, [onSluiten]);
+
   useEffect(() => {
     const opEscape = (e: globalThis.KeyboardEvent) => {
-      if (e.key === 'Escape') onSluiten();
+      if (e.key === 'Escape') sluitPaneel();
     };
     document.addEventListener('keydown', opEscape);
     return () => document.removeEventListener('keydown', opEscape);
-  }, [onSluiten]);
+  }, [sluitPaneel]);
 
   const opTab = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== 'Tab' || !paneelRef.current) return;
@@ -148,7 +165,7 @@ export default function AgentPaneel({
         </div>
         <button
           type="button"
-          onClick={onSluiten}
+          onClick={sluitPaneel}
           aria-label="Gesprek sluiten"
           className="-mr-1 -mt-1 rounded-[2px] p-2 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
         >
