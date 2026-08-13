@@ -102,3 +102,71 @@ export function haakjeVoorPad(pad: string): string {
 export function openingVoorPad(pad: string): string {
   return OPENINGEN[playbookVoorPad(pad)];
 }
+
+// ── Snelle antwoorden ───────────────────────────────────────────────────────
+//
+// Drie tikbare processen onder het openingsbericht. Dit is de grootste drempel
+// in de hele trechter: de bezoeker opent de chat, ziet een leeg tekstveld en
+// moet zelf bedenken hoe hij begint. Een deel doet dat niet en sluit weer.
+//
+// Waarom processen en geen vragen: de agent moet als eerste weten welk proces
+// tijd kost (fase 2, kernvraag 1). Een tikbaar procesnaam beantwoordt die vraag
+// meteen, dus het gesprek begint een beurt verder dan met "waar kan ik je mee
+// helpen".
+//
+// De tekst op de knop is ook letterlijk het bericht dat verstuurd wordt. Kort
+// en in de woorden van de bezoeker, zodat het transcript natuurlijk leest en de
+// scoring er iets mee kan.
+
+/** Vaste laatste optie, zodat wie zich niet herkent niet vastloopt op drie knoppen. */
+const ANDERS = 'Iets anders';
+
+const BRANCHE_STARTERS: Record<string, readonly string[]> = {
+  groothandel: ['Orders overtypen', 'Offertes maken'],
+  installatietechniek: ['Werkbonnen verwerken', 'Materiaal bestellen'],
+  'transport-logistiek': ['Ritten plannen', 'Incidenten afhandelen'],
+  'zakelijke-dienstverlening': ['Intake van klanten', 'Uren verantwoorden'],
+  bouw: ['Meerwerk vastleggen', 'Calculaties maken'],
+  zorg: ['Rapportage na de dienst', 'Roosters rondkrijgen'],
+  productie: ['Orders inplannen', 'Voorraad bijhouden'],
+  detailhandel: ['Klantvragen beantwoorden', 'Voorraad bijhouden'],
+  accountancy: ['Stukken opvragen', 'Klantvragen beantwoorden'],
+  advocatuur: ['Dossiers doorzoeken', 'Documenten opstellen'],
+  makelaardij: ['Bezichtigingen plannen', 'Aanvragen beantwoorden'],
+  agrarisch: ['Registratie bijhouden', 'Administratie'],
+  'e-commerce': ['Retouren afhandelen', 'Klantvragen beantwoorden'],
+  horeca: ['Reserveringen bijhouden', 'Bestellingen doorgeven'],
+};
+
+const DIENST_STARTERS: Record<string, readonly string[]> = {
+  'ai-agent-laten-bouwen': ['Ik weet welk proces', 'Ik zoek dat nog uit'],
+  'ai-agents-voor-bedrijven': ['Offertes maken', 'Mail beantwoorden'],
+  'ai-automatisering': ['Orders overtypen', 'Mail beantwoorden'],
+  'ai-implementatie': ['Wat het oplevert', 'Hoe invoeren gaat'],
+};
+
+/** Terugval per playbook. Voor home bewust de drie uit de hero-tekst. */
+const PLAYBOOK_STARTERS: Record<PlaybookPad, readonly string[]> = {
+  prijs: ['Wat het ongeveer kost', 'Hoe het contract werkt'],
+  branche: ['Offertes maken', 'Mail beantwoorden'],
+  dienst: ['Offertes maken', 'Orders overtypen'],
+  blog: ['Dit speelt bij ons', 'Hoe werkt dat dan'],
+  cases: ['Werkt dit bij ons ook', 'Hoe lang duurt zoiets'],
+  home: ['Mail uitzoeken', 'Offertes najagen'],
+};
+
+/**
+ * Snelle antwoorden voor deze pagina. Altijd drie: twee die passen bij de
+ * pagina, plus een uitweg voor wie zich er niet in herkent.
+ */
+export function startersVoorPad(pad: string): string[] {
+  const p = pad.toLowerCase().replace(/\/+$/, '') || '/';
+
+  const branche = slugNa(p, '/branches');
+  if (branche && BRANCHE_STARTERS[branche]) return [...BRANCHE_STARTERS[branche], ANDERS];
+
+  const dienst = slugNa(p, '/diensten');
+  if (dienst && DIENST_STARTERS[dienst]) return [...DIENST_STARTERS[dienst], ANDERS];
+
+  return [...PLAYBOOK_STARTERS[playbookVoorPad(p)], ANDERS];
+}

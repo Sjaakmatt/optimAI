@@ -15,6 +15,7 @@ import { X, ArrowUp } from 'lucide-react';
 import { getCalApi } from '@/components/booking/calLoader';
 import { openAgenda } from '@/components/booking/agendaStore';
 import { BOEKING_PROVIDER, CAL_LINK } from '@/components/booking/config';
+import { startersVoorPad } from '@/lib/site-agent/haakjes';
 import TerugbelKaart from './TerugbelKaart';
 import { useGesprek, type Signaal } from './useGesprek';
 
@@ -148,6 +149,14 @@ export default function AgentPaneel({
   const laatste = berichten[berichten.length - 1];
   const wachtOpAntwoord = status === 'bezig' && laatste?.rol === 'bezoeker';
 
+  // De bezoeker heeft nog niets gezegd: er staat alleen de opening van de agent.
+  const starters = startersVoorPad(paginaPad);
+  const toonStarters =
+    berichten.length > 0 &&
+    !berichten.some((b) => b.rol === 'bezoeker') &&
+    status !== 'bezig' &&
+    afsluiting === null;
+
   return (
     <div
       ref={paneelRef}
@@ -227,6 +236,24 @@ export default function AgentPaneel({
             className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-deep)] px-3.5 py-2.5 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]"
           >
             {fout}
+          </div>
+        )}
+
+        {/* Snelle antwoorden, alleen zolang de bezoeker zelf nog niets heeft
+            gezegd. Ze verdwijnen zodra hij iets stuurt: daarna sturen ze het
+            gesprek niet meer maar staan ze in de weg. */}
+        {toonStarters && (
+          <div className="flex flex-wrap gap-1.5 pt-0.5">
+            {starters.map((starter) => (
+              <button
+                key={starter}
+                type="button"
+                onClick={() => void stuur(starter)}
+                className="rounded-full border border-[var(--oker)] px-3 py-1.5 text-[13px] leading-none text-[var(--oker-deep)] transition-colors hover:bg-[var(--paper-warm)]"
+              >
+                {starter}
+              </button>
+            ))}
           </div>
         )}
 
