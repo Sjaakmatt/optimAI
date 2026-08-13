@@ -4,7 +4,7 @@ import { useReducedMotion } from 'motion/react';
 import type { Variants } from 'motion/react';
 
 /**
- * Gedeelde motion-basis voor de wandeling. Eén plek, zodat elke scène
+ * Gedeelde motion-basis voor de rondleiding. Eén plek, zodat elke scène
  * hetzelfde ritme heeft en reduced motion overal identiek uitpakt:
  * met reduced motion staan elementen er direct, zonder beweging.
  */

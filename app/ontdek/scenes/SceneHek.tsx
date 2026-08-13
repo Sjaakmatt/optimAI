@@ -6,8 +6,8 @@ import type { SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 5. Het hek: de gewone route loopt door, maar bij twijfel buigt
- * het werk af naar een mens. De bezoeker mag zelf aan het hek voelen.
+ * Stap 5. De grens: de gewone route loopt door, maar bij twijfel buigt
+ * het werk af naar een mens. De bezoeker kan dat zelf uitproberen.
  */
 
 const W = 440;
@@ -31,13 +31,15 @@ export function SceneHek({ beat, reduced, interacted, onInteract }: SceneProps) 
             strokeLinecap="round"
             style={{ transition: 'stroke 500ms ease' }}
           />
-          {/* hekje op het splitsingspunt */}
-          <g stroke="var(--ink-dim)" strokeWidth={1.1} strokeLinecap="round">
-            <line x1={BRANCH_X - 9} y1={MAIN_Y - 13} x2={BRANCH_X - 9} y2={MAIN_Y + 13} />
-            <line x1={BRANCH_X + 9} y1={MAIN_Y - 13} x2={BRANCH_X + 9} y2={MAIN_Y + 13} />
-            <line x1={BRANCH_X - 13} y1={MAIN_Y - 7} x2={BRANCH_X + 13} y2={MAIN_Y - 7} />
-            <line x1={BRANCH_X - 13} y1={MAIN_Y + 4} x2={BRANCH_X + 13} y2={MAIN_Y + 4} />
-          </g>
+          {/* het controlepunt op de splitsing */}
+          <path
+            d={`M${BRANCH_X} ${MAIN_Y - 13} L${BRANCH_X + 13} ${MAIN_Y} L${BRANCH_X} ${MAIN_Y + 13} L${BRANCH_X - 13} ${MAIN_Y} Z`}
+            fill="var(--paper)"
+            stroke={doubted ? 'var(--terra)' : 'var(--ink-dim)'}
+            strokeWidth={1.1}
+            strokeLinejoin="round"
+            style={{ transition: 'stroke 500ms ease' }}
+          />
           {/* zijpad naar de mens */}
           <path
             d={`M${BRANCH_X} ${MAIN_Y} C ${BRANCH_X + 18} ${MAIN_Y + 52}, ${BRANCH_X + 44} ${H - 58}, ${BRANCH_X + 96} ${H - 48}`}
@@ -144,8 +146,8 @@ export function SceneHek({ beat, reduced, interacted, onInteract }: SceneProps) 
               animate={{ opacity: 1, y: 0 }}
               className="max-w-[380px] text-center text-[12.5px] leading-relaxed text-[var(--ink-dim)]"
             >
-              Afwijkende private-label-verpakking gevraagd. Dat valt buiten de afspraken, dus het
-              komt netjes bij een mens terecht. Geen gok, geen halve waarheid.
+              De klant vraagt om afwijkende verpakking. Dat valt buiten de gemaakte afspraken, dus
+              legt de agent de keuze voor aan een mens. Geen aanname, geen half antwoord.
             </motion.p>
           )}
         </AnimatePresence>

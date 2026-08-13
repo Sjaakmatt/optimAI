@@ -6,7 +6,7 @@ import { BRIEF_EMAIL, BRIEF_STAPPEN, type SceneProps } from '../film-content';
 import { beatReveal, EASE } from '../film-motion';
 
 /**
- * Halte 1. Een envelop valt op de mat; de bezoeker opent hem zelf en ziet
+ * Stap 1. Een binnenkomend bericht; de bezoeker opent het zelf en ziet
  * hoe de agent er een klaargezet antwoord van maakt.
  */
 export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps) {
@@ -21,12 +21,12 @@ export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps
             className="flex flex-col items-center"
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: -16, transition: { duration: 0.3 } }}
           >
-            {/* De mat */}
+            {/* Het gesloten bericht */}
             <motion.button
               type="button"
               onClick={onInteract}
               aria-expanded={open}
-              aria-label="Open de brief"
+              aria-label="Open het bericht"
               className="group relative flex flex-col items-center focus-visible:outline-2 focus-visible:outline-[var(--oker-deep)] rounded-[4px] p-4"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -55,7 +55,7 @@ export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps
                 <circle cx="75" cy="58" r="7" fill="none" stroke="var(--oker-deep)" strokeWidth="1" />
               </motion.svg>
               <span className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--ink-dim)] group-hover:text-[var(--oker-deep)] transition-colors">
-                Er is post
+                Nieuwe aanvraag
               </span>
             </motion.button>
 
@@ -69,7 +69,7 @@ export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps
                 className="inline-block h-[1px] w-6"
                 style={{ background: 'var(--oker)' }}
               />
-              Klik op de envelop om hem te openen
+              Klik om de aanvraag te openen
             </motion.div>
           </motion.div>
         ) : (

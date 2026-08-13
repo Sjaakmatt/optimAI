@@ -7,7 +7,7 @@ import { SYSTEMEN, type SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 4. De agent als stille kracht midden tussen de systemen die er
+ * Stap 4. De agent als stille kracht midden tussen de systemen die er
  * al zijn. Pulsen reizen over de lijnen: hij haalt en brengt.
  */
 
@@ -64,7 +64,7 @@ export function SceneSystemen({ beat, reduced }: SceneProps) {
                   fill={visible ? 'var(--oker)' : 'var(--paper-edge)'}
                   style={{ transition: 'fill 500ms ease' }}
                 />
-                {/* elk systeem hangt aan een adapter */}
+                {/* elk systeem hangt aan een koppeling */}
                 <text
                   x={(CX + node.x) / 2}
                   y={(CY + node.y) / 2 - 5}
@@ -75,7 +75,7 @@ export function SceneSystemen({ beat, reduced }: SceneProps) {
                   fontFamily="var(--font-plex-mono), monospace"
                   style={{ opacity: visible ? 0.9 : 0, transition: 'opacity 500ms ease' }}
                 >
-                  ADAPTER
+                  KOPPELING
                 </text>
                 {pulsing && (
                   <motion.circle
