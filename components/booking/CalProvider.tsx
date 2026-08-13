@@ -5,16 +5,9 @@ import { usePathname } from 'next/navigation';
 import { getCalApi } from './calLoader';
 import { calPopupAttrs } from './config';
 import { trackEvent } from '@/lib/analytics/gtag';
+import { verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
 
 let bookingListenerAttached = false;
-
-const HIDE_ON: ReadonlySet<string> = new Set([
-  '/contact',
-  '/plan',
-  '/demo',
-  '/privacy',
-  '/subverwerkers',
-]);
 
 /**
  * Zwevende "Plan gesprek"-knop rechtsonder. Eigen knop in de huisstijl
@@ -24,8 +17,9 @@ const HIDE_ON: ReadonlySet<string> = new Set([
  */
 export function CalProvider() {
   const pathname = usePathname();
-  const hideFloating =
-    HIDE_ON.has(pathname) || pathname.startsWith('/aanvraag') || pathname.startsWith('/ontdek');
+  // Gedeeld met de site-agent, zodat de twee zwevende knoppen niet op
+  // verschillende pagina's los van elkaar opduiken.
+  const hideFloating = verbergZwevendeKnoppen(pathname);
 
   useEffect(() => {
     if (hideFloating) return;
@@ -51,7 +45,7 @@ export function CalProvider() {
     <button
       type="button"
       {...calPopupAttrs}
-      className="fixed bottom-6 right-6 z-40 inline-flex items-center justify-center px-5 py-3 rounded-full bg-[var(--terra)] text-[var(--paper)] text-[14px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
+      className="fixed bottom-6 left-6 z-40 inline-flex items-center justify-center px-5 py-3 rounded-full bg-[var(--terra)] text-[var(--paper)] text-[14px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
       style={{ boxShadow: 'var(--shadow-lift)' }}
     >
       Plan gesprek
