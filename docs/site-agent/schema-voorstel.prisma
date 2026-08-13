@@ -1,0 +1,104 @@
+// Prisma-tegenhanger van de migratie die op de dashboard-database is toegepast
+// (Supabase project factumai-dashboard, ref zaifgoujlpcwvrxjkhzy).
+//
+// De DDL is al uitgevoerd via de Supabase-MCP, op verzoek van Sjaak. De
+// dashboard-repo heeft daardoor nu schema-drift. Plak onderstaande modellen in
+// `prisma/schema.prisma`, voeg `WEBSITE_AGENT` toe aan `LeadBron`, en markeer
+// de migratie als toegepast in plaats van hem opnieuw te draaien:
+//
+//   mkdir -p prisma/migrations/20260813000000_site_agent
+//   cp <deze repo>/docs/site-agent/migratie.sql \
+//      prisma/migrations/20260813000000_site_agent/migration.sql
+//   npx prisma migrate resolve --applied 20260813000000_site_agent
+//   npx prisma generate
+//
+// Controleer daarna met `npx prisma migrate diff --from-schema-datamodel
+// prisma/schema.prisma --to-schema-datasource prisma/schema.prisma` dat er
+// niets meer openstaat.
+
+model SiteConversation {
+  id              String     @id @default(cuid())
+  organizationId  String
+  sessionId       String     @unique // client-side gegenereerd, opaque
+  paginaPad       String // waar het gesprek begon
+  playbook        String // welk playbookblok is geladen
+  referrer        String?
+  userAgentHash   String? // gehasht, niet ruw opgeslagen
+  status          String     @default("OPEN") // OPEN | AFGEROND | AFGEBROKEN
+  score           LeadScore?
+  scoreReason     String?
+  samenvatting    String?
+  afspraakGeboekt Boolean    @default(false)
+  leadId          String?
+  totaalTokens    Int        @default(0)
+  kostenUsd       Decimal?   @db.Decimal(10, 4)
+  expiresAt       DateTime? // retentie: 90 dagen na aanmaak
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  organization Organization  @relation(fields: [organizationId], references: [id])
+  lead         Lead?         @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  messages     SiteMessage[]
+
+  @@index([organizationId, createdAt])
+  @@index([expiresAt])
+  @@index([leadId])
+}
+
+model SiteMessage {
+  id             String   @id @default(cuid())
+  conversationId String
+  rol            String // "user" | "assistant"
+  inhoud         String
+  toolCalls      Json?
+  geblokkeerd    Boolean  @default(false) // outputcontrole heeft ingegrepen
+  blokReden      String?
+  createdAt      DateTime @default(now())
+
+  conversation SiteConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+}
+
+// Gedeelde tellers voor rate limiting en het dagelijkse kostenplafond.
+// In-memory tellers werken op serverless per instance niet betrouwbaar.
+// Ophogen gaat via de functie `site_agent_tel(...)`, zie migratie.sql, zodat
+// gelijktijdige verzoeken elkaars telling niet overschrijven.
+model SiteAgentCounter {
+  id           String   @id @default(cuid())
+  soort        String // "sessie" | "ip" | "dagkosten"
+  sleutel      String // gehasht IP, opaque sessie-id, of datum
+  vensterStart DateTime
+  aantal       Int      @default(0)
+  kostenUsd    Decimal  @default(0) @db.Decimal(10, 4)
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([soort, sleutel, vensterStart])
+  @@index([expiresAt])
+}
+
+// In enum LeadBron toevoegen (achteraan, de bestaande volgorde blijft intact):
+//
+//   enum LeadBron {
+//     LINKEDIN
+//     EMAIL
+//     WEBSITE_FORM
+//     REFERRAL
+//     PAVO_AGENT
+//     MANUAL
+//     OTHER
+//     SCANNER
+//     WEBSITE_AGENT // site-agent op factumai.nl
+//   }
+//
+// Op de bestaande modellen komen deze relatievelden erbij:
+//
+//   model Organization {
+//     siteConversations SiteConversation[]
+//   }
+//
+//   model Lead {
+//     siteConversations SiteConversation[]
+//   }

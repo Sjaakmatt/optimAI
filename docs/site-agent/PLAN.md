@@ -42,16 +42,19 @@ Verder relevant:
 
 ## B. Voorstellen op de vier punten waar ik niet zelfstandig over ga
 
-1. **Datamodel.** `SiteConversation`/`SiteMessage` als Prisma-model aanmaken kan hier
-   niet: de schemabron staat in de dashboard-repo, en een los SQL-migratiebestand hier
-   zou drift veroorzaken. Voorstel: ik lever in deze repo
-   `docs/site-agent/schema-voorstel.prisma` (de twee modellen plus `WEBSITE_AGENT` in
-   `LeadBron`, exact in de stijl van het dashboardschema) en `docs/site-agent/migratie.sql`
-   als lees-referentie. Sjaak past ze toe in de dashboard-repo; niets wordt hier
-   uitgevoerd. De site schrijft daarna via de service-role client, precies zoals
-   `lib/scan/leads.ts` dat voor `ScanLead` doet. Let op: `Lead.id`, `ReviewItem.id` en
-   `updatedAt` hebben geen database-default (Prisma vult ze app-side), dus die genereer
-   ik zelf bij insert.
+1. **Datamodel. Besloten en uitgevoerd.** Sjaak heeft opdracht gegeven de migratie via
+   de Supabase-MCP op de dashboard-database toe te passen. Dat is gebeurd op
+   13 augustus 2026, in drie additieve stappen: `WEBSITE_AGENT` in `LeadBron`, de
+   tabellen `SiteConversation` en `SiteMessage`, en `SiteAgentCounter` met de atomaire
+   functie `site_agent_tel(...)`. Niets gedropt, RLS aan op alle drie de tabellen.
+   Gevolg: de dashboard-repo heeft nu schema-drift. `docs/site-agent/schema-voorstel.prisma`
+   en `docs/site-agent/migratie.sql` bevatten de Prisma-modellen en de exacte SQL plus
+   de instructie om de migratie daar als toegepast te markeren
+   (`prisma migrate resolve --applied`). Dat moet gebeuren vóór de volgende
+   `prisma migrate dev` in de dashboard-repo, anders wil Prisma de tabellen droppen.
+   De site schrijft via de service-role client, zoals `lib/scan/leads.ts` dat voor
+   `ScanLead` doet. Let op: `Lead.id`, `ReviewItem.id` en `updatedAt` hebben geen
+   database-default (Prisma vult ze app-side), dus die genereren we zelf bij insert.
 2. **Tests.** Vijftien guardrail-cases en tien evaluatiegesprekken vragen een runner.
    Voorstel zonder nieuwe dependency: `node --test` met de al aanwezige `tsx`
    (`node --import tsx --test`), plus een script `npm test`. Alternatief `vitest` is
