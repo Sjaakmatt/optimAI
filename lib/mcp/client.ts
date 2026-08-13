@@ -70,6 +70,15 @@ export interface McpAanroep {
   /** Wie er aanroept; komt in de tool-call-logs van de MCP terecht. */
   agentId: string;
   organizationId?: string;
+  /**
+   * Welke instance van de MCP. Weglaten kiest de primaire instance van de
+   * tenant — en die is niet per se de jouwe: een organisatie kan er meerdere
+   * hebben en de primaire hoort meestal bij een andere consument. Zet dit dus
+   * expliciet zodra er meer dan één instance bestaat.
+   *
+   * Let op: dit hoort als top-level argument mee, niet in `tenantContext`.
+   */
+  instanceKey?: string;
   timeoutMs?: number;
 }
 
@@ -121,6 +130,7 @@ export async function roepMcpTool<T>(aanroep: McpAanroep): Promise<T> {
         name: tool,
         arguments: {
           ...argumenten,
+          ...(aanroep.instanceKey ? { instanceKey: aanroep.instanceKey } : {}),
           tenantContext: {
             organizationId:
               aanroep.organizationId ?? process.env.FACTUMAI_MCP_ORG_ID ?? 'factumai-website',
