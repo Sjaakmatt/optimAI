@@ -14,8 +14,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
-import { MessageSquare } from 'lucide-react';
+import { MessageSquare, X } from 'lucide-react';
 
+import { haakjeVoorPad, openingVoorPad } from '@/lib/site-agent/haakjes';
 import { playbookVoorPad, verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
 
 const AgentPaneel = dynamic(() => import('./AgentPaneel'), { ssr: false });
@@ -24,8 +25,24 @@ const SLEUTEL_SESSIE = 'factumai.agent.sessie';
 const SLEUTEL_WEGGEKLIKT = 'factumai.agent.weggeklikt';
 const SLEUTEL_GEMELD = 'factumai.agent.gemeld';
 
-const WACHTTIJD_MS = 20_000;
-const SCROLLDIEPTE = 0.5;
+// Twaalf seconden in plaats van twintig. Twintig is voorbij het moment waarop
+// iemand besluit of deze pagina hem iets oplevert; dan meld je je bij wie al
+// weg is. Onder de tien wordt het opdringerig — dan heeft hij nog niets gelezen
+// om op te reageren.
+const WACHTTIJD_MS = 12_000;
+const SCROLLDIEPTE = 0.35;
+
+/**
+ * Hoe vaak de agent zich uit zichzelf meldt per sessie.
+ *
+ * Twee, en niet één: elke pagina heeft een eigen zin, dus iemand die van de
+ * homepage naar zijn branche doorklikt krijgt daar de zin die er wél toe doet.
+ * Twee is ook de grens — daarboven is het geen uitnodiging meer maar gezeur.
+ *
+ * Wegklikken telt zwaarder dan negeren: "Later" of het kruisje zet hem voor de
+ * rest van de sessie uit. Iemand die nee zegt, heeft nee gezegd.
+ */
+const MAX_UITNODIGINGEN = 2;
 
 /**
  * Aan/uit. De agent staat aan; NEXT_PUBLIC_SITE_AGENT_ENABLED=false haalt de
@@ -35,25 +52,6 @@ const SCROLLDIEPTE = 0.5;
  * direct, ook zonder nieuwe build.
  */
 const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED !== 'false';
-
-/**
- * Openingsberichten per playbook. Dit is weergave-tekst en gaat niet naar het
- * model: de agent reageert straks op wat de bezoeker terugtypt. De teksten
- * volgen de playbookblokken uit docs/site-agent/prompt.md, maar stellen niet
- * dezelfde vraag die het model zelf zou stellen.
- */
-const OPENINGEN: Record<string, string> = {
-  prijs:
-    'Je bent aan het kijken wat zoiets kost. Eerlijk: dat hangt zo aan het proces dat een getal hier je zou misleiden. Waar zou je het op inzetten?',
-  branche:
-    'Je kijkt naar wat we in deze branche doen. Vertel eens waar bij jullie de meeste tijd in gaat zitten, dan kan ik zeggen of dit erbij past.',
-  dienst:
-    'Je leest over een van onze diensten. Werkt dat bij jullie nu handmatig, of zit er al iets omheen dat het half doet?',
-  blog: 'Als je hier een concrete vraag over hebt, stel hem gerust.',
-  cases:
-    'Als je wilt weten hoe dit in de praktijk loopt, vraag maar door. Ik verzin geen resultaten, dus wat ik niet weet zeg ik ook.',
-  home: 'Waar ben je naar op zoek?',
-};
 
 function leesSessie(): string {
   const bestaand = window.sessionStorage.getItem(SLEUTEL_SESSIE);
@@ -78,7 +76,7 @@ export function SiteAgent() {
   const [open, setOpen] = useState(false);
   const [uitnodiging, setUitnodiging] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const gemeldRef = useRef(false);
+  const aantalGemeldRef = useRef(0);
 
   const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname);
 
@@ -86,7 +84,7 @@ export function SiteAgent() {
     if (verbergen) return;
     try {
       setSessionId(leesSessie());
-      if (window.sessionStorage.getItem(SLEUTEL_GEMELD) === '1') gemeldRef.current = true;
+      aantalGemeldRef.current = Number(window.sessionStorage.getItem(SLEUTEL_GEMELD) ?? '0') || 0;
     } catch {
       // Private mode of geblokkeerde opslag: de agent werkt dan alleen niet
       // over paginawissels heen. Dat is geen reden om hem te verbergen.
@@ -94,7 +92,9 @@ export function SiteAgent() {
     }
   }, [verbergen]);
 
-  // Melden na tijd of scrolldiepte, eenmalig per sessie.
+  // Melden na tijd of scrolldiepte. Per pagina opnieuw, tot MAX_UITNODIGINGEN
+  // of tot de bezoeker hem wegklikt. `pathname` staat daarom in de deps: bij een
+  // paginawissel begint de timer opnieuw, met de zin die bij díé pagina hoort.
   useEffect(() => {
     if (verbergen || open) return;
 
@@ -104,13 +104,13 @@ export function SiteAgent() {
     } catch {
       /* opslag niet beschikbaar */
     }
-    if (weggeklikt || gemeldRef.current) return;
+    if (weggeklikt || aantalGemeldRef.current >= MAX_UITNODIGINGEN) return;
 
     const meld = () => {
-      if (gemeldRef.current) return;
-      gemeldRef.current = true;
+      if (aantalGemeldRef.current >= MAX_UITNODIGINGEN) return;
+      aantalGemeldRef.current += 1;
       try {
-        window.sessionStorage.setItem(SLEUTEL_GEMELD, '1');
+        window.sessionStorage.setItem(SLEUTEL_GEMELD, String(aantalGemeldRef.current));
       } catch {
         /* opslag niet beschikbaar */
       }
@@ -129,7 +129,13 @@ export function SiteAgent() {
       window.clearTimeout(timer);
       window.removeEventListener('scroll', opScroll);
     };
-  }, [verbergen, open]);
+  }, [verbergen, open, pathname]);
+
+  // Bij een paginawissel de openstaande bubbel weghalen: hij hoort bij de zin
+  // van de vorige pagina, en die klopt hier niet meer.
+  useEffect(() => {
+    setUitnodiging(false);
+  }, [pathname]);
 
   const sluiten = useCallback(() => {
     setOpen(false);
@@ -178,6 +184,7 @@ export function SiteAgent() {
   if (verbergen || !sessionId) return null;
 
   const playbook = playbookVoorPad(pathname);
+  const haakje = haakjeVoorPad(pathname);
 
   if (open) {
     return (
@@ -185,7 +192,7 @@ export function SiteAgent() {
         sessionId={sessionId}
         paginaPad={pathname}
         playbook={playbook}
-        opening={OPENINGEN[playbook] ?? OPENINGEN.home}
+        opening={openingVoorPad(pathname)}
         onSluiten={sluiten}
       />
     );
@@ -195,42 +202,53 @@ export function SiteAgent() {
     <>
       {uitnodiging && (
         <div
-          className="fixed bottom-[5.5rem] right-6 z-40 max-w-[260px] rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3"
+          // De hele bubbel is klikbaar, niet alleen een tekstlink: dit is het
+          // moment waarop iemand reageert, en dan moet je niet op een woord van
+          // vijftig pixels hoeven mikken. Het kruisje ligt erbovenop.
+          className="agent-uitnodiging fixed bottom-[5.75rem] right-6 z-40 w-[min(300px,calc(100vw-3rem))] rounded-[3px] border border-[var(--oker)] bg-[var(--paper-warm)]"
           style={{ boxShadow: 'var(--shadow-lift)' }}
         >
-          <p className="text-[13.5px] leading-[1.55] text-[var(--ink)]">
-            {OPENINGEN[playbook] ?? OPENINGEN.home}
-          </p>
-          <div className="mt-2.5 flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className="text-[13px] text-[var(--oker-deep)] underline underline-offset-2 hover:text-[var(--terra)]"
-            >
-              Reageren
-            </button>
-            <button
-              type="button"
-              onClick={wegklikken}
-              className="text-[13px] text-[var(--ink-faint)] hover:text-[var(--ink-dim)]"
-            >
-              Later
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="block w-full px-4 py-3.5 pr-9 text-left"
+          >
+            <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--oker-deep)]">
+              FactumAI · AI-agent
+            </span>
+            <span className="mt-1.5 block text-[14.5px] leading-[1.5] text-[var(--ink)]">
+              {haakje}
+            </span>
+            <span className="mt-2 block text-[13px] text-[var(--terra)] underline underline-offset-2">
+              Antwoord geven
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={wegklikken}
+            aria-label="Niet nu"
+            className="absolute right-1.5 top-1.5 rounded-[2px] p-1.5 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
+          >
+            <X size={14} strokeWidth={1.8} />
+          </button>
         </div>
       )}
 
       {/* Chat rechtsonder, de Cal-knop linksonder. Beide verschijnen op
-          dezelfde pagina's, zie verbergZwevendeKnoppen. */}
+          dezelfde pagina's, zie verbergZwevendeKnoppen.
+
+          Terra in plaats van paper: de oude knop had de kleur van de achtergrond
+          en verdween daarin. Dit is dezelfde kleur als de primaire knoppen op de
+          site, dus hij valt op zonder een vreemd element te worden. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Stel je vraag aan de agent van FactumAI"
+        aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3 text-[14px] leading-none text-[var(--ink)] transition-colors hover:bg-[var(--paper-warm)]"
+        className="agent-knop fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3.5 text-[14.5px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
-        <MessageSquare size={16} strokeWidth={1.8} />
+        <MessageSquare size={17} strokeWidth={2} />
         Stel je vraag
       </button>
     </>
