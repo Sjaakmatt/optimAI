@@ -20,9 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 22, niet 20: het test-script geeft glob-patronen mee aan
+      # `node --test`, en die worden pas vanaf Node 21 uitgevouwen. Op 20 valt
+      # het terug op een letterlijk pad en faalt het met "Could not find".
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
