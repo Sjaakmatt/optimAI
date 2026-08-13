@@ -18,6 +18,20 @@ export function siteAgentAan(): boolean {
 /** Dagplafond in dollars over alle gesprekken samen. */
 export const DAGPLAFOND_USD = Number(process.env.SITE_AGENT_DAGPLAFOND_USD ?? '5');
 
+/**
+ * Vanuit welke mailbox een goedgekeurde procesnotitie de deur uitgaat.
+ *
+ * Dit moet erbij. Laat je het weg, dan pakt de orchestrator zijn eigen
+ * standaard — en die staat op `sjaak` (AIOS_MAIL_INSTANCE in wrangler.toml).
+ * Een mail aan een websitebezoeker zou dan vanuit Sjaaks persoonlijke mailbox
+ * vertrekken in plaats van de sales/info-box, terwijl de werkbak gewoon
+ * "uitgevoerd" meldt. Precies die stille verwisseling is eerder al een keer
+ * misgegaan.
+ *
+ * `default` is in het dashboard de instanceKey van "Sales/info mail".
+ */
+export const MAILBOX = process.env.SITE_AGENT_MAILBOX ?? 'default';
+
 interface TellerRij {
   kostenUsd: string | number;
 }

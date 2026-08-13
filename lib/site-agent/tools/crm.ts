@@ -114,8 +114,21 @@ export async function maakInteractie(invoer: InteractieInvoer): Promise<void> {
 
 export type ReviewNiveau = 'SIMPLE' | 'REVIEW' | 'ESCALATION';
 
+/**
+ * Soorten werkbak-item die wij aanmaken.
+ *
+ * `site_agent_question` is bewust géén `task`: dat soort betekent aan de
+ * dashboardkant "maak een ticket aan bij een bestaande klant" en vereist een
+ * gematchte `customerId` in de grounding. Een websitebezoeker is hooguit een
+ * lead, dus dat item zou gegarandeerd op FAILED belanden. Het dashboard sluit
+ * `site_agent_question` zelf af: goedkeuren = "gezien en opgepakt", zonder
+ * systeemactie. Zie het contract in de dashboard-repo,
+ * `docs/site-agent-werkbak-contract.md`.
+ */
+export type ReviewSoort = 'draft_email' | 'site_agent_question';
+
 export interface ReviewInvoer {
-  kind: 'draft_email' | 'task';
+  kind: ReviewSoort;
   summary: string;
   proposed: Record<string, unknown>;
   grounding?: Record<string, unknown>;

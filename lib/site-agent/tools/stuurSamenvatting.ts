@@ -8,6 +8,7 @@
 import type Anthropic from '@anthropic-ai/sdk';
 import { z } from 'zod';
 
+import { MAILBOX } from '../config';
 import { maakReviewItem } from './crm';
 import type { ToolContext, ToolUitvoer } from './types';
 
@@ -63,6 +64,9 @@ export async function stuurSamenvatting(ruw: unknown, ctx: ToolContext): Promise
       to: invoer.email,
       subject: invoer.onderwerp,
       body: invoer.notitie,
+      // Zonder mailbox valt de orchestrator terug op zijn org-brede standaard
+      // (`sjaak`) en vertrekt de mail vanaf het verkeerde adres. Zie MAILBOX.
+      mailbox: MAILBOX,
       bron: 'site-agent',
     },
     grounding: {
