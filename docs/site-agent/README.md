@@ -162,7 +162,9 @@ doorkomt kost een echte modelcall, dus draai dit niet eindeloos.
 - Overzicht `/agency/site-agent` in de dashboard-repo, zie `opdracht-dashboard.md`.
 - De Cal-webhook kent het `sessionId` niet, dus `afspraakGeboekt` leunt op het
   signaal vanuit de widget. Een harde koppeling vraagt een prefill-parameter in
-  Cal.com.
+  Cal.com. Dit geldt alleen nog zolang `NEXT_PUBLIC_BOEKING_PROVIDER=cal` staat:
+  met de eigen agenda boekt `boekAfspraak` zelf en weet de agent dus wel of het
+  gelukt is. Zie [`docs/agenda.md`](../agenda.md).
 
 ## Twee grondingsconflicten om te beslissen
 

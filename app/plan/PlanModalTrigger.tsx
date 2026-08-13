@@ -3,7 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { getCalApi } from '@/components/booking/calLoader';
-import { CAL_LINK, calPopupAttrs } from '@/components/booking/config';
+import { openAgenda } from '@/components/booking/agendaStore';
+import { BOEKING_PROVIDER, CAL_LINK, calPopupAttrs } from '@/components/booking/config';
 
 export function PlanModalTrigger() {
   const opened = useRef(false);
@@ -11,6 +12,11 @@ export function PlanModalTrigger() {
   useEffect(() => {
     if (opened.current) return;
     opened.current = true;
+
+    if (BOEKING_PROVIDER === 'teams') {
+      openAgenda({ bron: 'plan-pagina' });
+      return;
+    }
 
     let cancelled = false;
     getCalApi()
@@ -30,6 +36,8 @@ export function PlanModalTrigger() {
     };
   }, []);
 
+  // In teams-modus vangt BoekingProvider de klik op via het data-cal-link
+  // attribuut, dus de knop hieronder werkt in beide standen ongewijzigd.
   return (
     <div
       className="site-card flex flex-col items-center justify-center text-center px-8 py-16"

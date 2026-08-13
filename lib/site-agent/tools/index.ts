@@ -1,4 +1,4 @@
-// De vier tools van de site-agent, plus de uitvoerder die de agent aanroept.
+// De zes tools van de site-agent, plus de uitvoerder die de agent aanroept.
 //
 // Elke aanroep wordt gelogd met invoer en uitvoer, met persoonsgegevens
 // gemaskeerd zoals de repo dat elders ook doet (zie lib/scan voor het patroon
@@ -9,6 +9,7 @@ import type Anthropic from '@anthropic-ai/sdk';
 import { logEvent, maskeerEmail } from '../events';
 import { BIED_TERUGBELAANBOD_DEFINITIE, biedTerugbelaanbod } from './biedTerugbelaanbod';
 import { BOEK_AFSPRAAK_DEFINITIE, boekAfspraak } from './boekAfspraak';
+import { CHECK_BESCHIKBAARHEID_DEFINITIE, checkBeschikbaarheid } from './checkBeschikbaarheid';
 import { ESCALEER_DEFINITIE, escaleerNaarMens } from './escaleerNaarMens';
 import { MAAK_LEAD_DEFINITIE, maakLead } from './maakLead';
 import { STUUR_SAMENVATTING_DEFINITIE, stuurSamenvatting } from './stuurSamenvatting';
@@ -19,6 +20,7 @@ export type { ToolContext, ToolUitvoer, ToolSignaal } from './types';
 export const TOOL_DEFINITIES: Anthropic.Tool[] = [
   MAAK_LEAD_DEFINITIE,
   BIED_TERUGBELAANBOD_DEFINITIE,
+  CHECK_BESCHIKBAARHEID_DEFINITIE,
   BOEK_AFSPRAAK_DEFINITIE,
   STUUR_SAMENVATTING_DEFINITIE,
   ESCALEER_DEFINITIE,
@@ -29,6 +31,7 @@ type ToolFunctie = (invoer: unknown, ctx: ToolContext) => Promise<ToolUitvoer>;
 const TOOLS: Record<string, ToolFunctie> = {
   maakLead,
   biedTerugbelaanbod,
+  checkBeschikbaarheid,
   boekAfspraak,
   stuurSamenvatting,
   escaleerNaarMens,

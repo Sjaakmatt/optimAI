@@ -11,6 +11,7 @@
 // daarachter zonder markering. Zo delen alle gesprekken op de hele site
 // dezelfde cache-prefix in plaats van één cache per playbook.
 
+import { BOEKING_PROVIDER } from '@/components/booking/config';
 import { laadKennisbank } from './kennisbank';
 import { playbookBlok, type PlaybookSleutel } from './playbooks';
 
@@ -174,9 +175,9 @@ Terugbellen is je eerste voorstel, en met opzet: ja zeggen kost één klik, terw
 
 Belangrijk: **vraag zelf nooit om een mailadres of telefoonnummer.** De widget vraagt die, samen met de toestemming om contact op te nemen. Doe je het toch in de chat, dan staat er geen vastgelegde toestemming tegenover en kunnen we er niets mee.
 
-Noem ook geen termijn. Niet "hij belt je vandaag nog", niet "binnen 24 uur". Je weet niet wanneer er gebeld wordt.
+Noem ook geen termijn. Niet "we bellen je vandaag nog", niet "binnen 24 uur". Je weet niet wanneer er gebeld wordt.
 
-Zegt de bezoeker liever zelf te plannen, of vraagt hij om de agenda: roep dan boekAfspraak aan. Vraag daarna niet om een mailadres via de chat, want de agenda vraagt dat zelf.
+{{AGENDA}}
 
 Bij twijfel of uitstel: één keer verzachten, niet aandringen.
 
@@ -207,6 +208,32 @@ Als je geen mailadres krijgt: rond netjes af, geen laatste poging.
 - Als de bezoeker een eenmanszaak zonder personeel is: wees eerlijk. "Eerlijk gezegd zit onze aanpak op bedrijven met een stuk of twintig mensen of meer, omdat er volume nodig is om de investering terug te verdienen. Ik wil je geen gesprek verkopen waar je niets aan hebt." Dat levert respect op en soms een doorverwijzing.
 - Roep aan het eind van elk gesprek altijd maakLead aan, ook bij COLD. Ook een afgewezen gesprek is informatie.`;
 
+/**
+ * Het stuk over de afspraak hangt af van welke agenda draait.
+ *
+ * Met de eigen agenda kán de agent echt in de agenda kijken en boeken; met
+ * Cal.com kan hij alleen de kalender openzetten. Eén tekst voor beide zou de
+ * agent tegenstrijdige instructies geven — "noem twee of drie momenten" terwijl
+ * de tool zegt dat hij niets kan zien — en dat is precies het soort ruimte
+ * waarin een model iets aannemelijks verzint.
+ */
+function agendaBlok(): string {
+  if (BOEKING_PROVIDER !== 'teams') {
+    return [
+      'Zegt de bezoeker liever zelf te plannen, of vraagt hij om de agenda: roep dan checkBeschikbaarheid aan. Die zet onze agenda open in de widget. Je kunt zelf niet zien welke momenten vrij zijn, dus noem geen datum en geen tijdstip. Vraag daarna ook niet om een mailadres via de chat, want de agenda vraagt dat zelf.',
+      'Lukt het openen niet, dan zeg je dat eerlijk. Nooit bevestigen wat niet gelukt is.',
+    ].join('\n\n');
+  }
+
+  return [
+    'Zegt de bezoeker liever zelf te plannen, of vraagt hij om de agenda: roep dan checkBeschikbaarheid aan. Die kijkt in onze echte agenda en opent hem tegelijk in de widget. Noem twee of drie momenten die je terugkrijgt, in gewone taal. Verzin nooit zelf een datum of tijd, en zeg nooit dat iets vrij is als je het niet uit die tool hebt.',
+    'Kiest de bezoeker een moment, dan vraag je naam en mailadres en roep je boekAfspraak aan met precies de starttijd die je terugkreeg. Dit is de enige plek waar je zelf om een mailadres vraagt: zonder adres kan er geen bevestiging heen.',
+    'Let op wat er daarna wél en niet waar is: er gaat een mail met een link naar dat adres, en de afspraak staat pas in de agenda als de bezoeker daarop klikt. Zeg dus "je hebt een mail van ons, één klik en het staat vast" — en nooit "je afspraak staat". Dat wachten is geen gedoe maar het punt: zo kan niemand op andermans mailadres een afspraak vastleggen. Zeg dat er gerust bij als iemand ernaar vraagt.',
+    'Wil de bezoeker liever zelf in de agenda kijken? Ook prima: die staat al open in de widget, en dan hoef je niets meer te vragen.',
+    'Lukt het boeken niet, dan zeg je dat eerlijk. Nooit bevestigen wat niet gelukt is.',
+  ].join('\n\n');
+}
+
 export interface SysteemBlok {
   type: 'text';
   text: string;
@@ -224,7 +251,7 @@ export function bouwSysteembericht(playbook: PlaybookSleutel, branche?: string):
   const stabiel = [
     SYSTEM_BASE,
     '# Kwalificatieflow',
-    QUALIFICATION_FLOW,
+    QUALIFICATION_FLOW.replace('{{AGENDA}}', agendaBlok()),
     '# Kennisbank',
     'Dit is je enige bron van feiten. Wat hier niet staat, weet je niet.',
     kennisbank.tekst,

@@ -42,7 +42,12 @@ function vensterStart(seconden: number): Date {
   return new Date(Math.floor(Date.now() / ms) * ms);
 }
 
-async function hoogOp(
+/**
+ * Hoogt één teller atomair op en geeft de nieuwe stand terug, of null als de
+ * database niet meebewerkt. Ook de boekingsroutes tellen hierop mee, zodat er
+ * maar één telmechanisme is.
+ */
+export async function hoogOp(
   soort: string,
   sleutel: string,
   vensterSeconden: number,

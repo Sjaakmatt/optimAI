@@ -3,7 +3,7 @@ import { Playfair_Display, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
-import { CalProvider } from "@/components/booking/CalProvider";
+import { BoekingProvider } from "@/components/booking/BoekingProvider";
 import { SiteAgent } from "@/components/site-agent/SiteAgent";
 import { ConsentGate } from "@/components/analytics/ConsentGate";
 import "./globals.css";
@@ -83,7 +83,7 @@ export default function RootLayout({
     <html lang="nl" className={`${playfair.variable} ${lora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen">
         <OrganizationSchema />
-        <CalProvider />
+        <BoekingProvider />
         <SiteAgent />
         {children}
         <ConsentGate />
