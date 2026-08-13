@@ -172,9 +172,9 @@ Eenmalig, in de Entra-tenant van factumai.com. Nodig: global admin.
    - `minimumNoticeMinutes` is de tijd die Sjaak minimaal krijgt om zich voor te
      bereiden; `bufferMinutes` de lucht rond bestaande afspraken.
 
-7. **Migratie toepassen.** De opt-in heeft de tabel `SiteBooking` nodig. Die
-   staat in de dashboard-repo als `prisma/migrations/20260813120000_site_booking`
-   en is nog niet toegepast; zie de README in die map.
+7. **Migratie.** De opt-in heeft de tabel `SiteBooking` nodig. Die staat in de
+   dashboard-repo als `prisma/migrations/20260813160000_site_booking` en is op
+   13 augustus 2026 toegepast op productie — hier is dus niets meer te doen.
 
 8. **Env-variabelen op Vercel** (zie `.env.example`):
    `NEXT_PUBLIC_BOEKING_PROVIDER=teams`, `FACTUMAI_MCP_SCHEDULING_URL`,
