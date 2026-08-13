@@ -12,8 +12,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ArrowRight, Calendar, Check, Loader2 } from 'lucide-react';
 
-import { trackEvent } from '@/lib/analytics/gtag';
-
 export interface AgendaSlot {
   start: string;
   end: string;
@@ -39,12 +37,14 @@ interface BoekAntwoord {
   herlaad?: boolean;
   moment?: string;
   bevestiging?: string;
+  /** De afspraak staat nog niet vast: er is een mail met een link onderweg. */
+  wachtOpBevestiging?: boolean;
 }
 
 type Fase = 'laden' | 'kiezen' | 'gegevens' | 'boeken' | 'klaar' | 'onbereikbaar';
 
 export interface AgendaKiezerProps {
-  /** Waar de agenda geopend is; gaat mee in de analytics. */
+  /** Waar de agenda geopend is; komt bij de aanvraag te staan. */
   bron?: string;
   /** Voorzet voor het veld 'waar gaat het over', bv. uit het chatgesprek. */
   aanleiding?: string;
@@ -115,13 +115,14 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
           email,
           bedrijf: bedrijf || undefined,
           aanleiding: toelichting || undefined,
+          bron,
           website: honeypot,
         }),
       });
       const data = (await res.json()) as BoekAntwoord;
 
       if (!res.ok || !data.ok) {
-        setFout(data.error ?? 'Het lukte niet om de afspraak vast te leggen.');
+        setFout(data.error ?? 'Het lukte niet om de aanvraag te versturen.');
         // Het slot is vergeven: terug naar het overzicht met verse tijden,
         // anders kiest de bezoeker hetzelfde moment nog een keer.
         if (data.herlaad) {
@@ -133,12 +134,13 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
         return;
       }
 
-      trackEvent('book_intro', { source: bron });
-      setBevestiging(data.bevestiging ?? 'De afspraak staat in de agenda.');
+      // Nog geen conversie: de afspraak staat pas na de klik in de mail. Die
+      // meting hangt aan de bevestigingspagina.
+      setBevestiging(data.bevestiging ?? 'Check je mail en klik op de link.');
       setFase('klaar');
       if (data.moment) onGeboekt?.(data.moment);
     } catch {
-      setFout('Het lukte niet om de afspraak vast te leggen.');
+      setFout('Het lukte niet om de aanvraag te versturen.');
       setFase('gegevens');
     }
   };
@@ -186,7 +188,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
           <Check size={22} strokeWidth={1.8} className="text-[var(--oker-deep)]" aria-hidden />
         </div>
         <h3 className="mt-5 font-display text-[24px] leading-tight text-[var(--ink)]">
-          Staat genoteerd.
+          Kijk even in je mail.
         </h3>
         <p className="mt-3 text-[14px] text-[var(--ink-dim)] leading-[1.6] max-w-[400px] mx-auto">
           {bevestiging}
@@ -293,18 +295,19 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
           {bezig ? (
             <>
               <Loader2 size={16} className="animate-spin" aria-hidden />
-              Vastleggen…
+              Versturen…
             </>
           ) : (
             <>
-              Afspraak vastleggen
+              Stuur me de bevestiging
               <ArrowRight size={16} strokeWidth={1.8} aria-hidden />
             </>
           )}
         </button>
 
         <p className="mt-3 text-[12px] text-[var(--ink-faint)] leading-[1.5]">
-          Je krijgt een agenda-uitnodiging met de Teams-link op het adres dat je hier invult.
+          Je krijgt eerst een mail met een link. Pas als je daarop klikt staat de afspraak vast —
+          zo kan niemand op jouw adres iets vastleggen.
         </p>
       </form>
     );

@@ -1,20 +1,19 @@
-// POST /api/v1/agenda/boeken — legt de kennismaking vast in de agenda.
+// POST /api/v1/agenda/boeken — vraagt een kennismaking aan.
 //
-// Dit is het enige publieke eindpunt van de site dat iets in de agenda van een
-// mens zet, dus de volgorde is: honeypot, rate limit, validatie, en pas dan de
-// MCP. De controle of het gekozen moment écht vrij is gebeurt in
-// `boekAfspraakIn` — daar staat ook waarom.
+// Let op wat hier níét gebeurt: er komt nog geen afspraak in de agenda. Dit
+// eindpunt is publiek en anoniem, dus wie hier een mailadres invult heeft nog
+// niet bewezen dat het van hem is. De bezoeker krijgt een link per mail; pas
+// als die gevolgd wordt gaat de afspraak erin. Zie lib/booking/flow.ts.
 //
-// De agenda-uitnodiging met de Teams-link komt uit de mailbox zelf; de
-// bevestigingsmail hier is de menselijke tekst ernaast.
+// Volgorde: honeypot, rate limit, validatie, en pas dan de MCP en de mail.
 
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { BOEKING_DUUR_MINUTEN, BOEKING_PROVIDER } from '@/components/booking/config';
-import { SlotBezetFout, boekAfspraakIn, omschrijfMoment } from '@/lib/booking/agenda';
+import { BOEKING_PROVIDER } from '@/components/booking/config';
+import { SlotBezetFout } from '@/lib/booking/agenda';
+import { OptInMailFout, vraagAan } from '@/lib/booking/flow';
 import { magBoeken } from '@/lib/booking/limiet';
-import { stuurBevestiging } from '@/lib/booking/mail';
 import { hashIp } from '@/lib/site-agent/ratelimit';
 
 export const runtime = 'nodejs';
@@ -26,6 +25,9 @@ const Invoer = z.object({
   email: z.string().email().max(160),
   bedrijf: z.string().max(160).optional(),
   aanleiding: z.string().max(600).optional(),
+  // Waar de agenda geopend is. Vaste lijst en geen vrije tekst: dit komt in de
+  // database en de client bepaalt de waarde.
+  bron: z.enum(['agenda', 'knop', 'floating', 'plan-pagina', 'aanvraag']).default('agenda'),
   // Honeypot: staat verstopt in het formulier. Ingevuld betekent bot.
   website: z.string().optional(),
 });
@@ -62,34 +64,29 @@ export async function POST(request: Request) {
     request.headers.get('x-real-ip') ??
     'onbekend';
 
-  const limiet = await magBoeken(hashIp(ip));
+  const limiet = await magBoeken(hashIp(ip), invoer.email);
   if (!limiet.toegestaan) {
     return NextResponse.json({ ok: false, error: limiet.melding }, { status: 429 });
   }
 
   try {
-    const boeking = await boekAfspraakIn({
+    const aanvraag = await vraagAan({
       start: invoer.start,
       naam: invoer.naam,
       email: invoer.email,
       bedrijf: invoer.bedrijf,
       aanleiding: invoer.aanleiding,
-      bron: 'agenda',
-    });
-
-    await stuurBevestiging({
-      naam: invoer.naam,
-      email: invoer.email,
-      start: boeking.start,
-      joinUrl: boeking.joinUrl,
-      duurMinuten: BOEKING_DUUR_MINUTEN,
+      bron: invoer.bron,
     });
 
     return NextResponse.json({
       ok: true,
-      start: boeking.start,
-      moment: omschrijfMoment(boeking.start),
-      bevestiging: `Gelukt, ${omschrijfMoment(boeking.start)} staat in de agenda. Je krijgt een uitnodiging met de Teams-link per mail.`,
+      wachtOpBevestiging: true,
+      start: aanvraag.start,
+      moment: aanvraag.moment,
+      bevestiging:
+        `Ik heb je een mail gestuurd op ${invoer.email}. Klik op de link erin, dan zet ik ` +
+        `${aanvraag.moment} vast in de agenda.`,
     });
   } catch (err) {
     if (err instanceof SlotBezetFout) {
@@ -98,12 +95,22 @@ export async function POST(request: Request) {
         { status: 409 },
       );
     }
-    console.error('[agenda] boeken faalde:', err instanceof Error ? err.message : err);
+    if (err instanceof OptInMailFout) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            'Ik kon de bevestigingsmail niet versturen. Controleer het mailadres, of mail direct naar info@factumai.nl.',
+        },
+        { status: 502 },
+      );
+    }
+    console.error('[agenda] aanvraag faalde:', err instanceof Error ? err.message : err);
     return NextResponse.json(
       {
         ok: false,
         error:
-          'Het lukte niet om de afspraak vast te leggen. Probeer het zo nog eens, of mail naar info@factumai.nl.',
+          'Het lukte niet om de aanvraag te verwerken. Probeer het zo nog eens, of mail naar info@factumai.nl.',
       },
       { status: 502 },
     );

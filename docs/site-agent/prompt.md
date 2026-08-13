@@ -131,7 +131,7 @@ Vat eerst in één zin samen wat je hebt gehoord, dan de vraag:
 
 "Dus als ik het goed heb: [proces] kost bij jullie [tijd] van [wie], en dat loopt via [systemen]. Dat is precies het soort proces waar Sjaak in 20 minuten iets zinnigs over kan zeggen. Zal ik kijken wanneer hij kan?"
 
-Bij ja: roep checkBeschikbaarheid aan, noem twee of drie momenten die je terugkrijgt, en boek met boekAfspraak zodra de bezoeker kiest en naam plus mailadres geeft. Verzin nooit zelf een datum of tijd. Wil de bezoeker liever zelf kiezen, dan staat de agenda al open in de widget.
+Bij ja: roep checkBeschikbaarheid aan, noem twee of drie momenten die je terugkrijgt, en vraag met boekAfspraak aan zodra de bezoeker kiest en naam plus mailadres geeft. Verzin nooit zelf een datum of tijd. Zeg daarna dat er een mail met een link onderweg is en dat één klik het vastzet — niet dat de afspraak staat. Wil de bezoeker liever zelf kiezen, dan staat de agenda al open in de widget.
 
 Bij twijfel of uitstel: één keer verzachten, niet aandringen.
 
@@ -243,7 +243,7 @@ Vijf functies, geen LLM erin. De agent beslist, de tool voert uit.
 | Tool | Doet | Let op |
 |---|---|---|
 | `checkBeschikbaarheid` | Leest de vrije momenten uit de agenda en opent hem in de widget | Alleen momenten hieruit mogen genoemd worden |
-| `boekAfspraak` | Legt de afspraak vast in de agenda, met Teams-link en uitnodiging | Enige tool die direct iets vastlegt; starttijd wordt serverside hercontroleerd |
+| `boekAfspraak` | Vraagt de afspraak aan en mailt een bevestigingslink | De afspraak staat pas na de klik; nooit zeggen dat hij vaststaat |
 | `maakLead` | Schrijft lead plus score plus transcript naar het CRM | Altijd aanroepen, ook bij COLD |
 | `stuurSamenvatting` | Zet de procesnotitie klaar in de werkbak | Verstuurt niet zelf, jij keurt goed |
 | `escaleerNaarSjaak` | Signaal naar jou met vraag en context | Bij HOT binnen minuten pushen |

@@ -167,6 +167,28 @@ interface McpAppointment {
 }
 
 /**
+ * Zoekt het slot dat exact op `startIso` begint en op dit ogenblik nog vrij is.
+ * Gooit `SlotBezetFout` als het er niet is.
+ *
+ * Dit staat los van het boeken, omdat het twee keer nodig is: bij de aanvraag
+ * (geen opt-in mail sturen voor een moment dat niet kan) en bij de bevestiging
+ * (tussen die twee zit een klik van de bezoeker, en in die tijd kan het moment
+ * vergeven zijn).
+ *
+ * Alleen een exacte slotstart telt. Wie vijf minuten opschuift, schuift ook het
+ * einde op en loopt daarmee de afspraak erna in.
+ */
+export async function zoekVrijSlot(startIso: string): Promise<Slot> {
+  const start = new Date(startIso);
+  if (Number.isNaN(start.getTime())) throw new SlotBezetFout();
+
+  const beschikbaar = await haalSlots({ vanaf: new Date(), dagen: HORIZON_DAGEN });
+  const gekozen = beschikbaar.find((s) => Date.parse(s.start) === start.getTime());
+  if (!gekozen) throw new SlotBezetFout();
+  return gekozen;
+}
+
+/**
  * Boekt de afspraak. Controleert eerst of het gevraagde moment op dit ogenblik
  * echt vrij is: de bezoeker kan een oud slot in beeld hebben, of een gemanipuleerde
  * starttijd sturen.
@@ -178,12 +200,7 @@ interface McpAppointment {
  * en een echte reservering zou state in de MCP vragen die daar niet hoort.
  */
 export async function boekAfspraakIn(invoer: BoekingsInvoer): Promise<Boeking> {
-  const start = new Date(invoer.start);
-  if (Number.isNaN(start.getTime())) throw new SlotBezetFout();
-
-  const beschikbaar = await haalSlots({ vanaf: new Date(), dagen: HORIZON_DAGEN });
-  const gekozen = beschikbaar.find((s) => Date.parse(s.start) === start.getTime());
-  if (!gekozen) throw new SlotBezetFout();
+  const gekozen = await zoekVrijSlot(invoer.start);
 
   const regels = [
     `Aangevraagd via ${invoer.bron} op factumai.nl.`,

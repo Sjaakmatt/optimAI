@@ -12,7 +12,7 @@
 // Faalt de teller, dan laten we het opvragen door en weigeren we het boeken.
 // Lezen zonder zicht op misbruik is te overzien; schrijven niet.
 
-import { hoogOp } from '@/lib/site-agent/ratelimit';
+import { hashIp, hoogOp } from '@/lib/site-agent/ratelimit';
 
 export const LIMIET_SLOTS_PER_IP = Number(process.env.BOEKING_LIMIET_SLOTS ?? '60');
 export const VENSTER_SLOTS_SECONDEN = 60 * 60;
@@ -36,7 +36,18 @@ export async function magSlotsOpvragen(ipHash: string): Promise<LimietResultaat>
   return { toegestaan: true };
 }
 
-export async function magBoeken(ipHash: string): Promise<LimietResultaat> {
+export const LIMIET_BOEKINGEN_PER_EMAIL = Number(process.env.BOEKING_LIMIET_PER_EMAIL ?? '3');
+
+/**
+ * Mag er een aanvraag gedaan worden? Telt per IP én per mailadres.
+ *
+ * Die tweede teller is er omdat het aanvragen een mail naar een adres stuurt
+ * dat de aanvrager zelf kiest. Alleen op IP tellen laat een botnet één postbus
+ * volgooien met opt-in mails; op mailadres tellen zet daar een rem op, ongeacht
+ * waar het vandaan komt. Het adres wordt gehasht: voor een teller is de
+ * identiteit niet nodig.
+ */
+export async function magBoeken(ipHash: string, email: string): Promise<LimietResultaat> {
   const stand = await hoogOp('agenda-boeking', ipHash, VENSTER_BOEKINGEN_SECONDEN);
   if (stand === null) {
     return {
@@ -52,5 +63,19 @@ export async function magBoeken(ipHash: string): Promise<LimietResultaat> {
         'Er staan al een paar afspraken vanaf dit netwerk. Mail even naar info@factumai.nl, dan regelen we het persoonlijk.',
     };
   }
+
+  const perEmail = await hoogOp(
+    'agenda-boeking-email',
+    hashIp(email.trim().toLowerCase()),
+    VENSTER_BOEKINGEN_SECONDEN,
+  );
+  if (perEmail !== null && perEmail > LIMIET_BOEKINGEN_PER_EMAIL) {
+    return {
+      toegestaan: false,
+      melding:
+        'Er zijn vandaag al een paar aanvragen naar dit mailadres gestuurd. Kijk even in je inbox, of mail naar info@factumai.nl.',
+    };
+  }
+
   return { toegestaan: true };
 }

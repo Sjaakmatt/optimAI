@@ -3,7 +3,7 @@
 // Twee taken die niemand anders doet:
 //   1. Gesprekken afronden die vijftien minuten stil zijn (scoring + lead).
 //   2. Opruimen wat over de retentietermijn heen is (90 dagen), plus de
-//      verlopen tellers.
+//      verlopen tellers en de boekingsaanvragen die nooit bevestigd zijn.
 //
 // Er is in deze repo nog geen retention-cron om aan te haken, dus dit is een
 // losse endpoint met dezelfde conventie als de rest: bescherm hem met
@@ -13,6 +13,7 @@
 // te komen; zie docs/site-agent/opdracht-dashboard.md. Deze route is het vangnet
 // zolang dat niet staat.
 
+import { ruimVerlopenAanvragenOp } from '@/lib/booking/aanvraag';
 import { siteAgentAan } from '@/lib/site-agent/config';
 import { haalStilleGesprekken, ruimVerlopenOp } from '@/lib/site-agent/db';
 import { logEvent } from '@/lib/site-agent/events';
@@ -38,7 +39,11 @@ export async function GET(request: Request) {
     return Response.json({ ok: false, error: 'Niet geautoriseerd' }, { status: 401 });
   }
 
-  const resultaat = { afgerond: 0, mislukt: 0, opgeruimd: { gesprekken: 0, tellers: 0 } };
+  const resultaat = {
+    afgerond: 0,
+    mislukt: 0,
+    opgeruimd: { gesprekken: 0, tellers: 0, aanvragen: 0 },
+  };
 
   // 1. Stille gesprekken afronden. De schakelaar telt hier ook: staat de agent
   //    uit, dan doen we geen modelcalls, maar opruimen blijft gewoon gebeuren.
@@ -61,16 +66,27 @@ export async function GET(request: Request) {
 
   // 2. Retentie. Dit draait altijd, ook met de agent uit.
   try {
-    resultaat.opgeruimd = await ruimVerlopenOp();
+    const { gesprekken, tellers } = await ruimVerlopenOp();
+    resultaat.opgeruimd.gesprekken = gesprekken;
+    resultaat.opgeruimd.tellers = tellers;
   } catch (err) {
     console.error('[site-agent] opruimen faalde:', err);
+  }
+
+  // 3. Boekingsaanvragen waarvan de opt-in link verlopen is en die nooit
+  //    bevestigd zijn. Bevestigde blijven staan als administratie.
+  try {
+    resultaat.opgeruimd.aanvragen = await ruimVerlopenAanvragenOp();
+  } catch (err) {
+    console.error('[site-agent] verlopen boekingsaanvragen opruimen faalde:', err);
   }
 
   void logEvent({
     categorie: 'system',
     bericht:
       `Site-agent cron · ${resultaat.afgerond} afgerond, ${resultaat.mislukt} mislukt, ` +
-      `${resultaat.opgeruimd.gesprekken} gesprekken en ${resultaat.opgeruimd.tellers} tellers opgeruimd`,
+      `${resultaat.opgeruimd.gesprekken} gesprekken, ${resultaat.opgeruimd.tellers} tellers en ` +
+      `${resultaat.opgeruimd.aanvragen} verlopen boekingsaanvragen opgeruimd`,
     metadata: resultaat as unknown as Record<string, unknown>,
   });
 
