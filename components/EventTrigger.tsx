@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, X } from 'lucide-react';
 import { useStore, ALL_SCENARIOS } from '@/lib/store';
+import { vergrendelScroll } from '@/lib/site/scrollLock';
 
 export function EventTrigger() {
   const [open, setOpen] = useState(false);
@@ -22,11 +23,10 @@ export function EventTrigger() {
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('keydown', handler);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const ontgrendel = vergrendelScroll();
     return () => {
       window.removeEventListener('keydown', handler);
-      document.body.style.overflow = prev;
+      ontgrendel();
     };
   }, [open]);
 

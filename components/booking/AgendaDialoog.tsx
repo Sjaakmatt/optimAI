@@ -9,6 +9,7 @@
 import { useCallback, useEffect, useRef, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
 
+import { vergrendelScroll } from '@/lib/site/scrollLock';
 import { AgendaKiezer } from './AgendaKiezer';
 
 const FOCUSBAAR =
@@ -28,12 +29,11 @@ export function AgendaDialoog({ bron, aanleiding, onSluiten }: AgendaDialoogProp
       if (e.key === 'Escape') onSluiten();
     };
     document.addEventListener('keydown', opEscape);
-    const vorigeOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const ontgrendel = vergrendelScroll();
     paneelRef.current?.querySelector<HTMLElement>(FOCUSBAAR)?.focus();
     return () => {
       document.removeEventListener('keydown', opEscape);
-      document.body.style.overflow = vorigeOverflow;
+      ontgrendel();
     };
   }, [onSluiten]);
 
