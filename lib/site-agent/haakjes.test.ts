@@ -6,7 +6,7 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 
-import { haakjeVoorPad, openingVoorPad } from './haakjes';
+import { haakjeVoorPad, openingVoorPad, startersVoorPad } from './haakjes';
 
 /** Alle paden waarvoor we een eigen zin verwachten. */
 const BRANCHE_SLUGS = [
@@ -115,5 +115,45 @@ describe('opening in het paneel', () => {
     const pad = '/branches/groothandel';
     assert.notEqual(openingVoorPad(pad), haakjeVoorPad(pad));
     assert.ok(openingVoorPad(pad).length > haakjeVoorPad(pad).length);
+  });
+});
+
+describe('snelle antwoorden', () => {
+  it('geeft er altijd precies drie, met een uitweg als laatste', () => {
+    // Drie is de grens waarbinnen iemand nog kiest in plaats van leest. En de
+    // uitweg moet er zijn: wie zich niet herkent in twee processen moet niet
+    // vastlopen op een rij knoppen die niet over hem gaan.
+    for (const pad of ['/', '/branches/bouw', '/diensten/ai-automatisering', '/kennis/iets', '/info']) {
+      const starters = startersVoorPad(pad);
+      assert.equal(starters.length, 3, `verwacht drie op ${pad}`);
+      assert.equal(starters[2], 'Iets anders', `geen uitweg op ${pad}`);
+    }
+  });
+
+  it('geeft branchepaginas hun eigen processen', () => {
+    assert.notDeepEqual(startersVoorPad('/branches/bouw'), startersVoorPad('/branches/horeca'));
+    assert.ok(startersVoorPad('/branches/bouw').includes('Meerwerk vastleggen'));
+  });
+
+  it('valt terug op de playbookset bij een onbekende slug', () => {
+    assert.deepEqual(startersVoorPad('/branches/scheepsbouw'), startersVoorPad('/branches'));
+  });
+
+  it('blijft kort genoeg voor een knop', () => {
+    for (const pad of ['/', '/branches/zorg', '/diensten/ai-implementatie']) {
+      for (const s of startersVoorPad(pad)) {
+        assert.ok(s.length <= 28, `te lang voor een knop (${s.length}): ${s}`);
+      }
+    }
+  });
+
+  it('belooft niets dat de outputcontrole daarna blokkeert', () => {
+    // De knoptekst wordt letterlijk het bericht van de bezoeker, maar hij staat
+    // wel in onze eigen interface. Zelfde grens als bij de haakjes.
+    const alle = ['/', '/branches/bouw', '/branches/zorg', '/diensten/ai-automatisering', '/info']
+      .flatMap(startersVoorPad);
+    for (const s of alle) {
+      assert.ok(!/€|%|\bbespaar|\buur\b|\bweken\b/i.test(s), `claim in: ${s}`);
+    }
   });
 });
