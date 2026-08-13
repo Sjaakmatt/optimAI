@@ -278,12 +278,17 @@ export async function POST(request: Request) {
       //
       // Alleen scoorGesprek() sluit een gesprek af, want dat is de enige plek
       // die status en score in één keer zet. Zie lib/site-agent/scoring.ts.
+      //
+      // Geen kale foutmelding: dit is het moment waarop het gesprek genoeg heeft
+      // opgeleverd om het aan Sjaak over te dragen. De widget toont deze tekst
+      // als bericht van de agent, met een knop naar de agenda.
       return Response.json(
         {
           ok: false,
+          actie: 'afspraak',
           error:
-            'Dit gesprek is lang genoeg geworden om er een keer echt over door te praten. ' +
-            'Plan een gesprek met Sjaak, of mail naar info@factumai.nl.',
+            'We hebben genoeg gedeeld om hier echt over door te praten. Sjaak neemt in 20 ' +
+            'minuten met je door hoe dit bij jullie zou werken. Zal ik zijn agenda openen?',
         },
         { status: 409 },
       );
@@ -530,7 +535,12 @@ export async function POST(request: Request) {
         });
       } finally {
         const kosten = berekenKosten(verbruik);
-        const tokens = verbruik.invoer + verbruik.cacheGelezen + verbruik.cacheGeschreven;
+        // Alleen verse tokens tellen mee in totaalTokens, want dat getal
+        // bewaakt de gesprekslimiet. De gecachte systeemprompt wordt élke beurt
+        // opnieuw gelezen; die meetellen zou de limiet na een beurt of acht
+        // laten afgaan terwijl het gesprek nog nergens is. De volledige kosten,
+        // cache-tokens incluis, staan in kostenUsd.
+        const tokens = verbruik.invoer + verbruik.uitvoer;
 
         void verhoogVerbruik(conversatie.id, tokens, kosten).catch((err) =>
           console.error('[site-agent] verbruik bijwerken faalde:', err),

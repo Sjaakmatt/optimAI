@@ -44,7 +44,7 @@ export default function AgentPaneel({
       .catch((err) => console.warn('[site-agent] agenda openen faalde:', err));
   }, []);
 
-  const { berichten, status, fout, stuur, voegOpeningToe } = useGesprek({
+  const { berichten, status, fout, afsluiting, stuur, voegOpeningToe } = useGesprek({
     sessionId,
     paginaPad,
     playbook,
@@ -193,6 +193,18 @@ export default function AgentPaneel({
           </div>
         )}
 
+        {afsluiting === 'afspraak' && (
+          <div className="flex justify-start">
+            <button
+              type="button"
+              onClick={() => opSignaal({ naam: 'agenda', payload: {} })}
+              className="rounded-[2px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
+            >
+              Plan een gesprek van 20 minuten
+            </button>
+          </div>
+        )}
+
         <div ref={onderkantRef} />
       </div>
 
@@ -206,7 +218,8 @@ export default function AgentPaneel({
             ref={invoerRef}
             rows={1}
             maxLength={2000}
-            placeholder="Typ je vraag"
+            disabled={afsluiting !== null}
+            placeholder={afsluiting ? 'Dit gesprek is afgerond' : 'Typ je vraag'}
             onKeyDown={opToetsInVeld}
             onInput={(e) => {
               const el = e.currentTarget;
@@ -217,7 +230,7 @@ export default function AgentPaneel({
           />
           <button
             type="submit"
-            disabled={status === 'bezig'}
+            disabled={status === 'bezig' || afsluiting !== null}
             aria-label="Bericht versturen"
             className="rounded-[2px] bg-[var(--terra)] p-2.5 text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
           >
