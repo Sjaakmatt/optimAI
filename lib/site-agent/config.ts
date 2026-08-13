@@ -70,4 +70,4 @@ export async function plafondBereikt(): Promise<boolean> {
 
 export const PLAFOND_MELDING =
   'De agent is voor vandaag even uit de lucht. Mail je vraag naar info@factumai.nl of plan ' +
-  'direct een gesprek, dan pakt Sjaak het persoonlijk op.';
+  'direct een gesprek, dan pakken we het persoonlijk op.';

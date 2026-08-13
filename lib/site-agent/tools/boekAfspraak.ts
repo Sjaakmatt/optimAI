@@ -22,9 +22,9 @@ const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'sjaak-factumai/kennismakin
 export const BOEK_AFSPRAAK_DEFINITIE: Anthropic.Tool = {
   name: 'boekAfspraak',
   description:
-    'Toon de agenda van Sjaak in de widget zodat de bezoeker zelf een moment kiest voor een ' +
+    'Toon onze agenda in de widget zodat de bezoeker zelf een moment kiest voor een ' +
     'kennismaking van 20 minuten. Roep dit pas aan als de bezoeker ja heeft gezegd op de vraag ' +
-    'of je zal kijken wanneer Sjaak kan. Vraag daarna niet ook nog om een mailadres: de agenda ' +
+    'of je zal kijken wanneer het kan. Vraag daarna niet ook nog om een mailadres: de agenda ' +
     'vraagt dat zelf.',
   input_schema: {
     type: 'object',
@@ -32,7 +32,7 @@ export const BOEK_AFSPRAAK_DEFINITIE: Anthropic.Tool = {
       aanleiding: {
         type: 'string',
         description:
-          'In één zin waar het gesprek over gaat, zodat Sjaak voorbereid is. Bijvoorbeeld ' +
+          'In één zin waar het gesprek over gaat, zodat we voorbereid zijn. Bijvoorbeeld ' +
           '"offertes maken bij een groothandel, loopt via Exact en Outlook".',
       },
     },

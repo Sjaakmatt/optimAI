@@ -160,7 +160,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // Signaal aan Sjaak. Faalt het kanaal, dan staat het verzoek nog steeds in
+    // Intern signaal. Faalt het kanaal, dan staat het verzoek nog steeds in
     // de werkbak — het gaat niet verloren omdat de mail hapert.
     void notificatieKanaal().stuur({
       urgent: true,

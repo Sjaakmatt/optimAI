@@ -9,7 +9,7 @@ import type Anthropic from '@anthropic-ai/sdk';
 import { logEvent, maskeerEmail } from '../events';
 import { BIED_TERUGBELAANBOD_DEFINITIE, biedTerugbelaanbod } from './biedTerugbelaanbod';
 import { BOEK_AFSPRAAK_DEFINITIE, boekAfspraak } from './boekAfspraak';
-import { ESCALEER_DEFINITIE, escaleerNaarSjaak } from './escaleerNaarSjaak';
+import { ESCALEER_DEFINITIE, escaleerNaarMens } from './escaleerNaarMens';
 import { MAAK_LEAD_DEFINITIE, maakLead } from './maakLead';
 import { STUUR_SAMENVATTING_DEFINITIE, stuurSamenvatting } from './stuurSamenvatting';
 import type { ToolContext, ToolUitvoer } from './types';
@@ -31,7 +31,7 @@ const TOOLS: Record<string, ToolFunctie> = {
   biedTerugbelaanbod,
   boekAfspraak,
   stuurSamenvatting,
-  escaleerNaarSjaak,
+  escaleerNaarMens,
 };
 
 /** Sleutels waarvan de waarde nooit onbewerkt in een logregel mag komen. */
@@ -125,7 +125,7 @@ export async function voerToolUit(
       gelukt: false,
       uitvoer: {
         voorModel:
-          'Dat lukte technisch niet. Zeg tegen de bezoeker dat je het bij Sjaak neerlegt en ' +
+          'Dat lukte technisch niet. Zeg tegen de bezoeker dat je het bij een collega neerlegt en ' +
           'vraag om een mailadres als je dat nog niet hebt.',
       },
     };

@@ -1,4 +1,4 @@
-// Het telefoonnummer uit het terugbelformulier is het enige gegeven waar Sjaak
+// Het telefoonnummer uit het terugbelformulier is het enige gegeven waar iemand
 // echt op moet kunnen bellen. Een nummer dat door de validatie glipt of verkeerd
 // genormaliseerd wordt, kost een lead zonder dat iemand het merkt.
 

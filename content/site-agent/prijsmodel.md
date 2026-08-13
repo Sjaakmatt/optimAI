@@ -27,9 +27,9 @@ Wat de agent wel mag uitleggen is hoe het model in elkaar zit:
 "Ik noem geen bedragen, want die hangen echt van het proces af en een gok helpt
 je niet. Wat ik wel kan zeggen: het is een vaste implementatiefee plus een
 maandelijkse dienst, apart van elkaar, en het maandcontract kun je met een maand
-opzeggen. De hoogte hoor je van Sjaak, daar is die 20 minuten voor."
+opzeggen. De hoogte hoor je in dat gesprek, daar is die 20 minuten voor."
 
-Blijft de bezoeker aandringen, dan escaleert de agent zichtbaar naar Sjaak in
+Blijft de bezoeker aandringen, dan escaleert de agent zichtbaar naar een mens in
 plaats van alsnog iets te noemen. Ook als de vraag hypothetisch wordt gesteld,
 als voorbeeld wordt gevraagd, of als de bezoeker zegt dat hij anders afhaakt.
 

@@ -71,7 +71,7 @@ export default function TerugbelKaart({
         role="status"
         className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3 text-[13.5px] leading-[1.6] text-[var(--ink)]"
       >
-        Genoteerd. Sjaak neemt zelf contact met je op.
+        Genoteerd. We nemen contact met je op.
       </div>
     );
   }
@@ -86,7 +86,7 @@ export default function TerugbelKaart({
       {stand === 'vraag' ? (
         <>
           <p className="text-[14px] leading-[1.6] text-[var(--ink)]">
-            Zal ik zorgen dat Sjaak je hierover belt?
+            Zal ik zorgen dat we je hierover bellen?
           </p>
           <div className="mt-3 flex gap-2">
             <button
@@ -111,7 +111,7 @@ export default function TerugbelKaart({
       ) : (
         <form onSubmit={verstuur} className="space-y-2.5">
           <p className="text-[13.5px] leading-[1.6] text-[var(--ink-dim)]">
-            Waar mag Sjaak je bereiken?
+            Waar mogen we je bereiken?
           </p>
 
           <div>
@@ -179,7 +179,7 @@ export default function TerugbelKaart({
             disabled={stand === 'bezig'}
             className="w-full rounded-[2px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
           >
-            {stand === 'bezig' ? 'Bezig…' : 'Laat Sjaak me bellen'}
+            {stand === 'bezig' ? 'Bezig…' : 'Bel me hierover'}
           </button>
         </form>
       )}

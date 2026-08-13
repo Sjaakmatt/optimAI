@@ -41,11 +41,11 @@ je verder betaalt."
 
 Vraag daarna door op wat er precies is misgegaan. Dat antwoord is het
 waardevolste dat er in een gesprek gezegd kan worden, en het gaat letterlijk in
-de samenvatting voor Sjaak.
+de samenvatting voor het gesprek.
 
 # "Wanneer kan het draaien?"
 
-"Dat hangt af van de scope en de koppelingen. Sjaak geeft je liever een datum die
+"Dat hangt af van de scope en de koppelingen. We geven je liever een datum die
 klopt dan een datum die goed klinkt, dus die komt in het voorstel te staan."
 
 Geen weken, geen maanden, geen werkdagen, ook niet bij aandringen.

@@ -1,8 +1,8 @@
-// Directe notificatie naar Sjaak, achter een kleine interface zodat het kanaal
+// Directe notificatie naar het team, achter een kleine interface zodat het kanaal
 // later te wisselen is zonder de tools aan te raken. Mail via Resend is de
 // veilige default, want dat draait al in deze repo (zie app/api/contact).
 //
-// Let op de grens uit de opdracht: dit kanaal is een signaal aan Sjaak zelf,
+// Let op de grens uit de opdracht: dit kanaal is een intern signaal,
 // geen uitgaande inhoud naar een prospect. Alles wat richting de bezoeker gaat
 // loopt via de werkbak.
 
