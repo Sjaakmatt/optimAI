@@ -155,6 +155,12 @@ export async function scoorGesprek(conversatie: Conversatie): Promise<Beoordelin
 
   const samenvatting = bouwSamenvatting(beoordeling);
 
+  // Dit is de énige plek die een gesprek op AFGEROND zet, en dat is met opzet:
+  // status en score horen in één schrijfactie thuis. Zet je de status elders
+  // ook, dan valt het gesprek buiten beide scoringspaden — `afronden` slaat
+  // alles over dat niet OPEN is, en de cron zoekt alleen naar OPEN — en blijft
+  // het ongescoord. Dat is precies één keer misgegaan, in het chat-endpoint bij
+  // het bereiken van de berichtlimiet.
   await werkConversatieBij(conversatie.id, {
     status: 'AFGEROND',
     score: beoordeling.score,

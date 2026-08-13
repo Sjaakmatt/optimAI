@@ -46,7 +46,6 @@ import {
   slaBerichtOp,
   telBerichten,
   verhoogVerbruik,
-  werkConversatieBij,
   type Conversatie,
 } from '@/lib/site-agent/db';
 
@@ -270,7 +269,16 @@ export async function POST(request: Request) {
     // 3. Harde grenzen per gesprek.
     const aantal = await telBerichten(conversatie.id);
     if (aantal >= MAX_BERICHTEN_PER_GESPREK || conversatie.totaalTokens >= MAX_INPUTTOKENS_PER_GESPREK) {
-      await werkConversatieBij(conversatie.id, { status: 'AFGEROND' });
+      // Bewust géén status-update hier. De grens wordt gehandhaafd door de
+      // telling hierboven, die bij elk verzoek opnieuw draait — de status doet
+      // daar niets aan. Zette je hem hier op AFGEROND, dan viel het gesprek
+      // buiten beide scoringspaden: `afronden` slaat alles over dat niet OPEN
+      // is, en de cron zoekt alleen naar OPEN. Het gesprek bleef dan voorgoed
+      // ongescoord, en juist bezoekers die de limiet halen zijn de interessante.
+      //
+      // Alleen scoorGesprek() sluit een gesprek af, want dat is de enige plek
+      // die status en score in één keer zet. Zie lib/site-agent/scoring.ts.
+      //
       // Geen kale foutmelding: dit is het moment waarop het gesprek genoeg heeft
       // opgeleverd om het aan Sjaak over te dragen. De widget toont deze tekst
       // als bericht van de agent, met een knop naar de agenda.
