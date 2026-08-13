@@ -4,7 +4,7 @@
 // wanneer de agent zich meldt. Het paneel zelf wordt dynamisch geladen, dus
 // zolang de bezoeker niets doet kost dit niets meer dan deze knop.
 //
-// Wanneer meldt de agent zich: na 12 seconden of bij 35% scrolldiepte, wat
+// Wanneer meldt de agent zich: na 6 seconden of bij 35% scrolldiepte, wat
 // eerder komt, en één keer per pagina — want elke pagina heeft een eigen zin.
 //
 // Twee dingen zetten hem voor de rest van de sessie uit: het kruisje (of
@@ -45,11 +45,17 @@ const SLEUTEL_SESSIE = `factumai.agent.${OPSLAG_VERSIE}.sessie`;
 const SLEUTEL_WEGGEKLIKT = `factumai.agent.${OPSLAG_VERSIE}.weggeklikt`;
 const SLEUTEL_GEMELD = `factumai.agent.${OPSLAG_VERSIE}.gemeld`;
 
-// Twaalf seconden in plaats van twintig. Twintig is voorbij het moment waarop
-// iemand besluit of deze pagina hem iets oplevert; dan meld je je bij wie al
-// weg is. Onder de tien wordt het opdringerig — dan heeft hij nog niets gelezen
-// om op te reageren.
-const WACHTTIJD_MS = 12_000;
+// Zes seconden. Bewuste keuze voor conversie: het moment waarop iemand besluit
+// of deze pagina hem iets oplevert ligt vroeg, en na dat moment meld je je bij
+// wie al half weg is.
+//
+// De keerzijde is dat de bezoeker dan pas een alinea of twee gelezen heeft, dus
+// het haakje moet het werk doen zonder dat hij de pagina kent. Daar zijn de
+// zinnen per pagina op geschreven (lib/site-agent/haakjes.ts): ze benoemen een
+// concrete handeling in plaats van te verwijzen naar wat er op het scherm staat.
+//
+// Loopt het aandeel wegklikkers op, dan is dit de eerste knop om aan te draaien.
+const WACHTTIJD_MS = 6_000;
 const SCROLLDIEPTE = 0.35;
 
 /**
@@ -167,7 +173,7 @@ export function SiteAgent() {
     }
 
     // Eén wolkje per pagina. Zonder dit zou het sluiten van het paneel op
-    // dezelfde pagina een nieuwe timer starten en twaalf seconden later opnieuw
+    // dezelfde pagina een nieuwe timer starten en zes seconden later opnieuw
     // een wolkje opleveren — dat is geen zetje meer maar aandringen.
     if (laatstGemeldPadRef.current === pathname) return;
 
