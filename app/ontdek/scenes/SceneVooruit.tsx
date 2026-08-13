@@ -6,7 +6,7 @@ import { VOORUIT_AGENTS, type SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 7. Vooruitkijken: de geavanceerde agents. Vier kaarten die één
+ * Stap 7. Vooruitkijken: de geavanceerde agents. Vier kaarten die één
  * voor één opkomen: voorspellen, kennis ontsluiten, autonoom bewaken
  * en de markt volgen.
  */

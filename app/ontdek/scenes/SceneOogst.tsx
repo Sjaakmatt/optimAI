@@ -7,8 +7,8 @@ import { OOGST_STATS, type SceneProps } from '../film-content';
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 7. De oogst: wat het in de praktijk oplevert, en de uitnodiging
- * om verder te lopen naar een echt gesprek.
+ * Stap 8. Het resultaat: wat het in de praktijk oplevert, en de stap
+ * naar een echt gesprek.
  */
 export function SceneOogst({ beat, reduced }: SceneProps) {
   return (
@@ -43,7 +43,7 @@ export function SceneOogst({ beat, reduced }: SceneProps) {
       >
         <div className="flex items-center gap-3 text-[12px] text-[var(--ink-faint)]">
           <span aria-hidden className="h-[1px] w-8" style={{ background: 'var(--oker)' }} />
-          <span className="font-mono uppercase tracking-[0.16em]">Einde van de wandeling</span>
+          <span className="font-mono uppercase tracking-[0.16em]">Einde van de rondleiding</span>
           <span aria-hidden className="h-[1px] w-8" style={{ background: 'var(--oker)' }} />
         </div>
         <a

@@ -53,7 +53,7 @@ export const BOEK_AFSPRAAK_DEFINITIE: Anthropic.Tool = {
       aanleiding: {
         type: 'string',
         description:
-          'In één zin waar het gesprek over gaat, zodat Sjaak voorbereid is. Bijvoorbeeld ' +
+          'In één zin waar het gesprek over gaat, zodat we voorbereid zijn. Bijvoorbeeld ' +
           '"offertes maken bij een groothandel, loopt via Exact en Outlook".',
       },
     },

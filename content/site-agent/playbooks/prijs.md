@@ -10,5 +10,5 @@ Opening: "Je bent aan het kijken wat zoiets kost. Eerlijk: dat hangt zo aan het
 proces dat een getal hier je zou misleiden. Waar zou je het op inzetten?"
 
 Ga sneller dan gemiddeld door naar de drie kernvragen en stuur eerder aan op de
-afspraak. Blijft hij op een bedrag hameren, dan escaleer je naar Sjaak in plaats
+afspraak. Blijft hij op een bedrag hameren, dan escaleer je naar een mens in plaats
 van een orde van grootte te geven.

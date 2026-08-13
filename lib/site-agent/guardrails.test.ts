@@ -171,7 +171,7 @@ describe('outputcontrole, wat er juist doorheen moet', () => {
       'Ik noem geen bedragen, want die hangen echt van het proces af en een gok helpt je ' +
         'niet. Wat ik wel kan zeggen: het is een vaste implementatiefee plus een maandelijkse ' +
         'dienst, apart van elkaar, en het maandcontract kun je met een maand opzeggen. De ' +
-        'hoogte hoor je van Sjaak, daar is die 20 minuten voor.',
+        'hoogte hoor je in dat gesprek, daar is die 20 minuten voor.',
     );
   });
 
@@ -308,6 +308,6 @@ describe('hulpfuncties', () => {
     const notitie = bouwHergeneratieNotitie(overtredingen);
     assert.match(notitie, /outputcontrole/);
     assert.match(notitie, /percentage/);
-    assert.match(notitie, /Sjaak/);
+    assert.match(notitie, /collega/);
   });
 });

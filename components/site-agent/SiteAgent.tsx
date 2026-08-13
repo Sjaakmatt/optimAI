@@ -4,9 +4,14 @@
 // wanneer de agent zich meldt. Het paneel zelf wordt dynamisch geladen, dus
 // zolang de bezoeker niets doet kost dit niets meer dan deze knop.
 //
-// Wanneer meldt de agent zich: na 20 seconden of bij 50% scrolldiepte, wat
-// eerder komt, en eenmalig per sessie. Sluit de bezoeker hem weg, dan blijft
-// het bij de knop tot hij er zelf op klikt.
+// Wanneer meldt de agent zich: na 12 seconden of bij 35% scrolldiepte, wat
+// eerder komt, en één keer per pagina — want elke pagina heeft een eigen zin.
+//
+// Twee dingen zetten hem voor de rest van de sessie uit: het kruisje (of
+// "Liever niet"), en het gevoerd hebben van een gesprek. Alleen het paneel
+// openen en weer sluiten telt niet, want dan heeft de bezoeker niets gezegd.
+//
+// Dit is sinds de Cal-knop eruit is de enige zwevende knop op de pagina.
 //
 // Geen cookies. Het sessie-id staat in sessionStorage en verdwijnt met het
 // tabblad; daar is geen toestemming voor nodig.
@@ -14,8 +19,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
-import { MessageSquare } from 'lucide-react';
+import { MessageSquare, X } from 'lucide-react';
 
+import { haakjeVoorPad, openingVoorPad } from '@/lib/site-agent/haakjes';
 import { playbookVoorPad, verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
 
 const AgentPaneel = dynamic(() => import('./AgentPaneel'), { ssr: false });
@@ -24,8 +30,51 @@ const SLEUTEL_SESSIE = 'factumai.agent.sessie';
 const SLEUTEL_WEGGEKLIKT = 'factumai.agent.weggeklikt';
 const SLEUTEL_GEMELD = 'factumai.agent.gemeld';
 
-const WACHTTIJD_MS = 20_000;
-const SCROLLDIEPTE = 0.5;
+// Twaalf seconden in plaats van twintig. Twintig is voorbij het moment waarop
+// iemand besluit of deze pagina hem iets oplevert; dan meld je je bij wie al
+// weg is. Onder de tien wordt het opdringerig — dan heeft hij nog niets gelezen
+// om op te reageren.
+const WACHTTIJD_MS = 12_000;
+const SCROLLDIEPTE = 0.35;
+
+/**
+ * Bovengrens op het aantal keer dat de agent zich uit zichzelf meldt per sessie.
+ *
+ * Het wolkje komt één keer per pagina: elke pagina heeft een eigen zin, dus wie
+ * doorklikt naar zijn branche krijgt daar de zin die er wél toe doet. Dit getal
+ * is niet de normale rem maar een vangnet voor een sessie van tientallen
+ * pagina's.
+ *
+ * De echte uitknop is het kruisje. Wie wegklikt of "Liever niet" kiest, ziet
+ * hem de rest van de sessie niet meer — iemand die nee zegt, heeft nee gezegd.
+ * Hetzelfde geldt zodra de bezoeker daadwerkelijk met de agent heeft gepraat:
+ * die kent hem dan en heeft aan de knop genoeg.
+ */
+const MAX_UITNODIGINGEN = 6;
+
+/**
+ * Testschakelaar: `?agent=nu` toont het wolkje meteen en negeert de
+ * sessievlaggen.
+ *
+ * Die vlaggen zijn hardnekkig met opzet — wie het wolkje wegklikt of de chat
+ * sluit, krijgt het de rest van het tabblad niet meer te zien — maar daardoor
+ * is het bijna niet te testen. Eén keer de chat openen en sluiten is genoeg om
+ * het voor dat tabblad uit te zetten, en een refresh helpt niet omdat
+ * sessionStorage die overleeft.
+ *
+ * Alleen de URL van deze paginaweergave telt; er wordt niets opgeslagen, dus
+ * een gewone bezoeker merkt hier niets van.
+ */
+const TEST_PARAMETER = 'agent';
+const TEST_WAARDE = 'nu';
+
+function testModusAan(): boolean {
+  try {
+    return new URLSearchParams(window.location.search).get(TEST_PARAMETER) === TEST_WAARDE;
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Aan/uit. De agent staat aan; NEXT_PUBLIC_SITE_AGENT_ENABLED=false haalt de
@@ -36,41 +85,36 @@ const SCROLLDIEPTE = 0.5;
  */
 const AGENT_AAN = process.env.NEXT_PUBLIC_SITE_AGENT_ENABLED !== 'false';
 
+function nieuwSessieId(): string {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  // Terugval voor omgevingen zonder randomUUID; blijft een geldige v4-vorm.
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
 /**
- * Openingsberichten per playbook. Dit is weergave-tekst en gaat niet naar het
- * model: de agent reageert straks op wat de bezoeker terugtypt. De teksten
- * volgen de playbookblokken uit docs/site-agent/prompt.md, maar stellen niet
- * dezelfde vraag die het model zelf zou stellen.
+ * Sessie-id, bij voorkeur uit sessionStorage zodat het gesprek een paginawissel
+ * overleeft.
+ *
+ * Lukt opslaan niet — private mode, geblokkeerde opslag — dan geven we alsnog
+ * een id terug, alleen niet bewaard. Eerder leverde dit pad `null`, en omdat de
+ * component op een lege sessie helemaal niets rendert verdween daarmee de hele
+ * widget. Dat was nooit de bedoeling: het commentaar zei het al, de code deed
+ * het andersom.
  */
-const OPENINGEN: Record<string, string> = {
-  prijs:
-    'Je bent aan het kijken wat zoiets kost. Eerlijk: dat hangt zo aan het proces dat een getal hier je zou misleiden. Waar zou je het op inzetten?',
-  branche:
-    'Je kijkt naar wat we in deze branche doen. Vertel eens waar bij jullie de meeste tijd in gaat zitten, dan kan ik zeggen of dit erbij past.',
-  dienst:
-    'Je leest over een van onze diensten. Werkt dat bij jullie nu handmatig, of zit er al iets omheen dat het half doet?',
-  blog: 'Als je hier een concrete vraag over hebt, stel hem gerust.',
-  cases:
-    'Als je wilt weten hoe dit in de praktijk loopt, vraag maar door. Ik verzin geen resultaten, dus wat ik niet weet zeg ik ook.',
-  home: 'Waar ben je naar op zoek?',
-};
-
 function leesSessie(): string {
-  const bestaand = window.sessionStorage.getItem(SLEUTEL_SESSIE);
-  if (bestaand) return bestaand;
-
-  const id =
-    typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID()
-      : // Terugval voor omgevingen zonder randomUUID; blijft een geldige v4-vorm.
-        'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-          const r = (Math.random() * 16) | 0;
-          const v = c === 'x' ? r : (r & 0x3) | 0x8;
-          return v.toString(16);
-        });
-
-  window.sessionStorage.setItem(SLEUTEL_SESSIE, id);
-  return id;
+  try {
+    const bestaand = window.sessionStorage.getItem(SLEUTEL_SESSIE);
+    if (bestaand) return bestaand;
+    const id = nieuwSessieId();
+    window.sessionStorage.setItem(SLEUTEL_SESSIE, id);
+    return id;
+  } catch {
+    return nieuwSessieId();
+  }
 }
 
 export function SiteAgent() {
@@ -78,25 +122,39 @@ export function SiteAgent() {
   const [open, setOpen] = useState(false);
   const [uitnodiging, setUitnodiging] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const gemeldRef = useRef(false);
+  const aantalGemeldRef = useRef(0);
+  /** Pad waarop het wolkje het laatst is getoond; houdt het op één per pagina. */
+  const laatstGemeldPadRef = useRef<string | null>(null);
 
   const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname);
 
   useEffect(() => {
     if (verbergen) return;
+    // leesSessie() vangt zijn eigen opslagfouten af en geeft altijd een id.
+    setSessionId(leesSessie());
     try {
-      setSessionId(leesSessie());
-      if (window.sessionStorage.getItem(SLEUTEL_GEMELD) === '1') gemeldRef.current = true;
+      aantalGemeldRef.current = Number(window.sessionStorage.getItem(SLEUTEL_GEMELD) ?? '0') || 0;
     } catch {
-      // Private mode of geblokkeerde opslag: de agent werkt dan alleen niet
-      // over paginawissels heen. Dat is geen reden om hem te verbergen.
-      setSessionId(null);
+      // Geen opslag: dan meldt hij zich deze paginaweergave gewoon opnieuw.
     }
   }, [verbergen]);
 
-  // Melden na tijd of scrolldiepte, eenmalig per sessie.
+  // Melden na tijd of scrolldiepte. Per pagina opnieuw, tot MAX_UITNODIGINGEN
+  // of tot de bezoeker hem wegklikt. `pathname` staat daarom in de deps: bij een
+  // paginawissel begint de timer opnieuw, met de zin die bij díé pagina hoort.
   useEffect(() => {
     if (verbergen || open) return;
+
+    // Testmodus: meteen tonen, sessievlaggen overslaan.
+    if (testModusAan()) {
+      setUitnodiging(true);
+      return;
+    }
+
+    // Eén wolkje per pagina. Zonder dit zou het sluiten van het paneel op
+    // dezelfde pagina een nieuwe timer starten en twaalf seconden later opnieuw
+    // een wolkje opleveren — dat is geen zetje meer maar aandringen.
+    if (laatstGemeldPadRef.current === pathname) return;
 
     let weggeklikt = false;
     try {
@@ -104,13 +162,15 @@ export function SiteAgent() {
     } catch {
       /* opslag niet beschikbaar */
     }
-    if (weggeklikt || gemeldRef.current) return;
+    if (weggeklikt || aantalGemeldRef.current >= MAX_UITNODIGINGEN) return;
 
     const meld = () => {
-      if (gemeldRef.current) return;
-      gemeldRef.current = true;
+      if (aantalGemeldRef.current >= MAX_UITNODIGINGEN) return;
+      if (laatstGemeldPadRef.current === pathname) return;
+      laatstGemeldPadRef.current = pathname;
+      aantalGemeldRef.current += 1;
       try {
-        window.sessionStorage.setItem(SLEUTEL_GEMELD, '1');
+        window.sessionStorage.setItem(SLEUTEL_GEMELD, String(aantalGemeldRef.current));
       } catch {
         /* opslag niet beschikbaar */
       }
@@ -129,15 +189,38 @@ export function SiteAgent() {
       window.clearTimeout(timer);
       window.removeEventListener('scroll', opScroll);
     };
-  }, [verbergen, open]);
+  }, [verbergen, open, pathname]);
 
-  const sluiten = useCallback(() => {
+  // Bij een paginawissel de openstaande bubbel weghalen: hij hoort bij de zin
+  // van de vorige pagina, en die klopt hier niet meer.
+  //
+  // Niet bij de eerste render. Dit effect draait ná het effect hierboven, dus
+  // zonder deze uitzondering zet het een wolkje dat daar net is aangezet meteen
+  // weer uit — precies wat er in testmodus zou gebeuren.
+  const eersteRenderRef = useRef(true);
+  useEffect(() => {
+    if (eersteRenderRef.current) {
+      eersteRenderRef.current = false;
+      return;
+    }
+    setUitnodiging(false);
+  }, [pathname]);
+
+  const sluiten = useCallback((heeftGesproken: boolean) => {
     setOpen(false);
     setUitnodiging(false);
-    try {
-      window.sessionStorage.setItem(SLEUTEL_WEGGEKLIKT, '1');
-    } catch {
-      /* opslag niet beschikbaar */
+
+    // Alleen een échte stop als de bezoeker het gesprek ook gevoerd heeft. Wie
+    // het paneel opent, de openingszin leest en meteen wegklikt, heeft niets
+    // gezegd — die mag op een volgende pagina nog een zetje krijgen. Eerder
+    // zette elk sluiten de rem erop, en dan verdween juist de bezoeker die je
+    // wilt terugpakken uit beeld.
+    if (heeftGesproken) {
+      try {
+        window.sessionStorage.setItem(SLEUTEL_WEGGEKLIKT, '1');
+      } catch {
+        /* opslag niet beschikbaar */
+      }
     }
 
     // Het sluiten van de widget is een van de drie afrondtriggers. Via
@@ -178,6 +261,7 @@ export function SiteAgent() {
   if (verbergen || !sessionId) return null;
 
   const playbook = playbookVoorPad(pathname);
+  const haakje = haakjeVoorPad(pathname);
 
   if (open) {
     return (
@@ -185,54 +269,81 @@ export function SiteAgent() {
         sessionId={sessionId}
         paginaPad={pathname}
         playbook={playbook}
-        opening={OPENINGEN[playbook] ?? OPENINGEN.home}
+        opening={openingVoorPad(pathname)}
         onSluiten={sluiten}
       />
     );
   }
 
+  // Wolkje én knop in één container, rechts uitgelijnd. Ze horen bij elkaar:
+  // het wolkje komt uit de knop, niet ergens los uit de hoek. Daarom staat de
+  // positionering hier en niet twee keer apart — anders lopen ze uit elkaar
+  // zodra de knop van formaat verandert.
   return (
-    <>
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
       {uitnodiging && (
         <div
-          className="fixed bottom-[5.5rem] right-6 z-40 max-w-[260px] rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3"
+          // De hele ballon is klikbaar, niet alleen een tekstlink: dit is het
+          // moment waarop iemand reageert, en dan moet je niet op een woord van
+          // vijftig pixels hoeven mikken. Het kruisje ligt erbovenop.
+          className="agent-wolkje relative w-[min(290px,calc(100vw-3rem))] rounded-[10px] border border-[var(--oker)] bg-[var(--paper-warm)]"
           style={{ boxShadow: 'var(--shadow-lift)' }}
         >
-          <p className="text-[13.5px] leading-[1.55] text-[var(--ink)]">
-            {OPENINGEN[playbook] ?? OPENINGEN.home}
-          </p>
-          <div className="mt-2.5 flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className="text-[13px] text-[var(--oker-deep)] underline underline-offset-2 hover:text-[var(--terra)]"
-            >
-              Reageren
-            </button>
-            <button
-              type="button"
-              onClick={wegklikken}
-              className="text-[13px] text-[var(--ink-faint)] hover:text-[var(--ink-dim)]"
-            >
-              Later
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="block w-full px-4 py-3.5 pr-9 text-left"
+          >
+            <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--oker-deep)]">
+              FactumAI · AI-agent
+            </span>
+            <span className="mt-1.5 block text-[14.5px] leading-[1.5] text-[var(--ink)]">
+              {haakje}
+            </span>
+            <span className="mt-2 block text-[13px] text-[var(--terra)] underline underline-offset-2">
+              Antwoord geven
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={wegklikken}
+            aria-label="Niet nu"
+            className="absolute right-1.5 top-1.5 rounded-full p-1.5 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
+          >
+            <X size={14} strokeWidth={1.8} />
+          </button>
+
+          {/* Het staartje. Twee driehoeken over elkaar: de onderste in de
+              randkleur, de bovenste een pixel hoger in de vulkleur, zodat de
+              rand doorloopt tot in de punt in plaats van er bovenlangs. */}
+          <span
+            aria-hidden="true"
+            className="absolute right-7 top-full h-0 w-0 border-x-[9px] border-t-[10px] border-x-transparent border-t-[color:var(--oker)]"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute right-7 top-full h-0 w-0 -translate-y-px border-x-[9px] border-t-[10px] border-x-transparent border-t-[color:var(--paper-warm)]"
+          />
         </div>
       )}
 
-      {/* Chat rechtsonder, de Cal-knop linksonder. Beide verschijnen op
-          dezelfde pagina's, zie verbergZwevendeKnoppen. */}
+      {/* De enige zwevende knop op de pagina; de Cal-knop linksonder is eruit.
+          Formaat en typografie gelijk aan wat die knop had (px-5 py-3, 14px),
+          zodat dit dezelfde maat houdt als de rest van de site gewend was.
+
+          Terra in plaats van paper: de oude chatknop had de kleur van de
+          achtergrond en verdween daarin. */}
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Stel je vraag aan de agent van FactumAI"
+        aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full border border-[var(--paper-edge)] bg-[var(--paper)] px-4 py-3 text-[14px] leading-none text-[var(--ink)] transition-colors hover:bg-[var(--paper-warm)]"
+        className="agent-knop inline-flex items-center justify-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
-        <MessageSquare size={16} strokeWidth={1.8} />
+        <MessageSquare size={16} strokeWidth={2} />
         Stel je vraag
       </button>
-    </>
+    </div>
   );
 }

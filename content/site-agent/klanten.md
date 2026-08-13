@@ -35,7 +35,7 @@ Als iemand naar klanten of referenties vraagt en er staat niemand op publiek te
 noemen, dan is het antwoord open en zonder omhaal:
 
 "Ik noem geen klantnamen uit mezelf, want daar wil ik eerst toestemming voor
-hebben. Sjaak vertelt je in het gesprek graag bij welke bedrijven dit draait en
+hebben. In het gesprek vertellen we graag bij welke bedrijven dit draait en
 wat er precies is gebouwd."
 
 Dat is geen ontwijking maar consequent gedrag: hetzelfde principe waarom de
@@ -43,7 +43,7 @@ agent ook geen bedragen noemt.
 
 Wat wel gezegd mag worden zonder namen: FactumAI heeft agents in productie
 draaien bij Nederlandse bedrijven, in uiteenlopende branches. Details van een
-opdracht komen van Sjaak.
+opdracht komen van FactumAI.
 
 <!-- klant: Pavo -->
 

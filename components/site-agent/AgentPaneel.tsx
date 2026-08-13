@@ -8,13 +8,14 @@
 // aria-live. Op mobiel is het een schermvullend blad in plaats van een klein
 // bolletje.
 
-import { useCallback, useEffect, useRef, type FormEvent, type KeyboardEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import Link from 'next/link';
 import { X, ArrowUp } from 'lucide-react';
 
 import { getCalApi } from '@/components/booking/calLoader';
 import { openAgenda } from '@/components/booking/agendaStore';
 import { BOEKING_PROVIDER, CAL_LINK } from '@/components/booking/config';
+import TerugbelKaart from './TerugbelKaart';
 import { useGesprek, type Signaal } from './useGesprek';
 
 const FOCUSBAAR =
@@ -25,7 +26,15 @@ export interface AgentPaneelProps {
   paginaPad: string;
   playbook: string;
   opening: string;
-  onSluiten: () => void;
+  /**
+   * `heeftGesproken` is true zodra de bezoeker zelf iets heeft gestuurd.
+   *
+   * Dat onderscheid bepaalt of het wolkje later terugkomt: wie het paneel
+   * opent, de openingszin leest en meteen wegklikt, heeft niets gezegd en mag
+   * op een volgende pagina nog een zetje krijgen. Wie wél heeft gepraat kent de
+   * agent inmiddels; die heeft aan de knop genoeg.
+   */
+  onSluiten: (heeftGesproken: boolean) => void;
 }
 
 export default function AgentPaneel({
@@ -35,9 +44,19 @@ export default function AgentPaneel({
   opening,
   onSluiten,
 }: AgentPaneelProps) {
+  // Het terugbelaanbod: de agent geeft het signaal, de widget vraagt de
+  // gegevens. Null betekent "niet aangeboden in dit gesprek".
+  const [terugbelAanleiding, setTerugbelAanleiding] = useState<string | null>(null);
+
   // De agent kan om de agenda vragen. Die komt uit dezelfde agenda als de rest
   // van de site — we bouwen er geen tweede naast.
   const opSignaal = useCallback((signaal: Signaal) => {
+    if (signaal.naam === 'terugbellen') {
+      const aanleiding =
+        typeof signaal.payload.aanleiding === 'string' ? signaal.payload.aanleiding : '';
+      setTerugbelAanleiding(aanleiding);
+      return;
+    }
     if (signaal.naam !== 'agenda') return;
     const aanleiding =
       typeof signaal.payload.aanleiding === 'string' ? signaal.payload.aanleiding : undefined;
@@ -74,13 +93,22 @@ export default function AgentPaneel({
     onderkantRef.current?.scrollIntoView({ block: 'end' });
   }, [berichten]);
 
+  // Heeft de bezoeker zelf iets gestuurd? Via een ref, zodat de Escape-handler
+  // niet bij elk nieuw bericht opnieuw hoeft te binden.
+  const heeftGesprokenRef = useRef(false);
+  heeftGesprokenRef.current = berichten.some((b) => b.rol === 'bezoeker');
+
+  const sluitPaneel = useCallback(() => {
+    onSluiten(heeftGesprokenRef.current);
+  }, [onSluiten]);
+
   useEffect(() => {
     const opEscape = (e: globalThis.KeyboardEvent) => {
-      if (e.key === 'Escape') onSluiten();
+      if (e.key === 'Escape') sluitPaneel();
     };
     document.addEventListener('keydown', opEscape);
     return () => document.removeEventListener('keydown', opEscape);
-  }, [onSluiten]);
+  }, [sluitPaneel]);
 
   const opTab = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== 'Tab' || !paneelRef.current) return;
@@ -146,7 +174,7 @@ export default function AgentPaneel({
         </div>
         <button
           type="button"
-          onClick={onSluiten}
+          onClick={sluitPaneel}
           aria-label="Gesprek sluiten"
           className="-mr-1 -mt-1 rounded-[2px] p-2 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
         >
@@ -200,6 +228,16 @@ export default function AgentPaneel({
           >
             {fout}
           </div>
+        )}
+
+        {terugbelAanleiding !== null && (
+          <TerugbelKaart
+            sessionId={sessionId}
+            aanleiding={terugbelAanleiding}
+            // "Liever niet" is een antwoord aan de agent, geen stilte: hij moet
+            // weten dat hij hier niet op terug moet komen.
+            opAfgewezen={() => void stuur('Liever geen telefoontje.')}
+          />
         )}
 
         {afsluiting === 'afspraak' && (

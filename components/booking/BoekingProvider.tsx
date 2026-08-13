@@ -3,19 +3,22 @@
 // De schakelaar tussen de twee agenda's.
 //
 // Met NEXT_PUBLIC_BOEKING_PROVIDER=cal blijft alles zoals het was: de
-// Cal.com-embed en de zwevende knop daaruit. Met 'teams' laden we Cal helemaal
-// niet en gaat alles naar de eigen agenda.
+// Cal.com-embed wordt voorgeladen en de knoppen op de site openen die popup.
+// Met 'teams' laden we Cal helemaal niet en gaat alles naar de eigen agenda.
 //
-// De boekingsknoppen staan op een pagina of tien en dragen daar
+// Net als CalProvider rendert dit component geen zwevende knop. Die is er
+// bewust uit gehaald; de chatknop staat rechtsonder en een tweede knop ernaast
+// vecht daarmee om aandacht. De agenda opent via de knoppen die al op de
+// pagina's staan, of vanuit het gesprek.
+//
+// Die boekingsknoppen staan op een pagina of tien en dragen daar
 // `data-cal-link`-attributen die Cal's embed.js zelf oppikt. Die pagina's
 // blijven ongemoeid: in teams-modus vangen we de klik op zo'n knop hier af,
-// vóór hij ergens anders terechtkomt. Dat scheelt een wijziging op tien
-// plekken die bij het terugzetten van de vlag weer teruggedraaid moet worden.
+// vóór hij ergens anders terechtkomt. Dat scheelt een wijziging op tien plekken
+// die bij het terugzetten van de vlag weer teruggedraaid moet worden.
 
 import { useCallback, useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 
-import { verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
 import { AgendaDialoog } from './AgendaDialoog';
 import { openAgenda, opentAgenda, type AgendaVerzoek } from './agendaStore';
 import { BOEKING_PROVIDER } from './config';
@@ -27,8 +30,6 @@ export function BoekingProvider() {
 }
 
 function TeamsAgendaProvider() {
-  const pathname = usePathname();
-  const hideFloating = verbergZwevendeKnoppen(pathname);
   const [verzoek, setVerzoek] = useState<AgendaVerzoek | null>(null);
 
   const sluiten = useCallback(() => setVerzoek(null), []);
@@ -50,21 +51,9 @@ function TeamsAgendaProvider() {
     return () => document.removeEventListener('click', opKlik, true);
   }, []);
 
+  if (!verzoek) return null;
+
   return (
-    <>
-      {!hideFloating && (
-        <button
-          type="button"
-          onClick={() => openAgenda({ bron: 'floating' })}
-          className="fixed bottom-6 left-6 z-40 inline-flex items-center justify-center px-5 py-3 rounded-full bg-[var(--terra)] text-[var(--paper)] text-[14px] leading-none hover:bg-[var(--oker-deep)] transition-colors"
-          style={{ boxShadow: 'var(--shadow-lift)' }}
-        >
-          Plan gesprek
-        </button>
-      )}
-      {verzoek && (
-        <AgendaDialoog bron={verzoek.bron} aanleiding={verzoek.aanleiding} onSluiten={sluiten} />
-      )}
-    </>
+    <AgendaDialoog bron={verzoek.bron} aanleiding={verzoek.aanleiding} onSluiten={sluiten} />
   );
 }

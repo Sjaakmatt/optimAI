@@ -27,7 +27,7 @@ const Invoer = z.object({
   aanleiding: z.string().max(600).optional(),
   // Waar de agenda geopend is. Vaste lijst en geen vrije tekst: dit komt in de
   // database en de client bepaalt de waarde.
-  bron: z.enum(['agenda', 'knop', 'floating', 'plan-pagina', 'aanvraag']).default('agenda'),
+  bron: z.enum(['agenda', 'knop', 'plan-pagina', 'aanvraag']).default('agenda'),
   // Honeypot: staat verstopt in het formulier. Ingevuld betekent bot.
   website: z.string().optional(),
 });

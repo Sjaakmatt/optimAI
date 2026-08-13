@@ -280,14 +280,14 @@ export async function POST(request: Request) {
       // die status en score in één keer zet. Zie lib/site-agent/scoring.ts.
       //
       // Geen kale foutmelding: dit is het moment waarop het gesprek genoeg heeft
-      // opgeleverd om het aan Sjaak over te dragen. De widget toont deze tekst
+      // opgeleverd om het aan een mens over te dragen. De widget toont deze tekst
       // als bericht van de agent, met een knop naar de agenda.
       return Response.json(
         {
           ok: false,
           actie: 'afspraak',
           error:
-            'We hebben genoeg gedeeld om hier echt over door te praten. Sjaak neemt in 20 ' +
+            'We hebben genoeg gedeeld om hier echt over door te praten. In 20 minuten nemen we ' +
             'minuten met je door hoe dit bij jullie zou werken. Zal ik zijn agenda openen?',
         },
         { status: 409 },

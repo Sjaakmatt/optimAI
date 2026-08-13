@@ -1,4 +1,4 @@
-// checkBeschikbaarheid: kijkt in de echte agenda van Sjaak wanneer hij kan.
+// checkBeschikbaarheid: kijkt in de echte agenda wanneer er ruimte is.
 //
 // Deze tool haalt data op en beslist niets. Hij geeft het model een korte lijst
 // met momenten in gewone taal én de bijbehorende ISO-tijden, want die laatste
@@ -23,8 +23,8 @@ const MAX_IN_ANTWOORD = 8;
 export const CHECK_BESCHIKBAARHEID_DEFINITIE: Anthropic.Tool = {
   name: 'checkBeschikbaarheid',
   description:
-    'Kijk in de agenda van Sjaak wanneer er ruimte is voor een kennismaking. Gebruik dit zodra ' +
-    'de bezoeker wil weten wanneer Sjaak kan, of voordat je een afspraak boekt. Noem alleen ' +
+    'Kijk in onze agenda wanneer er ruimte is voor een kennismaking. Gebruik dit zodra de ' +
+    'bezoeker wil weten wanneer het kan, of voordat je een afspraak boekt. Noem alleen ' +
     'momenten die deze tool teruggeeft en verzin er nooit zelf een bij. De agenda opent ' +
     'tegelijk in de widget, dus de bezoeker kan ook zelf klikken.',
   input_schema: {

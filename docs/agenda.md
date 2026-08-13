@@ -197,7 +197,7 @@ Eenmalig, in de Entra-tenant van factumai.com. Nodig: global admin.
    geen tweede afspraak bijkomen.
 5. Vraag de slots nog eens op: het geboekte moment is weg, en met
    `bufferMinutes: 15` ook het kwartier eromheen.
-6. Open de chat en vraag wanneer Sjaak kan. De agent hoort echte momenten te
+6. Open de chat en vraag wanneer het kan. De agent hoort echte momenten te
    noemen, en na het aanvragen te zeggen dat er een mail onderweg is — niet dat
    de afspraak staat.
 

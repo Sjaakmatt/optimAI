@@ -6,7 +6,7 @@ import { DENKEN_CHECKS, DENKEN_REASONING, type SceneProps } from '../film-conten
 import { beatReveal } from '../film-motion';
 
 /**
- * Halte 2. Het werkbriefje: de agent controleert hardop, en zijn
+ * Stap 2. De controle: de agent controleert hardop, en zijn
  * redenering is altijd terug te lezen.
  */
 export function SceneDenken({ beat, reduced }: SceneProps) {
@@ -15,7 +15,7 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
       <div className="artifact-card px-6 sm:px-8 py-6">
         <div className="flex items-baseline justify-between border-b border-[var(--paper-edge)] pb-3">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
-            Werkbriefje · binnengekomen order
+            Controle · binnengekomen order
           </span>
           <ThinkingDots active={!reduced && beat < 3} />
         </div>
@@ -53,14 +53,14 @@ export function SceneDenken({ beat, reduced }: SceneProps) {
           })}
         </ul>
 
-        {/* De open Waarom-la: het geheugen van de agent */}
+        {/* De onderbouwing: waarom de agent dit besloot */}
         <motion.div
           {...beatReveal(reduced || beat >= 4, reduced)}
           className="mt-5 border-t border-dashed border-[var(--paper-edge)] pt-3"
         >
           <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--oker-deep)]">
             <ChevronDown size={11} strokeWidth={1.5} aria-hidden />
-            Waarom deed hij dit?
+            Onderbouwing van de agent
           </div>
           <ul className="mt-2 space-y-1.5 text-[12.5px] leading-relaxed text-[var(--ink-dim)]">
             {DENKEN_REASONING.map((r, i) => (

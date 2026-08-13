@@ -6,7 +6,7 @@ laatstBijgewerkt: 2026-08-13
 
 # Hoe een traject loopt
 
-Het begint met een kennismaking van 20 minuten. Geen demo. Sjaak wil vooral
+Het begint met een kennismaking van 20 minuten. Geen demo. We willen vooral
 begrijpen hoe het werk bij het bedrijf nu loopt. Als het niet past, hoort de
 bezoeker dat ook van hem.
 
@@ -45,5 +45,5 @@ koppelt aan de bestaande systemen.
 # Over doorlooptijd
 
 Hoe lang iets duurt hangt af van de scope en de koppelingen. Daar wordt geen
-schatting over gegeven in een gesprek met de agent. Sjaak geeft liever een datum
+schatting over gegeven in een gesprek met de agent. We geven liever een datum
 die klopt dan een datum die goed klinkt, dus die komt in het voorstel te staan.
