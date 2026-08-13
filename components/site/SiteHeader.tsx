@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { vergrendelScroll } from '@/lib/site/scrollLock';
 
 interface NavLink {
   href: string;
@@ -54,11 +55,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!mobileOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    return vergrendelScroll();
   }, [mobileOpen]);
 
   return (
