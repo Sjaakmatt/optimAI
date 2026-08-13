@@ -14,7 +14,8 @@ import { z } from 'zod';
 
 import { BOEKING_PROVIDER } from '@/components/booking/config';
 import { HORIZON_DAGEN, haalSlots, omschrijfMoment } from '@/lib/booking/agenda';
-import type { ToolUitvoer } from './types';
+import { werkConversatieBij } from '../db';
+import type { ToolContext, ToolUitvoer } from './types';
 
 /** Hoeveel momenten we het model laten zien. Genoeg keuze, geen waslijst. */
 const MAX_IN_ANTWOORD = 8;
@@ -43,9 +44,17 @@ export const CHECK_BESCHIKBAARHEID_DEFINITIE: Anthropic.Tool = {
 
 const Invoer = z.object({ aanleiding: z.string().max(500).optional() });
 
-export async function checkBeschikbaarheid(ruw: unknown): Promise<ToolUitvoer> {
+export async function checkBeschikbaarheid(
+  ruw: unknown,
+  ctx: ToolContext,
+): Promise<ToolUitvoer> {
   const parsed = Invoer.safeParse(ruw);
   const aanleiding = parsed.success ? parsed.data.aanleiding : undefined;
+
+  // Hier gaat de agenda open, en dat is precies wat `afspraakGeboekt` in de
+  // werkbak meet: intentie, niet conversie. Het echte aantal boekingen komt uit
+  // `SiteBooking`. Zie docs/site-agent-werkbak-contract.md in de dashboard-repo.
+  await werkConversatieBij(ctx.conversatieId, { afspraakGeboekt: true });
 
   if (BOEKING_PROVIDER !== 'teams') {
     // Met de Cal.com-agenda kunnen we niet in de agenda kijken; dan is het

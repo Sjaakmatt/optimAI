@@ -23,7 +23,6 @@ import {
   zoekAanvraag,
   type Aanvraag,
 } from './aanvraag';
-import { werkConversatieBij } from '@/lib/site-agent/db';
 import { stuurBevestiging, stuurOptIn } from './mail';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
@@ -137,13 +136,12 @@ export async function bevestig(token: string): Promise<BevestigUitkomst> {
       bron: aanvraag.bron,
     });
 
+    // De bevestigde afspraak staat hiermee vast in `SiteBooking`, mét
+    // `conversationId`. Dat is de bron voor "hoeveel afspraken zijn er echt
+    // geboekt" — bewust niet `SiteConversation.afspraakGeboekt`, want die kolom
+    // meet in de werkbak "agenda geopend" en dat moet hij blijven doen. Zie
+    // docs/site-agent-werkbak-contract.md in de dashboard-repo.
     await markeerBevestigd(aanvraag.id, boeking.afspraakId);
-
-    // Kwam de boeking uit een chatgesprek, dan hoort dat gesprek te weten dat
-    // er nu echt een afspraak staat — niet al bij het versturen van de mail.
-    if (aanvraag.conversationId) {
-      await werkConversatieBij(aanvraag.conversationId, { afspraakGeboekt: true });
-    }
 
     await stuurBevestiging({
       naam: aanvraag.naam,
