@@ -29,13 +29,18 @@ import {
 } from '@/lib/site-agent/guardrails';
 import { laadKennisbank } from '@/lib/site-agent/kennisbank';
 import { bouwSysteembericht, berekenKosten, SITE_AGENT_MODEL } from '@/lib/site-agent/prompt';
-import { isPlaybookSleutel, brancheUitPad, type PlaybookSleutel } from '@/lib/site-agent/playbooks';
+import {
+  brancheUitPad,
+  playbookVoorPagina,
+  type PlaybookSleutel,
+} from '@/lib/site-agent/playbooks';
 import { controleerLimieten, boekKosten } from '@/lib/site-agent/ratelimit';
 import { PLAFOND_MELDING, plafondBereikt, siteAgentAan } from '@/lib/site-agent/config';
 import { logEvent } from '@/lib/site-agent/events';
 import { TOOL_DEFINITIES, voerToolUit, type ToolContext } from '@/lib/site-agent/tools';
 import {
   haalBerichten,
+  haalLaatsteBerichtTijd,
   haalOfMaakConversatie,
   hashUserAgent,
   slaBerichtOp,
@@ -54,6 +59,8 @@ const MAX_INPUTTOKENS_PER_GESPREK = 60_000;
 const MAX_UITVOER_TOKENS = 4_000;
 /** Hoeveel keer het model achter elkaar tools mag aanroepen binnen één beurt. */
 const MAX_TOOLBEURTEN = 4;
+/** Minimale tijd tussen twee berichten. Simpele botdetectie, geen fingerprinting. */
+const MIN_TUSSENTIJD_MS = 1_500;
 
 const Invoer = z.object({
   sessionId: z.string().uuid(),
@@ -242,7 +249,10 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: PLAFOND_MELDING }, { status: 429 });
   }
 
-  const playbook: PlaybookSleutel = isPlaybookSleutel(invoer.playbook) ? invoer.playbook : 'home';
+  // Server-side bepaald uit het paginapad. Wat de client in `playbook` zet
+  // wordt genegeerd; het veld blijft alleen bestaan omdat de widget het nog
+  // meestuurt.
+  const playbook: PlaybookSleutel = playbookVoorPagina(invoer.paginaPad);
 
   let conversatie: Conversatie;
   let geschiedenis: Anthropic.MessageParam[];
@@ -269,6 +279,17 @@ export async function POST(request: Request) {
             'Plan een gesprek met Sjaak, of mail naar info@factumai.nl.',
         },
         { status: 409 },
+      );
+    }
+
+    // 3b. Botdetectie: twee berichten vlak achter elkaar komen niet van iemand
+    //     die zit te typen. Samen met het honeypot-veld is dit genoeg; verder
+    //     gaan we niet, want fingerprinting zou een consentvraag opleveren.
+    const vorige = await haalLaatsteBerichtTijd(conversatie.id);
+    if (vorige !== null && Date.now() - vorige < MIN_TUSSENTIJD_MS) {
+      return Response.json(
+        { ok: false, error: 'Rustig aan. Stuur je bericht zo nog een keer.' },
+        { status: 429 },
       );
     }
 

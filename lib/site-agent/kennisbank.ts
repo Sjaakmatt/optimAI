@@ -19,6 +19,8 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { splitsBestand, type Frontmatter } from './frontmatter';
+
 const KENNISBANK_MAP = join(process.cwd(), 'content', 'site-agent');
 
 /** Boven deze grens is alles-in-context niet meer verstandig. */
@@ -51,98 +53,25 @@ export interface Kennisbank {
   geschatteTokens: number;
 }
 
-interface Frontmatter {
-  scalars: Record<string, string>;
-  klanten: KlantVlag[];
-}
-
-interface GesplitstBestand {
-  frontmatter: Frontmatter;
-  body: string;
-}
-
-const FRONTMATTER_PATROON = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 const KLANTBLOK_PATROON = /<!--\s*klant:\s*([^>]*?)\s*-->([\s\S]*?)<!--\s*\/klant\s*-->/g;
 const HTML_COMMENTAAR = /<!--[\s\S]*?-->/g;
-
-/**
- * Frontmatter-parser voor de subset die wij gebruiken: scalaire sleutels plus
- * één lijst van objecten (`klanten`). Bewust geen volledige YAML-parser, dat
- * zou een dependency zijn voor vier veldtypes. Onbekende structuren worden
- * genegeerd in plaats van geraden.
- */
-function parseFrontmatter(raw: string): Frontmatter {
-  const scalars: Record<string, string> = {};
-  const klanten: KlantVlag[] = [];
-  let inKlantenlijst = false;
-
-  for (const regel of raw.split(/\r?\n/)) {
-    if (!regel.trim() || regel.trim().startsWith('#')) continue;
-
-    const inspringing = regel.length - regel.trimStart().length;
-    const inhoud = regel.trim();
-
-    if (inspringing === 0) {
-      inKlantenlijst = false;
-      const scheiding = inhoud.indexOf(':');
-      if (scheiding === -1) continue;
-      const sleutel = inhoud.slice(0, scheiding).trim();
-      const waarde = inhoud.slice(scheiding + 1).trim();
-      if (sleutel === 'klanten' && waarde === '') {
-        inKlantenlijst = true;
-        continue;
-      }
-      scalars[sleutel] = ontdoeVanQuotes(waarde);
-      continue;
-    }
-
-    if (!inKlantenlijst) continue;
-
-    // "- naam: Pavo" start een nieuw item, "  publiekTeNoemen: false" vult aan.
-    const isNieuwItem = inhoud.startsWith('- ');
-    const paar = isNieuwItem ? inhoud.slice(2).trim() : inhoud;
-    const scheiding = paar.indexOf(':');
-    if (scheiding === -1) continue;
-    const sleutel = paar.slice(0, scheiding).trim();
-    const waarde = ontdoeVanQuotes(paar.slice(scheiding + 1).trim());
-
-    if (isNieuwItem) klanten.push({ naam: '', publiekTeNoemen: false });
-    const huidig = klanten[klanten.length - 1];
-    if (!huidig) continue;
-    if (sleutel === 'naam') huidig.naam = waarde;
-    if (sleutel === 'publiekTeNoemen') huidig.publiekTeNoemen = waarde === 'true';
-  }
-
-  return { scalars, klanten };
-}
-
-function ontdoeVanQuotes(waarde: string): string {
-  const bijgesneden = waarde.trim();
-  if (bijgesneden.length >= 2) {
-    const eerste = bijgesneden[0];
-    const laatste = bijgesneden[bijgesneden.length - 1];
-    if ((eerste === '"' || eerste === "'") && eerste === laatste) {
-      return bijgesneden.slice(1, -1);
-    }
-  }
-  return bijgesneden;
-}
-
-function splitsBestand(ruw: string): GesplitstBestand {
-  const match = ruw.match(FRONTMATTER_PATROON);
-  if (!match) {
-    return { frontmatter: { scalars: {}, klanten: [] }, body: ruw };
-  }
-  return {
-    frontmatter: parseFrontmatter(match[1]),
-    body: ruw.slice(match[0].length),
-  };
-}
 
 interface KlantFilterResultaat {
   body: string;
   publiek: string[];
   geheim: string[];
+}
+
+/**
+ * Haalt de klantvlaggen uit de frontmatter. Alleen de lijst met sleutel
+ * `klanten` telt; alles zonder expliciete `publiekTeNoemen: true` geldt als
+ * geheim.
+ */
+function klantVlaggen(frontmatter: Frontmatter): KlantVlag[] {
+  if (frontmatter.lijst.sleutel !== 'klanten') return [];
+  return frontmatter.lijst.items
+    .filter((item) => typeof item.naam === 'string' && item.naam.length > 0)
+    .map((item) => ({ naam: item.naam, publiekTeNoemen: item.publiekTeNoemen === 'true' }));
 }
 
 /**
@@ -210,7 +139,7 @@ function bouwKennisbank(): Kennisbank {
 
     // Klantnamen verzamelen we uit álle bestanden, ook uit niet-publieke, zodat
     // de outputcontrole ze hoe dan ook kent.
-    const gefilterd = filterKlantblokken(body, frontmatter.klanten);
+    const gefilterd = filterKlantblokken(body, klantVlaggen(frontmatter));
     for (const naam of gefilterd.publiek) publiekeKlantnamen.add(naam);
     for (const naam of gefilterd.geheim) geheimeKlantnamen.add(naam);
 

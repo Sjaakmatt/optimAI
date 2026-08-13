@@ -1,69 +1,71 @@
-// Playbookblokken per paginatype. Wordt achter het systeembericht geplakt.
+// Playbookblokken per paginatype, uit content/site-agent/playbooks/.
 //
-// De sleutel komt uit de request, maar wordt hier tegen een vaste lijst
-// gelegd: vrije tekst uit een request komt nooit in de prompt terecht. Een
-// onbekende sleutel valt terug op `home`.
+// Het blok wordt achter het systeembericht geplakt, buiten het gecachte deel,
+// zodat alle pagina's dezelfde cache-prefix delen.
 //
-// De branchenaam wordt evenmin uit de URL overgenomen. Hij wordt opgezocht in
-// BRANCHES (lib/data/branches.ts) op basis van het paginapad; staat de branche
-// daar niet in, dan gebruiken we het blok zonder branchenaam.
+// Twee dingen komen nooit ongefilterd uit de request in de prompt:
+//
+//   1. De sleutel wordt server-side uit het paginapad afgeleid
+//      (pad-naar-playbook.ts) en tegen een vaste lijst gelegd. Een onbekend pad
+//      valt terug op `home`.
+//   2. De branchenaam komt uit BRANCHES (lib/data/branches.ts), opgezocht op de
+//      slug in het pad. Staat de branche daar niet in, dan gebruiken we het blok
+//      zonder naam.
+
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { BRANCHES } from '@/lib/data/branches';
+import { splitsBestand } from './frontmatter';
+import { playbookVoorPad, type PlaybookPad } from './pad-naar-playbook';
+
+const PLAYBOOK_MAP = join(process.cwd(), 'content', 'site-agent', 'playbooks');
 
 export const PLAYBOOK_SLEUTELS = ['prijs', 'branche', 'dienst', 'blog', 'cases', 'home'] as const;
 
-export type PlaybookSleutel = (typeof PLAYBOOK_SLEUTELS)[number];
+export type PlaybookSleutel = PlaybookPad;
 
 export function isPlaybookSleutel(waarde: string): waarde is PlaybookSleutel {
   return (PLAYBOOK_SLEUTELS as readonly string[]).includes(waarde);
 }
 
-const BLOKKEN: Record<PlaybookSleutel, string> = {
-  prijs:
-    'De bezoeker kijkt naar wat het kost. Hoge koopintentie, maar ook risico dat hij alleen ' +
-    'een bedrag wil. Opening: "Je bent aan het kijken wat zoiets kost. Eerlijk: dat hangt zo ' +
-    'aan het proces dat een getal hier je zou misleiden. Waar zou je het op inzetten?" Ga snel ' +
-    'door naar de drie kernvragen en stuur eerder dan gemiddeld aan op de afspraak.',
+const cache = new Map<PlaybookSleutel, string>();
 
-  branche:
-    'De bezoeker staat op de branchepagina voor [BRANCHE]. Opening: verwijs naar een proces dat ' +
-    'in die branche typisch knelt volgens de kennisbank, en vraag of dat bij hen ook zo werkt. ' +
-    'Nooit een cijfer of een klantnaam noemen. Vraag: "Herken je dat, of zit de tijd bij jullie ' +
-    'ergens anders?"',
+function leesBlok(sleutel: PlaybookSleutel): string {
+  const gecached = cache.get(sleutel);
+  if (gecached !== undefined && process.env.NODE_ENV !== 'development') return gecached;
 
-  dienst:
-    'De bezoeker leest over een specifieke dienst. Opening: "Je leest over deze dienst. Werkt ' +
-    'dat bij jullie nu handmatig, of zit er al iets omheen dat het half doet?" De naadvraag ' +
-    'werkt hier het beste.',
+  const ruw = readFileSync(join(PLAYBOOK_MAP, `${sleutel}.md`), 'utf8');
+  const { body } = splitsBestand(ruw);
+  const tekst = body.replace(/<!--[\s\S]*?-->/g, '').replace(/\n{3,}/g, '\n\n').trim();
 
-  blog:
-    'Lage koopintentie, meestal oriëntatie. Niet meteen kwalificeren. Opening: "Als je hier een ' +
-    'concrete vraag over hebt, stel hem gerust." Pas doorstoten naar de kernvragen als de ' +
-    'bezoeker zelf over zijn eigen situatie begint.',
-
-  cases:
-    'De bezoeker checkt of je te vertrouwen bent. Opening: "Als je wilt weten hoe dit in de ' +
-    'praktijk loopt, vraag maar door. Ik verzin geen resultaten, dus wat ik niet weet zeg ik ' +
-    'ook." Speel op openheid, niet op overtuigen.',
-
-  home: 'Onbekende intentie. Opening: "Waar ben je naar op zoek?" Kort houden, laat de bezoeker richting geven.',
-};
+  cache.set(sleutel, tekst);
+  return tekst;
+}
 
 /** Geeft het playbookblok, met de branchenaam ingevuld als die is meegegeven. */
 export function playbookBlok(sleutel: PlaybookSleutel, branche?: string): string {
-  const blok = BLOKKEN[sleutel];
+  const blok = leesBlok(sleutel);
   if (sleutel !== 'branche') return blok;
   return blok.replace('[BRANCHE]', branche && branche.length > 0 ? branche : 'deze branche');
 }
 
 /**
- * Zoekt het branchelabel op bij een paginapad. Alleen paden die exact matchen
- * met een bekende branche leveren een naam op; alles daarbuiten geeft undefined
- * zodat er niets uit de URL in de prompt kan lekken.
+ * Zoekt het branchelabel op bij een paginapad. Alleen paden die matchen met een
+ * bekende branche leveren een naam op; alles daarbuiten geeft undefined, zodat
+ * er niets uit de URL in de prompt kan lekken.
  */
 export function brancheUitPad(paginaPad: string): string | undefined {
   const match = paginaPad.match(/^\/branches\/([a-z0-9-]+)\/?$/i);
   if (!match) return undefined;
   const slug = match[1].toLowerCase();
   return BRANCHES.find((b) => b.slug === slug)?.label;
+}
+
+/**
+ * De sleutel voor dit paginapad. Dit is de bron van waarheid; wat de client
+ * meestuurt wordt genegeerd.
+ */
+export function playbookVoorPagina(paginaPad: string): PlaybookSleutel {
+  return playbookVoorPad(paginaPad);
 }
