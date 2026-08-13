@@ -251,6 +251,39 @@ describe('zinnensluis', () => {
     assert.equal(restant.overtredingen[0].regel, 'besparing');
   });
 
+  it('geeft een lange zin in stukken door in plaats van in één klap', () => {
+    // Anders verspringt de tekst per hele zin en leest dat als haperen.
+    const sluis = new ZinnenSluis();
+    const lang =
+      'Dat hangt echt af van het proces dat je wilt aanpakken en van de systemen die eromheen staan, ' +
+      'dus daar wil ik niet zomaar iets over roepen.';
+    const resultaat = sluis.voeg(lang);
+    assert.ok(
+      resultaat.zinnen.length > 1,
+      `verwachtte meerdere stukken, kreeg er ${resultaat.zinnen.length}`,
+    );
+  });
+
+  it('ziet een overtreding die over de knip heen loopt', () => {
+    // "een paar" en "duizend" kunnen in verschillende stukken belanden; de
+    // overlapcontrole moet dat alsnog vangen.
+    const sluis = new ZinnenSluis();
+    const lang =
+      'Ik wil hier heel eerlijk over zijn en niet zomaar wat roepen, maar een paar duizend zegt je niets.';
+    let overtredingen = 0;
+    for (const teken of lang) overtredingen += sluis.voeg(teken).overtredingen.length;
+    overtredingen += sluis.restant().overtredingen.length;
+    assert.equal(overtredingen, 1, 'de overtreding over de knip heen is gemist');
+  });
+
+  it('houdt de doorgegeven tekst intact over de stukken heen', () => {
+    const sluis = new ZinnenSluis();
+    const lang =
+      'Je leest over onze aanpak en ik ben benieuwd of het bij jullie nu handmatig gaat of dat er al iets omheen zit.';
+    const stukken = [...sluis.voeg(lang).zinnen, ...sluis.restant().zinnen];
+    assert.equal(stukken.join(''), lang);
+  });
+
   it('werkt over losse deltas heen zoals bij streaming', () => {
     const sluis = new ZinnenSluis();
     const stukjes = ['Dat ', 'duurt ', 'ongeveer ', 'drie ', 'weken', '. Klaar.'];

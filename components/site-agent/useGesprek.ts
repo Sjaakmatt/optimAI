@@ -16,6 +16,14 @@ export interface Bericht {
 
 export type GespreksStatus = 'rust' | 'bezig' | 'fout';
 
+/** Het gesprek is afgerond; de widget toont een afsluiting in plaats van invoer. */
+export type Afsluiting = 'afspraak' | null;
+
+interface FoutBody {
+  error?: string;
+  actie?: string;
+}
+
 interface ServerEvent {
   type: 'delta' | 'herstart' | 'signaal' | 'klaar' | 'fout';
   tekst?: string;
@@ -49,6 +57,7 @@ export function useGesprek(opties: {
   const [berichten, setBerichten] = useState<Bericht[]>([]);
   const [status, setStatus] = useState<GespreksStatus>('rust');
   const [fout, setFout] = useState<string | null>(null);
+  const [afsluiting, setAfsluiting] = useState<Afsluiting>(null);
   const bezigRef = useRef(false);
 
   const voegOpeningToe = useCallback((tekst: string) => {
@@ -86,10 +95,22 @@ export function useGesprek(opties: {
         });
 
         if (!res.ok || !res.body) {
-          const melding = await res
-            .json()
-            .then((body: { error?: string }) => body.error ?? ALGEMENE_FOUT)
-            .catch(() => ALGEMENE_FOUT);
+          const body = (await res.json().catch(() => ({}))) as FoutBody;
+          const melding = body.error ?? ALGEMENE_FOUT;
+
+          // Het gesprek is niet stuk, het is klaar. Dan hoort er geen
+          // foutmelding te staan maar een laatste bericht van de agent met een
+          // knop naar de agenda.
+          if (body.actie === 'afspraak') {
+            setBerichten((huidig) => [
+              ...huidig,
+              { id: nieuwBerichtId(), rol: 'agent', tekst: melding },
+            ]);
+            setAfsluiting('afspraak');
+            setStatus('rust');
+            return;
+          }
+
           setFout(melding);
           setStatus('fout');
           return;
@@ -164,5 +185,5 @@ export function useGesprek(opties: {
     [opties.sessionId, opties.paginaPad, opties.playbook],
   );
 
-  return { berichten, status, fout, stuur, voegOpeningToe };
+  return { berichten, status, fout, afsluiting, stuur, voegOpeningToe };
 }
