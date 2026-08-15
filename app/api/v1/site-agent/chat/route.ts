@@ -347,6 +347,19 @@ export async function POST(request: Request) {
       let leadId = conversatie.leadId;
       let toolAanroepen = 0;
 
+      // Binnen één beurt kan het model meerdere keren tekst produceren, met
+      // toolaanroepen ertussen. Die stukken belanden in dezelfde bubbel, dus
+      // zonder scheiding plakt "...op jouw tempo." vast aan "Zet 'm op je
+      // gemak". Een herstart wist de bubbel en daarmee ook de behoefte.
+      let scheidingNodig = false;
+      const stuurZin = (zin: string) => {
+        if (scheidingNodig && zin.trim()) {
+          stuur({ type: 'delta', tekst: '\n\n' });
+          scheidingNodig = false;
+        }
+        stuur({ type: 'delta', tekst: zin });
+      };
+
       /**
        * Genereert één antwoord inclusief de hergeneratie bij een treffer.
        * Geeft null terug als ook de tweede poging faalde; dan is de veilige
@@ -357,7 +370,7 @@ export async function POST(request: Request) {
           systeem,
           berichten,
           geheimeKlantnamen: kennisbank.geheimeKlantnamen,
-          opZin: (zin) => stuur({ type: 'delta', tekst: zin }),
+          opZin: stuurZin,
         });
         verbruik = telOp(verbruik, poging.verbruik);
 
@@ -385,12 +398,13 @@ export async function POST(request: Request) {
         });
 
         stuur({ type: 'herstart' });
+        scheidingNodig = false;
 
         poging = await genereer({
           systeem: [...systeem, { type: 'text' as const, text: bouwHergeneratieNotitie(eerste) }],
           berichten,
           geheimeKlantnamen: kennisbank.geheimeKlantnamen,
-          opZin: (zin) => stuur({ type: 'delta', tekst: zin }),
+          opZin: stuurZin,
         });
         verbruik = telOp(verbruik, poging.verbruik);
 
@@ -420,6 +434,7 @@ export async function POST(request: Request) {
         });
 
         stuur({ type: 'herstart' });
+        scheidingNodig = false;
         stuur({ type: 'delta', tekst: VEILIGE_TERUGVAL });
         await slaBerichtOp({
           conversationId: conversatie.id,

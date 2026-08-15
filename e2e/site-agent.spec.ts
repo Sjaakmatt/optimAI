@@ -192,6 +192,33 @@ test.describe('terugbelverzoek', () => {
     // zijn op het moment dat hij hem geeft, niet verstopt achter een link.
     await expect(page.getByText(/mag contact met mij opnemen over dit gesprek/i)).toBeVisible();
   });
+
+  // Uit een echt gesprek: de bezoeker wees het aanbod af, koos even later toch
+  // voor bellen, en de agent zei dat de keuze weer klaarstond. Er verscheen
+  // niets, want de kaart bleef als afgewezen hangen.
+  test('komt terug als de agent het na een afwijzing opnieuw aanbiedt', async ({ page }) => {
+    const terugbellen = { naam: 'terugbellen', payload: { aanleiding: 'meerwerk vastleggen' } };
+    await stelWidgetIn(page, {
+      beurten: [
+        { antwoord: ['Dat klinkt herkenbaar.'], signaal: terugbellen },
+        { antwoord: ['Ook goed, ik laat het rusten.'] },
+        { antwoord: ['Prima, dan zet ik de keuze er weer bij.'], signaal: terugbellen },
+      ],
+    });
+    await page.goto('/branches/bouw');
+
+    await page.getByRole('button', { name: /Stel je vraag aan de AI-agent/i }).click();
+    await page.getByRole('button', { name: 'Meerwerk vastleggen', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Ja, graag' })).toBeVisible();
+
+    await page.getByRole('button', { name: 'Liever niet' }).click();
+    await expect(page.getByRole('button', { name: 'Ja, graag' })).toHaveCount(0);
+
+    await page.getByPlaceholder('Typ je vraag').fill('Toch liever een belletje.');
+    await page.getByRole('button', { name: 'Bericht versturen' }).click();
+
+    await expect(page.getByRole('button', { name: 'Ja, graag' })).toBeVisible();
+  });
 });
 
 test.describe('transparantie', () => {

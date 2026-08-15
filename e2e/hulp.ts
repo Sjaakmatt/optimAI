@@ -31,9 +31,21 @@ export function bouwStream(stukken: string[], signaal?: { naam: string; payload?
   return regels.join('');
 }
 
+export interface Beurt {
+  antwoord?: string[];
+  signaal?: { naam: string; payload?: unknown };
+}
+
 export interface OnderscheppenOpties {
   antwoord?: string[];
   signaal?: { naam: string; payload?: unknown };
+  /**
+   * Antwoord per beurt, op volgorde. Nodig zodra een test afhangt van wat de
+   * agent de tweede keer doet, bijvoorbeeld een terugbelaanbod dat na een
+   * afwijzing opnieuw komt. Is de lijst op, dan blijft de laatste beurt gelden.
+   * Staat dit gevuld, dan winnen deze beurten van `antwoord` en `signaal`.
+   */
+  beurten?: Beurt[];
   /** Alle berichten die de widget naar het endpoint stuurde. */
   verstuurd?: Array<Record<string, unknown>>;
 }
@@ -44,16 +56,24 @@ export interface OnderscheppenOpties {
  * ook echt dat bericht verstuurt.
  */
 export async function onderscheptChat(page: Page, opties: OnderscheppenOpties = {}): Promise<void> {
-  const antwoord = opties.antwoord ?? ['Helder. Hoeveel mensen zijn daar bij jullie mee bezig?'];
+  const standaard = ['Helder. Hoeveel mensen zijn daar bij jullie mee bezig?'];
+  const beurten: Beurt[] =
+    opties.beurten && opties.beurten.length > 0
+      ? opties.beurten
+      : [{ antwoord: opties.antwoord ?? standaard, signaal: opties.signaal }];
+  let teller = 0;
 
   await page.route('**/api/v1/site-agent/chat', async (route: Route) => {
     const body = route.request().postDataJSON() as Record<string, unknown> | null;
     if (body && opties.verstuurd) opties.verstuurd.push(body);
 
+    const beurt = beurten[Math.min(teller, beurten.length - 1)];
+    teller += 1;
+
     await route.fulfill({
       status: 200,
       headers: { 'content-type': 'text/event-stream; charset=utf-8', 'cache-control': 'no-cache' },
-      body: bouwStream(antwoord, opties.signaal),
+      body: bouwStream(beurt.antwoord ?? standaard, beurt.signaal),
     });
   });
 }
