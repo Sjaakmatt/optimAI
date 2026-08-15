@@ -47,7 +47,14 @@ export default function AgentPaneel({
 }: AgentPaneelProps) {
   // Het terugbelaanbod: de agent geeft het signaal, de widget vraagt de
   // gegevens. Null betekent "niet aangeboden in dit gesprek".
-  const [terugbelAanleiding, setTerugbelAanleiding] = useState<string | null>(null);
+  //
+  // Elk aanbod krijgt een eigen nummer, en dat nummer is de React-key van de
+  // kaart. Zonder dat blijft één kaart hangen met zijn eigen toestand: na
+  // "Liever niet" rendert hij null en na een verstuurd formulier de
+  // bevestiging, en dan levert een tweede aanbod niets zichtbaars op. De agent
+  // zegt dan wél dat de keuze klaarstaat terwijl de bezoeker naar niets kijkt.
+  const [aanbod, setAanbod] = useState<{ nummer: number; aanleiding: string } | null>(null);
+  const aanbodTeller = useRef(0);
 
   // De agent kan om de agenda vragen. Die komt uit dezelfde agenda als de rest
   // van de site — we bouwen er geen tweede naast.
@@ -55,7 +62,8 @@ export default function AgentPaneel({
     if (signaal.naam === 'terugbellen') {
       const aanleiding =
         typeof signaal.payload.aanleiding === 'string' ? signaal.payload.aanleiding : '';
-      setTerugbelAanleiding(aanleiding);
+      aanbodTeller.current += 1;
+      setAanbod({ nummer: aanbodTeller.current, aanleiding });
       return;
     }
     if (signaal.naam !== 'agenda') return;
@@ -257,10 +265,11 @@ export default function AgentPaneel({
           </div>
         )}
 
-        {terugbelAanleiding !== null && (
+        {aanbod !== null && (
           <TerugbelKaart
+            key={aanbod.nummer}
             sessionId={sessionId}
-            aanleiding={terugbelAanleiding}
+            aanleiding={aanbod.aanleiding}
             // "Liever niet" is een antwoord aan de agent, geen stilte: hij moet
             // weten dat hij hier niet op terug moet komen.
             opAfgewezen={() => void stuur('Liever geen telefoontje.')}
