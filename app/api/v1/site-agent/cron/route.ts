@@ -45,6 +45,11 @@ export async function GET(request: Request) {
     opgeruimd: { gesprekken: 0, tellers: 0, aanvragen: 0 },
   };
 
+  // Stappen die klapten. Nodig omdat we hieronder alleen nog loggen als er
+  // iets gebeurd is: zonder deze lijst zou een falende opruimstap (die 0
+  // teruggeeft) volledig onzichtbaar worden in het dashboard.
+  const fouten: string[] = [];
+
   // 1. Stille gesprekken afronden. De schakelaar telt hier ook: staat de agent
   //    uit, dan doen we geen modelcalls, maar opruimen blijft gewoon gebeuren.
   if (siteAgentAan()) {
@@ -60,6 +65,7 @@ export async function GET(request: Request) {
         }
       }
     } catch (err) {
+      fouten.push('stille gesprekken ophalen');
       console.error('[site-agent] stille gesprekken ophalen faalde:', err);
     }
   }
@@ -70,6 +76,7 @@ export async function GET(request: Request) {
     resultaat.opgeruimd.gesprekken = gesprekken;
     resultaat.opgeruimd.tellers = tellers;
   } catch (err) {
+    fouten.push('opruimen');
     console.error('[site-agent] opruimen faalde:', err);
   }
 
@@ -78,17 +85,33 @@ export async function GET(request: Request) {
   try {
     resultaat.opgeruimd.aanvragen = await ruimVerlopenAanvragenOp();
   } catch (err) {
+    fouten.push('verlopen boekingsaanvragen opruimen');
     console.error('[site-agent] verlopen boekingsaanvragen opruimen faalde:', err);
   }
 
-  void logEvent({
-    categorie: 'system',
-    bericht:
-      `Site-agent cron · ${resultaat.afgerond} afgerond, ${resultaat.mislukt} mislukt, ` +
-      `${resultaat.opgeruimd.gesprekken} gesprekken, ${resultaat.opgeruimd.tellers} tellers en ` +
-      `${resultaat.opgeruimd.aanvragen} verlopen boekingsaanvragen opgeruimd`,
-    metadata: resultaat as unknown as Record<string, unknown>,
-  });
+  // Alleen loggen als de run daadwerkelijk iets gedaan heeft of ergens op
+  // stukliep. De cron tikt elk kwartier en heeft meestal niets te doen; die
+  // nul-regels leverden ~96 identieke events per dag op die de observability-
+  // feed in het dashboard dichtslibden zonder iets te vertellen.
+  const erIsIetsGebeurd =
+    resultaat.afgerond > 0 ||
+    resultaat.mislukt > 0 ||
+    resultaat.opgeruimd.gesprekken > 0 ||
+    resultaat.opgeruimd.tellers > 0 ||
+    resultaat.opgeruimd.aanvragen > 0;
+
+  if (erIsIetsGebeurd || fouten.length > 0) {
+    void logEvent({
+      categorie: 'system',
+      type: fouten.length > 0 ? 'warning' : 'info',
+      bericht:
+        `Site-agent cron · ${resultaat.afgerond} afgerond, ${resultaat.mislukt} mislukt, ` +
+        `${resultaat.opgeruimd.gesprekken} gesprekken, ${resultaat.opgeruimd.tellers} tellers en ` +
+        `${resultaat.opgeruimd.aanvragen} verlopen boekingsaanvragen opgeruimd` +
+        (fouten.length > 0 ? ` · mislukte stappen: ${fouten.join(', ')}` : ''),
+      metadata: { ...resultaat, fouten },
+    });
+  }
 
   return Response.json({ ok: true, ...resultaat });
 }
