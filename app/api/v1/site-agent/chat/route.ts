@@ -17,6 +17,7 @@
 // de vaste veilige tekst naar de bezoeker.
 
 import Anthropic from '@anthropic-ai/sdk';
+import { after } from 'next/server';
 import { z } from 'zod';
 
 import {
@@ -557,25 +558,49 @@ export async function POST(request: Request) {
         // cache-tokens incluis, staan in kostenUsd.
         const tokens = verbruik.invoer + verbruik.uitvoer;
 
-        void verhoogVerbruik(conversatie.id, tokens, kosten).catch((err) =>
-          console.error('[site-agent] verbruik bijwerken faalde:', err),
-        );
-        void boekKosten(kosten);
-        void logEvent({
-          categorie: 'llm',
-          bericht: `Claude chat · playbook=${playbook} tools=${toolAanroepen}`,
-          metadata: {
-            model: SITE_AGENT_MODEL,
-            conversatie_id: conversatie.id,
-            playbook,
-            tool_calls: toolAanroepen,
-            duration_ms: Date.now() - start,
-            input_tokens: verbruik.invoer,
-            output_tokens: verbruik.uitvoer,
-            cache_read_tokens: verbruik.cacheGelezen,
-            cache_create_tokens: verbruik.cacheGeschreven,
-            cost_usd: Number(kosten.toFixed(6)),
-          },
+        // Deze drie schrijfacties stonden achter `void` en raakten daardoor
+        // zoek. Zodra de stream dicht is en de respons verstuurd, mag de
+        // serverless functie bevriezen; wat er dan nog loopt komt nooit aan.
+        //
+        // Aan de data te zien gebeurde dat ook: bij de korte gesprekken van 13
+        // en 18 augustus landde het AgentEvent (één insert) wél en het verbruik
+        // (een select plus een update) niet, terwijl ze in dezelfde regel
+        // starten. Bij de langere gesprekken klopt de optelsom van de events
+        // ook niet met totaalTokens. Gevolg: kosten stonden te laag of op nul,
+        // en het dagplafond telde te weinig mee — dat laatste is een
+        // uitgavenrem die dan dus niet op tijd afgaat.
+        //
+        // `after` draait ná de respons en houdt de functie zolang in leven. De
+        // bezoeker merkt er niets van: de stream sluit gewoon meteen.
+        after(async () => {
+          const uitkomsten = await Promise.allSettled([
+            verhoogVerbruik(conversatie.id, tokens, kosten),
+            boekKosten(kosten),
+            logEvent({
+              categorie: 'llm',
+              bericht: `Claude chat · playbook=${playbook} tools=${toolAanroepen}`,
+              metadata: {
+                model: SITE_AGENT_MODEL,
+                conversatie_id: conversatie.id,
+                playbook,
+                tool_calls: toolAanroepen,
+                duration_ms: Date.now() - start,
+                input_tokens: verbruik.invoer,
+                output_tokens: verbruik.uitvoer,
+                cache_read_tokens: verbruik.cacheGelezen,
+                cache_create_tokens: verbruik.cacheGeschreven,
+                cost_usd: Number(kosten.toFixed(6)),
+              },
+            }),
+          ]);
+
+          // allSettled slikt fouten; zonder deze regel zou een mislukte
+          // boeking net zo stil zijn als de weggevallen promise van hiervoor.
+          for (const uitkomst of uitkomsten) {
+            if (uitkomst.status === 'rejected') {
+              console.error('[site-agent] naschrijven faalde:', uitkomst.reason);
+            }
+          }
         });
 
         if (!gesloten) {
