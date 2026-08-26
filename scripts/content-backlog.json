@@ -285,7 +285,7 @@
     {
       "topic": "Waarom uw ERP het laatste stukje werk niet afmaakt",
       "cluster": "A",
-      "status": "pending",
+      "status": "drafted",
       "tags": [
         "ERP",
         "beslislaag",
