@@ -70,6 +70,36 @@ export const CASES: CaseStudy[] = [
     ],
     doorlooptijd: 'In productie',
   },
+  {
+    slug: 'bint-projectdashboard',
+    klant: 'B_inT',
+    branche: 'Interieurbouw & maatwerk keukens',
+    logo: '/bint.svg',
+    tagline: 'Van eerste aanvraag tot oplevering, één dossier dat zichzelf bijhoudt.',
+    intro:
+      'B_inT ontwerpt en bouwt maatwerkkeukens en interieurs. Elk project begint als een verzameling losse dingen: een klant die belt, maten die op locatie worden opgenomen, materiaalkeuzes die gaandeweg veranderen, een planning die van meerdere leveranciers afhangt. Die informatie zat verspreid over mail, appjes, foto’s op telefoons en mappen op de server. Wij hebben een dashboard gebouwd dat een nieuwe klant en zijn project automatisch aanmaakt, en dat het project daarna door de fasen stuurt.',
+    uitdaging: [
+      'Elke nieuwe opdracht begon met dezelfde gegevens op meerdere plekken overtypen',
+      'Projectinformatie zat verspreid over mail, telefoons en losse mappen, zonder één plek waar het klopte',
+      'De stand van zaken was alleen bekend bij degene die er die week aan werkte',
+      'Welke keuze wanneer gemaakt was, bleek achteraf lastig terug te vinden',
+      'Opvolging hing aan geheugen: wie belt de klant, wie bestelt het materiaal, wie plant de montage',
+    ],
+    oplossing: [
+      'Klant en project worden automatisch aangemaakt zodra een aanvraag binnenkomt, inclusief dossier',
+      'De intake wordt uitgevraagd en vastgelegd vóór het eerste gesprek, niet erna',
+      'Het project loopt langs vaste fasen, van intake en ontwerp tot productie, montage en oplevering',
+      'Per fase bepaalt het dashboard wat er klaar moet zijn en wie aan zet is, en zet dat klaar in plaats van erom te vragen',
+      'Maten, materiaalkeuzes, foto’s en afspraken hangen aan datzelfde dossier en blijven daar staan',
+      'Iedereen ziet de status zonder iemand te hoeven bellen',
+    ],
+    resultaat: [
+      { metric: 'Eén dossier', label: 'in plaats van mail, appjes en losse mappen' },
+      { metric: 'Onboarding vanzelf', label: 'klant en project staan klaar zonder overtypen' },
+      { metric: 'Status zonder navragen', label: 'elke fase zichtbaar voor wie kijkt' },
+    ],
+    doorlooptijd: 'In productie',
+  },
 ];
 
 export const CASE_BY_SLUG = CASES.reduce<Record<string, CaseStudy>>((acc, c) => {
