@@ -7,6 +7,8 @@ klanten:
     publiekTeNoemen: false
   - naam: TEKA Kranen
     publiekTeNoemen: false
+  - naam: B_inT
+    publiekTeNoemen: false
 ---
 
 <!--
