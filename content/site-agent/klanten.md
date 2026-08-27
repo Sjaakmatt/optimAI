@@ -9,6 +9,8 @@ klanten:
     publiekTeNoemen: false
   - naam: B_inT
     publiekTeNoemen: false
+  - naam: Praktijk de Driehoek
+    publiekTeNoemen: false
 ---
 
 <!--
