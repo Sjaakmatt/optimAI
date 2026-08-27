@@ -145,6 +145,20 @@ describe('outputcontrole, klantnamen', () => {
     verwachtGeblokkeerd('TEKA draait hier al een tijd mee.', 'klantnaam');
   });
 
+  it('blokkeert het onderscheidende woord, niet het generieke', () => {
+    const opties = { geheimeKlantnamen: ['Praktijk de Driehoek'] };
+    assert.equal(controleerTekst('We werken voor de Driehoek.', opties).toegestaan, false);
+    // "Praktijk" mag niet op de blokkeerlijst belanden: dat woord staat in een
+    // van de vaste formuleringen en zou het gesprek stilleggen.
+    assert.equal(
+      controleerTekst(
+        'In de praktijk gaat het over de tijd die verdwijnt in doorsturen en opzoeken.',
+        opties,
+      ).toegestaan,
+      true,
+    );
+  });
+
   it('laat de klantnaam door zodra hij is vrijgegeven', () => {
     const resultaat = controleerTekst('Dit hebben we voor Pavo gebouwd.', {
       geheimeKlantnamen: ['TEKA Kranen'],

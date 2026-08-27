@@ -100,6 +100,38 @@ export const CASES: CaseStudy[] = [
     ],
     doorlooptijd: 'In productie',
   },
+  {
+    // Nog geen logo: het merkbestand moet van de praktijk zelf komen. Zonder
+    // `logo` blijft deze case uit de strip op de homepage en staat alleen de
+    // casepagina live. Zodra het bestand er is, is één regel genoeg.
+    slug: 'praktijk-de-driehoek-praktijksysteem',
+    klant: 'Praktijk de Driehoek',
+    branche: 'Coaching & therapie',
+    tagline: 'Van aanmelding tot factuur en lesmateriaal, zonder dat de praktijk administratie wordt.',
+    intro:
+      'Praktijk de Driehoek begeleidt mensen met coaching en therapie. Het werk zit in de sessie, niet in de administratie eromheen. Maar die administratie is er wel: een aanmelding die binnenkomt, een intake die moet worden vastgelegd, afspraken die verzet worden, facturen die eruit moeten, en materiaal dat een cliënt tussen twee sessies door nodig heeft. Dat liep met de hand, meestal buiten praktijkuren om. Wij hebben er één systeem van gemaakt dat bij de aanmelding begint en de rest daaruit laat volgen.',
+    uitdaging: [
+      'Elke aanmelding begon met dezelfde gegevens opnieuw overnemen, op meerdere plekken',
+      'Intake, afspraken en de voortgang van een traject stonden los van elkaar',
+      'Facturen werden per sessie met de hand opgemaakt en nagelopen, na werktijd',
+      'Lesmateriaal ging los per mail, dus wie wat wanneer had gekregen was lastig terug te zien',
+      'Tijd die naar administratie ging, ging niet naar cliënten',
+    ],
+    oplossing: [
+      'Een aanmelding maakt automatisch een cliëntdossier aan, met de intake er meteen in',
+      'Het traject loopt langs vaste stappen, van kennismaking en intake tot sessies en afronding',
+      'Facturatie volgt uit wat er werkelijk is geweest, in plaats van uit een aparte administratie achteraf',
+      'Lesmateriaal hangt aan de stap in het traject waar het bij hoort en gaat op dat moment naar de cliënt',
+      'De praktijk ziet in één overzicht wie waar in zijn traject zit en wat er nog moet gebeuren',
+      'Wat naar een cliënt gaat, gaat pas nadat een mens het heeft gezien. Bij een praktijk die met vertrouwelijke verhalen werkt is dat geen detail maar het uitgangspunt',
+    ],
+    resultaat: [
+      { metric: 'Aanmelding wordt dossier', label: 'zonder overtypen' },
+      { metric: 'Factuur volgt de sessie', label: 'geen losse administratie achteraf' },
+      { metric: 'Materiaal op tijd', label: 'gekoppeld aan de stap in het traject' },
+    ],
+    doorlooptijd: 'In productie',
+  },
 ];
 
 export const CASE_BY_SLUG = CASES.reduce<Record<string, CaseStudy>>((acc, c) => {

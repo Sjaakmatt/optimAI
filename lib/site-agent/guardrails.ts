@@ -135,6 +135,52 @@ function escapeRegex(waarde: string): string {
  * als dat minstens vier letters heeft: een model dat lekt, lekt meestal met de
  * merknaam en niet met de volledige tenaamstelling.
  */
+/**
+ * Woorden die wel in een bedrijfsnaam staan maar niets onderscheidends zeggen.
+ * Ze blokkeren zou halve zinnen slopen: "Praktijk de Driehoek" mag niet
+ * betekenen dat de agent het woord "praktijk" niet meer mag gebruiken, en dat
+ * woord staat letterlijk in een van de vaste formuleringen.
+ */
+const GENERIEKE_NAAMWOORDEN = new Set([
+  'praktijk',
+  'bureau',
+  'stichting',
+  'vereniging',
+  'firma',
+  'bedrijf',
+  'kliniek',
+  'centrum',
+  'instituut',
+  'atelier',
+  'studio',
+  'salon',
+  'groep',
+  'group',
+  'holding',
+  'company',
+]);
+
+/**
+ * Het onderscheidende woord uit een samengestelde klantnaam, of null als de
+ * naam uit één woord bestaat. Een model dat lekt, lekt meestal met dit woord en
+ * niet met de volledige tenaamstelling, dus dat blokkeren we apart.
+ *
+ * Voorheen was dit simpelweg het eerste woord. Dat werkt voor "TEKA Kranen",
+ * maar bij "Praktijk de Driehoek" leverde het "Praktijk" op, en dan ligt een
+ * doodgewoon Nederlands woord op de blokkeerlijst. We slaan generieke woorden
+ * en lidwoorden daarom over en pakken het eerste woord dat er echt toe doet.
+ */
+function merknaamUit(naam: string): string | null {
+  const woorden = naam.split(/\s+/);
+  if (woorden.length < 2) return null;
+  for (const woord of woorden) {
+    if (woord.length < 4) continue;
+    if (GENERIEKE_NAAMWOORDEN.has(woord.toLowerCase())) continue;
+    return woord;
+  }
+  return null;
+}
+
 function klantnaamRegels(namen: readonly string[]): Regel[] {
   const regels: Regel[] = [];
   const gezien = new Set<string>();
@@ -144,10 +190,8 @@ function klantnaamRegels(namen: readonly string[]): Regel[] {
     if (!schoon) continue;
 
     const varianten = [schoon];
-    const eersteWoord = schoon.split(/\s+/)[0];
-    if (eersteWoord && eersteWoord.length >= 4 && eersteWoord !== schoon) {
-      varianten.push(eersteWoord);
-    }
+    const merknaam = merknaamUit(schoon);
+    if (merknaam) varianten.push(merknaam);
 
     for (const variant of varianten) {
       const sleutel = variant.toLowerCase();
