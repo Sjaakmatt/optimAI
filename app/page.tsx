@@ -40,8 +40,8 @@ function Klanten() {
           <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] shrink-0">
             In productie bij
           </div>
-          {/* Tussenruimte is bewust krapper dan de oorspronkelijke gap-x-16:
-              met vier logo's paste de rij anders niet meer en brak hij af. */}
+          {/* Hoogte en tussenruimte zijn krapper dan oorspronkelijk: met vier
+              logo's paste de rij anders niet meer en brak hij af. */}
           <ul className="flex flex-wrap items-center gap-x-8 gap-y-6 sm:gap-x-10">
             {clients.map((c) => (
               <li key={c.slug}>
@@ -55,7 +55,7 @@ function Klanten() {
                   <img
                     src={c.logo}
                     alt={c.klant}
-                    className="h-12 sm:h-[52px] w-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
+                    className="h-12 sm:h-14 w-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
                   />
                 </Link>
               </li>
