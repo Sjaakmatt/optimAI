@@ -101,12 +101,12 @@ export const CASES: CaseStudy[] = [
     doorlooptijd: 'In productie',
   },
   {
-    // Nog geen logo: het merkbestand moet van de praktijk zelf komen. Zonder
-    // `logo` blijft deze case uit de strip op de homepage en staat alleen de
-    // casepagina live. Zodra het bestand er is, is één regel genoeg.
+    // Let op: dit logo is een reconstructie, geen aangeleverd merkbestand.
+    // De toelichting staat boven in public/driehoek.svg.
     slug: 'praktijk-de-driehoek-praktijksysteem',
     klant: 'Praktijk de Driehoek',
     branche: 'Coaching & therapie',
+    logo: '/driehoek.svg',
     tagline: 'Van aanmelding tot factuur en lesmateriaal, zonder dat de praktijk administratie wordt.',
     intro:
       'Praktijk de Driehoek begeleidt mensen met coaching en therapie. Het werk zit in de sessie, niet in de administratie eromheen. Maar die administratie is er wel: een aanmelding die binnenkomt, een intake die moet worden vastgelegd, afspraken die verzet worden, facturen die eruit moeten, en materiaal dat een cliënt tussen twee sessies door nodig heeft. Dat liep met de hand, meestal buiten praktijkuren om. Wij hebben er één systeem van gemaakt dat bij de aanmelding begint en de rest daaruit laat volgen.',
