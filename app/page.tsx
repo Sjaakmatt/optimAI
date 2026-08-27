@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
+import { Logostrook } from '@/components/site/Logostrook';
 import { calPopupAttrs } from '@/components/booking/config';
 import { CASES } from '@/lib/data/cases';
 import { OPLOSSINGEN, OPLOSSINGEN_FEATURED } from '@/lib/data/oplossingen';
@@ -40,27 +41,7 @@ function Klanten() {
           <div className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.2em] shrink-0">
             In productie bij
           </div>
-          {/* Hoogte en tussenruimte zijn krapper dan oorspronkelijk: met vier
-              logo's paste de rij anders niet meer en brak hij af. */}
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-6 sm:gap-x-10">
-            {clients.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={`/cases/${c.slug}`}
-                  title={`${c.klant}, bekijk de case`}
-                  aria-label={`Case: ${c.klant}, ${c.tagline}`}
-                  className="group block"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={c.logo}
-                    alt={c.klant}
-                    className="h-12 sm:h-14 w-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Logostrook klanten={clients} />
         </div>
       </div>
     </section>
