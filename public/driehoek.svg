@@ -4,8 +4,12 @@
      het beeldmerk met de hand, het woordmerk gezet uit Parisienne (SIL Open
      Font License) en omgezet naar paden. De schrijfletter is dus een
      vervanger en niet het origineel. Vervang dit bestand zodra het echte
-     logo er is; er hoeft verder niets te wijzigen. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 622.7 100" width="623" height="100" role="img" aria-label="Praktijk de Driehoek">
+     logo er is; er hoeft verder niets te wijzigen.
+
+     De viewBox heeft lucht boven en onder, net als bij bint.svg: in de
+     logostrip krijgt elk logo dezelfde hoogte, en zonder die marge stond dit
+     merk op 55px inkthoogte tegenover 43 van de andere logo's. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -14 622.7 128" width="623" height="128" role="img" aria-label="Praktijk de Driehoek">
 
   <g stroke="#8C5A3F" fill="none" stroke-width="2.6" stroke-linecap="round">
     <path d="M17 34 C 5 50, 1 68, 3 88"/>
