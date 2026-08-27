@@ -400,3 +400,83 @@ body::after {
     }
   }
 }
+
+/* Logostrook. Past de rij logo's binnen de beschikbare breedte, dan staat hij
+   stil. Past hij niet, dan schuift hij door in plaats van af te breken naar
+   meerdere regels. Logostrook.tsx meet dat en zet de klasse `schuift`.
+
+   De rij staat er dan twee keer in en de animatie schuift precies één rij op,
+   waardoor de lus naadloos rondloopt. Elk logo draagt daarvoor zijn eigen
+   rechtermarge: met `gap` op het spoor zou de tweede rij een halve
+   tussenruimte verspringen en zie je bij elke omloop een sprongetje. */
+.logo-strook {
+  overflow: hidden;
+}
+
+.logo-spoor {
+  display: flex;
+  width: max-content;
+}
+
+.logo-rij {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.logo-rij > * {
+  padding-right: 2rem;
+}
+
+/* Alleen bij het schuiven vervagen de randen; anders zou het eerste logo
+   zonder reden half doorzichtig staan. */
+.logo-strook.schuift {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+}
+
+/* Zonder beweging blijft het een gewone rij die de bezoeker zelf schuift. De
+   tweede rij is dan alleen dubbelop en gaat weg. */
+@media (prefers-reduced-motion: reduce) {
+  .logo-strook.schuift {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .logo-strook.schuift::-webkit-scrollbar {
+    display: none;
+  }
+  .logo-kopie {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-strook.schuift .logo-spoor {
+    animation: logo-marquee var(--logo-marquee-duur, 24s) linear infinite;
+  }
+  /* Stilzetten zodra iemand er met een muis overheen gaat, zodat een logo
+     aanklikken geen bewegend doelwit is. */
+  .logo-strook.schuift:hover .logo-spoor {
+    animation-play-state: paused;
+  }
+  @keyframes logo-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
