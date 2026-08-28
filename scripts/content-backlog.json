@@ -304,7 +304,7 @@
     {
       "topic": "Welk proces kiest u als eerste? Vier vragen die het antwoord geven",
       "cluster": "A",
-      "status": "pending",
+      "status": "drafted",
       "tags": [
         "proces",
         "selectie"
