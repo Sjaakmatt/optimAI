@@ -322,7 +322,7 @@
     {
       "topic": "Beleid op papier krijgen voordat een agent het kan toetsen",
       "cluster": "A",
-      "status": "pending",
+      "status": "drafted",
       "tags": [
         "beleid",
         "governance"
