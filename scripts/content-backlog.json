@@ -395,7 +395,7 @@
     {
       "topic": "Wat u moet kunnen terugkijken als een agent een fout maakt",
       "cluster": "B",
-      "status": "pending",
+      "status": "drafted",
       "tags": [
         "logging",
         "governance"
