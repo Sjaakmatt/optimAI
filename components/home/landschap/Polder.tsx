@@ -1,5 +1,5 @@
 import { BREEDTE, HOOGTE, glooiing, heuvelPad, loof, prng } from './prng';
-import type { Laag } from './Bos';
+import { SCHEMER_PALET, type Laag, type LandschapPalet } from './Bos';
 
 /**
  * De polder: een vlakke horizon met een molen, een kerktoren en een boerderij
@@ -99,7 +99,7 @@ function verreLaag(kleur: string) {
   );
 }
 
-function dijkLaag(kleur: string) {
+function dijkLaag(kleur: string, water: [string, string], id: string) {
   const r = prng(23);
   const lijn = glooiing(23, 392, 6);
   const wilgen: React.ReactNode[] = [];
@@ -113,13 +113,13 @@ function dijkLaag(kleur: string) {
   return (
     <svg viewBox={`0 0 ${BREEDTE} ${HOOGTE}`} preserveAspectRatio="xMidYMax slice" width="100%" height="100%" aria-hidden focusable="false">
       <defs>
-        <linearGradient id="polder-water" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f0b27a" stopOpacity="0.32" />
-          <stop offset="0.55" stopColor="#c9744a" stopOpacity="0.1" />
+        <linearGradient id={`polder-water-${id}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={water[0]} stopOpacity="0.32" />
+          <stop offset="0.55" stopColor={water[1]} stopOpacity="0.1" />
           <stop offset="1" stopColor="#0a0a0c" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect x="0" y="330" width={BREEDTE} height="190" fill="url(#polder-water)" />
+      <rect x="0" y="330" width={BREEDTE} height="190" fill={`url(#polder-water-${id})`} />
       <g fill={kleur} color={kleur}>
         <path d={heuvelPad(lijn)} />
         {paaltjes}
@@ -153,8 +153,12 @@ function rietLaag(kleur: string) {
   );
 }
 
-export const POLDER_LAGEN: Laag[] = [
-  { id: 'ver', diepte: 0.16, kleur: '#2a2030', svg: verreLaag('#2a2030') },
-  { id: 'dijk', diepte: 0.4, kleur: '#171219', svg: dijkLaag('#171219') },
-  { id: 'riet', diepte: 0.78, kleur: '#09090b', svg: rietLaag('#09090b') },
-];
+export function maakPolderLagen(palet: LandschapPalet, id = 'schemer'): Laag[] {
+  return [
+    { id: 'ver', diepte: 0.16, kleur: palet.ver, svg: verreLaag(palet.ver) },
+    { id: 'dijk', diepte: 0.4, kleur: palet.midden, svg: dijkLaag(palet.midden, palet.water ?? ['#f0b27a', '#c9744a'], id) },
+    { id: 'riet', diepte: 0.78, kleur: palet.dichtbij, svg: rietLaag(palet.dichtbij) },
+  ];
+}
+
+export const POLDER_LAGEN: Laag[] = maakPolderLagen(SCHEMER_PALET);

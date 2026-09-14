@@ -43,23 +43,37 @@ function rij(zaad: number, basis: number, amplitude: number, spacing: number, ho
   );
 }
 
-export const BOS_LAGEN: Laag[] = [
-  {
-    id: 'ver',
-    diepte: 0.18,
-    kleur: '#2a2030',
-    svg: rij(3, 280, 26, 22, [34, 70], [16, 30], 0.15, '#2a2030'),
-  },
-  {
-    id: 'midden',
-    diepte: 0.42,
-    kleur: '#171219',
-    svg: rij(17, 340, 30, 34, [70, 130], [30, 54], 0.22, '#171219'),
-  },
-  {
-    id: 'dichtbij',
-    diepte: 0.75,
-    kleur: '#09090b',
-    svg: rij(41, 420, 22, 58, [130, 230], [56, 96], 0.2, '#09090b'),
-  },
-];
+/** Kleuren per laag, van ver naar dichtbij. */
+export interface LandschapPalet {
+  ver: string;
+  midden: string;
+  dichtbij: string;
+  /** Alleen de polder: de weerspiegeling van de lucht in het water. */
+  water?: [string, string];
+}
+
+/** Schemering: paars-grijs in de verte, bijna zwart vooraan. */
+export const SCHEMER_PALET: LandschapPalet = {
+  ver: '#2a2030',
+  midden: '#171219',
+  dichtbij: '#09090b',
+  water: ['#f0b27a', '#c9744a'],
+};
+
+/** Dageraad: koel blauwgrijs in de nevel, donker groenblauw vooraan. */
+export const DAGERAAD_PALET: LandschapPalet = {
+  ver: '#5b6b7c',
+  midden: '#2f3b47',
+  dichtbij: '#141a20',
+  water: ['#f4dcb4', '#9fb6c4'],
+};
+
+export function maakBosLagen(palet: LandschapPalet): Laag[] {
+  return [
+    { id: 'ver', diepte: 0.18, kleur: palet.ver, svg: rij(3, 280, 26, 22, [34, 70], [16, 30], 0.15, palet.ver) },
+    { id: 'midden', diepte: 0.42, kleur: palet.midden, svg: rij(17, 340, 30, 34, [70, 130], [30, 54], 0.22, palet.midden) },
+    { id: 'dichtbij', diepte: 0.75, kleur: palet.dichtbij, svg: rij(41, 420, 22, 58, [130, 230], [56, 96], 0.2, palet.dichtbij) },
+  ];
+}
+
+export const BOS_LAGEN: Laag[] = maakBosLagen(SCHEMER_PALET);

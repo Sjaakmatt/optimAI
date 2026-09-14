@@ -34,3 +34,50 @@
 - Landschap: procedureel gegenereerde SVG-silhouetten (deterministisch, geen hydration-verschil), parallax via `motion`.
 - Mailagent: adapter `lib/mailagent/` vertaalt demo-scripts naar een compacte afspeellijst; speelt af met `IntersectionObserver`.
 - Landschapsvariant: `?landschap=polder` op de homepage voor de vergelijking.
+
+## Scroll-craft laag (toegevoegd na de eerste bouw)
+
+Op aanwijzing van de scroll-craft-skill (nateherkai/scroll-craft) is de homepage
+als scrollverhaal uitgewerkt in plaats van als reeks secties.
+
+**Grammatica:** filmisch in één beweging. Eén lineair argument met één boog
+(schemering → dageraad), vaste minimale balk met woordmerk en één knop, geen
+hoofdstuknummers, geen zijsprongen. De andere grammatica's passen niet: geen
+lange leestekst (editorial), geen tool als hoofdinhoud (live surface, de
+mailagent is een scène en niet de hele pagina), geen doorlopende cameravlucht
+(te zwaar en te kwetsbaar op telefoons).
+
+**Signature move:** hetzelfde gelaagde landschap opent de pagina bij zonsondergang
+en sluit hem bij zonsopgang. Vanavond komt de mail binnen, morgen staat het
+antwoord klaar. De bezoeker vertelt: "die site waar de zon ondergaat achter de
+bomen en als je onderaan bent is hij weer op en is het werk gedaan."
+
+**Gevoelscurve (één regel per akte):**
+
+| # | Akte | Gevoel | Wat het veroorzaakt |
+|---|---|---|---|
+| 1 | Hero | rust, herkenning | schemering, het einde van een werkdag; de kop komt regel voor regel op |
+| 2 | Mailagent | nieuwsgierigheid → vertrouwen | een echte mail, de agent zoekt op en typt; u drukt zelf op versturen |
+| 3 | Logo's | geruststelling | vier bedrijven waar dit al draait, geen animatie |
+| 4 | Wat hij doet | helderheid | vastgepind, drie punten die één voor één oplichten |
+| 5 | Wie | nabijheid | een mens, vrijstaand, geen kader |
+| 6 | Projecten | bewijs | de strook reist zijwaarts onder de hand |
+| 7 | Aanpak + afspraken | zekerheid, stilte | tekst op ruimte, geen kaarten, geen beweging: de stilte vóór de piek |
+| 8 | Dageraad | opluchting | de zon komt op boven hetzelfde landschap; de pagina houdt hier stil |
+
+**Piek:** de dageraad. Hij krijgt de meeste ruimte (halve viewport aan lucht en
+land onder de kop) en de stilste akte ervoor.
+
+**Apparaten per akte:** parallax-lagen (hero), live surface (mailagent),
+stilstaand (logo's), pin + oplichten (wat hij doet), flow + verschijnen (wie),
+pan op scroll (projecten), flow (aanpak, afspraken), parallax-lagen + resolutie
+(dageraad). Geen apparaat twee keer achter elkaar.
+
+**Taste-floor toegepast:** eyebrows nog op twee secties, geen drie gelijke
+icoonkaarten, geen scroll-pijl, korrel op de luchtgradiënten, Geist in plaats
+van Inter, pillen alleen voor knoppen en chips.
+
+**Niet gedaan:** de scroll-craft engine zelf (vanilla `data-sc-*`) is niet
+ingebouwd; de site draait op `motion` en had die apparaten al. De
+verificatie-harness (`shoot.mjs`) is niet gedraaid; wel handmatige contact
+sheets op 1440 en 400 breed.

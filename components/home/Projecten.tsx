@@ -1,13 +1,19 @@
 'use client';
 
-// De projectstrook: horizontaal scrollend, één kaart per case met een
-// gecodeerde visual van wat er gebouwd is. Later in te wisselen voor foto's
-// of video's per project; de kaart blijft dezelfde.
+// De projectstrook. Op een breed scherm blijft de strook staan en reist hij
+// zijwaarts mee met het scrollen: vier kaarten trekken voorbij. Op een
+// telefoon is het een gewone strook die de bezoeker zelf schuift.
+// Per case een gecodeerde visual van wat er gebouwd is; later in te wisselen
+// voor foto's of video's, de kaart blijft dezelfde.
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Camera, CheckCircle2, CalendarDays, FileText } from 'lucide-react';
+import { motion, useReducedMotion, useTransform } from 'motion/react';
+import { ArrowRight, MapPin, Camera, CheckCircle2, CalendarDays, FileText } from 'lucide-react';
 import { CASES } from '@/lib/data/cases';
+import { Opkomend, Verschijn } from './Opkomend';
+import { useMediaQuery } from './useMediaQuery';
+import { useSectieProgress } from './useSectieProgress';
 
 const VISUALS: Record<string, React.ReactNode> = {
   'pavo-lead-agent': <VisualKaart />,
@@ -17,68 +23,106 @@ const VISUALS: Record<string, React.ReactNode> = {
 };
 
 export function Projecten() {
-  const strookRef = useRef<HTMLDivElement>(null);
-  const schuif = (richting: 1 | -1) => {
-    const el = strookRef.current;
-    if (!el) return;
-    const kaart = el.querySelector<HTMLElement>('[data-kaart]');
-    const stap = kaart ? kaart.offsetWidth + 20 : 420;
-    el.scrollBy({ left: richting * stap, behavior: 'smooth' });
-  };
+  const breed = useMediaQuery('(min-width: 1024px)');
+  const reduced = useReducedMotion() ?? false;
+  const gepind = breed && !reduced;
+  const ref = useRef<HTMLElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+  const [reis, setReis] = useState(0);
+  const progress = useSectieProgress(ref, gepind);
+  const x = useTransform(progress, [0.1, 0.9], [0, -reis]);
+
+  // Hoe ver de rail moet reizen: zijn eigen breedte min wat er al in beeld past.
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail || !gepind) return;
+    // De rail is zo breed als zijn inhoud; wat in beeld past is de breedte van zijn ouder.
+    const meet = () => setReis(Math.max(0, rail.scrollWidth - (rail.parentElement?.clientWidth ?? rail.clientWidth)));
+    meet();
+    const obs = new ResizeObserver(meet);
+    obs.observe(rail);
+    if (rail.parentElement) obs.observe(rail.parentElement);
+    return () => obs.disconnect();
+  }, [gepind]);
+
+  const kop = (
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="max-w-[640px]">
+        <Opkomend
+          as="h2"
+          inView
+          className="font-display text-[30px] leading-[1.06] tracking-[-0.03em] text-[var(--fg)] sm:text-[40px] lg:text-[48px]"
+          regels={['Gebouwd, en in gebruik.']}
+        />
+        <Verschijn inView vertraging={0.2}>
+          <p className="mt-5 text-[15.5px] leading-[1.65] text-[var(--fg-dim)] sm:text-[17px]">
+            Vier bedrijven, vier agents die elke dag draaien. Geen pilots: dit is werk dat nu wordt gedaan.
+          </p>
+        </Verschijn>
+      </div>
+      <Verschijn inView vertraging={0.2}>
+        <Link href="/cases" className="knop knop-glas shrink-0">
+          Alle cases
+          <ArrowRight size={15} strokeWidth={2} />
+        </Link>
+      </Verschijn>
+    </div>
+  );
+
+  const kaarten = CASES.map((c) => (
+    <article key={c.slug} data-kaart className="site-card group snap-start shrink-0 w-[86vw] max-w-[440px] sm:w-[440px] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--border)] bg-[var(--bg-2)]">
+        <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]">{VISUALS[c.slug]}</div>
+        {c.logo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={c.logo} alt={c.klant} className="absolute left-4 top-4 h-6 w-auto brightness-0 invert opacity-80" />
+        )}
+      </div>
+      <div className="px-5 py-5">
+        <div className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-[var(--fg-faint)]">{c.branche}</div>
+        <h3 className="mt-2 text-[17px] leading-snug text-[var(--fg)]">{c.tagline}</h3>
+        <ul className="mt-3 flex flex-wrap gap-1.5">
+          {c.resultaat.slice(0, 2).map((r) => (
+            <li key={r.metric} className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[11.5px] text-[var(--fg-dim)]">
+              {r.metric}
+            </li>
+          ))}
+        </ul>
+        <Link
+          href={`/cases/${c.slug}`}
+          className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] text-[var(--accent-text)] transition-colors hover:text-[var(--fg)]"
+        >
+          Lees de case
+          <ArrowRight size={14} strokeWidth={2} />
+        </Link>
+      </div>
+    </article>
+  ));
+
+  if (!gepind) {
+    return (
+      <section className="band pt-24 sm:pt-32">
+        {kop}
+        <div className="projecten-strook mt-10 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10">
+          {kaarten}
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div className="relative">
-      <div
-        ref={strookRef}
-        className="projecten-strook flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
-      >
-        {CASES.map((c) => (
-          <article
-            key={c.slug}
-            data-kaart
-            className="site-card group snap-start shrink-0 w-[86vw] max-w-[420px] sm:w-[420px] overflow-hidden"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--border)] bg-[var(--bg-2)]">
-              <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]">{VISUALS[c.slug]}</div>
-              {c.logo && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={c.logo}
-                  alt={c.klant}
-                  className="absolute left-4 top-4 h-6 w-auto brightness-0 invert opacity-80"
-                />
-              )}
-            </div>
-            <div className="px-5 py-5">
-              <div className="eyebrow">{c.branche}</div>
-              <h3 className="mt-2 text-[17px] leading-snug text-[var(--fg)]">{c.tagline}</h3>
-              <ul className="mt-3 flex flex-wrap gap-1.5">
-                {c.resultaat.slice(0, 2).map((r) => (
-                  <li key={r.metric} className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[11.5px] text-[var(--fg-dim)]">
-                    {r.metric}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={`/cases/${c.slug}`}
-                className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] text-[var(--accent-text)] hover:text-[var(--fg)] transition-colors"
-              >
-                Lees de case
-                <ArrowRight size={14} strokeWidth={2} />
-              </Link>
-            </div>
-          </article>
-        ))}
+    <section ref={ref} className="relative h-[260vh] pt-24 sm:pt-32">
+      <div className="sticky top-0 flex min-h-screen flex-col justify-center pt-16">
+        <div className="band">{kop}</div>
+        <div className="mt-10 overflow-hidden">
+          <div className="band">
+            <motion.div ref={railRef} style={{ x }} className="flex w-max gap-5 pr-[10vw] pb-4">
+              {kaarten}
+            </motion.div>
+          </div>
+        </div>
       </div>
-      <div className="mt-2 flex items-center justify-end gap-2">
-        <button type="button" onClick={() => schuif(-1)} aria-label="Vorige projecten" className="knop knop-glas !p-2.5">
-          <ChevronLeft size={16} strokeWidth={2} />
-        </button>
-        <button type="button" onClick={() => schuif(1)} aria-label="Volgende projecten" className="knop knop-glas !p-2.5">
-          <ChevronRight size={16} strokeWidth={2} />
-        </button>
-      </div>
-    </div>
+    </section>
   );
 }
 
@@ -125,7 +169,7 @@ function VisualKaart() {
           </g>
         ))}
       </svg>
-      <div className="absolute right-4 bottom-4 w-[58%] rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px] backdrop-blur">
+      <div className="absolute right-4 bottom-4 w-[58%] rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px]">
         <div className="flex items-center gap-1.5 text-[var(--fg-faint)]">
           <MapPin size={11} strokeWidth={2} />
           <span className="font-mono text-[9.5px] uppercase tracking-[0.12em]">Regio Alkmaar · 5 leads</span>
@@ -150,12 +194,8 @@ function VisualKaart() {
 function VisualInspectie() {
   return (
     <div className="absolute inset-0">
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(180deg, #1b1a20 0%, #121115 60%, #0f0f12 100%)' }}
-      />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #1b1a20 0%, #121115 60%, #0f0f12 100%)' }} />
       <svg viewBox="0 0 100 75" className="absolute inset-0 h-full w-full" aria-hidden>
-        {/* kraan */}
         <g stroke="rgba(255,255,255,0.55)" strokeWidth="0.9" fill="none" strokeLinecap="round">
           <path d="M22 70 V 22" />
           <path d="M22 22 L 78 30" />
@@ -166,7 +206,6 @@ function VisualInspectie() {
           <path d="M67 46 H 73 V 50 H 67 Z" fill="rgba(255,255,255,0.35)" />
           <path d="M16 20 H 28 V 24 H 16 Z" fill="rgba(255,255,255,0.35)" />
         </g>
-        {/* annotaties */}
         {[
           [50, 27, 'A'],
           [22, 46, 'B'],
@@ -181,11 +220,11 @@ function VisualInspectie() {
           </g>
         ))}
       </svg>
-      <div className="absolute left-4 bottom-4 flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(16,16,19,0.9)] px-3 py-1.5 text-[11px] text-[var(--fg-dim)] backdrop-blur">
+      <div className="absolute left-4 bottom-4 flex items-center gap-2 rounded-full border border-[var(--border)] bg-[rgba(16,16,19,0.9)] px-3 py-1.5 text-[11px] text-[var(--fg-dim)]">
         <Camera size={12} strokeWidth={2} className="text-[var(--accent-text)]" />
         Foto op locatie · 3 annotaties
       </div>
-      <div className="absolute right-4 bottom-4 w-[42%] rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px] backdrop-blur">
+      <div className="absolute right-4 bottom-4 w-[42%] rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px]">
         <div className="flex items-center gap-1.5 text-[var(--fg-faint)]">
           <FileText size={11} strokeWidth={2} />
           <span className="font-mono text-[9.5px] uppercase tracking-[0.12em]">Rapport</span>
@@ -213,7 +252,7 @@ function VisualDossier() {
   ] as const;
   return (
     <Raster>
-      <div className="absolute inset-x-5 top-12 rounded-[14px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-4 backdrop-blur">
+      <div className="absolute inset-x-5 top-12 rounded-[14px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-4">
         <div className="flex items-center justify-between">
           <div>
             <div className="font-mono text-[9.5px] uppercase tracking-[0.12em] text-[var(--fg-faint)]">Project 2026-114</div>
@@ -228,10 +267,7 @@ function VisualDossier() {
             <li key={naam} className="flex items-center gap-3 text-[11px]">
               <span className="w-16 text-[var(--fg-dim)]">{naam}</span>
               <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--surface-2)]">
-                <span
-                  className="block h-full rounded-full"
-                  style={{ width: `${pct}%`, background: pct === 100 ? 'var(--sage)' : 'var(--accent)' }}
-                />
+                <span className="block h-full rounded-full" style={{ width: `${pct}%`, background: pct === 100 ? 'var(--sage)' : 'var(--accent)' }} />
               </span>
               <span className="w-8 text-right font-mono text-[9.5px] text-[var(--fg-faint)]">{pct}%</span>
             </li>
@@ -264,7 +300,7 @@ function VisualPraktijk() {
         ))}
       </div>
       <div className="absolute inset-x-5 bottom-4 grid grid-cols-2 gap-3">
-        <div className="rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px] backdrop-blur">
+        <div className="rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px]">
           <div className="flex items-center gap-1.5 text-[var(--fg-faint)]">
             <CalendarDays size={11} strokeWidth={2} />
             <span className="font-mono text-[9.5px] uppercase tracking-[0.12em]">Agenda</span>
@@ -272,7 +308,7 @@ function VisualPraktijk() {
           <div className="mt-1.5 text-[var(--fg)]">Di 14:00 · sessie 4</div>
           <div className="text-[var(--fg-faint)]">materiaal verstuurd</div>
         </div>
-        <div className="rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px] backdrop-blur">
+        <div className="rounded-[12px] border border-[var(--border)] bg-[rgba(16,16,19,0.92)] p-3 text-[11px]">
           <div className="flex items-center gap-1.5 text-[var(--fg-faint)]">
             <FileText size={11} strokeWidth={2} />
             <span className="font-mono text-[9.5px] uppercase tracking-[0.12em]">Factuur</span>

@@ -10,19 +10,36 @@ import type { Laag } from './landschap/Bos';
 
 export type LandschapVariant = 'bos' | 'polder';
 
-export function Landschap({ lagen, muisX, muisY }: { lagen: Laag[]; muisX: MotionValue<number>; muisY: MotionValue<number> }) {
+export interface NevelKleuren {
+  achter: string;
+  voor: string;
+}
+
+const SCHEMER_NEVEL: NevelKleuren = { achter: 'rgba(240, 178, 122, 0.22)', voor: 'rgba(201, 116, 74, 0.16)' };
+
+export function Landschap({
+  lagen,
+  muisX,
+  muisY,
+  nevel = SCHEMER_NEVEL,
+}: {
+  lagen: Laag[];
+  muisX: MotionValue<number>;
+  muisY: MotionValue<number>;
+  nevel?: NevelKleuren;
+}) {
   const reduced = useReducedMotion() ?? false;
   const { scrollY } = useScroll();
 
   return (
     <div className="absolute inset-x-0 bottom-0 h-[62%] min-h-[340px] pointer-events-none" aria-hidden>
       {/* nevel achter de verste laag */}
-      <Nevel top="34%" kleur="rgba(240, 178, 122, 0.22)" breedte="70%" links="15%" duur={46} />
+      <Nevel top="34%" kleur={nevel.achter} breedte="70%" links="15%" duur={46} />
       {lagen.map((laag, i) => (
         <LaagView key={laag.id} laag={laag} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} index={i} />
       ))}
       {/* nevel tussen midden en voorgrond */}
-      <Nevel top="58%" kleur="rgba(201, 116, 74, 0.16)" breedte="90%" links="5%" duur={58} omgekeerd />
+      <Nevel top="58%" kleur={nevel.voor} breedte="90%" links="5%" duur={58} omgekeerd />
       {/* onderrand vervaagt naar de achtergrond van de pagina */}
       <div
         className="absolute inset-x-0 bottom-0 h-[40%]"

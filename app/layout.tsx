@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Geist, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
@@ -8,10 +8,9 @@ import { SiteAgent } from "@/components/site-agent/SiteAgent";
 import { ConsentGate } from "@/components/analytics/ConsentGate";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
 });
 
@@ -75,7 +74,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" className={`${inter.variable} ${plexMono.variable}`}>
+    <html lang="nl" className={`${geist.variable} ${plexMono.variable}`}>
       <body className="min-h-screen antialiased">
         <OrganizationSchema />
         <BoekingProvider />

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowDown } from 'lucide-react';
 import { calPopupAttrs } from '@/components/booking/config';
 import { MailAgent } from '@/components/mailagent/MailAgent';
 import { BOS_LAGEN } from './landschap/Bos';
@@ -19,6 +18,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[46%] h-[30%] hero-zon" />
 
       <Landschap lagen={lagen} muisX={muisX} muisY={muisY} />
+      <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
       <div className="relative band pt-24 sm:pt-32 lg:pt-36 text-center">
         <Verschijn vertraging={0.05} className="flex justify-center">
@@ -48,7 +48,6 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
           </Link>
           <a href="#mailagent" className="knop knop-glas">
             Zie de agent werken
-            <ArrowDown size={15} strokeWidth={2} />
           </a>
         </Verschijn>
       </div>
