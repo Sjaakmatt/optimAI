@@ -58,7 +58,7 @@ export default function ScanPage() {
           <h1 className="mt-4 font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Wat kunnen AI-agents
             <br />
-            <span className="italic text-[var(--oker-deep)]">betekenen voor uw bedrijf?</span>
+            <span className="text-[var(--ink-soft)]">betekenen voor uw bedrijf?</span>
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[640px]">
             Vul uw website in. We analyseren uw bedrijf, uw branche en uw processen, en laten

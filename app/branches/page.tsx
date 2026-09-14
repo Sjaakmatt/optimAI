@@ -48,7 +48,7 @@ export default function BranchesPage() {
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             AI-agents{' '}
-            <span className="italic text-[var(--oker-deep)]">per branche.</span>
+            <span className="text-[var(--ink-soft)]">per branche.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Elke branche werkt anders. Andere systemen, andere regels, andere taken. Hier per

@@ -25,7 +25,7 @@ export function HeaderMenu() {
       <button
         onClick={() => setOpen(!open)}
         aria-label="Menu"
-        className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+        className="p-2 rounded-[10px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
       >
         <RotateCcw size={16} strokeWidth={1.5} />
       </button>
@@ -43,12 +43,12 @@ export function HeaderMenu() {
               Modus
             </div>
             <div className="px-3 pb-2">
-              <div className="grid grid-cols-2 gap-1 p-1 rounded-[2px] bg-[var(--paper-deep)] border border-[var(--paper-edge)]">
+              <div className="grid grid-cols-2 gap-1 p-1 rounded-[10px] bg-[var(--paper-deep)] border border-[var(--paper-edge)]">
                 {(['manual', 'autonomous'] as const).map((m) => (
                   <button
                     key={m}
                     onClick={() => setMode(m)}
-                    className={`text-[12px] py-1.5 rounded-[2px] transition-colors ${
+                    className={`text-[12px] py-1.5 rounded-[10px] transition-colors ${
                       mode === m
                         ? 'bg-[var(--paper)] text-[var(--ink)] shadow-sm'
                         : 'text-[var(--ink-dim)] hover:text-[var(--ink)]'

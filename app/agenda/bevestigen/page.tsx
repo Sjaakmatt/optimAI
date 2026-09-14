@@ -25,10 +25,10 @@ export default async function BevestigenPage({
         </div>
         <h1 className="mt-4 font-display text-[32px] sm:text-[44px] leading-[1.08] tracking-tight text-[var(--ink)]">
           Nog één klik en het{' '}
-          <span className="italic text-[var(--oker-deep)]">staat vast.</span>
+          <span className="text-[var(--ink-soft)]">staat vast.</span>
         </h1>
 
-        <div className="mt-8 rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper)] px-6 sm:px-8 py-7">
+        <div className="mt-8 rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper)] px-6 sm:px-8 py-7">
           <BevestigKnop token={token ?? ''} />
         </div>
       </section>

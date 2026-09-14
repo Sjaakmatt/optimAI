@@ -230,7 +230,7 @@ export function Quiz() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href={result.cta.href}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               {result.cta.label}
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -238,7 +238,7 @@ export function Quiz() {
             <button
               type="button"
               onClick={reset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Quiz opnieuw doen
             </button>
@@ -276,7 +276,7 @@ export function Quiz() {
                   return (
                     <label
                       key={oi}
-                      className={`flex items-start gap-3 px-4 py-3 rounded-[2px] border cursor-pointer transition-colors ${
+                      className={`flex items-start gap-3 px-4 py-3 rounded-[10px] border cursor-pointer transition-colors ${
                         checked
                           ? 'border-[var(--oker-deep)] bg-[var(--paper)]'
                           : 'border-[var(--paper-edge)] bg-[var(--paper)] hover:border-[var(--oker)]'
@@ -307,7 +307,7 @@ export function Quiz() {
             type="button"
             disabled={!allAnswered}
             onClick={() => setSubmitted(true)}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Toon mijn score
             <ArrowRight size={16} strokeWidth={1.8} />

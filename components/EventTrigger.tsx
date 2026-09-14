@@ -68,7 +68,7 @@ export function EventTrigger() {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Sluiten"
-                className="p-1.5 rounded-[2px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)] transition-colors"
+                className="p-1.5 rounded-[10px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)] transition-colors"
               >
                 <X size={16} strokeWidth={1.5} />
               </button>
@@ -101,7 +101,7 @@ export function EventTrigger() {
       <button
         onClick={() => setOpen(true)}
         disabled={isPlaying}
-        className="flex items-center gap-2 px-4 py-2 rounded-[2px] text-[13px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
+        className="flex items-center gap-2 px-4 py-2 rounded-[10px] text-[13px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
       >
         <Plus size={14} strokeWidth={2} />
         <span>{isPlaying ? 'Werkbank bezig…' : 'Nieuw event'}</span>

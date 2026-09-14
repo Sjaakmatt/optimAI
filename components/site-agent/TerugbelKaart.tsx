@@ -69,7 +69,7 @@ export default function TerugbelKaart({
     return (
       <div
         role="status"
-        className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3 text-[13.5px] leading-[1.6] text-[var(--ink)]"
+        className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3 text-[13.5px] leading-[1.6] text-[var(--ink)]"
       >
         Genoteerd. We nemen contact met je op.
       </div>
@@ -77,12 +77,12 @@ export default function TerugbelKaart({
   }
 
   const veldClass =
-    'w-full rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] px-3 py-2 ' +
+    'w-full rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] px-3 py-2 ' +
     'text-[14px] leading-[1.5] text-[var(--ink)] outline-none transition-colors ' +
     'placeholder:text-[var(--ink-faint)] focus:border-[var(--oker)]';
 
   return (
-    <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3">
+    <div className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3">
       {stand === 'vraag' ? (
         <>
           <p className="text-[14px] leading-[1.6] text-[var(--ink)]">
@@ -92,7 +92,7 @@ export default function TerugbelKaart({
             <button
               type="button"
               onClick={() => setStand('formulier')}
-              className="rounded-[2px] bg-[var(--terra)] px-4 py-2 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
+              className="rounded-[10px] bg-[var(--terra)] px-4 py-2 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
             >
               Ja, graag
             </button>
@@ -102,7 +102,7 @@ export default function TerugbelKaart({
                 setStand('geweigerd');
                 opAfgewezen();
               }}
-              className="rounded-[2px] border border-[var(--paper-edge)] px-4 py-2 text-[14px] leading-none text-[var(--ink-dim)] transition-colors hover:bg-[var(--paper-deep)]"
+              className="rounded-[10px] border border-[var(--paper-edge)] px-4 py-2 text-[14px] leading-none text-[var(--ink-dim)] transition-colors hover:bg-[var(--paper-deep)]"
             >
               Liever niet
             </button>
@@ -177,7 +177,7 @@ export default function TerugbelKaart({
           <button
             type="submit"
             disabled={stand === 'bezig'}
-            className="w-full rounded-[2px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
+            className="w-full rounded-[10px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
           >
             {stand === 'bezig' ? 'Bezig…' : 'Bel me hierover'}
           </button>

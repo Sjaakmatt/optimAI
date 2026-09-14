@@ -40,7 +40,7 @@ export default function CasesPage() {
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Wat we eerder bouwden.
             <br />
-            <span className="italic text-[var(--oker-deep)]">En wat het opleverde.</span>
+            <span className="text-[var(--ink-soft)]">En wat het opleverde.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Twee klanten, twee heel verschillende processen, één aanpak: bouwen wat er nodig is,
@@ -61,12 +61,12 @@ export default function CasesPage() {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div className="min-w-0 flex items-start gap-5">
                   {c.logo && (
-                    <div className="relative shrink-0 w-[56px] h-[56px] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] overflow-hidden flex items-center justify-center">
+                    <div className="relative shrink-0 w-[56px] h-[56px] rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] overflow-hidden flex items-center justify-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={c.logo}
                         alt={`Logo ${c.klant}`}
-                        className="max-w-[80%] max-h-[80%] object-contain"
+                        className="max-w-[80%] max-h-[80%] object-contain brightness-0 invert opacity-85"
                       />
                     </div>
                   )}
@@ -81,7 +81,7 @@ export default function CasesPage() {
                     <h2 className="mt-1 font-display text-[22px] sm:text-[26px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
                       {c.klant}
                     </h2>
-                    <p className="mt-1 text-[15px] text-[var(--ink-dim)] italic">{c.tagline}</p>
+                    <p className="mt-1 text-[15px] text-[var(--ink-dim)]">{c.tagline}</p>
                   </div>
                 </div>
                 {c.resultaat.length > 0 && (

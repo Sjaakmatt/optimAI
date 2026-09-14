@@ -82,7 +82,7 @@ export function SceneTeam({ beat, reduced }: SceneProps) {
           className="absolute -translate-x-1/2 -translate-y-1/2"
           style={{ left: '50%', top: `${(DIRIGENT_Y / H) * 100}%` }}
         >
-          <div className="rounded-[3px] border border-[var(--oker)] bg-[var(--paper)] px-5 py-2.5 text-center shadow-[var(--shadow-soft)]">
+          <div className="rounded-[14px] border border-[var(--oker)] bg-[var(--paper)] px-5 py-2.5 text-center shadow-[var(--shadow-soft)]">
             <div className="font-display text-[15px] leading-none text-[var(--ink)]">Coördinator</div>
             <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--oker-deep)]">
               verdeelt en bewaakt
@@ -103,7 +103,7 @@ export function SceneTeam({ beat, reduced }: SceneProps) {
             className="absolute -translate-x-1/2"
             style={{ left: `${(chipX(i) / W) * 100}%`, top: `${((CHIP_Y - 14) / H) * 100}%` }}
           >
-            <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3 py-1.5 text-center">
+            <div className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3 py-1.5 text-center">
               <div className="font-display text-[12.5px] leading-none text-[var(--ink)] whitespace-nowrap">
                 {name}
               </div>

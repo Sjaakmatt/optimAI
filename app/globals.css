@@ -1,31 +1,71 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   FactumAI huisstijl (2026): donker, warm, gelaagd.
+
+   De site is bijna zwart met een warme schemergloed; tekst is warm wit,
+   het accent is amber. Eén set tokens voor alles.
+
+   De oude tokennamen (paper/ink/oker/terra/mos/steen) blijven bestaan en
+   wijzen naar de nieuwe kleuren: zeventig bestanden gebruiken ze, en zo
+   gaan ze in één keer mee zonder dat een pagina tussen twee stijlen in
+   blijft hangen.
+   ------------------------------------------------------------------ */
+
 :root {
-  /* Paper — warm crème, linnen */
-  --paper: #f4ede0;
-  --paper-deep: #e9ddc2;
-  --paper-edge: #d2c3a4;
-  --paper-warm: #f7ecd6;
+  /* Achtergrond en vlakken */
+  --bg: #0a0a0c;
+  --bg-2: #101013;
+  --bg-3: #16161a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
-  /* Inkt — warm donker. ink-faint blijft de lichtste teksttint maar haalt
-     nu wel AA-contrast (≥4.5:1) op paper — hij draagt vaak echte informatie. */
-  --ink: #2a2420;
-  --ink-dim: #5c5248;
-  --ink-faint: #6f6555;
+  /* Tekst — warm wit */
+  --fg: #f4f1ec;
+  --fg-dim: #c6c1b9;
+  --fg-faint: #918b82;
+  --fg-soft: rgba(244, 241, 236, 0.62);
 
-  /* Accenten. terra is de vaste conversiekleur (plan/boek-knoppen);
-     verdiept zodat paper-tekst erop ruim AA haalt. */
-  --oker: #a8803a;
-  --oker-deep: #7d5e24;
-  --oker-soft: rgba(168, 128, 58, 0.08);
-  --terra: #8f4a36;
-  --mos: #5e6e3f;
-  --steen: #6e6759;
+  /* Accent — amber / koper. accent-text haalt ruim AA op --bg. */
+  --accent: #d99a4e;
+  --accent-text: #e9b46a;
+  --accent-soft: rgba(217, 154, 78, 0.12);
+  --copper: #c4643f;
+  --sage: #9bb283;
 
-  --grain-opacity: 0.06;
-  --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.06), 0 8px 24px rgba(42, 36, 32, 0.04);
-  --shadow-lift: 0 2px 4px rgba(42, 36, 32, 0.08), 0 12px 32px rgba(42, 36, 32, 0.08);
-  --shadow-hover: 0 4px 8px rgba(125, 94, 36, 0.08), 0 20px 40px rgba(42, 36, 32, 0.1);
+  /* Schemergloed van de hero */
+  --dusk-1: #2b1a2e;
+  --dusk-2: #6b3a3a;
+  --dusk-3: #c9744a;
+  --dusk-4: #f0b27a;
+
+  /* Oude namen → nieuwe kleuren */
+  --paper: var(--bg);
+  --paper-deep: #131316;
+  --paper-edge: #24242a;
+  --paper-warm: #141210;
+  --ink: var(--fg);
+  --ink-dim: var(--fg-dim);
+  --ink-faint: var(--fg-faint);
+  --ink-soft: var(--fg-soft);
+  --oker: var(--accent);
+  --oker-deep: var(--accent-text);
+  --oker-soft: var(--accent-soft);
+  --terra: var(--copper);
+  --mos: var(--sage);
+  --steen: #9a948a;
+
+  --grain-opacity: 0;
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 56px rgba(0, 0, 0, 0.5);
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
 }
 
 @theme inline {
@@ -41,8 +81,9 @@
   --color-terra: var(--terra);
   --color-mos: var(--mos);
   --color-steen: var(--steen);
-  --font-display: var(--font-playfair), "Times New Roman", serif;
-  --font-body: var(--font-lora), Georgia, serif;
+  --color-accent: var(--accent);
+  --font-display: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), "Menlo", monospace;
 }
 
@@ -56,9 +97,8 @@
     scroll-behavior: smooth;
   }
 
-  /* Zachte entree voor de /aanvraag-hero */
   .rise-in {
-    animation: rise-in 550ms ease-out both;
+    animation: rise-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .rise-in-delay-1 {
     animation-delay: 90ms;
@@ -69,7 +109,7 @@
   @keyframes rise-in {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(14px);
     }
     to {
       opacity: 1;
@@ -78,48 +118,31 @@
   }
 }
 
+html {
+  color-scheme: dark;
+}
+
 html, body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-lora), Georgia, serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "cv11", "ss01", "calt";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   position: relative;
 }
 
-/* Papier-vezel overlay — iets prominenter */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.09;
-  mix-blend-mode: multiply;
-  background-image: url("/paper-grain.svg");
-  background-size: 320px 320px;
-}
-
-/* Subtiele warme tint rechtsonder — alsof de zon er net op valt */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(ellipse 60% 30% at 100% 100%, rgba(168, 128, 58, 0.05) 0%, transparent 50%);
-}
-
 /* Selection */
 ::selection {
-  background: var(--oker);
-  color: var(--paper);
+  background: var(--accent);
+  color: #1a1206;
 }
 
 /* Scrollbars */
@@ -131,28 +154,29 @@ body::after {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--paper-edge);
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--oker);
+  background: var(--accent);
 }
 
 *:focus { outline: none; }
 *:focus-visible {
-  outline: 2px solid var(--oker-deep);
-  outline-offset: 2px;
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .hairline {
-  border-color: var(--paper-edge);
+  border-color: var(--border);
 }
 
-/* Artefact-kaart basis */
+/* Artefact-kaart basis (werkbank) */
 .artifact-card {
-  background: var(--paper);
-  border: 1px solid var(--paper-edge);
-  border-radius: 2px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
   transition: border-color 300ms ease, box-shadow 300ms ease, background 300ms ease;
 }
@@ -160,43 +184,43 @@ body::after {
   box-shadow: var(--shadow-lift);
 }
 
-/* Site-kaarten — subtiel oker accent bij hover */
+/* Site-kaarten — glas op donker, lichte rand, amber gloed bij hover */
 .site-card {
-  background: var(--paper);
-  border: 1px solid var(--paper-edge);
-  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
   position: relative;
-  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease, background 300ms ease;
 }
 .site-card::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--oker);
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(217, 154, 78, 0.12), transparent 70%);
   opacity: 0;
   transition: opacity 300ms ease;
+  pointer-events: none;
 }
 .site-card:hover {
-  border-color: var(--oker);
+  border-color: var(--border-strong);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 .site-card:hover::before {
-  opacity: 0.6;
+  opacity: 1;
 }
 
-/* Drop cap voor eerste alinea (voor article/over-pagina's) */
+/* Drop cap voor eerste alinea (artikelen) */
 .drop-cap > p:first-of-type::first-letter {
-  font-family: var(--font-playfair), serif;
-  font-weight: 400;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 600;
   float: left;
-  font-size: 3.6em;
-  line-height: 0.88;
-  padding: 0.05em 0.12em 0 0;
-  color: var(--oker-deep);
-  font-style: italic;
+  font-size: 3.4em;
+  line-height: 0.9;
+  padding: 0.08em 0.14em 0 0;
+  color: var(--accent-text);
 }
 
 /* Decoratieve section-divider */
@@ -205,7 +229,7 @@ body::after {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  color: var(--paper-edge);
+  color: var(--border-strong);
 }
 .ornament-divider::before,
 .ornament-divider::after {
@@ -216,8 +240,12 @@ body::after {
   background: currentColor;
 }
 
+/* Koppen: Inter op optische maat voor display, strak gespatieerd. */
 .font-display {
-  font-family: var(--font-playfair), "Times New Roman", serif;
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-variation-settings: "opsz" 32;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 .font-mono {
   font-family: var(--font-plex-mono), "Menlo", monospace;
@@ -225,17 +253,129 @@ body::after {
 
 /* Hover-lift utility voor links/knoppen */
 .lift-on-hover {
-  transition: transform 250ms ease, box-shadow 250ms ease;
+  transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease, color 250ms ease;
 }
 .lift-on-hover:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-lift);
 }
 
-/* Handgeschilderde oker-highlight-achtergrond voor korte spans */
+/* Highlight voor korte spans: zachte amber onderstreping */
 .ink-highlight {
-  background-image: linear-gradient(transparent 60%, rgba(168, 128, 58, 0.25) 60%, rgba(168, 128, 58, 0.18) 95%, transparent 100%);
-  padding: 0 0.1em;
+  background-image: linear-gradient(transparent 68%, rgba(217, 154, 78, 0.28) 68%, rgba(217, 154, 78, 0.18) 96%, transparent 100%);
+  padding: 0 0.08em;
+}
+
+/* Knoppen */
+.knop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 0.8rem 1.35rem;
+  line-height: 1;
+  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  white-space: nowrap;
+}
+.knop:hover {
+  transform: translateY(-1px);
+}
+.knop:active {
+  transform: translateY(0);
+}
+.knop-primair {
+  background: var(--fg);
+  color: #121014;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 34px rgba(240, 178, 122, 0.14);
+}
+.knop-primair:hover {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 48px rgba(240, 178, 122, 0.24);
+}
+.knop-glas {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--fg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.knop-glas:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.knop-accent {
+  background: var(--accent);
+  color: #1a1206;
+}
+.knop-accent:hover {
+  background: var(--accent-text);
+}
+
+/* Chip boven een kop ("Community platform for creators"-stijl) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.42rem 0.9rem;
+  font-size: 12.5px;
+  color: var(--fg-dim);
+  letter-spacing: 0.005em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.chip-punt {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Eyebrow: klein mono-label, terughoudend */
+.eyebrow {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+/* Section-container */
+.band {
+  margin-inline: auto;
+  max-width: 1180px;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .band { padding-inline: 2rem; }
+}
+@media (min-width: 1024px) {
+  .band { padding-inline: 2.5rem; }
+}
+
+/* Zachte scheidingslijn die naar de randen vervaagt */
+.lijn {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14) 20%, rgba(255, 255, 255, 0.14) 80%, transparent);
+}
+
+/* Product-frame: het donkere venster waar de UI in leeft */
+.venster {
+  background: linear-gradient(180deg, #17171b, #0f0f12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 40px 90px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
 }
 
 /* Typografie voor artikelen die als HTML uit een externe feed komen.
@@ -249,14 +389,14 @@ body::after {
   color: var(--ink);
 }
 .extern-artikel h2 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 26px;
   line-height: 1.2;
   color: var(--ink);
   margin-top: 2.5rem;
 }
 .extern-artikel h3 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 20px;
   line-height: 1.3;
   color: var(--ink);
@@ -265,7 +405,7 @@ body::after {
 .extern-artikel h4,
 .extern-artikel h5,
 .extern-artikel h6 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 17px;
   color: var(--ink);
   margin-top: 1.75rem;
@@ -298,10 +438,9 @@ body::after {
   font-weight: 600;
 }
 .extern-artikel blockquote {
-  border-left: 3px solid var(--oker);
+  border-left: 3px solid var(--accent);
   padding: 0.25rem 0 0.25rem 1.25rem;
-  font-family: var(--font-playfair), serif;
-  font-style: italic;
+  font-family: var(--font-inter), sans-serif;
   font-size: 19px;
   line-height: 1.5;
   color: var(--ink);
@@ -396,7 +535,7 @@ body::after {
       box-shadow: var(--shadow-lift);
     }
     35% {
-      box-shadow: var(--shadow-lift), 0 0 0 6px rgba(143, 74, 54, 0.16);
+      box-shadow: var(--shadow-lift), 0 0 0 6px rgba(217, 154, 78, 0.22);
     }
   }
 }
@@ -479,4 +618,63 @@ body::after {
       transform: translateX(-50%);
     }
   }
+}
+
+/* ------------------------------------------------------------------
+   Hero: lucht, zon, nevel
+   ------------------------------------------------------------------ */
+.hero-lucht {
+  background:
+    linear-gradient(
+      180deg,
+      #0a0a0c 0%,
+      #0e0b12 18%,
+      #1a1220 34%,
+      #33202f 48%,
+      #5e3438 58%,
+      #93503c 66%,
+      #c97a52 72%,
+      #eeae76 77%,
+      #d4885a 82%,
+      #6b3a3a 90%,
+      #0a0a0c 100%
+    );
+}
+.hero-zon {
+  background: radial-gradient(ellipse 46% 60% at 50% 100%, rgba(255, 222, 176, 0.5) 0%, rgba(240, 178, 122, 0.2) 38%, transparent 72%);
+  filter: blur(8px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nevel {
+    animation: nevel-drijft 50s ease-in-out infinite alternate;
+  }
+  .nevel-terug {
+    animation-direction: alternate-reverse;
+  }
+  @keyframes nevel-drijft {
+    from { transform: translateX(-4%) scaleX(1); }
+    to { transform: translateX(4%) scaleX(1.08); }
+  }
+}
+
+/* Projectstrook zonder zichtbare scrollbalk */
+.projecten-strook {
+  scrollbar-width: none;
+}
+.projecten-strook::-webkit-scrollbar {
+  display: none;
+}
+
+/* Portret: vervaagt onderaan de donkere achtergrond in */
+.portret-vervaag {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+}
+
+/* Portretkader op de over-pagina's: schemergloed achter de uitsnede */
+.portret-kader {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 100%, rgba(201, 116, 74, 0.35) 0%, rgba(43, 26, 46, 0.5) 50%, transparent 80%),
+    linear-gradient(180deg, #121014 0%, #1a1420 100%);
 }

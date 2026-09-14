@@ -21,7 +21,7 @@ export function ReasoningLine({ reasoning }: Props) {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="mx-auto w-full max-w-[520px] text-center px-4 py-2"
     >
-      <p className="font-display italic text-[15px] leading-[1.5] text-[var(--ink-dim)]">
+      <p className="font-display text-[15px] leading-[1.5] text-[var(--ink-dim)]">
         {reasoning.text}
       </p>
       <div className="mt-1 font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">

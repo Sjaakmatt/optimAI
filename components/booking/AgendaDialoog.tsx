@@ -68,7 +68,7 @@ export function AgendaDialoog({ bron, aanleiding, onSluiten }: AgendaDialoogProp
         aria-modal="true"
         aria-label="Plan een kennismaking"
         onKeyDown={opTab}
-        className="relative w-full sm:max-w-[540px] max-h-[92vh] overflow-y-auto bg-[var(--paper)] border border-[var(--paper-edge)] rounded-t-[6px] sm:rounded-[3px] px-6 sm:px-8 pt-5 pb-8"
+        className="relative w-full sm:max-w-[540px] max-h-[92vh] overflow-y-auto bg-[var(--paper)] border border-[var(--paper-edge)] rounded-t-[6px] sm:rounded-[14px] px-6 sm:px-8 pt-5 pb-8"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
         <div className="flex justify-end -mr-2">

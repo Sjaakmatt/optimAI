@@ -1,11 +1,16 @@
 'use client';
 
+// De kop van de site: zwevend over de hero, wordt glas zodra er gescrold is.
+// Eén pill-knop rechts (plan een gesprek), de rest rustig.
+
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { vergrendelScroll } from '@/lib/site/scrollLock';
+import { calPopupAttrs } from '@/components/booking/config';
+import { Woordmerk } from './Woordmerk';
 
 interface NavLink {
   href: string;
@@ -15,7 +20,7 @@ interface NavLink {
 interface NavGroup {
   label: string;
   items: NavLink[];
-  matchPrefixes: string[]; // route-prefixes for "active" state
+  matchPrefixes: string[];
 }
 
 type NavEntry = NavLink | NavGroup;
@@ -27,27 +32,27 @@ function isGroup(e: NavEntry): e is NavGroup {
 const NAV: NavEntry[] = [
   { href: '/diensten', label: 'Diensten' },
   { href: '/oplossingen', label: 'Oplossingen' },
-  { href: '/info', label: 'Wat is AI-agent' },
   { href: '/cases', label: 'Cases' },
   { href: '/kennis', label: 'Kennis' },
   { href: '/over', label: 'Over ons' },
   {
     label: 'Tools',
-    matchPrefixes: ['/demo', '/tools/', '/scan', '/ontdek'],
+    matchPrefixes: ['/demo', '/tools/', '/scan', '/ontdek', '/info'],
     items: [
       { href: '/ontdek', label: 'Ontdek AI-agents' },
+      { href: '/info', label: 'Wat is een AI-agent' },
       { href: '/scan', label: 'AI-agents scan' },
       { href: '/demo', label: 'Demo · De Werkbank' },
       { href: '/tools/ai-roi-calculator', label: 'Procesdiagnose' },
       { href: '/tools/agent-readiness-check', label: 'Readiness check' },
     ],
   },
-  { href: '/contact', label: 'Contact' },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [gescrold, setGescrold] = useState(false);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -58,43 +63,60 @@ export function SiteHeader() {
     return vergrendelScroll();
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const opScroll = () => setGescrold(window.scrollY > 24);
+    opScroll();
+    window.addEventListener('scroll', opScroll, { passive: true });
+    return () => window.removeEventListener('scroll', opScroll);
+  }, []);
+
   return (
     <>
-      <header className="w-full border-b border-[var(--paper-edge)] relative z-30 bg-[var(--paper)]">
-        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 sm:py-5 flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-baseline gap-3 group min-w-0">
-            <span className="font-display text-[22px] sm:text-[24px] tracking-tight leading-none">
-              <span className="text-[var(--ink)]">Factum</span>
-              <span className="italic text-[var(--oker-deep)]">AI</span>
-            </span>
-            <span className="hidden sm:inline font-mono italic text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.2em] group-hover:text-[var(--oker-deep)] transition-colors">
-              AI-agents voor MKB
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV.map((entry) =>
-              isGroup(entry) ? (
-                <DesktopDropdown key={entry.label} group={entry} pathname={pathname} />
-              ) : (
-                <DesktopLink key={entry.href} item={entry} pathname={pathname} />
-              ),
-            )}
-          </nav>
-
-          {/* Mobile burger */}
-          <button
-            onClick={() => setMobileOpen(true)}
-            aria-label="Menu openen"
-            className="lg:hidden p-2 -mr-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+      <header className="sticky top-0 z-40 w-full pointer-events-none">
+        <div className="band pt-3 sm:pt-4">
+          <div
+            className={`pointer-events-auto flex items-center justify-between gap-3 rounded-[999px] px-3 sm:px-4 py-2 transition-all duration-500 ${
+              gescrold
+                ? 'bg-[rgba(12,12,15,0.72)] border border-[rgba(255,255,255,0.1)] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl'
+                : 'bg-transparent border border-transparent'
+            }`}
           >
-            <Menu size={22} strokeWidth={1.5} />
-          </button>
+            <Link href="/" className="flex items-center gap-2 pl-1 min-w-0" aria-label="FactumAI, naar de homepage">
+              <Woordmerk />
+            </Link>
+
+            <nav className="hidden lg:flex items-center gap-0.5" aria-label="Hoofdmenu">
+              {NAV.map((entry) =>
+                isGroup(entry) ? (
+                  <DesktopDropdown key={entry.label} group={entry} pathname={pathname} />
+                ) : (
+                  <DesktopLink key={entry.href} item={entry} pathname={pathname} />
+                ),
+              )}
+            </nav>
+
+            <div className="flex items-center gap-2">
+              <Link
+                href="/contact"
+                className="hidden md:inline-flex px-3 py-2 text-[13.5px] text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors"
+              >
+                Contact
+              </Link>
+              <Link href="/plan" {...calPopupAttrs} className="knop knop-primair !py-[0.62rem] !px-[1.1rem] text-[13.5px]">
+                Plan een gesprek
+              </Link>
+              <button
+                onClick={() => setMobileOpen(true)}
+                aria-label="Menu openen"
+                className="lg:hidden p-2 rounded-full text-[var(--fg-dim)] hover:text-[var(--fg)] hover:bg-[var(--surface-2)] transition-colors"
+              >
+                <Menu size={20} strokeWidth={1.6} />
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* Mobile nav overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -103,29 +125,26 @@ export function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 lg:hidden flex flex-col bg-[var(--paper)]"
+            className="fixed inset-0 z-50 lg:hidden flex flex-col bg-[var(--bg)]"
           >
-            <div className="border-b border-[var(--paper-edge)] px-5 py-4 flex items-center justify-between">
-              <span className="font-display text-[22px] tracking-tight leading-none">
-                <span className="text-[var(--ink)]">Factum</span>
-                <span className="italic text-[var(--oker-deep)]">AI</span>
-              </span>
+            <div className="band py-4 flex items-center justify-between">
+              <Woordmerk />
               <button
                 onClick={() => setMobileOpen(false)}
                 aria-label="Menu sluiten"
-                className="p-2 -mr-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]"
+                className="p-2 -mr-2 rounded-full text-[var(--fg-dim)] hover:text-[var(--fg)] hover:bg-[var(--surface-2)]"
               >
                 <X size={22} strokeWidth={1.5} />
               </button>
             </div>
-            <nav className="flex-1 overflow-y-auto px-5 py-6">
+            <nav className="flex-1 overflow-y-auto band py-4">
               <ul className="space-y-1">
-                {NAV.map((entry, i) => (
+                {[...NAV, { href: '/contact', label: 'Contact' }].map((entry, i) => (
                   <motion.li
                     key={isGroup(entry) ? entry.label : entry.href}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25, delay: i * 0.04 }}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.04 }}
                   >
                     {isGroup(entry) ? (
                       <MobileGroup group={entry} pathname={pathname} />
@@ -136,20 +155,12 @@ export function SiteHeader() {
                 ))}
               </ul>
 
-              <div className="mt-10 pt-6 border-t border-[var(--paper-edge)] space-y-2">
-                <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-                  Direct contact
-                </div>
-                <a
-                  href="mailto:info@factumai.nl"
-                  className="block text-[14px] text-[var(--ink)] hover:text-[var(--oker-deep)]"
-                >
+              <div className="mt-10 pt-6 border-t border-[var(--border)] space-y-2">
+                <div className="eyebrow">Direct contact</div>
+                <a href="mailto:info@factumai.nl" className="block text-[15px] text-[var(--fg)]">
                   info@factumai.nl
                 </a>
-                <a
-                  href="tel:+31610555658"
-                  className="block text-[14px] text-[var(--ink)] hover:text-[var(--oker-deep)]"
-                >
+                <a href="tel:+31610555658" className="block text-[15px] text-[var(--fg)]">
                   06-10 55 56 58
                 </a>
               </div>
@@ -166,10 +177,8 @@ function DesktopLink({ item, pathname }: { item: NavLink; pathname: string }) {
   return (
     <Link
       href={item.href}
-      className={`px-3 py-1.5 text-[13px] rounded-[2px] transition-colors ${
-        active
-          ? 'text-[var(--ink)] bg-[var(--paper-deep)]'
-          : 'text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]'
+      className={`px-3 py-2 text-[13.5px] rounded-full transition-colors ${
+        active ? 'text-[var(--fg)] bg-[var(--surface-2)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
       }`}
     >
       {item.label}
@@ -181,9 +190,7 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const active = group.matchPrefixes.some(
-    (p) => pathname === p || pathname.startsWith(p),
-  );
+  const active = group.matchPrefixes.some((p) => pathname === p || pathname.startsWith(p));
 
   const openNow = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -205,43 +212,36 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`px-3 py-1.5 text-[13px] rounded-[2px] transition-colors flex items-center gap-1 ${
-          active
-            ? 'text-[var(--ink)] bg-[var(--paper-deep)]'
-            : 'text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]'
+        className={`px-3 py-2 text-[13.5px] rounded-full transition-colors flex items-center gap-1 ${
+          active ? 'text-[var(--fg)] bg-[var(--surface-2)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
         }`}
       >
         {group.label}
-        <ChevronDown
-          size={13}
-          strokeWidth={1.8}
-          className={`transition-transform ${open ? 'rotate-180' : ''}`}
-        />
+        <ChevronDown size={13} strokeWidth={1.8} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
         {open && (
           <motion.div
             key="dropdown"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15 }}
+            initial={{ opacity: 0, y: 6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18 }}
             role="menu"
-            className="absolute right-0 top-full mt-1 min-w-[240px] bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] py-1.5 z-40"
+            className="absolute right-0 top-full mt-2 min-w-[240px] rounded-[16px] p-1.5 z-40 bg-[rgba(16,16,19,0.92)] border border-[var(--border)] backdrop-blur-xl"
             style={{ boxShadow: 'var(--shadow-lift)' }}
           >
             {group.items.map((item) => {
-              const itemActive =
-                pathname === item.href || pathname.startsWith(item.href + '/');
+              const itemActive = pathname === item.href || pathname.startsWith(item.href + '/');
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   role="menuitem"
-                  className={`block px-4 py-2 text-[13px] transition-colors ${
+                  className={`block px-3.5 py-2 text-[13.5px] rounded-[10px] transition-colors ${
                     itemActive
-                      ? 'text-[var(--ink)] bg-[var(--paper-deep)]'
-                      : 'text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]'
+                      ? 'text-[var(--fg)] bg-[var(--surface-2)]'
+                      : 'text-[var(--fg-dim)] hover:text-[var(--fg)] hover:bg-[var(--surface)]'
                   }`}
                 >
                   {item.label}
@@ -260,10 +260,8 @@ function MobileLink({ item, pathname }: { item: NavLink; pathname: string }) {
   return (
     <Link
       href={item.href}
-      className={`block px-3 py-3 rounded-[2px] text-[18px] font-display transition-colors ${
-        active
-          ? 'text-[var(--ink)] bg-[var(--paper-deep)]'
-          : 'text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]'
+      className={`block px-3 py-3 rounded-[12px] text-[22px] font-display transition-colors ${
+        active ? 'text-[var(--fg)] bg-[var(--surface)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
       }`}
     >
       {item.label}
@@ -272,33 +270,21 @@ function MobileLink({ item, pathname }: { item: NavLink; pathname: string }) {
 }
 
 function MobileGroup({ group, pathname }: { group: NavGroup; pathname: string }) {
-  const active = group.matchPrefixes.some(
-    (p) => pathname === p || pathname.startsWith(p),
-  );
+  const active = group.matchPrefixes.some((p) => pathname === p || pathname.startsWith(p));
   return (
     <div>
-      <div
-        className={`px-3 py-3 text-[18px] font-display flex items-center gap-2 ${
-          active ? 'text-[var(--ink)]' : 'text-[var(--ink-dim)]'
-        }`}
-      >
+      <div className={`px-3 py-3 text-[22px] font-display ${active ? 'text-[var(--fg)]' : 'text-[var(--fg-dim)]'}`}>
         {group.label}
-        <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em] pt-1.5">
-          {group.items.length}
-        </span>
       </div>
-      <ul className="ml-3 pl-3 border-l border-[var(--paper-edge)] space-y-0.5">
+      <ul className="ml-3 pl-3 border-l border-[var(--border)] space-y-0.5">
         {group.items.map((item) => {
-          const itemActive =
-            pathname === item.href || pathname.startsWith(item.href + '/');
+          const itemActive = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`block px-3 py-2.5 rounded-[2px] text-[15px] transition-colors ${
-                  itemActive
-                    ? 'text-[var(--ink)] bg-[var(--paper-deep)]'
-                    : 'text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)]'
+                className={`block px-3 py-2.5 rounded-[10px] text-[16px] transition-colors ${
+                  itemActive ? 'text-[var(--fg)] bg-[var(--surface)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
                 }`}
               >
                 {item.label}

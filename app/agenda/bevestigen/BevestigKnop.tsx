@@ -104,7 +104,7 @@ export function BevestigKnop({ token }: { token: string }) {
         type="button"
         onClick={bevestig}
         disabled={fase === 'bezig'}
-        className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-60 transition-colors"
+        className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-60 transition-colors"
       >
         {fase === 'bezig' ? (
           <>

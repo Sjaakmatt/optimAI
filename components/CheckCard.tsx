@@ -40,7 +40,7 @@ export function CheckCard({ check }: Props) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="mx-auto w-full max-w-[560px] flex items-stretch gap-3 px-4 py-2.5 rounded-[2px] bg-[var(--paper-deep)] border border-[var(--paper-edge)]"
+      className="mx-auto w-full max-w-[560px] flex items-stretch gap-3 px-4 py-2.5 rounded-[10px] bg-[var(--paper-deep)] border border-[var(--paper-edge)]"
     >
       <div
         className="flex items-center justify-center w-7 shrink-0"

@@ -66,7 +66,7 @@ export function InboxPanel() {
               <button
                 onClick={() => setOpen(null)}
                 aria-label="Sluiten"
-                className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)]"
+                className="p-2 rounded-[10px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)]"
               >
                 <X size={18} strokeWidth={1.5} />
               </button>
@@ -78,7 +78,7 @@ export function InboxPanel() {
                   Te verwerken · {pending.length}
                 </div>
                 {pending.length === 0 ? (
-                  <p className="text-[13px] text-[var(--ink-dim)] italic">
+                  <p className="text-[13px] text-[var(--ink-dim)]">
                     Geen openstaande zaken. Alles afgerond.
                   </p>
                 ) : (
@@ -186,7 +186,7 @@ function WorkItemCard({
                   <ArtifactView artifact={artifact} />
                 </div>
               ) : (
-                <p className="text-[12px] text-[var(--ink-faint)] italic text-center py-4">
+                <p className="text-[12px] text-[var(--ink-faint)] text-center py-4">
                   Geen gekoppeld document beschikbaar.
                 </p>
               )}
@@ -201,7 +201,7 @@ function WorkItemCard({
             e.stopPropagation();
             onComplete();
           }}
-          className="px-3 py-1.5 rounded-[2px] text-[12.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+          className="px-3 py-1.5 rounded-[10px] text-[12.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
         >
           {item.actionLabel}
         </button>
@@ -218,7 +218,7 @@ function CompletedWorkItem({ item }: { item: WorkItem }) {
   const artifact = useArtifactById(item.artifactId);
 
   return (
-    <li className="rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper-deep)] overflow-hidden">
+    <li className="rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper-deep)] overflow-hidden">
       <button
         onClick={() => setExpanded(!expanded)}
         className="w-full flex items-baseline gap-3 px-3 py-2 text-[12px] text-[var(--ink-dim)] hover:bg-[var(--paper)] transition-colors"

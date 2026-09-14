@@ -213,7 +213,7 @@ function DirigentCard({
           <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
             De Dirigent
           </div>
-          <div className="font-display italic text-[14px] text-[var(--ink-dim)] leading-snug mt-1 min-h-[20px]">
+          <div className="font-display text-[14px] text-[var(--ink-dim)] leading-snug mt-1 min-h-[20px]">
             <AnimatePresence mode="wait">
               <motion.span
                 key={statusText ?? 'idle'}
@@ -251,7 +251,7 @@ function AgentChip({
       onClick={onClick}
       animate={{ scale: active ? 1.04 : 1 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="relative px-3 py-2.5 sm:py-1.5 rounded-[2px] border cursor-pointer w-full sm:w-auto"
+      className="relative px-3 py-2.5 sm:py-1.5 rounded-[10px] border cursor-pointer w-full sm:w-auto"
       style={{
         background: active ? 'var(--paper)' : 'var(--paper-deep)',
         borderColor: active ? 'var(--oker)' : 'var(--paper-edge)',

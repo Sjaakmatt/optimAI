@@ -43,7 +43,7 @@ export function CompletedList() {
                 <li key={c.id}>
                   <button
                     onClick={() => setViewing(isActive ? null : c.id)}
-                    className={`w-full text-left py-3 px-2 -mx-2 rounded-[2px] text-[13px] transition-colors ${
+                    className={`w-full text-left py-3 px-2 -mx-2 rounded-[10px] text-[13px] transition-colors ${
                       isActive
                         ? 'bg-[var(--paper-deep)]'
                         : 'hover:bg-[var(--paper-deep)]'
@@ -79,7 +79,7 @@ export function CompletedList() {
                                     →
                                   </span>
                                 )}
-                                <span className="px-1.5 py-0.5 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-wider">
+                                <span className="px-1.5 py-0.5 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-wider">
                                   {agents[id].name}
                                 </span>
                               </span>

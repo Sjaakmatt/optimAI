@@ -85,7 +85,7 @@ export default async function KennisPage() {
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Gedachten,<br />
-            <span className="italic text-[var(--oker-deep)]">zonder jargon.</span>
+            <span className="text-[var(--ink-soft)]">zonder jargon.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Over hoe AI-agents werken, wat ze kunnen en wat (nog) niet, en wat het betekent voor
@@ -155,7 +155,7 @@ export default async function KennisPage() {
               <li key={r.slug}>
                 <Link
                   href={`/resources/${r.slug}`}
-                  className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-deep)] transition-colors"
+                  className="block h-full border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-deep)] transition-colors"
                 >
                   <span className="font-display text-[17px] text-[var(--ink)] leading-snug">
                     {r.shortTitle}

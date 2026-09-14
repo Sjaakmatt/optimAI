@@ -1,4 +1,4 @@
-import { CAL_NAMESPACE, CAL_PALETTE_LIGHT } from './config';
+import { CAL_NAMESPACE, CAL_PALETTE_DARK } from './config';
 
 type CalQueueItem = unknown[];
 
@@ -79,8 +79,8 @@ function installSnippet(): void {
   Cal.ns[CAL_NAMESPACE]('ui', {
     hideEventTypeDetails: false,
     layout: 'month_view',
-    theme: 'light',
-    cssVarsPerTheme: { light: { ...CAL_PALETTE_LIGHT } },
+    theme: 'dark',
+    cssVarsPerTheme: { dark: { ...CAL_PALETTE_DARK } },
   });
 }
 

@@ -178,13 +178,13 @@ function ConsentBanner({
               </button>
               <button
                 onClick={onRejectAll}
-                className="order-2 inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+                className="order-2 inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-[13.5px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
               >
                 Alleen noodzakelijk
               </button>
               <button
                 onClick={onAcceptAll}
-                className="order-1 sm:order-3 inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="order-1 sm:order-3 inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-[13.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Accepteren
               </button>
@@ -223,13 +223,13 @@ function ConsentBanner({
             <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
               <button
                 onClick={() => onSave({ analytics: false, marketing: false })}
-                className="order-2 sm:order-1 sm:mr-auto inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+                className="order-2 sm:order-1 sm:mr-auto inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-[13.5px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
               >
                 Alles weigeren
               </button>
               <button
                 onClick={() => onSave({ analytics, marketing: showMarketing ? marketing : false })}
-                className="order-1 sm:order-2 inline-flex items-center justify-center px-5 py-2.5 rounded-[2px] text-[13.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="order-1 sm:order-2 inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-[13.5px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Voorkeuren opslaan
               </button>
@@ -255,7 +255,7 @@ function CategoryRow({
   onChange?: (v: boolean) => void;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3">
+    <div className="flex items-start justify-between gap-4 rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-3">
       <div className="min-w-0">
         <div className="font-display text-[14.5px] text-[var(--ink)]">{titel}</div>
         <p className="mt-0.5 text-[12.5px] leading-[1.5] text-[var(--ink-dim)]">{body}</p>

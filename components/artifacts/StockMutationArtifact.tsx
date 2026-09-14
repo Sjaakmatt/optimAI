@@ -58,7 +58,7 @@ export function StockMutationArtifact({ artifact }: Props) {
       </div>
 
       {delta.reden && (
-        <div className="mt-4 text-[12px] text-[var(--ink-dim)] italic">
+        <div className="mt-4 text-[12px] text-[var(--ink-dim)]">
           {delta.reden}
         </div>
       )}

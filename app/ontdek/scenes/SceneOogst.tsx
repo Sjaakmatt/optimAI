@@ -48,7 +48,7 @@ export function SceneOogst({ beat, reduced }: SceneProps) {
         </div>
         <a
           href="#finale"
-          className="inline-flex items-center gap-2 rounded-[2px] bg-[var(--ink)] px-5 py-2.5 text-[14px] text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] lift-on-hover"
+          className="inline-flex items-center gap-2 rounded-[10px] bg-[var(--ink)] px-5 py-2.5 text-[14px] text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] lift-on-hover"
         >
           Bekijk uw volgende stap
           <ArrowDown size={15} strokeWidth={1.8} aria-hidden />

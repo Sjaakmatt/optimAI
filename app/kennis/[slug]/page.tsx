@@ -190,7 +190,7 @@ export default async function PostPage({
           <h1 className="mt-4 font-display text-[30px] sm:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight text-[var(--ink)]">
             {p.title}
           </h1>
-          <p className="mt-5 font-display italic text-[18px] sm:text-[22px] leading-[1.45] text-[var(--oker-deep)]">
+          <p className="mt-5 font-display text-[18px] sm:text-[22px] leading-[1.45] text-[var(--oker-deep)]">
             {p.lede}
           </p>
         </section>
@@ -205,7 +205,7 @@ export default async function PostPage({
             {p.tags.map((t) => (
               <span
                 key={t}
-                className="px-2 py-1 rounded-[2px] bg-[var(--paper-deep)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-[0.14em]"
+                className="px-2 py-1 rounded-[10px] bg-[var(--paper-deep)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-[0.14em]"
               >
                 #{t}
               </span>
@@ -255,7 +255,7 @@ export default async function PostPage({
                   <li key={r.slug}>
                     <Link
                       href={`/kennis/${r.slug}`}
-                      className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                      className="block h-full border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                     >
                       <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                         {DATE_FORMATTER.format(new Date(r.published))} · {r.readingMinutes} min
@@ -287,7 +287,7 @@ export default async function PostPage({
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Sparren over uw situatie
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -347,7 +347,7 @@ function ExternArtikel({ post }: { post: SoroPost }) {
           <h1 className="mt-4 font-display text-[30px] sm:text-[40px] lg:text-[48px] leading-[1.1] tracking-tight text-[var(--ink)]">
             {post.title}
           </h1>
-          <p className="mt-5 font-display italic text-[18px] sm:text-[22px] leading-[1.45] text-[var(--oker-deep)]">
+          <p className="mt-5 font-display text-[18px] sm:text-[22px] leading-[1.45] text-[var(--oker-deep)]">
             {post.lede}
           </p>
         </section>
@@ -362,7 +362,7 @@ function ExternArtikel({ post }: { post: SoroPost }) {
               {post.tags.map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-1 rounded-[2px] bg-[var(--paper-deep)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-[0.14em]"
+                  className="px-2 py-1 rounded-[10px] bg-[var(--paper-deep)] font-mono text-[10px] text-[var(--ink-dim)] uppercase tracking-[0.14em]"
                 >
                   #{t}
                 </span>
@@ -384,7 +384,7 @@ function ExternArtikel({ post }: { post: SoroPost }) {
                 <li key={r.slug}>
                   <Link
                     href={`/kennis/${r.slug}`}
-                    className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    className="block h-full border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                   >
                     <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                       {DATE_FORMATTER.format(new Date(r.published))} · {r.readingMinutes} min
@@ -406,7 +406,7 @@ function ExternArtikel({ post }: { post: SoroPost }) {
             </h2>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Sparren over uw situatie
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -491,7 +491,7 @@ function Block({ block }: { block: PostBlock }) {
           className="my-10 pl-5 sm:pl-6 pr-4 py-2 border-l-[3px] border-[var(--oker)]"
           style={{ background: 'var(--paper-warm)' }}
         >
-          <p className="font-display italic text-[19px] sm:text-[22px] leading-[1.5] text-[var(--ink)]">
+          <p className="font-display text-[19px] sm:text-[22px] leading-[1.5] text-[var(--ink)]">
             &ldquo;{block.text}&rdquo;
           </p>
           {block.by && (

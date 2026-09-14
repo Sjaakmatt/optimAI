@@ -35,7 +35,7 @@ export function SceneVooruit({ beat, reduced }: SceneProps) {
               {agent.titel}
             </h3>
             <p className="mt-1.5 text-[12px] leading-[1.55] text-[var(--ink-dim)]">{agent.body}</p>
-            <p className="mt-2 border-t border-dashed border-[var(--paper-edge)] pt-1.5 text-[11.5px] italic leading-[1.5] text-[var(--ink-dim)]">
+            <p className="mt-2 border-t border-dashed border-[var(--paper-edge)] pt-1.5 text-[11.5px] leading-[1.5] text-[var(--ink-dim)]">
               {agent.voorbeeld}
             </p>
           </motion.article>

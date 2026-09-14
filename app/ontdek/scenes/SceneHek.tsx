@@ -98,7 +98,7 @@ export function SceneHek({ beat, reduced, interacted, onInteract }: SceneProps) 
           style={{ left: `${((BRANCH_X + 110) / W) * 100}%`, top: `${((H - 48) / H) * 100}%` }}
         >
           <div
-            className="rounded-[3px] border bg-[var(--paper)] px-3.5 py-2 shadow-[var(--shadow-soft)] transition-colors duration-500"
+            className="rounded-[14px] border bg-[var(--paper)] px-3.5 py-2 shadow-[var(--shadow-soft)] transition-colors duration-500"
             style={{ borderColor: doubted ? 'var(--terra)' : 'var(--paper-edge)' }}
           >
             <div className="flex items-center gap-2">
@@ -129,7 +129,7 @@ export function SceneHek({ beat, reduced, interacted, onInteract }: SceneProps) 
             type="button"
             onClick={onInteract}
             aria-pressed={doubted}
-            className="inline-flex items-center gap-2 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-2 text-[13px] text-[var(--ink)] transition-colors hover:border-[var(--oker)] hover:bg-[var(--paper-deep)]"
+            className="inline-flex items-center gap-2 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-2 text-[13px] text-[var(--ink)] transition-colors hover:border-[var(--oker)] hover:bg-[var(--paper-deep)]"
           >
             <span
               aria-hidden

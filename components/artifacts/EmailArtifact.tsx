@@ -36,7 +36,7 @@ export function EmailArtifact({ artifact }: Props) {
         </div>
       </header>
 
-      <div className="pt-6 space-y-4 text-[15px] leading-[1.7] text-[var(--ink)] font-[var(--font-lora)]">
+      <div className="pt-6 space-y-4 text-[15px] leading-[1.7] text-[var(--ink)]">
         <AnimatePresence initial={false}>
           {paragraphs.map((p, i) => (
             <motion.p

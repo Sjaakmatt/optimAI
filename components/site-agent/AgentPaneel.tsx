@@ -77,7 +77,7 @@ export default function AgentPaneel({
 
     const link = typeof signaal.payload.calLink === 'string' ? signaal.payload.calLink : CAL_LINK;
     getCalApi()
-      .then((ns) => ns('modal', { calLink: link, config: { layout: 'month_view', theme: 'light' } }))
+      .then((ns) => ns('modal', { calLink: link, config: { layout: 'month_view', theme: 'dark' } }))
       .catch((err) => console.warn('[site-agent] agenda openen faalde:', err));
   }, []);
 
@@ -175,7 +175,7 @@ export default function AgentPaneel({
       className={[
         'fixed z-50 flex flex-col bg-[var(--paper)]',
         'inset-0 sm:inset-auto sm:bottom-6 sm:right-6',
-        'sm:h-[min(620px,calc(100vh-3rem))] sm:w-[380px] sm:rounded-[3px]',
+        'sm:h-[min(620px,calc(100vh-3rem))] sm:w-[380px] sm:rounded-[14px]',
         'border-0 sm:border sm:border-[var(--paper-edge)]',
       ].join(' ')}
       style={{ boxShadow: 'var(--shadow-lift)' }}
@@ -193,7 +193,7 @@ export default function AgentPaneel({
           type="button"
           onClick={sluitPaneel}
           aria-label="Gesprek sluiten"
-          className="-mr-1 -mt-1 rounded-[2px] p-2 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
+          className="-mr-1 -mt-1 rounded-[10px] p-2 text-[var(--ink-faint)] transition-colors hover:bg-[var(--paper-deep)] hover:text-[var(--ink)]"
         >
           <X size={18} strokeWidth={1.8} />
         </button>
@@ -211,7 +211,7 @@ export default function AgentPaneel({
           >
             <div
               className={[
-                'max-w-[85%] whitespace-pre-wrap rounded-[3px] px-3.5 py-2.5 text-[14.5px] leading-[1.6]',
+                'max-w-[85%] whitespace-pre-wrap rounded-[14px] px-3.5 py-2.5 text-[14.5px] leading-[1.6]',
                 bericht.rol === 'bezoeker'
                   ? 'bg-[var(--ink)] text-[var(--paper)]'
                   : 'border border-[var(--paper-edge)] bg-[var(--paper-warm)] text-[var(--ink)]',
@@ -224,7 +224,7 @@ export default function AgentPaneel({
 
         {wachtOpAntwoord && (
           <div className="flex justify-start">
-            <div className="flex items-center gap-1.5 rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3">
+            <div className="flex items-center gap-1.5 rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3.5 py-3">
               <span className="sr-only">De agent typt een antwoord</span>
               {[0, 1, 2].map((i) => (
                 <span
@@ -241,7 +241,7 @@ export default function AgentPaneel({
         {fout && (
           <div
             role="status"
-            className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-deep)] px-3.5 py-2.5 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]"
+            className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-deep)] px-3.5 py-2.5 text-[13.5px] leading-[1.6] text-[var(--ink-dim)]"
           >
             {fout}
           </div>
@@ -281,7 +281,7 @@ export default function AgentPaneel({
             <button
               type="button"
               onClick={() => opSignaal({ naam: 'agenda', payload: {} })}
-              className="rounded-[2px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
+              className="rounded-[10px] bg-[var(--terra)] px-4 py-2.5 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
             >
               Plan een gesprek van 20 minuten
             </button>
@@ -309,13 +309,13 @@ export default function AgentPaneel({
               el.style.height = 'auto';
               el.style.height = `${Math.min(el.scrollHeight, 120)}px`;
             }}
-            className="max-h-[120px] flex-1 resize-none rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] px-3 py-2 text-[14.5px] leading-[1.5] text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-faint)] focus:border-[var(--oker)]"
+            className="max-h-[120px] flex-1 resize-none rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] px-3 py-2 text-[14.5px] leading-[1.5] text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-faint)] focus:border-[var(--oker)]"
           />
           <button
             type="submit"
             disabled={status === 'bezig' || afsluiting !== null}
             aria-label="Bericht versturen"
-            className="rounded-[2px] bg-[var(--terra)] p-2.5 text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
+            className="rounded-[10px] bg-[var(--terra)] p-2.5 text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] disabled:cursor-not-allowed disabled:opacity-45"
           >
             <ArrowUp size={16} strokeWidth={2} />
           </button>

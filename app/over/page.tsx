@@ -38,7 +38,7 @@ export default function OverPage() {
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Het bedrijf{' '}
-            <span className="italic text-[var(--oker-deep)]">achter de agents.</span>
+            <span className="text-[var(--ink-soft)]">achter de agents.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
             FactumAI is in {FOUNDED} opgericht in Hoogkarspel om AI-agents bereikbaar te maken voor
@@ -69,7 +69,7 @@ export default function OverPage() {
             </div>
             <h2 className="mt-2 font-display text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.1] text-[var(--ink)]">
               AI-agents op maat,{' '}
-              <span className="italic text-[var(--oker-deep)]">van losse agent tot platform.</span>
+              <span className="text-[var(--ink-soft)]">van losse agent tot platform.</span>
             </h2>
             <p className="mt-5 text-[15px] leading-[1.7] text-[var(--ink-dim)]">
               Niet alleen routine-administratie. Ook complexe orchestraties, kennis-systemen,
@@ -77,13 +77,13 @@ export default function OverPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--paper-edge)] border border-[var(--paper-edge)] rounded-[3px] overflow-hidden">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--paper-edge)] border border-[var(--paper-edge)] rounded-[14px] overflow-hidden">
             {DOEN.map((d, i) => (
               <DoenCard key={d.titel} index={i + 1} {...d} />
             ))}
           </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start px-5 sm:px-7 py-6 rounded-[3px] border border-dashed border-[var(--oker)]/50 bg-[var(--paper)]">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start px-5 sm:px-7 py-6 rounded-[14px] border border-dashed border-[var(--oker)]/50 bg-[var(--paper)]">
             <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em] sm:pt-1 shrink-0 sm:w-[160px]">
               Wat wij niet doen
             </div>
@@ -104,7 +104,7 @@ export default function OverPage() {
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[720px]">
             Drie uitgangspunten die{' '}
-            <span className="italic text-[var(--oker-deep)]">alles bepalen.</span>
+            <span className="text-[var(--ink-soft)]">alles bepalen.</span>
           </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
             <DarkPrinciple
@@ -161,7 +161,7 @@ export default function OverPage() {
                 <li>
                   <Link
                     href="/privacy"
-                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[10px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                   >
                     <span className="font-display text-[15px] text-[var(--ink)]">
                       Privacyverklaring
@@ -174,7 +174,7 @@ export default function OverPage() {
                 <li>
                   <Link
                     href="/subverwerkers"
-                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    className="block px-4 py-3 bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[10px] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                   >
                     <span className="font-display text-[15px] text-[var(--ink)]">
                       Sub-verwerkers
@@ -194,19 +194,19 @@ export default function OverPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Zin in een gesprek?{' '}
-            <span className="italic text-[var(--oker-deep)]">Of eerst de demo zien?</span>
+            <span className="text-[var(--ink-soft)]">Of eerst de demo zien?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
             >
               Demo openen
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
             >
               Contact
             </Link>
@@ -305,7 +305,7 @@ function DoenCard({
   return (
     <div className="bg-[var(--paper)] px-6 py-6 sm:px-7 sm:py-7">
       <div className="flex items-baseline gap-3">
-        <span className="font-display italic text-[15px] text-[var(--oker)] tabular-nums">
+        <span className="font-display text-[15px] text-[var(--oker)] tabular-nums">
           {String(index).padStart(2, '0')}
         </span>
         <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
@@ -348,7 +348,7 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
           {/* Portret + naam */}
           <div className="md:sticky md:top-8 md:self-start">
             <div
-              className="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)]"
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-[18px] border border-[var(--border)] portret-kader"
               style={{ boxShadow: 'var(--shadow-lift)' }}
             >
               {founder.portretSrc ? (
@@ -357,7 +357,7 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
                   alt={`${founder.voornaam} ${founder.achternaam}, ${founder.rolKort} FactumAI`}
                   fill
                   sizes="(max-width: 768px) 100vw, 340px"
-                  className="object-cover object-[center_20%]"
+                  className="object-contain object-bottom"
                   priority
                 />
               ) : (
@@ -367,15 +367,6 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
                   </span>
                 </div>
               )}
-              <div
-                className="absolute inset-0 pointer-events-none opacity-20"
-                style={{
-                  backgroundImage: 'url(/paper-grain.svg)',
-                  backgroundSize: '240px',
-                  mixBlendMode: 'multiply',
-                }}
-                aria-hidden
-              />
             </div>
             <div className="mt-4">
               <div className="font-display text-[22px] leading-tight text-[var(--ink)]">
@@ -443,7 +434,7 @@ function FounderSpotlight({ founder }: { founder: TeamMember }) {
 
             <Link
               href={`/over/${founder.slug}`}
-              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-warm)] hover:border-[var(--oker)] transition-colors group"
+              className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-warm)] hover:border-[var(--oker)] transition-colors group"
             >
               Lees het volledige profiel
               <ArrowRight size={16} strokeWidth={1.8} className="group-hover:translate-x-0.5 transition-transform" />
@@ -489,32 +480,23 @@ function MemberCard({ member }: { member: TeamMember }) {
   return (
     <Link
       href={`/over/${member.slug}`}
-      className="block h-full bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[3px] overflow-hidden hover:border-[var(--oker)] transition-colors group"
+      className="block h-full bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[14px] overflow-hidden hover:border-[var(--oker)] transition-colors group"
       style={{ boxShadow: 'var(--shadow-lift)' }}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--paper-warm)] border-b border-[var(--paper-edge)]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden portret-kader border-b border-[var(--border)]">
         {member.portretSrc ? (
           <Image
             src={member.portretSrc}
             alt={`${member.voornaam} ${member.achternaam}, ${member.rolKort} FactumAI`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
-            className="object-cover object-[center_20%]"
+            className="object-contain object-bottom"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="font-display text-[64px] text-[var(--oker-deep)]">{member.initialen}</span>
           </div>
         )}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-20"
-          style={{
-            backgroundImage: 'url(/paper-grain.svg)',
-            backgroundSize: '240px',
-            mixBlendMode: 'multiply',
-          }}
-          aria-hidden
-        />
       </div>
       <div className="px-5 py-5">
         <div className="font-display text-[19px] leading-tight text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
@@ -548,7 +530,7 @@ function DarkPrinciple({
         aria-hidden
         className="absolute left-0 top-1 bottom-1 w-px bg-[var(--paper-deep)] opacity-30"
       />
-      <div className="font-display italic text-[72px] sm:text-[88px] text-[var(--oker-deep)] leading-none tracking-tight">
+      <div className="font-display text-[72px] sm:text-[88px] text-[var(--oker-deep)] leading-none tracking-tight">
         {number}
       </div>
       <h3 className="mt-4 font-display text-[19px] leading-tight text-[var(--paper)]">{title}</h3>

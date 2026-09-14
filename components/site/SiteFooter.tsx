@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
 import { CookiePrefsButton } from '@/components/analytics/CookiePrefsButton';
+import { Woordmerk } from './Woordmerk';
 
 export function SiteFooter() {
   const topPosts = [...POSTS]
@@ -9,191 +10,93 @@ export function SiteFooter() {
     .slice(0, 5);
 
   return (
-    <footer className="w-full border-t border-[var(--paper-edge)] bg-[var(--paper-deep)] mt-24">
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
+    <footer className="relative w-full mt-28 overflow-hidden">
+      {/* zachte gloed aan de horizon */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[420px]"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 60% at 50% 110%, rgba(196, 100, 63, 0.22) 0%, rgba(43, 26, 46, 0.25) 45%, transparent 75%)',
+        }}
+      />
+      <div className="lijn" />
+      <div className="relative band py-14 sm:py-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-          <div className="font-display text-[20px] tracking-tight leading-none">
-            <span className="text-[var(--ink)]">Factum</span>
-            <span className="italic text-[var(--oker-deep)]">AI</span>
-          </div>
-          <p className="mt-2 text-[13px] text-[var(--ink-dim)] leading-relaxed max-w-[280px]">
+          <Woordmerk />
+          <p className="mt-4 text-[13.5px] text-[var(--fg-dim)] leading-relaxed max-w-[280px]">
             Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
             lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.
           </p>
-          <p className="mt-3 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
+          <p className="mt-4 font-mono text-[11px] text-[var(--fg-faint)] uppercase tracking-[0.14em]">
             FactumAI B.V. · KvK 42123186
           </p>
         </div>
 
-        <div>
-          <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em] mb-2">
-            Diensten
-          </div>
-          <ul className="space-y-1 text-[13px]">
-            <li>
-              <Link
-                href="/diensten/ai-agent-laten-bouwen"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                AI-agent laten bouwen
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/diensten/ai-automatisering"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                AI-automatisering
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/diensten/ai-implementatie"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                AI implementeren
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/diensten/ai-agents-voor-bedrijven"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                AI-agents voor bedrijven
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/oplossingen"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                Oplossingen
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/branches"
-                className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-              >
-                Per branche
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/diensten"
-                className="text-[var(--ink-faint)] hover:text-[var(--ink)] italic"
-              >
-                Alle diensten
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Kolom titel="Diensten">
+          <VoetLink href="/diensten/ai-agent-laten-bouwen">AI-agent laten bouwen</VoetLink>
+          <VoetLink href="/diensten/ai-automatisering">AI-automatisering</VoetLink>
+          <VoetLink href="/diensten/ai-implementatie">AI implementeren</VoetLink>
+          <VoetLink href="/diensten/ai-agents-voor-bedrijven">AI-agents voor bedrijven</VoetLink>
+          <VoetLink href="/oplossingen">Oplossingen</VoetLink>
+          <VoetLink href="/branches">Per branche</VoetLink>
+          <VoetLink href="/diensten" zacht>Alle diensten</VoetLink>
+        </Kolom>
 
-        <div>
-          <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em] mb-2">
-            Cases
-          </div>
-          <ul className="space-y-1 text-[13px]">
-            {CASES.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={`/cases/${c.slug}`}
-                  className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-                >
-                  {c.klant}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/cases" className="text-[var(--ink-faint)] hover:text-[var(--ink)] italic">
-                Alle cases
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Kolom titel="Cases">
+          {CASES.map((c) => (
+            <VoetLink key={c.slug} href={`/cases/${c.slug}`}>
+              {c.klant}
+            </VoetLink>
+          ))}
+          <VoetLink href="/cases" zacht>Alle cases</VoetLink>
+        </Kolom>
 
-        <div>
-          <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em] mb-2">
-            Kennis
-          </div>
-          <ul className="space-y-1 text-[13px]">
-            {topPosts.map((p) => (
-              <li key={p.slug}>
-                <Link
-                  href={`/kennis/${p.slug}`}
-                  className="text-[var(--ink-dim)] hover:text-[var(--ink)]"
-                >
-                  {p.title}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href="/kennis"
-                className="text-[var(--ink-faint)] hover:text-[var(--ink)] italic"
-              >
-                Alle artikelen
-              </Link>
-            </li>
+        <Kolom titel="Kennis">
+          {topPosts.map((p) => (
+            <VoetLink key={p.slug} href={`/kennis/${p.slug}`}>
+              {p.title}
+            </VoetLink>
+          ))}
+          <VoetLink href="/kennis" zacht>Alle artikelen</VoetLink>
+        </Kolom>
 
-          </ul>
-        </div>
-
-        <div>
-          <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em] mb-2">
-            Contact
-          </div>
-          <ul className="space-y-1 text-[13px] text-[var(--ink-dim)]">
-            <li>
-              <a href="mailto:info@factumai.nl" className="hover:text-[var(--ink)]">
-                info@factumai.nl
-              </a>
-            </li>
-            <li>
-              <a href="tel:+31610555658" className="hover:text-[var(--ink)]">
-                06-10 55 56 58
-              </a>
-            </li>
-            <li>Hoogkarspel · West-Friesland</li>
-            <li className="pt-2">
-              <Link href="/over" className="hover:text-[var(--ink)]">
-                Over FactumAI
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-[var(--ink)]">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link href="/info" className="hover:text-[var(--ink)]">
-                Wat is een AI-agent
-              </Link>
-            </li>
-            <li>
-              <Link href="/demo" className="hover:text-[var(--ink)]">
-                Demo · De Werkbank
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Kolom titel="Contact">
+          <li>
+            <a href="mailto:info@factumai.nl" className="text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors">
+              info@factumai.nl
+            </a>
+          </li>
+          <li>
+            <a href="tel:+31610555658" className="text-[var(--fg-dim)] hover:text-[var(--fg)] transition-colors">
+              06-10 55 56 58
+            </a>
+          </li>
+          <li className="text-[var(--fg-faint)]">Hoogkarspel · West-Friesland</li>
+          <li className="pt-2">
+            <VoetLinkInner href="/over">Over FactumAI</VoetLinkInner>
+          </li>
+          <li>
+            <VoetLinkInner href="/contact">Contact</VoetLinkInner>
+          </li>
+          <li>
+            <VoetLinkInner href="/info">Wat is een AI-agent</VoetLinkInner>
+          </li>
+          <li>
+            <VoetLinkInner href="/demo">Demo · De Werkbank</VoetLinkInner>
+          </li>
+        </Kolom>
       </div>
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-4 border-t border-[var(--paper-edge)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-[var(--ink-faint)]">
+      <div className="relative band pb-8 pt-5 border-t border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-[var(--fg-faint)]">
         <span>© {new Date().getFullYear()} FactumAI</span>
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
           <li>
-            <Link
-              href="/privacy"
-              className="uppercase tracking-[0.14em] hover:text-[var(--ink)]"
-            >
+            <Link href="/privacy" className="uppercase tracking-[0.14em] hover:text-[var(--fg)]">
               Privacy
             </Link>
           </li>
           <li>
-            <Link
-              href="/subverwerkers"
-              className="uppercase tracking-[0.14em] hover:text-[var(--ink)]"
-            >
+            <Link href="/subverwerkers" className="uppercase tracking-[0.14em] hover:text-[var(--fg)]">
               Sub-verwerkers
             </Link>
           </li>
@@ -204,5 +107,35 @@ export function SiteFooter() {
         <span className="uppercase tracking-[0.14em]">Gebouwd met ambacht</span>
       </div>
     </footer>
+  );
+}
+
+function Kolom({ titel, children }: { titel: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <div className="eyebrow mb-3">{titel}</div>
+      <ul className="space-y-1.5 text-[13.5px]">{children}</ul>
+    </div>
+  );
+}
+
+function VoetLink({ href, children, zacht = false }: { href: string; children: React.ReactNode; zacht?: boolean }) {
+  return (
+    <li>
+      <VoetLinkInner href={href} zacht={zacht}>
+        {children}
+      </VoetLinkInner>
+    </li>
+  );
+}
+
+function VoetLinkInner({ href, children, zacht = false }: { href: string; children: React.ReactNode; zacht?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`transition-colors hover:text-[var(--fg)] ${zacht ? 'text-[var(--fg-faint)]' : 'text-[var(--fg-dim)]'}`}
+    >
+      {children}
+    </Link>
   );
 }

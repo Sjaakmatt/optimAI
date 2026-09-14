@@ -16,9 +16,9 @@ export default async function OGImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px',
-          background: '#f4ede0',
-          color: '#2a2420',
-          fontFamily: 'serif',
+          background: 'linear-gradient(180deg, #0a0a0c 0%, #1a1220 55%, #6b3a3a 82%, #e0a070 100%)',
+          color: '#f4f1ec',
+          fontFamily: 'sans-serif',
         }}
       >
         <div
@@ -32,7 +32,7 @@ export default async function OGImage() {
           <div
             style={{
               fontSize: 14,
-              color: '#8a8070',
+              color: '#e9b46a',
               fontFamily: 'monospace',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
@@ -55,11 +55,11 @@ export default async function OGImage() {
             }}
           >
             <div>Er gaat niets mis.</div>
-            <div style={{ fontStyle: 'italic', color: '#5c5248' }}>
+            <div style={{ color: '#c6c1b9' }}>
               En toch bent u elke week uren kwijt.
             </div>
           </div>
-          <div style={{ fontSize: 26, color: '#5c5248', maxWidth: 820, lineHeight: 1.4 }}>
+          <div style={{ fontSize: 26, color: '#c6c1b9', maxWidth: 820, lineHeight: 1.4 }}>
             Mails, offertes, orders, facturatie en planning: voorbereid tot en met het besluit.
             Uw mens tekent af.
           </div>
@@ -70,14 +70,14 @@ export default async function OGImage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderTop: '1px solid #ddd1b8',
+            borderTop: '1px solid rgba(255,255,255,0.18)',
             paddingTop: 20,
           }}
         >
           <div
             style={{
               fontSize: 14,
-              color: '#8a8070',
+              color: '#e9b46a',
               fontFamily: 'monospace',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
@@ -88,7 +88,7 @@ export default async function OGImage() {
           <div
             style={{
               fontSize: 14,
-              color: '#a8803a',
+              color: '#918b82',
               fontFamily: 'monospace',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',

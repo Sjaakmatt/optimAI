@@ -114,7 +114,7 @@ export function ContactForm() {
             rows={5}
             required
             placeholder="Wat speelt er bij u? Waar zou u graag wat hulp bij willen?"
-            className={`mt-1.5 w-full px-3 py-2.5 rounded-[2px] border bg-[var(--paper)] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none transition-colors resize-y ${
+            className={`mt-1.5 w-full px-3 py-2.5 rounded-[10px] border bg-[var(--paper)] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none transition-colors resize-y ${
               errors.bericht
                 ? 'border-[var(--terra)] focus:border-[var(--terra)]'
                 : 'border-[var(--paper-edge)] focus:border-[var(--oker)]'
@@ -125,7 +125,7 @@ export function ContactForm() {
       </div>
 
       {globalError && (
-        <div className="mt-5 flex items-start gap-2 text-[13px] text-[var(--terra)] bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[2px] px-3 py-2">
+        <div className="mt-5 flex items-start gap-2 text-[13px] text-[var(--terra)] bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[10px] px-3 py-2">
           <AlertCircle size={14} strokeWidth={1.5} className="mt-0.5 shrink-0" />
           <span>{globalError}</span>
         </div>
@@ -138,7 +138,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {submitting ? 'Versturen…' : 'Bericht versturen'}
         </button>
@@ -173,7 +173,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className={`mt-1.5 w-full px-3 py-2 rounded-[2px] border bg-[var(--paper)] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none transition-colors ${
+        className={`mt-1.5 w-full px-3 py-2 rounded-[10px] border bg-[var(--paper)] text-[14px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] outline-none transition-colors ${
           error
             ? 'border-[var(--terra)] focus:border-[var(--terra)]'
             : 'border-[var(--paper-edge)] focus:border-[var(--oker)]'

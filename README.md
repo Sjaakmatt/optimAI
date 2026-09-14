@@ -88,8 +88,8 @@ Wijs op Vandaag-panel rechtsonder. *"X minuten bespaard vandaag. € Y aan werkt
 ```
 app/
   page.tsx             enige route — de Werkbank
-  layout.tsx           fonts (Playfair Display, Lora, IBM Plex Mono)
-  globals.css          papier-palet + design tokens
+  layout.tsx           fonts (Inter, IBM Plex Mono)
+  globals.css          donker palet (amber accent) + design tokens
 components/
   Workbench.tsx        shell: header, stage, completed list, status strip
   WorkbenchHeader.tsx  kop met merknaam + tandwiel + reset
@@ -120,7 +120,7 @@ lib/
   store.ts               Zustand + step-based playback
   types.ts               StepKind, ArtifactType, Artifact, etc.
   utils.ts               formatters, sleep, uid
-public/paper-grain.svg   zachte papier-vezel overlay
+public/portret-cutout.png  vrijstaand portret voor de homepage
 ```
 
 ## Tips

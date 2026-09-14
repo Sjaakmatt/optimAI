@@ -173,7 +173,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
         <button
           type="button"
           onClick={() => void laadSlots()}
-          className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-[2px] text-[14px] border border-[var(--paper-edge)] hover:border-[var(--oker-deep)] transition-colors"
+          className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-[10px] text-[14px] border border-[var(--paper-edge)] hover:border-[var(--oker-deep)] transition-colors"
         >
           Opnieuw proberen
         </button>
@@ -227,7 +227,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
               value={naam}
               onChange={(e) => setNaam(e.target.value)}
               autoComplete="name"
-              className="px-3 py-2 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
+              className="px-3 py-2 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
             />
           </label>
 
@@ -239,7 +239,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
-              className="px-3 py-2 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
+              className="px-3 py-2 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
             />
           </label>
 
@@ -251,7 +251,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
               value={bedrijf}
               onChange={(e) => setBedrijf(e.target.value)}
               autoComplete="organization"
-              className="px-3 py-2 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
+              className="px-3 py-2 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] focus:border-[var(--oker-deep)] outline-none transition-colors"
             />
           </label>
 
@@ -264,7 +264,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
               value={toelichting}
               onChange={(e) => setToelichting(e.target.value)}
               placeholder="Bijvoorbeeld: offertes maken kost ons elke week een dag."
-              className="px-3 py-2 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] leading-[1.5] focus:border-[var(--oker-deep)] outline-none transition-colors resize-none"
+              className="px-3 py-2 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] text-[15px] leading-[1.5] focus:border-[var(--oker-deep)] outline-none transition-colors resize-none"
             />
           </label>
 
@@ -290,7 +290,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
         <button
           type="submit"
           disabled={bezig}
-          className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-60 transition-colors"
+          className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] disabled:opacity-60 transition-colors"
         >
           {bezig ? (
             <>
@@ -357,7 +357,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
               role="tab"
               aria-selected={actief}
               onClick={() => setActieveDag(d.datum)}
-              className={`shrink-0 px-3.5 py-2 rounded-[2px] text-[13px] border transition-colors ${
+              className={`shrink-0 px-3.5 py-2 rounded-[10px] text-[13px] border transition-colors ${
                 actief
                   ? 'border-[var(--oker-deep)] bg-[var(--oker-deep)]/10 text-[var(--ink)]'
                   : 'border-[var(--paper-edge)] text-[var(--ink-dim)] hover:border-[var(--oker-deep)]'
@@ -375,7 +375,7 @@ export function AgendaKiezer({ bron = 'agenda', aanleiding, onGeboekt }: AgendaK
             key={slot.start}
             type="button"
             onClick={() => kiesSlot(slot)}
-            className="px-2 py-2.5 rounded-[2px] text-[14px] border border-[var(--paper-edge)] text-[var(--ink)] hover:border-[var(--oker-deep)] hover:bg-[var(--oker-deep)]/5 transition-colors"
+            className="px-2 py-2.5 rounded-[10px] text-[14px] border border-[var(--paper-edge)] text-[var(--ink)] hover:border-[var(--oker-deep)] hover:bg-[var(--oker-deep)]/5 transition-colors"
           >
             {slot.label}
           </button>

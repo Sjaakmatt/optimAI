@@ -16,7 +16,7 @@ export function AanvraagCal() {
 /** De eigen agenda staat hier in de pagina zelf, niet in een venster. */
 function EigenAgenda() {
   return (
-    <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper)] px-6 sm:px-8 py-6">
+    <div className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper)] px-6 sm:px-8 py-6">
       <AgendaKiezer bron="aanvraag" />
     </div>
   );
@@ -38,7 +38,7 @@ function CalAgenda() {
         ns('inline', {
           elementOrSelector: el,
           calLink: CAL_LINK,
-          config: { layout: 'month_view', theme: 'light' },
+          config: { layout: 'month_view', theme: 'dark' },
         });
       })
       .catch((err) => {
@@ -54,7 +54,7 @@ function CalAgenda() {
     <div>
       <div
         ref={containerRef}
-        className="w-full min-h-[560px] overflow-hidden rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper)]"
+        className="w-full min-h-[560px] overflow-hidden rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper)]"
         aria-label="Boekingskalender"
       />
       <p className="mt-4 text-[13px] text-[var(--ink-dim)] leading-[1.6]">
