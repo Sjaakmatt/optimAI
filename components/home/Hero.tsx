@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { calPopupAttrs } from '@/components/booking/config';
-import { MailAgent } from '@/components/mailagent/MailAgent';
 import { BOS_LAGEN } from './landschap/Bos';
 import { Landschap, useMuisParallax, type LandschapVariant } from './Landschap';
 import { PolderFoto, POLDER_SCHEMER } from './PolderFoto';
@@ -15,7 +14,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden -mt-[72px] pt-[72px] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
+      className={`relative overflow-hidden -mt-[72px] pt-[72px] md:min-h-[100svh] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
       style={foto ? ({ '--hero-lucht-top': '#5c5f93' } as React.CSSProperties) : undefined}
     >
       {foto ? null : (
@@ -26,7 +25,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
       )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
-      <div className="relative band pt-24 sm:pt-32 lg:pt-36 text-center">
+      <div className="relative z-10 band pt-24 sm:pt-28 lg:pt-32 text-center">
         <Verschijn vertraging={0.05} className="flex justify-center">
           <span className="chip">
             <span className="chip-punt" aria-hidden />
@@ -52,26 +51,21 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
           <Link href="/plan" {...calPopupAttrs} className="knop knop-primair">
             Plan een gesprek
           </Link>
-          <a href="#mailagent" className="knop knop-glas">
-            Zie de agent werken
-          </a>
+          <Link href="/ontdek" className="knop knop-glas">
+            Ontdek hoe het werkt
+          </Link>
         </Verschijn>
       </div>
 
       {/* Op telefoons staat de polder hier als eigen band; op brede schermen
-          absoluut achter de inhoud (de volgorde in de DOM maakt dan niet uit). */}
+          absoluut onderin de sectie, over de volle breedte. */}
       {foto && (
-        <div className="relative mt-10 -mb-[10vh] md:static md:m-0">
-          <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} mobielInStroom />
+        <div className="relative z-0 mt-8 md:static md:m-0">
+          <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} mobielInStroom hoogte="58%" rietBreedte="84%" rietOnder="-16%" horizon={0.42} />
         </div>
       )}
-
-      {/* Het venster met de mailagent rijst op uit het landschap */}
-      <Verschijn vertraging={0.8} y={40} className="relative band mt-16 sm:mt-20 lg:mt-24 pb-10 sm:pb-16">
-        <div id="mailagent" className="scroll-mt-28 mx-auto max-w-[1040px]">
-          <MailAgent />
-        </div>
-      </Verschijn>
+      {/* ruimte voor het landschap op brede schermen */}
+      <div className="hidden md:block h-[54vh] min-h-[420px]" aria-hidden />
     </section>
   );
 }

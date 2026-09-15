@@ -38,6 +38,8 @@ export function PolderFoto({
   hoogte = '72%',
   /** Breedte van de rietkraag; smaller = kleiner riet. */
   rietBreedte = '110%',
+  /** Hoe ver het riet onder de rand van de laagbox doorloopt (negatief = lager). */
+  rietOnder = '-4%',
   /**
    * Op telefoons als eigen band in de tekststroom (tussen de kop en het
    * venster), op brede schermen absoluut achter de inhoud. Zonder dit staat
@@ -51,6 +53,7 @@ export function PolderFoto({
   horizon?: number;
   hoogte?: string;
   rietBreedte?: string;
+  rietOnder?: string;
   mobielInStroom?: boolean;
 }) {
   const reduced = useReducedMotion() ?? false;
@@ -81,7 +84,7 @@ export function PolderFoto({
         {/* De container bevat molen én spiegeling; de contactlijn ligt in het
             midden, dus hij schuift een halve hoogte omlaag om op de horizon te staan. */}
         <div
-          className="absolute left-[-14%] w-[112%] translate-y-1/2 sm:left-[-8%] sm:w-[76%] lg:left-[-11%] lg:w-[66%] max-w-[1100px]"
+          className="absolute left-[-14%] w-[112%] translate-y-1/2 sm:left-[-8%] sm:w-[76%] lg:left-[-4%] lg:w-[62%] max-w-[1100px]"
           style={{ bottom: `${(1 - horizon) * 100}%` }}
         >
           <div className="relative aspect-[1800/782]">
@@ -99,8 +102,8 @@ export function PolderFoto({
       {/* 3 · riet vooraan */}
       <Laag diepte={0.62} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.04}>
         <div
-          className="absolute bottom-[-4%] min-w-[820px] aspect-[1920/759] riet-wiegt"
-          style={{ width: rietBreedte, left: `calc((100% - ${rietBreedte}) / 2)` }}
+          className="absolute min-w-[820px] aspect-[1920/759] riet-wiegt"
+          style={{ width: rietBreedte, left: `calc((100% - ${rietBreedte}) / 2)`, bottom: rietOnder }}
         >
           <Image src={platen.riet} alt="" fill sizes="110vw" priority className="object-contain object-bottom" />
         </div>

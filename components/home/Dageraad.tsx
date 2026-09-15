@@ -35,7 +35,7 @@ export function Dageraad({ variant }: { variant: LandschapVariant }) {
       )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
-      <div className="relative band pt-24 pb-[58vh] text-center sm:pt-32 sm:pb-[66vh]">
+      <div className="relative z-10 band pt-24 pb-[58vh] text-center sm:pt-32 sm:pb-[66vh]">
         <Opkomend
           as="h2"
           inView
