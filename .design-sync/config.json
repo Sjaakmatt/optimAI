@@ -36,6 +36,14 @@
     },
     "LuchtBand": {
       "cardMode": "column"
+    },
+    "Hero": {
+      "cardMode": "column",
+      "viewport": "900x1150"
+    },
+    "Dageraad": {
+      "cardMode": "column",
+      "viewport": "900x860"
     }
   },
   "provider": {
