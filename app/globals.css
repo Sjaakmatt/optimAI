@@ -525,18 +525,7 @@ body {
     }
   }
 
-  /* De knop trekt kort de aandacht bij binnenkomst en houdt daarna op. */
-  .agent-knop {
-    animation: agent-knop 2.4s ease-out 1.2s 2 both;
-  }
-  @keyframes agent-knop {
-    0%, 100% {
-      box-shadow: var(--shadow-lift);
-    }
-    35% {
-      box-shadow: var(--shadow-lift), 0 0 0 6px rgba(217, 154, 78, 0.22);
-    }
-  }
+
 }
 
 /* Logostrook. Past de rij logo's binnen de beschikbare breedte, dan staat hij
@@ -798,4 +787,55 @@ body {
 /* Keep the wordmark and menu usable on narrow phones; the hero carries the CTA. */
 @media (max-width: 370px) {
   header a[data-cal-link] { display: none; }
+}
+
+
+/* A floating contact link with a separate, softly lit conversation symbol. */
+.agent-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #f4eee5;
+}
+.agent-contact-label {
+  position: relative;
+  font-size: 13px;
+  font-weight: 450;
+  letter-spacing: .015em;
+  line-height: 1.7;
+  border-bottom: 1px solid #e4bb9466;
+  text-shadow: 0 1px 8px #18262b;
+}
+.agent-contact-label::before {
+  content: "";
+  position: absolute;
+  inset: -5px -10px;
+  z-index: -1;
+  background: #202b30b3;
+  filter: blur(10px);
+  border-radius: 50%;
+}
+.agent-contact-symbol {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: #ecd2b8;
+  background: linear-gradient(145deg, #405158ed, #202b30f5);
+  border: 1px solid #d7dbd052;
+  box-shadow: inset 0 1px 0 #ffffff12, 0 5px 20px #15202530;
+  backdrop-filter: blur(16px);
+  transition: transform .25s ease, border-color .25s ease;
+}
+.agent-contact:hover .agent-contact-symbol { transform: translateY(-2px); border-color: #e4bb94a3; }
+.agent-contact:hover .agent-contact-label { border-color: #e4bb94; }
+.agent-contact:focus-visible { outline: 2px solid #e4bb94; outline-offset: 5px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .agent-contact-symbol { transition: none; }
+  .agent-contact:hover .agent-contact-symbol { transform: none; }
 }
