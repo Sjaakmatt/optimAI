@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "../types",
+    "rootDir": "..",
+    "incremental": false,
+    "plugins": [],
+    "baseUrl": "..",
+    "paths": {
+      "@/lib/data/scripts": ["./lib/data/scripts.ts"],
+      "@/*": ["./*"],
+      "next/link": [".design-sync/shims/next-link.tsx"],
+      "next/image": [".design-sync/shims/next-image.tsx"],
+      "next/navigation": [".design-sync/shims/next-navigation.ts"],
+      "next/dynamic": [".design-sync/shims/next-dynamic.tsx"]
+    }
+  },
+  "files": ["entry.ts"],
+  "include": []
+}

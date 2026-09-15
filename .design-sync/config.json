@@ -1,0 +1,34 @@
+{
+  "projectId": "6fef7c47-a59e-48b7-bd30-b03d8b41a7a5",
+  "pkg": "factumai-demo",
+  "globalName": "FactumAI",
+  "shape": "package",
+  "buildCmd": "node .design-sync/build.mjs",
+  "entry": ".design-sync/entry.ts",
+  "srcDir": "components",
+  "tsconfig": ".design-sync/tsconfig.json",
+  "cssEntry": ".design-sync/.cache/compiled.css",
+  "extraFonts": [
+    ".design-sync/fonts/fonts.css"
+  ],
+  "guidelinesGlob": [
+    "docs/immersive-redesign.md",
+    "docs/redesign-plan.md"
+  ],
+  "componentSrcMap": {
+    "Verschijn": "components/home/Opkomend.tsx"
+  },
+  "docsMap": {
+    "MailAgent": ".design-sync/docs/MailAgent.md",
+    "SiteDoek": ".design-sync/docs/SiteDoek.md"
+  },
+  "overrides": {
+    "SiteHeader": {
+      "cardMode": "column"
+    }
+  },
+  "provider": {
+    "component": "SiteDoek"
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

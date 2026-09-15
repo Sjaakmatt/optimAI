@@ -1,0 +1,3 @@
+---
+category: Mail agent
+---

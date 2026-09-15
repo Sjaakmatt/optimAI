@@ -1,0 +1,17 @@
+{
+  // design-sync only: the app's "@/..." alias plus shims for Next.js-only
+  // modules so components bundle and render outside a Next.js app.
+  // The exact "@/lib/data/scripts" rule comes first: both lib/data/scripts.ts
+  // and lib/data/scripts/ exist, and the alias resolver would pick the dir.
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/lib/data/scripts": ["../lib/data/scripts.ts"],
+      "@/*": ["../*"],
+      "next/link": ["./shims/next-link.tsx"],
+      "next/image": ["./shims/next-image.tsx"],
+      "next/navigation": ["./shims/next-navigation.ts"],
+      "next/dynamic": ["./shims/next-dynamic.tsx"]
+    }
+  }
+}
