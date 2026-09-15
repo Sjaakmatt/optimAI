@@ -2,7 +2,7 @@
 export const VIDEOS = [
   {
     id: "kennismaken",
-    title: "De bouwer achter uw agent.",
+    title: "De bouwer achter uw systemen.",
     category: "Even kennismaken",
     duration: "1:38",
     src: "/videos/kennismaken.mp4",
@@ -10,7 +10,7 @@ export const VIDEOS = [
   },
   {
     id: "mail-automation",
-    title: "Uw mailbox kan het rustiger aan.",
+    title: "Uw mailbox, ondersteund door een agent.",
     category: "In de praktijk",
     duration: "0:59",
     src: "/videos/mail-automation.mp4",
@@ -26,7 +26,7 @@ export const VIDEOS = [
   },
   {
     id: "ai-angst",
-    title: "AI hoeft niet spannend te zijn.",
+    title: "AI ondersteunt. AI vervangt niks.",
     category: "Nuchter over AI",
     duration: "0:58",
     src: "/videos/ai-angst.mp4",
