@@ -14,6 +14,14 @@ export function useScrollSteps(count: number) {
     const inner = scene.current;
     if (!outer || !inner) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // The mobile browser bar changes innerHeight during scrolling. Use the
+    // smallest viewport instead, so it cannot toggle the scene and remove its
+    // scroll distance while the reader is moving into the next section.
+    const viewport = document.createElement("div");
+    viewport.setAttribute("aria-hidden", "true");
+    viewport.style.cssText =
+      "position:absolute;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none";
+    outer.appendChild(viewport);
     let frame = 0;
     const measure = () => {
       outer.style.setProperty("--scene-height", `${inner.offsetHeight}px`);
@@ -21,7 +29,7 @@ export function useScrollSteps(count: number) {
         parseFloat(getComputedStyle(inner).getPropertyValue("--story-top")) ||
         0;
       setEnabled(
-        !reduced.matches && inner.offsetHeight + top + 24 <= window.innerHeight,
+        !reduced.matches && inner.offsetHeight + top + 24 <= viewport.offsetHeight,
       );
     };
     const observer = new ResizeObserver(measure);
@@ -48,6 +56,7 @@ export function useScrollSteps(count: number) {
     update();
     return () => {
       observer.disconnect();
+      viewport.remove();
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", update);
       reduced.removeEventListener("change", measure);
