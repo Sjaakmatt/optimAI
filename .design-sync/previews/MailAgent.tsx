@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MailAgent } from 'factumai-demo';
+import { Uitgeanimeerd } from '../preview-lib/Uitgeanimeerd';
 
 // De mailagent speelt zijn script af met timers zodra hij in beeld is. Een
 // foto vangt daar één moment van. Voor de afgeronde toestand gebruikt deze
@@ -44,20 +45,38 @@ function wachtOp<T>(zoek: () => T | null | undefined, doe: (t: T) => void) {
   };
 }
 
-/** In rust, voordat er iets afspeelt: inbox, de eerste mail open, de agent staat klaar. */
-export function Wachtend() {
-  return <MailAgent autoplay={false} />;
-}
-
-/** Zoals in de hero: zodra het venster in beeld is begint de agent de mail te lezen. */
+/** Zoals in de hero: zodra het venster in beeld is begint de agent de mail te lezen (een moment uit het afspelen). */
 export function AanHetWerk() {
-  return <MailAgent />;
+  return (
+    <Uitgeanimeerd>
+      <MailAgent />
+    </Uitgeanimeerd>
+  );
 }
 
 /** Afgerond: alle stappen en overwegingen staan er, het concept is klaar en wacht op akkoord. */
 export function Klaar() {
   useReducedMotionAan();
   return <MailAgent autoplay={false} />;
+}
+
+/** Een andere mail gekozen in de inbox: de tweede mail, met haar eigen stappen en concept. */
+export function VolgendeMail() {
+  useReducedMotionAan();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(
+    () =>
+      wachtOp(
+        () => ref.current?.querySelectorAll<HTMLButtonElement>('aside li button')[1],
+        (knop) => knop.click(),
+      ),
+    [],
+  );
+  return (
+    <div ref={ref}>
+      <MailAgent autoplay={false} />
+    </div>
+  );
 }
 
 /** Na 'Goedkeuren en versturen': de mail is afgehandeld, de teller links telt mee. */

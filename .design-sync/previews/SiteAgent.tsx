@@ -67,10 +67,16 @@ export function Wolkje() {
   const [hoog, setHoog] = useState(true);
   useEffect(() => {
     // Scrolldiepte halen, het wolkje laten komen, en weer terug naar boven.
+    // De site scrolt vloeiend (scroll-behavior: smooth); hier moet het
+    // meteen, anders staat scrollY nog op 0 als het scroll-event afgaat.
     const id = window.setTimeout(() => {
-      window.scrollTo(0, document.documentElement.scrollHeight);
+      const wortel = document.documentElement;
+      const eerder = wortel.style.scrollBehavior;
+      wortel.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: wortel.scrollHeight, behavior: 'instant' as ScrollBehavior });
       window.dispatchEvent(new Event('scroll'));
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      wortel.style.scrollBehavior = eerder;
       setHoog(false);
     }, 32);
     return () => window.clearTimeout(id);

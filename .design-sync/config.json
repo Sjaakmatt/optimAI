@@ -66,6 +66,37 @@
       "cardMode": "single",
       "primaryStory": "Schemer",
       "viewport": "1280x800"
+    },
+    "MailAgent": {
+      "cardMode": "column",
+      "viewport": "1280x900"
+    },
+    "AgendaDialoog": {
+      "cardMode": "single",
+      "primaryStory": "Open",
+      "viewport": "1280x800"
+    },
+    "AgentPaneel": {
+      "cardMode": "single",
+      "primaryStory": "Gesprek",
+      "viewport": "1280x800"
+    },
+    "SiteAgent": {
+      "cardMode": "single",
+      "primaryStory": "Geopend",
+      "viewport": "1280x800"
+    },
+    "Aanpak": {
+      "cardMode": "column"
+    },
+    "Afspraken": {
+      "cardMode": "column"
+    },
+    "Verschijn": {
+      "cardMode": "column"
+    },
+    "ContactForm": {
+      "cardMode": "column"
     }
   },
   "provider": {
