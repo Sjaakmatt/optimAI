@@ -1,19 +1,18 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
+import { PolderMotion } from "./PolderMotion";
 import Link from "next/link";
 import {
-  motion,
   useReducedMotion,
+  useSpring,
+  useInView,
   useScroll,
-  useTransform,
 } from "motion/react";
 import { ArrowDown, ArrowUpRight, Check, Mail } from "lucide-react";
 import { calPopupAttrs } from "@/components/booking/config";
 
-/** One intact landscape keeps the horizon and reflections registered. Only
- * atmospheric overlays move independently; no cut edges can open on scroll. */
+/** Only landscape details respond to scroll; copy stays in normal flow. */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
@@ -21,25 +20,19 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const landscapeY = useTransform(scrollYProgress, [0, 1], [0, 64]);
-  const noteY = useTransform(scrollYProgress, [0, 1], [0, -34]);
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 30 });
+  const visible = useInView(ref);
 
   return (
-    <section ref={ref} className="horizon-hero" aria-labelledby="hero-heading">
-      <motion.div
-        className="horizon-landscape"
-        style={{ y: reduced ? 0 : landscapeY }}
-        aria-hidden="true"
-      >
-        <Image
-          src="/polder/lagen/master.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </motion.div>
+    <section
+      ref={ref}
+      className="horizon-hero"
+      data-moving={visible && !reduced}
+      aria-labelledby="hero-heading"
+    >
+      <div className="horizon-depth" aria-hidden="true">
+        <PolderMotion progress={progress} reduced={!!reduced} />
+      </div>
       <div className="horizon-sky" aria-hidden="true" />
       <div className="horizon-aura" aria-hidden="true" />
       <div className="horizon-content band">
@@ -64,7 +57,7 @@ export function Hero() {
           </Link>
         </div>
       </div>
-      <motion.div className="horizon-note" style={{ y: reduced ? 0 : noteY }}>
+      <div className="horizon-note">
         <div className="horizon-note-icon">
           <Mail size={19} />
         </div>
@@ -76,7 +69,7 @@ export function Hero() {
           </small>
         </div>
         <span className="horizon-note-dot" aria-hidden="true" />
-      </motion.div>
+      </div>
       <div className="horizon-caption">
         <span>Menselijke aandacht. Digitale slagkracht.</span>
         <a href="#in-de-praktijk" aria-label="Scroll naar de praktijk">

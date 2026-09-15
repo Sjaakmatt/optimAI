@@ -1688,3 +1688,50 @@
   width: 52px;
   height: 52px;
 }
+
+/* The camera stays still; the sails, water mist and individual reeds move. */
+.horizon-depth {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(transparent, #000 25%, #000 87%, transparent);
+}
+.polder-motion {
+  position: absolute;
+  left: -4%;
+  top: 120px;
+  width: 108%;
+  height: calc(100% - 10px);
+}
+.polder-fog-near {
+  opacity: 0.9;
+}
+.polder-reed-photo {
+  transform-origin: 0 0;
+  animation: polder-wind 5s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.horizon-hero[data-moving="true"] .polder-reed-photo {
+  animation-play-state: running;
+}
+@keyframes polder-wind {
+  from {
+    transform: skewX(-0.7deg);
+  }
+  to {
+    transform: skewX(0.9deg);
+  }
+}
+@media (max-width: 767px) {
+  .polder-motion {
+    left: -10%;
+    top: 255px;
+    width: 170%;
+    height: 580px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .polder-reed-photo {
+    animation: none;
+  }
+}
