@@ -28,3 +28,9 @@ Laatste controle: productiebuild geslaagd. Bij scroll van 0 naar 278,5 pixels ve
 De huidige achtergrond is `public/polder/molen-zonder-vaste-mist.webp`, bewerkt met de ingebouwde imagegen-tool. Alle opvallende mist langs de dijk komt nu uit de verschuivende SVG-groep. Vier losse mistflarden volgen de oever. Browsercontrole: dijkmist verschoof bij scrollen van 5,6 naar 140,6 scènepixels rechts; productiebuild geslaagd.
 
 Prompt: Precisely edit this landscape photograph: REMOVE ALL the stationary low mist/fog/smoke along the entire dike shoreline, especially the pale horizontal strip at the left beneath the house and windmill, and across the center/right shoreline. Restore clear dark grassy/reedy shoreline and clean calm water with reflections where mist was. No fog anywhere in resulting image. Absolutely preserve the EXACT framing, aspect ratio, windmill body position and shape (NO sails), house, trees, sky, sunset colors and all existing reflections. No foreground reeds. This is a registered animation background: do not move or resize ANY object, do not crop, do not add anything. Only remove the shoreline fog. Photorealistic.
+
+## Terug naar natuurlijke dijkmist
+
+Op verzoek is de achtergrond weer `public/polder/molen-zonder-wieken.webp`, met de oorspronkelijke stilstaande mist langs de dijk. De extra bewegende dijkmist is verwijderd. Alleen de mist midden op het water blijft naar rechts bewegen bij scrollen; wieken, riet en vaste tekst blijven behouden.
+
+Correctie: de dijkmist wordt rechtstreeks uit `public/polder/lagen/master.webp` getoond met een zacht begrensd masker over de originele oeverstrook (y=475–640). De bewerkte achtergrond alleen bleek de oorspronkelijke mist onvoldoende te behouden. Deze strook is stilstaand en ligt boven de bewegende watermist zodat de bronpixels langs de dijk behouden blijven.

@@ -14,12 +14,10 @@ export function PolderMotion({
   const angle = useTransform(progress, [0, 1], [-8, 92]);
   const sails = useRef<SVGGElement>(null);
   const reflection = useRef<SVGGElement>(null);
-  const fogFar = useRef<SVGGElement>(null);
   const fogNear = useRef<SVGGElement>(null);
   useEffect(() => {
     const update = (value: number) => {
       const p = reduced ? 0 : value;
-      fogFar.current?.setAttribute("transform", `translate(${p * 480} 0)`);
       fogNear.current?.setAttribute("transform", `translate(${p * 760} 0)`);
     };
     update(progress.get());
@@ -42,6 +40,35 @@ export function PolderMotion({
       aria-hidden="true"
     >
       <defs>
+        <linearGradient
+          id="original-shore-band"
+          x1="0"
+          y1="475"
+          x2="0"
+          y2="640"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stopColor="white" stopOpacity="0" />
+          <stop offset=".18" stopColor="white" />
+          <stop offset=".8" stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
+        </linearGradient>
+        <mask
+          id="original-shore-mask"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="475"
+          width="1679"
+          height="165"
+        >
+          <rect
+            x="0"
+            y="475"
+            width="1679"
+            height="165"
+            fill="url(#original-shore-band)"
+          />
+        </mask>
         <radialGradient id="polder-fog">
           <stop stopColor="#e4d8c9" stopOpacity=".65" />
           <stop offset="1" stopColor="#e4d8c9" stopOpacity="0" />
@@ -51,7 +78,7 @@ export function PolderMotion({
         </filter>
       </defs>
       <image
-        href="/polder/molen-zonder-vaste-mist.webp"
+        href="/polder/molen-zonder-wieken.webp"
         width="1679"
         height="937"
       />
@@ -73,16 +100,17 @@ export function PolderMotion({
           <Sails />
         </g>
       </g>
-      <g ref={fogFar} className="polder-fog polder-fog-far">
-        <ellipse cx="100" cy="579" rx="230" ry="22" fill="url(#polder-fog)" />
-        <ellipse cx="405" cy="558" rx="245" ry="25" fill="url(#polder-fog)" />
-        <ellipse cx="750" cy="539" rx="200" ry="18" fill="url(#polder-fog)" />
-        <ellipse cx="1130" cy="534" rx="380" ry="23" fill="url(#polder-fog)" />
-      </g>
       <g ref={fogNear} className="polder-fog polder-fog-near">
         <ellipse cx="670" cy="615" rx="440" ry="40" fill="url(#polder-fog)" />
         <ellipse cx="1510" cy="590" rx="300" ry="30" fill="url(#polder-fog)" />
       </g>
+      {/* Restore the actual source pixels, not an AI-reconstructed shoreline. */}
+      <image
+        href="/polder/lagen/master.webp"
+        width="1679"
+        height="937"
+        mask="url(#original-shore-mask)"
+      />
       <g transform="translate(0 937)">
         <g className="polder-reed-photo">
           <svg

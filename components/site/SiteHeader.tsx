@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { vergrendelScroll } from '@/lib/site/scrollLock';
 import { calPopupAttrs } from '@/components/booking/config';
-import { Woordmerk } from './Woordmerk';
+import Image from 'next/image';
 
 interface NavLink {
   href: string;
@@ -82,7 +82,7 @@ export function SiteHeader() {
             }`}
           >
             <Link href="/" className="flex items-center gap-2 pl-1 min-w-0" aria-label="FactumAI, naar de homepage">
-              <Woordmerk />
+              <Image src="/branding/factumai/logo-transparent.webp" alt="FactumAI" width={1107} height={234} priority className="h-auto w-[130px] sm:w-[148px] shrink-0 rounded-sm" />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-0.5" aria-label="Hoofdmenu">
@@ -128,7 +128,7 @@ export function SiteHeader() {
             className="fixed inset-0 z-50 lg:hidden flex flex-col bg-[var(--bg)]"
           >
             <div className="band py-4 flex items-center justify-between">
-              <Woordmerk />
+              <Image src="/branding/factumai/logo-transparent.webp" alt="FactumAI" width={1107} height={234} priority className="h-auto w-[130px] sm:w-[148px] shrink-0 rounded-sm" />
               <button
                 onClick={() => setMobileOpen(false)}
                 aria-label="Menu sluiten"
