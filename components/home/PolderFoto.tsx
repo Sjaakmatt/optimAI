@@ -74,7 +74,7 @@ export function PolderFoto({
       aria-hidden
     >
       <Vlak naam="ver" lag={0.3} muis={5} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.06}>
-        <div className={`absolute inset-0 ${mobielInStroom ? 'lucht-masker md:lucht-masker-zacht' : 'lucht-masker'}`}>{laag('ver', true)}</div>
+        <div className={`absolute inset-0 ${mobielInStroom ? 'lucht-masker-hero' : 'lucht-masker'}`}>{laag('ver', true)}</div>
       </Vlak>
 
       <Vlak naam="dijk" lag={0.25} muis={9} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.06}>
