@@ -22,6 +22,22 @@ Logo gebaseerd op het bestaande FactumAI-webdesign. Het beeldmerk combineert een
 
 Create a square Apple touch app icon from the existing FactumAI logo in the reference. Use ONLY the emblem at the far left: the exact warm-white abstract F formed by two broad gently curved landscape bands, together with the copper circular sun above the right edge. Remove the entire "FactumAI" wordmark. Preserve the emblem's existing shapes, relative proportions, and colors faithfully. Center the complete emblem, including the sun, optically on a fully opaque uniform flat dark slate-green #202B30 square canvas. Emblem occupies 66% of the canvas width, with generous balanced space on all sides for an iOS icon mask. Warm-white #F4F1EC for the F and soft copper #E4BB94 for the sun. Flat crisp clean edges, no texture, no gradient, no lighting, no shadows, no border, no lettering, no extra elements. Canvas itself is square with square corners: do not draw a rounded square tile, device, or icon mockup. Output one finished clean icon only, ideally 1024x1024 pixels.
 
+
+## LinkedIn-header
+
+- `factumai-linkedin-bedrijfspagina-1512x256.png` — compleet logo inclusief woordmerk, 1512 × 256 px, voor de LinkedIn-bedrijfspagina. Links blijft ruimte vrij.
+- Formaat gecontroleerd op 15 september 2026 via [LinkedIn Help](https://www.linkedin.com/help/linkedin/answer/a570368).
+- Gemaakt met de ingebouwde image_gen-tool en met Sharp geëxporteerd naar het exacte formaat.
+
+### Prompt voor de LinkedIn-header
+
+Het ruime bronbeeld is aanvankelijk voor een persoonlijke header gegenereerd. Na de verduidelijking dat de header voor een bedrijfspagina is, is het geëxporteerd op 1512 × 256 px. Het volledige logo blijft zichtbaar.
+
+Use case: logo-brand / LinkedIn cover adaptation. Adapt the provided finished FactumAI logo into a clean professional LinkedIn PERSONAL PROFILE header, final target 1584x396 pixels, very wide 4:1 panorama. If the generator requires a 3:1 canvas, keep all meaningful content inside the middle 65% of the height so the top and bottom can be trimmed to 4:1 with nothing clipped.
+Preserve the full exact original logo: warm white abstract F emblem made of two gently curved horizon bands, copper sun, and entire exact wordmark "FactumAI", with the same glyphs, weight, kerning and colors. This is a layout adaptation, NOT a redesign.
+Background: completely opaque flat uniform dark slate-green #202B30 across the full canvas. Place ONE horizontal complete logo lockup right of center, occupying approximately x=35% to x=88% of the canvas. The entire lockup is optically centered vertically around y=48%, with generous empty space above and below. Keep the left 30% completely empty for the LinkedIn profile photo. The mark and letters must be crisp and clean, warm white #F4F1EC for the F and "Factum", muted copper #E4BB94 for the sun and "AI".
+Deliver only the banner artwork itself. No LinkedIn interface, profile photo, badges, template guides, borders, rounded corners, mockup, extra wording or slogan, textures, gradients, shadows or decorative additions. Do not crop or omit any part of the emblem or wordmark.
+
 ## Gebruikte prompts
 
 ### Eerste ontwerp
