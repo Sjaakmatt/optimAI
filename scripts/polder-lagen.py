@@ -112,6 +112,7 @@ def main() -> int:
     ap.add_argument("--riet-diepte", type=float, default=0.40)
     ap.add_argument("--voor-diepte", type=float, default=0.70)
     ap.add_argument("--lokaal", type=float, default=0.10, help="hoeveel donkerder dan de omgeving een silhouet moet zijn")
+    ap.add_argument("--dijk-diepte", type=float, default=0.05, help="diepte (0..1) waarboven een pixel in het venster bij de dijk hoort")
     a = ap.parse_args()
 
     master = Image.open(a.master).convert("RGB")
@@ -137,7 +138,9 @@ def main() -> int:
 
     # --- dijk: silhouet tegen de lucht binnen het venster, plus de dijkband zelf
     venster = (yy >= a.dijk_top) & (yy <= a.horizon + 0.012)
-    silhouet = donker & venster & (lum < a.dijk_drempel)
+    # Donker tegen de lucht, óf volgens de dieptekaart dichterbij dan de lucht
+    # (het dak van de boerderij vangt randlicht en is niet donker genoeg).
+    silhouet = venster & ((donker & (lum < a.dijk_drempel)) | (d >= a.dijk_diepte))
     band = (yy >= a.horizon - 0.045) & (yy <= a.horizon + 0.012)
     dijk = (silhouet | (band & (lum < a.dijk_drempel + 0.08))).astype(np.float32)
 
@@ -152,15 +155,15 @@ def main() -> int:
     bereikbaar = np.isin(labels, bovenrand)
     dijk[(vrij > 0) & ~bereikbaar] = 1.0
     dijk_alfa = np.clip(blur(dijk, 2) * 1.6, 0, 1)
-    # De spiegeling in het water hoort bij de molen: hetzelfde silhouet,
-    # gespiegeld om de waterlijn, zodat hij mee beweegt met de dijk.
-    waterlijn = int(round((a.horizon + 0.012) * h))
-    silhouet_boven = np.clip(blur((silhouet.astype(np.float32)), 2) * 1.6, 0, 1)
-    spiegel = np.zeros_like(dijk_alfa)
-    boven = silhouet_boven[:waterlijn][::-1]
-    spiegel[waterlijn : waterlijn + boven.shape[0]] = boven[: h - waterlijn]
-    spiegel = blur(spiegel, 3)
-    dijk_alfa = np.maximum(dijk_alfa, spiegel)
+    # De spiegeling blijft in het water (de verre plaat): een uitgesneden
+    # spiegeling sluit nooit precies aan op de echte en wordt hakkelig.
+    # Wel neemt de dijk een strook water onder zich mee, uitlopend naar
+    # doorzichtig: als hij bij het scrollen iets omhoog schuift, zit er dan
+    # geen harde rand tussen dijkvoet en water maar een zachte overgang in
+    # dezelfde tinten.
+    y0, y1 = a.horizon + 0.012, a.horizon + 0.075
+    strook = np.clip((y1 - yy) / (y1 - y0), 0, 1) * ((yy > y0 - 0.005) & (yy < y1))
+    dijk_alfa = np.maximum(dijk_alfa, np.broadcast_to(strook, (h, w)).astype(np.float32))
     # dichtgevuld onder het silhouet tot iets onder de horizon (grondcontact)
     onder = (yy > a.horizon - 0.02) & (yy <= a.horizon + 0.03)
     kolom_heeft = (dijk_alfa > 0.5).any(axis=0)[None, :]
@@ -182,8 +185,6 @@ def main() -> int:
     # van de molen staan die bij het schuiven dubbel wordt.
     gat = np.maximum(np.maximum(dijk_alfa, riet_alfa), voor_alfa)
     gat = cv2.dilate((gat > 0.25).astype(np.uint8), np.ones((17, 17), np.uint8)).astype(np.float32)
-    # rond de spiegeling ruimer: die ligt in de foto niet precies gespiegeld
-    gat = np.maximum(gat, cv2.dilate((spiegel > 0.15).astype(np.uint8), np.ones((41, 41), np.uint8)).astype(np.float32))
     ver = vul_horizontaal(rgb, gat)
     # riet-laag zelf bijgevuld waar de oever ervoor staat (anders gat bij verschuiven)
     riet_rgb = vul_horizontaal(rgb, cv2.dilate((voor_alfa > 0.25).astype(np.uint8), np.ones((9, 9), np.uint8)).astype(np.float32), 4)

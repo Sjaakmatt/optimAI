@@ -6,7 +6,7 @@
 // de verschuiving bij scrollen en muis verschilt per laag.
 //
 //   ver   lucht, horizon, water        blijft 30% achter bij de scroll
-//   dijk  molen, boerderij, wilgen,    22%   (één stuk grond: niets zweeft)
+//   dijk  molen, boerderij, wilgen,    25%   (één stuk grond: niets zweeft)
 //         dijkband
 //   nevel drijvende mist                18%
 //   riet  rietkraag aan de oever        8%
@@ -74,10 +74,10 @@ export function PolderFoto({
       aria-hidden
     >
       <Vlak naam="ver" lag={0.3} muis={5} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.06}>
-        <div className="absolute inset-0 lucht-masker">{laag('ver', true)}</div>
+        <div className={`absolute inset-0 ${mobielInStroom ? 'lucht-masker md:lucht-masker-zacht' : 'lucht-masker'}`}>{laag('ver', true)}</div>
       </Vlak>
 
-      <Vlak naam="dijk" lag={0.22} muis={9} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.06}>
+      <Vlak naam="dijk" lag={0.25} muis={9} scrollY={scrollY} muisX={muisX} muisY={muisY} reduced={reduced} schaal={1.06}>
         {laag('dijk', true)}
       </Vlak>
 

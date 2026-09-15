@@ -23,7 +23,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
     <section
       ref={ref}
       className={`relative overflow-hidden -mt-[72px] pt-[72px] md:min-h-[104svh] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
-      style={foto ? ({ '--hero-lucht-top': '#4a4468' } as React.CSSProperties) : undefined}
+      style={foto ? ({ '--hero-lucht-top': '#63618b' } as React.CSSProperties) : undefined}
     >
       {foto ? null : (
         <>

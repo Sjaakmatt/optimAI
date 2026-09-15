@@ -75,10 +75,10 @@ export function SiteHeader() {
       <header className="sticky top-0 z-40 w-full pointer-events-none">
         <div className="band pt-3 sm:pt-4">
           <div
-            className={`pointer-events-auto flex items-center justify-between gap-3 rounded-[999px] px-3 sm:px-4 py-2 transition-all duration-500 ${
+            className={`pointer-events-auto flex items-center justify-between gap-3 rounded-[999px] px-3 sm:px-4 py-2 border border-[rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-500 ${
               gescrold
-                ? 'bg-[rgba(12,12,15,0.72)] border border-[rgba(255,255,255,0.1)] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl'
-                : 'bg-transparent border border-transparent'
+                ? 'bg-[rgba(12,12,15,0.78)] shadow-[0_12px_40px_rgba(0,0,0,0.45)]'
+                : 'bg-[rgba(14,13,20,0.62)] shadow-[0_8px_30px_rgba(0,0,0,0.3)]'
             }`}
           >
             <Link href="/" className="flex items-center gap-2 pl-1 min-w-0" aria-label="FactumAI, naar de homepage">

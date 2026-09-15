@@ -23,7 +23,7 @@ export function Dageraad({ variant }: { variant: LandschapVariant }) {
     <section
       ref={ref}
       className={`relative mt-28 overflow-hidden sm:mt-36 ${foto ? 'dageraad-lucht-foto' : 'dageraad-lucht'}`}
-      style={foto ? ({ '--hero-lucht-top': '#6b7d94' } as React.CSSProperties) : undefined}
+      style={foto ? ({ '--hero-lucht-top': '#6d7e98' } as React.CSSProperties) : undefined}
     >
       {foto ? (
         <PolderFoto scene={POLDER_DAGERAAD} muisX={muisX} muisY={muisY} x="50%" />
