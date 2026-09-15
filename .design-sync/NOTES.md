@@ -18,6 +18,12 @@ Repo-specific gotchas for syncing this Next.js app to claude.ai/design. Read bef
 - Previews may import repo data through the `@/` alias (e.g. `CASES` from `@/lib/data/cases`); the preview compiler uses the same tsconfig paths.
 - Hooks exported from the entry (e.g. `useMuisParallax`) are on `window.FactumAI` and importable from `'factumai-demo'` in previews.
 
+- Logostrook renders a plain `<img src="/pavo-hr.svg">` (not next/image); the next-image shim installs a capture-phase `error` listener that retries root-relative `<img>` sources once from `https://factumai.nl`. Previews may also pass full URLs.
+- Only utilities that occur in repo sources OR in the `@source inline(...)` safelist in `ds-styles.css` compile; a class outside that set is a silent no-op. Check with `grep -c -F '.pt-32' ds-bundle/_ds_bundle.css` and extend the safelist rather than the preview.
+- `SiteHeader` is sticky in-flow (reserves its own height). `SectieOnthulling` (mounted by `SitePage` when `lucht`) hides `main > section`s that start below the viewport until they intersect and toggles `js-onthul` on `<html>`: keep SitePage preview sections near the top.
+- Capture is per cell at a fixed 900x700 (`fullPage:false`); tall compositions need `overrides.<Name>.viewport` (SiteFooter 1280x1000, SitePage 1280x1400) and are re-keyed for grading when it changes.
+- States that need a server response (ContactForm submit/result, TerugbelKaart submit, chat replies, agenda availability) are not previewed.
+
 ## Playwright
 - The container caches chromium-1194 at `/opt/pw-browsers`; that build is pinned by `playwright@1.56.0` (installed in `.ds-sync/`). The repo's own `@playwright/test` 1.62 pins a different build and does not work with the cache.
 

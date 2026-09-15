@@ -54,3 +54,22 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(function Image(
 });
 
 export default Image;
+
+// Plain <img> elements in the source (Logostrook's client logos) also use
+// root-relative paths from public/. Outside the app those 404; retry them once
+// from the live site when they fail. Capture-phase listener: error events on
+// <img> don't bubble.
+if (typeof document !== 'undefined') {
+  document.addEventListener(
+    'error',
+    (e) => {
+      const el = e.target as HTMLImageElement | null;
+      if (!el || el.tagName !== 'IMG' || el.dataset.assetRetried) return;
+      const src = el.getAttribute('src') ?? '';
+      if (!src.startsWith('/') || src.startsWith('//')) return;
+      el.dataset.assetRetried = '1';
+      el.src = ASSET_BASE + src;
+    },
+    true,
+  );
+}

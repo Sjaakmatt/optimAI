@@ -25,6 +25,17 @@
   "overrides": {
     "SiteHeader": {
       "cardMode": "column"
+    },
+    "SiteFooter": {
+      "cardMode": "column",
+      "viewport": "1280x1000"
+    },
+    "SitePage": {
+      "cardMode": "column",
+      "viewport": "1280x1400"
+    },
+    "LuchtBand": {
+      "cardMode": "column"
     }
   },
   "provider": {
