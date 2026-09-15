@@ -174,6 +174,9 @@ export function SiteAgent() {
       return;
     }
 
+    // The homepage tells its story uninterrupted; the chat button stays available.
+    if (pathname === '/') return;
+
     // Eén wolkje per pagina. Zonder dit zou het sluiten van het paneel op
     // dezelfde pagina een nieuwe timer starten en zes seconden later opnieuw
     // een wolkje opleveren — dat is geen zetje meer maar aandringen.

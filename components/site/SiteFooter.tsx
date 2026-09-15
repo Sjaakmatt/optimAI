@@ -10,7 +10,7 @@ export function SiteFooter() {
     .slice(0, 5);
 
   return (
-    <footer className="relative w-full mt-28 overflow-hidden">
+    <footer className="relative w-full pt-20 overflow-hidden">
       {/* zachte gloed aan de horizon */}
       <div
         aria-hidden
@@ -59,6 +59,7 @@ export function SiteFooter() {
             </VoetLink>
           ))}
           <VoetLink href="/kennis" zacht>Alle artikelen</VoetLink>
+          <VoetLink href="/videos" zacht>Alle video’s</VoetLink>
         </Kolom>
 
         <Kolom titel="Contact">
