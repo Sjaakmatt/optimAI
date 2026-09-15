@@ -66,3 +66,11 @@ De productiepreview draait lokaal via `npm run start -- --hostname 127.0.0.1 --p
 - Herohoogte: 850 px desktop, 780 px mobiel; het landschap begint hoger zodat er minder lucht overblijft.
 - Nieuwe covers komen uit de bestaande MP4’s: kennismaken 37,7 s, mail 52,15 s, audit 1,5 s, AI-angst 54,5 s. Nieuwe bestandsnamen voorkomen verouderde afbeeldingscaches. De afspeelknop staat naast het gezicht.
 - Productiebuild inclusief lint en TypeScript geslaagd. Visueel gecontroleerd op desktop en 390 × 844; scrollwissels voor voorbeelden en team bevestigd. Bij 320 × 640 schakelt de vaste scène uit; geen horizontale documentoverflow. Geen browserfouten of waarschuwingen.
+
+## Gelijke vrijstaande teamportretten
+
+- Sjaaks portret is vervangen door de aangeleverde `IMG_6435.jpeg`; Danny gebruikt zijn bestaande originele foto.
+- Na expliciet akkoord zijn beide achtergronden lokaal verwijderd met Apple Vision (`VNGenerateForegroundInstanceMaskRequest`), met behoud van de oorspronkelijke fotografie. De gegenereerde imagegen-pogingen zijn niet gebruikt omdat deze geen echte transparantie bevatten.
+- Definitieve assets: `public/sjaak-portrait-cutout.webp` en `public/danny-portrait-cutout.webp`, lossless WebP met gecontroleerd alfakanaal (0–255).
+- Beide homepageportretten gebruiken dezelfde transparante opmaak en vervaging; het kader van Danny is verwijderd. De gedeelde teamgegevens gebruiken dezelfde nieuwe assets op de over-ons- en profielpagina’s.
+- Productiebuild inclusief lint en TypeScript geslaagd. Beide afbeeldingen geladen en op desktop/mobiel visueel gecontroleerd; geen horizontale overloop.

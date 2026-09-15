@@ -1507,15 +1507,6 @@
 .team-cutout {
   mask-image: linear-gradient(#000 75%, transparent);
 }
-.team-framed {
-  border-radius: 28px;
-  overflow: hidden;
-  background: #292c32;
-}
-.team-framed img {
-  object-fit: cover;
-  object-position: center 30%;
-}
 .team-copy h2 {
   font-size: clamp(32px, 4.2vw, 56px);
   line-height: 1.06;
@@ -1654,9 +1645,6 @@
     width: 170px;
     height: 185px;
     margin-inline: auto;
-  }
-  .team-framed {
-    border-radius: 18px;
   }
   .team-copy h2 {
     font-size: 30px;

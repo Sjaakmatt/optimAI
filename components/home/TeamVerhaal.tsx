@@ -17,7 +17,7 @@ const PEOPLE = [
         <em>De bouwer zelf.</em>
       </>
     ),
-    photo: "/portret-cutout.webp",
+    photo: "/sjaak-portrait-cutout.webp",
     text: "Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en bouw mee aan de agents die wij opleveren. Dat houdt het werk eerlijk: ik beloof niets dat ik niet zelf zou kunnen waarmaken.",
   },
   {
@@ -29,7 +29,7 @@ const PEOPLE = [
         <em>Naar een helder plan.</em>
       </>
     ),
-    photo: "/danny.jpg",
+    photo: "/danny-portrait-cutout.webp",
     text: "Danny luistert naar waar de werkdag stroef loopt en vertaalt dat naar een helder voorstel. Wat kan een agent overnemen, wat levert het op, en waar beginnen we? Hij houdt de lijnen kort en de belofte eerlijk.",
   },
 ];
@@ -100,9 +100,7 @@ export function TeamVerhaal() {
                 aria-hidden={i !== active}
                 inert={i !== active}
               >
-                <div
-                  className={`team-photo ${i === 0 ? "team-cutout" : "team-framed"}`}
-                >
+                <div className="team-photo team-cutout">
                   <Image
                     src={photo}
                     alt={`${member.voornaam} ${member.achternaam}, ${member.rol}`}
