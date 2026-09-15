@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useOpOnderhoudPagina } from '@/lib/site/onderhoudPagina';
 import { GA_ID, ADS_ID, adsConfigured, pageview } from '@/lib/analytics/gtag';
 import {
   type Consent,
@@ -30,6 +31,7 @@ export function ConsentGate() {
   const [showPrefs, setShowPrefs] = useState(false);
   const [ready, setReady] = useState(false);
   const pathname = usePathname();
+  const opOnderhoud = useOpOnderhoudPagina();
   const firstRun = useRef(true);
 
   useEffect(() => {
@@ -69,6 +71,8 @@ export function ConsentGate() {
     }
   }, []);
 
+  // Op de onderhoudspagina geen banner en geen tags: er valt niets te meten.
+  if (opOnderhoud) return null;
   if (!GA_ID && !showMarketing) return null;
 
   const loadAds = marketing && showMarketing;
