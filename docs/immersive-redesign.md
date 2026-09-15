@@ -74,3 +74,15 @@ De productiepreview draait lokaal via `npm run start -- --hostname 127.0.0.1 --p
 - Definitieve assets: `public/sjaak-portrait-cutout.webp` en `public/danny-portrait-cutout.webp`, lossless WebP met gecontroleerd alfakanaal (0–255).
 - Beide homepageportretten gebruiken dezelfde transparante opmaak en vervaging; het kader van Danny is verwijderd. De gedeelde teamgegevens gebruiken dezelfde nieuwe assets op de over-ons- en profielpagina’s.
 - Productiebuild inclusief lint en TypeScript geslaagd. Beide afbeeldingen geladen en op desktop/mobiel visueel gecontroleerd; geen horizontale overloop.
+
+## Meer diepte in de hero
+
+De hero gebruikt opnieuw vier bestaande polderlagen: verte, dijk, riet en voorgrond. Lokale scrollvoortgang wordt met een gedempte veer afgevlakt; iedere laag heeft een begrensde eigen verplaatsing. De verte en dijk bewegen vrijwel gelijk om de spiegeling te behouden. De voorgrond staat hoger in beeld. Muisbeweging geeft op desktop een kleine extra verschuiving; touch wordt niet onderschept. Zachte nevel beweegt alleen wanneer de hero zichtbaar is. Bij verminderde beweging blijven alle lagen stil.
+
+Gecontroleerd: productiebuild (inclusief types/lint), desktop voor en na scrollen, mobiel 390×844 zonder horizontale overflow, vier verschillende scrolltransformaties en geen browserfouten tijdens die controle.
+
+### Ook beweging zonder interactie
+
+Na feedback dat de beweging nauwelijks zichtbaar was: een doorlopende camerabeweging (2–8% zoom in 12 seconden), onafhankelijk wiegend voorgrondriet en snellere nevel toegevoegd. De pauzeknop stopt alle beweging; de voorkeur voor verminderde beweging blijft gerespecteerd. In de browser zijn verschillende transformaties gemeten zonder scrollen en pauzeren/hervatten gecontroleerd. Productiebuild geslaagd.
+
+De bovenstaande camera- en lagenproeven zijn vervangen door afzonderlijke objectanimaties: fotografische wieken, mistbanken en riet. Zie `docs/hero-wind-assets.md` voor de huidige uitvoering en assetprompts.
