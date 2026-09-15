@@ -739,3 +739,18 @@ body {
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 18%, #000 42%);
   mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 18%, #000 42%);
 }
+
+/* Nevel drijft traag zijwaarts; het voorgrondriet wiegt in tegenfase */
+@media (prefers-reduced-motion: no-preference) {
+  .nevel-drijft {
+    animation: nevel-drijft-x 70s ease-in-out infinite alternate;
+  }
+  @keyframes nevel-drijft-x {
+    from { transform: translateX(-3%); }
+    to { transform: translateX(3%); }
+  }
+  .riet-wiegt-terug {
+    transform-origin: 50% 100%;
+    animation: riet-wiegt 11s ease-in-out infinite alternate-reverse;
+  }
+}

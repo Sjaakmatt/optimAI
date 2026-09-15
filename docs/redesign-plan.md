@@ -96,3 +96,19 @@ referentiefoto (molen links, rietkraag vooraan, water dat de lucht spiegelt):
 Segmentatie (SAM) gaf gaten in de roeden en de pluimen; luminantie-keying
 op een witte plaat houdt die fijne details heel. Component: `PolderFoto.tsx`.
 De bosvariant (`?landschap=bos`) blijft als getekende terugvaloptie bestaan.
+
+### Laagcontract hero (scroll-craft hero-depth, 15 september)
+
+| # | Vlak | Blijft achter bij scroll | Muis | Rol |
+|---|---|---|---|---|
+| 1 | Lucht en water | 31% | 6 px | verre omgeving |
+| 2 | Molen op de dijk + spiegeling | 22% | 12 px | middenvlak links |
+| 3 | Nevel over het water | 18%, drijft zelf | 10 px | atmosfeer |
+| 4 | Knotwilgen op de nabije oever | 14% | 16 px | middenvlak rechts |
+| 5 | Rietkraag | 6% | 22 px | voorgrond |
+| 6 | Riet vooraan, onscherp, alleen aan de zijkanten | 0% (rijdt mee) | 34 px | occlusie; het midden blijft open voor de kop |
+| – | Kop, subregel, knoppen | 20% | – | het onderwerp: zakt bij scrollen achter het riet weg, zoals het scherm bij fora |
+
+Elk vlak is onder zijn silhouet dichtgevuld; de vloer vervaagt boven alle
+lagen naar de pagina. Op telefoons staat het landschap als eigen band onder
+de knoppen en zakt de kop niet.

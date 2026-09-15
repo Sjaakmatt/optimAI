@@ -1,15 +1,23 @@
 'use client';
 
 import Link from 'next/link';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { calPopupAttrs } from '@/components/booking/config';
 import { BOS_LAGEN } from './landschap/Bos';
 import { Landschap, useMuisParallax, type LandschapVariant } from './Landschap';
 import { PolderFoto, POLDER_SCHEMER } from './PolderFoto';
 import { Opkomend, Verschijn } from './Opkomend';
+import { useMediaQuery } from './useMediaQuery';
 
 export function Hero({ variant }: { variant: LandschapVariant }) {
   const { ref, muisX, muisY } = useMuisParallax();
   const foto = variant === 'polder';
+  // De kop rijdt iets langzamer dan de pagina en zakt daardoor bij het
+  // scrollen achter het riet vooraan weg (dat rijdt op 1x mee).
+  const reduced = useReducedMotion() ?? false;
+  const breed = useMediaQuery('(min-width: 768px)');
+  const { scrollY } = useScroll();
+  const zak = useTransform(scrollY, [0, 700], [0, 0.2 * 700]);
 
   return (
     <section
@@ -25,7 +33,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
       )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
-      <div className="relative z-10 band pt-24 sm:pt-28 lg:pt-32 text-center">
+      <motion.div className="relative z-10 band pt-24 sm:pt-28 lg:pt-32 text-center" style={reduced || !foto || !breed ? undefined : { y: zak }}>
         <Verschijn vertraging={0.05} className="flex justify-center">
           <span className="chip">
             <span className="chip-punt" aria-hidden />
@@ -55,7 +63,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
             Ontdek hoe het werkt
           </Link>
         </Verschijn>
-      </div>
+      </motion.div>
 
       {/* Op telefoons staat de polder hier als eigen band; op brede schermen
           absoluut onderin de sectie, over de volle breedte. */}
