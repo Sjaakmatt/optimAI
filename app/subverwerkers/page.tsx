@@ -105,7 +105,7 @@ export default function SubverwerkersPage() {
           Huidige sub-verwerkers
         </h2>
 
-        <div className="hidden sm:block overflow-hidden rounded-[2px] border border-[var(--paper-edge)]">
+        <div className="hidden sm:block overflow-hidden rounded-[10px] border border-[var(--paper-edge)]">
           <table className="w-full text-[14.5px] text-left">
             <thead className="bg-[var(--paper-deep)]">
               <tr className="font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">

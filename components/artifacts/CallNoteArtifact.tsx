@@ -20,7 +20,7 @@ export function CallNoteArtifact({ artifact }: Props) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="mx-auto w-full max-w-[580px] px-10 py-9 rounded-[2px] border border-[var(--paper-edge)]"
+      className="mx-auto w-full max-w-[580px] px-10 py-9 rounded-[10px] border border-[var(--paper-edge)]"
       style={{
         background: 'linear-gradient(180deg, #f2e6b8 0%, #eedf9f 100%)',
         boxShadow: 'var(--shadow-lift)',

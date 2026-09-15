@@ -90,7 +90,7 @@ export default async function CaseDetail({
             <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
               {c.klant}
             </h1>
-            <p className="mt-3 font-display italic text-[18px] sm:text-[22px] text-[var(--oker-deep)]">
+            <p className="mt-3 font-display text-[18px] sm:text-[22px] text-[var(--oker-deep)]">
               {c.tagline}
             </p>
             <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
@@ -175,11 +175,11 @@ export default async function CaseDetail({
             <div className="relative mx-auto max-w-[820px] px-5 sm:px-8 lg:px-10 py-16 sm:py-20 text-center">
               <div
                 aria-hidden
-                className="font-display italic text-[64px] leading-none text-[var(--oker-deep)] opacity-50 mb-2"
+                className="font-display text-[64px] leading-none text-[var(--oker-deep)] opacity-50 mb-2"
               >
                 &ldquo;
               </div>
-              <p className="font-display italic text-[22px] sm:text-[28px] leading-[1.4] text-[var(--paper)]">
+              <p className="font-display text-[22px] sm:text-[28px] leading-[1.4] text-[var(--paper)]">
                 {c.quote.text}
               </p>
               <div className="mt-8 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
@@ -205,7 +205,7 @@ export default async function CaseDetail({
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Iets soortgelijks bespreken
               <ArrowRight size={16} strokeWidth={1.8} />

@@ -87,7 +87,7 @@ export default function DienstenPage() {
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Wat wij doen.
             <br />
-            <span className="italic text-[var(--oker-deep)]">Eén plek, alles bij elkaar.</span>
+            <span className="text-[var(--ink-soft)]">Eén plek, alles bij elkaar.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Vier hoofd-diensten, zestien oplossingen, veertien branche-pagina&rsquo;s, vier
@@ -103,7 +103,7 @@ export default function DienstenPage() {
             <li key={s.href}>
               <Link
                 href={s.href}
-                className={`block h-full px-6 py-7 rounded-[2px] border transition-colors group ${
+                className={`block h-full px-6 py-7 rounded-[10px] border transition-colors group ${
                   s.highlight
                     ? 'bg-[var(--paper)] border-[var(--oker)] hover:border-[var(--oker-deep)] hover:bg-[var(--paper-warm)]'
                     : 'bg-[var(--paper)] border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)]'
@@ -154,7 +154,7 @@ export default function DienstenPage() {
                     <li key={o.slug}>
                       <Link
                         href={`/oplossingen/${o.slug}`}
-                        className="block h-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                        className="block h-full px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13.5px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                       >
                         {o.navLabel}
                       </Link>
@@ -189,7 +189,7 @@ export default function DienstenPage() {
               <li key={b.slug}>
                 <Link
                   href={`/branches/${b.slug}`}
-                  className="block px-3 py-2.5 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-deep)] transition-colors"
+                  className="block px-3 py-2.5 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[13px] text-[var(--ink)] hover:border-[var(--oker)] hover:bg-[var(--paper-deep)] transition-colors"
                 >
                   {b.label}
                 </Link>
@@ -213,7 +213,7 @@ export default function DienstenPage() {
                 <li key={c.slug}>
                   <Link
                     href={`/diensten/vergelijken/${c.slug}`}
-                    className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    className="block px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                   >
                     <span className="font-display text-[15.5px] text-[var(--ink)]">
                       AI-agent vs {c.alternative}
@@ -240,7 +240,7 @@ export default function DienstenPage() {
               <li>
                 <Link
                   href="/tools/ai-roi-calculator"
-                  className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[15.5px] text-[var(--ink)]">
                     AI-agent procesdiagnose
@@ -253,7 +253,7 @@ export default function DienstenPage() {
               <li>
                 <Link
                   href="/tools/agent-readiness-check"
-                  className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[15.5px] text-[var(--ink)]">
                     AI-agent readiness check
@@ -266,7 +266,7 @@ export default function DienstenPage() {
               <li>
                 <Link
                   href="/info"
-                  className="block px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[15.5px] text-[var(--ink)]">
                     Wat is een AI-agent?
@@ -285,19 +285,19 @@ export default function DienstenPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Niet zeker welke dienst past?{' '}
-            <span className="italic text-[var(--oker-deep)]">Een gesprek lost dat op.</span>
+            <span className="text-[var(--ink-soft)]">Een gesprek lost dat op.</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/cases"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Bekijk de cases
             </Link>

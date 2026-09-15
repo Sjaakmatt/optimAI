@@ -127,7 +127,7 @@ export default function AIAgentsVoorBedrijvenPage() {
             <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
               AI-agents voor bedrijven.
               <br />
-              <span className="italic text-[var(--oker-deep)]">Digitale collega&rsquo;s, geen tools.</span>
+              <span className="text-[var(--ink-soft)]">Digitale collega&rsquo;s, geen tools.</span>
             </h1>
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               Een AI-agent is geen chatbot en geen workflow-script. Het is een digitale collega die
@@ -139,14 +139,14 @@ export default function AIAgentsVoorBedrijvenPage() {
               <Link
                 href="/plan"
                 {...calPopupAttrs}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Plan een kennismaking
                 <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
                 href="/demo"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
               >
                 Zie een agent aan het werk
               </Link>
@@ -177,7 +177,7 @@ export default function AIAgentsVoorBedrijvenPage() {
             <Link
               key={c.slug}
               href={`/cases/${c.slug}`}
-              className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+              className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
             >
               <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                 {c.branche}{c.regio ? ` · ${c.regio}` : ''}
@@ -215,7 +215,7 @@ export default function AIAgentsVoorBedrijvenPage() {
             <li key={slug}>
               <Link
                 href={`/kennis/${slug}`}
-                className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
               >
                 <span className="font-display text-[15.5px] text-[var(--ink)] leading-snug">
                   {title}
@@ -231,20 +231,20 @@ export default function AIAgentsVoorBedrijvenPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Welke agent zou voor uw bedrijf{' '}
-            <span className="italic text-[var(--oker-deep)]">het eerste verschil maken?</span>
+            <span className="text-[var(--ink-soft)]">het eerste verschil maken?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/diensten/ai-agent-laten-bouwen"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Bekijk de bouwdienst
             </Link>

@@ -22,20 +22,20 @@ export const CAL_NAMESPACE = 'kennismaking';
 export const CAL_LINK =
   process.env.NEXT_PUBLIC_CAL_LINK ?? 'sjaak-factumai/kennismaking';
 
-export const CAL_PALETTE_LIGHT = {
-  'cal-brand': '#7d5e24',
-  'cal-text': '#2a2420',
-  'cal-text-emphasis': '#2a2420',
-  'cal-bg': '#f4ede0',
-  'cal-bg-emphasis': '#e9ddc2',
-  'cal-bg-muted': '#f7ecd6',
-  'cal-border': '#d2c3a4',
-  'cal-border-subtle': '#e9ddc2',
-  'cal-border-emphasis': '#7d5e24',
+export const CAL_PALETTE_DARK = {
+  'cal-brand': '#d99a4e',
+  'cal-text': '#f4f1ec',
+  'cal-text-emphasis': '#ffffff',
+  'cal-bg': '#101013',
+  'cal-bg-emphasis': '#1a1a1f',
+  'cal-bg-muted': '#16161a',
+  'cal-border': '#2a2a30',
+  'cal-border-subtle': '#1f1f24',
+  'cal-border-emphasis': '#d99a4e',
 } as const;
 
 export const calPopupAttrs = {
   'data-cal-link': CAL_LINK,
   'data-cal-namespace': CAL_NAMESPACE,
-  'data-cal-config': '{"layout":"month_view","theme":"light"}',
+  'data-cal-config': '{"layout":"month_view","theme":"dark"}',
 } as const;

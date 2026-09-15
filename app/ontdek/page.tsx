@@ -54,7 +54,7 @@ export default function OntdekPage() {
           </div>
           <h1 className="mt-4 font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Ontdek FactumAI{' '}
-            <span className="italic text-[var(--oker-deep)]">agents.</span>
+            <span className="text-[var(--ink-soft)]">agents.</span>
           </h1>
           <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)] max-w-[620px]">
             Wat is een AI-agent precies, zonder de grote woorden? We volgen een gewoon bedrijf dat
@@ -79,7 +79,7 @@ export default function OntdekPage() {
               Na de rondleiding
             </div>
             <h2 className="mt-3 font-display text-[28px] sm:text-[36px] leading-[1.1] tracking-tight text-[var(--ink)]">
-              En in uw <span className="italic text-[var(--oker-deep)]">eigen bedrijf?</span>
+              En in uw <span className="text-[var(--ink-soft)]">eigen bedrijf?</span>
             </h2>
             <p className="mt-4 text-[15px] leading-[1.7] text-[var(--ink-dim)]">
               Een half uur over uw eigen situatie zegt meer dan welke toelichting ook. Geen
@@ -90,14 +90,14 @@ export default function OntdekPage() {
               <Link
                 href="/plan"
                 {...calPopupAttrs}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
               >
                 Plan een gesprek
                 <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
                 href="/scan"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Doe de AI-scan
               </Link>

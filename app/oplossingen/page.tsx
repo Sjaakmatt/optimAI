@@ -57,7 +57,7 @@ export default function OplossingenPage() {
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Waar de beslislaag
             <br />
-            <span className="italic text-[var(--oker-deep)]">het meeste oplevert.</span>
+            <span className="text-[var(--ink-soft)]">het meeste oplevert.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Zestien processen waar wij het vaakst bouwen, verdeeld over vier gebieden. Ze hebben
@@ -69,7 +69,7 @@ export default function OplossingenPage() {
               <a
                 key={c.key}
                 href={`#${c.key}`}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] hover:border-[var(--oker)] hover:text-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--ink)] hover:border-[var(--oker)] hover:text-[var(--oker-deep)] transition-colors"
               >
                 {c.label}
                 <span className="text-[var(--ink-faint)] tabular-nums">{c.oplossingen.length}</span>
@@ -97,7 +97,7 @@ export default function OplossingenPage() {
                 <li key={o.slug}>
                   <Link
                     href={`/oplossingen/${o.slug}`}
-                    className="block h-full px-6 py-7 rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors group"
+                    className="block h-full px-6 py-7 rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors group"
                   >
                     <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                       {o.heroEyebrow}
@@ -145,7 +145,7 @@ export default function OplossingenPage() {
           </div>
           <Link
             href="/diensten/vergelijken/ai-agent-vs-erp-automatisering"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors shrink-0 self-start md:self-center"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors shrink-0 self-start md:self-center"
           >
             Lees de vergelijking
             <ArrowRight size={16} strokeWidth={1.8} />
@@ -157,20 +157,20 @@ export default function OplossingenPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Niet zeker welk proces bij u het meeste oplevert?{' '}
-            <span className="italic text-[var(--oker-deep)]">Een gesprek lost dat op.</span>
+            <span className="text-[var(--ink-soft)]">Een gesprek lost dat op.</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/diensten"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Bekijk de diensten
             </Link>

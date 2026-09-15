@@ -31,7 +31,7 @@ export const TEAM: TeamMember[] = [
     vestiging: 'Hoogkarspel · West-Friesland',
     email: 'sjaak@factumai.nl',
     linkedin: 'https://www.linkedin.com/in/sjaak-ter-veld/',
-    portretSrc: '/portret.jpg',
+    portretSrc: '/portret-cutout.png',
     korteBio:
       'Bedrijfskundige met 8+ jaar IT-praktijk. Bouwt AI-agents voor MKB-bedrijven en schrijft de FactumAI-kennisbank.',
     langeBio: [

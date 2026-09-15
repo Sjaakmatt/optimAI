@@ -157,7 +157,7 @@ export default async function TeamMemberPage({
             <h1 className="mt-3 font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.05] tracking-tight text-[var(--ink)]">
               {fullName}
             </h1>
-            <p className="mt-4 font-display italic text-[18px] sm:text-[20px] leading-[1.45] text-[var(--oker-deep)] max-w-[600px]">
+            <p className="mt-4 font-display text-[18px] sm:text-[20px] leading-[1.45] text-[var(--oker-deep)] max-w-[600px]">
               {m.korteBio}
             </p>
             <div className="mt-6 space-y-4 text-[15px] sm:text-[16px] leading-[1.75] text-[var(--ink)] max-w-[640px]">
@@ -191,7 +191,7 @@ export default async function TeamMemberPage({
               <li key={p.slug}>
                 <Link
                   href={`/kennis/${p.slug}`}
-                  className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                     {DATE_FORMATTER.format(new Date(p.published))}
@@ -217,19 +217,19 @@ export default async function TeamMemberPage({
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Direct met {m.voornaam} sparren?{' '}
-            <span className="italic text-[var(--oker-deep)]">Een gesprek inplannen.</span>
+            <span className="text-[var(--ink-soft)]">Een gesprek inplannen.</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/over"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Over FactumAI
             </Link>
@@ -244,7 +244,7 @@ function Portret({ member }: { member: TeamMember }) {
   if (member.portretSrc) {
     return (
       <div
-        className="relative aspect-[4/5] w-full max-w-[320px] rounded-[2px] border border-[var(--paper-edge)] overflow-hidden"
+        className="relative aspect-[4/5] w-full max-w-[320px] rounded-[18px] border border-[var(--border)] overflow-hidden portret-kader"
         style={{ boxShadow: 'var(--shadow-lift)' }}
       >
         <Image
@@ -252,24 +252,15 @@ function Portret({ member }: { member: TeamMember }) {
           alt={`${member.voornaam} ${member.achternaam}, ${member.rolKort} FactumAI`}
           fill
           sizes="(max-width: 640px) 100vw, 320px"
-          className="object-cover"
+          className="object-contain object-bottom"
           priority
-        />
-        <div
-          className="absolute inset-0 pointer-events-none opacity-25"
-          style={{
-            backgroundImage: 'url(/paper-grain.svg)',
-            backgroundSize: '240px',
-            mixBlendMode: 'multiply',
-          }}
-          aria-hidden
         />
       </div>
     );
   }
   return (
     <div
-      className="relative aspect-[4/5] w-full max-w-[320px] rounded-[2px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] flex items-center justify-center"
+      className="relative aspect-[4/5] w-full max-w-[320px] rounded-[10px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] flex items-center justify-center"
       style={{ boxShadow: 'var(--shadow-lift)' }}
     >
       <span className="font-display text-[88px] text-[var(--oker-deep)]">{member.initialen}</span>

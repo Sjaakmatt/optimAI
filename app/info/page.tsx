@@ -64,7 +64,7 @@ export default function InfoPage() {
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Een agent werkt zonder dat u klikt.
             <br />
-            <span className="italic text-[var(--oker-deep)]">
+            <span className="text-[var(--ink-soft)]">
               Binnen uw grenzen, volgens uw regels.
             </span>
           </h1>
@@ -111,7 +111,7 @@ export default function InfoPage() {
         <div className="mt-8 flex flex-col sm:flex-row items-start gap-5">
           <Link
             href="/demo"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
           >
             Zie dit in onze demo
             <ArrowRight size={16} strokeWidth={1.8} />
@@ -160,12 +160,12 @@ export default function InfoPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[540px] leading-snug">
             Nog vragen? Of eerst{' '}
-            <span className="italic text-[var(--oker-deep)]">even zelf kijken</span> wat mogelijk is?
+            <span className="text-[var(--ink-soft)]">even zelf kijken</span> wat mogelijk is?
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Open de demo
               <ArrowRight size={16} strokeWidth={1.8} />
@@ -173,7 +173,7 @@ export default function InfoPage() {
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Plan een gesprek
             </Link>

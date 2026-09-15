@@ -64,7 +64,7 @@ export default async function AanvraagPage({
       <header className="mx-auto w-full max-w-[860px] px-5 sm:px-8 pt-5 sm:pt-8 flex items-baseline justify-between gap-4">
         <div className="font-display text-[19px] tracking-tight leading-none">
           <span className="text-[var(--ink)]">Factum</span>
-          <span className="italic text-[var(--oker-deep)]">AI</span>
+          <span className="text-[var(--ink-soft)]">AI</span>
         </div>
         <span className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
           AI-agents voor MKB
@@ -93,7 +93,7 @@ export default async function AanvraagPage({
                 {content.h1Accent && (
                   <>
                     {' '}
-                    <span className="italic text-[var(--oker-deep)]">{content.h1Accent}</span>
+                    <span className="text-[var(--ink-soft)]">{content.h1Accent}</span>
                   </>
                 )}
               </h1>
@@ -104,7 +104,7 @@ export default async function AanvraagPage({
             <div className="rise-in rise-in-delay-2">
               <a
                 href="#boeken"
-                className="mt-6 sm:mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-[2px] text-[15px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
+                className="mt-6 sm:mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-[10px] text-[15px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors lift-on-hover"
               >
                 {content.ctaLabel}
                 <ArrowDown size={16} strokeWidth={1.8} />
@@ -130,13 +130,13 @@ export default async function AanvraagPage({
               <img
                 src="/pavo-hr.svg"
                 alt="Logo Pavo"
-                className="h-11 sm:h-12 w-auto object-contain grayscale opacity-70"
+                className="h-11 sm:h-12 w-auto object-contain brightness-0 invert opacity-70"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/teka.svg"
                 alt="Logo TEKA"
-                className="h-11 sm:h-12 w-auto object-contain grayscale opacity-70"
+                className="h-11 sm:h-12 w-auto object-contain brightness-0 invert opacity-70"
               />
             </div>
           </div>
@@ -149,7 +149,7 @@ export default async function AanvraagPage({
           </div>
           <h2 className="mt-3 font-display text-[26px] sm:text-[32px] leading-tight tracking-tight text-[var(--ink)]">
             Eén half uur.{' '}
-            <span className="italic text-[var(--oker-deep)]">Geen verkooppraatje.</span>
+            <span className="text-[var(--ink-soft)]">Geen verkooppraatje.</span>
           </h2>
           <ol className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
             {content.offer.map((item, i) => (
@@ -166,7 +166,7 @@ export default async function AanvraagPage({
         {/* Persoonlijk blok, u spreekt de bouwer, geen salesteam */}
         <section className="mx-auto w-full max-w-[860px] px-5 sm:px-8 pb-12 sm:pb-16">
           <div className="site-card px-6 sm:px-8 py-6 sm:py-7 flex items-start gap-5 sm:gap-7">
-            <div className="relative shrink-0 w-[76px] h-[95px] sm:w-[92px] sm:h-[115px] rounded-[2px] overflow-hidden border border-[var(--paper-edge)]">
+            <div className="relative shrink-0 w-[76px] h-[95px] sm:w-[92px] sm:h-[115px] rounded-[10px] overflow-hidden border border-[var(--paper-edge)]">
               <Image
                 src="/portret.jpg"
                 alt="Portret van Sjaak ter Veld"
@@ -178,7 +178,7 @@ export default async function AanvraagPage({
             <div className="min-w-0">
               <h2 className="font-display text-[19px] sm:text-[22px] leading-tight text-[var(--ink)]">
                 U spreekt direct met de{' '}
-                <span className="italic text-[var(--oker-deep)]">bouwer.</span>
+                <span className="text-[var(--ink-soft)]">bouwer.</span>
               </h2>
               <p className="mt-2 text-[13px] sm:text-[14px] leading-[1.65] text-[var(--ink-dim)]">
                 Sjaak ter Veld, oprichter van FactumAI. Bedrijfskundige met ruim acht jaar
@@ -219,7 +219,7 @@ export default async function AanvraagPage({
               Kies een moment
             </div>
             <h2 className="mt-3 font-display text-[26px] sm:text-[32px] leading-tight tracking-tight text-[var(--ink)]">
-              De agenda staat <span className="italic text-[var(--oker-deep)]">open.</span>
+              De agenda staat <span className="text-[var(--ink-soft)]">open.</span>
             </h2>
             <p className="mt-3 text-[14px] text-[var(--ink-dim)] leading-[1.65] max-w-[480px]">
               U ontvangt direct een agenda-uitnodiging met een Google Meet-link. Komt het toch niet

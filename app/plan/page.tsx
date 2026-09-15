@@ -21,7 +21,7 @@ export default function PlanPage() {
           </div>
           <h1 className="mt-4 font-display text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
             Plan een gesprek.<br />
-            <span className="italic text-[var(--oker-deep)]">Vrijblijvend.</span>
+            <span className="text-[var(--ink-soft)]">Vrijblijvend.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
             Geen verkooppraatje. Eén half uur waarin u vertelt waar uw mensen tijd aan kwijt zijn,

@@ -98,7 +98,7 @@ export function SceneSystemen({ beat, reduced }: SceneProps) {
           className="absolute -translate-x-1/2 -translate-y-1/2"
           style={{ left: '50%', top: '50%' }}
         >
-          <div className="rounded-[3px] border border-[var(--oker)] bg-[var(--paper)] px-4 py-2.5 text-center shadow-[var(--shadow-soft)]">
+          <div className="rounded-[14px] border border-[var(--oker)] bg-[var(--paper)] px-4 py-2.5 text-center shadow-[var(--shadow-soft)]">
             <div className="font-display text-[15px] leading-none text-[var(--ink)]">Uw agent</div>
             <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--oker-deep)]">
               haalt en brengt
@@ -119,7 +119,7 @@ export function SceneSystemen({ beat, reduced }: SceneProps) {
                 top: `${(NODES[i].y / H) * 100}%`,
               }}
             >
-              <div className="rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3 py-2 text-center">
+              <div className="rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-3 py-2 text-center">
                 <Icon size={14} strokeWidth={1.5} className="mx-auto text-[var(--ink-dim)]" aria-hidden />
                 <div className="mt-1 font-display text-[13px] leading-none text-[var(--ink)]">
                   {sys.label}

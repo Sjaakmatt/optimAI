@@ -30,7 +30,7 @@ export function DossierStrip() {
             className="flex items-center gap-1"
           >
             {i > 0 && <span className="text-[var(--ink-faint)] select-none mx-1">→</span>}
-            <span className="px-2 py-0.5 rounded-[2px] bg-[var(--paper-deep)] border border-[var(--paper-edge)] font-display text-[13px] text-[var(--ink)]">
+            <span className="px-2 py-0.5 rounded-[10px] bg-[var(--paper-deep)] border border-[var(--paper-edge)] font-display text-[13px] text-[var(--ink)]">
               {agents[id].name}
             </span>
           </motion.span>

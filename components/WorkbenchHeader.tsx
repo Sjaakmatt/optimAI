@@ -19,7 +19,7 @@ export function WorkbenchHeader() {
           >
             <ArrowLeft size={14} strokeWidth={1.8} className="text-[var(--ink-faint)] group-hover:text-[var(--oker-deep)] transition-colors" />
             <span className="text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">Factum</span>
-            <span className="italic text-[var(--oker-deep)]">AI</span>
+            <span className="text-[var(--ink-soft)]">AI</span>
           </Link>
           <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em] truncate">
             De Werkbank · Vonk
@@ -33,7 +33,7 @@ export function WorkbenchHeader() {
           <button
             onClick={() => openPolicies(true)}
             aria-label="Beleidsregels"
-            className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+            className="p-2 rounded-[10px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
           >
             <Settings size={16} strokeWidth={1.5} />
           </button>

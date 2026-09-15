@@ -187,7 +187,7 @@ export function ScanTool() {
           >
             <form
               onSubmit={startScan}
-              className="max-w-[640px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8"
+              className="max-w-[640px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-6 sm:p-8"
             >
               <div className="grid gap-5">
                 <div>
@@ -204,7 +204,7 @@ export function ScanTool() {
                     onChange={(e) => setBedrijfsnaam(e.target.value)}
                     maxLength={160}
                     placeholder="Bijv. Nordveld Bouwmaterialen"
-                    className="w-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
+                    className="w-full px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
                   />
                 </div>
                 <div>
@@ -223,7 +223,7 @@ export function ScanTool() {
                     maxLength={300}
                     inputMode="url"
                     placeholder="uwbedrijf.nl"
-                    className="w-full px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
+                    className="w-full px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
                   />
                 </div>
                 {/* Honeypot, verborgen voor mensen */}
@@ -237,7 +237,7 @@ export function ScanTool() {
                 />
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[2px] text-[15px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[10px] text-[15px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
                 >
                   Start de gratis scan
                   <ArrowRight size={16} strokeWidth={1.8} />
@@ -263,7 +263,7 @@ export function ScanTool() {
           >
             <h2 className="font-display text-[26px] sm:text-[32px] leading-[1.15] tracking-tight text-[var(--ink)] mb-8">
               We analyseren nu wat AI-agents kunnen betekenen voor{' '}
-              <span className="italic text-[var(--oker-deep)]">{displayNaam}</span>
+              <span className="text-[var(--ink-soft)]">{displayNaam}</span>
             </h2>
             <div className="space-y-3" role="status" aria-live="polite">
               {STAGES.map((stage, i) => {
@@ -274,7 +274,7 @@ export function ScanTool() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: i * 0.08 }}
-                    className={`flex items-center justify-between gap-4 px-5 py-4 rounded-[2px] border transition-colors ${
+                    className={`flex items-center justify-between gap-4 px-5 py-4 rounded-[10px] border transition-colors ${
                       status === 'pending'
                         ? 'bg-[var(--paper-warm)] border-[var(--paper-edge)] opacity-60'
                         : 'bg-[var(--paper-warm)] border-[var(--paper-edge)]'
@@ -324,7 +324,7 @@ export function ScanTool() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3 }}
-            className="max-w-[640px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8"
+            className="max-w-[640px] bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-6 sm:p-8"
           >
             <div className="flex items-start gap-3">
               <AlertCircle size={20} strokeWidth={1.8} className="text-[var(--oker-deep)] mt-0.5 shrink-0" />
@@ -333,14 +333,14 @@ export function ScanTool() {
                 <div className="mt-5 flex flex-wrap gap-3">
                   <button
                     onClick={reset}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
                   >
                     <RotateCcw size={15} strokeWidth={1.8} />
                     Opnieuw proberen
                   </button>
                   <Link
                     href="/plan"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
                   >
                     Plan een gesprek
                   </Link>
@@ -359,7 +359,7 @@ export function ScanTool() {
           >
             {/* Score + samenvatting */}
             <div className="grid gap-6 lg:grid-cols-[300px_1fr] items-start">
-              <div className="bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6 text-center">
+              <div className="bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-6 text-center">
                 <div className="font-mono text-[11px] text-[var(--ink-dim)] uppercase tracking-[0.18em]">
                   AI-potentieel
                 </div>
@@ -367,14 +367,14 @@ export function ScanTool() {
                   {result.score}
                   <span className="text-[22px] text-[var(--ink-faint)]">/100</span>
                 </div>
-                <div className="mt-3 inline-block px-3 py-1 rounded-[2px] bg-[var(--oker-soft)] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--oker-deep)]">
+                <div className="mt-3 inline-block px-3 py-1 rounded-[10px] bg-[var(--oker-soft)] font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--oker-deep)]">
                   {LABEL_TEXT[result.label]}
                 </div>
               </div>
               <div>
                 <h2 className="font-display text-[26px] sm:text-[30px] leading-[1.2] tracking-tight text-[var(--ink)]">
                   Wat AI-agents kunnen betekenen voor{' '}
-                  <span className="italic text-[var(--oker-deep)]">{displayNaam}</span>
+                  <span className="text-[var(--ink-soft)]">{displayNaam}</span>
                 </h2>
                 <p className="mt-4 text-[15px] leading-[1.75] text-[var(--ink-dim)]">
                   {result.samenvatting}
@@ -395,7 +395,7 @@ export function ScanTool() {
                 <div className="font-mono text-[11px] text-[var(--ink-dim)] uppercase tracking-[0.18em] mb-3">
                   Wat we zagen
                 </div>
-                <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6">
+                <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-6">
                   {(
                     [
                       ['Sector', result.companyProfile.sector],
@@ -449,7 +449,7 @@ export function ScanTool() {
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.05 }}
-                      className="flex items-start gap-3 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] px-4 py-3.5"
+                      className="flex items-start gap-3 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] px-4 py-3.5"
                     >
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--oker)] text-[var(--paper)]">
                         <Check size={11} strokeWidth={3} />
@@ -481,7 +481,7 @@ export function ScanTool() {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.06 }}
-                      className="bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-5 sm:p-6 flex flex-col"
+                      className="bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-5 sm:p-6 flex flex-col"
                     >
                       <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.16em]">
                         {sol.categorie}
@@ -493,15 +493,15 @@ export function ScanTool() {
                         {sol.beschrijving}
                       </p>
                       {sol.voorbeeld && (
-                        <p className="mt-3 text-[13px] leading-[1.65] text-[var(--ink-faint)] italic border-l-2 border-[var(--oker)] pl-3">
+                        <p className="mt-3 text-[13px] leading-[1.65] text-[var(--ink-faint)] border-l-2 border-[var(--oker)] pl-3">
                           {sol.voorbeeld}
                         </p>
                       )}
                       <div className="mt-4 flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-[2px] bg-[var(--oker-soft)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--oker-deep)]">
+                        <span className="px-2.5 py-1 rounded-[10px] bg-[var(--oker-soft)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--oker-deep)]">
                           {COMPLEX_LABEL[sol.complexiteit]}
                         </span>
-                        <span className="px-2.5 py-1 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--ink-dim)]">
+                        <span className="px-2.5 py-1 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--ink-dim)]">
                           {IMPACT_LABEL[sol.impact]}
                         </span>
                       </div>
@@ -525,11 +525,11 @@ export function ScanTool() {
             />
 
             {/* CTA */}
-            <div className="mt-8 bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div className="mt-8 bg-[var(--paper-deep)] border border-[var(--paper-edge)] rounded-[10px] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
               <div>
                 <h3 className="font-display text-[22px] sm:text-[24px] leading-snug text-[var(--ink)] max-w-[520px]">
                   Benieuwd wat dit concreet oplevert?{' '}
-                  <span className="italic text-[var(--oker-deep)]">
+                  <span className="text-[var(--ink-soft)]">
                     We rekenen het graag met u door.
                   </span>
                 </h3>
@@ -541,14 +541,14 @@ export function ScanTool() {
               <div className="flex flex-wrap gap-3 shrink-0">
                 <Link
                   href="/plan"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
                 >
                   Plan een gesprek
                   <ArrowRight size={16} strokeWidth={1.8} />
                 </Link>
                 <button
                   onClick={reset}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
                 >
                   <RotateCcw size={15} strokeWidth={1.8} />
                   Nog een scan
@@ -614,7 +614,7 @@ function RapportBlok({
 
   if (status === 'done') {
     return (
-      <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--oker)] rounded-[2px] p-6 sm:p-8">
+      <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--oker)] rounded-[10px] p-6 sm:p-8">
         <div className="flex items-start gap-3">
           <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--oker)] text-[var(--paper)]">
             <Check size={14} strokeWidth={2.5} />
@@ -634,7 +634,7 @@ function RapportBlok({
   }
 
   return (
-    <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[2px] p-6 sm:p-8">
+    <div className="mt-14 bg-[var(--paper-warm)] border border-[var(--paper-edge)] rounded-[10px] p-6 sm:p-8">
       <div className="flex items-start gap-3">
         <Mail size={20} strokeWidth={1.8} className="text-[var(--oker-deep)] mt-0.5 shrink-0" />
         <div className="flex-1">
@@ -665,12 +665,12 @@ function RapportBlok({
                 maxLength={160}
                 placeholder="uw@bedrijf.nl"
                 aria-label="Uw e-mailadres"
-                className="flex-1 px-4 py-3 rounded-[2px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
+                className="flex-1 px-4 py-3 rounded-[10px] bg-[var(--paper)] border border-[var(--paper-edge)] text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-faint)] focus:outline-none focus:border-[var(--oker)]"
               />
               <button
                 type="submit"
                 disabled={status === 'busy'}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[2px] text-[15px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[10px] text-[15px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors disabled:opacity-60"
               >
                 {status === 'busy' ? (
                   <>

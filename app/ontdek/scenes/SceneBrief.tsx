@@ -91,7 +91,7 @@ export function SceneBrief({ beat, reduced, interacted, onInteract }: SceneProps
               {BRIEF_STAPPEN.map((stap, i) => (
                 <li
                   key={stap.label}
-                  className="flex items-center gap-3 rounded-[3px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-2.5"
+                  className="flex items-center gap-3 rounded-[14px] border border-[var(--paper-edge)] bg-[var(--paper-warm)] px-4 py-2.5"
                 >
                   <span className="font-mono text-[11px] text-[var(--oker-deep)]">
                     {String(i + 1).padStart(2, '0')}

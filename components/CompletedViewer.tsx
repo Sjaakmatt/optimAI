@@ -25,7 +25,7 @@ export function CompletedViewer({ event }: Props) {
       <div className="flex items-center justify-between">
         <button
           onClick={() => setViewingCompletedId(null)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-[2px] text-[12px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-[10px] text-[12px] text-[var(--ink-dim)] hover:text-[var(--ink)] hover:bg-[var(--paper-deep)] transition-colors"
         >
           <ArrowLeft size={14} strokeWidth={1.5} />
           Terug naar werkbank
@@ -123,7 +123,7 @@ function ArchivedDossier({
       {agents.map((id, i) => (
         <span key={id} className="flex items-center gap-1">
           {i > 0 && <span className="text-[var(--ink-faint)] select-none mx-1">→</span>}
-          <span className="px-2 py-0.5 rounded-[2px] bg-[var(--paper-deep)] border border-[var(--paper-edge)] font-display text-[13px] text-[var(--ink)]">
+          <span className="px-2 py-0.5 rounded-[10px] bg-[var(--paper-deep)] border border-[var(--paper-edge)] font-display text-[13px] text-[var(--ink)]">
             {agentNames[id].name}
           </span>
         </span>

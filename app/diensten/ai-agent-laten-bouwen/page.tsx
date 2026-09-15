@@ -185,7 +185,7 @@ export default function AIAgentLatenBouwenPage() {
             <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[56px] leading-[1.05] tracking-tight text-[var(--ink)]">
               AI-agent laten bouwen
               <br />
-              <span className="italic text-[var(--oker-deep)]">voor uw MKB-bedrijf.</span>
+              <span className="text-[var(--ink-soft)]">voor uw MKB-bedrijf.</span>
             </h1>
             <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] text-[var(--ink-dim)] max-w-[640px]">
               Een AI-agent is een digitale collega die het repetitieve werk van uw binnendienst
@@ -198,14 +198,14 @@ export default function AIAgentLatenBouwenPage() {
               <Link
                 href="/plan"
                 {...calPopupAttrs}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
               >
                 Plan een kennismaking
                 <ArrowRight size={16} strokeWidth={1.8} />
               </Link>
               <Link
                 href="/demo"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
               >
                 Zie een agent aan het werk
               </Link>
@@ -265,7 +265,7 @@ export default function AIAgentLatenBouwenPage() {
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[780px]">
             Van eerste gesprek naar werkende agent{' '}
-            <span className="italic text-[var(--oker-deep)]">in fasen die u goedkeurt.</span>
+            <span className="text-[var(--ink-soft)]">in fasen die u goedkeurt.</span>
           </h2>
           <ol className="mt-12 relative">
             <div
@@ -455,7 +455,7 @@ export default function AIAgentLatenBouwenPage() {
             <Link
               key={slug}
               href={`/diensten/vergelijken/${slug}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[2px] text-[12px] text-[var(--ink)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] text-[12px] text-[var(--ink)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
             >
               {label}
               <ArrowRight size={11} strokeWidth={1.8} />
@@ -481,7 +481,7 @@ export default function AIAgentLatenBouwenPage() {
             ['Branche-specifiek', 'Resengo, Mews, Funda, RVO, NVWA-portals'],
             ['Maatwerk', 'CSV-export, e-mail-bridge, custom scraping'],
           ].map(([titel, body]) => (
-            <article key={titel} className="border border-[var(--paper-edge)] rounded-[2px] px-4 py-4 bg-[var(--paper)]">
+            <article key={titel} className="border border-[var(--paper-edge)] rounded-[10px] px-4 py-4 bg-[var(--paper)]">
               <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                 {titel}
               </div>
@@ -497,14 +497,14 @@ export default function AIAgentLatenBouwenPage() {
             <Link
               key={c.slug}
               href={`/cases/${c.slug}`}
-              className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+              className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
             >
               <div className="font-mono text-[10px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                 {c.branche} · {c.regio} · {c.doorlooptijd}
               </div>
               <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
                 <h3 className="font-display text-[20px] text-[var(--ink)]">{c.klant}</h3>
-                <span className="text-[13px] text-[var(--ink-dim)] italic">{c.tagline}</span>
+                <span className="text-[13px] text-[var(--ink-dim)]">{c.tagline}</span>
               </div>
             </Link>
           ))}
@@ -537,7 +537,7 @@ export default function AIAgentLatenBouwenPage() {
             <li key={slug}>
               <Link
                 href={`/kennis/${slug}`}
-                className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
               >
                 <span className="font-display text-[15.5px] text-[var(--ink)] leading-snug">
                   {title}
@@ -557,20 +557,20 @@ export default function AIAgentLatenBouwenPage() {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Klaar om een AI-agent voor uw bedrijf{' '}
-            <span className="italic text-[var(--oker-deep)]">te laten bouwen?</span>
+            <span className="text-[var(--ink-soft)]">te laten bouwen?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een gesprek
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] transition-colors"
             >
               Bekijk de demo
             </Link>

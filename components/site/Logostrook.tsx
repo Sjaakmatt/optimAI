@@ -103,7 +103,7 @@ function KlantLogo({ klant, kopie = false }: { klant: CaseStudy; kopie?: boolean
       <img
         src={klant.logo}
         alt={kopie ? '' : klant.klant}
-        className="h-12 w-auto object-contain grayscale opacity-70 transition-all duration-200 group-hover:opacity-100 group-hover:grayscale-0 sm:h-14"
+        className="h-10 w-auto object-contain brightness-0 invert opacity-55 transition-opacity duration-200 group-hover:opacity-95 sm:h-12"
       />
     </Link>
   );

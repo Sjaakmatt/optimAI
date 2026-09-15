@@ -127,7 +127,7 @@ export default async function ResourcePage({
           </div>
 
           <aside className="lg:sticky lg:top-8 lg:self-start">
-            <div className="border border-[var(--paper-edge)] rounded-[2px] p-6 bg-[var(--paper)]">
+            <div className="border border-[var(--paper-edge)] rounded-[10px] p-6 bg-[var(--paper)]">
               <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.18em]">
                 Aanvragen
               </div>
@@ -141,14 +141,14 @@ export default async function ResourcePage({
               <div className="mt-5 space-y-3">
                 <Link
                   href="/contact"
-                  className="block w-full text-center px-4 py-3 rounded-[2px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+                  className="block w-full text-center px-4 py-3 rounded-[10px] text-[14px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
                 >
                   {r.cta}
                 </Link>
                 <Link
                   href="/plan"
                   {...calPopupAttrs}
-                  className="block w-full text-center px-4 py-3 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block w-full text-center px-4 py-3 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   Of: plan een gesprek
                 </Link>
@@ -174,7 +174,7 @@ export default async function ResourcePage({
                 <li key={o.slug}>
                   <Link
                     href={`/resources/${o.slug}`}
-                    className="block border border-[var(--paper-edge)] rounded-[2px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                    className="block border border-[var(--paper-edge)] rounded-[10px] px-5 py-4 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                   >
                     <span className="font-display text-[16px] text-[var(--ink)] leading-snug">
                       {o.shortTitle}

@@ -200,7 +200,7 @@ export function Diagnose() {
                           onClick={() =>
                             setAntwoorden((prev) => ({ ...prev, [v.key]: o.value }))
                           }
-                          className={`px-3.5 py-2 rounded-[2px] border text-[13.5px] text-left transition-colors ${
+                          className={`px-3.5 py-2 rounded-[10px] border text-[13.5px] text-left transition-colors ${
                             gekozen
                               ? 'border-[var(--oker-deep)] bg-[var(--paper)] text-[var(--ink)]'
                               : 'border-[var(--paper-edge)] bg-[var(--paper)] text-[var(--ink-dim)] hover:border-[var(--oker)] hover:text-[var(--ink)]'
@@ -227,7 +227,7 @@ export function Diagnose() {
           </div>
 
           <div className="lg:sticky lg:top-8 lg:self-start">
-            <div className="bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[2px] p-7 sm:p-9">
+            <div className="bg-[var(--paper)] border border-[var(--paper-edge)] rounded-[10px] p-7 sm:p-9">
               <div className="font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-[0.2em]">
                 De uitkomst
               </div>

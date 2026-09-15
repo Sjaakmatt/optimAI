@@ -46,7 +46,7 @@ export function PolicyPanel() {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Sluiten"
-                className="p-2 rounded-[2px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)]"
+                className="p-2 rounded-[10px] text-[var(--ink-dim)] hover:bg-[var(--paper-deep)]"
               >
                 <X size={18} strokeWidth={1.5} />
               </button>

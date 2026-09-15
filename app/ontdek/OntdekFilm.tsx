@@ -121,7 +121,7 @@ export function OntdekFilm() {
                     className="mt-2 font-display text-[24px] sm:text-[32px] leading-[1.12] tracking-tight text-[var(--ink)]"
                   >
                     {chapter.titel}{' '}
-                    <span className="italic text-[var(--oker-deep)]">{chapter.titelAccent}</span>
+                    <span className="text-[var(--ink-soft)]">{chapter.titelAccent}</span>
                   </h2>
                   <p className="mt-2.5 text-[13.5px] sm:text-[14.5px] leading-[1.65] text-[var(--ink-dim)]">
                     {chapter.intro}
@@ -234,7 +234,7 @@ function StartOverlay({ onStart, reduced }: { onStart: () => void; reduced: bool
       </svg>
       <h2 className="mt-6 font-display text-[28px] sm:text-[36px] leading-[1.1] tracking-tight text-[var(--ink)] max-w-[480px]">
         Wat een AI-agent doet, in{' '}
-        <span className="italic text-[var(--oker-deep)]">{`${CHAPTERS.length} stappen.`}</span>
+        <span className="text-[var(--ink-soft)]">{`${CHAPTERS.length} stappen.`}</span>
       </h2>
       <p className="mt-4 max-w-[420px] text-[14px] sm:text-[15px] leading-[1.7] text-[var(--ink-dim)]">
         Duurt ongeveer drie minuten. U ziet hoe een agent werk oppakt, controleert en oplevert, en
@@ -244,7 +244,7 @@ function StartOverlay({ onStart, reduced }: { onStart: () => void; reduced: bool
       <button
         type="button"
         onClick={onStart}
-        className="mt-8 inline-flex items-center gap-2 rounded-[2px] bg-[var(--ink)] px-6 py-3 text-[15px] text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] lift-on-hover"
+        className="mt-8 inline-flex items-center gap-2 rounded-[10px] bg-[var(--ink)] px-6 py-3 text-[15px] text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)] lift-on-hover"
       >
         <Play size={15} strokeWidth={1.8} aria-hidden />
         Start de rondleiding

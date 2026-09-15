@@ -114,7 +114,7 @@ export default async function BranchePage({
           <h1 className="mt-4 font-display text-[34px] sm:text-[46px] lg:text-[54px] leading-[1.05] tracking-tight text-[var(--ink)]">
             {b.heroTitle}
             <br />
-            <span className="italic text-[var(--oker-deep)]">{b.heroItalic}</span>
+            <span className="text-[var(--ink-soft)]">{b.heroItalic}</span>
           </h1>
           <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.7] text-[var(--ink-dim)]">
             {b.intro}
@@ -126,14 +126,14 @@ export default async function BranchePage({
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/diensten/ai-agent-laten-bouwen"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper-deep)] hover:border-[var(--oker)] transition-colors"
             >
               AI-agent laten bouwen
             </Link>
@@ -189,7 +189,7 @@ export default async function BranchePage({
           </div>
           <h2 className="mt-2 font-display text-[28px] sm:text-[36px] lg:text-[40px] leading-[1.1] text-[var(--paper)] max-w-[720px]">
             Welke agents samen{' '}
-            <span className="italic text-[var(--oker-deep)]">één klantzaak</span> afhandelen.
+            <span className="text-[var(--ink-soft)]">één klantzaak</span> afhandelen.
           </h2>
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             {b.agents.map((a, i) => (
@@ -246,7 +246,7 @@ export default async function BranchePage({
               className="mt-10 pl-5 sm:pl-6 pr-4 py-3 border-l-[3px] border-[var(--oker)] max-w-[760px]"
               style={{ background: 'var(--paper)' }}
             >
-              <p className="font-display italic text-[18px] sm:text-[21px] leading-[1.5] text-[var(--ink)]">
+              <p className="font-display text-[18px] sm:text-[21px] leading-[1.5] text-[var(--ink)]">
                 &ldquo;{caseStudy.quote.text}&rdquo;
               </p>
               <div className="mt-2 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.14em]">
@@ -320,7 +320,7 @@ export default async function BranchePage({
               <li key={o.slug}>
                 <Link
                   href={`/oplossingen/${o.slug}`}
-                  className="block h-full border border-[var(--paper-edge)] rounded-[2px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
+                  className="block h-full border border-[var(--paper-edge)] rounded-[10px] px-5 py-5 bg-[var(--paper)] hover:border-[var(--oker)] hover:bg-[var(--paper-warm)] transition-colors"
                 >
                   <span className="font-display text-[17px] text-[var(--ink)] leading-snug">
                     {o.navLabel}
@@ -344,21 +344,21 @@ export default async function BranchePage({
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 py-14 sm:py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <h2 className="font-display text-[22px] sm:text-[26px] text-[var(--ink)] max-w-[560px] leading-snug">
             Zin in een gesprek over wat een agent in úw{' '}
-            <span className="italic text-[var(--oker-deep)]">{b.label.toLowerCase()}</span> zou
+            <span className="text-[var(--ink-soft)]">{b.label.toLowerCase()}</span> zou
             doen?
           </h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plan"
               {...calPopupAttrs}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] bg-[var(--terra)] text-[var(--paper)] hover:bg-[var(--oker-deep)] transition-colors"
             >
               Plan een kennismaking
               <ArrowRight size={16} strokeWidth={1.8} />
             </Link>
             <Link
               href="/diensten/ai-agent-laten-bouwen"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[2px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[10px] text-[14px] text-[var(--ink)] border border-[var(--paper-edge)] hover:bg-[var(--paper)] hover:border-[var(--oker)] transition-colors"
             >
               AI-agent laten bouwen
             </Link>
