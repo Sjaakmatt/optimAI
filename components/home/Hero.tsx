@@ -18,9 +18,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
       className={`relative overflow-hidden -mt-[72px] pt-[72px] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
       style={foto ? ({ '--hero-lucht-top': '#5c5f93' } as React.CSSProperties) : undefined}
     >
-      {foto ? (
-        <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} />
-      ) : (
+      {foto ? null : (
         <>
           <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[46%] h-[30%] hero-zon" />
           <Landschap lagen={BOS_LAGEN} muisX={muisX} muisY={muisY} />
@@ -59,6 +57,14 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
           </a>
         </Verschijn>
       </div>
+
+      {/* Op telefoons staat de polder hier als eigen band; op brede schermen
+          absoluut achter de inhoud (de volgorde in de DOM maakt dan niet uit). */}
+      {foto && (
+        <div className="relative mt-10 -mb-[10vh] md:static md:m-0">
+          <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} mobielInStroom />
+        </div>
+      )}
 
       {/* Het venster met de mailagent rijst op uit het landschap */}
       <Verschijn vertraging={0.8} y={40} className="relative band mt-16 sm:mt-20 lg:mt-24 pb-10 sm:pb-16">

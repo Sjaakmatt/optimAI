@@ -38,6 +38,12 @@ export function PolderFoto({
   hoogte = '72%',
   /** Breedte van de rietkraag; smaller = kleiner riet. */
   rietBreedte = '110%',
+  /**
+   * Op telefoons als eigen band in de tekststroom (tussen de kop en het
+   * venster), op brede schermen absoluut achter de inhoud. Zonder dit staat
+   * de polder op een telefoon volledig achter het venster verstopt.
+   */
+  mobielInStroom = false,
 }: {
   platen: PolderPlaten;
   muisX: MotionValue<number>;
@@ -45,14 +51,19 @@ export function PolderFoto({
   horizon?: number;
   hoogte?: string;
   rietBreedte?: string;
+  mobielInStroom?: boolean;
 }) {
   const reduced = useReducedMotion() ?? false;
   const { scrollY } = useScroll();
 
   return (
     <div
-      className="absolute inset-x-0 bottom-0 min-h-[380px] pointer-events-none select-none"
-      style={{ height: hoogte }}
+      className={`pointer-events-none select-none ${
+        mobielInStroom
+          ? 'relative h-[46vh] min-h-[300px] w-full md:absolute md:inset-x-0 md:bottom-0 md:h-[var(--polder-hoogte)] md:min-h-[380px]'
+          : 'absolute inset-x-0 bottom-0 h-[var(--polder-hoogte)] min-h-[380px]'
+      }`}
+      style={{ '--polder-hoogte': hoogte } as React.CSSProperties}
       aria-hidden
     >
       {/* 1 · lucht en water. De bovenrand van de foto lost op in de lucht van
