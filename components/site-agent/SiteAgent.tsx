@@ -362,12 +362,7 @@ export function SiteAgent() {
         </div>
       )}
 
-      {/* De enige zwevende knop op de pagina; de Cal-knop linksonder is eruit.
-          Formaat en typografie gelijk aan wat die knop had (px-5 py-3, 14px),
-          zodat dit dezelfde maat houdt als de rest van de site gewend was.
-
-          Terra in plaats van paper: de oude chatknop had de kleur van de
-          achtergrond en verdween daarin. */}
+      {/* Visually a quiet contact link; a button preserves dialog keyboard semantics. */}
       <button
         type="button"
         onClick={() => {
@@ -376,11 +371,12 @@ export function SiteAgent() {
         }}
         aria-label="Stel je vraag aan de AI-agent van FactumAI"
         aria-haspopup="dialog"
-        className="agent-knop inline-flex items-center justify-center gap-2 rounded-full bg-[var(--terra)] px-5 py-3 text-[14px] leading-none text-[var(--paper)] transition-colors hover:bg-[var(--oker-deep)]"
-        style={{ boxShadow: 'var(--shadow-lift)' }}
+        className="agent-contact"
       >
-        <MessageSquare size={16} strokeWidth={2} />
-        Stel je vraag
+        <span className="agent-contact-label">Stel je vraag</span>
+        <span className="agent-contact-symbol" aria-hidden="true">
+          <MessageSquare size={19} strokeWidth={1.35} />
+        </span>
       </button>
     </div>
   );
