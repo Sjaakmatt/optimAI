@@ -1,63 +1,68 @@
-'use client';
+"use client";
 
-// Het slot van de pagina. Bovenaan ging de zon onder achter hetzelfde
-// landschap; hier komt hij op. Wat vanavond binnenkwam, staat morgen klaar.
-// Dezelfde lagen, een ander licht. De pagina eindigt hier en houdt stil.
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { calPopupAttrs } from "@/components/booking/config";
 
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { calPopupAttrs } from '@/components/booking/config';
-import { DAGERAAD_PALET, maakBosLagen } from './landschap/Bos';
-import { Landschap, useMuisParallax, type LandschapVariant } from './Landschap';
-import { PolderFoto, POLDER_DAGERAAD } from './PolderFoto';
-import { Opkomend, Verschijn } from './Opkomend';
-
-const BOS_DAGERAAD = maakBosLagen(DAGERAAD_PALET);
-const NEVEL = { achter: 'rgba(244, 220, 180, 0.28)', voor: 'rgba(159, 182, 196, 0.18)' };
-
-export function Dageraad({ variant }: { variant: LandschapVariant }) {
-  const { ref, muisX, muisY } = useMuisParallax();
-  const foto = variant === 'polder';
-
+export function Dageraad() {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [-24, 24]);
   return (
     <section
       ref={ref}
-      className={`relative mt-28 overflow-hidden sm:mt-36 ${foto ? 'dageraad-lucht-foto' : 'dageraad-lucht'}`}
-      style={foto ? ({ '--hero-lucht-top': '#6d7e98' } as React.CSSProperties) : undefined}
+      className="closing-horizon"
+      aria-labelledby="closing-heading"
     >
-      {foto ? (
-        <PolderFoto scene={POLDER_DAGERAAD} muisX={muisX} muisY={muisY} x="50%" />
-      ) : (
-        <>
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[44%] h-[34%] dageraad-zon" />
-          <Landschap lagen={BOS_DAGERAAD} muisX={muisX} muisY={muisY} nevel={NEVEL} />
-        </>
-      )}
-      <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
-
-      <div className="relative z-10 band pt-24 pb-[58vh] text-center sm:pt-32 sm:pb-[66vh]">
-        <Opkomend
-          as="h2"
-          inView
-          className="mx-auto max-w-[1040px] font-display text-[34px] leading-[1.04] tracking-[-0.03em] text-[var(--fg)] sm:text-[48px] lg:text-[58px]"
-          regels={['Vanavond komt de mail binnen.', 'Morgen staat het antwoord klaar.']}
+      <motion.div
+        className="closing-landscape"
+        aria-hidden="true"
+        style={{ y: reduced ? 0 : y }}
+      >
+        <Image
+          src="/polder/lagen-dageraad/master.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
-        <Verschijn inView vertraging={0.2}>
-          <p className="mx-auto mt-6 max-w-[540px] text-[16px] leading-[1.65] text-[var(--fg-dim)] sm:text-[17px]">
-            Eén gesprek van twintig minuten, vrijblijvend. Wij kijken naar het werk dat uw mensen
-            nu de meeste tijd kost en zeggen eerlijk of een agent daar iets aan doet.
-          </p>
-        </Verschijn>
-        <Verschijn inView vertraging={0.3} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <Link href="/plan" {...calPopupAttrs} className="knop knop-primair">
-            Plan een gesprek
+      </motion.div>
+      <div className="closing-wash" aria-hidden="true" />
+      <div className="band closing-copy">
+        <p className="editorial-label">Er is ruimte voor een volgende stap</p>
+        <h2 id="closing-heading">
+          Vandaag een gesprek.
+          <br />
+          <em>Morgen meer mogelijk.</em>
+        </h2>
+        <p>
+          Twintig minuten over het werk dat uw mensen tijd kost. U vertelt. Wij
+          denken mee. Vrijblijvend, en altijd eerlijk.
+        </p>
+        <div className="horizon-actions">
+          <Link href="/plan" {...calPopupAttrs} className="horizon-primary">
+            Laten we kennismaken <ArrowUpRight size={18} />
           </Link>
-          <Link href="/scan" className="knop knop-glas">
-            Of doe eerst de AI-scan
-            <ArrowRight size={15} strokeWidth={2} />
+          <Link href="/scan" className="horizon-secondary">
+            Eerst zelf verkennen <ArrowUpRight size={16} />
           </Link>
-        </Verschijn>
+        </div>
       </div>
+      <span className="closing-signature">
+        Gebouwd met aandacht. In West-Friesland.
+      </span>
     </section>
   );
 }

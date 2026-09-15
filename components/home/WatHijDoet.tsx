@@ -1,158 +1,195 @@
-'use client';
+"use client";
 
-// "Wat een agent doet": drie punten, één tegelijk. Op een breed scherm blijft
-// het beeld staan terwijl de bezoeker scrolt en licht per stuk scroll één
-// punt op; de andere twee wachten gedimd. Op een telefoon is het gewoon een
-// lijst, want daar is pinnen een scroll-belasting.
+import { useState } from "react";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  Check,
+  Mail,
+  FileCheck2,
+  Layers,
+  ChevronRight,
+} from "lucide-react";
 
-import { useRef } from 'react';
-import Link from 'next/link';
-import { motion, useReducedMotion, useTransform, type MotionValue } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import { OPLOSSINGEN, OPLOSSINGEN_FEATURED } from '@/lib/data/oplossingen';
-import { Opkomend, Verschijn } from './Opkomend';
-import { useMediaQuery } from './useMediaQuery';
-import { useSectieProgress } from './useSectieProgress';
-import { Podium } from './Podium';
-
-const PUNTEN = [
+const STEPS = [
   {
-    titel: 'Hij leest wat er echt staat',
-    body:
-      'Een mail met een bijlage, een klacht die eigenlijk een retour is, een aanvraag waarvan de voorwaarde nergens in een veld staat. Een agent leest het, toetst het aan uw beleid en zet de afhandeling klaar.',
-    voorbeeld: '“Kunnen jullie twee nieuwe borden sturen, of anders het bedrag terugstorten?”',
-    uitkomst: 'Retour herkend · beleid getoetst · antwoord en creditnota klaar',
+    title: "Hij leest tussen de regels.",
+    text: "Een mail, een bijlage, een vraag die nét anders is. Uw agent begrijpt de bedoeling en zoekt de juiste informatie erbij.",
+    icon: Mail,
+    label: "Klantenservice",
+    subject: "Twee borden beschadigd geleverd",
+    from: "Nieuwe klantvraag",
+    message:
+      "“Kunnen jullie twee nieuwe borden sturen, of anders het bedrag terugstorten?”",
+    checks: [
+      "Bestelling teruggevonden",
+      "Retourbeleid gecontroleerd",
+      "Vervangende artikelen op voorraad",
+    ],
+    result: "Antwoord en vervangende order staan klaar.",
+    href: "/oplossingen/klantenservice-automatiseren",
   },
   {
-    titel: 'Hij rekent met uw eigen cijfers',
-    body:
-      'Bestelritme per klant, seizoenspatroon per artikel, offertes die te lang openstaan. De gegevens liggen er al; een agent levert de uitkomst, met de onderbouwing eronder.',
-    voorbeeld: 'Offerte 2026-114 staat 19 dagen open. Deze klant besliste eerder binnen 8.',
-    uitkomst: 'Opvolgmail als concept · toon afgestemd op de klant',
+    title: "Hij houdt het werk in beweging.",
+    text: "Een offerte die blijft liggen. Een klant die nog niets heeft gehoord. De agent herkent het moment en zet de volgende stap klaar.",
+    icon: FileCheck2,
+    label: "Opvolging",
+    subject: "Offerte 2026-114",
+    from: "Opvolgmoment herkend",
+    message:
+      "Deze offerte staat 19 dagen open. Tijd om even persoonlijk contact op te nemen.",
+    checks: [
+      "Klantgeschiedenis opgehaald",
+      "Openstaande offerte gecontroleerd",
+      "Opvolgmail op maat geschreven",
+    ],
+    result: "Een persoonlijke opvolgmail, klaar voor akkoord.",
+    href: "/oplossingen/leadopvolging-automatiseren",
   },
   {
-    titel: 'Hij werkt tussen uw systemen',
-    body:
-      'Tussen de webshop en de boekhouding, tussen de mailbox en het ERP, tussen u en de leverancier. Daar staat nu iemand te kopiëren en te plakken. Precies daar doet een agent zijn werk.',
-    voorbeeld: 'Bestelling per PDF → orderregels, voorraadcheck, kredietcheck → concept in het ERP',
-    uitkomst: 'Bronmail gekoppeld · niets overgetypt',
+    title: "Hij verbindt uw systemen.",
+    text: "Van mailbox naar ERP. Van webshop naar boekhouding. De informatie gaat mee, zonder dat iemand alles nog een keer hoeft over te typen.",
+    icon: Layers,
+    label: "Orders & systemen",
+    subject: "Nieuwe bestelling per PDF",
+    from: "Bestelling ontvangen",
+    message:
+      "Een bestelling in de mailbox. De orderregels horen in uw ERP, met de bron er direct bij.",
+    checks: [
+      "Orderregels uitgelezen",
+      "Voorraad en krediet gecontroleerd",
+      "Bronbestand aan de order gekoppeld",
+    ],
+    result: "De conceptorder staat klaar in uw ERP.",
+    href: "/oplossingen",
   },
 ];
 
 export function WatHijDoet() {
-  const breed = useMediaQuery('(min-width: 768px)');
-  const reduced = useReducedMotion() ?? false;
-  const ref = useRef<HTMLElement>(null);
-  const gepind = breed && !reduced;
-  const scrollYProgress = useSectieProgress(ref, gepind);
-
+  const [active, setActive] = useState(0);
+  const step = STEPS[active];
   return (
-    <section ref={ref} className={gepind ? 'relative h-[260vh]' : 'relative'}>
-      <div className={gepind ? 'sticky top-0 flex min-h-screen items-center pt-20 pb-8' : ''}>
-        <div className="band w-full py-20 sm:py-28 md:py-0">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-16 lg:gap-24">
-            <div>
-              <Opkomend
-                as="h2"
-                inView
-                className="font-display text-[30px] leading-[1.06] tracking-[-0.03em] text-[var(--fg)] sm:text-[40px] lg:text-[48px]"
-                regels={['Uw pakket onthoudt.', 'Een agent denkt mee.']}
-              />
-              <Verschijn inView vertraging={0.2}>
-                <p className="mt-5 max-w-[460px] text-[15.5px] leading-[1.65] text-[var(--fg-dim)] sm:text-[17px]">
-                  Uw administratie draait al ergens in, en dat moet vooral zo blijven. Een agent
-                  vervangt uw pakket niet. Hij pakt het werk op dat uw pakket laat liggen.
-                </p>
-              </Verschijn>
-              <Verschijn inView vertraging={0.25} className="hidden md:block">
-                <Podium progress={scrollYProgress} gepind={gepind} />
-              </Verschijn>
-              <Verschijn inView vertraging={0.3} className="mt-8 hidden md:block">
-                <div className="text-[13px] text-[var(--fg-faint)]">Waar wij het vaakst bouwen</div>
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {OPLOSSINGEN_FEATURED.map((o) => (
-                    <li key={o.slug}>
-                      <Link
-                        href={`/oplossingen/${o.slug}`}
-                        className="inline-flex rounded-full border border-[var(--border)] px-3 py-1.5 text-[13px] text-[var(--fg-dim)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--fg)]"
-                      >
-                        {o.navLabel}
-                      </Link>
-                    </li>
-                  ))}
-                  <li>
-                    <Link
-                      href="/oplossingen"
-                      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] text-[var(--accent-text)] transition-colors hover:text-[var(--fg)]"
-                    >
-                      Alle {OPLOSSINGEN.length}
-                      <ArrowRight size={13} strokeWidth={2} />
-                    </Link>
-                  </li>
-                </ul>
-              </Verschijn>
-            </div>
-
-            <ol className="relative space-y-2 md:space-y-4">
-              {PUNTEN.map((p, i) => (
-                <Punt key={p.titel} punt={p} index={i} progress={scrollYProgress} gepind={gepind} />
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Punt({
-  punt,
-  index,
-  progress,
-  gepind,
-}: {
-  punt: (typeof PUNTEN)[number];
-  index: number;
-  progress: MotionValue<number>;
-  gepind: boolean;
-}) {
-  // Elk punt bezit een derde van de scroll; het licht op in zijn eigen venster.
-  const start = index / PUNTEN.length;
-  const eind = (index + 1) / PUNTEN.length;
-  const laatste = index === PUNTEN.length - 1;
-  const opacity = useTransform(
-    progress,
-    laatste ? [start - 0.1, start, 1] : [start - 0.1, start, eind - 0.02, eind + 0.06],
-    laatste ? [0.3, 1, 1] : [0.3, 1, 1, 0.3],
-  );
-  const lijn = useTransform(progress, [start, eind], [0, 1]);
-
-  return (
-    <motion.li
-      style={gepind ? { opacity } : undefined}
-      className="relative grid grid-cols-[28px_minmax(0,1fr)] gap-x-4 rounded-[var(--radius)] px-2 py-4 md:px-4 md:py-4"
+    <section
+      className="practice-section band"
+      aria-labelledby="practice-heading"
     >
-      <div className="relative">
-        <span className="absolute left-[13px] top-1 h-[calc(100%+0.5rem)] w-px bg-[var(--border)]" aria-hidden />
-        {gepind && (
-          <motion.span
-            className="absolute left-[13px] top-1 h-[calc(100%+0.5rem)] w-px origin-top bg-[var(--accent)]"
-            style={{ scaleY: lijn }}
-            aria-hidden
-          />
-        )}
-        <span className="relative z-10 grid h-7 w-7 place-items-center rounded-full border border-[var(--border-strong)] bg-[var(--bg)] font-mono text-[11px] text-[var(--accent-text)]">
-          {index + 1}
-        </span>
+      <div className="practice-intro">
+        <p className="editorial-label">Uw nieuwe collega</p>
+        <h2 id="practice-heading">
+          Uw pakket onthoudt.
+          <br />
+          <em>Een agent denkt mee.</em>
+        </h2>
+        <p>
+          Uw systemen blijven. Het terugkerende werk verandert. Ontdek waar een
+          digitale collega ruimte maakt.
+        </p>
       </div>
-      <div>
-        <h3 className="text-[19px] leading-snug text-[var(--fg)] sm:text-[21px]">{punt.titel}</h3>
-        <p className="mt-2 text-[14px] leading-[1.6] text-[var(--fg-dim)]">{punt.body}</p>
-        <div className="mt-3 rounded-[12px] border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-[12.5px] leading-[1.5]">
-          <div className="text-[var(--fg-dim)]">{punt.voorbeeld}</div>
-          <div className="mt-1.5 font-mono text-[10.5px] uppercase tracking-[0.12em] text-[var(--sage)]">{punt.uitkomst}</div>
+      <div className="practice-grid">
+        <div
+          className="practice-steps"
+          role="tablist"
+          aria-label="Wat een agent doet"
+          aria-orientation="vertical"
+        >
+          {STEPS.map((item, i) => (
+            <button
+              key={item.label}
+              role="tab"
+              id={`practice-tab-${i}`}
+              aria-selected={active === i}
+              aria-controls="practice-preview"
+              tabIndex={active === i ? 0 : -1}
+              className={`practice-step ${active === i ? "is-active" : ""}`}
+              onClick={() => setActive(i)}
+              onKeyDown={(event) => {
+                let next = i;
+                if (event.key === "ArrowDown") next = (i + 1) % STEPS.length;
+                else if (event.key === "ArrowUp")
+                  next = (i + STEPS.length - 1) % STEPS.length;
+                else if (event.key === "Home") next = 0;
+                else if (event.key === "End") next = STEPS.length - 1;
+                else return;
+                event.preventDefault();
+                setActive(next);
+                document.getElementById(`practice-tab-${next}`)?.focus();
+              }}
+            >
+              <span className="practice-number">0{i + 1}</span>
+              <span>
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </span>
+              <ChevronRight size={17} />
+            </button>
+          ))}
+        </div>
+        <div
+          className="practice-preview"
+          id="practice-preview"
+          role="tabpanel"
+          aria-labelledby={`practice-tab-${active}`}
+          tabIndex={0}
+        >
+          <div className="practice-orbit orbit-one" aria-hidden="true" />
+          <div className="practice-orbit orbit-two" aria-hidden="true" />
+          <div className="agent-window">
+            <div className="agent-window-bar">
+              <span className="window-dots">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span>FactumAI · {step.label}</span>
+              <span className="agent-status">Actief</span>
+            </div>
+            <div className="agent-message">
+              <span className="agent-message-icon">
+                <step.icon size={20} />
+              </span>
+              <div>
+                <small>{step.from}</small>
+                <h3>{step.subject}</h3>
+              </div>
+            </div>
+            <p className="agent-quote">{step.message}</p>
+            <div className="agent-checks">
+              {step.checks.map((check) => (
+                <div key={check}>
+                  <span>
+                    <Check size={12} />
+                  </span>
+                  {check}
+                </div>
+              ))}
+            </div>
+            <div className="agent-result">
+              <FileCheck2 size={18} />
+              <span>{step.result}</span>
+            </div>
+            <div className="agent-approval">
+              <span>U beslist wat er uitgaat.</span>
+              <span>
+                <Check size={12} /> Klaar voor akkoord
+              </span>
+            </div>
+          </div>
+          <div className="agent-note">
+            <span className="agent-note-mark">f.</span>
+            <div>
+              Het werk is voorbereid.
+              <br />
+              <strong>De regie blijft bij u.</strong>
+            </div>
+          </div>
+          <p className="practice-example">
+            Illustratief voorbeeld van een werkproces
+          </p>
         </div>
       </div>
-    </motion.li>
+      <Link className="practice-link" href={step.href}>
+        Meer over {step.label.toLowerCase()} <ArrowUpRight size={16} />
+      </Link>
+    </section>
   );
 }

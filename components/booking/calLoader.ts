@@ -65,15 +65,11 @@ function installSnippet(): void {
         }
         p(cal as unknown as { q: CalQueueItem[] }, args);
       } as CalApi);
-  })(window, 'https://app.cal.com/embed/embed.js', 'Cal');
+  })(window, 'https://app.cal.com/embed/embed.js', 'init');
 
   const Cal = window.Cal!;
 
-  // Trigger de namespace-branch in de IIFE zodat Cal.ns[NAMESPACE]
-  // direct als queueing-stub bestaat. Zonder dit blijft Cal.ns[NAMESPACE]
-  // undefined tot embed.js geladen is, race condition op consumers.
-  Cal('Cal', CAL_NAMESPACE);
-
+  // Initialise the namespace synchronously; embed.js drains its queue later.
   Cal('init', CAL_NAMESPACE, { origin: 'https://cal.com' });
 
   Cal.ns[CAL_NAMESPACE]('ui', {

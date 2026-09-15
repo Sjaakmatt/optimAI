@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { getCalApi } from './calLoader';
-import { trackEvent } from '@/lib/analytics/gtag';
-import { verbergZwevendeKnoppen } from '@/lib/site-agent/pad-naar-playbook';
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { getCalApi } from "./calLoader";
+import { trackEvent } from "@/lib/analytics/gtag";
+import { verbergZwevendeKnoppen } from "@/lib/site-agent/pad-naar-playbook";
 
 let bookingListenerAttached = false;
 
@@ -36,14 +36,49 @@ export function CalProvider() {
         // toestemming; trackEvent guardt op window.gtag).
         if (bookingListenerAttached) return;
         bookingListenerAttached = true;
-        ns('on', {
-          action: 'bookingSuccessful',
-          callback: () => trackEvent('book_intro', { source: 'floating' }),
+        ns("on", {
+          action: "bookingSuccessful",
+          callback: () => trackEvent("book_intro", { source: "floating" }),
         });
       })
       .catch((err) => {
-        console.warn('[cal] embed init failed:', err);
+        console.warn("[cal] embed init failed:", err);
       });
+  }, [hideFloating]);
+
+  useEffect(() => {
+    if (hideFloating) return;
+    // Intercept before Next Link navigates: otherwise /plan opens a second modal.
+    const openFromLink = (event: MouseEvent) => {
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      const target =
+        event.target instanceof Element
+          ? event.target.closest<HTMLElement>("[data-cal-link]")
+          : null;
+      const calLink = target?.dataset.calLink;
+      if (!calLink) return;
+      event.preventDefault();
+      event.stopPropagation();
+      getCalApi()
+        .then((ns) =>
+          ns("modal", {
+            calLink,
+            config: { layout: "month_view", theme: "dark" },
+          }),
+        )
+        .catch(() => {
+          window.location.assign("/plan");
+        });
+    };
+    document.addEventListener("click", openFromLink, true);
+    return () => document.removeEventListener("click", openFromLink, true);
   }, [hideFloating]);
 
   return null;

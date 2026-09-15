@@ -17,7 +17,7 @@ const regelVarianten: Variants = {
   zichtbaar: (i: number) => ({
     y: 0,
     opacity: 1,
-    transition: { duration: 0.9, ease: EASE, delay: i * 0.09 },
+    transition: { duration: 0.6, ease: EASE, delay: i * 0.09 },
   }),
 };
 
@@ -26,7 +26,7 @@ const woordVarianten: Variants = {
   zichtbaar: (i: number) => ({
     y: 0,
     opacity: 1,
-    transition: { duration: 0.7, ease: EASE, delay: i * 0.045 },
+    transition: { duration: 0.55, ease: EASE, delay: i * 0.045 },
   }),
 };
 
@@ -120,7 +120,7 @@ export function Verschijn({
       {...(inView
         ? { whileInView: { y: 0, opacity: 1 }, viewport: { once: true, margin: '-8% 0px' } }
         : { animate: { y: 0, opacity: 1 } })}
-      transition={{ duration: 0.9, ease: EASE, delay: vertraging }}
+      transition={{ duration: 0.6, ease: EASE, delay: vertraging }}
     >
       {children}
     </motion.div>
