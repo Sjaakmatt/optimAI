@@ -24,6 +24,16 @@ Repo-specific gotchas for syncing this Next.js app to claude.ai/design. Read bef
 - Capture is per cell at a fixed 900x700 (`fullPage:false`); tall compositions need `overrides.<Name>.viewport` (SiteFooter 1280x1000, SitePage 1280x1400) and are re-keyed for grading when it changes.
 - States that need a server response (ContactForm submit/result, TerugbelKaart submit, chat replies, agenda availability) are not previewed.
 
+- The bundle only carries what the entry exports: Landschap's layer data (`BOS_LAGEN`, `POLDER_LAGEN`, palettes, `maakBosLagen`) is exported from the entry explicitly because `Landschap.tsx` itself only imports the `Laag` type.
+- Emitted `.d.ts` bodies drop referenced types (`Laag`, `MotionValue`, `PolderScene`, `Crumb`); `dtsPropsFor` carries hand-written bodies for Breadcrumbs, Landschap, Podium, PolderFoto. Keep them in step with the sources.
+- Bare arbitrary utilities compile only when they occur unprefixed in sources (`text-[48px]` exists only as `sm:`/`lg:`); hero-size type in previews uses inline `style`.
+- A preview-side `useMotionValue` (second motion copy) is accepted by bundle components (motion duck-types MotionValues). `useMuisParallax` from the bundle is the canonical source of `muisX`/`muisY`.
+- Motion opacity reveals stall under the capture harness's fixed clock after the first navigation; previews of reveal components (Opkomend, Verschijn, Aanpak, Afspraken) wrap cells in `.design-sync/preview-lib/Uitgeanimeerd.tsx`, which finishes running web animations after mount so cards show their resting state immediately.
+- Click-only states are reached after mount via a ref-scoped `querySelector(...).click()` (ids repeat across grid cells, so never `getElementById`); controlled inputs via the native value setter + an `input` event (VideoCarousel search).
+- Podium is not mounted anywhere in `app/` today; its preview follows the component's own header comment.
+
+- Hero's `.horizon-hero` has `margin-top:-76px` (it sits under the sticky header); a standalone preview pads 76px to absorb it. Homepage previews reproduce the page glue (`.home-world`, `.home-method`, OntdekBand markup) inline.
+
 ## Playwright
 - The container caches chromium-1194 at `/opt/pw-browsers`; that build is pinned by `playwright@1.56.0` (installed in `.ds-sync/`). The repo's own `@playwright/test` 1.62 pins a different build and does not work with the cache.
 

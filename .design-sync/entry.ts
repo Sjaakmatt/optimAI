@@ -21,6 +21,8 @@ export * from '../components/home/Afspraken';
 export * from '../components/home/Dageraad';
 export * from '../components/home/Hero';
 export * from '../components/home/Landschap';
+export * from '../components/home/landschap/Bos';
+export { POLDER_LAGEN, maakPolderLagen } from '../components/home/landschap/Polder';
 export * from '../components/home/Opkomend';
 export * from '../components/home/Podium';
 export * from '../components/home/PolderFoto';

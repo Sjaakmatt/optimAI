@@ -44,10 +44,38 @@
     "Dageraad": {
       "cardMode": "column",
       "viewport": "900x860"
+    },
+    "Projecten": {
+      "cardMode": "column",
+      "viewport": "1280x1200"
+    },
+    "WatHijDoet": {
+      "cardMode": "column",
+      "viewport": "1280x1100"
+    },
+    "VideoCarousel": {
+      "cardMode": "column",
+      "viewport": "1280x1000"
+    },
+    "Landschap": {
+      "cardMode": "single",
+      "primaryStory": "InHero",
+      "viewport": "1280x800"
+    },
+    "PolderFoto": {
+      "cardMode": "single",
+      "primaryStory": "Schemer",
+      "viewport": "1280x800"
     }
   },
   "provider": {
     "component": "SiteDoek"
   },
-  "readmeHeader": ".design-sync/conventions.md"
+  "readmeHeader": ".design-sync/conventions.md",
+  "dtsPropsFor": {
+    "Breadcrumbs": "/** Pad van de homepage naar de huidige pagina; de laatste is de huidige pagina. */\n  items: { label: string; href: string }[];",
+    "Landschap": "/** Dieptelagen, bv. BOS_LAGEN of POLDER_LAGEN (exports van dit pakket), of maakBosLagen(DAGERAAD_PALET). */\n  lagen: { id: string; diepte: number; kleur: string; svg: React.ReactNode }[];\n  /** Muispositie, bv. van useMuisParallax() uit dit pakket. */\n  muisX: import('motion/react').MotionValue<number>;\n  muisY: import('motion/react').MotionValue<number>;\n  /** Nevelkleuren achter en voor de lagen. */\n  nevel?: { achter: string; voor: string };",
+    "Podium": "/** Scrollvoortgang 0..1, bv. van useScroll() of useMotionValue(0.5). */\n  progress: import('motion/react').MotionValue<number>;\n  gepind: boolean;",
+    "PolderFoto": "/** POLDER_SCHEMER of POLDER_DAGERAAD (exports van dit pakket). */\n  scene: { map: string; horizon: number };\n  /** Muispositie, bv. van useMuisParallax() uit dit pakket. */\n  muisX: import('motion/react').MotionValue<number>;\n  muisY: import('motion/react').MotionValue<number>;\n  /** Horizontale positie van de foto op brede schermen (object-position x). */\n  x?: string;\n  mobielInStroom?: boolean;\n  grond?: string;\n  nevel?: string | null;"
+  }
 }
