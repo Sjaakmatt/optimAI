@@ -22,8 +22,8 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
   return (
     <section
       ref={ref}
-      className={`relative overflow-hidden -mt-[72px] pt-[72px] md:min-h-[100svh] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
-      style={foto ? ({ '--hero-lucht-top': '#5c5f93' } as React.CSSProperties) : undefined}
+      className={`relative overflow-hidden -mt-[72px] pt-[72px] md:min-h-[104svh] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
+      style={foto ? ({ '--hero-lucht-top': '#4a4468' } as React.CSSProperties) : undefined}
     >
       {foto ? null : (
         <>
@@ -33,7 +33,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
       )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
-      <motion.div className="relative z-10 band pt-24 sm:pt-28 lg:pt-32 text-center" style={reduced || !foto || !breed ? undefined : { y: zak }}>
+      <motion.div className="relative z-10 band pt-20 sm:pt-24 lg:pt-24 text-center" style={reduced || !foto || !breed ? undefined : { y: zak }}>
         <Verschijn vertraging={0.05} className="flex justify-center">
           <span className="chip">
             <span className="chip-punt" aria-hidden />
@@ -69,11 +69,11 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
           absoluut onderin de sectie, over de volle breedte. */}
       {foto && (
         <div className="relative z-0 mt-8 md:static md:m-0">
-          <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} mobielInStroom hoogte="58%" rietBreedte="84%" rietOnder="-16%" horizon={0.42} />
+          <PolderFoto scene={POLDER_SCHEMER} muisX={muisX} muisY={muisY} mobielInStroom />
         </div>
       )}
-      {/* ruimte voor het landschap op brede schermen */}
-      <div className="hidden md:block h-[54vh] min-h-[420px]" aria-hidden />
+      {/* ruimte voor het landschap op brede schermen: de horizon ligt onder de knoppen */}
+      <div className="hidden md:block h-[46vh] min-h-[380px]" aria-hidden />
     </section>
   );
 }

@@ -112,3 +112,24 @@ De bosvariant (`?landschap=bos`) blijft als getekende terugvaloptie bestaan.
 Elk vlak is onder zijn silhouet dichtgevuld; de vloer vervaagt boven alle
 lagen naar de pagina. Op telefoons staat het landschap als eigen band onder
 de knoppen en zakt de kop niet.
+
+## Hero als 2.5D-scène (15 september, tweede ronde)
+
+De losse platen (lucht, molen, wilgen, riet apart gegenereerd) gaven schaal-
+en grondcontactfouten: de dijk hing in de lucht, het riet was te groot. Nu is
+er één masterfoto per lichtstand (schemering, dageraad; zelfde compositie) die
+met `scripts/polder-lagen.py` in lagen wordt gesplitst:
+
+| Laag | Hoe losgemaakt | Blijft achter bij scroll |
+|---|---|---|
+| ver (lucht, horizon, water) | de hele foto, achter de andere lagen bijgevuld met interpolatie per rij en een nevelband | 30% |
+| dijk (molen, boerderij, wilgen, dijkband, spiegeling) | helderheidsmasker in een venster rond de horizon, gaten gedicht, spiegeling om de waterlijn erbij | 22% |
+| nevel | aparte plaat, drijft | 18% |
+| riet | Depth Anything V2: diepte ≥ 0,40 en donkerder dan de omgeving | 8% |
+| voor (oever, riet vooraan) | diepte ≥ 0,70 | 0% |
+
+Alle lagen zijn hetzelfde canvas en worden identiek geschaald, dus ze liggen
+altijd op elkaar. Dieptekaart: Depth Anything V2 Small, lokaal via
+transformers. Controles: `scratch/randen.py` (geen lange rechte randen behalve
+horizon en waterlijn), Playwright-meting (lucht ≥ 45% van de hero, riet raakt
+de knoppen niet, spreiding tussen de lagen ≥ 120 px bij scroll 500).

@@ -23,10 +23,10 @@ export function Dageraad({ variant }: { variant: LandschapVariant }) {
     <section
       ref={ref}
       className={`relative mt-28 overflow-hidden sm:mt-36 ${foto ? 'dageraad-lucht-foto' : 'dageraad-lucht'}`}
-      style={foto ? ({ '--hero-lucht-top': '#7b89a3' } as React.CSSProperties) : undefined}
+      style={foto ? ({ '--hero-lucht-top': '#6b7d94' } as React.CSSProperties) : undefined}
     >
       {foto ? (
-        <PolderFoto platen={POLDER_DAGERAAD} muisX={muisX} muisY={muisY} hoogte="66%" rietBreedte="88%" horizon={0.46} />
+        <PolderFoto scene={POLDER_DAGERAAD} muisX={muisX} muisY={muisY} x="50%" />
       ) : (
         <>
           <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[44%] h-[34%] dageraad-zon" />
