@@ -56,3 +56,13 @@ De productiepreview draait lokaal via `npm run start -- --hostname 127.0.0.1 --p
 - Cases staan in een horizontale carrousel met pijlen, swipe, scroll-snap en toetsenbordbediening. De hoogtes verspringen 70 px op desktop en 40 px op mobiel. De gekantelde illustraties zijn behouden.
 - De achtergrond van de cases is nu een gedempt saliegroen verloop.
 - Gecontroleerd: productiebuild inclusief lint/TypeScript; zoekresultaat en lege zoekopdracht, afspelen na filteren en focusherstel; desktop- en mobiele weergave van bibliotheek en carrousel.
+
+## Scrollverhalen en covers (vervolg)
+
+- De praktijkvoorbeelden wisselen tijdens normaal verticaal scrollen. De scène blijft onder de header staan zolang deze volledig in het venster past; tabs en toetsenbord blijven beschikbaar.
+- Het persoonlijke deel begint met Sjaak en wisselt vervolgens naar Danny, met diens bestaande foto en profielgegevens.
+- `useScrollSteps` meet de scènehoogte met ResizeObserver. Op korte schermen en bij verminderde beweging vervalt het vastzetten en is de inhoud via de tabs bereikbaar. De vaste headerafstand wordt onafhankelijk van de actieve CSS-modus gemeten om schakelen rond de hoogtegrens te voorkomen.
+- Onderkant team en bovenkant cases zijn beide afgerond (38 px desktop, 24 px mobiel), met een smalle tussenruimte.
+- Herohoogte: 850 px desktop, 780 px mobiel; het landschap begint hoger zodat er minder lucht overblijft.
+- Nieuwe covers komen uit de bestaande MP4’s: kennismaken 37,7 s, mail 52,15 s, audit 1,5 s, AI-angst 54,5 s. Nieuwe bestandsnamen voorkomen verouderde afbeeldingscaches. De afspeelknop staat naast het gezicht.
+- Productiebuild inclusief lint en TypeScript geslaagd. Visueel gecontroleerd op desktop en 390 × 844; scrollwissels voor voorbeelden en team bevestigd. Bij 320 × 640 schakelt de vaste scène uit; geen horizontale documentoverflow. Geen browserfouten of waarschuwingen.

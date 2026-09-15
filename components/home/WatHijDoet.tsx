@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useScrollSteps } from "./useScrollSteps";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -66,7 +66,9 @@ const STEPS = [
 ];
 
 export function WatHijDoet() {
-  const [active, setActive] = useState(0);
+  const { track, scene, active, enabled, select } = useScrollSteps(
+    STEPS.length,
+  );
   const step = STEPS[active];
   return (
     <section
@@ -85,111 +87,124 @@ export function WatHijDoet() {
           digitale collega ruimte maakt.
         </p>
       </div>
-      <div className="practice-grid">
-        <div
-          className="practice-steps"
-          role="tablist"
-          aria-label="Wat een agent doet"
-          aria-orientation="vertical"
-        >
-          {STEPS.map((item, i) => (
-            <button
-              key={item.label}
-              role="tab"
-              id={`practice-tab-${i}`}
-              aria-selected={active === i}
-              aria-controls="practice-preview"
-              tabIndex={active === i ? 0 : -1}
-              className={`practice-step ${active === i ? "is-active" : ""}`}
-              onClick={() => setActive(i)}
-              onKeyDown={(event) => {
-                let next = i;
-                if (event.key === "ArrowDown") next = (i + 1) % STEPS.length;
-                else if (event.key === "ArrowUp")
-                  next = (i + STEPS.length - 1) % STEPS.length;
-                else if (event.key === "Home") next = 0;
-                else if (event.key === "End") next = STEPS.length - 1;
-                else return;
-                event.preventDefault();
-                setActive(next);
-                document.getElementById(`practice-tab-${next}`)?.focus();
-              }}
+      <div
+        ref={track}
+        className="story-track practice-track"
+        data-scroll-enabled={enabled}
+      >
+        <div ref={scene} className="story-sticky">
+          <p className="story-hint">
+            {enabled ? "Scroll verder en kijk mee" : "Kies een voorbeeld"}{" "}
+            <span>0{active + 1} / 03</span>
+          </p>
+          <div className="practice-grid">
+            <div
+              className="practice-steps"
+              role="tablist"
+              aria-label="Wat een agent doet"
+              aria-orientation="vertical"
             >
-              <span className="practice-number">0{i + 1}</span>
-              <span>
-                <strong>{item.title}</strong>
-                <span>{item.text}</span>
-              </span>
-              <ChevronRight size={17} />
-            </button>
-          ))}
-        </div>
-        <div
-          className="practice-preview"
-          id="practice-preview"
-          role="tabpanel"
-          aria-labelledby={`practice-tab-${active}`}
-          tabIndex={0}
-        >
-          <div className="practice-orbit orbit-one" aria-hidden="true" />
-          <div className="practice-orbit orbit-two" aria-hidden="true" />
-          <div className="agent-window">
-            <div className="agent-window-bar">
-              <span className="window-dots">
-                <i />
-                <i />
-                <i />
-              </span>
-              <span>FactumAI · {step.label}</span>
-              <span className="agent-status">Actief</span>
-            </div>
-            <div className="agent-message">
-              <span className="agent-message-icon">
-                <step.icon size={20} />
-              </span>
-              <div>
-                <small>{step.from}</small>
-                <h3>{step.subject}</h3>
-              </div>
-            </div>
-            <p className="agent-quote">{step.message}</p>
-            <div className="agent-checks">
-              {step.checks.map((check) => (
-                <div key={check}>
+              {STEPS.map((item, i) => (
+                <button
+                  key={item.label}
+                  role="tab"
+                  id={`practice-tab-${i}`}
+                  aria-selected={active === i}
+                  aria-controls="practice-preview"
+                  tabIndex={active === i ? 0 : -1}
+                  className={`practice-step ${active === i ? "is-active" : ""}`}
+                  onClick={() => select(i)}
+                  onKeyDown={(event) => {
+                    let next = i;
+                    if (event.key === "ArrowDown")
+                      next = (i + 1) % STEPS.length;
+                    else if (event.key === "ArrowUp")
+                      next = (i + STEPS.length - 1) % STEPS.length;
+                    else if (event.key === "Home") next = 0;
+                    else if (event.key === "End") next = STEPS.length - 1;
+                    else return;
+                    event.preventDefault();
+                    select(next);
+                    document.getElementById(`practice-tab-${next}`)?.focus();
+                  }}
+                >
+                  <span className="practice-number">0{i + 1}</span>
                   <span>
-                    <Check size={12} />
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
                   </span>
-                  {check}
-                </div>
+                  <ChevronRight size={17} />
+                </button>
               ))}
             </div>
-            <div className="agent-result">
-              <FileCheck2 size={18} />
-              <span>{step.result}</span>
-            </div>
-            <div className="agent-approval">
-              <span>U beslist wat er uitgaat.</span>
-              <span>
-                <Check size={12} /> Klaar voor akkoord
-              </span>
+            <div
+              className="practice-preview"
+              id="practice-preview"
+              role="tabpanel"
+              aria-labelledby={`practice-tab-${active}`}
+              tabIndex={0}
+            >
+              <div className="practice-orbit orbit-one" aria-hidden="true" />
+              <div className="practice-orbit orbit-two" aria-hidden="true" />
+              <div className="agent-window">
+                <div className="agent-window-bar">
+                  <span className="window-dots">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span>FactumAI · {step.label}</span>
+                  <span className="agent-status">Actief</span>
+                </div>
+                <div className="agent-message">
+                  <span className="agent-message-icon">
+                    <step.icon size={20} />
+                  </span>
+                  <div>
+                    <small>{step.from}</small>
+                    <h3>{step.subject}</h3>
+                  </div>
+                </div>
+                <p className="agent-quote">{step.message}</p>
+                <div className="agent-checks">
+                  {step.checks.map((check) => (
+                    <div key={check}>
+                      <span>
+                        <Check size={12} />
+                      </span>
+                      {check}
+                    </div>
+                  ))}
+                </div>
+                <div className="agent-result">
+                  <FileCheck2 size={18} />
+                  <span>{step.result}</span>
+                </div>
+                <div className="agent-approval">
+                  <span>U beslist wat er uitgaat.</span>
+                  <span>
+                    <Check size={12} /> Klaar voor akkoord
+                  </span>
+                </div>
+              </div>
+              <div className="agent-note">
+                <span className="agent-note-mark">f.</span>
+                <div>
+                  Het werk is voorbereid.
+                  <br />
+                  <strong>De regie blijft bij u.</strong>
+                </div>
+              </div>
+              <p className="practice-example">
+                Illustratief voorbeeld van een werkproces
+              </p>
             </div>
           </div>
-          <div className="agent-note">
-            <span className="agent-note-mark">f.</span>
-            <div>
-              Het werk is voorbereid.
-              <br />
-              <strong>De regie blijft bij u.</strong>
-            </div>
-          </div>
-          <p className="practice-example">
-            Illustratief voorbeeld van een werkproces
-          </p>
+          <Link className="practice-link" href={step.href}>
+            Meer over {step.label.toLowerCase()} <ArrowUpRight size={16} />
+          </Link>
         </div>
       </div>
-      <Link className="practice-link" href={step.href}>
-        Meer over {step.label.toLowerCase()} <ArrowUpRight size={16} />
-      </Link>
     </section>
   );
 }

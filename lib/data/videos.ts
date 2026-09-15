@@ -6,7 +6,7 @@ export const VIDEOS = [
     category: "Even kennismaken",
     duration: "1:38",
     src: "/videos/kennismaken.mp4",
-    poster: "/videos/kennismaken.jpg",
+    poster: "/videos/kennismaken-cover.jpg",
   },
   {
     id: "mail-automation",
@@ -14,7 +14,7 @@ export const VIDEOS = [
     category: "In de praktijk",
     duration: "0:59",
     src: "/videos/mail-automation.mp4",
-    poster: "/videos/mail-automation.jpg",
+    poster: "/videos/mail-automation-cover.jpg",
   },
   {
     id: "audit-pilots",
@@ -22,7 +22,7 @@ export const VIDEOS = [
     category: "Van idee naar uitvoering",
     duration: "0:52",
     src: "/videos/audit-pilots.mp4",
-    poster: "/videos/audit-pilots.jpg",
+    poster: "/videos/audit-pilots-cover.jpg",
   },
   {
     id: "ai-angst",
@@ -30,6 +30,6 @@ export const VIDEOS = [
     category: "Nuchter over AI",
     duration: "0:58",
     src: "/videos/ai-angst.mp4",
-    poster: "/videos/ai-angst.jpg",
+    poster: "/videos/ai-angst-cover.jpg",
   },
 ] as const;
