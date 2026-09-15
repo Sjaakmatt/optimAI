@@ -37,7 +37,7 @@ export function Hero() {
       <div className="horizon-aura" aria-hidden="true" />
       <div className="horizon-content band">
         <p className="horizon-eyebrow">
-          <span /> AI-agents. Nuchter gebouwd in Nederland.
+          <span /> AI-systemen voor MKB. Ontwikkeld met West-Fries karakter.
         </p>
         <h1 id="hero-heading">
           Meer ruimte voor
@@ -45,8 +45,8 @@ export function Hero() {
           <em>het echte werk.</em>
         </h1>
         <p className="horizon-description">
-          Een digitale collega die mails afhandelt, offertes opvolgt en orders
-          klaarzet. Op uw manier. Met u aan het stuur.
+          Een digitale collega die ondersteunt, werk voorbereidt en acties
+          klaarzet. Altijd met de menselijke controle.
         </p>
         <div className="horizon-actions">
           <Link href="/plan" {...calPopupAttrs} className="horizon-primary">
@@ -63,7 +63,7 @@ export function Hero() {
         </div>
         <div>
           <span>Terwijl u verder werkt</span>
-          <strong>Antwoord staat klaar.</strong>
+          <strong>Voorstel staat klaar.</strong>
           <small>
             <Check size={12} /> Wacht op uw akkoord
           </small>
