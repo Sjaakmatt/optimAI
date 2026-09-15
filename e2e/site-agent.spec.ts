@@ -37,6 +37,16 @@ test.describe('de knop', () => {
 });
 
 test.describe('het wolkje', () => {
+  test('laat de homepage rustig, terwijl de chatknop beschikbaar blijft', async ({ page }) => {
+    await stelWidgetIn(page);
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: /Stel je vraag aan de AI-agent/i })).toBeVisible();
+    await page.waitForTimeout(RUIM);
+    await expect(page.getByText(WOLKJE)).toHaveCount(0);
+    await page.getByRole('button', { name: /Stel je vraag aan de AI-agent/i }).click();
+    await expect(page.getByRole('dialog', { name: /agent van FactumAI/i })).toBeVisible();
+  });
+
   test('verschijnt vanzelf, met de zin van die pagina', async ({ page }) => {
     await stelWidgetIn(page);
     await page.goto('/branches/bouw');
@@ -55,7 +65,7 @@ test.describe('het wolkje', () => {
 
   test('komt niet terug nadat de bezoeker hem wegklikt', async ({ page }) => {
     await stelWidgetIn(page);
-    await page.goto('/');
+    await page.goto('/branches/horeca');
 
     await expect(page.getByText(WOLKJE)).toBeVisible({ timeout: RUIM });
     await page.getByRole('button', { name: 'Niet nu' }).click();
@@ -86,7 +96,7 @@ test.describe('het wolkje', () => {
 
   test('verschijnt meteen met ?agent=nu, ook na wegklikken', async ({ page }) => {
     await stelWidgetIn(page);
-    await page.goto('/');
+    await page.goto('/branches/horeca');
     await expect(page.getByText(WOLKJE)).toBeVisible({ timeout: RUIM });
     await page.getByRole('button', { name: 'Niet nu' }).click();
 
