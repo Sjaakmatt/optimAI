@@ -81,3 +81,18 @@ van Inter, pillen alleen voor knoppen en chips.
 ingebouwd; de site draait op `motion` en had die apparaten al. De
 verificatie-harness (`shoot.mjs`) is niet gedraaid; wel handmatige contact
 sheets op 1440 en 400 breed.
+
+## Polder als fotolagen (15 september)
+
+De getekende silhouetten zijn vervangen door fotorealistische platen, naar de
+referentiefoto (molen links, rietkraag vooraan, water dat de lucht spiegelt):
+
+| Laag | Bestand | Herkomst | Beweging |
+|---|---|---|---|
+| Lucht + water | `public/polder/lucht-schemer.webp`, `lucht-dageraad.webp` | gegenereerd (Runway, nano-banana-pro), dageraad als variant op dezelfde compositie | diepte 0,06 |
+| Molen op de dijk, boerderij, knotwilgen | `public/polder/molen.webp` | gegenereerd op wit, uitgesneden via luminantie (alfa = 1 − helderheid, kleur ontmengd van wit); de dijk vervaagt aan de uiteinden | diepte 0,26, met gespiegelde reflectie in het water |
+| Riet | `public/polder/riet.webp` | idem | diepte 0,62, wiegt 0,35° heen en weer |
+
+Segmentatie (SAM) gaf gaten in de roeden en de pluimen; luminantie-keying
+op een witte plaat houdt die fijne details heel. Component: `PolderFoto.tsx`.
+De bosvariant (`?landschap=bos`) blijft als getekende terugvaloptie bestaan.

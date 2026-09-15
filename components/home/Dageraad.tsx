@@ -8,25 +8,34 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { calPopupAttrs } from '@/components/booking/config';
 import { DAGERAAD_PALET, maakBosLagen } from './landschap/Bos';
-import { maakPolderLagen } from './landschap/Polder';
 import { Landschap, useMuisParallax, type LandschapVariant } from './Landschap';
+import { PolderFoto, POLDER_DAGERAAD } from './PolderFoto';
 import { Opkomend, Verschijn } from './Opkomend';
 
 const BOS_DAGERAAD = maakBosLagen(DAGERAAD_PALET);
-const POLDER_DAGERAAD = maakPolderLagen(DAGERAAD_PALET, 'dageraad');
 const NEVEL = { achter: 'rgba(244, 220, 180, 0.28)', voor: 'rgba(159, 182, 196, 0.18)' };
 
 export function Dageraad({ variant }: { variant: LandschapVariant }) {
   const { ref, muisX, muisY } = useMuisParallax();
-  const lagen = variant === 'polder' ? POLDER_DAGERAAD : BOS_DAGERAAD;
+  const foto = variant === 'polder';
 
   return (
-    <section ref={ref} className="relative mt-28 overflow-hidden dageraad-lucht sm:mt-36">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[44%] h-[34%] dageraad-zon" />
-      <Landschap lagen={lagen} muisX={muisX} muisY={muisY} nevel={NEVEL} />
+    <section
+      ref={ref}
+      className={`relative mt-28 overflow-hidden sm:mt-36 ${foto ? 'dageraad-lucht-foto' : 'dageraad-lucht'}`}
+      style={foto ? ({ '--hero-lucht-top': '#7b89a3' } as React.CSSProperties) : undefined}
+    >
+      {foto ? (
+        <PolderFoto platen={POLDER_DAGERAAD} muisX={muisX} muisY={muisY} hoogte="66%" rietBreedte="88%" horizon={0.46} />
+      ) : (
+        <>
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[44%] h-[34%] dageraad-zon" />
+          <Landschap lagen={BOS_DAGERAAD} muisX={muisX} muisY={muisY} nevel={NEVEL} />
+        </>
+      )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
-      <div className="relative band pt-24 pb-[46vh] text-center sm:pt-32 sm:pb-[50vh]">
+      <div className="relative band pt-24 pb-[58vh] text-center sm:pt-32 sm:pb-[66vh]">
         <Opkomend
           as="h2"
           inView

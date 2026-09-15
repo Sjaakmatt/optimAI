@@ -4,20 +4,28 @@ import Link from 'next/link';
 import { calPopupAttrs } from '@/components/booking/config';
 import { MailAgent } from '@/components/mailagent/MailAgent';
 import { BOS_LAGEN } from './landschap/Bos';
-import { POLDER_LAGEN } from './landschap/Polder';
 import { Landschap, useMuisParallax, type LandschapVariant } from './Landschap';
+import { PolderFoto, POLDER_SCHEMER } from './PolderFoto';
 import { Opkomend, Verschijn } from './Opkomend';
 
 export function Hero({ variant }: { variant: LandschapVariant }) {
   const { ref, muisX, muisY } = useMuisParallax();
-  const lagen = variant === 'polder' ? POLDER_LAGEN : BOS_LAGEN;
+  const foto = variant === 'polder';
 
   return (
-    <section ref={ref} className="relative overflow-hidden hero-lucht -mt-[72px] pt-[72px]">
-      {/* zon achter de horizon */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[46%] h-[30%] hero-zon" />
-
-      <Landschap lagen={lagen} muisX={muisX} muisY={muisY} />
+    <section
+      ref={ref}
+      className={`relative overflow-hidden -mt-[72px] pt-[72px] ${foto ? 'hero-lucht-foto' : 'hero-lucht'}`}
+      style={foto ? ({ '--hero-lucht-top': '#5c5f93' } as React.CSSProperties) : undefined}
+    >
+      {foto ? (
+        <PolderFoto platen={POLDER_SCHEMER} muisX={muisX} muisY={muisY} />
+      ) : (
+        <>
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[46%] h-[30%] hero-zon" />
+          <Landschap lagen={BOS_LAGEN} muisX={muisX} muisY={muisY} />
+        </>
+      )}
       <div aria-hidden className="pointer-events-none absolute inset-0 korrel" />
 
       <div className="relative band pt-24 sm:pt-32 lg:pt-36 text-center">
@@ -54,7 +62,7 @@ export function Hero({ variant }: { variant: LandschapVariant }) {
 
       {/* Het venster met de mailagent rijst op uit het landschap */}
       <Verschijn vertraging={0.8} y={40} className="relative band mt-16 sm:mt-20 lg:mt-24 pb-10 sm:pb-16">
-        <div id="mailagent" className="scroll-mt-28 mx-auto max-w-[1100px]">
+        <div id="mailagent" className="scroll-mt-28 mx-auto max-w-[1040px]">
           <MailAgent />
         </div>
       </Verschijn>
