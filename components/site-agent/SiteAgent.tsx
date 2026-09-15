@@ -19,6 +19,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+import { useOpOnderhoudPagina } from '@/lib/site/onderhoudPagina';
 import { MessageSquare, X } from 'lucide-react';
 
 import { haakjeVoorPad, openingVoorPad } from '@/lib/site-agent/haakjes';
@@ -149,7 +150,8 @@ export function SiteAgent() {
   /** Pad waarop het wolkje het laatst is getoond; houdt het op één per pagina. */
   const laatstGemeldPadRef = useRef<string | null>(null);
 
-  const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname);
+  const opOnderhoud = useOpOnderhoudPagina();
+  const verbergen = !AGENT_AAN || verbergZwevendeKnoppen(pathname) || opOnderhoud;
 
   useEffect(() => {
     if (verbergen) return;
