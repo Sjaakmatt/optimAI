@@ -21,21 +21,64 @@ const regelVarianten: Variants = {
   }),
 };
 
+const woordVarianten: Variants = {
+  verborgen: { y: '110%', opacity: 0 },
+  zichtbaar: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.7, ease: EASE, delay: i * 0.045 },
+  }),
+};
+
 export function Opkomend({
   regels,
   vertraging = 0,
   className = '',
   as = 'div',
   inView = false,
+  perWoord = false,
 }: {
   regels: ReactNode[];
   vertraging?: number;
   className?: string;
   as?: 'div' | 'h1' | 'h2' | 'p';
   inView?: boolean;
+  /** Elke regel wordt per woord onthuld in plaats van als geheel. Alleen voor tekstregels. */
+  perWoord?: boolean;
 }) {
   const reduced = useReducedMotion() ?? false;
   const Tag = motion[as];
+  if (perWoord) {
+    let teller = 0;
+    return (
+      <Tag
+        className={className}
+        initial={reduced ? false : 'verborgen'}
+        {...(inView
+          ? { whileInView: 'zichtbaar', viewport: { once: true, margin: '-8% 0px' } }
+          : { animate: 'zichtbaar' })}
+        transition={{ delayChildren: vertraging }}
+      >
+        {regels.map((regel, i) => (
+          <span key={i} className="block">
+            {String(regel)
+              .split(' ')
+              .map((woord, j) => {
+                const index = teller++;
+                return (
+                  <span key={j} className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom">
+                    <motion.span className="inline-block will-change-transform" variants={woordVarianten} custom={index}>
+                      {woord}
+                    </motion.span>
+                    {j < String(regel).split(' ').length - 1 ? '\u00a0' : ''}
+                  </span>
+                );
+              })}
+          </span>
+        ))}
+      </Tag>
+    );
+  }
   return (
     <Tag
       className={className}

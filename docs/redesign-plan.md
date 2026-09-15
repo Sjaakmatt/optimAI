@@ -133,3 +133,28 @@ altijd op elkaar. Dieptekaart: Depth Anything V2 Small, lokaal via
 transformers. Controles: `scratch/randen.py` (geen lange rechte randen behalve
 horizon en waterlijn), Playwright-meting (lucht ≥ 45% van de hero, riet raakt
 de knoppen niet, spreiding tussen de lagen ≥ 120 px bij scroll 500).
+
+## Diepte en beweging door de hele site (15 september, derde ronde)
+
+Per sectie één apparaat, nooit twee keer hetzelfde na elkaar:
+
+| Sectie | Apparaat | Diepte |
+|---|---|---|
+| Hero | vijf fotolagen met verschillende snelheid, kop zakt achter het riet | ja |
+| In productie bij | stil (rust na de hero) | nee |
+| Wat een agent doet | vastgepind; drie punten lichten op; podium met drie werkbank-fragmenten die naar voren komen en terugwijken | ja: kaarten op drie dieptes |
+| Wie | portret met drie snelheden: gloed 60 px, portret 30 px, nevel 40 px tegen | ja |
+| Projecten | rail reist zijwaarts; visual in elke kaart schuift 6% tegen de rail in | ja |
+| Aanpak | lijn tekent zich met het scrollen, nummers lichten op; kop per woord | nee |
+| Afspraken | wipe van links naar rechts, drie na elkaar | nee |
+| Ontdek | verschijnen | nee |
+| Dageraad | vijf fotolagen bij zonsopgang, resolutie | ja |
+
+Grond: de achtergrondkleur drijft mee met de scroll (warmer bij het portret,
+koeler richting de dageraad). Binnenpagina's: gelaagde luchtband boven de kop
+(parallax, vervaagt bij scrollen) en secties die opkomen zodra ze in beeld
+zijn (`SectieOnthulling`), zonder JavaScript of met reduced motion staat alles er.
+
+Controles: geen horizontale overflow op 400 en 1440 px op twaalf routes;
+transforms per `[data-vlak]` op zes scrollposities; reduced motion: alle
+h2/p/li zichtbaar na scrollen.

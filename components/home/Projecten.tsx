@@ -69,10 +69,20 @@ export function Projecten() {
     </div>
   );
 
+  // Binnen elke kaart schuift de visual een fractie tegen de rail in: diepte
+  // in de kaart zelf terwijl de rail reist.
+  const binnenX = useTransform(x, (v) => v * -0.06);
+
   const kaarten = CASES.map((c) => (
     <article key={c.slug} data-kaart className="site-card group snap-start shrink-0 w-[86vw] max-w-[440px] sm:w-[440px] overflow-hidden">
       <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--border)] bg-[var(--bg-2)]">
-        <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]">{VISUALS[c.slug]}</div>
+        <motion.div
+          data-vlak="kaart-visual"
+          className="absolute inset-[-6%] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          style={gepind ? { x: binnenX } : undefined}
+        >
+          {VISUALS[c.slug]}
+        </motion.div>
         {c.logo && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={c.logo} alt={c.klant} className="absolute left-4 top-4 h-6 w-auto brightness-0 invert opacity-80" />

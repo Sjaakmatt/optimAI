@@ -13,6 +13,7 @@ import { OPLOSSINGEN, OPLOSSINGEN_FEATURED } from '@/lib/data/oplossingen';
 import { Opkomend, Verschijn } from './Opkomend';
 import { useMediaQuery } from './useMediaQuery';
 import { useSectieProgress } from './useSectieProgress';
+import { Podium } from './Podium';
 
 const PUNTEN = [
   {
@@ -62,6 +63,9 @@ export function WatHijDoet() {
                   Uw administratie draait al ergens in, en dat moet vooral zo blijven. Een agent
                   vervangt uw pakket niet. Hij pakt het werk op dat uw pakket laat liggen.
                 </p>
+              </Verschijn>
+              <Verschijn inView vertraging={0.25} className="hidden md:block">
+                <Podium progress={scrollYProgress} gepind={gepind} />
               </Verschijn>
               <Verschijn inView vertraging={0.3} className="mt-8 hidden md:block">
                 <div className="text-[13px] text-[var(--fg-faint)]">Waar wij het vaakst bouwen</div>
