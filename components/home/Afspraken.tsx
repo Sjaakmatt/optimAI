@@ -35,7 +35,7 @@ export function Afspraken() {
           as="h2"
           inView
           className="font-display text-[30px] leading-[1.06] tracking-[-0.03em] text-[var(--fg)] sm:text-[40px] lg:text-[48px]"
-          regels={["Drie afspraken.", "Geen kleine lettertjes."]}
+          regels={["Drie afspraken.", "Geen onduidelijkheden"]}
         />
       </div>
       <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-0">
