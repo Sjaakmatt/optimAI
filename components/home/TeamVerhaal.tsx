@@ -14,7 +14,7 @@ const PEOPLE = [
       <>
         Geen accountmanager.
         <br />
-        <em>De bouwer zelf.</em>
+        <em>Korte lijnen met de oprichter</em>
       </>
     ),
     photo: "/sjaak-portrait-cutout.webp",
