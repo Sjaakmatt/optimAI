@@ -76,11 +76,11 @@ export function WatHijDoet() {
       aria-labelledby="practice-heading"
     >
       <div className="practice-intro">
-        <p className="editorial-label">Uw nieuwe collega</p>
+        <p className="editorial-label">Uw digitale collega</p>
         <h2 id="practice-heading">
-          Uw pakket onthoudt.
+          Een ERP onthoudt.
           <br />
-          <em>Een agent denkt mee.</em>
+          <em>Een agent denkt en werkt mee.</em>
         </h2>
         <p>
           Uw systemen blijven. Het terugkerende werk verandert. Ontdek waar een

@@ -18,7 +18,7 @@ const PEOPLE = [
       </>
     ),
     photo: "/sjaak-portrait-cutout.webp",
-    text: "Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en bouw mee aan de agents die wij opleveren. Dat houdt het werk eerlijk: ik beloof niets dat ik niet zelf zou kunnen waarmaken.",
+    text: "Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en bouw mee aan de systemen die wij opleveren. Ik zorg voor korte lijnen zodat we snel kunnen schakelen met de klant.",
   },
   {
     member: TEAM_BY_SLUG["danny-rossenaar"],
@@ -30,7 +30,7 @@ const PEOPLE = [
       </>
     ),
     photo: "/danny-portrait-cutout.webp",
-    text: "Danny luistert naar waar de werkdag stroef loopt en vertaalt dat naar een helder voorstel. Wat kan een agent overnemen, wat levert het op, en waar beginnen we? Hij houdt de lijnen kort en de belofte eerlijk.",
+    text: "Ik luister naar de ondernemer en communiceer op een menselijk en begrijpelijk niveau. Wat kan AI voor jullie betekenen, wat levert het op, en waar beginnen we? Ik houd de lijnen kort en de belofte eerlijk.",
   },
 ];
 
@@ -48,7 +48,7 @@ export function TeamVerhaal() {
         <div ref={scene} className="story-sticky">
           <div className="team-navigation">
             <p className="story-hint">
-              {enabled ? "Scroll en ontmoet ons" : "Ontmoet ons"}
+              {enabled ? "Scroll en maak kennis" : "Maak kennis"}
             </p>
             <div role="tablist" aria-label="Ons team">
               {PEOPLE.map(({ member }, i) => (

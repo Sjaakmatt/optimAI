@@ -48,8 +48,8 @@ export function Dageraad() {
           <em>Morgen meer mogelijk.</em>
         </h2>
         <p>
-          Twintig minuten over het werk dat uw mensen tijd kost. U vertelt. Wij
-          denken mee. Vrijblijvend, en altijd eerlijk.
+          Dertig minuten over het werk dat uw mensen onnodig tijd kost. We
+          luisteren aandachtig en denken mee. Vrijblijvend en eerlijk.
         </p>
         <div className="horizon-actions">
           <Link href="/plan" {...calPopupAttrs} className="horizon-primary">
@@ -61,7 +61,7 @@ export function Dageraad() {
         </div>
       </div>
       <span className="closing-signature">
-        Gebouwd met aandacht. In West-Friesland.
+        Gebouwd met aandacht in West-Friesland.
       </span>
     </section>
   );

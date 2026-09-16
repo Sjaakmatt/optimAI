@@ -33,7 +33,7 @@ export const TEAM: TeamMember[] = [
     linkedin: 'https://www.linkedin.com/in/sjaak-ter-veld/',
     portretSrc: '/sjaak-portrait-cutout.webp',
     korteBio:
-      'Bedrijfskundige met 8+ jaar IT-praktijk. Bouwt AI-agents voor MKB-bedrijven en schrijft de FactumAI-kennisbank.',
+      'Bedrijfskundige met 8+ jaar IT-praktijk. Doet AI-audits, bouwt AI-systemen voor MKB-bedrijven en schrijft de FactumAI-kennisbank.',
     langeBio: [
       'Ik ben opgeleid in de bedrijfskunde en heb daarna meer dan acht jaar in IT gewerkt: aan optimalisatie, procesverbetering, strategie en projectmanagement bij bedrijven van uiteenlopende grootte. In 2026 ben ik FactumAI gestart om AI-agents bereikbaar te maken voor MKB-bedrijven die niet wachten op een groot consultancy-traject.',
       'Mijn rol bij FactumAI is dubbel. Ik zit aan tafel bij ondernemers om hun werkdag te begrijpen, en ik bouw mee aan de agents die wij opleveren. Dat houdt het werk eerlijk: ik beloof niets dat ik niet zelf zou kunnen waarmaken.',
@@ -90,7 +90,7 @@ export const TEAM: TeamMember[] = [
     email: 'danny@factumai.nl',
     portretSrc: '/danny-portrait-cutout.webp',
     korteBio:
-      'Verzorgt contact en marketing bij FactumAI. Vertaalt de vraag van ondernemers naar wat een AI-agent concreet oplevert, zonder technisch jargon.',
+      'Verzorgt communicatie en marketing bij FactumAI. Luistert naar wat de ondernemer te vertellen heeft en waar de mogelijke behoeften liggen. Luistert met aandacht en ambacht.',
     langeBio: [
       'Als Sales & Marketing Manager verzorgt Danny het contact en de marketing bij FactumAI. Hij zit aan tafel bij ondernemers, luistert naar waar de werkdag stroef loopt, en vertaalt dat naar een helder voorstel: wat kan een agent overnemen, wat levert het op, en waar beginnen we.',
       'Hij bewaakt dat de belofte eerlijk blijft. Geen luchtkastelen, maar een concreet eerste resultaat waar u zelf akkoord op geeft. Wat aan tafel wordt beloofd, maken de bouwers waar.',

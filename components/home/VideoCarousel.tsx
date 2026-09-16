@@ -78,18 +78,18 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
       <div className="band video-heading-row">
         <div>
           <p className="editorial-label">
-            {library ? "Alle video’s" : "De korte versie"}
+            {library ? "Alle video’s" : "Social media video’s"}
           </p>
           <Heading id="video-heading">
             AI wordt helder
             <br />
-            <em>als je het laat zien.</em>
+            <em>door het te laten zien.</em>
           </Heading>
         </div>
         <div className="video-intro">
           <p>
-            Even meekijken met Sjaak. Over het werk, de mogelijkheden en wat er
-            écht toe doet.
+            In de video’s vertellen we over het werk, de mogelijkheden en waar
+            wij voor staan.
           </p>
           {!library && (
             <Link className="video-all" href="/videos">
