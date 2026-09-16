@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
 import { CookiePrefsButton } from '@/components/analytics/CookiePrefsButton';
@@ -7,10 +8,10 @@ import { CookiePrefsButton } from '@/components/analytics/CookiePrefsButton';
 export function SiteFooter() {
   const topPosts = [...POSTS]
     .sort((a, b) => (a.published < b.published ? 1 : -1))
-    .slice(0, 5);
+    .slice(0, 2);
 
   return (
-    <footer className="relative w-full pt-20 overflow-hidden">
+    <footer className="relative w-full pt-12 overflow-hidden">
       {/* zachte gloed aan de horizon */}
       <div
         aria-hidden
@@ -21,7 +22,7 @@ export function SiteFooter() {
         }}
       />
       <div className="lijn" />
-      <div className="relative band py-14 sm:py-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+      <div className="relative band py-9 sm:py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-7">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <Link href="/" aria-label="FactumAI, naar de homepage" className="inline-block max-w-full">
             <Image
@@ -33,10 +34,9 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-4 text-[13.5px] text-[var(--fg-dim)] leading-relaxed max-w-[280px]">
-            Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
-            lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.
+            AI-agents die het dagelijkse werk van MKB-bedrijven lichter maken.
           </p>
-          <p className="mt-4 font-mono text-[11px] text-[var(--fg-faint)] uppercase tracking-[0.14em]">
+          <p className="mt-3 font-mono text-[10px] text-[var(--fg-faint)] uppercase tracking-[0.06em]">
             FactumAI B.V. · KvK 42123186
           </p>
         </div>
@@ -45,28 +45,25 @@ export function SiteFooter() {
           <VoetLink href="/diensten/ai-agent-laten-bouwen">AI-agent laten bouwen</VoetLink>
           <VoetLink href="/diensten/ai-automatisering">AI-automatisering</VoetLink>
           <VoetLink href="/diensten/ai-implementatie">AI implementeren</VoetLink>
-          <VoetLink href="/diensten/ai-agents-voor-bedrijven">AI-agents voor bedrijven</VoetLink>
-          <VoetLink href="/oplossingen">Oplossingen</VoetLink>
-          <VoetLink href="/branches">Per branche</VoetLink>
-          <VoetLink href="/diensten" zacht>Alle diensten</VoetLink>
+          <AllesLink href="/diensten" onderwerp="diensten" />
         </Kolom>
 
         <Kolom titel="Cases">
-          {CASES.map((c) => (
+          {CASES.slice(0, 3).map((c) => (
             <VoetLink key={c.slug} href={`/cases/${c.slug}`}>
               {c.klant}
             </VoetLink>
           ))}
-          <VoetLink href="/cases" zacht>Alle cases</VoetLink>
+          <AllesLink href="/cases" onderwerp="cases" />
         </Kolom>
 
         <Kolom titel="Kennis">
           {topPosts.map((p) => (
             <VoetLink key={p.slug} href={`/kennis/${p.slug}`}>
-              {p.title}
+              <span className="line-clamp-2" title={p.title}>{p.title}</span>
             </VoetLink>
           ))}
-          <VoetLink href="/kennis" zacht>Alle artikelen</VoetLink>
+          <AllesLink href="/kennis" onderwerp="artikelen" />
           <VoetLink href="/videos" zacht>Alle video’s</VoetLink>
         </Kolom>
 
@@ -82,17 +79,9 @@ export function SiteFooter() {
             </a>
           </li>
           <li className="text-[var(--fg-faint)]">Hoogkarspel · West-Friesland</li>
-          <li className="pt-2">
+          <li className="pt-1.5 flex flex-wrap gap-x-4 gap-y-1">
             <VoetLinkInner href="/over">Over FactumAI</VoetLinkInner>
-          </li>
-          <li>
             <VoetLinkInner href="/contact">Contact</VoetLinkInner>
-          </li>
-          <li>
-            <VoetLinkInner href="/info">Wat is een AI-agent</VoetLinkInner>
-          </li>
-          <li>
-            <VoetLinkInner href="/demo">Demo · De Werkbank</VoetLinkInner>
           </li>
         </Kolom>
       </div>
@@ -125,6 +114,20 @@ function Kolom({ titel, children }: { titel: string; children: React.ReactNode }
       <div className="eyebrow mb-3">{titel}</div>
       <ul className="space-y-1.5 text-[13.5px]">{children}</ul>
     </div>
+  );
+}
+
+function AllesLink({ href, onderwerp }: { href: string; onderwerp: string }) {
+  return (
+    <li className="pt-1.5">
+      <Link
+        href={href}
+        aria-label={`Toon alle ${onderwerp}`}
+        className="inline-flex items-center gap-1.5 text-[var(--fg-faint)] hover:text-[var(--fg)] transition-colors"
+      >
+        Toon alles <ArrowUpRight size={13} aria-hidden />
+      </Link>
+    </li>
   );
 }
 
