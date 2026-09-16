@@ -19,6 +19,7 @@ const STATIC_ROUTES: Array<{
   { path: '/diensten', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/oplossingen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-audit', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/gratis-ai-audit', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/diensten/ai-agent-laten-bouwen', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-automatisering', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/diensten/ai-implementatie', changeFrequency: 'monthly', priority: 0.9 },

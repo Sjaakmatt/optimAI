@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const LAST_UPDATED = '22 juli 2026';
+const LAST_UPDATED = '16 september 2026';
 
 export default function PrivacyPage() {
   return (
@@ -98,18 +98,20 @@ export default function PrivacyPage() {
           ]}
         />
 
-        <H3>2.2 Contactformulier</H3>
+        <H3>2.2 Contact- en aanmeldformulieren</H3>
         <P>
           Als je het contactformulier invult, gebruiken wij je gegevens om op je vraag te
-          reageren.
+          reageren. Bij een aanmelding voor de kosteloze AI-audit gebruiken we je gegevens
+          om te beoordelen of je bedrijf bij de ronde past en contact met je op te nemen
+          over selectie en deelname. Je schrijft je hiermee niet in voor een nieuwsbrief.
         </P>
         <DefList
           items={[
             [
               'Welke gegevens',
-              'Naam, e-mailadres, telefoonnummer (indien ingevuld), inhoud van je bericht.',
+              'Naam, bedrijfsnaam, e-mailadres, telefoonnummer (indien ingevuld) en inhoud van je bericht. Bij de kosteloze AI-audit ook de vestigingsplaats, beschrijving van de werkzaamheden en de geaccepteerde versie van de deelnameafspraken.',
             ],
-            ['Waarom', 'Om je vraag te beantwoorden en eventueel verder contact op te nemen.'],
+            ['Waarom', 'Om je vraag te beantwoorden, je aanmelding te beoordelen en contact op te nemen over je vraag of deelname.'],
             [
               'Grondslag',
               'Precontractuele maatregel op jouw verzoek (art. 6 lid 1 sub b AVG) of gerechtvaardigd belang bij het reageren op jouw interesse (art. 6 lid 1 sub f AVG).',
