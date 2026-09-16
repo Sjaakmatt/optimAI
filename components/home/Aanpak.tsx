@@ -5,6 +5,8 @@
 // oplicht zodra de lijn erlangs is. Geen kaarten, tekst op ruimte.
 
 import { useRef } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion, useTransform } from "motion/react";
 import { Opkomend, Verschijn } from "./Opkomend";
 import { useZichtProgress } from "./useZichtProgress";
@@ -63,6 +65,13 @@ export function Aanpak() {
               proces, vaste prijs per fase, en elke fase eindigt in iets dat
               werkt. Geen pilot van zes maanden zonder resultaat.
             </p>
+            <Link
+              href="/diensten/ai-audit"
+              className="mt-5 inline-flex items-center gap-2 text-[14px] text-[var(--accent)] transition-colors hover:text-[var(--fg)]"
+            >
+              Zo werkt een AI-audit
+              <ArrowUpRight size={16} aria-hidden />
+            </Link>
           </Verschijn>
         </div>
         <ol ref={ref} className="relative lg:pt-2">
