@@ -16,7 +16,16 @@
 .sectionIntro { display: grid; grid-template-columns: 1.3fr 1fr; align-items: end; gap: 70px; margin-bottom: 54px; }
 .sectionIntro h2, .methodIntro h2, .nextIntro h2, .faqGrid h2 { margin-top: 18px; }
 .sectionIntro > p { max-width: 440px; font-size: 15px; line-height: 1.8; color: var(--fg-dim); }
-.hero { position: relative; padding: 34px 0 0; background: radial-gradient(ellipse at 82% 36%, #a17e6740, transparent 48%), radial-gradient(ellipse at 3% 2%, #748b7a20, transparent 50%); }
+.hero { position: relative; padding: 34px 0 0; }
+.hero::before {
+  content: '';
+  position: absolute;
+  /* Extend the hero atmosphere behind the floating header without shifting content. */
+  inset: -100px 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 82% 36%, #a17e6740, transparent 48%), radial-gradient(ellipse at 3% 2%, #748b7a20, transparent 50%);
+}
 .heroGrid { display: grid; grid-template-columns: 1.07fr 1fr; align-items: center; gap: 30px; padding-block: 63px 68px; }
 .hero .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--fg-dim); }
 .dot { height: 6px; width: 6px; border-radius: 50%; background: var(--audit-sage); }
