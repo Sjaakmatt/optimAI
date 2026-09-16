@@ -57,7 +57,7 @@ export function Projecten() {
     <section className="case-section" aria-labelledby="cases-heading">
       <div className="case-heading band">
         <div>
-          <p className="editorial-label">Geen toekomstmuziek</p>
+          <p className="editorial-label">Klantcases</p>
           <h2 id="cases-heading">
             Gebouwd.
             <br />
@@ -66,9 +66,9 @@ export function Projecten() {
         </div>
         <div>
           <p>
-            Van eerste aanvraag tot dagelijkse routine.
+            Van eerste aanvraag tot live in productie
             <br />
-            Dit bouwen we samen met onze klanten.
+            Dit hebben we samen met onze klanten gebouwd.
           </p>
           <Link href="/cases">
             Alle cases <ArrowUpRight size={17} />

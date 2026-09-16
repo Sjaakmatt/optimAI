@@ -19,7 +19,7 @@ export const CASES: CaseStudy[] = [
     klant: 'Pavo',
     branche: 'HR-dienstverlening',
     logo: '/pavo-hr.svg',
-    tagline: 'Sales-leads uit een kaartgebied. Niet meer handmatig zoeken.',
+    tagline: 'Sales-leads uit een kaartgebied. Geclassificeerd op HR-criteria.',
     intro:
       'Pavo levert HR-diensten aan Nederlandse bedrijven. Sales besteedde tot voor kort een groot deel van hun week aan het handmatig doorlopen van bedrijven per regio: welke past bij ons profiel, welke heeft mogelijk HR-behoefte, wie is de juiste contactpersoon? Wij hebben een lead-agent gebouwd die dat werk overneemt op basis van een geselecteerd gebied op de kaart.',
     uitdaging: [
