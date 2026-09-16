@@ -86,3 +86,7 @@ Gecontroleerd: productiebuild (inclusief types/lint), desktop voor en na scrolle
 Na feedback dat de beweging nauwelijks zichtbaar was: een doorlopende camerabeweging (2–8% zoom in 12 seconden), onafhankelijk wiegend voorgrondriet en snellere nevel toegevoegd. De pauzeknop stopt alle beweging; de voorkeur voor verminderde beweging blijft gerespecteerd. In de browser zijn verschillende transformaties gemeten zonder scrollen en pauzeren/hervatten gecontroleerd. Productiebuild geslaagd.
 
 De bovenstaande camera- en lagenproeven zijn vervangen door afzonderlijke objectanimaties: fotografische wieken, mistbanken en riet. Zie `docs/hero-wind-assets.md` voor de huidige uitvoering en assetprompts.
+
+## Danny: schonere portretranden
+
+De bestaande lokale uitsnede is verfijnd naar `public/danny-portrait-clean.webp`: de alfamaskerrand is rond het hoofd 2 pixels ingekrompen, lichte achtergrondresten in halftransparante randpixels zijn geneutraliseerd en de muur tussen losse haren bij de kruin is transparanter gemaakt. Gezicht, houding en dekkende binnenpixels blijven uit de originele foto behouden. De nieuwe bestandsnaam voorkomt een verouderde afbeelding uit de cache. Homepage en gedeelde teamgegevens gebruiken dezelfde uitsnede. Visueel gecontroleerd tegen de donkere teamachtergrond.

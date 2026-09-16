@@ -29,7 +29,7 @@ const PEOPLE = [
         <em>Naar een helder plan.</em>
       </>
     ),
-    photo: "/danny-portrait-cutout.webp",
+    photo: "/danny-portrait-clean.webp",
     text: "Ik luister naar de ondernemer en communiceer op een menselijk en begrijpelijk niveau. Wat kan AI voor jullie betekenen, wat levert het op, en waar beginnen we? Ik houd de lijnen kort en de belofte eerlijk.",
   },
 ];

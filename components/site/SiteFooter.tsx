@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { CASES } from '@/lib/data/cases';
 import { POSTS } from '@/lib/data/posts';
 import { CookiePrefsButton } from '@/components/analytics/CookiePrefsButton';
-import { Woordmerk } from './Woordmerk';
 
 export function SiteFooter() {
   const topPosts = [...POSTS]
@@ -23,7 +23,15 @@ export function SiteFooter() {
       <div className="lijn" />
       <div className="relative band py-14 sm:py-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-          <Woordmerk />
+          <Link href="/" aria-label="FactumAI, naar de homepage" className="inline-block max-w-full">
+            <Image
+              src="/branding/factumai/logo-transparent.webp"
+              alt="FactumAI"
+              width={1107}
+              height={234}
+              className="h-auto w-[168px] max-w-full rounded-none"
+            />
+          </Link>
           <p className="mt-4 text-[13.5px] text-[var(--fg-dim)] leading-relaxed max-w-[280px]">
             Wij bouwen en implementeren AI-agents die het dagelijkse werk van MKB-bedrijven
             lichter maken. Nederlands, pragmatisch, zonder dashboard-gedoe.
