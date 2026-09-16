@@ -12,18 +12,24 @@ import { useZichtProgress } from "./useZichtProgress";
 const STAPPEN = [
   [
     "Kennismaken",
-    "Eén gesprek bij u of bij ons. Wij kijken wat uw mensen vooral kost.",
+    "Eén gesprek bij u of online. We luisteren naar het verhaal achter jullie organisatie en de mogelijke behoefte.",
   ],
-  ["Ontwerpen", "Samen kiezen we één proces waar de grootste winst zit."],
+  [
+    "Ontwerpen",
+    "Tijdens het gesprek kiezen we samen de richting. Is er al duidelijk een proces waar we aan kunnen werken of moet dit eerst in kaart worden gebracht met een AI-audit?",
+  ],
   [
     "Bouwen",
-    "In fasen. Elke fase eindigt in iets werkends dat u ziet en goedkeurt.",
+    "In fasen. Eén gekaderd proces tegelijk. Elke fase eindigt in iets werkends dat u ziet en goedkeurt. Pas daarna kijken we naar de volgende stap.",
   ],
   [
     "Implementeren",
-    "Koppelen aan uw systemen. Uw mensen krijgen uitleg over het beheer.",
+    "We implementeren het systeem binnen de organisatie en trainen de mensen waar nodig.",
   ],
-  ["Bijhouden", "Maandelijks een kort gesprek om bij te sturen."],
+  [
+    "Bijhouden",
+    "We monitoren, onderhouden en sturen bij. Daarnaast is er indien gewenst een uur per maand de tijd om te sparren over uitbreiding en doorontwikkeling.",
+  ],
 ];
 
 export function Aanpak() {
@@ -46,15 +52,16 @@ export function Aanpak() {
             className="font-display text-[30px] leading-[1.06] tracking-[-0.03em] text-[var(--fg)] sm:text-[40px] lg:text-[48px]"
             regels={[
               "Van eerste gesprek",
-              <em key="accent">naar dagelijks gemak.</em>,
+              <em key="accent">Naar meer tijd voor het menselijke.</em>,
             ]}
           />
           <Verschijn inView vertraging={0.2}>
             <p className="mt-5 text-[15.5px] leading-[1.65] text-[var(--fg-dim)] sm:text-[17px]">
-              Het eerste gesprek is altijd vrijblijvend. Past een agent bij uw
-              werk, dan volgt een voorstel: één agent, vaste prijs per fase, en
-              elke fase eindigt in iets dat werkt. Geen pilot van zes maanden
-              zonder resultaat.
+              Het eerste gesprek is altijd vrijblijvend. Past AI bij uw werk?
+              Eventueel doen we een AI-audit om te onderzoeken waar we AI kunnen
+              inzetten en wat het oplevert. Daarna bouwen we: één gekaderd
+              proces, vaste prijs per fase, en elke fase eindigt in iets dat
+              werkt. Geen pilot van zes maanden zonder resultaat.
             </p>
           </Verschijn>
         </div>
