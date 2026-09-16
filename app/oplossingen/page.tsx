@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SitePage } from '@/components/site/SitePage';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -64,6 +64,29 @@ export default function OplossingenPage() {
             één ding gemeen: het systeem heeft de gegevens al, alleen neemt niemand er een besluit
             over.
           </p>
+          <Link
+            href="/diensten/ai-audit"
+            aria-labelledby="oplossingen-audit-title oplossingen-audit-link"
+            aria-describedby="oplossingen-audit-description"
+            className="mt-7 flex flex-col gap-5 rounded-[6px_24px_24px_24px] border border-[#c8d0bf36] bg-[linear-gradient(135deg,#c8d0bf12,#c8d0bf04)] p-6 transition-colors hover:border-[#d8bba482] hover:bg-[#c8d0bf08] motion-reduce:transition-none md:flex-row md:items-center md:gap-8 sm:p-7"
+          >
+            <div className="min-w-0">
+              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#b8c7b8]">
+                Eerst inzicht
+              </span>
+              <h2 id="oplossingen-audit-title" className="mt-2.5 font-display text-[23px] font-[450] leading-[1.15] tracking-[-0.035em] text-[var(--fg)] sm:text-[26px]">
+                Waar kan AI u tijd besparen?
+              </h2>
+              <p id="oplossingen-audit-description" className="mt-3 text-[14px] leading-[1.7] text-[var(--fg-dim)]">
+                We komen bij u langs en onderzoeken waar tijd verloren gaat,
+                welke stappen AI kan overnemen en wat dat kan besparen.
+              </p>
+            </div>
+            <span id="oplossingen-audit-link" className="flex shrink-0 items-center justify-between gap-5 border-t border-[#c8d0bf26] pt-4 text-[13px] text-[var(--accent-text)] md:border-t-0 md:pt-0">
+              Ontdek de AI-audit
+              <ArrowUpRight size={18} aria-hidden className="shrink-0" />
+            </span>
+          </Link>
           <nav aria-label="Categorieën" className="mt-7 flex flex-wrap gap-2">
             {OPLOSSINGEN_PER_CATEGORIE.map((c) => (
               <a

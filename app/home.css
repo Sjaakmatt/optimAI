@@ -1303,6 +1303,61 @@
   color: #d8bba4;
 }
 
+.home-audit-invitation {
+  display: block;
+  margin-top: 30px;
+  padding: 25px 27px;
+  border: 1px solid #c8d0bf36;
+  border-radius: 6px 24px 24px 24px;
+  background: linear-gradient(135deg, #c8d0bf12, #c8d0bf04);
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+.home-audit-invitation:hover,
+.home-audit-invitation:focus-visible {
+  border-color: #d8bba482;
+  background-color: #c8d0bf08;
+}
+.home-audit-eyebrow {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #b8c7b8;
+}
+.home-audit-invitation h3 {
+  margin-top: 11px;
+  color: var(--fg);
+  font-size: clamp(23px, 2.1vw, 27px);
+  font-weight: 450;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.home-audit-invitation p {
+  margin-top: 13px;
+  color: var(--fg-dim);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.home-audit-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid #c8d0bf26;
+  font-size: 13px;
+  color: var(--accent-text);
+}
+.home-audit-link svg { flex-shrink: 0; }
+@media (max-width: 639px) {
+  .home-audit-invitation { padding: 22px; margin-top: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-audit-invitation { transition: none; }
+}
+
 /* The same video collection powers the homepage and the complete library. */
 .video-all {
   display: inline-flex;

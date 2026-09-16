@@ -15,6 +15,7 @@ import Image from 'next/image';
 interface NavLink {
   href: string;
   label: string;
+  exact?: boolean;
 }
 
 interface NavGroup {
@@ -29,8 +30,23 @@ function isGroup(e: NavEntry): e is NavGroup {
   return 'items' in e;
 }
 
+function isLinkActive(item: NavLink, pathname: string) {
+  return pathname === item.href || (!item.exact && pathname.startsWith(item.href + '/'));
+}
+
 const NAV: NavEntry[] = [
-  { href: '/diensten', label: 'Diensten' },
+  {
+    label: 'Diensten',
+    matchPrefixes: ['/diensten'],
+    items: [
+      { href: '/diensten/ai-audit', label: 'AI-audit' },
+      { href: '/diensten/ai-agent-laten-bouwen', label: 'AI-agent laten bouwen' },
+      { href: '/diensten/ai-automatisering', label: 'AI-automatisering' },
+      { href: '/diensten/ai-implementatie', label: 'AI implementeren' },
+      { href: '/diensten/ai-agents-voor-bedrijven', label: 'AI-agents voor bedrijven' },
+      { href: '/diensten', label: 'Alle diensten', exact: true },
+    ],
+  },
   { href: '/oplossingen', label: 'Oplossingen' },
   { href: '/cases', label: 'Cases' },
   { href: '/kennis', label: 'Kennis' },
@@ -147,9 +163,9 @@ export function SiteHeader() {
                     transition={{ duration: 0.3, delay: i * 0.04 }}
                   >
                     {isGroup(entry) ? (
-                      <MobileGroup group={entry} pathname={pathname} />
+                      <MobileGroup group={entry} pathname={pathname} onNavigate={() => setMobileOpen(false)} />
                     ) : (
-                      <MobileLink item={entry} pathname={pathname} />
+                      <MobileLink item={entry} pathname={pathname} onNavigate={() => setMobileOpen(false)} />
                     )}
                   </motion.li>
                 ))}
@@ -157,10 +173,10 @@ export function SiteHeader() {
 
               <div className="mt-10 pt-6 border-t border-[var(--border)] space-y-2">
                 <div className="eyebrow">Direct contact</div>
-                <a href="mailto:info@factumai.nl" className="block text-[15px] text-[var(--fg)]">
+                <a href="mailto:info@factumai.nl" onClick={() => setMobileOpen(false)} className="block text-[15px] text-[var(--fg)]">
                   info@factumai.nl
                 </a>
-                <a href="tel:+31610555658" className="block text-[15px] text-[var(--fg)]">
+                <a href="tel:+31610555658" onClick={() => setMobileOpen(false)} className="block text-[15px] text-[var(--fg)]">
                   06-10 55 56 58
                 </a>
               </div>
@@ -173,7 +189,7 @@ export function SiteHeader() {
 }
 
 function DesktopLink({ item, pathname }: { item: NavLink; pathname: string }) {
-  const active = pathname === item.href || pathname.startsWith(item.href + '/');
+  const active = isLinkActive(item, pathname);
   return (
     <Link
       href={item.href}
@@ -232,11 +248,12 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
             style={{ boxShadow: 'var(--shadow-lift)' }}
           >
             {group.items.map((item) => {
-              const itemActive = pathname === item.href || pathname.startsWith(item.href + '/');
+              const itemActive = isLinkActive(item, pathname);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setOpen(false)}
                   role="menuitem"
                   className={`block px-3.5 py-2 text-[13.5px] rounded-[10px] transition-colors ${
                     itemActive
@@ -255,11 +272,12 @@ function DesktopDropdown({ group, pathname }: { group: NavGroup; pathname: strin
   );
 }
 
-function MobileLink({ item, pathname }: { item: NavLink; pathname: string }) {
-  const active = pathname === item.href || pathname.startsWith(item.href + '/');
+function MobileLink({ item, pathname, onNavigate }: { item: NavLink; pathname: string; onNavigate: () => void }) {
+  const active = isLinkActive(item, pathname);
   return (
     <Link
       href={item.href}
+      onClick={onNavigate}
       className={`block px-3 py-3 rounded-[12px] text-[22px] font-display transition-colors ${
         active ? 'text-[var(--fg)] bg-[var(--surface)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
       }`}
@@ -269,7 +287,7 @@ function MobileLink({ item, pathname }: { item: NavLink; pathname: string }) {
   );
 }
 
-function MobileGroup({ group, pathname }: { group: NavGroup; pathname: string }) {
+function MobileGroup({ group, pathname, onNavigate }: { group: NavGroup; pathname: string; onNavigate: () => void }) {
   const active = group.matchPrefixes.some((p) => pathname === p || pathname.startsWith(p));
   return (
     <div>
@@ -278,11 +296,12 @@ function MobileGroup({ group, pathname }: { group: NavGroup; pathname: string })
       </div>
       <ul className="ml-3 pl-3 border-l border-[var(--border)] space-y-0.5">
         {group.items.map((item) => {
-          const itemActive = pathname === item.href || pathname.startsWith(item.href + '/');
+          const itemActive = isLinkActive(item, pathname);
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
+                onClick={onNavigate}
                 className={`block px-3 py-2.5 rounded-[10px] text-[16px] transition-colors ${
                   itemActive ? 'text-[var(--fg)] bg-[var(--surface)]' : 'text-[var(--fg-dim)] hover:text-[var(--fg)]'
                 }`}

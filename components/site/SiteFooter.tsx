@@ -42,9 +42,9 @@ export function SiteFooter() {
         </div>
 
         <Kolom titel="Diensten">
+          <VoetLink href="/diensten/ai-audit">AI-audit</VoetLink>
           <VoetLink href="/diensten/ai-agent-laten-bouwen">AI-agent laten bouwen</VoetLink>
           <VoetLink href="/diensten/ai-automatisering">AI-automatisering</VoetLink>
-          <VoetLink href="/diensten/ai-implementatie">AI implementeren</VoetLink>
           <AllesLink href="/diensten" onderwerp="diensten" />
         </Kolom>
 

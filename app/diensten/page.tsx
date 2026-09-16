@@ -13,7 +13,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 export const metadata: Metadata = {
   title: 'Diensten · AI-agents voor MKB',
   description:
-    'Alle diensten van FactumAI op een rij: AI-agent laten bouwen, AI-automatisering, AI-implementatie, AI-agents voor bedrijven. Inclusief branche-pagina\'s, tools en vergelijkingen.',
+    'Van AI-audit tot een werkende AI-agent. Ontdek waar uw organisatie tijd verliest, wat AI kan opleveren en hoe we een afgebakend proces bouwen en implementeren.',
   alternates: { canonical: '/diensten' },
 };
 
@@ -27,11 +27,17 @@ interface ServiceCard {
 
 const SERVICES: ServiceCard[] = [
   {
+    href: '/diensten/ai-audit',
+    eyebrow: 'Eerst weten waar u tijd wint',
+    title: 'AI-audit',
+    body: 'We komen bij u langs en brengen samen uw processen, tijdsbesteding en knelpunten in kaart. U krijgt een helder rapport: waar AI kan helpen, wat het naar verwachting bespaart en welke verbeteringen voorrang verdienen.',
+    highlight: true,
+  },
+  {
     href: '/diensten/ai-agent-laten-bouwen',
     eyebrow: 'Hoofd-dienst',
     title: 'AI-agent laten bouwen',
     body: 'Een agent op maat voor uw bedrijf, gekoppeld aan uw systemen, binnen uw beleid. Vaste prijs per fase, elke uitgaande actie langs een mens.',
-    highlight: true,
   },
   {
     href: '/diensten/ai-automatisering',
@@ -90,9 +96,9 @@ export default function DienstenPage() {
             <span className="text-[var(--ink-soft)]">Eén plek, alles bij elkaar.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Vier hoofd-diensten, zestien oplossingen, veertien branche-pagina&rsquo;s, vier
-            vergelijkingen en twee tools. Begin bij de hoofd-dienst, kijk bij de oplossingen waar
-            het bij u speelt, of duik direct in uw branche.
+            Nog niet duidelijk waar AI het meeste oplevert? Begin met een AI-audit.
+            Heeft u al een concreet proces voor ogen, dan kijken we samen wat nodig is
+            om het te bouwen. Van de eerste verkenning tot dagelijks gebruik.
           </p>
         </div>
       </section>
@@ -100,7 +106,7 @@ export default function DienstenPage() {
       <section className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-10 pb-12">
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {SERVICES.map((s) => (
-            <li key={s.href}>
+            <li key={s.href} className={s.highlight ? 'md:col-span-2' : undefined}>
               <Link
                 href={s.href}
                 className={`block h-full px-6 py-7 rounded-[10px] border transition-colors group ${
@@ -117,7 +123,7 @@ export default function DienstenPage() {
                 </h2>
                 <p className="mt-3 text-[14px] leading-[1.65] text-[var(--ink-dim)]">{s.body}</p>
                 <div className="mt-5 font-mono text-[11px] text-[var(--oker-deep)] uppercase tracking-wider flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                  Bekijk dienst
+                  {s.highlight ? 'Zo werkt de AI-audit' : 'Bekijk dienst'}
                   <ArrowRight size={12} strokeWidth={1.8} />
                 </div>
               </Link>
@@ -174,7 +180,7 @@ export default function DienstenPage() {
           </div>
           <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <h2 className="font-display text-[26px] sm:text-[32px] leading-tight text-[var(--ink)]">
-              Veertien sectoren, één werkwijze.
+              Uw sector, onze werkwijze.
             </h2>
             <Link
               href="/branches"

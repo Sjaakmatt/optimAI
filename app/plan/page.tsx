@@ -24,9 +24,9 @@ export default function PlanPage() {
             <span className="text-[var(--ink-soft)]">Vrijblijvend.</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[16px] leading-[1.7] text-[var(--ink-dim)]">
-            Geen verkooppraatje. Eén half uur waarin u vertelt waar uw mensen tijd aan kwijt zijn,
-            en wij eerlijk inschatten of een AI-agent daar iets aan zou doen. Soms is dat ja, soms
-            nee, beide antwoorden krijgt u dezelfde middag.
+            U vertelt waar uw mensen tijd aan kwijt zijn. We bespreken of een AI-audit
+            helpt om de juiste kansen te vinden, of dat er al één proces is dat we
+            gericht kunnen aanpakken.
           </p>
         </div>
       </section>
