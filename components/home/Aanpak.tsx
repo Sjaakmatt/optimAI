@@ -42,7 +42,7 @@ export function Aanpak() {
   const lijn = useTransform(p, [0.2, 0.75], [0, 1]);
 
   return (
-    <section className="band pt-24 sm:pt-32">
+    <section id="onze-aanpak" className="band pt-24 sm:pt-32 scroll-mt-24">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
         <div className="max-w-[720px]">
           <Verschijn inView>
@@ -59,18 +59,29 @@ export function Aanpak() {
           />
           <Verschijn inView vertraging={0.2}>
             <p className="mt-5 text-[15.5px] leading-[1.65] text-[var(--fg-dim)] sm:text-[17px]">
-              Het eerste gesprek is altijd vrijblijvend. Past AI bij uw werk?
-              Eventueel doen we een AI-audit om te onderzoeken waar we AI kunnen
-              inzetten en wat het oplevert. Daarna bouwen we: één gekaderd
-              proces, vaste prijs per fase, en elke fase eindigt in iets dat
-              werkt. Geen pilot van zes maanden zonder resultaat.
+              Het eerste gesprek is altijd vrijblijvend. We luisteren naar uw
+              werkdag en bepalen samen een passende eerste stap. Daarna bouwen
+              we in fasen: één afgebakend proces tegelijk, met een vaste prijs
+              per fase en iets werkends om te beoordelen.
             </p>
+          </Verschijn>
+          <Verschijn inView vertraging={0.25}>
             <Link
               href="/diensten/ai-audit"
-              className="mt-5 inline-flex items-center gap-2 text-[14px] text-[var(--accent)] transition-colors hover:text-[var(--fg)]"
+              className="home-audit-invitation"
+              aria-labelledby="home-audit-title home-audit-link"
+              aria-describedby="home-audit-description"
             >
-              Zo werkt een AI-audit
-              <ArrowUpRight size={16} aria-hidden />
+              <span className="home-audit-eyebrow">Eerst inzicht</span>
+              <h3 id="home-audit-title">Waar kan AI u tijd besparen?</h3>
+              <p id="home-audit-description">
+                We komen bij u langs en onderzoeken waar tijd verloren gaat,
+                welke stappen AI kan overnemen en wat dat kan besparen.
+              </p>
+              <span id="home-audit-link" className="home-audit-link">
+                Ontdek de AI-audit
+                <ArrowUpRight size={18} aria-hidden />
+              </span>
             </Link>
           </Verschijn>
         </div>
