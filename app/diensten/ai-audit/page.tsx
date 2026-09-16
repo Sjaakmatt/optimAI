@@ -127,6 +127,9 @@ export default function AIAuditPage() {
                   <a href="#aanpak" className={styles.textLink}>Zo werkt de audit <ArrowDown size={16} aria-hidden /></a>
                 </div>
                 <p className={styles.heroNote}>Van uw hele organisatie tot één afgebakend proces.</p>
+                <Link href="/gratis-ai-audit" className={styles.textLink}>
+                  Deze ronde: kosteloze audit van 3 processen voor 3 bedrijven <ArrowRight size={16} aria-hidden />
+                </Link>
               </div>
               <ProcessBoard />
             </div>
