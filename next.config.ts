@@ -25,6 +25,18 @@ const nextConfig: NextConfig = {
     '/api/v1/site-agent/**': ['./content/site-agent/**/*'],
   },
   images: {
+    // Posters van de video's staan sinds de dashboardkoppeling in de publieke
+    // Supabase-bucket `site-videos`, niet meer in public/. Zonder dit patroon
+    // weigert next/image ze. De hostname is per omgeving anders (prod vs. een
+    // Supabase-branch), vandaar het subdomein-jokerteken; het pad is wel
+    // vastgezet op de storage-API, zodat dit geen open image-proxy wordt.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [320, 420, 640, 768, 1024, 1280, 1536, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

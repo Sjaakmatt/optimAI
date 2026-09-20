@@ -1416,6 +1416,53 @@
   font-size: 13px;
   padding-bottom: 16px;
 }
+/* Categoriefilter op /videos. De rubrieken komen uit het dashboard, dus het
+   aantal knoppen ligt niet vast — vandaar wrap in plaats van een vaste rij. */
+.video-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.video-filter {
+  border: 1px solid #ffffff30;
+  border-radius: 999px;
+  background: #ffffff08;
+  padding: 9px 17px;
+  font: inherit;
+  font-size: 13px;
+  color: #d8dcd5;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+.video-filter:hover {
+  background: #ffffff14;
+  color: #f4f1ec;
+}
+.video-filter[aria-pressed="true"] {
+  background: #d8bba4;
+  border-color: #d8bba4;
+  color: #1a1c19;
+}
+.video-filter:focus-visible {
+  outline: 2px solid #d8bba4;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-filter {
+    transition: none;
+  }
+}
+
+/* Een video zonder poster: een rustig vlak in plaats van een gat. Posters zijn
+   in het dashboard optioneel. */
+.video-poster-leeg {
+  background: linear-gradient(160deg, #2b2f2b, #1a1c19);
+}
+
 .video-library-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

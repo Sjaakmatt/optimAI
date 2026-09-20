@@ -1,21 +1,44 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Play, X } from "lucide-react";
-import { VIDEOS } from "@/lib/data/videos";
+import type { SiteVideo, VideoCategorie } from "@/lib/data/videos";
 import { vergrendelScroll } from "@/lib/site/scrollLock";
 
-export function VideoCarousel({ library = false }: { library?: boolean }) {
+/**
+ * De video's komen sinds de koppeling met het dashboard als prop binnen in
+ * plaats van uit een geïmporteerde array: ze worden op de server opgehaald (met
+ * ISR) en hierheen doorgegeven. Deze component blijft puur weergave.
+ */
+export function VideoCarousel({
+  videos,
+  categorieen = [],
+  library = false,
+}: {
+  videos: SiteVideo[];
+  categorieen?: VideoCategorie[];
+  library?: boolean;
+}) {
   const [query, setQuery] = useState("");
+  const [categorie, setCategorie] = useState<string>("alle");
   const Heading = library ? "h1" : "h2";
-  const visibleVideos = VIDEOS.map((video, index) => ({ video, index })).filter(
-    ({ video }) =>
-      `${video.title} ${video.category}`
-        .toLocaleLowerCase("nl")
-        .includes(query.trim().toLocaleLowerCase("nl")),
+
+  const visibleVideos = useMemo(
+    () =>
+      videos
+        .map((video, index) => ({ video, index }))
+        .filter(
+          ({ video }) =>
+            (categorie === "alle" || video.categorySlug === categorie) &&
+            `${video.title} ${video.category ?? ""}`
+              .toLocaleLowerCase("nl")
+              .includes(query.trim().toLocaleLowerCase("nl")),
+        ),
+    [videos, query, categorie],
   );
+
   const rail = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
@@ -69,7 +92,10 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
     });
   }
 
-  const clip = active === null ? null : VIDEOS[active];
+  const clip = active === null ? null : (videos[active] ?? null);
+
+  if (videos.length === 0) return null;
+
   return (
     <section
       className={`video-stories${library ? " video-library" : ""}`}
@@ -134,6 +160,33 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
           </p>
         </div>
       )}
+      {library && categorieen.length > 0 && (
+        <div
+          className="band video-filters"
+          role="group"
+          aria-label="Filter op categorie"
+        >
+          <button
+            type="button"
+            className="video-filter"
+            aria-pressed={categorie === "alle"}
+            onClick={() => setCategorie("alle")}
+          >
+            Alles
+          </button>
+          {categorieen.map((c) => (
+            <button
+              key={c.slug}
+              type="button"
+              className="video-filter"
+              aria-pressed={categorie === c.slug}
+              onClick={() => setCategorie(c.slug)}
+            >
+              {c.naam}
+            </button>
+          ))}
+        </div>
+      )}
       <div
         ref={rail}
         className={library ? "band video-library-grid" : "video-rail"}
@@ -158,25 +211,35 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
               setFailed(false);
               setActive(i);
             }}
-            aria-label={`Speel video: ${video.title} (${video.duration})`}
+            aria-label={
+              video.duration
+                ? `Speel video: ${video.title} (${video.duration})`
+                : `Speel video: ${video.title}`
+            }
           >
-            <Image
-              src={video.poster}
-              alt=""
-              fill
-              sizes="(max-width: 767px) 78vw, 340px"
-              className="video-poster"
-            />
+            {/* Een video zonder poster krijgt een egaal vlak in plaats van een
+                gebroken afbeelding — posters zijn in het dashboard optioneel. */}
+            {video.poster ? (
+              <Image
+                src={video.poster}
+                alt=""
+                fill
+                sizes="(max-width: 767px) 78vw, 340px"
+                className="video-poster"
+              />
+            ) : (
+              <span className="video-poster video-poster-leeg" aria-hidden="true" />
+            )}
             <span className="video-card-shade" />
             <span className="video-topline">
               <span>{String(i + 1).padStart(2, "0")} / IN GESPREK</span>
-              <span>{video.duration}</span>
+              {video.duration && <span>{video.duration}</span>}
             </span>
             <span className="video-play">
               <Play size={23} fill="currentColor" strokeWidth={1} />
             </span>
             <span className="video-card-copy">
-              <small>{video.category}</small>
+              {video.category && <small>{video.category}</small>}
               <strong>{video.title}</strong>
               <span>
                 Bekijk de video <ArrowRight size={15} />
@@ -187,7 +250,7 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
       </div>
       {library && visibleVideos.length === 0 && (
         <p className="band video-empty">
-          Geen video’s gevonden. Probeer een andere zoekterm.
+          Geen video’s gevonden. Probeer een andere zoekterm of categorie.
         </p>
       )}
       {clip && (
@@ -215,10 +278,10 @@ export function VideoCarousel({ library = false }: { library?: boolean }) {
               autoPlay
               playsInline
               preload="metadata"
-              poster={clip.poster}
+              poster={clip.poster ?? undefined}
               onError={() => setFailed(true)}
             >
-              <source src={clip.src} type="video/mp4" />
+              <source src={clip.src} />
             </video>
             {failed && (
               <p className="video-error">

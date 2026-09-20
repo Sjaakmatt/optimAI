@@ -13,6 +13,7 @@ import "./home.css";
 import { VideoCarousel } from "@/components/home/VideoCarousel";
 import { Verschijn } from "@/components/home/Opkomend";
 import { CASES } from "@/lib/data/cases";
+import { getVideos } from "@/lib/data/videos";
 
 export const metadata: Metadata = {
   title: "FactumAI · AI-agents voor MKB",
@@ -21,13 +22,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+// De video's komen uit het dashboard (ISR, zelfde venster als /videos).
+export const revalidate = 300;
+
+export default async function HomePage() {
+  const { videos } = await getVideos();
+  // De carrousel op de homepage toont alleen wat in het dashboard als
+  // "uitgelicht" is aangevinkt; de volledige bibliotheek staat op /videos.
+  // Is er niets aangevinkt, dan is een korte selectie beter dan een lege plek.
+  const uitgelicht = videos.filter((v) => v.uitgelicht);
+  const carrousel = uitgelicht.length > 0 ? uitgelicht : videos.slice(0, 6);
+
   return (
     <SitePage lucht={false}>
       <div className="home-world">
         <HeroKeuze />
         <Klanten />
-        <VideoCarousel />
+        <VideoCarousel videos={carrousel} />
         <div className="home-practice" id="in-de-praktijk">
           <WatHijDoet />
         </div>
