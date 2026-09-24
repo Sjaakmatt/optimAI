@@ -43,6 +43,12 @@ met de bestanden in `public/videos/`. Die wordt gebruikt zodra:
 
 Dat laatste is met opzet: anders staat `/videos` ineens leeg zodra iemand de
 laatste video op Concept zet. Een verouderde pagina is beter dan een lege.
+
+Let op dat het **alles of niets** is: de fallback vult de bibliotheek niet aan.
+Publiceer je één video in het dashboard, dan verdwijnen de vier uit de
+fallback-lijst van de site. Dat is bewust — anders hou je vier spookvideo's die
+je nergens kunt beheren — maar het verklaart wel waarom de eerste upload de rest
+"weghaalde".
 `getVideos()` gooit daarom nooit — een haperend dashboard hoort de publieke
 site niet om te trekken. De gebruikte bron staat in het antwoord (`bron`).
 
@@ -62,13 +68,31 @@ site niet om te trekken. De gebruikte bron staat in het antwoord (`bron`).
 - **Alleen "uitgelicht" komt op de homepage.** Staat er niets aangevinkt, dan
   toont de carrousel de eerste zes als noodgreep.
 
-## De oude vier overzetten
+## De oude vier: `public/videos/` mag NIET weg
 
-Eenmalig, vanuit de dashboard-repo met deze repo ernaast:
+De vier oorspronkelijke video's staan sinds 24-09-2026 als gewone rijen in de
+bibliotheek, maar hun bestanden zijn **niet** naar de bucket geüpload. De rijen
+wijzen naar de bestanden die hier in de repo staan:
 
-```
-npm run import:site-videos -- --dir ../optimAI/public/videos
-```
+| kolom        | waarde                                  |
+|--------------|-----------------------------------------|
+| `videoUrl`   | `/videos/kennismaken.mp4` (relatief)    |
+| `posterUrl`  | `/videos/kennismaken-cover.jpg`         |
+| `videoPath`  | `repo:public/videos/kennismaken.mp4`    |
 
-Idempotent op slug. Daarna kan `public/videos/` weg, al kost het weinig om de
-fallback te laten staan.
+Het `repo:`-voorvoegsel op `videoPath` is het signaal: dit is geen object in de
+bucket. Verwijder je zo'n rij in het dashboard, dan probeert de opruiming een
+bucket-pad te wissen dat niet bestaat — dat is een no-op met een waarschuwing in
+het log, niet een fout.
+
+**Gevolg: gooi `public/videos/*.mp4` en `*-cover.jpg` niet weg.** Doe je dat
+toch, dan staan er vier kapotte kaarten op /videos. Ze zitten ook niet meer in
+de fallback-lijst als laatste vangnet — die springt alleen in bij een lege
+bibliotheek, en die is niet leeg meer.
+
+Wil je ze alsnog netjes in de bucket hebben, dan is er één schone weg: verwijder
+de vier rijen in het dashboard en upload de bestanden opnieuw via de uploader.
+Daarna mag `public/videos/` wél weg. Het script
+`npm run import:site-videos -- --dir ../optimAI/public/videos` (in de
+dashboard-repo) doet hetzelfde geautomatiseerd, maar slaat rijen over waarvan de
+slug al bestaat — verwijder ze dus eerst.
