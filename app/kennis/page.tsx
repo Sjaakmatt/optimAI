@@ -5,7 +5,6 @@ import { SitePage } from '@/components/site/SitePage';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { POSTS } from '@/lib/data/posts';
 import { RESOURCES } from '@/lib/data/resources';
-import { getSoroPostsExcluding } from '@/lib/data/soro';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -50,30 +49,8 @@ const DATE_FORMATTER = new Intl.DateTimeFormat('nl-NL', {
   year: 'numeric',
 });
 
-export const revalidate = 3600;
-
-export default async function KennisPage() {
-  const extern = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
-  const artikelen = [
-    ...POSTS.map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      lede: p.lede,
-      published: p.published,
-      readingMinutes: p.readingMinutes,
-      tags: p.tags,
-      extern: false,
-    })),
-    ...extern.map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      lede: p.lede,
-      published: p.published,
-      readingMinutes: p.readingMinutes,
-      tags: p.tags,
-      extern: true,
-    })),
-  ].sort((a, b) => (a.published < b.published ? 1 : -1));
+export default function KennisPage() {
+  const artikelen = [...POSTS].sort((a, b) => (a.published < b.published ? 1 : -1));
 
   return (
     <SitePage>
@@ -111,9 +88,6 @@ export default async function KennisPage() {
                 <div className="max-w-[660px]">
                   <div className="font-mono text-[10px] text-[var(--ink-faint)] uppercase tracking-[0.16em]">
                     {DATE_FORMATTER.format(new Date(p.published))} · {p.readingMinutes} min lezen
-                    {p.extern && (
-                      <span className="text-[var(--steen)]"> · blog</span>
-                    )}
                   </div>
                   <h2 className="mt-2 font-display text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.15] text-[var(--ink)] group-hover:text-[var(--oker-deep)] transition-colors">
                     {p.title}
