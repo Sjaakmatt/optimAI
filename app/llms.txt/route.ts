@@ -4,7 +4,6 @@ import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
 import { OPLOSSINGEN, OPLOSSINGEN_PER_CATEGORIE } from '@/lib/data/oplossingen';
 import { RESOURCES } from '@/lib/data/resources';
-import { getSoroPostsExcluding } from '@/lib/data/soro';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factumai.nl';
 
@@ -122,11 +121,7 @@ async function buildLlmsTxt(): Promise<string> {
 
   lines.push('## Kennisartikelen');
   lines.push('');
-  const externePosts = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
-  const postsByDate = [
-    ...POSTS.map((p) => ({ slug: p.slug, title: p.title, lede: p.lede, published: p.published })),
-    ...externePosts.map((p) => ({ slug: p.slug, title: p.title, lede: p.lede, published: p.published })),
-  ].sort((a, b) => (a.published < b.published ? 1 : -1));
+  const postsByDate = [...POSTS].sort((a, b) => (a.published < b.published ? 1 : -1));
   for (const p of postsByDate) {
     lines.push(`- [${p.title}](${SITE_URL}/kennis/${p.slug}): ${p.lede}`);
   }

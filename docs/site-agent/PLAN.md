@@ -27,8 +27,7 @@ Verder relevant:
 - **Publieke site**: `app/layout.tsx` is de enige layout (geen PageShell), pagina's
   staan direct onder `app/`. `/diensten` (4 statische subpagina's + `/vergelijken/[slug]`),
   `/branches` + `/branches/[branche]` (data in `lib/data/branches.ts`, 8 branches),
-  blog op `/kennis` + `/kennis/[slug]` (data in `lib/data/posts.ts`, plus externe
-  artikelen via `lib/data/soro.ts`). Er is **geen prijspagina**; prijsintentie landt
+  blog op `/kennis` + `/kennis/[slug]` (data in `lib/data/posts.ts`). Er is **geen prijspagina**; prijsintentie landt
   op `/diensten`, `/info` en `/plan`.
 - **Designtokens**: CSS-variabelen in `app/globals.css` (`--paper`, `--ink`,
   `--terra`, `--oker`, `--shadow-lift`, fonts `--font-playfair/lora/plex-mono`).

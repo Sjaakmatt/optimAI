@@ -4,7 +4,6 @@ import { POSTS } from '@/lib/data/posts';
 import { BRANCHES } from '@/lib/data/branches';
 import { COMPARISONS } from '@/lib/data/comparisons';
 import { OPLOSSINGEN } from '@/lib/data/oplossingen';
-import { getSoroPostsExcluding } from '@/lib/data/soro';
 import { RESOURCES } from '@/lib/data/resources';
 import { TEAM } from '@/lib/data/team';
 
@@ -137,18 +136,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  const externePosts = await getSoroPostsExcluding(new Set(POSTS.map((p) => p.slug)));
-  const externeEntries: MetadataRoute.Sitemap = externePosts.map((p) => {
-    const url = `${SITE_URL}/kennis/${p.slug}`;
-    return {
-      url,
-      lastModified: new Date(p.updated ?? p.published),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-      alternates: withAlternates(url),
-    };
-  });
-
   return [
     ...staticEntries,
     ...oplossingEntries,
@@ -158,6 +145,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...resourceEntries,
     ...caseEntries,
     ...postEntries,
-    ...externeEntries,
   ];
 }
