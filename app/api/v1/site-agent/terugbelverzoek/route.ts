@@ -15,7 +15,7 @@
 import { z } from 'zod';
 
 import { siteAgentAan } from '@/lib/site-agent/config';
-import { consentRegel } from '@/lib/site-agent/consent';
+import { CONSENT_VERSIE, consentRegel } from '@/lib/site-agent/consent';
 import { haalConversatie, werkConversatieBij } from '@/lib/site-agent/db';
 import { logEvent, maskeerEmail } from '@/lib/site-agent/events';
 import { notificatieKanaal } from '@/lib/site-agent/notify';
@@ -63,6 +63,19 @@ export async function POST(request: Request) {
     );
   }
   const invoer = gevalideerd.data;
+
+  // Een tab van vóór een deployment kan nog een oudere toestemmingstekst tonen.
+  // Leg alleen de huidige tekst vast als de bezoeker die versie heeft gezien.
+  if ((ruw as Record<string, unknown>).consentVersie !== CONSENT_VERSIE) {
+    return Response.json(
+      {
+        ok: false,
+        error:
+          'De toestemmingstekst is bijgewerkt. Vernieuw deze pagina, lees de tekst opnieuw en verstuur daarna je terugbelverzoek.',
+      },
+      { status: 409 },
+    );
+  }
 
   // Honeypot ingevuld: stil ok teruggeven, niets vastleggen.
   if (invoer.bedrijfsnaam) return Response.json({ ok: true });
