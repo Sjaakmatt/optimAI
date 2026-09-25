@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import { getCalApi } from './calLoader';
-import { ADS_ID, ADS_LABEL, adsConversionConfigured } from '@/lib/analytics/gtag';
-import { readConsent } from '@/lib/analytics/consent';
+import { ADS_ID, ADS_LABEL, adsConversionConfigured, currentGoogleConsent } from '@/lib/analytics/gtag';
 
 /**
  * GOOGLE ADS CONVERSIETRACKING voor de /aanvraag-landingspagina's.
@@ -49,7 +48,7 @@ export function useAdsConversion(): void {
             if (conversionFired) return;
             // Alleen met marketing-toestemming; gtag is dan door ConsentGate
             // geladen met de Ads-config.
-            if (!readConsent()?.marketing || typeof window.gtag !== 'function') return;
+            if (!currentGoogleConsent()?.marketing || typeof window.gtag !== 'function') return;
             conversionFired = true;
             window.gtag('event', 'conversion', {
               send_to: `${ADS_ID}/${ADS_LABEL}`,

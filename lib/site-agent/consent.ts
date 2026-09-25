@@ -12,12 +12,12 @@
 // ze destijds hebben gezien — die staat als kopie op de lead zelf.
 
 export const CONSENT_TEKST =
-  'Ja, FactumAI mag contact met mij opnemen over dit gesprek. Mijn gegevens ' +
-  'worden niet met derden gedeeld en ik kan dit altijd intrekken via ' +
-  'info@factumai.nl.';
+  'Ja, FactumAI mag contact met mij opnemen over dit gesprek en mijn gegevens ' +
+  'gebruiken om mijn verzoek op te volgen, zoals beschreven in de privacyverklaring ' +
+  'op factumai.nl/privacy. Ik kan deze toestemming altijd intrekken via info@factumai.nl.';
 
 /** Ophogen bij elke inhoudelijke wijziging van CONSENT_TEKST. */
-export const CONSENT_VERSIE = 1;
+export const CONSENT_VERSIE = 2;
 
 /** Wat we bij de lead vastleggen: de tekst zelf, met de versie ervoor. */
 export function consentRegel(): string {
