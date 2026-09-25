@@ -97,6 +97,10 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
     'X-FactumAI-Proxy-Secret': secret,
     'X-FactumAI-Visitor-IP': ip,
   });
+  // Only for cookieless, aggregate view counting in FactumAI Ads (bots and link previews are
+  // excluded there). Bounded and stripped of control characters; never stored as such.
+  const agent = request.headers.get('user-agent')?.replace(/[\u0000-\u001f\u007f]/g, '').slice(0, 300);
+  if (agent) headers.set('X-FactumAI-Visitor-UA', agent);
   let body: ArrayBuffer | undefined;
   if (method === 'POST') {
     const contentType = request.headers.get('content-type') ?? '';
