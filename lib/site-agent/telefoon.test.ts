@@ -47,17 +47,18 @@ describe('telefoonnormalisatie', () => {
 });
 
 describe('toestemmingstekst', () => {
-  it('noemt het doel, derden en de intrekmogelijkheid', () => {
-    // Dit is de belofte aan de bezoeker. Sneuvelt een van deze drie bij een
-    // herformulering, dan is het geen bruikbare toestemming meer.
+  it('noemt het doel, de privacyverklaring en de intrekmogelijkheid', () => {
     assert.match(CONSENT_TEKST, /contact met mij opnemen/i);
-    assert.match(CONSENT_TEKST, /niet met derden gedeeld/i);
+    assert.match(CONSENT_TEKST, /mijn verzoek op te volgen/i);
+    assert.match(CONSENT_TEKST, /factumai\.nl\/privacy/i);
+    assert.doesNotMatch(CONSENT_TEKST, /niet met derden gedeeld/i);
     assert.match(CONSENT_TEKST, /intrekken/i);
+    assert.match(CONSENT_TEKST, /info@factumai\.nl/i);
   });
 
   it('slaat de tekst op met een versie ervoor', () => {
     const regel = consentRegel();
-    assert.match(regel, /^\[v\d+\] /);
+    assert.match(regel, /^\[v2\] /);
     assert.ok(regel.includes(CONSENT_TEKST), 'de opgeslagen regel moet de tekst letterlijk bevatten');
   });
 });

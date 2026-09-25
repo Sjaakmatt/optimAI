@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const LAST_UPDATED = '16 september 2026';
+const LAST_UPDATED = '25 september 2026';
 
 export default function PrivacyPage() {
   return (
@@ -36,7 +36,8 @@ export default function PrivacyPage() {
         <p className="mt-6 text-[16px] sm:text-[17px] leading-[1.75] text-[var(--ink-dim)]">
           FactumAI is een implementatiebureau voor AI-oplossingen, gericht op het Nederlandse MKB.
           Deze privacyverklaring beschrijft welke persoonsgegevens wij verwerken, waarom, en hoe
-          wij daarmee omgaan.
+          wij daarmee omgaan. Dit geldt ook voor onze campagnepagina’s onder /lp/, het
+          aanvraagformulier, de AI-chat, de AI-scan en het plannen van een gesprek.
         </p>
         <p className="mt-4 text-[15.5px] sm:text-[16px] leading-[1.75] text-[var(--ink)]">
           Onze uitgangspunten zijn simpel: we verwerken niet meer dan nodig, we zijn duidelijk
@@ -77,7 +78,7 @@ export default function PrivacyPage() {
           items={[
             [
               'Welke gegevens',
-              'Pagina-bezoeken, verwijzende bron, type apparaat en geanonimiseerd IP-adres. De basisstatistieken meten wij cookieloos (Vercel Analytics). Voor meer inzicht in het gebruik zetten wij daarnaast Google Analytics 4 in; dat plaatst analytische cookies en meet uitsluitend als je daar via de cookiebanner toestemming voor geeft.',
+              'Bezochte pagina, verwijzende bron, type apparaat en technische prestatiegegevens, zoals laadtijden. Vercel Analytics en Speed Insights meten basisgebruik en prestaties zonder analyticscookies. Google Analytics 4 gebruikt analytische cookies en meet alleen na je toestemming. Hosting- en beveiligingsdiensten verwerken daarnaast technische verzoekgegevens, waaronder een IP-adres, om de website te leveren en misbruik te beperken.',
             ],
             [
               'Waarom',
@@ -85,7 +86,7 @@ export default function PrivacyPage() {
             ],
             [
               'Grondslag',
-              'Voor de cookieloze basisstatistieken: ons gerechtvaardigd belang (art. 6 lid 1 sub f AVG). Voor Google Analytics: jouw toestemming (art. 6 lid 1 sub a AVG), die je altijd kunt intrekken via "Cookievoorkeuren" onderaan elke pagina.',
+              'Voor het leveren en beveiligen van de website en de beperkte cookieloze basisstatistieken: ons gerechtvaardigd belang (art. 6 lid 1 sub f AVG). Voor Google Analytics: jouw toestemming (art. 6 lid 1 sub a AVG), die je altijd kunt intrekken via "Cookievoorkeuren" onderaan elke pagina.',
             ],
             [
               'Bewaartermijn',
@@ -93,10 +94,17 @@ export default function PrivacyPage() {
             ],
             [
               'Verwerkers',
-              'Vercel Analytics (cookieloos) en Google Analytics 4 (Google Ireland Limited, alleen met toestemming).',
+              'Vercel Analytics en Speed Insights (cookieloos) en Google Analytics 4 (Google Ireland Limited, alleen met toestemming). Voor hosting en beveiliging gebruiken wij Vercel en Cloudflare.',
             ],
           ]}
         />
+        <P>
+          Je cookievoorkeur bewaren we in de lokale opslag van je browser totdat je die wijzigt
+          of de browsergegevens wist. Je kunt analytische cookies weigeren of je toestemming
+          intrekken via ‘Cookievoorkeuren’ onderaan de website. Noodzakelijke functies, zoals
+          het aanvraagformulier, blijven bruikbaar. Voor de afzonderlijke campagnepagina’s
+          gelden de toelichting en de beperkte herkomstmeting in sectie 2.5.
+        </P>
 
         <H3>2.2 Contact- en aanmeldformulieren</H3>
         <P>
@@ -114,12 +122,13 @@ export default function PrivacyPage() {
             ['Waarom', 'Om je vraag te beantwoorden, je aanmelding te beoordelen en contact op te nemen over je vraag of deelname.'],
             [
               'Grondslag',
-              'Precontractuele maatregel op jouw verzoek (art. 6 lid 1 sub b AVG) of gerechtvaardigd belang bij het reageren op jouw interesse (art. 6 lid 1 sub f AVG).',
+              'Als je zelf een mogelijke overeenkomst met ons wilt aangaan: noodzakelijke stappen op jouw verzoek (art. 6 lid 1 sub b AVG). Bij overige vragen en contact namens een organisatie: ons gerechtvaardigd belang om zakelijke aanvragen te beantwoorden en op te volgen (art. 6 lid 1 sub f AVG).',
             ],
             [
               'Bewaartermijn',
-              'Zolang relevant voor opvolging, maximaal 1 jaar. Daarna verwijderen we je bericht, tenzij het heeft geleid tot een klantrelatie.',
+              'Zolang nodig voor opvolging, maximaal 1 jaar na ontvangst. Daarna verwijderen we je bericht, tenzij het heeft geleid tot een klantrelatie; dan geldt sectie 2.3.',
             ],
+            ['Ontvangers', 'Resend voor het doorsturen van het formulier en onze mailbox bij Microsoft 365 voor persoonlijke opvolging.'],
           ]}
         />
 
@@ -187,22 +196,108 @@ export default function PrivacyPage() {
           ]}
         />
 
+        <H3>2.5 Aanvragen via campagnepagina’s en FactumAI Ads</H3>
+        <P>
+          Op onze campagnepagina’s kun je aangeven waar je organisatie tijd wil besparen,
+          welke wensen je hebt en welk projectbudget je overweegt. Je aanvraag komt in onze
+          afgeschermde werkruimte FactumAI Ads. Wij bekijken de aanvraag en nemen persoonlijk
+          contact op om een mogelijk gesprek af te stemmen. Het formulier boekt geen afspraak
+          en schrijft je niet in voor een nieuwsbrief.
+        </P>
+        <DefList
+          items={[
+            ['Welke gegevens', 'Naam, e-mailadres en omschrijving van je wensen. Bedrijfsnaam, telefoonnummer en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
+            ['Herkomst', 'Als de paginalink campagnelabels bevat, bewaren we bij je inzending de bron, het kanaal, de campagne en de advertentievariant (utm_source, utm_medium, utm_campaign en utm_content). Zo beoordelen we welke campagnelabels bij aanvragen en geregistreerde vervolgstappen horen.'],
+            ['Waarom', 'Om je aanvraag te begrijpen, contact op te nemen, een passend gesprek voor te bereiden en de opvolging bij te houden. De herkomst en opvolgstatus gebruiken we ook om te beoordelen welke eigen campagnes relevante aanvragen opleveren.'],
+            ['Grondslag', 'Voor noodzakelijke stappen naar een overeenkomst met jou: jouw verzoek (art. 6 lid 1 sub b AVG). Voor zakelijke contactpersonen, opvolging en beperkte interne campagnemeting: ons gerechtvaardigd belang om aanvragen te behandelen en onze acquisitie te evalueren (art. 6 lid 1 sub f AVG). Je kunt tegen verwerking op basis van gerechtvaardigd belang bezwaar maken.'],
+            ['Bewaartermijn', 'De aanvraag, bijbehorende campagnelabels en opvolggegevens bewaren we zolang nodig voor opvolging, maximaal 1 jaar na ontvangst. Bij een klantrelatie geldt sectie 2.3.'],
+            ['Opslag en ontvangers', 'Vercel levert de website en stuurt het formulier door naar ons platform bij Cloudflare. Aanvragen staan in een Cloudflare D1-database met EU-jurisdictie. Dit betekent niet dat alle netwerk-, beveiligings- of ondersteuningsverwerking uitsluitend in de EU plaatsvindt; zie sectie 4.'],
+            ['Verplichte gegevens', 'Naam, e-mailadres en wensen zijn nodig om dit formulier te versturen en de aanvraag te kunnen behandelen. De overige velden zijn vrijwillig. Je kunt ons ook rechtstreeks mailen of bellen.'],
+          ]}
+        />
+        <P>
+          Om spam en dubbele inzendingen tegen te gaan verwerken we een formuliertoken en
+          tijdelijk een van het IP-adres afgeleide beveiligingscode. Het leesbare IP-adres
+          wordt niet aan de aanvraag in FactumAI Ads toegevoegd. Verouderde beveiligingstellers
+          worden dagelijks opgeruimd; een ongebruikte teller blijft daardoor ongeveer 24 tot
+          48 uur staan. Hostingdiensten kunnen daarnaast technische verzoekgegevens verwerken.
+        </P>
+        <P>
+          De campagnepagina’s plaatsen geen analytische of advertentiecookies en laden geen
+          Meta Pixel of Google-tag. Campagnelabels worden pas bij een formulierinzending aan
+          de aanvraag gekoppeld. FactumAI Ads stuurt momenteel geen aanvraaggegevens of
+          conversies door naar Meta of Google en synchroniseert ze niet automatisch met ons CRM.
+        </P>
+        <P>
+          Voor het schrijven van advertentie- en paginateksten gebruiken wij Anthropic. Daarbij
+          krijgt het model de geselecteerde teksten, onze campagnebrief en schrijfinstructies.
+          De aanvraaggegevens worden hiervoor niet automatisch opgehaald of meegestuurd.
+          We beoordelen aanvragen in FactumAI Ads zelf; het platform laat AI niet automatisch
+          beslissen of je een gesprek krijgt.
+        </P>
+
+        <H3>2.6 AI-chat en terugbelverzoeken</H3>
+        <P>
+          Gebruik je de AI-chat op onze website, dan verwerken wij je vraag met een AI-systeem.
+          De chat is vrijwillig: je kunt ons ook rechtstreeks mailen of bellen. Deel geen
+          wachtwoorden, identiteitsbewijzen, medische gegevens of vertrouwelijke gegevens
+          van andere personen in de chat of vrije tekstvelden.
+        </P>
+        <DefList
+          items={[
+            ['Welke gegevens', 'Je berichten en de antwoorden, een sessiecode, de pagina waarop het gesprek begint, een verwijzende bron, een hash van browsergegevens en technische gebruiksgegevens. Contact- en bedrijfsgegevens die je zelf noemt kunnen worden opgenomen in onze relatieadministratie.'],
+            ['Waarom', 'Om je vraag te beantwoorden, de context van het gesprek te onthouden en je interesse persoonlijk op te volgen. De AI maakt ook een samenvatting en een inschatting van de passende vervolgstap op basis van wat je vertelt, zoals processen, wensen en organisatie.'],
+            ['AI-ondersteunde kwalificatie', 'Een automatische inschatting helpt ons gesprekken te ordenen. Ook zonder apart terugbelverzoek kunnen genoemde contactgegevens en de samenvatting in onze eigen CRM-omgeving worden opgeslagen. Deze inschatting bepaalt niet zelfstandig of je een overeenkomst of dienstverlening krijgt. Je kunt vragen om menselijke beoordeling en bezwaar maken tegen deze kwalificatie.'],
+            ['Grondslag', 'Ons gerechtvaardigd belang om vrijwillig gestelde zakelijke vragen te beantwoorden, relevante interesse te herkennen en gesprekken op te volgen (art. 6 lid 1 sub f AVG). Voor een afzonderlijk terugbelverzoek vragen wij je toestemming voor contact over dat gesprek (art. 6 lid 1 sub a AVG). Je kunt die intrekken via info@factumai.nl.'],
+            ['Terugbelverzoek', 'Bij een terugbelverzoek bewaren we je ingevulde naam, e-mailadres, telefoonnummer en aanleiding, plus de tekst, versie en het tijdstip van je toestemming. Resend verstuurt een interne melding zodat wij je verzoek kunnen opvolgen.'],
+            ['Bewaartermijn', 'De chatgesprekken en berichten hebben een bewaartermijn van 90 dagen na aanmaak. Technische agentgebeurtenissen hebben standaard een bewaartermijn van 180 dagen. Een afzonderlijk vastgelegde aanvraag, samenvatting of terugbelverzoek in onze relatieadministratie valt onder de termijn van maximaal 1 jaar uit sectie 2.2, of bij een klantrelatie onder sectie 2.3.'],
+            ['Ontvangers', 'Anthropic verwerkt de gesprekstekst voor antwoorden, samenvattingen en kwalificatie. Supabase verzorgt de opslag van gesprekken en onze relatieadministratie. Vercel verzorgt de website; Resend en Microsoft 365 de e-mailopvolging.'],
+          ]}
+        />
+        <P>
+          De chat bewaart een sessiecode en widgetvoorkeuren in de sessieopslag van je browser.
+          Die opslag is bedoeld om hetzelfde gesprek tijdens je bezoek te kunnen voortzetten
+          en verdwijnt normaal als je het tabblad sluit. Dit staat los van de bewaartermijn
+          van het gesprek op onze server.
+        </P>
+
+        <H3>2.7 Een afspraak plannen</H3>
+        <P>
+          Als je via de kalender een gesprek boekt, verwerken we je naam, e-mailadres,
+          gekozen tijdstip, tijdzone en eventuele extra gegevens die je zelf invult. Wij
+          gebruiken Cal.com voor de boekingskalender en onze gekoppelde Microsoft-agenda
+          voor de afspraak en eventuele Teams-uitnodiging. De kalenderdienst verwerkt ook
+          technische verbindingsgegevens om de kalender te tonen. De gekozen afspraak en
+          correspondentie gebruiken we voor de voorbereiding en uitvoering van jouw gesprek.
+        </P>
+        <P>
+          De grondslag is het nemen van noodzakelijke stappen op jouw verzoek naar een
+          overeenkomst met jou, of ons gerechtvaardigd belang bij het afhandelen van een
+          zakelijke afspraak namens een organisatie. Voor de afspraakgegevens geldt de
+          bewaartermijn van maximaal 1 jaar voor aanvragen, tenzij een klantrelatie ontstaat.
+          Een afspraak boeken is geen toestemming voor een nieuwsbrief of advertentietracking.
+        </P>
+
         <H2 number="3">Met wie wij gegevens delen</H2>
         <P>
-          Wij delen alleen gegevens met partijen die wij strikt nodig hebben om ons werk te doen.
-          Met elke partij hebben wij een verwerkersovereenkomst gesloten.
+          Wij delen gegevens met dienstverleners voor de hieronder beschreven werkzaamheden.
+          Dienstverleners die namens ons persoonsgegevens verwerken mogen dat alleen voor hun
+          opdracht en volgens onze instructies doen. Verwerkersafspraken regelen onder meer
+          het gebruik, de beveiliging en de vertrouwelijkheid van die gegevens.
         </P>
         <P>Onze huidige verwerkers:</P>
         <Bullets
           items={[
             'SnelStart, boekhouding (Nederland)',
-            'Microsoft 365, e-mail en documenten (EU/VS onder EU-US Data Privacy Framework)',
+            'Microsoft 365, e-mail, documenten, agenda en Teams-afspraken (EU/VS onder EU-US Data Privacy Framework)',
             'Apple iCloud, back-up en synchronisatie (EU/VS onder EU-US Data Privacy Framework)',
-            'Vercel, hosting en cookieloze website-statistieken (VS onder EU-US Data Privacy Framework)',
+            'Vercel, hosting, doorsturen van campagneformulieren, cookieloze website-statistieken en prestatiemeting (VS onder EU-US Data Privacy Framework)',
+            'Cloudflare, hosting en beveiliging van FactumAI Ads, opslag van aanvragen en campagnebestanden. De D1-database en R2-opslag voor dit platform hebben EU-jurisdictie; netwerk- en ondersteuningsverwerking kunnen ook buiten de EER plaatsvinden.',
             'Google, website-statistieken via Google Analytics 4, uitsluitend met toestemming (Google Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
-            'Supabase, databasehosting voor onder meer scan-leads (data-opslag in de EU, Ierland)',
+            'Supabase, databasehosting voor scan-gegevens, AI-chatgesprekken en onze eigen relatieadministratie (data-opslag in de EU, Ierland)',
             'Resend, verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
-            'Anthropic, AI-analyse voor de AI-scan (VS, met Standard Contractual Clauses)',
+            'Anthropic, AI-scan, antwoorden en kwalificatie van chatgesprekken, en het schrijven van onze eigen advertentie- en paginateksten (VS, met Standard Contractual Clauses)',
+            'Cal.com, boekingskalender en afspraakgegevens, met verwerking via internationale infrastructuur en de waarborgen uit de verwerkersvoorwaarden.',
           ]}
         />
         <P>
@@ -212,20 +307,32 @@ export default function PrivacyPage() {
             href="/subverwerkers"
             className="text-[var(--oker-deep)] underline decoration-[var(--oker)] underline-offset-4 hover:text-[var(--ink)]"
           >
-            sub-processorpagina
+            sub-verwerkerspagina voor klantopdrachten
           </Link>
           .
         </P>
         <P>
-          Wij verkopen geen persoonsgegevens. Wij gebruiken persoonsgegevens niet voor
-          marketingdoeleinden zonder expliciete toestemming.
+          Wij verkopen geen persoonsgegevens. Een aanvraag of chat is geen inschrijving voor
+          een nieuwsbrief. Voor marketingmails waarvoor toestemming nodig is vragen wij die
+          afzonderlijk. Beperkte interne meting van campagneherkomst staat in sectie 2.5.
         </P>
 
         <H2 number="4">Doorgifte naar landen buiten de EER</H2>
         <P>
           Enkele van onze verwerkers zijn gevestigd in de Verenigde Staten. Voor die doorgifte
           steunen wij op het EU-US Data Privacy Framework (adequaatheidsbesluit Europese Commissie
-          van 10 juli 2023) en op Standard Contractual Clauses waar aanvullend nodig.
+          van 10 juli 2023) voor gecertificeerde ontvangers binnen de toepasselijke dekking,
+          en op Standard Contractual Clauses (Europese modelcontractbepalingen) waar nodig.
+          Een Europese opslaglocatie sluit verwerking vanuit een ander land door bijvoorbeeld
+          netwerkdiensten of ondersteuning niet uit.
+        </P>
+        <P>
+          Cloudflare beschrijft de afspraken over internationale doorgifte in zijn{' '}
+          <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener noreferrer" className="text-[var(--oker-deep)] underline underline-offset-4">Data Processing Addendum</a>.
+          Cal.com beschrijft zijn verwerkingen en doorgiftewaarborgen in zijn{' '}
+          <a href="https://cal.com/privacy" target="_blank" rel="noopener noreferrer" className="text-[var(--oker-deep)] underline underline-offset-4">privacy-informatie</a>.
+          Je kunt via info@factumai.nl informatie of een kopie van de voor jouw gegevens
+          toepasselijke waarborgen opvragen.
         </P>
         <P>
           Voor klantopdrachten waarbij wij AI-modellen uit de VS inzetten voeren wij een Transfer
@@ -240,17 +347,20 @@ export default function PrivacyPage() {
         </P>
         <Bullets
           items={[
-            'Encryptie van gegevens in transit (TLS 1.2+) en at rest (AES-256)',
-            'Tweefactor-authenticatie op alle systemen met toegang tot persoonsgegevens',
+            'Versleutelde verbindingen voor onze website, formulieren en beheeromgeving',
+            'Afgeschermde beheeromgevingen en beveiligde sessies',
             'Principe van least privilege: alleen wie moet, heeft toegang',
-            'Audit-logging en monitoring',
+            'Technische logging en monitoring',
             'Regelmatige evaluatie van onze beveiligingsmaatregelen',
           ]}
         />
 
         <H2 number="6">Jouw rechten</H2>
         <P>
-          Je hebt onder de AVG de volgende rechten. Wij reageren binnen 30 dagen op je verzoek.
+          Je hebt onder de AVG de volgende rechten, voor zover ze op de verwerking van
+          toepassing zijn. Wij reageren uiterlijk binnen één maand op je verzoek. Als de wet
+          bij een complex verzoek verlenging toestaat, informeren we je daar binnen die
+          eerste maand over, met de reden.
         </P>
         <Bullets
           items={[
@@ -259,8 +369,8 @@ export default function PrivacyPage() {
             'Recht op wissing: gegevens laten verwijderen indien dat wettelijk kan.',
             'Recht op beperking: gebruik van je gegevens tijdelijk stoppen.',
             'Recht op bezwaar: bezwaar maken tegen gebruik op basis van gerechtvaardigd belang.',
-            'Recht op dataportabiliteit: je gegevens in een bruikbaar formaat ontvangen.',
-            'Recht op intrekken van toestemming: daar waar wij op toestemming steunen.',
+            'Recht op dataportabiliteit: gegevens die je verstrekte in een bruikbaar formaat ontvangen, waar de wettelijke voorwaarden gelden.',
+            'Recht op intrekken van toestemming: daar waar wij op toestemming steunen. Dit verandert niet de rechtmatigheid van de verwerking vóór je intrekking.',
           ]}
         />
         <P>
@@ -271,8 +381,9 @@ export default function PrivacyPage() {
           >
             info@factumai.nl
           </a>
-          . Wij kunnen je om bewijs van identiteit vragen om te voorkomen dat wij gegevens aan de
-          verkeerde persoon verstrekken.
+          . Bij twijfel over je identiteit kunnen wij aanvullende informatie vragen die nodig
+          is om te voorkomen dat wij gegevens aan de verkeerde persoon verstrekken. Stuur niet
+          uit jezelf een kopie van je identiteitsbewijs mee.
         </P>
         <P>
           Niet tevreden over hoe wij met je gegevens omgaan? Je kunt een klacht indienen bij de
@@ -297,7 +408,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.2, {LAST_UPDATED}
+          Versie 1.3, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>

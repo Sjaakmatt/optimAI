@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import Link from 'next/link';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics/gtag';
 
@@ -130,6 +131,14 @@ export function ContactForm() {
           <span>{globalError}</span>
         </div>
       )}
+
+      <p className="mt-5 text-[12px] leading-relaxed text-[var(--ink-dim)]">
+        We gebruiken uw gegevens om uw vraag te beantwoorden en contact met u op te nemen.
+        Lees meer in onze{' '}
+        <Link href="/privacy" className="underline underline-offset-4 hover:text-[var(--ink)]">
+          privacyverklaring
+        </Link>.
+      </p>
 
       <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <p className="text-[11px] font-mono text-[var(--ink-faint)] uppercase tracking-wider">

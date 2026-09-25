@@ -10,7 +10,7 @@
 
 import { useState, type FormEvent } from 'react';
 
-import { CONSENT_TEKST } from '@/lib/site-agent/consent';
+import { CONSENT_TEKST, CONSENT_VERSIE } from '@/lib/site-agent/consent';
 
 type Stand = 'vraag' | 'formulier' | 'bezig' | 'klaar' | 'geweigerd';
 
@@ -46,6 +46,7 @@ export default function TerugbelKaart({
           email: String(formulier.get('email') ?? ''),
           telefoon: String(formulier.get('telefoon') ?? ''),
           akkoord: formulier.get('akkoord') === 'on',
+          consentVersie: CONSENT_VERSIE,
           // Honeypot: mensen zien dit veld niet.
           bedrijfsnaam: String(formulier.get('bedrijfsnaam') ?? ''),
         }),

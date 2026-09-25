@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Script from 'next/script';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useOpOnderhoudPagina } from '@/lib/site/onderhoudPagina';
-import { GA_ID, ADS_ID, adsConfigured, pageview } from '@/lib/analytics/gtag';
+import { GA_ID, ADS_ID, adsConfigured, pageview, syncGoogleConsent } from '@/lib/analytics/gtag';
 import {
   type Consent,
   readConsent,
@@ -30,9 +30,9 @@ export function ConsentGate() {
   const [bannerOpen, setBannerOpen] = useState(false);
   const [showPrefs, setShowPrefs] = useState(false);
   const [ready, setReady] = useState(false);
+  const [tagId, setTagId] = useState<string | null>(null);
   const pathname = usePathname();
   const opOnderhoud = useOpOnderhoudPagina();
-  const firstRun = useRef(true);
 
   useEffect(() => {
     setConsent(readConsent());
@@ -45,21 +45,39 @@ export function ConsentGate() {
     return () => window.removeEventListener(REOPEN_EVENT, reopen);
   }, []);
 
+  useEffect(() => {
+    const syncStoredChoice = (event: StorageEvent) => {
+      if (event.key !== null && !event.key.startsWith('factumai.consent.')) return;
+      const choice = readConsent();
+      syncGoogleConsent(opOnderhoud ? null : choice);
+      setConsent(choice);
+    };
+    window.addEventListener('storage', syncStoredChoice);
+    return () => window.removeEventListener('storage', syncStoredChoice);
+  }, [opOnderhoud]);
+
   const analytics = consent?.analytics ?? false;
   const marketing = consent?.marketing ?? false;
   const showMarketing = adsConfigured();
 
-  // SPA-pageviews bij routewissel. De eerste view meet de GA-config zelf.
+  // Zet de lokale consent/config-queue klaar vóór de externe library laadt.
   useEffect(() => {
-    if (!analytics) return;
-    if (firstRun.current) {
-      firstRun.current = false;
-      return;
-    }
+    syncGoogleConsent(opOnderhoud ? null : { analytics, marketing });
+    const loadAnalytics = analytics && Boolean(GA_ID);
+    const loadAds = marketing && showMarketing;
+    setTagId(!opOnderhoud && (loadAnalytics || loadAds) ? (loadAnalytics ? GA_ID : ADS_ID) : null);
+  }, [analytics, marketing, showMarketing, opOnderhoud]);
+
+  // Eerste view na opt-in en SPA-pageviews bij routewissel.
+  useEffect(() => {
+    if (!analytics || opOnderhoud) return;
     pageview(pathname);
-  }, [pathname, analytics]);
+  }, [pathname, analytics, opOnderhoud]);
 
   const persist = useCallback((c: Consent) => {
+    // Synchroon intrekken: een klik of routewissel vóór de volgende render
+    // mag niet doorgaan met de eerder verleende toestemming.
+    syncGoogleConsent(c);
     writeConsent(c);
     setConsent(c);
     setBannerOpen(false);
@@ -75,38 +93,16 @@ export function ConsentGate() {
   if (opOnderhoud) return null;
   if (!GA_ID && !showMarketing) return null;
 
-  const loadAds = marketing && showMarketing;
-  const needsTag = analytics || loadAds;
-  const tagId = analytics ? GA_ID : ADS_ID;
-
   const showBanner = ready && (consent === null || bannerOpen);
 
   return (
     <>
-      {needsTag && (
-        <>
-          <Script
-            id="gtag-lib"
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${tagId}`}
-          />
-          <Script id="gtag-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('consent', 'default', {
-                analytics_storage: '${analytics ? 'granted' : 'denied'}',
-                ad_storage: '${loadAds ? 'granted' : 'denied'}',
-                ad_user_data: '${loadAds ? 'granted' : 'denied'}',
-                ad_personalization: '${loadAds ? 'granted' : 'denied'}'
-              });
-              ${analytics ? `gtag('config', '${GA_ID}', { anonymize_ip: true });` : ''}
-              ${loadAds ? `gtag('config', '${ADS_ID}');` : ''}
-            `}
-          </Script>
-        </>
+      {tagId && (
+        <Script
+          id="gtag-lib"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${tagId}`}
+        />
       )}
 
       {showBanner && (
@@ -210,7 +206,7 @@ function ConsentBanner({
               />
               <CategoryRow
                 titel="Analyse"
-                body="Google Analytics: meet anoniem hoe de site gebruikt wordt, zodat we hem kunnen verbeteren."
+                body="Google Analytics: meet hoe de site gebruikt wordt, zodat we hem kunnen verbeteren."
                 checked={analytics}
                 onChange={setAnalytics}
               />
