@@ -1,5 +1,5 @@
-// De eigen agenda: beschikbaarheid ophalen en afspraken boeken op de
-// Graph-mailbox van sjaak@factumai.com, via de scheduling-MCP.
+// De eigen agenda: beschikbaarheid ophalen en afspraken boeken op een
+// Graph-mailbox, via de scheduling-MCP. Welke mailbox staat in BOEKING_MAILBOX.
 //
 // Dit is de vervanger van de Cal.com-embed. De MCP rekent de vrije momenten
 // uit — werkdagen, openingstijden, marge rond bestaande afspraken en het
@@ -29,15 +29,30 @@ const MCP_TIMEOUT_MS = 20_000;
 /**
  * De mailbox waarin geboekt wordt. Dit is de `resourceId` die de MCP aan Graph
  * doorgeeft; een UPN werkt daar net zo goed als een object-id.
+ *
+ * Zet deze expliciet. De default is een gok, en een verkeerde mailbox levert
+ * geen nette fout op maar een lege agenda of een boeking op het verkeerde
+ * adres.
  */
 export function boekingsMailbox(): string {
-  return process.env.BOEKING_MAILBOX ?? 'sjaak@factumai.com';
+  return process.env.BOEKING_MAILBOX ?? 'sjaak@factumai.nl';
 }
 
 function schedulingUrl(): string {
   const url = process.env.FACTUMAI_MCP_SCHEDULING_URL;
   if (!url) throw new McpFout('FACTUMAI_MCP_SCHEDULING_URL niet gezet', 'scheduling', '-');
   return url;
+}
+
+/**
+ * Welke scheduling-instance de website gebruikt.
+ *
+ * Dit moet gezet zijn zodra de organisatie meer dan één scheduling-instance
+ * heeft. Zonder waarde kiest de MCP de primaire instance, en die hoort bij de
+ * orchestrator — dan zou de website in de verkeerde agenda kijken en boeken.
+ */
+function schedulingInstance(): string | undefined {
+  return process.env.BOEKING_MCP_INSTANCE || undefined;
 }
 
 export interface Slot {
@@ -111,6 +126,7 @@ export async function haalSlots(opties: { vanaf?: Date; dagen?: number } = {}): 
       maxResults: MAX_SLOTS,
     },
     agentId: 'website-agenda',
+    instanceKey: schedulingInstance(),
     timeoutMs: MCP_TIMEOUT_MS,
   });
 
@@ -221,6 +237,7 @@ export async function boekAfspraakIn(invoer: BoekingsInvoer): Promise<Boeking> {
       attendees: [{ email: invoer.email, name: invoer.naam }],
     },
     agentId: 'website-agenda',
+    instanceKey: schedulingInstance(),
     timeoutMs: MCP_TIMEOUT_MS,
   });
 
