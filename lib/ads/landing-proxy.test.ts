@@ -119,3 +119,14 @@ test('timeouts and upstream errors do not expose exception details or secrets', 
   assert.equal(response.status, 502);
   assert.equal((await response.text()).includes(env.LANDING_PROXY_SECRET), false);
 });
+
+test('the visitor user agent is forwarded bounded, only for aggregate view counting', async () => {
+  const fake = fakeFetch();
+  await proxyLandingRequest(request('/lp/minder-handwerk/', { headers: { 'User-Agent': `Mozilla/5.0 ${'x'.repeat(400)}` } }), { env, ...fake });
+  const headers = new Headers(fake.calls[0].options.headers);
+  assert.equal(headers.get('x-factumai-visitor-ua')?.length, 300);
+  assert.ok(headers.get('x-factumai-visitor-ua')?.startsWith('Mozilla/5.0 '));
+  const none = fakeFetch();
+  await proxyLandingRequest(request('/lp/minder-handwerk/'), { env, ...none });
+  assert.equal(new Headers(none.calls[0].options.headers).get('x-factumai-visitor-ua'), null);
+});
