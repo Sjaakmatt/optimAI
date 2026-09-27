@@ -158,4 +158,17 @@ test('the cookieless visit measurement reaches the worker: script by GET, beacon
   assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/e'), { env, ...blocked })).status, 405);
   assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/t.js', { method: 'POST', headers: { Origin: 'https://factumai.nl' } }), { env, ...blocked })).status, 405);
   assert.equal(blocked.calls.length, 0);
+
+  // The portrait photo: GET only, image passed through as bytes and cacheable.
+  const pixels = new Uint8Array([137, 80, 78, 71, 1, 2, 3]);
+  const photo = fakeFetch(() => new Response(pixels, { headers: { 'Content-Type': 'image/png' } }));
+  const image = await proxyLandingRequest(request('/lp/minder-handwerk/foto?v=abc'), { env, ...photo });
+  assert.equal(image.status, 200);
+  assert.equal(image.headers.get('content-type'), 'image/png');
+  assert.equal(image.headers.get('cache-control'), 'public, max-age=86400');
+  assert.deepEqual(new Uint8Array(await image.arrayBuffer()), pixels);
+  assert.equal(photo.calls[0].url.pathname, '/lp/minder-handwerk/foto');
+  assert.equal(photo.calls[0].url.search, '');
+  assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/foto', { method: 'POST', headers: { Origin: 'https://factumai.nl' } }), { env, ...blocked })).status, 405);
+  assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/foto/x'), { env, ...blocked })).status, 404);
 });

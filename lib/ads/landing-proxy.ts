@@ -73,8 +73,9 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
   const method = request.method;
   const requestedUrl = new URL(request.url);
   // Reject encoded paths, extra segments and every endpoint outside this exact public contract:
-  // the page, its form submit and thank-you page, and the cookieless visit measurement (script t.js, beacon e).
-  const match = /^\/lp\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(submit|bedankt|t\.js|e))?\/?$/.exec(requestedUrl.pathname);
+  // the page, its form submit and thank-you page, the cookieless visit measurement (script t.js, beacon e)
+  // and the owner's portrait photo (foto) that some page layouts show.
+  const match = /^\/lp\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(submit|bedankt|t\.js|e|foto))?\/?$/.exec(requestedUrl.pathname);
   if (!match || match[1].length < 3 || match[1].length > 80) return failure(404, 'Deze landingspagina bestaat niet.', method);
   const [, slug, suffix] = match;
   const beacon = suffix === 'e';
@@ -97,7 +98,7 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
     }
   }
   const headers = new Headers({
-    Accept: suffix === 't.js' ? 'text/javascript' : beacon ? '*/*' : 'text/html',
+    Accept: suffix === 't.js' ? 'text/javascript' : suffix === 'foto' ? 'image/*' : beacon ? '*/*' : 'text/html',
     'X-FactumAI-Proxy-Secret': secret,
     'X-FactumAI-Visitor-IP': ip,
   });
@@ -131,7 +132,8 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
       const value = response.headers.get(key);
       if (value !== null) outgoing.set(key, value);
     }
-    outgoing.set('Cache-Control', 'no-store');
+    // The photo is the same for every visitor and versioned by its URL; everything else is personal (form tokens).
+    outgoing.set('Cache-Control', suffix === 'foto' && response.status === 200 ? 'public, max-age=86400' : 'no-store');
     outgoing.set('X-Content-Type-Options', 'nosniff');
     outgoing.set('X-Robots-Tag', 'noindex, nofollow');
     if (response.status >= 300 && response.status < 400) {
