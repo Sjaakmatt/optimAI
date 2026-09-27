@@ -234,6 +234,14 @@ export default function PrivacyPage() {
           conversies door naar Meta of Google en synchroniseert ze niet automatisch met ons CRM.
         </P>
         <P>
+          Vink je in een aanvraagformulier aan dat je een WhatsApp-bericht over je aanvraag wilt
+          ontvangen, dan sturen we je via de WhatsApp Business-dienst van Meta één bericht met je
+          voornaam, als je een mobiel nummer hebt ingevuld. Meta verwerkt daarvoor je telefoonnummer
+          en het bericht. Grondslag is je toestemming (art. 6 lid 1 sub a AVG); die kun je altijd
+          intrekken door het ons te laten weten, ook gewoon in WhatsApp. Zonder vinkje sturen we
+          geen WhatsApp-bericht.
+        </P>
+        <P>
           Voor het schrijven van advertentie- en paginateksten gebruiken wij Anthropic. Daarbij
           krijgt het model de geselecteerde teksten, onze campagnebrief en schrijfinstructies.
           De aanvraaggegevens worden hiervoor niet automatisch opgehaald of meegestuurd.
@@ -302,6 +310,7 @@ export default function PrivacyPage() {
             'Supabase, databasehosting voor scan-gegevens, AI-chatgesprekken en onze eigen relatieadministratie (data-opslag in de EU, Ierland)',
             'Resend, verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
             'Anthropic, AI-scan, antwoorden en kwalificatie van chatgesprekken, en het schrijven van onze eigen advertentie- en paginateksten (VS, met Standard Contractual Clauses)',
+            'Meta (WhatsApp Business-dienst), een WhatsApp-bericht over je aanvraag, alleen als je daar toestemming voor gaf (Meta Platforms Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
             'Cal.com, boekingskalender en afspraakgegevens, met verwerking via internationale infrastructuur en de waarborgen uit de verwerkersvoorwaarden.',
           ]}
         />
@@ -413,7 +422,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.3, {LAST_UPDATED}
+          Versie 1.4, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
