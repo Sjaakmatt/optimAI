@@ -1,0 +1,28 @@
+import { chromium } from "playwright";
+import http from "node:http"; import { readFileSync } from "node:fs";
+const dir = process.argv[2];
+const types = { html: "text/html", js: "text/javascript", css: "text/css", svg: "image/svg+xml" };
+const server = http.createServer((q, r) => { let f = q.url.split("?")[0].split("#")[0]; if (f.startsWith("/api/media/")) f = "/photo.svg"; if (f === "/") f = "/index.html"; try { const b = readFileSync(dir + f); r.writeHead(200, { "content-type": types[f.split(".").pop()] }); r.end(b); } catch { r.writeHead(404); r.end(); } }).listen(8766);
+const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const p = await b.newPage({ viewport: { width: 940, height: 1300 } });
+p.on("pageerror", (e) => console.log("ERR", e.message));
+await p.goto("http://localhost:8766/");
+await p.waitForSelector(".lc");
+await p.screenshot({ path: dir + "/1-desktop.png", fullPage: true });
+// Drag the steps block above the benefits, and the form into the hero.
+await p.dragAndDrop(".lc-block-steps .lc-handle", ".lc-hero-slot", { targetPosition: { x: 10, y: 10 } }).catch((e) => console.log("drag1", e.message));
+await p.locator(".lc-block-steps .lc-handle").dragTo(p.locator(".lc-drop").first()).catch((e) => console.log("drag2", e.message));
+const order1 = await p.$$eval(".lc-block", (els) => els.map((e) => e.className));
+console.log("after steps drag", order1);
+await p.locator(".lc-block-form .lc-handle").hover();
+await p.mouse.down();
+await p.locator(".lc-hero-slot").hover();
+await p.mouse.up();
+await p.locator(".lc-block-form .lc-handle").dragTo(p.locator(".lc-hero-slot .lc-drop")).catch((e) => console.log("drag3", e.message));
+console.log("form in hero:", await p.$(".lc-hero-slot .lc-block-form") !== null);
+await p.click("text=Telefoon");
+await p.click("text=Kort");
+await p.click("text=Vaste knop aan");
+await p.click("text=Foto van jou erbij").catch(() => console.log("no photo button"));
+await p.screenshot({ path: dir + "/2-mobile.png", fullPage: true });
+await b.close(); server.close();
