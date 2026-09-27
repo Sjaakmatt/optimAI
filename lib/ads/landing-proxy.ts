@@ -2,6 +2,8 @@ import { isIP } from 'node:net';
 
 /** The website forwards only public landing pages. Admin routes never cross this boundary. */
 const MAX_BODY_BYTES = 64 * 1024;
+/** The anonymous visit measurement sends small JSON beacons; FactumAI Ads rejects anything larger anyway. */
+const MAX_BEACON_BYTES = 8 * 1024;
 const TIMEOUT_MS = 15_000;
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
 const RESPONSE_HEADERS = ['content-type', 'content-language', 'content-security-policy', 'referrer-policy', 'permissions-policy', 'x-frame-options', 'x-content-type-options', 'x-robots-tag', 'retry-after'] as const;
@@ -42,7 +44,7 @@ function failure(status: number, message: string, method: string, allow?: string
   return new Response(method === 'HEAD' ? null : html, { status, headers });
 }
 
-async function boundedBody(request: Request): Promise<ArrayBuffer> {
+async function boundedBody(request: Request, limit = MAX_BODY_BYTES): Promise<ArrayBuffer> {
   const reader = request.body?.getReader();
   if (!reader) return new ArrayBuffer(0);
   const chunks: Uint8Array[] = [];
@@ -52,7 +54,7 @@ async function boundedBody(request: Request): Promise<ArrayBuffer> {
       const { done, value } = await reader.read();
       if (done) break;
       total += value.byteLength;
-      if (total > MAX_BODY_BYTES) {
+      if (total > limit) {
         await reader.cancel().catch(() => undefined);
         throw new RangeError('Body limit');
       }
@@ -70,11 +72,13 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
   const env = dependencies.env ?? process.env;
   const method = request.method;
   const requestedUrl = new URL(request.url);
-  // Reject encoded paths, extra segments and every endpoint outside this exact public contract.
-  const match = /^\/lp\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(submit|bedankt))?\/?$/.exec(requestedUrl.pathname);
+  // Reject encoded paths, extra segments and every endpoint outside this exact public contract:
+  // the page, its form submit and thank-you page, and the cookieless visit measurement (script t.js, beacon e).
+  const match = /^\/lp\/([a-z0-9]+(?:-[a-z0-9]+)*)(?:\/(submit|bedankt|t\.js|e))?\/?$/.exec(requestedUrl.pathname);
   if (!match || match[1].length < 3 || match[1].length > 80) return failure(404, 'Deze landingspagina bestaat niet.', method);
   const [, slug, suffix] = match;
-  const allowed = suffix === 'submit' ? ['POST'] : ['GET', 'HEAD'];
+  const beacon = suffix === 'e';
+  const allowed = suffix === 'submit' || beacon ? ['POST'] : ['GET', 'HEAD'];
   if (!allowed.includes(method)) return failure(405, 'Open de pagina opnieuw om verder te gaan.', method, allowed.join(', '));
 
   const adsOrigin = origin(env.FACTUMAI_ADS_ORIGIN ?? DEFAULT_ADS_ORIGIN);
@@ -93,7 +97,7 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
     }
   }
   const headers = new Headers({
-    Accept: 'text/html',
+    Accept: suffix === 't.js' ? 'text/javascript' : beacon ? '*/*' : 'text/html',
     'X-FactumAI-Proxy-Secret': secret,
     'X-FactumAI-Visitor-IP': ip,
   });
@@ -104,12 +108,14 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
   let body: ArrayBuffer | undefined;
   if (method === 'POST') {
     const contentType = request.headers.get('content-type') ?? '';
-    if (contentType.split(';')[0].trim().toLowerCase() !== 'application/x-www-form-urlencoded') return failure(415, 'Verstuur uw aanvraag via het formulier op de pagina.', method);
+    const expectedType = beacon ? 'text/plain' : 'application/x-www-form-urlencoded';
+    const limit = beacon ? MAX_BEACON_BYTES : MAX_BODY_BYTES;
+    if (contentType.split(';')[0].trim().toLowerCase() !== expectedType) return failure(415, 'Verstuur uw aanvraag via het formulier op de pagina.', method);
     const declaredLength = request.headers.get('content-length');
-    if (declaredLength !== null && (!/^\d+$/.test(declaredLength) || Number(declaredLength) > MAX_BODY_BYTES)) return failure(413, 'Uw aanvraag is te groot. Gebruik een kortere omschrijving.', method);
-    try { body = await boundedBody(request); }
+    if (declaredLength !== null && (!/^\d+$/.test(declaredLength) || Number(declaredLength) > limit)) return failure(413, 'Uw aanvraag is te groot. Gebruik een kortere omschrijving.', method);
+    try { body = await boundedBody(request, limit); }
     catch (error) { return failure(error instanceof RangeError ? 413 : 400, 'Uw aanvraag kon niet worden gelezen. Gebruik een kortere omschrijving en probeer opnieuw.', method); }
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    headers.set('Content-Type', expectedType);
     // This is the original browser Origin, already validated above; never reconstructed from a query.
     headers.set('Origin', request.headers.get('origin')!);
   }
@@ -138,8 +144,10 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
       outgoing.set('Location', location);
     }
     // Fully read within the timeout. HTML is produced by our own Worker; no browser cookies or keys return.
-    const responseBody = method === 'HEAD' ? null : await response.arrayBuffer();
-    if (method === 'HEAD') await response.body?.cancel().catch(() => undefined);
+    // 204/304 may not carry a body (the beacon answers 204).
+    const empty = method === 'HEAD' || response.status === 204 || response.status === 304;
+    const responseBody = empty ? null : await response.arrayBuffer();
+    if (empty) await response.body?.cancel().catch(() => undefined);
     return new Response(responseBody, { status: response.status, headers: outgoing });
   } catch {
     return failure(502, 'Probeer het later opnieuw of neem contact op via onze website.', method);

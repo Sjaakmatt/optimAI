@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
-const LAST_UPDATED = '25 september 2026';
+const LAST_UPDATED = '27 september 2026';
 
 export default function PrivacyPage() {
   return (
@@ -224,7 +224,12 @@ export default function PrivacyPage() {
         </P>
         <P>
           De campagnepagina’s plaatsen geen analytische of advertentiecookies en laden geen
-          Meta Pixel of Google-tag. Campagnelabels worden pas bij een formulierinzending aan
+          Meta Pixel of Google-tag. Wel meet een klein script van de pagina zelf, zonder cookies,
+          hoe ver een bezoek komt: hoe ver er wordt gescrold, welke onderdelen in beeld komen,
+          of het formulier wordt begonnen, bij welk veld iemand stopt en of het is verstuurd.
+          Wat je invult, je IP-adres en je browsergegevens worden daarbij niet opgeslagen; een
+          bezoek krijgt alleen een willekeurig nummer. We gebruiken dit om de pagina’s te
+          verbeteren (gerechtvaardigd belang) en verwijderen deze metingen na 180 dagen. Campagnelabels worden pas bij een formulierinzending aan
           de aanvraag gekoppeld. FactumAI Ads stuurt momenteel geen aanvraaggegevens of
           conversies door naar Meta of Google en synchroniseert ze niet automatisch met ons CRM.
         </P>

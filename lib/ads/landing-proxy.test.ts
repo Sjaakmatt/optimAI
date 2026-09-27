@@ -130,3 +130,32 @@ test('the visitor user agent is forwarded bounded, only for aggregate view count
   await proxyLandingRequest(request('/lp/minder-handwerk/'), { env, ...none });
   assert.equal(new Headers(none.calls[0].options.headers).get('x-factumai-visitor-ua'), null);
 });
+
+test('the cookieless visit measurement reaches the worker: script by GET, beacon by small same-origin text POST', async () => {
+  const script = fakeFetch(() => new Response('(function(){})();', { headers: { 'Content-Type': 'text/javascript; charset=utf-8' } }));
+  const js = await proxyLandingRequest(request('/lp/minder-handwerk/t.js'), { env, ...script });
+  assert.equal(js.status, 200);
+  assert.equal(js.headers.get('content-type'), 'text/javascript; charset=utf-8');
+  assert.equal(script.calls[0].url.pathname, '/lp/minder-handwerk/t.js');
+  assert.equal(new Headers(script.calls[0].options.headers).get('x-factumai-proxy-secret'), env.LANDING_PROXY_SECRET);
+
+  const sent = fakeFetch(() => new Response(null, { status: 204 }));
+  const beacon = (headers: Record<string, string> = {}, body = '{"t":"signed","s":40}') => request('/lp/minder-handwerk/e', { method: 'POST', headers: { Origin: 'https://factumai.nl', 'Content-Type': 'text/plain;charset=UTF-8', 'User-Agent': 'Mozilla/5.0 (iPhone)', ...headers }, body });
+  const ok = await proxyLandingRequest(beacon(), { env, ...sent });
+  assert.equal(ok.status, 204);
+  assert.equal(await ok.text(), '');
+  const forwarded = new Headers(sent.calls[0].options.headers);
+  assert.equal(sent.calls[0].url.pathname, '/lp/minder-handwerk/e');
+  assert.equal(forwarded.get('content-type'), 'text/plain');
+  assert.equal(forwarded.get('x-factumai-visitor-ua'), 'Mozilla/5.0 (iPhone)');
+  assert.equal(new TextDecoder().decode(sent.calls[0].options.body as ArrayBuffer), '{"t":"signed","s":40}');
+
+  // Wrong origin, type, size or method never reach the worker.
+  const blocked = fakeFetch();
+  assert.equal((await proxyLandingRequest(beacon({ Origin: 'https://evil.test' }), { env, ...blocked })).status, 403);
+  assert.equal((await proxyLandingRequest(beacon({ 'Content-Type': 'application/json' }), { env, ...blocked })).status, 415);
+  assert.equal((await proxyLandingRequest(beacon({}, 'x'.repeat(9 * 1024)), { env, ...blocked })).status, 413);
+  assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/e'), { env, ...blocked })).status, 405);
+  assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/t.js', { method: 'POST', headers: { Origin: 'https://factumai.nl' } }), { env, ...blocked })).status, 405);
+  assert.equal(blocked.calls.length, 0);
+});
