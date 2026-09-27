@@ -226,7 +226,7 @@ export default function PrivacyPage() {
           De campagnepagina’s plaatsen geen analytische of advertentiecookies en laden geen
           Meta Pixel of Google-tag. Wel meet een klein script van de pagina zelf, zonder cookies,
           hoe ver een bezoek komt: hoe ver er wordt gescrold, welke onderdelen in beeld komen,
-          of het formulier wordt begonnen, bij welk veld iemand stopt en of het is verstuurd.
+          of het formulier wordt begonnen, bij welk veld iemand stopt, of het is verstuurd en hoe snel de pagina laadde.
           Wat je invult, je IP-adres en je browsergegevens worden daarbij niet opgeslagen; een
           bezoek krijgt alleen een willekeurig nummer. We gebruiken dit om de pagina’s te
           verbeteren (gerechtvaardigd belang) en verwijderen deze metingen na 180 dagen. Campagnelabels worden pas bij een formulierinzending aan
@@ -435,7 +435,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.7, {LAST_UPDATED}
+          Versie 1.8, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
