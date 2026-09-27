@@ -206,7 +206,7 @@ export default function PrivacyPage() {
         </P>
         <DefList
           items={[
-            ['Welke gegevens', 'Naam, e-mailadres, telefoonnummer, omschrijving van je wensen en je toestemming om contact met je op te nemen. Bedrijfsnaam en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
+            ['Welke gegevens', 'Naam, e-mailadres, telefoonnummer, omschrijving van je wensen en je toestemming om contact met je op te nemen. Bedrijfsnaam en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, het soort apparaat (mobiel, tablet of computer, afgeleid van je browser; de browsergegevens zelf bewaren we niet), de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
             ['Herkomst', 'Als de paginalink campagnelabels bevat, bewaren we bij je inzending de bron, het kanaal, de campagne en de advertentievariant (utm_source, utm_medium, utm_campaign en utm_content). Zo beoordelen we welke campagnelabels bij aanvragen en geregistreerde vervolgstappen horen.'],
             ['Waarom', 'Om je aanvraag te begrijpen, contact op te nemen, een passend gesprek voor te bereiden en de opvolging bij te houden. De herkomst en opvolgstatus gebruiken we ook om te beoordelen welke eigen campagnes relevante aanvragen opleveren.'],
             ['Grondslag', 'Voor noodzakelijke stappen naar een overeenkomst met jou: jouw verzoek (art. 6 lid 1 sub b AVG). Voor zakelijke contactpersonen, opvolging en beperkte interne campagnemeting: ons gerechtvaardigd belang om aanvragen te behandelen en onze acquisitie te evalueren (art. 6 lid 1 sub f AVG). Je kunt tegen verwerking op basis van gerechtvaardigd belang bezwaar maken.'],
@@ -424,7 +424,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.5, {LAST_UPDATED}
+          Versie 1.6, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
