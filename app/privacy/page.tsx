@@ -206,8 +206,8 @@ export default function PrivacyPage() {
         </P>
         <DefList
           items={[
-            ['Welke gegevens', 'Naam, e-mailadres, telefoonnummer, omschrijving van je wensen en je toestemming om contact met je op te nemen. Bedrijfsnaam en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, het soort apparaat (mobiel, tablet of computer, afgeleid van je browser; de browsergegevens zelf bewaren we niet), de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
-            ['Herkomst', 'Als de paginalink campagnelabels bevat, bewaren we bij je inzending de bron, het kanaal, de campagne en de advertentievariant (utm_source, utm_medium, utm_campaign en utm_content). Zo beoordelen we welke campagnelabels bij aanvragen en geregistreerde vervolgstappen horen.'],
+            ['Welke gegevens', 'Naam, e-mailadres, telefoonnummer, omschrijving van je wensen en je toestemming om contact met je op te nemen. Bedrijfsnaam en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, het soort apparaat (mobiel, tablet of computer, afgeleid van je browser; de browsergegevens zelf bewaren we niet), de provincie waaruit je de aanvraag verstuurt (afgeleid van je internetverbinding; je IP-adres bewaren we daarbij niet), de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
+            ['Herkomst', 'Als de paginalink campagnelabels bevat, bewaren we bij je inzending de bron, het kanaal, de campagne en de advertentievariant (utm_source, utm_medium, utm_campaign en utm_content), en de klik-ID die Google of Meta zelf aan de link toevoegde (gclid, gbraid, wbraid of fbclid) met het moment van de klik. Zo beoordelen we welke campagnelabels bij aanvragen en geregistreerde vervolgstappen horen.'],
             ['Waarom', 'Om je aanvraag te begrijpen, contact op te nemen, een passend gesprek voor te bereiden en de opvolging bij te houden. De herkomst en opvolgstatus gebruiken we ook om te beoordelen welke eigen campagnes relevante aanvragen opleveren.'],
             ['Grondslag', 'Voor noodzakelijke stappen naar een overeenkomst met jou: jouw verzoek (art. 6 lid 1 sub b AVG). Voor zakelijke contactpersonen, opvolging en beperkte interne campagnemeting: ons gerechtvaardigd belang om aanvragen te behandelen en onze acquisitie te evalueren (art. 6 lid 1 sub f AVG). Je kunt tegen verwerking op basis van gerechtvaardigd belang bezwaar maken.'],
             ['Bewaartermijn', 'De aanvraag, bijbehorende campagnelabels en opvolggegevens bewaren we zolang nodig voor opvolging, maximaal 1 jaar na ontvangst. Bij een klantrelatie geldt sectie 2.3.'],
@@ -230,8 +230,17 @@ export default function PrivacyPage() {
           Wat je invult, je IP-adres en je browsergegevens worden daarbij niet opgeslagen; een
           bezoek krijgt alleen een willekeurig nummer. We gebruiken dit om de pagina’s te
           verbeteren (gerechtvaardigd belang) en verwijderen deze metingen na 180 dagen. Campagnelabels worden pas bij een formulierinzending aan
-          de aanvraag gekoppeld. FactumAI Ads stuurt momenteel geen aanvraaggegevens of
-          conversies door naar Meta of Google en synchroniseert ze niet automatisch met ons CRM.
+          de aanvraag gekoppeld. We synchroniseren aanvragen niet automatisch met ons CRM.
+        </P>
+        <P>
+          Kwam je via een advertentie van Google of Meta, dan melden we dat platform dat die klik
+          tot een aanvraag, een goede aanvraag of een klant leidde (bij een klant met de
+          afgesproken waarde). We sturen daarbij alleen de klik-ID die het platform zelf aan de link
+          toevoegde en het tijdstip, en aan Meta ook een versleuteld (gehasht) aanvraagnummer.
+          Nooit je naam, e-mailadres, telefoonnummer of wensen. Zo leren de advertentieplatforms
+          welke advertenties echte aanvragen opleveren. Grondslag is ons gerechtvaardigd belang om
+          onze advertenties te meten en te verbeteren (art. 6 lid 1 sub f AVG). Je kunt daartegen
+          bezwaar maken; dan melden we jouw aanvraag niet.
         </P>
         <P>
           Een aanvraagformulier verstuur je pas als je aanvinkt dat we contact met je mogen
@@ -312,6 +321,8 @@ export default function PrivacyPage() {
             'Supabase, databasehosting voor scan-gegevens, AI-chatgesprekken en onze eigen relatieadministratie (data-opslag in de EU, Ierland)',
             'Resend, verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
             'Anthropic, AI-scan, antwoorden en kwalificatie van chatgesprekken, en het schrijven van onze eigen advertentie- en paginateksten (VS, met Standard Contractual Clauses)',
+            'Google (Google Ads), meting van advertentieresultaten via de klik-ID, zonder naam of contactgegevens (Google Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
+            'Meta (advertenties), meting van advertentieresultaten via de klik-ID en een gehasht aanvraagnummer, zonder naam of contactgegevens (Meta Platforms Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
             'Meta (WhatsApp Business-dienst), een WhatsApp-bericht over je aanvraag, op basis van je toestemming in het formulier (Meta Platforms Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
             'Cal.com, boekingskalender en afspraakgegevens, met verwerking via internationale infrastructuur en de waarborgen uit de verwerkersvoorwaarden.',
           ]}
@@ -424,7 +435,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.6, {LAST_UPDATED}
+          Versie 1.7, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>

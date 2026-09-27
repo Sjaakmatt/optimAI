@@ -172,3 +172,16 @@ test('the cookieless visit measurement reaches the worker: script by GET, beacon
   assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/foto', { method: 'POST', headers: { Origin: 'https://factumai.nl' } }), { env, ...blocked })).status, 405);
   assert.equal((await proxyLandingRequest(request('/lp/minder-handwerk/foto/x'), { env, ...blocked })).status, 404);
 });
+
+test('ad click IDs pass only when well-formed, and only the Dutch province of the visitor', async () => {
+  const fake = fakeFetch();
+  await proxyLandingRequest(request('/lp/minder-handwerk/?utm_source=google&gclid=Cj0KCQ_abc-123&fbclid=bad%20value&wbraid=xyz', { headers: { 'x-vercel-ip-country': 'NL', 'x-vercel-ip-country-region': 'NH' } }), { env, ...fake });
+  const url = fake.calls[0].url;
+  assert.equal(url.searchParams.get('gclid'), 'Cj0KCQ_abc-123');
+  assert.equal(url.searchParams.get('wbraid'), 'xyz');
+  assert.equal(url.searchParams.get('fbclid'), null);
+  assert.equal(new Headers(fake.calls[0].options.headers).get('X-FactumAI-Visitor-Region'), 'NL-NH');
+  const abroad = fakeFetch();
+  await proxyLandingRequest(request('/lp/minder-handwerk/', { headers: { 'x-vercel-ip-country': 'BE', 'x-vercel-ip-country-region': 'VAN' } }), { env, ...abroad });
+  assert.equal(new Headers(abroad.calls[0].options.headers).get('X-FactumAI-Visitor-Region'), null);
+});

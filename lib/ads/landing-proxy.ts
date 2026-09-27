@@ -6,6 +6,8 @@ const MAX_BODY_BYTES = 64 * 1024;
 const MAX_BEACON_BYTES = 8 * 1024;
 const TIMEOUT_MS = 15_000;
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
+/** Click IDs Google and Meta add to an ad click; FactumAI Ads reports back to them which click became a request. */
+const CLICK_KEYS = ['gclid', 'gbraid', 'wbraid', 'fbclid'] as const;
 const RESPONSE_HEADERS = ['content-type', 'content-language', 'content-security-policy', 'referrer-policy', 'permissions-policy', 'x-frame-options', 'x-content-type-options', 'x-robots-tag', 'retry-after'] as const;
 const DEFAULT_ADS_ORIGIN = 'https://factumai-ads.terveldholding.workers.dev';
 const DEFAULT_SITE_ORIGIN = 'https://factumai.nl';
@@ -96,6 +98,10 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
       const value = requestedUrl.searchParams.get(key);
       if (value !== null) upstream.searchParams.set(key, value.slice(0, 200));
     }
+    for (const key of CLICK_KEYS) {
+      const value = requestedUrl.searchParams.get(key);
+      if (value !== null && /^[A-Za-z0-9_-]{1,500}$/.test(value)) upstream.searchParams.set(key, value);
+    }
   }
   const headers = new Headers({
     Accept: suffix === 't.js' ? 'text/javascript' : suffix === 'foto' ? 'image/*' : beacon ? '*/*' : 'text/html',
@@ -106,6 +112,11 @@ export async function proxyLandingRequest(request: Request, dependencies: Depend
   // excluded there). Bounded and stripped of control characters; never stored as such.
   const agent = request.headers.get('user-agent')?.replace(/[\u0000-\u001f\u007f]/g, '').slice(0, 300);
   if (agent) headers.set('X-FactumAI-Visitor-UA', agent);
+  // Only the Dutch province (e.g. NH), from Vercel's own geolocation, for results per region. Never the IP address itself.
+  if (env.VERCEL === '1' && request.headers.get('x-vercel-ip-country') === 'NL') {
+    const region = request.headers.get('x-vercel-ip-country-region') ?? '';
+    if (/^[A-Z]{2}$/.test(region)) headers.set('X-FactumAI-Visitor-Region', `NL-${region}`);
+  }
   let body: ArrayBuffer | undefined;
   if (method === 'POST') {
     const contentType = request.headers.get('content-type') ?? '';
