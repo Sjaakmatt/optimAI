@@ -206,13 +206,13 @@ export default function PrivacyPage() {
         </P>
         <DefList
           items={[
-            ['Welke gegevens', 'Naam, e-mailadres en omschrijving van je wensen. Bedrijfsnaam, telefoonnummer en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
+            ['Welke gegevens', 'Naam, e-mailadres, telefoonnummer, omschrijving van je wensen en je toestemming om contact met je op te nemen. Bedrijfsnaam en indicatief projectbudget zijn optioneel. We bewaren ook het ontvangsttijdstip, de bezochte campagnepagina en paginaversie, de bijbehorende campagne en de opvolgstatus, bijvoorbeeld benaderd, gesprek gepland of klant.'],
             ['Herkomst', 'Als de paginalink campagnelabels bevat, bewaren we bij je inzending de bron, het kanaal, de campagne en de advertentievariant (utm_source, utm_medium, utm_campaign en utm_content). Zo beoordelen we welke campagnelabels bij aanvragen en geregistreerde vervolgstappen horen.'],
             ['Waarom', 'Om je aanvraag te begrijpen, contact op te nemen, een passend gesprek voor te bereiden en de opvolging bij te houden. De herkomst en opvolgstatus gebruiken we ook om te beoordelen welke eigen campagnes relevante aanvragen opleveren.'],
             ['Grondslag', 'Voor noodzakelijke stappen naar een overeenkomst met jou: jouw verzoek (art. 6 lid 1 sub b AVG). Voor zakelijke contactpersonen, opvolging en beperkte interne campagnemeting: ons gerechtvaardigd belang om aanvragen te behandelen en onze acquisitie te evalueren (art. 6 lid 1 sub f AVG). Je kunt tegen verwerking op basis van gerechtvaardigd belang bezwaar maken.'],
             ['Bewaartermijn', 'De aanvraag, bijbehorende campagnelabels en opvolggegevens bewaren we zolang nodig voor opvolging, maximaal 1 jaar na ontvangst. Bij een klantrelatie geldt sectie 2.3.'],
             ['Opslag en ontvangers', 'Vercel levert de website en stuurt het formulier door naar ons platform bij Cloudflare. Aanvragen staan in een Cloudflare D1-database met EU-jurisdictie. Dit betekent niet dat alle netwerk-, beveiligings- of ondersteuningsverwerking uitsluitend in de EU plaatsvindt; zie sectie 4.'],
-            ['Verplichte gegevens', 'Naam, e-mailadres en wensen zijn nodig om dit formulier te versturen en de aanvraag te kunnen behandelen. De overige velden zijn vrijwillig. Je kunt ons ook rechtstreeks mailen of bellen.'],
+            ['Verplichte gegevens', 'Naam, e-mailadres, telefoonnummer, wensen en het vinkje voor contact zijn nodig om dit formulier te versturen en de aanvraag te kunnen behandelen. De overige velden zijn vrijwillig. Je kunt ons ook rechtstreeks mailen of bellen.'],
           ]}
         />
         <P>
@@ -234,12 +234,14 @@ export default function PrivacyPage() {
           conversies door naar Meta of Google en synchroniseert ze niet automatisch met ons CRM.
         </P>
         <P>
-          Vink je in een aanvraagformulier aan dat je een WhatsApp-bericht over je aanvraag wilt
-          ontvangen, dan sturen we je via de WhatsApp Business-dienst van Meta één bericht met je
-          voornaam, als je een mobiel nummer hebt ingevuld. Meta verwerkt daarvoor je telefoonnummer
-          en het bericht. Grondslag is je toestemming (art. 6 lid 1 sub a AVG); die kun je altijd
-          intrekken door het ons te laten weten, ook gewoon in WhatsApp. Zonder vinkje sturen we
-          geen WhatsApp-bericht.
+          Een aanvraagformulier verstuur je pas als je aanvinkt dat we contact met je mogen
+          opnemen over je aanvraag: telefonisch, via WhatsApp en per e-mail. Zonder dat vinkje
+          wordt het formulier niet verstuurd en bewaren we niets. Heb je een mobiel nummer
+          ingevuld, dan sturen we je via de WhatsApp Business-dienst van Meta direct één bericht
+          met je voornaam. Meta verwerkt daarvoor je telefoonnummer en het bericht. Grondslag is
+          je toestemming (art. 6 lid 1 sub a AVG); die kun je altijd intrekken door het ons te
+          laten weten, ook gewoon in WhatsApp. Wil je liever op één manier benaderd worden, laat
+          het ons weten.
         </P>
         <P>
           Voor het schrijven van advertentie- en paginateksten gebruiken wij Anthropic. Daarbij
@@ -310,7 +312,7 @@ export default function PrivacyPage() {
             'Supabase, databasehosting voor scan-gegevens, AI-chatgesprekken en onze eigen relatieadministratie (data-opslag in de EU, Ierland)',
             'Resend, verzending van e-mails zoals het scan-rapport en bevestigingen (VS, met Standard Contractual Clauses)',
             'Anthropic, AI-scan, antwoorden en kwalificatie van chatgesprekken, en het schrijven van onze eigen advertentie- en paginateksten (VS, met Standard Contractual Clauses)',
-            'Meta (WhatsApp Business-dienst), een WhatsApp-bericht over je aanvraag, alleen als je daar toestemming voor gaf (Meta Platforms Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
+            'Meta (WhatsApp Business-dienst), een WhatsApp-bericht over je aanvraag, op basis van je toestemming in het formulier (Meta Platforms Ireland Limited; doorgifte naar de VS onder EU-US Data Privacy Framework)',
             'Cal.com, boekingskalender en afspraakgegevens, met verwerking via internationale infrastructuur en de waarborgen uit de verwerkersvoorwaarden.',
           ]}
         />
@@ -422,7 +424,7 @@ export default function PrivacyPage() {
         </P>
 
         <p className="mt-12 font-mono text-[11px] text-[var(--ink-faint)] uppercase tracking-[0.18em]">
-          Versie 1.4, {LAST_UPDATED}
+          Versie 1.5, {LAST_UPDATED}
         </p>
       </article>
     </SitePage>
