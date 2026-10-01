@@ -6,7 +6,7 @@ De site kan op twee agenda's draaien. Welke, bepaalt
 | Waarde           | Wat er gebeurt                                                                |
 | ---------------- | ----------------------------------------------------------------------------- |
 | `cal` (default)  | De Cal.com-embed, zoals het altijd was. Niets verandert.                       |
-| `teams`          | Eigen agenda op de mailbox `sjaak@factumai.com`, via de scheduling-MCP.        |
+| `teams`          | Eigen agenda op een Graph-mailbox (`BOEKING_MAILBOX`), via de scheduling-MCP.  |
 
 Beide staan naast elkaar in de code, zodat de eigen agenda eerst op een
 testomgeving kan draaien. Pas als die staat, gaat de vlag in productie om; het
@@ -19,7 +19,7 @@ waarde omzetten is niet genoeg — er moet een nieuwe deploy overheen.
 
 ```
 bezoeker → /api/v1/agenda/slots ────────→ factumai-mcp-scheduling → Microsoft Graph
-                                                  (/mcp)             (mailbox Sjaak)
+                                                  (/mcp)          (BOEKING_MAILBOX)
 bezoeker → /api/v1/agenda/boeken → SiteBooking (WACHT) + opt-in mail
                                             │
                         klik op de link in die mail
@@ -40,7 +40,7 @@ en mailt een link; pas de klik op die link zet de afspraak in de agenda. Zie
   stuurt de opt-in mail. Er gebeurt nog niets in de agenda.
 - **Bevestigen** boekt via `create_appointment` met `isOnlineMeeting: true`.
   Graph maakt dan de Teams-vergadering aan en stuurt de agenda-uitnodiging
-  vanuit `sjaak@factumai.com` naar de bezoeker. De bevestigingsmail ernaast gaat
+  vanuit de boekingsmailbox naar de bezoeker. De bevestigingsmail ernaast gaat
   via Resend (`lib/booking/mail.ts`).
 - **De site-agent** gebruikt dezelfde route: `checkBeschikbaarheid` toont de
   echte momenten, `boekAfspraak` vraagt er een aan. Het model krijgt alleen
@@ -51,7 +51,7 @@ en mailt een link; pas de klik op die link zet de afspraak in de agenda. Zie
 
 Het boekingseindpunt is publiek en anoniem. Wie daar een mailadres invult, heeft
 niet bewezen dat het van hem is. Zonder tussenstap kan iemand dus een afspraak
-in de agenda van Sjaak zetten met een willekeurige derde als genodigde — die
+in onze agenda zetten met een willekeurige derde als genodigde — die
 krijgt dan een uitnodiging voor een gesprek waar hij nooit om vroeg.
 
 Met de opt-in gaat er eerst een mail naar dat adres. Wie hem niet kan lezen,
@@ -109,79 +109,131 @@ Wat er **niet** is: een reservering van het slot tijdens het wachten op de klik.
 Twee mensen kunnen hetzelfde moment aanvragen; wie het eerst bevestigt, krijgt
 het. De ander ziet "dat moment is inmiddels vergeven" en kiest opnieuw.
 
-## Setup aan Microsoft-kant
+## Setup
 
-Eenmalig, in de Entra-tenant van factumai.com. Nodig: global admin.
+### Wat er al staat
 
-1. **Aparte agenda in de mailbox.** Maak in Outlook van `sjaak@factumai.com` een
-   agenda naast de standaardagenda, bijvoorbeeld "Kennismaking". Daar komen de
-   websiteboekingen in te staan, zodat ze niet door de gewone agenda lopen.
-   Het `calendarId` vind je via `GET /users/sjaak@factumai.com/calendars`.
+Niet alles hoeft opnieuw. In de dashboard-database van `org_factumai_internal`
+staat al:
 
-2. **App-registratie.** Entra ID → App registrations → New registration. Noteer
-   `tenantId` en `clientId`, en maak onder Certificates & secrets een
-   client secret aan.
+- **Een werkende Graph-credential**, systeemtype `microsoft_graph`, naam
+  "Mail/calender". Die wordt gedeeld door de mail-MCP (drie mailboxen) en de
+  scheduling-MCP. De app-registratie in Entra bestaat dus al.
+- **Een scheduling-activatie** met instanceKey `aios` op `Info@factumai.nl`,
+  gebruikt door de orchestrator. **Die is primair** — daar komt hieronder een
+  valkuil uit voort.
+- **De tabel `SiteBooking`**, migratie `20260813160000_site_booking`.
 
-3. **Application permissions** (niet delegated) op Microsoft Graph:
-   `Calendars.ReadWrite` en `User.Read.All`. Daarna **Grant admin consent** —
-   zonder die klik werkt er niets.
+De mailboxen van de organisatie draaien op **factumai.nl**, niet op `.com`.
 
-4. **Toegang beperken tot één mailbox.** Een Application permission geldt
-   standaard voor élke mailbox in de tenant. Beperk dat met een
-   ApplicationAccessPolicy in Exchange Online PowerShell:
+### 1. Deploy de scheduling-MCP
 
-   ```powershell
-   New-ApplicationAccessPolicy `
-     -AppId <clientId> `
-     -PolicyScopeGroupId sjaak@factumai.com `
-     -AccessRight RestrictAccess `
-     -Description "Alleen de boekingsagenda van de website"
-   ```
+De boekingsconfig zit in `@factumai/mcp-scheduling` **v0.6.0**. Draait de worker
+nog op 0.5.0, dan negeert hij `calendarId`, `timeZone` en de rest zonder te
+klagen — je krijgt dan slots op UTC-werktijden in de standaardagenda.
 
-   Controleer met `Test-ApplicationAccessPolicy`. Sla deze stap niet over: hij is
-   het verschil tussen een app die één agenda mag lezen en een app die de hele
-   organisatie mag lezen.
+Controleer welke versie live staat via `list_instances` of de `MCP_VERSION` in
+`wrangler.toml` van de gedeployede worker, en deploy zo nodig opnieuw.
 
-5. **Credential in het dashboard.** Zet onder de organisatie een credential van
-   systeemtype `microsoft_graph` met `tenantId`, `clientId` en `clientSecret`.
-   Die gaat de Supabase Vault in; de MCP haalt hem per tenant op.
+### 2. Bepaal of de credential app-only is
 
-6. **MCP-activatie in het dashboard.** Activeer `factumai-mcp-scheduling` met
-   adapter `microsoft_graph_calendar` en deze `adapterConfig`:
+Voor een publieke boekingspagina wil je **app-only** (client credentials): er
+zit geen mens achter die opnieuw kan inloggen, en een delegated refresh token
+verloopt na 90 dagen — dan valt de agenda op een willekeurige dinsdag stil.
 
-   ```json
-   {
-     "clientCredentials": true,
-     "defaultTenantId": "<tenantId>",
-     "resourceFilter": "mail eq 'sjaak@factumai.com'",
-     "calendarId": "<id van de Kennismaking-agenda>",
-     "timeZone": "Europe/Amsterdam",
-     "workdays": [1, 2, 3, 4, 5],
-     "workdayStartHour": 9,
-     "workdayEndHour": 17,
-     "slotIntervalMinutes": 30,
-     "minimumNoticeMinutes": 240,
-     "bufferMinutes": 15
-   }
-   ```
+De gedeelde client kiest zelf: app-only zodra er een `clientSecret` is en géén
+`refreshToken` (`packages/shared/src/microsoft-graph/index.ts`). Kijk in het
+dashboard bij de credential "Mail/calender" welke velden gevuld zijn.
 
-   - `resourceFilter` houdt de resourcelijst bij die ene mailbox; zonder filter
-     loopt `find_available_slots` langs élke gebruiker in de tenant.
-   - `timeZone` moet erin staan. Zonder die waarde leest de MCP de openingstijden
-     in UTC, en dan verschuift het venster een uur zodra de klok verzet wordt.
-   - `minimumNoticeMinutes` is de tijd die Sjaak minimaal krijgt om zich voor te
-     bereiden; `bufferMinutes` de lucht rond bestaande afspraken.
+- **Is hij delegated?** Zet dan een aparte credential neer voor de website, met
+  `tenantId`, `clientId` en `clientSecret`, en `"clientCredentials": true` in de
+  adapter-config. Laat de bestaande credential met rust: de mail-MCP hangt eraan.
+- **Is hij al app-only?** Dan kun je hem hergebruiken.
 
-7. **Migratie.** De opt-in heeft de tabel `SiteBooking` nodig. Die staat in de
-   dashboard-repo als `prisma/migrations/20260813160000_site_booking` en is op
-   13 augustus 2026 toegepast op productie — hier is dus niets meer te doen.
+Bij app-only heeft de app-registratie **Application permissions** nodig
+(`Calendars.ReadWrite`, `User.Read.All`) mét admin consent — niet de delegated
+variant.
 
-8. **Env-variabelen op Vercel** (zie `.env.example`):
-   `NEXT_PUBLIC_BOEKING_PROVIDER=teams`, `FACTUMAI_MCP_SCHEDULING_URL`,
-   `NEXT_PUBLIC_SITE_URL` (staat in de bevestigingslink), en — als die er nog
-   niet stonden — `FACTUMAI_MCP_INBOUND_SECRET`, `FACTUMAI_MCP_ORG_ID` en
-   `RESEND_API_KEY`. Zonder Resend-key gaat er geen opt-in mail de deur uit en
-   kan er dus ook niets bevestigd worden.
+### 3. Beperk de app tot één mailbox
+
+Een Application permission geldt standaard voor élke mailbox in de tenant.
+Beperk dat in Exchange Online PowerShell:
+
+```powershell
+New-ApplicationAccessPolicy `
+  -AppId <clientId> `
+  -PolicyScopeGroupId sjaak@factumai.nl `
+  -AccessRight RestrictAccess `
+  -Description "Alleen de boekingsagenda van de website"
+```
+
+Controleer met `Test-ApplicationAccessPolicy`. Sla dit niet over: het is het
+verschil tussen een app die één agenda mag lezen en een app die de hele
+organisatie mag lezen.
+
+Let op: bestaat er al een policy voor deze app ten behoeve van de mail-MCP, dan
+moet de boekingsmailbox daarin passen. Een tweede policy voor dezelfde app
+vervangt de eerste niet, hij botst ermee.
+
+### 4. Maak de boekingsagenda
+
+Maak in Outlook van de boekingsmailbox een agenda naast de standaardagenda,
+bijvoorbeeld "Kennismaking". Daar komen de websiteboekingen in te staan, zodat
+ze niet door de gewone agenda lopen.
+
+Het `calendarId` haal je op met `GET /users/<upn>/calendars`.
+
+### 5. Nieuwe MCP-activatie — géén bestaande aanpassen
+
+Voeg een **nieuwe** activatie toe voor `factumai-mcp-scheduling` met een eigen
+instanceKey, bijvoorbeeld `website`. Adapter `microsoft_graph_calendar`:
+
+```json
+{
+  "clientCredentials": true,
+  "defaultTenantId": "<tenantId>",
+  "resourceFilter": "mail eq 'sjaak@factumai.nl'",
+  "calendarId": "<id van de Kennismaking-agenda>",
+  "timeZone": "Europe/Amsterdam",
+  "workdays": [1, 2, 3, 4, 5],
+  "workdayStartHour": 9,
+  "workdayEndHour": 17,
+  "slotIntervalMinutes": 30,
+  "minimumNoticeMinutes": 240,
+  "bufferMinutes": 15
+}
+```
+
+- **Maak deze niet primair.** `aios` is primair en de orchestrator rekent daarop;
+  omzetten verlegt stilletjes waar die uitkomt.
+- `resourceFilter` houdt de resourcelijst bij die ene mailbox. Zonder filter
+  loopt `find_available_slots` langs élke gebruiker in de tenant — dat is traag
+  en het levert slots op van mensen die er niets mee te maken hebben.
+- `timeZone` moet erin staan. Zonder die waarde leest de MCP de openingstijden in
+  UTC, en dan verschuift het venster een uur zodra de klok verzet wordt.
+
+### 6. Env-variabelen op Vercel
+
+```
+NEXT_PUBLIC_BOEKING_PROVIDER=teams
+FACTUMAI_MCP_SCHEDULING_URL=https://factumai-mcp-scheduling.<account>.workers.dev/mcp
+BOEKING_MCP_INSTANCE=website
+BOEKING_MAILBOX=sjaak@factumai.nl
+BOEKING_REPLY_TO=sjaak@factumai.nl
+```
+
+En als die er nog niet stonden: `FACTUMAI_MCP_INBOUND_SECRET`,
+`FACTUMAI_MCP_ORG_ID`, `RESEND_API_KEY`, `NEXT_PUBLIC_SITE_URL`.
+
+**`BOEKING_MCP_INSTANCE` is niet optioneel** zolang `aios` primair is. Zonder
+die waarde kijkt en boekt de website in de agenda van de orchestrator, en daar
+faalt niets zichtbaar aan.
+
+**Zonder `RESEND_API_KEY` werkt boeken niet.** De opt-in link komt per mail; geen
+mail is geen bevestiging is geen afspraak.
+
+`NEXT_PUBLIC_`-variabelen worden bij de build in de bundel gebakken: er moet een
+nieuwe deploy overheen voordat de vlag effect heeft.
 
 ## Controleren of het werkt
 
@@ -191,8 +243,8 @@ Eenmalig, in de Entra-tenant van factumai.com. Nodig: global admin.
    krijgt een mail met een link, en in de agenda staat nog **niets**. In
    `SiteBooking` staat een rij met status `WACHT`.
 3. Klik de link, klik de knop. Nu verschijnt de afspraak in de Kennismaking-
-   agenda, krijg je een uitnodiging met een Teams-link vanuit
-   `sjaak@factumai.com`, plus de bevestigingsmail. De rij staat op `BEVESTIGD`.
+   agenda, krijg je een uitnodiging met een Teams-link vanuit de
+   boekingsmailbox, plus de bevestigingsmail. De rij staat op `BEVESTIGD`.
 4. Klik de link nog eens: hij hoort te zeggen dat het al vaststond, en er mag
    geen tweede afspraak bijkomen.
 5. Vraag de slots nog eens op: het geboekte moment is weg, en met
